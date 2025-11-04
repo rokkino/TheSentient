@@ -10,7 +10,7 @@
     "indicators": {
         "rsi": true
     },
-    "view_mode": 2,
+    "view_mode": 3,
     "news_tickers": [
         "GC=F",
         "CL=F",
@@ -18,6 +18,5 @@
         "NVDA",
         "MSFT",
         "GOOGL"
-    ],
-    "view_popup_duration_s": 5
+    ]
 }

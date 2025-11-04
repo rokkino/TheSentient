@@ -32,6 +32,28 @@ try:
 except ImportError:
     print("ERRORE: Impossibile trovare il file 'news.py'.")
     news = None
+
+# Lazy import per model - verrà caricato solo quando necessario
+# Questo evita errori di import se PyTorch non è disponibile o ha problemi
+model = None
+def load_model():
+    """Carica il modulo model.py in modo lazy."""
+    global model
+    if model is not None:
+        return model
+    try:
+        import model as _model
+        model = _model
+        return model
+    except ImportError:
+        print("AVVISO: Impossibile trovare il file 'model.py'. L'analisi delle notizie sarà disabilitata.")
+        model = None
+        return None
+    except Exception as e:
+        print(f"AVVISO: Errore durante il caricamento del modulo 'model.py': {e}")
+        print("L'analisi delle notizie sarà disabilitata.")
+        model = None
+        return None
     
 try:
     # Importa i nuovi widget UI dal file settings_view.py
@@ -204,6 +226,47 @@ class DataWorker(QThread):
         except Exception as e:
             self.error.emit(f"Failed to get data for {self.ticker}: {e}")
 
+class NewsAnalysisWorker(QThread):
+    """Worker thread per analizzare le notizie con il modello AI."""
+    analysis_complete = pyqtSignal(dict)  # Emette il news_item con trading_signal aggiunto
+    
+    def __init__(self, news_item, trading_model=None):
+        super().__init__()
+        self.news_item = news_item
+        self.trading_model = trading_model
+    
+    def run(self):
+        if not self.trading_model or not self.trading_model.model:
+            # Se il modello non è disponibile, emetti il news_item senza analisi
+            self.analysis_complete.emit(self.news_item)
+            return
+        
+        try:
+            # Ottieni il testo della notizia
+            news_text = self.news_item.get('text', '')
+            news_link = self.news_item.get('link', '')
+            ticker = self.news_item.get('ticker', '')
+            
+            # Se non c'è testo, prova a recuperarlo dall'URL
+            if not news_text and news_link:
+                news_text = self.trading_model.check_url(news_link)
+            
+            # Se ancora non c'è testo, usa il titolo
+            if not news_text:
+                news_text = self.news_item.get('title', '')
+            
+            # Analizza il trading signal
+            if news_text:
+                trading_signal = self.trading_model.analyze_trading_signal(news_text, ticker)
+                self.news_item['trading_signal'] = trading_signal
+                print(f"[NewsAnalysis] Analisi completata per {ticker}: {trading_signal.get('direction')} ({trading_signal.get('confidence')}%)")
+            
+            self.analysis_complete.emit(self.news_item)
+        except Exception as e:
+            print(f"[NewsAnalysis] Errore durante l'analisi: {e}")
+            # Emetti il news_item senza analisi in caso di errore
+            self.analysis_complete.emit(self.news_item)
+
 class NewsWorker(QThread):
     new_news_signal = pyqtSignal(dict)
     
@@ -372,7 +435,7 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 1400, 800)
         self.setStyleSheet(STYLESHEET)
         
-        # Abilita il tracciamento del mouse per la Vista 3
+        # Abilita il tracking del mouse per la vista 3
         self.setMouseTracking(True)
         
         self.current_ticker = None
@@ -380,11 +443,14 @@ class MainWindow(QMainWindow):
         self.current_chart_type = "candle"
         self.indicators_state = {}
         self.news_worker = None
+        self.analysis_workers = []  # Lista dei worker di analisi attivi
+        self.trading_model = None  # Istanza condivisa del modello
+        # Il modello verrà caricato in modo lazy solo quando necessario (quando arriva una notizia)
         
         # Impostazioni predefinite
-        self.current_view_mode = 1 # 1:Grafico, 2:Fissa, 3:Flyout
+        self.current_view_mode = 1 # 1:Grafico, 2:Grafico+Notizie, 3:Grafico+Flyout Notizie
         self.news_tickers = ['GC=F', 'CL=F', '^GSPC', 'NVDA', 'MSFT', 'GOOGL']
-        self.view_popup_duration_s = 5 # 5 secondi
+        self.flyout_popup_duration_ms = 5000  # 5 secondi per auto-hide
         
         self.timeframe_buttons = {}
         self.chart_type_buttons = {}
@@ -399,7 +465,7 @@ class MainWindow(QMainWindow):
             "5y": {"period": "5y", "interval": "1wk"},
         }
 
-        # --- Layout Principale Modificato ---
+        # --- Layout Principale ---
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         self.main_layout = QHBoxLayout(central_widget)
@@ -413,23 +479,20 @@ class MainWindow(QMainWindow):
 
         self.splitter.setSizes([350, 1050])
         
-        # --- Crea ENTRAMBE le sidebar ---
-        # Vista 2: Sidebar fissa (aggiunta al layout)
-        self.sticky_news_feed = NewsSidebar(self)
-        self.main_layout.addWidget(self.sticky_news_feed)
+        # Crea la sidebar delle notizie (per vista 2)
+        self.news_feed_sidebar = NewsSidebar(self)
+        self.main_layout.addWidget(self.news_feed_sidebar)
         
-        # Vista 3: Sidebar Flyout (fluttuante sopra la main window)
-        # Caricata dopo 'load_settings'
-        self.flyout_news_feed = None 
-        # --- Fine Modifica ---
+        # Crea il flyout delle notizie (per vista 3)
+        # Il flyout viene creato come widget sopra la finestra principale
+        self.flyout_news_feed = FlyoutNewsFeed(self.flyout_popup_duration_ms, self)
+        self.flyout_news_feed.view_toggle_requested.connect(self.on_view_toggled)
+        self.flyout_news_feed.hide()
 
         self.setup_connections()
 
         # Carica le impostazioni e applica la vista
         self.load_settings()
-        
-        # Crea il flyout ora che abbiamo le impostazioni
-        self.flyout_news_feed = FlyoutNewsFeed(self.view_popup_duration_s * 1000, self)
         
         self.update_ui_states()
         
@@ -537,28 +600,36 @@ class MainWindow(QMainWindow):
 
     # --- Eventi di Mouse/Finestra per Vista 3 ---
     def mouseMoveEvent(self, event):
-        """Traccia il mouse per mostrare la sidebar flyout."""
-        if self.current_view_mode == 3:
-            edge_threshold = self.width() - 10 # 10 pixel dal bordo
-            # Converti la posizione globale in posizione locale della finestra
-            local_pos = self.mapFromGlobal(event.globalPosition().toPoint())
-            if local_pos.x() >= edge_threshold:
-                self.flyout_news_feed.slide_in()
-        super().mouseMoveEvent(event)
-
-    def resizeEvent(self, event):
-        """Aggiorna la geometria del flyout quando la finestra è ridimensionata."""
-        if self.flyout_news_feed:
-            self.flyout_news_feed.update_geometry()
-        super().resizeEvent(event)
+        """Rileva quando il mouse è vicino al bordo destro per mostrare il flyout."""
+        if self.current_view_mode == 3 and hasattr(self, 'flyout_news_feed'):
+            window_width = self.width()
+            mouse_x = event.position().x()
+            edge_threshold = 50  # Pixel dal bordo destro
+            
+            # Se il mouse è vicino al bordo destro
+            if mouse_x >= window_width - edge_threshold:
+                if not self.flyout_news_feed.is_visible:
+                    self.flyout_news_feed.slide_in()
+                else:
+                    # Se già visibile, riavvia il timer per mantenerlo visibile
+                    self.flyout_news_feed.auto_hide_timer.stop()
+                    self.flyout_news_feed.auto_hide_timer.start(self.flyout_popup_duration_ms)
+            # Se il mouse è lontano dal flyout e dal bordo, nascondi dopo un delay
+            elif mouse_x < window_width - self.flyout_news_feed.panel_width - edge_threshold:
+                if self.flyout_news_feed.is_visible:
+                    # Non nascondere se il mouse è sopra il flyout stesso
+                    flyout_rect = self.flyout_news_feed.geometry()
+                    if not flyout_rect.contains(event.position().toPoint()):
+                        self.flyout_news_feed.schedule_slide_out(500)
         
-    def showEvent(self, event):
-        """Aggiorna la geometria la prima volta che la finestra appare."""
-        if self.flyout_news_feed:
-            # Ritarda l'aggiornamento per assicurare che il parent sia visibile
-            QTimer.singleShot(100, lambda: self.flyout_news_feed.update_geometry(force_hide=True))
-        super().showEvent(event)
-    # --- Fine Eventi ---
+        super().mouseMoveEvent(event)
+    
+    def resizeEvent(self, event):
+        """Aggiorna la geometria del flyout quando la finestra viene ridimensionata."""
+        super().resizeEvent(event)
+        if hasattr(self, 'flyout_news_feed') and self.flyout_news_feed:
+            if self.current_view_mode == 3:
+                self.flyout_news_feed.update_geometry()
 
     def start_search(self):
         query = self.search_bar.text().strip()
@@ -604,6 +675,10 @@ class MainWindow(QMainWindow):
         self.watchlist.setCurrentItem(list_item)
         self.search_bar.clear()
         self.search_results_list.hide()
+        
+        # Se siamo in vista 3, riavvia il news worker con i nuovi ticker
+        if self.current_view_mode == 3:
+            self.start_news_worker()
 
     # --- Gestione UI (Modificato per Vista 3) ---
     
@@ -636,36 +711,40 @@ class MainWindow(QMainWindow):
         """Applica la modalità di visualizzazione corrente."""
         icon_map = {
             1: QStyle.StandardPixmap.SP_DesktopIcon,       # Vista 1: Solo Grafico
-            2: QStyle.StandardPixmap.SP_DirOpenIcon,       # Vista 2: Sidebar Fissa
-            3: QStyle.StandardPixmap.SP_ArrowRight        # Vista 3: Flyout
+            2: QStyle.StandardPixmap.SP_DirOpenIcon,       # Vista 2: Grafico + Sidebar Notizie
+            3: QStyle.StandardPixmap.SP_FileIcon           # Vista 3: Grafico + Flyout Notizie
         }
-        
-        # Nascondi tutto di default
-        self.sticky_news_feed.hide()
-        self.flyout_news_feed.hide()
         
         if self.current_view_mode == 1:
             # VISTA 1: Solo Grafico
-            pass # Entrambe sono nascoste
+            self.splitter.show()
+            self.news_feed_sidebar.hide()
+            self.flyout_news_feed.hide()
             
         elif self.current_view_mode == 2:
-            # VISTA 2: Grafico + Sidebar Fissa
-            self.sticky_news_feed.show()
+            # VISTA 2: Grafico + Sidebar Notizie
+            self.splitter.show()
+            self.news_feed_sidebar.show()
+            self.flyout_news_feed.hide()
             
         elif self.current_view_mode == 3:
-            # VISTA 3: Grafico + Flyout
-            self.flyout_news_feed.show()
-            self.flyout_news_feed.update_geometry(force_hide=True) # Assicura che sia fuori schermo
+            # VISTA 3: Grafico + Flyout Notizie (a destra)
+            self.splitter.show()  # Keep splitter visible
+            self.news_feed_sidebar.hide()
+            # Flyout starts hidden, will show on hover or new news
+            self.flyout_news_feed.update_geometry(force_hide=True)
+            self.flyout_news_feed.hide()
+            # Riavvia il news worker con i ticker della watchlist
+            self.start_news_worker()
         
         self.view_button.setIcon(self.style().standardIcon(icon_map.get(self.current_view_mode)))
-        self.view_button.setChecked(self.current_view_mode != 1)
 
 
     def open_settings(self):
         """Apre il dialogo delle impostazioni."""
         current_settings = {
-            'news_tickers': self.news_tickers,
-            'view_popup_duration_s': self.view_popup_duration_s
+            'news_tickers': self.news_tickers
+            # Rimosso: 'view_popup_duration_s'
         }
         dialog = SettingsDialog(current_settings, self)
         
@@ -674,12 +753,10 @@ class MainWindow(QMainWindow):
             
             # Aggiorna le impostazioni e salva
             self.news_tickers = new_settings.get('news_tickers', self.news_tickers)
-            self.view_popup_duration_s = new_settings.get('view_popup_duration_s', self.view_popup_duration_s)
             self.save_settings()
             
-            # Applica le nuove impostazioni
-            self.flyout_news_feed.popup_duration_ms = self.view_popup_duration_s * 1000
-            self.start_news_worker() # Riavvia con i nuovi ticker
+            # Riavvia il news worker con i nuovi ticker
+            self.start_news_worker()
 
     def update_ui_states(self):
         """Aggiorna tutti i pulsanti (timeframe, tipo, indicatori, vista) all'avvio."""
@@ -699,20 +776,93 @@ class MainWindow(QMainWindow):
             self.news_worker.wait()
         
         if news:
-            self.news_worker = NewsWorker(self.news_tickers)
+            # In vista 3, usa i ticker della watchlist se disponibili, altrimenti usa news_tickers
+            if self.current_view_mode == 3:
+                watchlist_tickers = self.get_watchlist_tickers()
+                tickers_to_use = watchlist_tickers if watchlist_tickers else self.news_tickers
+            else:
+                tickers_to_use = self.news_tickers
+            
+            self.news_worker = NewsWorker(tickers_to_use)
             self.news_worker.new_news_signal.connect(self.add_news_card)
             self.news_worker.start()
         else:
             print("Impossibile avviare NewsWorker: modulo 'news.py' non trovato.")
 
+    def get_watchlist_tickers(self):
+        """Restituisce una lista di ticker dalla watchlist."""
+        tickers = []
+        for i in range(self.watchlist.count()):
+            item = self.watchlist.item(i)
+            if item:
+                data = item.data(Qt.ItemDataRole.UserRole)
+                if data and 'symbol' in data:
+                    tickers.append(data['symbol'])
+        return tickers
+    
+    def _ensure_trading_model(self):
+        """Carica il modello trading solo quando necessario (lazy loading)."""
+        if self.trading_model is not None:
+            # Se il modello è già caricato, verifica che sia valido
+            return hasattr(self.trading_model, 'model') and self.trading_model.model is not None
+        
+        # Prova a caricare il modello solo ora
+        try:
+            model_module = load_model()
+            if model_module:
+                print("[MainWindow] Caricamento modello AI per analisi notizie...")
+                try:
+                    self.trading_model = model_module.TradingModel()
+                    if self.trading_model.model is None:
+                        print("[MainWindow] Modello non caricato. Analisi notizie disabilitata.")
+                        self.trading_model = None
+                        return False
+                    else:
+                        print("[MainWindow] Modello caricato con successo.")
+                        return True
+                except Exception as e:
+                    print(f"[MainWindow] Errore durante il caricamento del modello: {e}")
+                    self.trading_model = None
+                    return False
+            else:
+                return False
+        except Exception as e:
+            print(f"[MainWindow] Errore durante l'import del modulo model: {e}")
+            self.trading_model = None
+            return False
+    
     @pyqtSlot(dict)
     def add_news_card(self, news_item):
         """Slot per ricevere una nuova notizia. La invia alla sidebar corretta."""
-        # Aggiunge la notizia a entrambe le sidebar. Solo una sarà visibile.
-        self.sticky_news_feed.add_card(news_item)
+        # Filtra le notizie per ticker della watchlist
+        watchlist_tickers = self.get_watchlist_tickers()
+        news_ticker = news_item.get('ticker', '')
         
-        # Triggera l'animazione *solo* se siamo in Vista 3
+        # Se la vista è 3, mostra solo notizie della watchlist
         if self.current_view_mode == 3:
+            if not watchlist_tickers or news_ticker not in watchlist_tickers:
+                return  # Ignora notizie non correlate alla watchlist
+        
+        # Prova a caricare il modello se non è già caricato
+        model_available = self._ensure_trading_model()
+        
+        # Avvia l'analisi della notizia in background
+        if model_available and self.trading_model and self.trading_model.model:
+            analysis_worker = NewsAnalysisWorker(news_item.copy(), self.trading_model)
+            analysis_worker.analysis_complete.connect(self._on_news_analyzed)
+            analysis_worker.start()
+            self.analysis_workers.append(analysis_worker)
+        else:
+            # Se il modello non è disponibile, aggiungi direttamente
+            self._on_news_analyzed(news_item)
+    
+    def _on_news_analyzed(self, news_item):
+        """Callback quando l'analisi della notizia è completata."""
+        # Aggiunge la notizia alla sidebar (vista 2) o al flyout (vista 3)
+        if self.current_view_mode == 2:
+            self.news_feed_sidebar.add_card(news_item)
+        elif self.current_view_mode == 3:
+            # Aggiunge al flyout e lo mostra
             self.flyout_news_feed.add_and_popup(news_item)
 
     # --- Funzioni di gestione dati (identiche) ---
@@ -747,6 +897,10 @@ class MainWindow(QMainWindow):
         if self.watchlist.count() == 0:
             self.current_ticker = None
             self.stacked_widget.setCurrentWidget(self.stacked_widget.widget(0))
+        
+        # Se siamo in vista 3, riavvia il news worker con i nuovi ticker
+        if self.current_view_mode == 3:
+            self.start_news_worker()
 
     def show_error(self, message):
         self.loading_movie.stop()
@@ -824,8 +978,8 @@ class MainWindow(QMainWindow):
             'chart_type': self.current_chart_type,
             'indicators': self.indicators_state,
             'view_mode': self.current_view_mode,
-            'news_tickers': self.news_tickers,
-            'view_popup_duration_s': self.view_popup_duration_s
+            'news_tickers': self.news_tickers
+            # Rimosso: 'view_popup_duration_s'
         }
         
         try:
@@ -849,7 +1003,7 @@ class MainWindow(QMainWindow):
             self.current_view_mode = settings.get('view_mode', 1)
             default_tickers = ['GC=F', 'CL=F', '^GSPC', 'NVDA', 'MSFT', 'GOOGL']
             self.news_tickers = settings.get('news_tickers', default_tickers)
-            self.view_popup_duration_s = settings.get('view_popup_duration_s', 5)
+            # Rimosso: self.view_popup_duration_s
             
             # Carica watchlist
             watchlist_data = settings.get('watchlist', [])
@@ -892,6 +1046,8 @@ if __name__ == '__main__':
         print("AVVISO: il modulo 'rsi.py' non è stato trovato. L'indicatore RSI sarà disabilitato.")
     if news is None:
         print("AVVISO: il modulo 'news.py' non è stato trovato. Il feed notizie sarà disabilitato.")
+    if model is None:
+        print("AVVISO: il modulo 'model.py' non è stato trovato. L'analisi AI delle notizie sarà disabilitata.")
 
     app = QApplication(sys.argv)
     window = MainWindow()

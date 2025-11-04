@@ -158,6 +158,84 @@ ASSISTANT:
 """
         return self._get_llm_response(prompt)
 
+    def analyze_trading_signal(self, text_content, ticker=None):
+        """
+        Analizza il testo e genera un segnale di trading con stop loss, take profit e confidence.
+        Restituisce un dizionario con: direction (BULLISH/BEARISH/NEUTRAL), confidence (0-100),
+        stop_loss, take_profit
+        """
+        if not text_content:
+            return {
+                'direction': 'NEUTRAL',
+                'confidence': 0,
+                'stop_loss': None,
+                'take_profit': None
+            }
+        
+        prompt = f"""You are a financial analyst. Analyze the following news article and provide a trading signal.
+Respond in JSON format with these exact fields:
+- "direction": "BULLISH" or "BEARISH" or "NEUTRAL"
+- "confidence": a number between 0 and 100
+- "stop_loss": a percentage (e.g., "-2.5%") for stop loss
+- "take_profit": a percentage (e.g., "+5.0%") for take profit
+
+Only respond with the JSON, no additional text.
+
+Article: "{text_content[:1500]}"
+Ticker: {ticker or "N/A"}
+
+ASSISTANT:
+"""
+        response = self._get_llm_response(prompt)
+        
+        # Prova a estrarre JSON dalla risposta
+        import json
+        import re
+        
+        # Cerca JSON nella risposta
+        json_match = re.search(r'\{[^}]+\}', response)
+        if json_match:
+            try:
+                signal_data = json.loads(json_match.group())
+                # Valida e normalizza i dati
+                direction = signal_data.get('direction', 'NEUTRAL').upper()
+                if direction not in ['BULLISH', 'BEARISH', 'NEUTRAL']:
+                    direction = 'NEUTRAL'
+                
+                confidence = int(signal_data.get('confidence', 0))
+                confidence = max(0, min(100, confidence))
+                
+                stop_loss = signal_data.get('stop_loss')
+                take_profit = signal_data.get('take_profit')
+                
+                return {
+                    'direction': direction,
+                    'confidence': confidence,
+                    'stop_loss': stop_loss,
+                    'take_profit': take_profit
+                }
+            except json.JSONDecodeError:
+                pass
+        
+        # Fallback: analisi basata su sentiment
+        sentiment = self.analyze_sentiment(text_content)
+        if sentiment == "POSITIVE":
+            direction = "BULLISH"
+            confidence = 65
+        elif sentiment == "NEGATIVE":
+            direction = "BEARISH"
+            confidence = 65
+        else:
+            direction = "NEUTRAL"
+            confidence = 50
+        
+        return {
+            'direction': direction,
+            'confidence': confidence,
+            'stop_loss': "-2.5%" if direction != 'NEUTRAL' else None,
+            'take_profit': "+5.0%" if direction == 'BULLISH' else ("-3.0%" if direction == 'BEARISH' else None)
+        }
+
 
 # --- 4. ESECUZIONE (per testare questo file) ---
 if __name__ == "__main__":

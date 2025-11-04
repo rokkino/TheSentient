@@ -1,17 +1,23 @@
 {
     "watchlist": [
         {
-            "name": "Gold Dec 25",
-            "symbol": "GC=F"
-        },
-        {
             "name": "NVIDIA Corporation",
             "symbol": "NVDA"
         }
     ],
     "timeframe": "1d",
-    "chart_type": "candle",
+    "chart_type": "line",
     "indicators": {
         "rsi": true
-    }
+    },
+    "view_mode": 2,
+    "news_tickers": [
+        "GC=F",
+        "CL=F",
+        "^GSPC",
+        "NVDA",
+        "MSFT",
+        "GOOGL"
+    ],
+    "view_popup_duration_s": 5
 }

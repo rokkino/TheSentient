@@ -1,16 +1,11 @@
 {
-    "watchlist": [
-        {
-            "name": "NVIDIA Corporation",
-            "symbol": "NVDA"
-        }
-    ],
+    "watchlist": [],
     "timeframe": "1d",
-    "chart_type": "line",
+    "chart_type": "candle",
     "indicators": {
         "rsi": true
     },
-    "view_mode": 3,
+    "view_mode": 2,
     "news_tickers": [
         "GC=F",
         "CL=F",
@@ -18,5 +13,6 @@
         "NVDA",
         "MSFT",
         "GOOGL"
-    ]
+    ],
+    "ssl_verify": false
 }

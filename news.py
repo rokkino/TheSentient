@@ -1,10 +1,11 @@
 import yfinance as yf
 import time
 from datetime import datetime
+import sys # Aggiunto per il test
 
 # --- 1. YAHOO FINANCE NEWS (CON FILTRI E PARSING CORRETTI) ---
 
-def get_yfinance_news(tickers):
+def get_yfinance_news(tickers, session=None):
     """
     Estrae le notizie più recenti da Yahoo Finance per un elenco di ticker.
     Filtra le notizie senza titolo o con timestamp non validi.
@@ -15,7 +16,7 @@ def get_yfinance_news(tickers):
     
     for ticker in tickers:
         try:
-            tk = yf.Ticker(ticker)
+            tk = yf.Ticker(ticker, session=session)
             news_list = tk.news
             
             if not news_list:
@@ -59,8 +60,6 @@ def get_yfinance_news(tickers):
                 }
                 all_news.append(formatted_item)
             
-            # RIMOSSO: time.sleep(0.5) <-- Non necessario se il loop principale attende 5 min.
-
         except Exception as e:
             # Silenzia gli errori nel loop per non intasare il log
             # print(f"[News.py] Errore durante il recupero notizie per {ticker}: {e}")
@@ -72,14 +71,14 @@ def get_yfinance_news(tickers):
 
 # --- 2. FUNZIONE AGGREGATORE (SEMPLIFICATA) ---
 
-def fetch_all_news(yfinance_tickers):
+def fetch_all_news(yfinance_tickers, session=None):
     """
     Raccoglie notizie da Yahoo Finance e le unisce in un unico "data pool".
     """
     all_news = []
     
     # Fonte 1: Yahoo Finance
-    yahoo_news = get_yfinance_news(yfinance_tickers)
+    yahoo_news = get_yfinance_news(yfinance_tickers, session=session)
     all_news.extend(yahoo_news)
     
     # Ordina il pool di dati per timestamp, con il più recente in cima
@@ -90,6 +89,19 @@ def fetch_all_news(yfinance_tickers):
 
 # --- 3. ESECUZIONE IN REAL TIME (per testare questo file) ---
 if __name__ == "__main__":
+    
+    # --- MODIFICA PER TEST CON CURL_CFFI ---
+    try:
+        from curl_cffi.requests import Session as CurlSession
+    except ImportError:
+        print("ERRORE: 'curl_cffi' non trovato. Esegui: pip install curl_cffi")
+        sys.exit(1)
+
+    # Crea la sessione che impersona Chrome (e disabilita SSL per la rete aziendale)
+    print("Creazione sessione curl_cffi (impersonate='chrome110', verify=False)")
+    test_session = CurlSession(impersonate="chrome110")
+    test_session.verify = False # Imposta su False per la rete aziendale
+    # --- FINE MODIFICA ---
     
     # 1. Definisci i tuoi target
     YFINANCE_TICKERS_TO_WATCH = [
@@ -115,7 +127,8 @@ if __name__ == "__main__":
             print(f"\n[{current_time}] Controllo nuove notizie da Yahoo Finance...")
             
             # 2. Recupera il data pool
-            data_pool = fetch_all_news(YFINANCE_TICKERS_TO_WATCH)
+            # --- MODIFICATO ---
+            data_pool = fetch_all_news(YFINANCE_TICKERS_TO_WATCH, session=test_session)
             
             new_items = []
             if not data_pool:
@@ -159,3 +172,6 @@ if __name__ == "__main__":
 
     except KeyboardInterrupt:
         print("\n--- News Feed Monitor interrotto. ---")
+    finally:
+        if test_session:
+            test_session.close() # Aggiunto

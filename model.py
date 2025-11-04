@@ -1,16 +1,25 @@
 import sys
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import requests
+# from transformers import AutoTokenizer, AutoModelForCausalLM  <-- RIMOSSO
+# import requests <-- RIMOSSO
 from bs4 import BeautifulSoup
 import re
+import os
 
+# --- AGGIUNGI QUESTO BLOCCO ---
+try:
+    from curl_cffi.requests import Session as CurlSession
+    import requests # Lo importiamo solo per le eccezioni
+except ImportError:
+    print("ERRORE: 'curl_cffi' non trovato. Esegui: pip install curl_cffi")
+    CurlSession = None
+    import requests # Fallback
+
+# Variabile globale per il lazy loading
+transformers = None
 # --- AVVERTIMENTO DI SICUREZZA ---
 print("="*80)
-print("AVVISO: Questo script carica un Modello di Linguaggio (LLM) per analisi.")
-print("NON USARE QUESTO SCRIPT PER DECISIONI DI TRADING REALI.")
-print("I modelli locali 'piccoli' NON sono affidabili per previsioni finanziarie.")
-print("USARE SOLO A SCOPO DIDATTICO E SPERIMENTALE. Rischio di perdita totale.")
+'''SOLO PER PAPER E TEST, IL MODELLO AI è MINUSCOLO PER ESSERE RISPETTATO DALLA CREW, NON ASCOLTARLO, DICE CAZZATE.'''
 print("="*80)
 # ---------------------------------
 
@@ -19,33 +28,57 @@ class TradingModel:
     Carica un modello LLM in locale sulla CPU per eseguire
     analisi di base (sentiment, riassunto) su notizie finanziarie.
     """
-    def __init__(self):
-        model_id = "deepseek-ai/deepseek-coder-1.3b-instruct"
-        
-        print(f"[Model.py] Caricamento del modello: {model_id} su CPU.")
-        print("Questo potrebbe richiedere alcuni minuti e scaricherà ~1.3GB di dati la prima volta...")
-        print("ATTENZIONE: Il caricamento e l'analisi sulla CPU saranno LENTI.")
+    def __init__(self, session=None):
+            # --- MODIFICA CHIAVE ---
+            # Puntiamo alla cartella locale 'model'
+            model_id = "./model" 
+            # --- FINE MODIFICA ---
+            
+            print(f"[Model.py] Caricamento del modello dalla cartella locale: {model_id}")
+            print("ATTENZIONE: Il caricamento e l'analisi sulla CPU saranno LENTI.")
+            
+            global transformers # Usiamo la variabile globale
 
-        try:
-            # Carica il modello e il tokenizer
-            self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_id,
-                # --- MODIFICHE PER LA CPU ---
-                # Rimosso: quantization_config (non serve senza GPU)
-                device_map="cpu",             # <-- Forzato l'uso della CPU
-                torch_dtype=torch.float32,    # Usa la precisione standard per la CPU
-                # --- FINE MODIFICHE ---
-                trust_remote_code=True
-            )
-            self.model.eval() # Modalità valutazione
-            print(f"[Model.py] Modello caricato con successo sulla CPU.")
+            if session:
+                self.session = session
+            else:
+                # Fallback per il test diretto (come quando esegui 'python model.py')
+                if CurlSession:
+                    print("[Model.py] ATTENZIONE: Nessuna sessione fornita. Creazione di una sessione curl_cffi di test.")
+                    self.session = CurlSession(impersonate="chrome110")
+                    self.session.verify = False # Per testare in azienda
+                else:
+                    print("[Model.py] ATTENZIONE: Nessuna sessione e curl_cffi non trovato. Uso requests.")
+                    self.session = requests.Session()
+                    self.session.verify = False
 
-        except Exception as e:
-            print(f"[Model.py] ERRORE CRITICO durante il caricamento del modello: {e}")
-            print("Verifica di avere installato: transformers, torch")
-            self.model = None
-            self.tokenizer = None
+            # --- RIMOSSO IL BLOCCO os.environ ---
+            # Non è più necessario, perché non stiamo scaricando.
+            
+            try:
+                # --- LAZY IMPORT ---
+                if transformers is None:
+                    print("[Model.py] Importazione lazy di 'transformers'...")
+                    import transformers as tr
+                    transformers = tr
+                # --- FINE LAZY IMPORT ---
+                
+                # Ora caricherà i file dalla cartella ./model
+                self.tokenizer = transformers.AutoTokenizer.from_pretrained(model_id)
+                self.model = transformers.AutoModelForCausalLM.from_pretrained(
+                    model_id,
+                    device_map="cpu", 
+                    dtype=torch.float32,
+                    trust_remote_code=True
+                )
+                self.model.eval()
+                print(f"[Model.py] Modello caricato con successo dalla cartella locale.")
+
+            except Exception as e:
+                print(f"[Model.py] ERRORE CRITICO durante il caricamento del modello: {e}")
+                print(f"Verifica che la cartella '{model_id}' esista e contenga TUTTI i file del modello (config.json, ecc.).")
+                self.model = None
+                self.tokenizer = None
 
     def _get_llm_response(self, formatted_prompt):
         """Funzione helper interna per generare una risposta."""
@@ -76,16 +109,18 @@ class TradingModel:
             
         return clean_response
 
-    def check_url(self, url):
+    def check_url(self, url, session=None):
         """
         Visita un URL, estrae il testo principale e lo pulisce per l'LLM.
         """
+        # --- Scegli la sessione da usare ---
+        active_session = session if session else self.session
         print(f"[Model.py] Controllo URL: {url}")
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
         try:
-            response = requests.get(url, headers=headers, timeout=10)
+            response = active_session.get(url, headers=headers, timeout=10)            
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -265,7 +300,7 @@ if __name__ == "__main__":
         sentiment = model.analyze_sentiment(news_text)
         print(f"\nANALISI SENTIMENT: {sentiment}")
         print("-" * 40)
-        
+        s
         # 5. Fai un riassunto
         summary = model.summarize_text(news_text)
         print(f"\nRIASSUNTO PER TRADER:")

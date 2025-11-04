@@ -1,59 +1,62 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-block_cipher = None
+import os
+import matplotlib
+
+# --- INIZIO Blocco per dati aggiuntivi ---
+# Trova il percorso dei dati di Matplotlib (necessari per mplfinance)
+mpl_data_path = matplotlib.get_data_path()
+
+# Elenca tutti i file che il tuo script deve trovare
+# (percorso_sorgente, cartella_destinazione_nel_bundle)
+added_files = [
+    ('icon.ico', '.'),     # icon.ico is correct
+    ('spinner.gif', '.'),   
+    (mpl_data_path, 'mpl-data') 
+]
+
+# Elenca gli import che PyInstaller potrebbe non trovare
+hidden_imports = [
+    'pandas._libs.tslibs',
+    'yfinance',
+    'transformers',
+    'torch',
+    'beautifulsoup4',
+    'PyQt6.sip' # Aggiunto per sicurezza con PyQt6
+    'accelerate'
+]
+# --- FINE Blocco per dati aggiuntivi ---
+
 
 a = Analysis(
-    ['graph.py'],
-    pathex=['.'],  # Assicura che PyInstaller guardi nella cartella corrente
+    ['graph.py'],  # Il tuo script Python principale
+    pathex=[],
     binaries=[],
-    datas=[
-        ('rsi.py', '.'),          # Include il tuo add-on RSI
-        ('spinner.gif', '.'),     # Include il file GIF
-        ('icona.ico', '.')        # Include l'icona per setWindowIcon
-    ],
-    hiddenimports=[
-        'PyQt6.sip',
-        'PyQt6.QtGui',
-        'PyQt6.QtCore',
-        'PyQt6.QtWidgets',
-        'matplotlib.backends.backend_qtagg' # Backend Matplotlib per PyQt
-    ],
+    datas=added_files,       
+    hiddenimports=hidden_imports, 
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
+    optimize=0,
 )
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
-    [],
     exclude_binaries=True,
-    name='PortfolioTracker', # Il nome del tuo file .exe
+    name='TheSentient',       
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,         # <-- IMPORTANTE: Nasconde la console (modalità finestra)
+    console=False,            # Impostato a False per nascondere la console (è una GUI)
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='icon.ico'       # <-- IMPORTANTE: Usa il file .ico per l'eseguibile
-)
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name='PortfolioTracker' # Il nome della cartella di output
+    icon='icona.ico'          
 )

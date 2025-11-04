@@ -16,7 +16,7 @@ A modern, feature-rich portfolio tracking application with real-time news feeds 
 
 ### Prerequisites
 
-- Python 3.10 or higher
+- Python 3.11 
 - Internet connection (for fetching market data and news)
 
 ### Required Python Packages
@@ -24,29 +24,11 @@ A modern, feature-rich portfolio tracking application with real-time news feeds 
 Install the required packages using pip:
 
 ```bash
-pip install PyQt6 pandas yfinance mplfinance matplotlib requests beautifulsoup4
+pip install -r requirements.txt
 ```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
-### Optional Packages (for AI Analysis)
-
-If you want AI-powered trading signal analysis, you'll also need:
-
-```bash
-pip install torch transformers
-```
-
-**Note:** PyTorch installation can be complex on Windows. If you encounter DLL errors, the application will still work without AI features.
-
-### Required Files
-
-Make sure you have these files in your project directory:
-
-- `graph.py` - Main application file
-- `news.py` - News fetching module
-- `settings_view.py` - UI components
-- `rsi.py` - RSI indicator (optional)
-- `model.py` - AI analysis module (optional)
-- `spinner.gif` - Loading animation
+.\.venv\Scripts\Activate.ps1
 
 ## Quick Start
 

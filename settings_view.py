@@ -1,8 +1,10 @@
 import sys
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QFrame, QScrollArea,
                              QDialog, QLineEdit, QDialogButtonBox, QFormLayout,
-                             QSizePolicy, QSpinBox, QHBoxLayout, QPushButton)
+                             QSizePolicy, QSpinBox, QHBoxLayout, QPushButton,
+                             QCheckBox) # <-- AGGIUNTO QCheckBox
 from PyQt6.QtCore import Qt, pyqtSignal, QSize, QPropertyAnimation, QRect, QTimer, pyqtProperty
+
 from PyQt6.QtGui import QDesktopServices, QColor
 from PyQt6.QtCore import QUrl
 
@@ -19,7 +21,6 @@ STYLESHEET = """
 #NewsCard:hover {
     background-color: #3a3a3a;
     border-color: #555555;
-    transform: translateY(-2px);
 }
 #NewsTitle {
     font-size: 16px;
@@ -391,13 +392,24 @@ class SettingsDialog(QDialog):
         self.tickers_input.setToolTip("Lista di ticker separati da virgola (es. NVDA, GC=F, AAPL)")
         form_layout.addRow(QLabel("Ticker per Notizie:"), self.tickers_input)
         
-        # --- Impostazioni Vista ---
-        self.popup_duration_input = QSpinBox()
-        self.popup_duration_input.setRange(2, 30) # Da 2 a 30 secondi
-        self.popup_duration_input.setSuffix(" sec")
-        self.popup_duration_input.setValue(current_settings.get('view_popup_duration_s', 5))
-        form_layout.addRow(QLabel("Durata Popup Notizie (Vista 3):"), self.popup_duration_input)
-
+        ##### INIZIO MODIFICA SSL #####
+        
+        # Rimosso: popup_duration_input (non era usato nel tuo graph.py,
+        # ma puoi rimetterlo se ti serve)
+        
+        # --- Impostazione SSL ---
+        self.ssl_verify_checkbox = QCheckBox()
+        self.ssl_verify_checkbox.setToolTip(
+            "Disabilita questa opzione SOLO se sei su una rete aziendale\n"
+            "che causa problemi di certificato SSL.\n"
+            "ATTENZIONE: Rende la connessione insicura."
+        )
+        # Imposta lo stato_corrente. True = Sicuro (Verifica Abilitata)
+        self.ssl_verify_checkbox.setChecked(current_settings.get('ssl_verify', True))
+        form_layout.addRow(QLabel("Abilita Verifica SSL (Sicuro):"), self.ssl_verify_checkbox)
+        
+        ##### FINE MODIFICA SSL #####
+        
         layout.addLayout(form_layout)
         
         # Pulsanti OK / Cancella
@@ -412,5 +424,63 @@ class SettingsDialog(QDialog):
         
         return {
             'news_tickers': tickers_list,
-            'view_popup_duration_s': self.popup_duration_input.value()
+            # 'view_popup_duration_s': self.popup_duration_input.value(), # Decommenta se usi
+            'ssl_verify': self.ssl_verify_checkbox.isChecked() # <-- Aggiunto
+        }
+    
+class SettingsDialog(QDialog):
+    """
+    Finestra di dialogo per le impostazioni dell'applicazione.
+    """
+    def __init__(self, current_settings, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Impostazioni")
+        self.setMinimumWidth(400)
+        self.setStyleSheet(STYLESHEET)
+        
+        self.current_settings = current_settings
+        
+        layout = QVBoxLayout(self)
+        form_layout = QFormLayout()
+        
+        # --- Impostazioni Notizie ---
+        news_tickers_str = ", ".join(current_settings.get('news_tickers', []))
+        self.tickers_input = QLineEdit(news_tickers_str)
+        self.tickers_input.setToolTip("Lista di ticker separati da virgola (es. NVDA, GC=F, AAPL)")
+        form_layout.addRow(QLabel("Ticker per Notizie:"), self.tickers_input)
+        
+        ##### INIZIO MODIFICA SSL #####
+        
+        # Rimosso: popup_duration_input (non era usato nel tuo graph.py,
+        # ma puoi rimetterlo se ti serve)
+        
+        # --- Impostazione SSL ---
+        self.ssl_verify_checkbox = QCheckBox()
+        self.ssl_verify_checkbox.setToolTip(
+            "Disabilita questa opzione SOLO se sei su una rete aziendale\n"
+            "che causa problemi di certificato SSL.\n"
+            "ATTENZIONE: Rende la connessione insicura."
+        )
+        # Imposta lo stato_corrente. True = Sicuro (Verifica Abilitata)
+        self.ssl_verify_checkbox.setChecked(current_settings.get('ssl_verify', True))
+        form_layout.addRow(QLabel("Abilita Verifica SSL (Sicuro):"), self.ssl_verify_checkbox)
+        
+        ##### FINE MODIFICA SSL #####
+        
+        layout.addLayout(form_layout)
+        
+        # Pulsanti OK / Cancella
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        button_box.accepted.connect(self.accept)
+        button_box.rejected.connect(self.reject)
+        layout.addWidget(button_box)
+
+    def get_settings(self):
+        """Restituisce le impostazioni aggiornate."""
+        tickers_list = [ticker.strip().upper() for ticker in self.tickers_input.text().split(',') if ticker.strip()]
+        
+        return {
+            'news_tickers': tickers_list,
+            # 'view_popup_duration_s': self.popup_duration_input.value(), # Decommenta se usi
+            'ssl_verify': self.ssl_verify_checkbox.isChecked() # <-- Aggiunto
         }

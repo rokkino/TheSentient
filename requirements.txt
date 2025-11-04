@@ -1,0 +1,12 @@
+requests
+pandas
+yfinance
+mplfinance
+PyQt6
+matplotlib
+torch
+transformers
+beautifulsoup4
+accelerate
+transformers
+accelerate

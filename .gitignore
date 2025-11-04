@@ -1,0 +1,22 @@
+# 1. Ambiente Virtuale
+# Contiene migliaia di file di librerie, non deve mai essere caricato.
+.venv/
+
+# 2. File del Modello AI
+# Troppo grandi per GitHub (limite di 100MB).
+# Chiunque cloni il repository deve scaricarli manualmente.
+model/
+
+# 3. Cache di Python
+# File temporanei generati da Python durante l'esecuzione.
+__pycache__/
+*.py
+
+# 4. Impostazioni Locali di VS Code
+# Impostazioni specifiche del tuo computer (come quale interprete usare).
+.vscode/
+
+# 5. File di Impostazioni
+# Spesso contiene percorsi locali o API key (se le aggiungerai).
+# È meglio non caricarlo, ma caricare un file 'settings.example.json'
+settings.json

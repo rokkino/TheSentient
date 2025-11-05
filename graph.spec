@@ -22,7 +22,7 @@ hidden_imports = [
     'transformers',
     'torch',
     'beautifulsoup4',
-    'PyQt6.sip' # Aggiunto per sicurezza con PyQt6
+    'PyQt6.sip', # Aggiunto per sicurezza con PyQt6
     'accelerate'
 ]
 # --- FINE Blocco per dati aggiuntivi ---
@@ -58,5 +58,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='icona.ico'          
+    icon='icon.ico'          
 )

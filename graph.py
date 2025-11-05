@@ -18,19 +18,23 @@ import ssl
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QLineEdit, QListWidget, QListWidgetItem, QLabel,
                              QStackedWidget, QHBoxLayout, QPushButton, QSplitter, QStyle,
-                             QButtonGroup, QScrollArea, QDialog)
+                             QButtonGroup, QScrollArea, QDialog, QMessageBox, QProgressDialog)
 from PyQt6.QtCore import (Qt, QThread, pyqtSignal, QTimer, QSize, QUrl, pyqtSlot, 
-                          QRect, QEvent) # Aggiunto QRect, QEvent, pyqtSlot
-from PyQt6.QtGui import (QMovie, QIcon, QDesktopServices)
+                          QRect, QEvent, QPropertyAnimation) # Aggiunto QPropertyAnimation
+from PyQt6.QtGui import (QMovie, QIcon, QDesktopServices, QPainter, QPixmap, QColor)
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 try:
     import urllib3
-    # Disabilita gli avvisi solo se la libreria è presente
 except ImportError:
     urllib3 = None
+
+try:
+    import ota_update
+except ImportError:
+    ota_update = None
 # --- 1. IMPORTA MODULI ADD-ON ---
 try:
     import rsi
@@ -179,7 +183,17 @@ STYLESHEET = """
     }
 """
 
-SETTINGS_FILE = 'settings.json'
+def _get_settings_file_path():
+    """Return a stable, user-specific path for settings.json and ensure folder exists."""
+    try:
+        base_dir = os.path.join(os.path.expanduser("~"), ".thesentient")
+        os.makedirs(base_dir, exist_ok=True)
+        return os.path.join(base_dir, "settings.json")
+    except Exception:
+        # Fallback to local directory as last resort
+        return 'settings.json'
+
+SETTINGS_FILE = _get_settings_file_path()
 
  
 # --- Worker Threads (SearchWorker, DataWorker, NewsWorker) ---
@@ -277,6 +291,9 @@ class NewsAnalysisWorker(QThread):
         self.news_item = news_item
         self.trading_model = trading_model
         self.session = session # <-- Aggiunto
+        self.use_rsi = False
+        self.use_volume = False
+        self.use_mas = False
     
     def run(self):
         if not self.trading_model or not self.trading_model.model:
@@ -299,9 +316,39 @@ class NewsAnalysisWorker(QThread):
             if not news_text:
                 news_text = self.news_item.get('title', '')
             
+            # Prepara contesto indicatori opzionale
+            context = None
+            if self.use_rsi or self.use_volume or self.use_mas:
+                try:
+                    # Recupera dati minimi per indicatori
+                    tk = yf.Ticker(ticker, session=self.session)
+                    hist = tk.history(period="3mo", interval="1d")
+                    if not hist.empty:
+                        context = {}
+                        if self.use_rsi:
+                            # RSI 14 semplice
+                            delta = hist['Close'].diff()
+                            gain = delta.clip(lower=0).rolling(14).mean()
+                            loss = -delta.clip(upper=0).rolling(14).mean()
+                            rs = gain / (loss.replace(0, pd.NA))
+                            rsi_val = (100 - (100 / (1 + rs))).iloc[-1]
+                            context['rsi'] = float(rsi_val) if pd.notna(rsi_val) else None
+                        if self.use_volume:
+                            context['volume'] = float(hist['Volume'].iloc[-1]) if 'Volume' in hist.columns else None
+                        if self.use_mas:
+                            for w in [13, 50, 200, 800]:
+                                key = f'ma{w}'
+                                context[key] = float(hist['Close'].rolling(w, min_periods=1).mean().iloc[-1])
+                except Exception as e:
+                    print(f"[NewsAnalysis] Errore calcolo contesto indicatori: {e}")
+
             # Analizza il trading signal
             if news_text:
-                trading_signal = self.trading_model.analyze_trading_signal(news_text, ticker)
+                # Prova con contesto opzionale se disponibile
+                try:
+                    trading_signal = self.trading_model.analyze_trading_signal(news_text, ticker, context=context)
+                except TypeError:
+                    trading_signal = self.trading_model.analyze_trading_signal(news_text, ticker)
                 self.news_item['trading_signal'] = trading_signal
                 print(f"[NewsAnalysis] Analisi completata per {ticker}: {trading_signal.get('direction')} ({trading_signal.get('confidence')}%)")
             
@@ -481,9 +528,16 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("The Sentient")
         try:
-            self.setWindowIcon(QIcon("icona.ico"))
-        except:
-            print("Nessun file 'icona.ico' trovato. Icona predefinita usata.")
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            icon_path = os.path.join(base_dir, "icon.ico")
+            app_icon = QIcon(icon_path)
+            if not app_icon.isNull():
+                QApplication.setWindowIcon(app_icon)
+                self.setWindowIcon(app_icon)
+            else:
+                print("Icona non valida: 'icon.ico'.")
+        except Exception as e:
+            print(f"Impossibile impostare l'icona: {e}")
             
         self.setGeometry(100, 100, 1400, 800)
         self.setStyleSheet(STYLESHEET)
@@ -494,9 +548,15 @@ class MainWindow(QMainWindow):
         self.current_timeframe = "1y"
         self.current_chart_type = "candle"
         self.indicators_state = {}
+        self.show_volume_panel = True
+        self.model_use_rsi = False
+        self.model_use_volume = False
+        self.model_use_mas = False
         self.news_worker = None
         self.analysis_workers = []
         self.trading_model = None 
+        self.news_cards = {}  # link -> NewsCard reference for updates
+        self.pending_news_items = []  # items awaiting model analysis
 
         self.current_view_mode = 1 
         self.news_tickers = ['GC=F', 'CL=F', '^GSPC', 'NVDA', 'MSFT', 'GOOGL']
@@ -521,12 +581,16 @@ class MainWindow(QMainWindow):
         central_widget.setLayout(self.main_layout)
 
         self.splitter = QSplitter(Qt.Orientation.Horizontal)
+        self.splitter.setHandleWidth(8)
         self.main_layout.addWidget(self.splitter) 
 
         self.setup_left_panel()
         self.setup_right_panel()
 
+        # Default sizes; overridden by saved settings if available
         self.splitter.setSizes([350, 1050])
+        # Persist sizes while dragging
+        self.splitter.splitterMoved.connect(lambda pos, index: self.save_settings())
         
         self.news_feed_sidebar = NewsSidebar(self)
         self.main_layout.addWidget(self.news_feed_sidebar)
@@ -534,6 +598,13 @@ class MainWindow(QMainWindow):
         self.flyout_news_feed = FlyoutNewsFeed(self.flyout_popup_duration_ms, self)
         self.flyout_news_feed.view_toggle_requested.connect(self.on_view_toggled)
         self.flyout_news_feed.hide()
+
+        # Polling per il bordo destro (Vista 3 floating-only)
+        self.edge_poll_timer = QTimer(self)
+        self.edge_poll_timer.setInterval(120)
+        self.edge_poll_timer.timeout.connect(self._poll_mouse_edge)
+        self._stored_geometry = None
+        self._stored_opacity = None
 
         self.setup_connections()
 
@@ -543,6 +614,25 @@ class MainWindow(QMainWindow):
         
         self.start_news_worker()
         self.check_model_files()
+        self.check_for_updates_async()
+
+    def _create_grid_icon(self, size=18):
+            pix = QPixmap(size, size)
+            pix.fill(Qt.GlobalColor.transparent)
+            p = QPainter(pix)
+            p.setRenderHint(QPainter.RenderHint.Antialiasing)
+            cell = size // 2 - 3
+            margin = 3
+            color = QColor(180, 180, 180)
+            p.setBrush(color)
+            p.setPen(Qt.PenStyle.NoPen)
+            for r in range(2):
+                for c in range(2):
+                    x = margin + c * (cell + margin)
+                    y = margin + r * (cell + margin)
+                    p.drawRoundedRect(x, y, cell, cell, 3, 3)
+            p.end()
+            return QIcon(pix)
 
     def check_model_files(self):
             """
@@ -628,11 +718,69 @@ class MainWindow(QMainWindow):
             self.model_loader.model_error.connect(self.on_model_error)
             self.model_loader.start()
 
+    # --- OTA Update ---
+    def check_for_updates_async(self):
+        if not ota_update:
+            return
+        # Run in a lightweight thread using QTimer to avoid blocking UI
+        QTimer.singleShot(1000, self._check_updates)
+
+    def _check_updates(self):
+        try:
+            local_v = ota_update.read_local_version()
+            remote_v = ota_update.fetch_remote_version(self.http_session)
+            if ota_update.is_remote_newer(local_v, remote_v):
+                reply = QMessageBox.question(
+                    self,
+                    'Aggiornamento Disponibile',
+                    f"È disponibile una nuova versione ({remote_v}).\nHai la {local_v}.\n\nVuoi scaricare e aggiornare ora?",
+                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                    QMessageBox.StandardButton.Yes
+                )
+                if reply == QMessageBox.StandardButton.Yes:
+                    self._perform_update(remote_v)
+        except Exception as e:
+            print(f"[OTA] Errore controllo aggiornamenti: {e}")
+
+    def _perform_update(self, remote_v: str):
+        try:
+            progress = QProgressDialog("Scaricamento aggiornamento...", "Annulla", 0, 0, self)
+            progress.setWindowTitle("Aggiornamento")
+            progress.setWindowModality(Qt.WindowModality.WindowModal)
+            progress.show()
+            self.repaint()
+
+            extracted_root = ota_update.download_and_extract_zip(self.http_session, os.getcwd())
+            # Copia tutto tranne file utente
+            preserve = { 'settings.json', }
+            ota_update.copy_tree(extracted_root, os.getcwd(), preserve_files=preserve)
+            progress.close()
+            QMessageBox.information(self, "Aggiornato", f"Aggiornamento a {remote_v} completato. Riavvia l'app per applicare i cambiamenti.")
+        except Exception as e:
+            try:
+                progress.close()
+            except Exception:
+                pass
+            QMessageBox.critical(self, "Errore Aggiornamento", f"Impossibile aggiornare automaticamente:\n{e}\n\nApri la pagina del progetto per aggiornare manualmente.")
+            QDesktopServices.openUrl(QUrl('https://github.com/rokkino/TheSentient'))
+
     @pyqtSlot(object)
     def on_model_ready(self, model_instance):
         """Slot chiamato quando il modello AI è pronto."""
         self.trading_model = model_instance
         print("✅ Modello AI caricato con successo e pronto per l'analisi.")
+        # Avvia analisi per le notizie in attesa
+        if self.pending_news_items:
+            items = self.pending_news_items[:]
+            self.pending_news_items.clear()
+            for item in items:
+                try:
+                    analysis_worker = NewsAnalysisWorker(item.copy(), self.trading_model, session=self.http_session)
+                    analysis_worker.analysis_complete.connect(self._on_news_analyzed)
+                    analysis_worker.start()
+                    self.analysis_workers.append(analysis_worker)
+                except Exception as e:
+                    print(f"[NewsAnalysis] Errore avvio analisi post-load: {e}")
 
     @pyqtSlot(str)
     def on_model_error(self, error_message):
@@ -641,7 +789,9 @@ class MainWindow(QMainWindow):
         self.trading_model = None
 
     def setup_left_panel(self):
-        left_panel = QWidget()
+        left_panel = QWidget(); self.left_panel = left_panel
+        left_panel.setMinimumWidth(220)
+        left_panel.setMaximumWidth(600)
         left_layout = QVBoxLayout(left_panel)
         left_layout.setContentsMargins(10, 10, 10, 10)
         left_layout.setSpacing(10)
@@ -649,10 +799,6 @@ class MainWindow(QMainWindow):
         self.search_bar = QLineEdit()
         self.search_bar.setPlaceholderText("Search to add to watchlist...")
         search_layout.addWidget(self.search_bar)
-        self.add_button = QPushButton()
-        self.add_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogApplyButton))
-        self.add_button.setToolTip("Add selected to watchlist")
-        search_layout.addWidget(self.add_button)
         left_layout.addLayout(search_layout)
         self.search_results_list = QListWidget()
         self.search_results_list.hide()
@@ -660,15 +806,34 @@ class MainWindow(QMainWindow):
         watchlist_title = QLabel("My Watchlist", objectName="PanelTitle")
         left_layout.addWidget(watchlist_title)
         self.watchlist = QListWidget()
+        # Drag & drop per riordinare
+        from PyQt6.QtWidgets import QAbstractItemView
+        self.watchlist.setDragEnabled(True)
+        self.watchlist.setAcceptDrops(True)
+        self.watchlist.setDefaultDropAction(Qt.DropAction.MoveAction)
+        self.watchlist.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
+        self.watchlist.setVerticalScrollMode(QAbstractItemView.ScrollMode.ScrollPerPixel)
+        self.watchlist.setStyleSheet(
+            "QListWidget { border: 1px solid #333; border-radius: 8px; }"
+            "QListWidget::item { padding: 10px 8px; }"
+            "QListWidget::item:selected { background-color: #2a2f3a; }"
+            "QListWidget::item:hover { background-color: #2a2a2a; }"
+            "QListWidget::dropIndicator { height: 2px; background: #007acc; margin-left: 6px; margin-right: 6px; }"
+        )
         left_layout.addWidget(self.watchlist, 1)
         self.remove_button = QPushButton(" Remove")
         self.remove_button.setObjectName("RemoveButton")
         self.remove_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_TrashIcon))
+        # Il pulsante funge anche da drop target per rimuovere con drag&drop
+        self.remove_button.setAcceptDrops(True)
         left_layout.addWidget(self.remove_button)
         self.splitter.addWidget(left_panel)
+        # Install event filter for remove button drop
+        self.remove_button.installEventFilter(self)
 
     def setup_right_panel(self):
-        right_panel = QWidget()
+        right_panel = QWidget(); self.right_panel = right_panel
+        right_panel.setMinimumWidth(600)
         right_layout = QVBoxLayout(right_panel)
         right_panel.setLayout(right_layout)
         top_bar_layout = QHBoxLayout()
@@ -688,22 +853,43 @@ class MainWindow(QMainWindow):
             btn.clicked.connect(self.on_chart_type_changed); top_bar_layout.addWidget(btn)
             self.chart_type_group.addButton(btn); self.chart_type_buttons[ct.lower()] = btn
         top_bar_layout.addSpacing(30)
+        # Indicator buttons: RSI, VOL, MA13/50/200/800
         self.rsi_button = QPushButton("RSI"); self.rsi_button.setCheckable(True)
         self.rsi_button.setObjectName("TimeframeButton"); self.rsi_button.clicked.connect(self.on_indicator_changed)
         top_bar_layout.addWidget(self.rsi_button)
+
+        self.vol_button = QPushButton("VOL"); self.vol_button.setCheckable(True)
+        self.vol_button.setObjectName("TimeframeButton"); self.vol_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.vol_button)
+
+        self.ma13_button = QPushButton("MA13"); self.ma13_button.setCheckable(True)
+        self.ma13_button.setObjectName("TimeframeButton"); self.ma13_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.ma13_button)
+
+        self.ma50_button = QPushButton("MA50"); self.ma50_button.setCheckable(True)
+        self.ma50_button.setObjectName("TimeframeButton"); self.ma50_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.ma50_button)
+
+        self.ma200_button = QPushButton("MA200"); self.ma200_button.setCheckable(True)
+        self.ma200_button.setObjectName("TimeframeButton"); self.ma200_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.ma200_button)
+
+        self.ma800_button = QPushButton("MA800"); self.ma800_button.setCheckable(True)
+        self.ma800_button.setObjectName("TimeframeButton"); self.ma800_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.ma800_button)
         if rsi is None:
             self.rsi_button.setDisabled(True); self.rsi_button.setToolTip("File rsi.py non trovato")
         top_bar_layout.addStretch()
         
         self.view_button = QPushButton()
-        self.view_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DesktopIcon)) # Icona default
+        self.view_button.setIcon(self._create_grid_icon(20)) # Icona grid personalizzata
         self.view_button.setObjectName("IconButton")
         self.view_button.setToolTip("Cambia modalità vista")
         self.view_button.clicked.connect(self.on_view_toggled)
         top_bar_layout.addWidget(self.view_button)
         
         self.settings_button = QPushButton()
-        self.settings_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileDialogDetailedView))
+        self.settings_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
         self.settings_button.setObjectName("IconButton")
         self.settings_button.setToolTip("Apri impostazioni")
         self.settings_button.clicked.connect(self.open_settings)
@@ -735,9 +921,10 @@ class MainWindow(QMainWindow):
         self.search_timer.timeout.connect(self.start_search)
         self.search_bar.textChanged.connect(lambda: self.search_timer.start(300))
         self.search_results_list.itemClicked.connect(self.add_to_watchlist)
-        self.add_button.clicked.connect(self.add_top_search_result)
         self.watchlist.currentItemChanged.connect(self.on_watchlist_selection_changed)
         self.remove_button.clicked.connect(self.remove_selected_item)
+        # Tooltip drop su pulsante unico
+        self.remove_button.setToolTip("Clicca per rimuovere selezionati oppure trascina qui per eliminare")
 
     # --- Eventi di Mouse/Finestra per Vista 3 ---
     def mouseMoveEvent(self, event):
@@ -764,7 +951,46 @@ class MainWindow(QMainWindow):
                         self.flyout_news_feed.schedule_slide_out(500)
         
         super().mouseMoveEvent(event)
+
+    def eventFilter(self, obj, event):
+        # Gestione drag&drop sul pulsante remove
+        if obj == self.remove_button:
+            if event.type() == QEvent.Type.DragEnter:
+                event.acceptProposedAction()
+                self.remove_button.setStyleSheet("background-color:#7a3a37; border-color:#aa504c;")
+                return True
+            if event.type() == QEvent.Type.DragLeave:
+                self.remove_button.setStyleSheet("")
+                return True
+            if event.type() == QEvent.Type.Drop:
+                selected_items = self.watchlist.selectedItems()
+                for item in selected_items:
+                    row = self.watchlist.row(item)
+                    self.watchlist.takeItem(row)
+                self.save_settings()
+                self.remove_button.setStyleSheet("")
+                event.acceptProposedAction()
+                return True
+        return super().eventFilter(obj, event)
     
+    def _poll_mouse_edge(self):
+        """Controlla la posizione del cursore per mostrare/nascondere il flyout in Vista 3."""
+        if self.current_view_mode != 3 or not hasattr(self, 'flyout_news_feed'):
+            return
+        try:
+            from PyQt6.QtGui import QCursor
+            screen_pos = QCursor.pos()
+            screen = QApplication.primaryScreen()
+            geo = screen.availableGeometry() if screen else QRect(0, 0, 1280, 720)
+            right_edge = geo.x() + geo.width()
+            threshold = 20
+            if screen_pos.x() >= right_edge - threshold:
+                self.flyout_news_feed.slide_in()
+            elif screen_pos.x() < right_edge - self.flyout_news_feed.panel_width - 100:
+                self.flyout_news_feed.schedule_slide_out(600)
+        except Exception:
+            pass
+
     def resizeEvent(self, event):
         """Aggiorna la geometria del flyout quando la finestra viene ridimensionata."""
         super().resizeEvent(event)
@@ -799,10 +1025,6 @@ class MainWindow(QMainWindow):
         else:
             self.search_results_list.hide()
 
-    def add_top_search_result(self):
-        if self.search_results_list.count() > 0:
-            self.add_to_watchlist(self.search_results_list.item(0))
-            
     def add_to_watchlist(self, item):
         data = item.data(Qt.ItemDataRole.UserRole)
         symbol = data.get('symbol')
@@ -841,7 +1063,19 @@ class MainWindow(QMainWindow):
             self.refresh_data()
             
     def on_indicator_changed(self):
-        self.indicators_state['rsi'] = self.rsi_button.isChecked()
+        sender = self.sender()
+        if sender == self.rsi_button:
+            self.indicators_state['rsi'] = self.rsi_button.isChecked()
+        elif sender == self.vol_button:
+            self.show_volume_panel = self.vol_button.isChecked()
+        elif sender == self.ma13_button:
+            self.indicators_state['ma13'] = self.ma13_button.isChecked()
+        elif sender == self.ma50_button:
+            self.indicators_state['ma50'] = self.ma50_button.isChecked()
+        elif sender == self.ma200_button:
+            self.indicators_state['ma200'] = self.ma200_button.isChecked()
+        elif sender == self.ma800_button:
+            self.indicators_state['ma800'] = self.ma800_button.isChecked()
         self.save_settings()
         self.refresh_data()
             
@@ -864,20 +1098,44 @@ class MainWindow(QMainWindow):
             self.splitter.show()
             self.news_feed_sidebar.hide()
             self.flyout_news_feed.hide()
+            # Ripristina finestra se proveniamo dalla vista 3
+            if self._stored_geometry is not None:
+                try:
+                    self.edge_poll_timer.stop()
+                    self.setWindowOpacity(self._stored_opacity if self._stored_opacity is not None else 1.0)
+                    self.setGeometry(self._stored_geometry)
+                finally:
+                    self._stored_geometry = None
+                    self._stored_opacity = None
             
         elif self.current_view_mode == 2:
             # VISTA 2: Grafico + Sidebar Notizie
             self.splitter.show()
             self.news_feed_sidebar.show()
             self.flyout_news_feed.hide()
+            # Ripristina finestra se proveniamo dalla vista 3
+            if self._stored_geometry is not None:
+                try:
+                    self.edge_poll_timer.stop()
+                    self.setWindowOpacity(self._stored_opacity if self._stored_opacity is not None else 1.0)
+                    self.setGeometry(self._stored_geometry)
+                finally:
+                    self._stored_geometry = None
+                    self._stored_opacity = None
             
         elif self.current_view_mode == 3:
-            # VISTA 3: Grafico + Flyout Notizie (a destra)
-            self.splitter.show()  # Keep splitter visible
+            # VISTA 3: Solo Feed Notizie (flyout floating a destra)
+            self.splitter.hide()
             self.news_feed_sidebar.hide()
-            # Flyout starts hidden, will show on hover or new news
             self.flyout_news_feed.update_geometry(force_hide=True)
             self.flyout_news_feed.hide()
+            # Riduci e rendi trasparente la finestra principale
+            if self._stored_geometry is None:
+                self._stored_geometry = self.geometry()
+                self._stored_opacity = self.windowOpacity()
+            self.setWindowOpacity(0.0)
+            self.setGeometry(self._stored_geometry.x(), self._stored_geometry.y(), 1, 1)
+            self.edge_poll_timer.start()
             # Riavvia il news worker con i ticker della watchlist
             self.start_news_worker()
         
@@ -900,6 +1158,19 @@ class MainWindow(QMainWindow):
                 # --- MODIFICATO ---
                 self.news_tickers = new_settings.get('news_tickers', self.news_tickers)
                 self.ssl_verify = new_settings.get('ssl_verify', True) # <-- Leggi la nuova impostazione
+                self.show_volume_panel = new_settings.get('show_volume_panel', True)
+                # Indicatori
+                self.indicators_state['rsi'] = new_settings.get('show_rsi_indicator', self.indicators_state.get('rsi', False))
+                self.indicators_state['ma13'] = new_settings.get('show_ma13', self.indicators_state.get('ma13', False))
+                self.indicators_state['ma50'] = new_settings.get('show_ma50', self.indicators_state.get('ma50', False))
+                self.indicators_state['ma200'] = new_settings.get('show_ma200', self.indicators_state.get('ma200', False))
+                self.indicators_state['ma800'] = new_settings.get('show_ma800', self.indicators_state.get('ma800', False))
+                # Modello
+                self.model_use_rsi = new_settings.get('model_use_rsi', False)
+                self.model_use_volume = new_settings.get('model_use_volume', False)
+                self.model_use_mas = new_settings.get('model_use_mas', False)
+                # Filtri news
+                self.news_only_watchlist = new_settings.get('news_only_watchlist', False)
                 
                 self.create_http_session() # <-- Ricrea la sessione con la nuova impostazione
                 
@@ -916,6 +1187,12 @@ class MainWindow(QMainWindow):
         if rsi is not None:
             rsi_active = self.indicators_state.get('rsi', False)
             self.rsi_button.setChecked(rsi_active)
+        # Volume and MAs
+        self.vol_button.setChecked(getattr(self, 'show_volume_panel', True))
+        self.ma13_button.setChecked(self.indicators_state.get('ma13', False))
+        self.ma50_button.setChecked(self.indicators_state.get('ma50', False))
+        self.ma200_button.setChecked(self.indicators_state.get('ma200', False))
+        self.ma800_button.setChecked(self.indicators_state.get('ma800', False))
         self.apply_view_mode() # Applica la modalità di vista caricata
 
     def start_news_worker(self):
@@ -963,34 +1240,72 @@ class MainWindow(QMainWindow):
         watchlist_tickers = self.get_watchlist_tickers()
         news_ticker = news_item.get('ticker', '')
         
-        # Se la vista è 3, mostra solo notizie della watchlist
-        if self.current_view_mode == 3:
+        # Se configurato, mostra solo notizie della watchlist (vista 2 o 3)
+        if getattr(self, 'news_only_watchlist', False) or self.current_view_mode == 3:
             if not watchlist_tickers or news_ticker not in watchlist_tickers:
                 return  # Ignora notizie non correlate alla watchlist
         
         # Prova a caricare il modello se non è già caricato
         model_available = self._ensure_trading_model()
         
-        # Avvia l'analisi della notizia in background
+        # Mostra SUBITO la card con placeholder di analisi (loading)
+        placeholder_signal = {
+            'status': 'loading',
+            'direction': None,
+            'confidence': None,
+            'stop_loss': None,
+            'take_profit': None,
+        }
+        news_with_placeholder = dict(news_item)
+        news_with_placeholder['trading_signal'] = placeholder_signal
+
+        card_ref = None
+        if self.current_view_mode == 2:
+            card_ref = self.news_feed_sidebar.add_card(news_with_placeholder)
+        elif self.current_view_mode == 3:
+            card_ref = self.flyout_news_feed.add_and_popup(news_with_placeholder)
+
+        # Salva riferimento card per aggiornamento dopo analisi
+        if card_ref and news_item.get('link'):
+            self.news_cards[news_item.get('link')] = card_ref
+
+        # Avvia l'analisi della notizia in background (se possibile), altrimenti metti in coda
         if model_available and self.trading_model and self.trading_model.model:
-            # --- MODIFICATO ---
             analysis_worker = NewsAnalysisWorker(news_item.copy(), self.trading_model, session=self.http_session)
-            
+            # Passa preferenze modello
+            analysis_worker.use_rsi = self.model_use_rsi
+            analysis_worker.use_volume = self.model_use_volume
+            analysis_worker.use_mas = self.model_use_mas
             analysis_worker.analysis_complete.connect(self._on_news_analyzed)
             analysis_worker.start()
             self.analysis_workers.append(analysis_worker)
         else:
-            # Se il modello non è disponibile, aggiungi direttamente
-            self._on_news_analyzed(news_item)
+            # Modello non pronto: metti in coda per analisi successiva
+            self.pending_news_items.append(news_item.copy())
     
     def _on_news_analyzed(self, news_item):
         """Callback quando l'analisi della notizia è completata."""
-        # Aggiunge la notizia alla sidebar (vista 2) o al flyout (vista 3)
-        if self.current_view_mode == 2:
-            self.news_feed_sidebar.add_card(news_item)
-        elif self.current_view_mode == 3:
-            # Aggiunge al flyout e lo mostra
-            self.flyout_news_feed.add_and_popup(news_item)
+        # Se abbiamo già mostrato la card, aggiornala con i risultati del modello
+        link = news_item.get('link')
+        card = self.news_cards.get(link)
+        if card and hasattr(card, 'update_trading_signal'):
+            trading_signal = news_item.get('trading_signal') or {}
+            # Normalizza chiavi e stato per la UI
+            normalized = {
+                'status': 'ready',
+                'direction': trading_signal.get('direction'),
+                'confidence': trading_signal.get('confidence'),
+                'stop_loss': trading_signal.get('stop_loss') or trading_signal.get('sl'),
+                'take_profit': trading_signal.get('take_profit') or trading_signal.get('tp'),
+            }
+            news_item['trading_signal'] = normalized
+            card.update_trading_signal(normalized)
+        else:
+            # Fallback: aggiungi la card ora se non era stata mostrata
+            if self.current_view_mode == 2:
+                self.news_feed_sidebar.add_card(news_item)
+            elif self.current_view_mode == 3:
+                self.flyout_news_feed.add_and_popup(news_item)
 
     # --- Funzioni di gestione dati (identiche) ---
     def on_watchlist_selection_changed(self, current_item, previous_item):
@@ -1030,7 +1345,15 @@ class MainWindow(QMainWindow):
                 'indicators': self.indicators_state,
                 'view_mode': self.current_view_mode,
                 'news_tickers': self.news_tickers,
-                'ssl_verify': self.ssl_verify  # <-- Include l'impostazione SSL
+                'ssl_verify': self.ssl_verify,  # <-- Include l'impostazione SSL
+                'show_volume_panel': self.show_volume_panel,
+                'model_use_rsi': self.model_use_rsi,
+                'model_use_volume': self.model_use_volume,
+                'model_use_mas': self.model_use_mas,
+                'news_only_watchlist': getattr(self, 'news_only_watchlist', False),
+                'splitter_sizes': self.splitter.sizes(),
+                'selected_symbol': (self.watchlist.currentItem().data(Qt.ItemDataRole.UserRole)['symbol']
+                                    if self.watchlist.currentItem() else None)
             }
             
             try:
@@ -1079,6 +1402,23 @@ class MainWindow(QMainWindow):
         else:
             self.chart_canvas.ax_indicator.set_visible(False)
             plt.setp(self.chart_canvas.ax_volume.get_xticklabels(), visible=True)
+
+        # Moving Averages (13/50/200/800)
+        try:
+            ma_defs = [
+                ('ma13', 13, '#E1C542'),
+                ('ma50', 50, '#4AA3DF'),
+                ('ma200', 200, '#F39C12'),
+                ('ma800', 800, '#999999'),
+            ]
+            for key, window, color in ma_defs:
+                if self.indicators_state.get(key, False):
+                    col = f'MA{window}'
+                    if col not in data.columns:
+                        data[col] = data['Close'].rolling(window=window, min_periods=1).mean()
+                    add_plots.append(mpf.make_addplot(data[col], ax=self.chart_canvas.ax_price, color=color, width=1))
+        except Exception as e:
+            print(f"Errore calcolo MA: {e}")
         self.chart_canvas.cross_hline = self.chart_canvas.ax_price.axhline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
         self.chart_canvas.cross_vline = self.chart_canvas.ax_price.axvline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
         self.chart_canvas.annot = self.chart_canvas.ax_price.annotate(
@@ -1100,7 +1440,7 @@ class MainWindow(QMainWindow):
                  type=self.current_chart_type,
                  style=custom_style,
                  ax=self.chart_canvas.ax_price,
-                 volume=self.chart_canvas.ax_volume,
+                 volume=(self.chart_canvas.ax_volume if self.show_volume_panel else False),
                  addplot=add_plots,
                  ylabel='Price (USD)',
                  mav=(20, 50) if self.current_timeframe not in ['1d', '5d'] else (),
@@ -1108,7 +1448,10 @@ class MainWindow(QMainWindow):
                  datetime_format=date_format,
                  tight_layout=True 
                 )
-        self.chart_canvas.ax_volume.set_ylabel('Volume')
+        if self.show_volume_panel:
+            self.chart_canvas.ax_volume.set_ylabel('Volume')
+        else:
+            self.chart_canvas.ax_volume.set_visible(False)
         title_str = f'{full_name} ({ticker}) - {self.current_timeframe} ({self.current_chart_type.capitalize()})'
         self.chart_canvas.ax_price.set_title(title_str)
         self.chart_canvas.draw()
@@ -1171,9 +1514,37 @@ class MainWindow(QMainWindow):
             
             # --- MODIFICATO ---
             self.ssl_verify = settings.get('ssl_verify', True) # <-- Carica l'impostazione
+            self.show_volume_panel = settings.get('show_volume_panel', True)
+            self.model_use_rsi = settings.get('model_use_rsi', settings.get('model_use_indicators', False))
+            self.model_use_volume = settings.get('model_use_volume', settings.get('model_use_indicators', False))
+            self.model_use_mas = settings.get('model_use_mas', False)
+            self.news_only_watchlist = settings.get('news_only_watchlist', False)
             
             # Carica watchlist
-            # ... (codice watchlist invariato) ...
+            try:
+                self.watchlist.clear()
+                for entry in settings.get('watchlist', []):
+                    symbol = entry.get('symbol') if isinstance(entry, dict) else None
+                    name = entry.get('name') if isinstance(entry, dict) else None
+                    if not symbol:
+                        continue
+                    display_name = name or 'No Name'
+                    list_item = QListWidgetItem(f"{symbol}\n  {display_name}")
+                    list_item.setData(Qt.ItemDataRole.UserRole, {'symbol': symbol, 'name': display_name})
+                    self.watchlist.addItem(list_item)
+                # Ripristina selezione precedente se salvata
+                selected_symbol = settings.get('selected_symbol')
+                if selected_symbol:
+                    for i in range(self.watchlist.count()):
+                        it = self.watchlist.item(i)
+                        data = it.data(Qt.ItemDataRole.UserRole)
+                        if data and data.get('symbol') == selected_symbol:
+                            self.watchlist.setCurrentRow(i)
+                            break
+                elif self.watchlist.count() > 0:
+                    self.watchlist.setCurrentRow(0)
+            except Exception as e:
+                print(f"Errore caricamento watchlist: {e}")
             
         except FileNotFoundError:
             pass 
@@ -1183,6 +1554,18 @@ class MainWindow(QMainWindow):
         # --- AGGIUNTO ALLA FINE ---
         # Crea la sessione DOPO aver caricato le impostazioni
         self.create_http_session()
+
+        # Applica dimensioni splitter se salvate
+        try:
+            sizes = settings.get('splitter_sizes') if isinstance(settings, dict) else None
+            if sizes and isinstance(sizes, list) and len(sizes) == 2 and all(isinstance(x, int) for x in sizes):
+                # Clamp sizes within min/max
+                total = sum(sizes)
+                left = max(self.left_panel.minimumWidth(), min(sizes[0], self.left_panel.maximumWidth()))
+                right = max(self.right_panel.minimumWidth(), total - left)
+                self.splitter.setSizes([left, right])
+        except Exception as e:
+            print(f"Errore applicazione splitter_sizes: {e}")
             
     # --- Gestione chiusura finestra ---
     def closeEvent(self, event):

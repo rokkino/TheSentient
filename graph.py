@@ -21,7 +21,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QStackedWidget, QHBoxLayout, QPushButton, QSplitter, QStyle,
                              QButtonGroup, QScrollArea, QDialog, QMessageBox, QProgressDialog, QSplashScreen)
 from PyQt6.QtCore import (Qt, QThread, pyqtSignal, QTimer, QSize, QUrl, pyqtSlot, 
-                          QRect, QEvent, QPropertyAnimation) # Aggiunto QPropertyAnimation
+                          QRect, QEvent, QPropertyAnimation, QFileSystemWatcher) # Aggiunto QFileSystemWatcher
 from PyQt6.QtGui import (QMovie, QIcon, QDesktopServices, QPainter, QPixmap, QColor)
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -62,12 +62,9 @@ def load_model():
         model = _model
         return model
     except ImportError:
-        print("AVVISO: Impossibile trovare il file 'model.py'. L'analisi delle notizie sarà disabilitata.")
         model = None
         return None
     except Exception as e:
-        print(f"AVVISO: Errore durante il caricamento del modulo 'model.py': {e}")
-        print("L'analisi delle notizie sarà disabilitata.")
         model = None
         return None
     
@@ -79,110 +76,17 @@ except ImportError:
     sys.exit()
 
 # --- STYLESHEET PROFESSIONALE (COMPLETO) ---
-STYLESHEET = """
-    QWidget {
-        background-color: #1e1e1e;
-        color: #dcdcdc;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        font-size: 15px;
-    }
-    QMainWindow {
-        border: 1px solid #333333;
-    }
-    QLineEdit {
-        background-color: #2d2d2d;
-        border: 1px solid #444444;
-        border-radius: 5px;
-        padding: 8px;
-    }
-    QLineEdit:focus {
-        border: 1px solid #007acc;
-    }
-    QListWidget {
-        background-color: #2d2d2d;
-        border: 1px solid #444444;
-        border-radius: 5px;
-    }
-    QListWidget::item {
-        padding: 12px 8px;
-    }
-    QListWidget::item:hover {
-        background-color: #3a3a3a;
-    }
-    QListWidget::item:selected {
-        background-color: #007acc;
-        color: #ffffff;
-    }
-    QPushButton {
-        background-color: #3c3c3c;
-        color: #dcdcdc;
-        border: 1px solid #555555;
-        padding: 8px 16px;
-        border-radius: 5px;
-    }
-    QPushButton:hover {
-        background-color: #4a4a4a;
-        border-color: #666666;
-    }
-    QPushButton#RemoveButton {
-        background-color: #5a2a27;
-    }
-    QPushButton#RemoveButton:hover {
-        background-color: #7a3a37;
-    }
-    QLabel#TitleLabel {
-        font-size: 28px;
-        font-weight: bold;
-        color: #f0f0f0;
-        padding-top: 20px;
-    }
-    QLabel#InfoLabel {
-        font-size: 18px;
-        color: #888888;
-    }
-    QLabel#PanelTitle {
-        font-size: 18px;
-        font-weight: bold;
-        padding: 8px 0px;
-        border-bottom: 1px solid #444444;
-    }
-    QSplitter::handle {
-        background-color: #333333;
-    }
-    QSplitter::handle:hover {
-        background-color: #007acc;
-    }
-    
-    /* Stile per i pulsanti Timeframe e ChartType */
-    QPushButton#TimeframeButton {
-        padding: 6px 10px;
-        font-size: 13px;
-        border-radius: 4px;
-        border: 1px solid #333;
-    }
-    QPushButton#TimeframeButton:hover {
-        background-color: #4a4a4a;
-    }
-    QPushButton#TimeframeButton:checked {
-        background-color: #007acc;
-        color: #ffffff;
-        border-color: #007acc;
-    }
-    
-    /* Stile per pulsanti Icona */
-    QPushButton#IconButton {
-        padding: 5px;
-        border-radius: 4px;
-        border: 1px solid #333;
-    }
-    QPushButton#IconButton:hover {
-        background-color: #4a4a4a;
-    }
-    QPushButton#IconButton:checked {
-        background-color: #007acc;
-        border-color: #007acc;
-    }
-"""
+# --- STYLESHEET LOADED FROM FILE ---
+STYLESHEET_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "style.qss")
+
+def load_stylesheet():
+    try:
+        with open(STYLESHEET_PATH, "r") as f:
+            return f.read()
+    except Exception as e:
+        print(f"Errore caricamento stile: {e}")
+        return ""
+
 
 def _get_settings_file_path():
     """Return a stable, user-specific path for settings.json and ensure folder exists."""
@@ -533,6 +437,58 @@ class MplCanvas(FigureCanvas):
             self.ax_indicator.set_ylim(max(0, rsi_min - rsi_padding), min(100, rsi_max + rsi_padding))
         self.draw_idle()
 
+class ModelLoaderWorker(QThread):
+    """Worker per caricare il modello AI in background."""
+    model_loaded = pyqtSignal(object)
+
+    def run(self):
+        print("Avvio caricamento modello in background...")
+        mod = load_model()
+        if mod:
+            try:
+                # Istanzia il modello (questo può richiedere tempo per importare torch/transformers)
+                trading_model = mod.TradingModel()
+                self.model_loaded.emit(trading_model)
+                print("Modello caricato con successo.")
+            except Exception as e:
+                print(f"Errore istanziazione modello: {e}")
+                self.model_loaded.emit(None)
+        else:
+            self.model_loaded.emit(None)
+
+# --- CLASSI DI SUPPORTO ---
+
+class NewsCache:
+    """Gestisce il caching delle analisi delle notizie su file JSON."""
+    def __init__(self, cache_file='news_cache.json'):
+        self.cache_file = cache_file
+        self.cache = self._load()
+
+    def _load(self):
+        if os.path.exists(self.cache_file):
+            try:
+                with open(self.cache_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Errore caricamento cache notizie: {e}")
+                return {}
+        return {}
+
+    def _persist(self):
+        try:
+            with open(self.cache_file, 'w', encoding='utf-8') as f:
+                json.dump(self.cache, f, indent=2)
+        except Exception as e:
+            print(f"Errore salvataggio cache notizie: {e}")
+
+    def get(self, link):
+        return self.cache.get(link)
+
+    def save(self, link, analysis_data):
+        if link and analysis_data:
+            self.cache[link] = analysis_data
+            self._persist()
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__() # <-- Spostato all'inizio, è buona norma
@@ -558,7 +514,8 @@ class MainWindow(QMainWindow):
             
         self.setGeometry(100, 100, 1400, 800)
         self.setMinimumSize(1280, 720)
-        self.setStyleSheet(STYLESHEET)
+        self.setMinimumSize(1280, 720)
+
         
         self.setMouseTracking(True)
         
@@ -573,6 +530,8 @@ class MainWindow(QMainWindow):
         self.model_use_mas = False
         self.use_cuda = False
         self.news_worker = None
+        self.trading_model = None # Inizializzato dal loader
+        self.pending_news_items = [] # Coda per notizie arrivate prima del modello
         self.analysis_workers = []
         self.trading_model = None 
         self.news_cards = {}  # link -> NewsCard reference for updates
@@ -628,26 +587,57 @@ class MainWindow(QMainWindow):
 
         self.setup_connections()
 
+        self.news_cache = NewsCache() # Inizializza cache notizie
         self.load_settings() # <-- Questo ora carica l'impostazione SSL e crea la sessione
+        self.load_watchlist() # Carica la watchlist da file JSON
         
         self.update_ui_states()
         
         self.start_news_worker()
         self.check_model_files()
         self.check_for_updates_async()
+        
+        # --- HOT RELOAD STYLES ---
+        # Initialize watcher after all UI elements are created
+        self.style_watcher = QFileSystemWatcher([STYLESHEET_PATH])
+        self.style_watcher.fileChanged.connect(self.reload_styles)
+        self.reload_styles()
+        # -------------------------
+        
         self.finish_startup()
 
+    def reload_styles(self):
+        """Ricarica il foglio di stile da file."""
+        print("Ricaricamento stili...")
+        qss = load_stylesheet()
+        if qss:
+            self.setStyleSheet(qss)
+            # Aggiorna anche i figli che potrebbero avere stili locali o cache
+            if hasattr(self, 'news_feed_sidebar'):
+                self.news_feed_sidebar.setStyleSheet(qss)
+            if hasattr(self, 'flyout_news_feed'):
+                self.flyout_news_feed.setStyleSheet(qss)
+            # Aggiorna le card esistenti
+            for card_ref in self.news_cards.values():
+                try:
+                    card_ref.setStyleSheet(qss)
+                except RuntimeError:
+                    pass # Card potrebbe essere stata cancellata
     def finish_startup(self):
         try:
             if getattr(self, '_splash', None):
-                self._splash.close()
-                self._splash = None
-        except Exception:
+                self._splash.finish(self)
+        except:
             pass
+            
+        # Avvia il caricamento del modello in background
+        # Nota: start_model_loader viene chiamato anche da check_model_files se i file esistono
+        # Ma per sicurezza, se non è partito, lo facciamo qui (con check interno)
+        if self.trading_model is None and not hasattr(self, 'model_loader'):
+             self.start_model_loader()
 
     def _create_grid_icon(self, size=18):
             pix = QPixmap(size, size)
-            pix.fill(Qt.GlobalColor.transparent)
             p = QPainter(pix)
             p.setRenderHint(QPainter.RenderHint.Antialiasing)
             cell = size // 2 - 3
@@ -924,7 +914,7 @@ class MainWindow(QMainWindow):
         top_bar_layout.addWidget(self.view_button)
         
         self.settings_button = QPushButton()
-        settings_icon_path = os.path.join(self.base_dir, "settings.svg")
+        settings_icon_path = os.path.join(self.base_dir, "gear.svg")
         if os.path.exists(settings_icon_path):
             self.settings_button.setIcon(QIcon(settings_icon_path))
         else:
@@ -1018,15 +1008,25 @@ class MainWindow(QMainWindow):
             return
         try:
             from PyQt6.QtGui import QCursor
-            screen_pos = QCursor.pos()
-            screen = QApplication.primaryScreen()
-            geo = screen.availableGeometry() if screen else QRect(0, 0, 1280, 720)
+            cursor_pos = QCursor.pos()
+            screen = QApplication.screenAt(cursor_pos)
+            if not screen:
+                return
+                
+            geo = screen.availableGeometry()
             right_edge = geo.x() + geo.width()
-            threshold = 20
-            if screen_pos.x() >= right_edge - threshold:
-                self.flyout_news_feed.slide_in()
-            elif screen_pos.x() < right_edge - self.flyout_news_feed.panel_width - 100:
-                self.flyout_news_feed.schedule_slide_out(600)
+            threshold = 10 # Pixel dal bordo per attivare
+            
+            # Se il mouse è vicino al bordo destro dello schermo corrente
+            if cursor_pos.x() >= right_edge - threshold:
+                self.flyout_news_feed.slide_in(screen=screen)
+            
+            # Se il mouse si allontana troppo dal pannello (quando è visibile)
+            elif self.flyout_news_feed.isVisible():
+                # Calcola distanza dal pannello
+                panel_geo = self.flyout_news_feed.geometry()
+                if cursor_pos.x() < panel_geo.x() - 50: # 50px di buffer a sinistra del pannello
+                    self.flyout_news_feed.schedule_slide_out(600)
         except Exception:
             pass
 
@@ -1076,7 +1076,7 @@ class MainWindow(QMainWindow):
         list_item = QListWidgetItem(f"{symbol}\n  {name}")
         list_item.setData(Qt.ItemDataRole.UserRole, {'symbol': symbol, 'name': name})
         self.watchlist.addItem(list_item)
-        self.save_settings()
+        self.save_watchlist()
         self.watchlist.setCurrentItem(list_item)
         self.search_bar.clear()
         self.search_results_list.hide()
@@ -1193,7 +1193,7 @@ class MainWindow(QMainWindow):
             # Riavvia il news worker con i ticker della watchlist
             self.start_news_worker()
         
-        self.view_button.setIcon(self.style().standardIcon(icon_map.get(self.current_view_mode)))
+        # self.view_button.setIcon(self.style().standardIcon(icon_map.get(self.current_view_mode))) # RIMOSSO: Usa icona statica
 
 
     def open_settings(self):
@@ -1302,13 +1302,9 @@ class MainWindow(QMainWindow):
         return tickers
     
     def _ensure_trading_model(self):
-            """Controlla se il modello AI è stato caricato (non lo carica più)."""
-            if self.trading_model is not None:
-                # Il modello è stato caricato in background ed è pronto
-                return True
-            else:
-                # Il modello è ancora in fase di caricamento o ha fallito
-                return False
+        """Controlla se il modello AI è stato caricato."""
+        return self.trading_model is not None
+
     def add_news_card(self, news_item):
         """Slot per ricevere una nuova notizia. La invia alla sidebar corretta."""
         # Filtra le notizie per ticker della watchlist
@@ -1317,7 +1313,8 @@ class MainWindow(QMainWindow):
         
         # Se configurato, mostra solo notizie della watchlist (vista 2 o 3)
         if getattr(self, 'news_only_watchlist', False) or self.current_view_mode == 3:
-            if not watchlist_tickers or news_ticker not in watchlist_tickers:
+            # Se la watchlist è vuota, NON filtrare (accetta tutto ciò che arriva dal worker)
+            if watchlist_tickers and news_ticker not in watchlist_tickers:
                 return  # Ignora notizie non correlate alla watchlist
         
         # Prova a caricare il modello se non è già caricato
@@ -1343,6 +1340,14 @@ class MainWindow(QMainWindow):
         # Salva riferimento card per aggiornamento dopo analisi
         if card_ref and news_item.get('link'):
             self.news_cards[news_item.get('link')] = card_ref
+
+        # Controlla se abbiamo già un'analisi in cache
+        cached_analysis = self.news_cache.get(news_item.get('link'))
+        if cached_analysis:
+            # Usa l'analisi in cache
+            news_item['trading_signal'] = cached_analysis
+            self._on_news_analyzed(news_item)
+            return
 
         # Avvia l'analisi della notizia in background (se possibile), altrimenti metti in coda
         if model_available and self.trading_model and self.trading_model.model:
@@ -1374,6 +1379,9 @@ class MainWindow(QMainWindow):
                 'stop_loss': trading_signal.get('stop_loss') or trading_signal.get('sl'),
                 'take_profit': trading_signal.get('take_profit') or trading_signal.get('tp'),
             }
+            # Salva in cache
+            self.news_cache.save(link, normalized)
+            
             news_item['trading_signal'] = normalized
             card.update_trading_signal(normalized)
         else:
@@ -1445,14 +1453,48 @@ class MainWindow(QMainWindow):
         for item in selected_items:
             row = self.watchlist.row(item)
             self.watchlist.takeItem(row)
-        self.save_settings()
+        self.save_watchlist()
         if self.watchlist.count() == 0:
             self.current_ticker = None
             self.stacked_widget.setCurrentWidget(self.stacked_widget.widget(0))
         
         # Se siamo in vista 3, riavvia il news worker con i nuovi ticker
+    # Se siamo in vista 3, riavvia il news worker con i nuovi ticker
         if self.current_view_mode == 3:
             self.start_news_worker()
+
+    def load_watchlist(self):
+        """Carica la watchlist da un file JSON."""
+        watchlist_file = 'watchlist.json'
+        if os.path.exists(watchlist_file):
+            try:
+                with open(watchlist_file, 'r', encoding='utf-8') as f:
+                    items = json.load(f)
+                    self.watchlist.clear()
+                    for item_data in items:
+                        symbol = item_data.get('symbol')
+                        name = item_data.get('name')
+                        if symbol:
+                            list_item = QListWidgetItem(f"{symbol}\n  {name}")
+                            list_item.setData(Qt.ItemDataRole.UserRole, item_data)
+                            self.watchlist.addItem(list_item)
+            except Exception as e:
+                print(f"Errore caricamento watchlist: {e}")
+
+    def save_watchlist(self):
+        """Salva la watchlist su un file JSON."""
+        watchlist_file = 'watchlist.json'
+        items = []
+        for i in range(self.watchlist.count()):
+            item = self.watchlist.item(i)
+            data = item.data(Qt.ItemDataRole.UserRole)
+            if data:
+                items.append(data)
+        try:
+            with open(watchlist_file, 'w', encoding='utf-8') as f:
+                json.dump(items, f, indent=2)
+        except Exception as e:
+            print(f"Errore salvataggio watchlist: {e}")
 
     def show_error(self, message):
         self.loading_movie.stop()
@@ -1517,11 +1559,10 @@ class MainWindow(QMainWindow):
             bear_mask = bear_core | bear_core.shift(1, fill_value=False)
             data['RUN_BULL'] = data['Close'].where(bull_mask)
             data['RUN_BEAR'] = data['Close'].where(bear_mask)
-            add_plots.append(mpf.make_addplot(data['RUN_BULL'], ax=self.chart_canvas.ax_price, color='#2ecc71', width=2, alpha=0.9))
             add_plots.append(mpf.make_addplot(data['RUN_BEAR'], ax=self.chart_canvas.ax_price, color='#e74c3c', width=2, alpha=0.9))
         else:
-            data.pop('RUN_BULL', None)
-            data.pop('RUN_BEAR', None)
+            if 'RUN_BULL' in data.columns: del data['RUN_BULL']
+            if 'RUN_BEAR' in data.columns: del data['RUN_BEAR']
 
         self.chart_canvas.cross_hline = self.chart_canvas.ax_price.axhline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
         self.chart_canvas.cross_vline = self.chart_canvas.ax_price.axvline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
@@ -1708,6 +1749,7 @@ class ModelLoaderWorker(QThread):
                 self.model_error.emit("Modulo 'model.py' non trovato.")
         except Exception as e:
             self.model_error.emit(f"Errore caricamento modello: {e}")
+
 class ModelDownloadWorker(QThread):
     """Scarica i file del modello da Hugging Face."""
     download_complete = pyqtSignal()
@@ -1766,8 +1808,7 @@ if __name__ == '__main__':
         print("AVVISO: il modulo 'rsi.py' non è stato trovato. L'indicatore RSI sarà disabilitato.")
     if news is None:
         print("AVVISO: il modulo 'news.py' non è stato trovato. Il feed notizie sarà disabilitato.")
-    if model is None:
-        print("AVVISO: il modulo 'model.py' non è stato trovato. L'analisi AI delle notizie sarà disabilitata.")
+    # if model is None: check rimosso perché il caricamento è lazy
 
     app = QApplication(sys.argv)
 

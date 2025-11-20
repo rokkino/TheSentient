@@ -7,6 +7,7 @@ import json
 import math as m
 import time
 import os
+import numpy as np
 try:
     # Importa la sessione speciale richiesta da yfinance
     from curl_cffi.requests import Session as CurlSession
@@ -18,7 +19,7 @@ import ssl
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QLineEdit, QListWidget, QListWidgetItem, QLabel,
                              QStackedWidget, QHBoxLayout, QPushButton, QSplitter, QStyle,
-                             QButtonGroup, QScrollArea, QDialog, QMessageBox, QProgressDialog)
+                             QButtonGroup, QScrollArea, QDialog, QMessageBox, QProgressDialog, QSplashScreen)
 from PyQt6.QtCore import (Qt, QThread, pyqtSignal, QTimer, QSize, QUrl, pyqtSlot, 
                           QRect, QEvent, QPropertyAnimation) # Aggiunto QPropertyAnimation
 from PyQt6.QtGui import (QMovie, QIcon, QDesktopServices, QPainter, QPixmap, QColor)
@@ -195,6 +196,16 @@ def _get_settings_file_path():
 
 SETTINGS_FILE = _get_settings_file_path()
 
+def _compute_simple_rsi(close_series: pd.Series, period: int = 14) -> pd.Series:
+    delta = close_series.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.rolling(window=period, min_periods=period).mean()
+    avg_loss = loss.rolling(window=period, min_periods=period).mean()
+    rs = avg_gain / avg_loss.replace(0, np.nan)
+    rsi = 100 - (100 / (1 + rs))
+    return rsi.fillna(method='bfill')
+
  
 # --- Worker Threads (SearchWorker, DataWorker, NewsWorker) ---
 class SearchWorker(QThread):
@@ -294,6 +305,7 @@ class NewsAnalysisWorker(QThread):
         self.use_rsi = False
         self.use_volume = False
         self.use_mas = False
+        self.use_volume_strength = False
     
     def run(self):
         if not self.trading_model or not self.trading_model.model:
@@ -318,7 +330,7 @@ class NewsAnalysisWorker(QThread):
             
             # Prepara contesto indicatori opzionale
             context = None
-            if self.use_rsi or self.use_volume or self.use_mas:
+            if self.use_rsi or self.use_volume or self.use_mas or self.use_volume_strength:
                 try:
                     # Recupera dati minimi per indicatori
                     tk = yf.Ticker(ticker, session=self.session)
@@ -335,6 +347,11 @@ class NewsAnalysisWorker(QThread):
                             context['rsi'] = float(rsi_val) if pd.notna(rsi_val) else None
                         if self.use_volume:
                             context['volume'] = float(hist['Volume'].iloc[-1]) if 'Volume' in hist.columns else None
+                        if self.use_volume_strength and 'Volume' in hist.columns:
+                            recent_vol = hist['Volume'].iloc[-1]
+                            avg_vol = hist['Volume'].rolling(20, min_periods=5).mean().iloc[-1]
+                            if pd.notna(recent_vol) and pd.notna(avg_vol) and avg_vol:
+                                context['volume_strength'] = float(recent_vol / avg_vol)
                         if self.use_mas:
                             for w in [13, 50, 200, 800]:
                                 key = f'ma{w}'
@@ -527,9 +544,9 @@ class MainWindow(QMainWindow):
         # --- FINE MODIFICA ---
 
         self.setWindowTitle("The Sentient")
+        self.base_dir = os.path.dirname(os.path.abspath(__file__))
         try:
-            base_dir = os.path.dirname(os.path.abspath(__file__))
-            icon_path = os.path.join(base_dir, "icon.ico")
+            icon_path = os.path.join(self.base_dir, "icon.ico")
             app_icon = QIcon(icon_path)
             if not app_icon.isNull():
                 QApplication.setWindowIcon(app_icon)
@@ -540,6 +557,7 @@ class MainWindow(QMainWindow):
             print(f"Impossibile impostare l'icona: {e}")
             
         self.setGeometry(100, 100, 1400, 800)
+        self.setMinimumSize(1280, 720)
         self.setStyleSheet(STYLESHEET)
         
         self.setMouseTracking(True)
@@ -551,7 +569,9 @@ class MainWindow(QMainWindow):
         self.show_volume_panel = True
         self.model_use_rsi = False
         self.model_use_volume = False
+        self.model_use_volume_strength = False
         self.model_use_mas = False
+        self.use_cuda = False
         self.news_worker = None
         self.analysis_workers = []
         self.trading_model = None 
@@ -615,6 +635,15 @@ class MainWindow(QMainWindow):
         self.start_news_worker()
         self.check_model_files()
         self.check_for_updates_async()
+        self.finish_startup()
+
+    def finish_startup(self):
+        try:
+            if getattr(self, '_splash', None):
+                self._splash.close()
+                self._splash = None
+        except Exception:
+            pass
 
     def _create_grid_icon(self, size=18):
             pix = QPixmap(size, size)
@@ -862,6 +891,10 @@ class MainWindow(QMainWindow):
         self.vol_button.setObjectName("TimeframeButton"); self.vol_button.clicked.connect(self.on_indicator_changed)
         top_bar_layout.addWidget(self.vol_button)
 
+        self.run_button = QPushButton("RUN"); self.run_button.setCheckable(True)
+        self.run_button.setObjectName("TimeframeButton"); self.run_button.clicked.connect(self.on_indicator_changed)
+        top_bar_layout.addWidget(self.run_button)
+
         self.ma13_button = QPushButton("MA13"); self.ma13_button.setCheckable(True)
         self.ma13_button.setObjectName("TimeframeButton"); self.ma13_button.clicked.connect(self.on_indicator_changed)
         top_bar_layout.addWidget(self.ma13_button)
@@ -882,14 +915,20 @@ class MainWindow(QMainWindow):
         top_bar_layout.addStretch()
         
         self.view_button = QPushButton()
-        self.view_button.setIcon(self._create_grid_icon(20)) # Icona grid personalizzata
+        view_icon_path = os.path.join(self.base_dir, "grid.svg")
+        if os.path.exists(view_icon_path):
+            self.view_button.setIcon(QIcon(view_icon_path))
         self.view_button.setObjectName("IconButton")
         self.view_button.setToolTip("Cambia modalità vista")
         self.view_button.clicked.connect(self.on_view_toggled)
         top_bar_layout.addWidget(self.view_button)
         
         self.settings_button = QPushButton()
-        self.settings_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DirIcon))
+        settings_icon_path = os.path.join(self.base_dir, "settings.svg")
+        if os.path.exists(settings_icon_path):
+            self.settings_button.setIcon(QIcon(settings_icon_path))
+        else:
+            self.settings_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_FileDialogDetailedView))
         self.settings_button.setObjectName("IconButton")
         self.settings_button.setToolTip("Apri impostazioni")
         self.settings_button.clicked.connect(self.open_settings)
@@ -1065,7 +1104,14 @@ class MainWindow(QMainWindow):
     def on_indicator_changed(self):
         sender = self.sender()
         if sender == self.rsi_button:
-            self.indicators_state['rsi'] = self.rsi_button.isChecked()
+            desired = self.rsi_button.isChecked()
+            if not desired and self.indicators_state.get('run', False):
+                # Run richiede RSI per il calcolo: riattiva e ignora lo spegnimento
+                self.rsi_button.blockSignals(True)
+                self.rsi_button.setChecked(True)
+                self.rsi_button.blockSignals(False)
+                desired = True
+            self.indicators_state['rsi'] = desired
         elif sender == self.vol_button:
             self.show_volume_panel = self.vol_button.isChecked()
         elif sender == self.ma13_button:
@@ -1076,6 +1122,14 @@ class MainWindow(QMainWindow):
             self.indicators_state['ma200'] = self.ma200_button.isChecked()
         elif sender == self.ma800_button:
             self.indicators_state['ma800'] = self.ma800_button.isChecked()
+        elif sender == self.run_button:
+            self.indicators_state['run'] = self.run_button.isChecked()
+            if self.indicators_state['run'] and not self.indicators_state.get('rsi', False):
+                # ensure RSI calculated for run detection even if not shown
+                self.indicators_state['rsi'] = True
+                self.rsi_button.blockSignals(True)
+                self.rsi_button.setChecked(True)
+                self.rsi_button.blockSignals(False)
         self.save_settings()
         self.refresh_data()
             
@@ -1148,7 +1202,22 @@ class MainWindow(QMainWindow):
             # --- MODIFICATO ---
             current_settings = {
                 'news_tickers': self.news_tickers,
-                'ssl_verify': self.ssl_verify  # <-- Passa l'impostazione corrente
+            'ssl_verify': self.ssl_verify,  # <-- Passa l'impostazione corrente
+            'show_volume_panel': self.show_volume_panel,
+            'show_rsi_indicator': self.indicators_state.get('rsi', False),
+            'show_ma13': self.indicators_state.get('ma13', False),
+            'show_ma50': self.indicators_state.get('ma50', False),
+            'show_ma200': self.indicators_state.get('ma200', False),
+            'show_ma800': self.indicators_state.get('ma800', False),
+            'show_run_indicator': self.indicators_state.get('run', False),
+            'show_volume_strength': self.indicators_state.get('vs', False),
+            'model_use_rsi': self.model_use_rsi,
+            'model_use_volume': self.model_use_volume,
+            'model_use_volume_strength': getattr(self, 'model_use_volume_strength', False),
+            'model_use_mas': self.model_use_mas,
+            'news_only_watchlist': getattr(self, 'news_only_watchlist', False),
+            'use_cuda': getattr(self, 'use_cuda', False),
+            'indicators': self.indicators_state.copy(),
             }
             dialog = SettingsDialog(current_settings, self)
             
@@ -1165,10 +1234,15 @@ class MainWindow(QMainWindow):
                 self.indicators_state['ma50'] = new_settings.get('show_ma50', self.indicators_state.get('ma50', False))
                 self.indicators_state['ma200'] = new_settings.get('show_ma200', self.indicators_state.get('ma200', False))
                 self.indicators_state['ma800'] = new_settings.get('show_ma800', self.indicators_state.get('ma800', False))
+                self.indicators_state['run'] = new_settings.get('show_run_indicator', self.indicators_state.get('run', False))
+                if self.indicators_state.get('run', False):
+                    self.indicators_state['rsi'] = True
                 # Modello
                 self.model_use_rsi = new_settings.get('model_use_rsi', False)
                 self.model_use_volume = new_settings.get('model_use_volume', False)
+                self.model_use_volume_strength = new_settings.get('model_use_volume_strength', False)
                 self.model_use_mas = new_settings.get('model_use_mas', False)
+                self.use_cuda = new_settings.get('use_cuda', False)
                 # Filtri news
                 self.news_only_watchlist = new_settings.get('news_only_watchlist', False)
                 
@@ -1193,6 +1267,7 @@ class MainWindow(QMainWindow):
         self.ma50_button.setChecked(self.indicators_state.get('ma50', False))
         self.ma200_button.setChecked(self.indicators_state.get('ma200', False))
         self.ma800_button.setChecked(self.indicators_state.get('ma800', False))
+        self.run_button.setChecked(self.indicators_state.get('run', False))
         self.apply_view_mode() # Applica la modalità di vista caricata
 
     def start_news_worker(self):
@@ -1276,6 +1351,7 @@ class MainWindow(QMainWindow):
             analysis_worker.use_rsi = self.model_use_rsi
             analysis_worker.use_volume = self.model_use_volume
             analysis_worker.use_mas = self.model_use_mas
+            analysis_worker.use_volume_strength = getattr(self, 'model_use_volume_strength', False)
             analysis_worker.analysis_complete.connect(self._on_news_analyzed)
             analysis_worker.start()
             self.analysis_workers.append(analysis_worker)
@@ -1349,7 +1425,9 @@ class MainWindow(QMainWindow):
                 'show_volume_panel': self.show_volume_panel,
                 'model_use_rsi': self.model_use_rsi,
                 'model_use_volume': self.model_use_volume,
+                'model_use_volume_strength': self.model_use_volume_strength,
                 'model_use_mas': self.model_use_mas,
+                'use_cuda': self.use_cuda,
                 'news_only_watchlist': getattr(self, 'news_only_watchlist', False),
                 'splitter_sizes': self.splitter.sizes(),
                 'selected_symbol': (self.watchlist.currentItem().data(Qt.ItemDataRole.UserRole)['symbol']
@@ -1389,12 +1467,15 @@ class MainWindow(QMainWindow):
         self.chart_canvas.ax_indicator.clear()
         add_plots = []
         plt.setp(self.chart_canvas.ax_price.get_xticklabels(), visible=False)
+        rsi_series = None
         if rsi is not None and self.indicators_state.get('rsi', False):
             try:
                 rsi_plot_list = rsi.get_rsi_plot(data, ax_indicator=self.chart_canvas.ax_indicator)
                 add_plots.extend(rsi_plot_list)
                 self.chart_canvas.ax_indicator.set_visible(True)
                 plt.setp(self.chart_canvas.ax_volume.get_xticklabels(), visible=False)
+                if 'RSI' in data.columns:
+                    rsi_series = data['RSI'].copy()
             except Exception as e:
                 print(f"Errore calcolo RSI: {e}")
                 self.chart_canvas.ax_indicator.set_visible(False)
@@ -1402,6 +1483,11 @@ class MainWindow(QMainWindow):
         else:
             self.chart_canvas.ax_indicator.set_visible(False)
             plt.setp(self.chart_canvas.ax_volume.get_xticklabels(), visible=True)
+            if self.indicators_state.get('run', False):
+                rsi_series = _compute_simple_rsi(data['Close'])
+
+        if self.indicators_state.get('run', False) and rsi_series is None:
+            rsi_series = _compute_simple_rsi(data['Close'])
 
         # Moving Averages (13/50/200/800)
         try:
@@ -1419,6 +1505,24 @@ class MainWindow(QMainWindow):
                     add_plots.append(mpf.make_addplot(data[col], ax=self.chart_canvas.ax_price, color=color, width=1))
         except Exception as e:
             print(f"Errore calcolo MA: {e}")
+
+        if self.indicators_state.get('run', False) and rsi_series is not None:
+            if 'RSI' not in data.columns:
+                data['RSI'] = rsi_series
+            price_diff = data['Close'].diff()
+            rsi_diff = rsi_series.diff()
+            bull_core = (price_diff < 0) & (rsi_diff > 0)
+            bear_core = (price_diff > 0) & (rsi_diff < 0)
+            bull_mask = bull_core | bull_core.shift(1, fill_value=False)
+            bear_mask = bear_core | bear_core.shift(1, fill_value=False)
+            data['RUN_BULL'] = data['Close'].where(bull_mask)
+            data['RUN_BEAR'] = data['Close'].where(bear_mask)
+            add_plots.append(mpf.make_addplot(data['RUN_BULL'], ax=self.chart_canvas.ax_price, color='#2ecc71', width=2, alpha=0.9))
+            add_plots.append(mpf.make_addplot(data['RUN_BEAR'], ax=self.chart_canvas.ax_price, color='#e74c3c', width=2, alpha=0.9))
+        else:
+            data.pop('RUN_BULL', None)
+            data.pop('RUN_BEAR', None)
+
         self.chart_canvas.cross_hline = self.chart_canvas.ax_price.axhline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
         self.chart_canvas.cross_vline = self.chart_canvas.ax_price.axvline(0, color='gray', linewidth=0.5, linestyle='--', visible=False)
         self.chart_canvas.annot = self.chart_canvas.ax_price.annotate(
@@ -1448,6 +1552,8 @@ class MainWindow(QMainWindow):
                  datetime_format=date_format,
                  tight_layout=True 
                 )
+        if 'RUN_BULL' in data.columns:
+            data.drop(columns=[col for col in ['RUN_BULL', 'RUN_BEAR'] if col in data.columns], inplace=True)
         if self.show_volume_panel:
             self.chart_canvas.ax_volume.set_ylabel('Volume')
         else:
@@ -1519,6 +1625,10 @@ class MainWindow(QMainWindow):
             self.model_use_volume = settings.get('model_use_volume', settings.get('model_use_indicators', False))
             self.model_use_mas = settings.get('model_use_mas', False)
             self.news_only_watchlist = settings.get('news_only_watchlist', False)
+            self.use_cuda = settings.get('use_cuda', False)
+            self.model_use_volume_strength = settings.get('model_use_volume_strength', False)
+            self.indicators_state.setdefault('run', settings.get('show_run_indicator', False))
+            self.indicators_state.setdefault('vs', settings.get('show_volume_strength', False))
             
             # Carica watchlist
             try:
@@ -1660,6 +1770,20 @@ if __name__ == '__main__':
         print("AVVISO: il modulo 'model.py' non è stato trovato. L'analisi AI delle notizie sarà disabilitata.")
 
     app = QApplication(sys.argv)
+
+    splash_pix = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), "splash.png"))
+    splash = QSplashScreen(splash_pix if not splash_pix.isNull() else QPixmap(400, 260))
+    if splash_pix.isNull():
+        splash_pix.fill(QColor(32, 32, 32))
+    splash.setPixmap(splash_pix)
+    splash.showMessage("Caricamento interfaccia...", Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter, QColor("#FFFFFF"))
+    splash.show()
+    app.processEvents()
+
     window = MainWindow()
+    window._splash = splash
     window.show()
+    splash.showMessage("Caricamento modello AI...", Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter, QColor("#FFFFFF"))
+    app.processEvents()
+
     sys.exit(app.exec())

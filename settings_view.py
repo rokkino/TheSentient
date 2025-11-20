@@ -1,70 +1,113 @@
 import sys
+import os
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QFrame, QScrollArea,
                              QDialog, QLineEdit, QDialogButtonBox, QFormLayout,
                              QSizePolicy, QSpinBox, QHBoxLayout, QPushButton,
-                             QCheckBox, QTextEdit)
-from PyQt6.QtCore import Qt, pyqtSignal, QSize, QPropertyAnimation, QRect, QTimer, pyqtProperty
+                             QTextEdit)
+from PyQt6.QtCore import Qt, pyqtSignal, QSize, QPropertyAnimation, QRect, QTimer, pyqtProperty, QEasingCurve
 
-from PyQt6.QtGui import QDesktopServices, QColor, QPixmap, QMovie
-from PyQt6.QtWidgets import QGraphicsDropShadowEffect
+from PyQt6.QtGui import QDesktopServices, QColor, QPixmap, QMovie, QIcon
+from PyQt6.QtWidgets import QGraphicsDropShadowEffect, QGraphicsOpacityEffect
 from PyQt6.QtCore import QUrl
 
 STYLESHEET = """
 /* Stile per la Card della Notizia */
 #NewsCard {
-    background-color: rgba(30,30,30,0.92);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    margin-bottom: 12px;
-    padding: 16px;
-    min-height: 140px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 rgba(48,48,48,0.96),
+                                stop:1 rgba(30,30,30,0.98));
+    border: 1px solid rgba(80,140,220,0.35);
+    border-radius: 20px;
+    margin-bottom: 22px;
+    padding: 22px;
+    min-height: 220px;
 }
 #NewsCard:hover {
-    background-color: #3a3a3a;
-    border-color: #555555;
+    border-color: rgba(90,155,255,0.7);
+}
+#AccentBar {
+    background-color: #2f84ff;
+    border-radius: 5px;
+}
+#MetaChip {
+    background-color: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    color: #f6f8ff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 14px;
+    letter-spacing: 0.5px;
+}
+#MetaTime {
+    color: #b6becd;
+    font-size: 11px;
+    padding-left: 10px;
+}
+#SummaryDivider {
+    background-color: rgba(255,255,255,0.14);
+    border: none;
+    height: 1px;
+    margin: 10px 0px 8px;
+}
+#ReadButton {
+    background-color: #2d72d9;
+    color: #f4f6fb;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+#ReadButton:hover {
+    background-color: #3a86ff;
+}
+#ReadButton:pressed {
+    background-color: #205bb2;
 }
 #NewsTitle {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: #ffffff;
-    padding: 4px 0px;
-}
-#NewsInfo {
-    font-size: 12px;
-    color: #9aa3ad;
-    font-style: italic;
-    margin-top: 4px;
+    padding: 2px 0px 8px;
+    line-height: 1.32;
 }
 #NewsSummary {
     font-size: 15px;
-    color: #d8d8d8;
-    padding: 8px 0px;
-    line-height: 1.6;
+    font-weight: 500;
+    color: #f3f6ff;
+    padding: 6px 0px 8px;
+    line-height: 1.72;
 }
 #TradingSignal {
-    background-color: rgba(46, 46, 46, 0.7);
-    border: 1px solid #3a3a3a;
-    border-radius: 8px;
-    padding: 10px;
-    margin-top: 10px;
+    background-color: rgba(16,16,16,0.9);
+    border: 1px solid rgba(0,122,204,0.35);
+    border-radius: 15px;
+    padding: 16px;
+    margin-top: 16px;
 }
 #TradingSignal.bearish {
-    background-color: rgba(74, 42, 42, 0.7);
-    border-color: #6a3a3a;
+    background-color: rgba(78, 34, 34, 0.9);
+    border-color: rgba(255,92,92,0.45);
 }
 #SignalLabel {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
-    color: #dcdcdc;
-    margin-bottom: 6px;
+    color: #fdfdff;
+    margin-bottom: 10px;
 }
 #SignalLabel.bearish {
-    color: #ff6b6b;
+    color: #ff8a8a;
 }
 #SignalInfo {
     font-size: 12px;
-    color: #b0b0b0;
-    line-height: 1.5;
+    color: #d5d9e2;
+    line-height: 1.65;
+}
+#LoadingText {
+    font-size: 13px;
+    color: #e1e5f0;
 }
 
 /* Stile per la ScrollArea della Sidebar */
@@ -163,38 +206,25 @@ QPushButton#ViewToggleButton:hover {
     background-color: #1f1f1f;
 }
 
-/* Toggle switch stile blu per QCheckBox */
-QCheckBox[class="toggle"]::indicator {
-    width: 44px;
-    height: 22px;
+QPushButton#SettingToggle {
+    background-color: #2f2f2f;
+    border: 1px solid #454545;
+    border-radius: 12px;
+    padding: 4px 18px;
+    min-width: 92px;
+    color: #bfc2c9;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
-QCheckBox[class="toggle"]::indicator:unchecked {
-    border-radius: 11px;
-    background: #3a3a3a;
+QPushButton#SettingToggle:hover {
+    border-color: #5a5a5a;
+    color: #e2e5eb;
 }
-QCheckBox[class="toggle"]::indicator:unchecked:hover {
-    background: #4a4a4a;
-}
-QCheckBox[class="toggle"]::indicator:checked {
-    border-radius: 11px;
-    background: #007acc;
-}
-QCheckBox[class="toggle"]::indicator:checked:hover {
-    background: #108ee9;
-}
-QCheckBox[class="toggle"]::indicator:unchecked::before,
-QCheckBox[class="toggle"]::indicator:checked::before {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    margin: 2px;
-    border-radius: 9px;
-    background: #cccccc;
-}
-QCheckBox[class="toggle"]::indicator:checked::before {
-    margin-left: 24px;
-    background: #ffffff;
+QPushButton#SettingToggle:checked {
+    background-color: #0a7cd3;
+    border-color: #0a7cd3;
+    color: #ffffff;
 }
 """
 
@@ -213,6 +243,7 @@ class NewsCard(QFrame):
         shadow.setOffset(0, 4)
         shadow.setColor(QColor(0, 0, 0, 120))
         self.setGraphicsEffect(shadow)
+        self.setMinimumHeight(220)
         
         self.link = news_item.get('link')
         title = news_item.get('title', 'Nessun Titolo')
@@ -220,23 +251,51 @@ class NewsCard(QFrame):
         timestamp = news_item.get('timestamp')
         ticker = news_item.get('ticker', '')
 
-        layout = QVBoxLayout(self)
-        layout.setSpacing(8)
+        outer_layout = QHBoxLayout(self)
+        outer_layout.setContentsMargins(12, 12, 12, 12)
+        outer_layout.setSpacing(12)
+
+        self.accent_bar = QFrame()
+        self.accent_bar.setObjectName("AccentBar")
+        self.accent_bar.setFixedWidth(5)
+        outer_layout.addWidget(self.accent_bar)
+
+        layout = QVBoxLayout()
+        layout.setSpacing(12)
+        outer_layout.addLayout(layout, 1)
         
         title_label = QLabel(title)
         title_label.setObjectName("NewsTitle")
         title_label.setWordWrap(True)
         layout.addWidget(title_label)
-        
+
+        meta_layout = QHBoxLayout()
+        meta_layout.setSpacing(10)
+        meta_layout.setContentsMargins(0, 0, 0, 0)
+        if publisher:
+            source_chip = QLabel(publisher)
+            source_chip.setObjectName("MetaChip")
+            meta_layout.addWidget(source_chip)
+        if ticker:
+            ticker_chip = QLabel(ticker)
+            ticker_chip.setObjectName("MetaChip")
+            meta_layout.addWidget(ticker_chip)
         time_str = timestamp.strftime('%H:%M') if timestamp else ''
-        info_str = f"{publisher} ({ticker}) - {time_str}"
-        info_label = QLabel(info_str)
-        info_label.setObjectName("NewsInfo")
-        layout.addWidget(info_label)
+        if time_str:
+            time_label = QLabel(time_str)
+            time_label.setObjectName("MetaTime")
+            meta_layout.addWidget(time_label)
+        meta_layout.addStretch()
+        layout.addLayout(meta_layout)
+
+        divider = QFrame()
+        divider.setObjectName("SummaryDivider")
+        divider.setFixedHeight(1)
+        layout.addWidget(divider)
 
         # Row with thumbnail and summary
         content_row = QHBoxLayout()
-        content_row.setSpacing(10)
+        content_row.setSpacing(12)
         # Thumbnail (optional)
         self.thumb_label = QLabel()
         self.thumb_label.setFixedSize(64, 64)
@@ -259,14 +318,34 @@ class NewsCard(QFrame):
                 pass
         content_row.addWidget(self.thumb_label)
         # Summary text
-        text_content = news_item.get('text', '')
-        self.summary_label = QLabel(text_content)
+        raw_summary = news_item.get('text') or news_item.get('summary') or ''
+        summary_text = raw_summary.strip()
+        if not summary_text:
+            summary_text = news_item.get('title', '')
+        if summary_text and len(summary_text) > 240:
+            trimmed = summary_text[:237].rsplit(' ', 1)[0]
+            summary_text = trimmed + "…" if trimmed else summary_text[:237] + "…"
+        self.summary_label = QLabel(summary_text)
         self.summary_label.setObjectName("NewsSummary")
         self.summary_label.setWordWrap(True)
         self.summary_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
         self.summary_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.summary_label.setMinimumHeight(60)
+        self.summary_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         content_row.addWidget(self.summary_label, 1)
         layout.addLayout(content_row)
+
+        actions_layout = QHBoxLayout()
+        actions_layout.setContentsMargins(0, 10, 0, 0)
+        actions_layout.setSpacing(8)
+        self.read_button = QPushButton("Apri articolo")
+        self.read_button.setObjectName("ReadButton")
+        self.read_button.setVisible(bool(self.link))
+        self.read_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.read_button.clicked.connect(self._on_read_clicked)
+        actions_layout.addWidget(self.read_button)
+        actions_layout.addStretch()
+        layout.addLayout(actions_layout)
 
         # Trading signal area (always present, supports loading state)
         self.signal_frame = QFrame()
@@ -275,17 +354,27 @@ class NewsCard(QFrame):
         self.signal_layout.setSpacing(4)
         self.signal_frame.setStyleSheet("#TradingSignal{border-radius:10px;}")
         # Small spinner for AI analysis state
+        self.loading_container = QWidget()
+        loading_layout = QHBoxLayout(self.loading_container)
+        loading_layout.setContentsMargins(0, 0, 0, 0)
+        loading_layout.setSpacing(8)
+        loading_layout.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         self.spinner_label = QLabel()
         self.spinner_movie = QMovie("spinner.gif")
-        self.spinner_movie.setScaledSize(QSize(18, 18))
+        self.spinner_movie.setScaledSize(QSize(20, 20))
         self.spinner_label.setMovie(self.spinner_movie)
-        self.spinner_label.hide()
-        self.signal_layout.addWidget(self.spinner_label)
+        loading_layout.addWidget(self.spinner_label)
+        self.loading_text = QLabel("Analisi del modello in corso...")
+        self.loading_text.setObjectName("LoadingText")
+        loading_layout.addWidget(self.loading_text)
+        loading_layout.addStretch()
+        self.signal_layout.addWidget(self.loading_container)
 
         self.signal_label = QLabel("")
         self.signal_label.setObjectName("SignalLabel")
         self.signal_info = QLabel("")
         self.signal_info.setObjectName("SignalInfo")
+        self.signal_label.hide()
         self.signal_info.setVisible(False)
         self.signal_layout.addWidget(self.signal_label)
         self.signal_layout.addWidget(self.signal_info)
@@ -302,21 +391,29 @@ class NewsCard(QFrame):
             QDesktopServices.openUrl(QUrl(self.link))
         event.accept()
 
+    def _on_read_clicked(self):
+        if self.link:
+            QDesktopServices.openUrl(QUrl(self.link))
+
     def render_trading_signal(self, trading_signal):
         """Rende la sezione del trading signal, supportando stato 'loading'."""
         # Reset classes
         self.signal_frame.setProperty("class", "")
+        neutral_color = "#2f84ff"
+        self.accent_bar.setStyleSheet(f"#AccentBar {{ background-color: {neutral_color}; border-radius: 5px; }}")
         if not trading_signal or trading_signal.get('status') == 'loading':
-            self.spinner_label.show()
+            self.loading_container.show()
+            self.signal_label.hide()
+            self.signal_info.hide()
             if self.spinner_movie.state() != QMovie.MovieState.Running:
                 self.spinner_movie.start()
-            self.signal_label.setText("Analisi del modello in corso...")
-            self.signal_info.setVisible(False)
+            self.loading_text.setText("Analisi del modello in corso...")
             return
         # stop spinner
-        self.spinner_label.hide()
+        self.loading_container.hide()
         if self.spinner_movie.state() == QMovie.MovieState.Running:
             self.spinner_movie.stop()
+        self.signal_label.show()
         direction = trading_signal.get('direction', 'NEUTRAL')
         confidence = trading_signal.get('confidence', 0)
         stop_loss = trading_signal.get('stop_loss')
@@ -325,11 +422,22 @@ class NewsCard(QFrame):
         if direction == 'BEARISH':
             self.signal_frame.setProperty("class", "bearish")
             self.signal_label.setProperty("class", "bearish")
+            self.accent_bar.setStyleSheet("#AccentBar { background-color: #ff6b6b; border-radius: 5px; }")
+        elif direction == 'BULLISH':
+            self.signal_frame.setProperty("class", "")
+            self.signal_label.setProperty("class", "")
+            self.accent_bar.setStyleSheet("#AccentBar { background-color: #2ecc71; border-radius: 5px; }")
         else:
             self.signal_label.setProperty("class", "")
+            self.accent_bar.setStyleSheet(f"#AccentBar {{ background-color: {neutral_color}; border-radius: 5px; }}")
         self.signal_label.setText(f"{direction} - Confidence: {confidence}%")
-        if stop_loss is not None and take_profit is not None:
-            self.signal_info.setText(f"Stop Loss: {stop_loss}\nTake Profit: {take_profit}")
+        info_lines = []
+        if stop_loss is not None:
+            info_lines.append(f"Stop Loss: {stop_loss}")
+        if take_profit is not None:
+            info_lines.append(f"Take Profit: {take_profit}")
+        if info_lines:
+            self.signal_info.setText("\n".join(info_lines))
             self.signal_info.setVisible(True)
         else:
             self.signal_info.setVisible(False)
@@ -403,7 +511,7 @@ class FlyoutNewsFeed(NewsSidebar):
         super().__init__(parent)
         
         # Larghezza ridotta per il flyout
-        self.setFixedWidth(280)
+        self.setFixedWidth(340)
         
         self.popup_duration_ms = popup_duration_ms
         self.panel_width = 280
@@ -413,9 +521,15 @@ class FlyoutNewsFeed(NewsSidebar):
         self._add_view_toggle_button()
         
         # Animazione per la geometria
-        self.animation = QPropertyAnimation(self, b"geometry")
-        self.animation.setDuration(300) # 300ms per l'animazione
-        
+        self.animation = QPropertyAnimation(self, b"pos")
+        self.animation.setDuration(0)
+        self.animation.setEasingCurve(QEasingCurve.Type.InOutCubic)
+        self.opacity_effect = QGraphicsOpacityEffect(self)
+        self.setGraphicsEffect(self.opacity_effect)
+        self.opacity_anim = QPropertyAnimation(self.opacity_effect, b"opacity")
+        self.opacity_anim.setDuration(550)
+        self.opacity_anim.setEasingCurve(QEasingCurve.Type.InOutCubic)
+
         # Timer per nascondere automaticamente il popup
         self.auto_hide_timer = QTimer(self)
         self.auto_hide_timer.setSingleShot(True)
@@ -424,16 +538,22 @@ class FlyoutNewsFeed(NewsSidebar):
         # Permetti modalità floating con sfondo trasparente stile "notifica"
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
-        self.setStyleSheet(self.styleSheet() + "\n#NewsCard { background-color: rgba(45,45,45,0.85); border: 1px solid rgba(255,255,255,0.06);} ")
+        self.setStyleSheet(self.styleSheet() + "\n#NewsCard { background-color: rgba(45,45,45,0.88); border: 1px solid rgba(255,255,255,0.08);} ")
         
         self.update_geometry(force_hide=True)
         self.hide()
-    
     def _add_view_toggle_button(self):
         """Aggiunge un pulsante per cambiare vista nella header del flyout."""
         if hasattr(self, 'header_layout'):
-            view_button = QPushButton("View")
+            assets_dir = os.path.dirname(os.path.abspath(__file__))
+            grid_icon_path = os.path.join(assets_dir, "grid.svg")
+
+            view_button = QPushButton(" View")
             view_button.setObjectName("ViewToggleButton")
+            if os.path.exists(grid_icon_path):
+                view_button.setIcon(QIcon(grid_icon_path))
+                view_button.setIconSize(QSize(16, 16))
+
             view_button.setToolTip("Cambia modalità vista")
             view_button.clicked.connect(self.view_toggle_requested.emit)
             self.header_layout.addWidget(view_button)
@@ -451,16 +571,19 @@ class FlyoutNewsFeed(NewsSidebar):
 
         self.visible_geo = QRect(screen_x + screen_w - self.panel_width - 16, screen_y + 16,
                                  self.panel_width, screen_h - 32)
-        self.hidden_geo = QRect(screen_x + screen_w + 8, screen_y + 16,
+        self.hidden_geo = QRect(screen_x + screen_w - self.panel_width - 16, screen_y + 16,
                                 self.panel_width, screen_h - 32)
         
         if force_hide:
             self.setGeometry(self.hidden_geo)
+            self.opacity_effect.setOpacity(0.0)
             self.is_visible = False
         elif self.is_visible:
             self.setGeometry(self.visible_geo)
+            self.opacity_effect.setOpacity(1.0)
         else:
             self.setGeometry(self.hidden_geo)
+            self.opacity_effect.setOpacity(0.0)
 
     def slide_in(self):
         """Anima la sidebar per farla entrare in vista."""
@@ -471,12 +594,13 @@ class FlyoutNewsFeed(NewsSidebar):
             self.auto_hide_timer.start(self.popup_duration_ms)
             return
             
-        self.animation.setStartValue(self.hidden_geo)
-        self.animation.setEndValue(self.visible_geo)
+        self.opacity_anim.stop()
+        self.opacity_anim.setStartValue(0.0)
+        self.opacity_anim.setEndValue(1.0)
         self.show()
         self.raise_()  # Porta il widget in primo piano
         self.activateWindow()  # Assicura che il widget sia attivo
-        self.animation.start()
+        self.opacity_anim.start()
         self.is_visible = True
         # Avvia il timer per auto-hide dopo il popup_duration_ms
         self.auto_hide_timer.start(self.popup_duration_ms)
@@ -487,10 +611,20 @@ class FlyoutNewsFeed(NewsSidebar):
             return
             
         self.update_geometry()
-        self.animation.setStartValue(self.visible_geo)
-        self.animation.setEndValue(self.hidden_geo)
-        self.animation.start()
+        self.opacity_anim.stop()
+        self.opacity_anim.setStartValue(1.0)
+        self.opacity_anim.setEndValue(0.0)
+        self.opacity_anim.finished.connect(self._hide_after_fade)
+        self.opacity_anim.start()
         self.is_visible = False
+
+    def _hide_after_fade(self):
+        if not self.is_visible:
+            self.hide()
+        try:
+            self.opacity_anim.finished.disconnect(self._hide_after_fade)
+        except Exception:
+            pass
 
     def schedule_slide_out(self, delay_ms=500):
         """Programma l'uscita dopo un breve ritardo."""
@@ -514,14 +648,30 @@ class FlyoutNewsFeed(NewsSidebar):
         self.schedule_slide_out(500) # Nascondi dopo 0.5s
         super().leaveEvent(event)
 
+from PyQt6.QtGui import QIcon
 
 class SettingsDialog(QDialog):
     """
     Finestra di dialogo per le impostazioni dell'applicazione.
     """
+
+    @staticmethod
+    def _update_toggle_text(button: QPushButton):
+        button.setText("ON" if button.isChecked() else "OFF")
+
+    def _create_toggle(self, initial_state: bool = False) -> QPushButton:
+        btn = QPushButton()
+        btn.setObjectName("SettingToggle")
+        btn.setCheckable(True)
+        btn.setChecked(initial_state)
+        self._update_toggle_text(btn)
+        btn.toggled.connect(lambda checked, b=btn: self._update_toggle_text(b))
+        return btn
+
     def __init__(self, current_settings, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Impostazioni")
+        self.setWindowIcon(QIcon("gear.svg"))
         self.setMinimumWidth(520)
         self.setStyleSheet(STYLESHEET)
         # Rimuovi barra di Windows e usa dialogo frameless con drag
@@ -565,21 +715,15 @@ class SettingsDialog(QDialog):
         form_layout.addRow(QLabel("Ticker per Notizie:"), self.tickers_input)
         
         # --- Filtri feed ---
-        self.only_watchlist_checkbox = QCheckBox()
-        self.only_watchlist_checkbox.setProperty("class", "toggle")
-        self.only_watchlist_checkbox.setChecked(current_settings.get('news_only_watchlist', False))
-        form_layout.addRow(QLabel("Mostra solo notizie della watchlist:"), self.only_watchlist_checkbox)
+        self.only_watchlist_toggle = self._create_toggle(current_settings.get('news_only_watchlist', False))
+        form_layout.addRow(QLabel("Mostra solo notizie della watchlist:"), self.only_watchlist_toggle)
 
         # --- Sorgenti news ---
-        self.enable_yahoo_checkbox = QCheckBox()
-        self.enable_yahoo_checkbox.setProperty("class", "toggle")
-        self.enable_yahoo_checkbox.setChecked(current_settings.get('enable_yahoo_news', True))
-        form_layout.addRow(QLabel("Abilita Yahoo News:"), self.enable_yahoo_checkbox)
+        self.enable_yahoo_toggle = self._create_toggle(current_settings.get('enable_yahoo_news', True))
+        form_layout.addRow(QLabel("Abilita Yahoo News:"), self.enable_yahoo_toggle)
 
-        self.enable_x_checkbox = QCheckBox()
-        self.enable_x_checkbox.setProperty("class", "toggle")
-        self.enable_x_checkbox.setChecked(current_settings.get('enable_x_news', False))
-        form_layout.addRow(QLabel("Abilita X (Twitter) News:"), self.enable_x_checkbox)
+        self.enable_x_toggle = self._create_toggle(current_settings.get('enable_x_news', False))
+        form_layout.addRow(QLabel("Abilita X (Twitter) News:"), self.enable_x_toggle)
 
         self.x_api_token_input = QLineEdit(current_settings.get('x_api_token', ''))
         self.x_api_token_input.setEchoMode(QLineEdit.EchoMode.Password)
@@ -592,73 +736,60 @@ class SettingsDialog(QDialog):
 
         # --- Indicatori grafico ---
         layout.addWidget(QLabel("Indicatori", objectName="SectionTitle"))
-        self.show_rsi_checkbox = QCheckBox()
-        self.show_rsi_checkbox.setProperty("class", "toggle")
-        self.show_rsi_checkbox.setChecked(current_settings.get('show_rsi_indicator', current_settings.get('indicators', {}).get('rsi', False)))
-        form_layout.addRow(QLabel("Mostra RSI:"), self.show_rsi_checkbox)
+        self.show_rsi_toggle = self._create_toggle(current_settings.get('show_rsi_indicator', current_settings.get('indicators', {}).get('rsi', False)))
+        form_layout.addRow(QLabel("Mostra RSI:"), self.show_rsi_toggle)
 
-        self.show_volume_checkbox = QCheckBox()
-        self.show_volume_checkbox.setProperty("class", "toggle")
-        self.show_volume_checkbox.setChecked(current_settings.get('show_volume_panel', True))
-        form_layout.addRow(QLabel("Mostra Volumi:"), self.show_volume_checkbox)
+        self.show_volume_toggle = self._create_toggle(current_settings.get('show_volume_panel', True))
+        form_layout.addRow(QLabel("Mostra Volumi:"), self.show_volume_toggle)
+
+        self.show_volume_strength_toggle = self._create_toggle(current_settings.get('indicators', {}).get('vs', False) or current_settings.get('show_volume_strength', False))
+        form_layout.addRow(QLabel("Mostra Volume Strength:"), self.show_volume_strength_toggle)
+
+        self.show_run_toggle = self._create_toggle(current_settings.get('indicators', {}).get('run', False) or current_settings.get('show_run_indicator', False))
+        form_layout.addRow(QLabel("Mostra Run (RSI Divergence):"), self.show_run_toggle)
 
         # Moving Averages
-        self.show_ma13_checkbox = QCheckBox()
-        self.show_ma13_checkbox.setProperty("class", "toggle")
-        self.show_ma13_checkbox.setChecked(current_settings.get('indicators', {}).get('ma13', False) or current_settings.get('show_ma13', False))
-        form_layout.addRow(QLabel("Mostra MA 13:"), self.show_ma13_checkbox)
+        self.show_ma13_toggle = self._create_toggle(current_settings.get('indicators', {}).get('ma13', False) or current_settings.get('show_ma13', False))
+        form_layout.addRow(QLabel("Mostra MA 13:"), self.show_ma13_toggle)
 
-        self.show_ma50_checkbox = QCheckBox()
-        self.show_ma50_checkbox.setProperty("class", "toggle")
-        self.show_ma50_checkbox.setChecked(current_settings.get('indicators', {}).get('ma50', False) or current_settings.get('show_ma50', False))
-        form_layout.addRow(QLabel("Mostra MA 50:"), self.show_ma50_checkbox)
+        self.show_ma50_toggle = self._create_toggle(current_settings.get('indicators', {}).get('ma50', False) or current_settings.get('show_ma50', False))
+        form_layout.addRow(QLabel("Mostra MA 50:"), self.show_ma50_toggle)
 
-        self.show_ma200_checkbox = QCheckBox()
-        self.show_ma200_checkbox.setProperty("class", "toggle")
-        self.show_ma200_checkbox.setChecked(current_settings.get('indicators', {}).get('ma200', False) or current_settings.get('show_ma200', False))
-        form_layout.addRow(QLabel("Mostra MA 200:"), self.show_ma200_checkbox)
+        self.show_ma200_toggle = self._create_toggle(current_settings.get('indicators', {}).get('ma200', False) or current_settings.get('show_ma200', False))
+        form_layout.addRow(QLabel("Mostra MA 200:"), self.show_ma200_toggle)
 
-        self.show_ma800_checkbox = QCheckBox()
-        self.show_ma800_checkbox.setProperty("class", "toggle")
-        self.show_ma800_checkbox.setChecked(current_settings.get('indicators', {}).get('ma800', False) or current_settings.get('show_ma800', False))
-        form_layout.addRow(QLabel("Mostra MA 800:"), self.show_ma800_checkbox)
+        self.show_ma800_toggle = self._create_toggle(current_settings.get('indicators', {}).get('ma800', False) or current_settings.get('show_ma800', False))
+        form_layout.addRow(QLabel("Mostra MA 800:"), self.show_ma800_toggle)
 
         # --- Modello ---
         layout.addWidget(QLabel("Modello AI", objectName="SectionTitle"))
-        self.use_cuda_checkbox = QCheckBox()
-        self.use_cuda_checkbox.setProperty("class", "toggle")
-        self.use_cuda_checkbox.setChecked(current_settings.get('use_cuda', False))
-        form_layout.addRow(QLabel("Usa CUDA (NVIDIA):"), self.use_cuda_checkbox)
+        self.use_cuda_toggle = self._create_toggle(current_settings.get('use_cuda', False))
+        form_layout.addRow(QLabel("Usa CUDA (NVIDIA):"), self.use_cuda_toggle)
 
         # Modello: spunte separate
-        self.model_use_rsi_checkbox = QCheckBox()
-        self.model_use_rsi_checkbox.setProperty("class", "toggle")
-        self.model_use_rsi_checkbox.setChecked(current_settings.get('model_use_rsi', False) or current_settings.get('model_use_indicators', False))
-        form_layout.addRow(QLabel("Il modello usa RSI:"), self.model_use_rsi_checkbox)
+        self.model_use_rsi_toggle = self._create_toggle(current_settings.get('model_use_rsi', False) or current_settings.get('model_use_indicators', False))
+        form_layout.addRow(QLabel("Il modello usa RSI:"), self.model_use_rsi_toggle)
 
-        self.model_use_volume_checkbox = QCheckBox()
-        self.model_use_volume_checkbox.setProperty("class", "toggle")
-        self.model_use_volume_checkbox.setChecked(current_settings.get('model_use_volume', False) or current_settings.get('model_use_indicators', False))
-        form_layout.addRow(QLabel("Il modello usa Volumi:"), self.model_use_volume_checkbox)
+        self.model_use_volume_toggle = self._create_toggle(current_settings.get('model_use_volume', False) or current_settings.get('model_use_indicators', False))
+        form_layout.addRow(QLabel("Il modello usa Volumi:"), self.model_use_volume_toggle)
 
-        self.model_use_mas_checkbox = QCheckBox()
-        self.model_use_mas_checkbox.setProperty("class", "toggle")
-        self.model_use_mas_checkbox.setChecked(current_settings.get('model_use_mas', False))
-        form_layout.addRow(QLabel("Il modello usa Moving Averages:"), self.model_use_mas_checkbox)
+        self.model_use_volume_strength_toggle = self._create_toggle(current_settings.get('model_use_volume_strength', False))
+        form_layout.addRow(QLabel("Il modello usa Volume Strength:"), self.model_use_volume_strength_toggle)
+
+        self.model_use_mas_toggle = self._create_toggle(current_settings.get('model_use_mas', False))
+        form_layout.addRow(QLabel("Il modello usa Moving Averages:"), self.model_use_mas_toggle)
         
         ##### INIZIO MODIFICA SSL #####
         
         # --- Impostazione SSL ---
         layout.addWidget(QLabel("Sicurezza", objectName="SectionTitle"))
-        self.ssl_verify_checkbox = QCheckBox()
-        self.ssl_verify_checkbox.setToolTip(
+        self.ssl_verify_toggle = self._create_toggle(current_settings.get('ssl_verify', True))
+        self.ssl_verify_toggle.setToolTip(
             "Disabilita questa opzione SOLO se sei su una rete aziendale\n"
             "che causa problemi di certificato SSL.\n"
             "ATTENZIONE: Rende la connessione insicura."
         )
-        # Imposta lo stato_corrente. True = Sicuro (Verifica Abilitata)
-        self.ssl_verify_checkbox.setChecked(current_settings.get('ssl_verify', True))
-        form_layout.addRow(QLabel("Abilita Verifica SSL (Sicuro):"), self.ssl_verify_checkbox)
+        form_layout.addRow(QLabel("Abilita Verifica SSL (Sicuro):"), self.ssl_verify_toggle)
         
         ##### FINE MODIFICA SSL #####
         
@@ -693,122 +824,24 @@ class SettingsDialog(QDialog):
         x_profiles = [line.strip() for line in self.x_profiles_input.toPlainText().splitlines() if line.strip()]
         return {
             'news_tickers': tickers_list,
-            'ssl_verify': self.ssl_verify_checkbox.isChecked(),
-            'use_cuda': self.use_cuda_checkbox.isChecked(),
-            'enable_yahoo_news': self.enable_yahoo_checkbox.isChecked(),
-            'enable_x_news': self.enable_x_checkbox.isChecked(),
+            'ssl_verify': self.ssl_verify_toggle.isChecked(),
+            'use_cuda': self.use_cuda_toggle.isChecked(),
+            'enable_yahoo_news': self.enable_yahoo_toggle.isChecked(),
+            'enable_x_news': self.enable_x_toggle.isChecked(),
             'x_api_token': self.x_api_token_input.text(),
             'x_profiles': x_profiles,
-            'news_only_watchlist': self.only_watchlist_checkbox.isChecked(),
-            'show_rsi_indicator': self.show_rsi_checkbox.isChecked(),
-            'show_volume_panel': self.show_volume_checkbox.isChecked(),
-            'show_ma13': self.show_ma13_checkbox.isChecked(),
-            'show_ma50': self.show_ma50_checkbox.isChecked(),
-            'show_ma200': self.show_ma200_checkbox.isChecked(),
-            'show_ma800': self.show_ma800_checkbox.isChecked(),
-            'model_use_rsi': self.model_use_rsi_checkbox.isChecked(),
-            'model_use_volume': self.model_use_volume_checkbox.isChecked(),
-            'model_use_mas': self.model_use_mas_checkbox.isChecked(),
+            'news_only_watchlist': self.only_watchlist_toggle.isChecked(),
+            'show_rsi_indicator': self.show_rsi_toggle.isChecked(),
+            'show_volume_panel': self.show_volume_toggle.isChecked(),
+            'show_volume_strength': self.show_volume_strength_toggle.isChecked(),
+            'show_run_indicator': self.show_run_toggle.isChecked(),
+            'show_ma13': self.show_ma13_toggle.isChecked(),
+            'show_ma50': self.show_ma50_toggle.isChecked(),
+            'show_ma200': self.show_ma200_toggle.isChecked(),
+            'show_ma800': self.show_ma800_toggle.isChecked(),
+            'model_use_rsi': self.model_use_rsi_toggle.isChecked(),
+            'model_use_volume': self.model_use_volume_toggle.isChecked(),
+            'model_use_volume_strength': self.model_use_volume_strength_toggle.isChecked(),
+            'model_use_mas': self.model_use_mas_toggle.isChecked(),
         }
     
-class SettingsDialog(QDialog):
-    """
-    Finestra di dialogo per le impostazioni dell'applicazione.
-    """
-    def __init__(self, current_settings, parent=None):
-        super().__init__(parent)
-        self.setWindowTitle("Impostazioni")
-        self.setMinimumWidth(400)
-        self.setStyleSheet(STYLESHEET)
-        
-        self.current_settings = current_settings
-        
-        layout = QVBoxLayout(self)
-        form_layout = QFormLayout()
-        
-        # --- Impostazioni Notizie ---
-        news_tickers_str = ", ".join(current_settings.get('news_tickers', []))
-        self.tickers_input = QLineEdit(news_tickers_str)
-        self.tickers_input.setToolTip("Lista di ticker separati da virgola (es. NVDA, GC=F, AAPL)")
-        form_layout.addRow(QLabel("Ticker per Notizie:"), self.tickers_input)
-        # --- Filtri feed ---
-        self.only_watchlist_checkbox = QCheckBox()
-        self.only_watchlist_checkbox.setChecked(current_settings.get('news_only_watchlist', False))
-        form_layout.addRow(QLabel("Mostra solo notizie della watchlist:"), self.only_watchlist_checkbox)
-
-        # --- Sorgenti news ---
-        self.enable_yahoo_checkbox = QCheckBox()
-        self.enable_yahoo_checkbox.setChecked(current_settings.get('enable_yahoo_news', True))
-        form_layout.addRow(QLabel("Abilita Yahoo News:"), self.enable_yahoo_checkbox)
-
-        self.enable_x_checkbox = QCheckBox()
-        self.enable_x_checkbox.setChecked(current_settings.get('enable_x_news', False))
-        form_layout.addRow(QLabel("Abilita X (Twitter) News:"), self.enable_x_checkbox)
-
-        self.x_api_token_input = QLineEdit(current_settings.get('x_api_token', ''))
-        self.x_api_token_input.setEchoMode(QLineEdit.EchoMode.Password)
-        form_layout.addRow(QLabel("X API Token:"), self.x_api_token_input)
-
-        self.x_profiles_input = QTextEdit("\n".join(current_settings.get('x_profiles', [])))
-        self.x_profiles_input.setPlaceholderText("https://x.com/user1\nhttps://x.com/user2")
-        self.x_profiles_input.setFixedHeight(80)
-        form_layout.addRow(QLabel("Profili X da monitorare (uno per riga):"), self.x_profiles_input)
-
-        # --- Indicatori grafico ---
-        self.show_rsi_checkbox = QCheckBox()
-        self.show_rsi_checkbox.setChecked(current_settings.get('show_rsi_indicator', current_settings.get('indicators', {}).get('rsi', False)))
-        form_layout.addRow(QLabel("Mostra RSI:"), self.show_rsi_checkbox)
-
-        self.show_volume_checkbox = QCheckBox()
-        self.show_volume_checkbox.setChecked(current_settings.get('show_volume_panel', True))
-        form_layout.addRow(QLabel("Mostra Volumi:"), self.show_volume_checkbox)
-
-        # --- Modello ---
-        self.use_cuda_checkbox = QCheckBox()
-        self.use_cuda_checkbox.setChecked(current_settings.get('use_cuda', False))
-        form_layout.addRow(QLabel("Usa CUDA (NVIDIA):"), self.use_cuda_checkbox)
-
-        self.model_use_indicators_checkbox = QCheckBox()
-        self.model_use_indicators_checkbox.setChecked(current_settings.get('model_use_indicators', False))
-        form_layout.addRow(QLabel("Il modello usa RSI/Volumi nella predizione:"), self.model_use_indicators_checkbox)
-
-        ##### INIZIO MODIFICA SSL #####
-        
-        # --- Impostazione SSL ---
-        self.ssl_verify_checkbox = QCheckBox()
-        self.ssl_verify_checkbox.setToolTip(
-            "Disabilita questa opzione SOLO se sei su una rete aziendale\n"
-            "che causa problemi di certificato SSL.\n"
-            "ATTENZIONE: Rende la connessione insicura."
-        )
-        # Imposta lo stato_corrente. True = Sicuro (Verifica Abilitata)
-        self.ssl_verify_checkbox.setChecked(current_settings.get('ssl_verify', True))
-        form_layout.addRow(QLabel("Abilita Verifica SSL (Sicuro):"), self.ssl_verify_checkbox)
-        
-        ##### FINE MODIFICA SSL #####
-        
-        layout.addLayout(form_layout)
-        
-        # Pulsanti OK / Cancella
-        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        button_box.accepted.connect(self.accept)
-        button_box.rejected.connect(self.reject)
-        layout.addWidget(button_box)
-
-    def get_settings(self):
-        """Restituisce le impostazioni aggiornate."""
-        tickers_list = [ticker.strip().upper() for ticker in self.tickers_input.text().split(',') if ticker.strip()]
-        x_profiles = [line.strip() for line in self.x_profiles_input.toPlainText().splitlines() if line.strip()]
-        return {
-            'news_tickers': tickers_list,
-            'ssl_verify': self.ssl_verify_checkbox.isChecked(),
-            'use_cuda': self.use_cuda_checkbox.isChecked(),
-            'enable_yahoo_news': self.enable_yahoo_checkbox.isChecked(),
-            'enable_x_news': self.enable_x_checkbox.isChecked(),
-            'x_api_token': self.x_api_token_input.text(),
-            'x_profiles': x_profiles,
-            'news_only_watchlist': self.only_watchlist_checkbox.isChecked(),
-            'show_rsi_indicator': self.show_rsi_checkbox.isChecked(),
-            'show_volume_panel': self.show_volume_checkbox.isChecked(),
-            'model_use_indicators': self.model_use_indicators_checkbox.isChecked(),
-        }

@@ -10,7 +10,7 @@ model/
 # 3. Cache di Python
 # File temporanei generati da Python durante l'esecuzione.
 __pycache__/
-*.py
+
 
 # 4. Impostazioni Locali di VS Code
 # Impostazioni specifiche del tuo computer (come quale interprete usare).

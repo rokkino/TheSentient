@@ -1,7 +1,16 @@
 {
-    "watchlist": [],
+    "watchlist": [
+        {
+            "name": "NVIDIA Corporation",
+            "symbol": "NVDA"
+        },
+        {
+            "name": "Salesforce, Inc.",
+            "symbol": "CRM"
+        }
+    ],
     "timeframe": "1d",
-    "chart_type": "candle",
+    "chart_type": "line",
     "indicators": {
         "rsi": true
     },
@@ -13,6 +22,5 @@
         "NVDA",
         "MSFT",
         "GOOGL"
-    ],
-    "ssl_verify": false
+    ]
 }

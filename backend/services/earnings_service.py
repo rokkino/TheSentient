@@ -27,30 +27,64 @@ class EarningsService:
             start_date = datetime.fromisoformat(start_date).date()
         
         # Calculate date range for this page (1 week)
-        page_start = start_date + timedelta(weeks=offset)
-        page_end = page_start + timedelta(weeks=weeks)
+        # Use a wider range to catch more earnings (include past week and future weeks)
+        # For offset 0, include past week to catch recent earnings
+        page_start = start_date + timedelta(weeks=offset) - timedelta(days=7)  # Include past week
+        page_end = page_start + timedelta(weeks=weeks) + timedelta(days=14)  # Include 2 weeks ahead
         
         def fetch_earnings():
             earnings_list = []
             
-            # Try to get earnings from multiple sources
-            # Method 1: Use earningswhispers.com scraping (free)
+            # Method 1: Use yfinance for popular tickers (primary method)
+            # Limit to avoid timeout - only check most popular tickers
             try:
-                earnings_list.extend(self._scrape_earningswhispers(page_start, page_end))
+                earnings_list.extend(self._get_popular_tickers_earnings(page_start, page_end))
+                print(f"Found {len(earnings_list)} earnings from popular tickers")
+            except Exception as e:
+                print(f"Error getting earnings from yfinance: {e}")
+            
+            # If we have results, return early to avoid timeout
+            if earnings_list:
+                return earnings_list
+            
+            # Method 2: Try earningswhispers.com scraping (fallback) - skip if we have results
+            try:
+                scraped = self._scrape_earningswhispers(page_start, page_end)
+                if scraped:
+                    earnings_list.extend(scraped)
+                    print(f"Found {len(scraped)} earnings from scraping")
             except Exception as e:
                 print(f"Error scraping earningswhispers: {e}")
             
-            # Method 2: Use yfinance for popular tickers (fallback)
-            if not earnings_list:
+            # Filter to only include earnings in the requested range
+            # Use a wider range to catch earnings near the target week
+            filtered_earnings = []
+            actual_start = start_date + timedelta(weeks=offset) - timedelta(days=7)  # Include past week
+            actual_end = actual_start + timedelta(weeks=weeks) + timedelta(days=7)  # Include next week
+            
+            for earning in earnings_list:
                 try:
-                    earnings_list.extend(self._get_popular_tickers_earnings(page_start, page_end))
+                    earning_date = datetime.fromisoformat(earning['date']).date()
+                    if actual_start <= earning_date <= actual_end:
+                        filtered_earnings.append(earning)
                 except Exception as e:
-                    print(f"Error getting earnings from yfinance: {e}")
+                    # Skip earnings with invalid dates
+                    continue
+            
+            # Remove duplicates based on symbol and date
+            seen = set()
+            unique_earnings = []
+            for earning in filtered_earnings:
+                key = (earning.get('symbol'), earning.get('date'))
+                if key not in seen:
+                    seen.add(key)
+                    unique_earnings.append(earning)
             
             # Sort by date
-            earnings_list.sort(key=lambda x: x.get('date', ''))
+            unique_earnings.sort(key=lambda x: x.get('date', ''))
             
-            return earnings_list
+            print(f"Returning {len(unique_earnings)} filtered earnings for range {actual_start} to {actual_end}")
+            return unique_earnings
         
         return await loop.run_in_executor(None, fetch_earnings)
     
@@ -110,19 +144,31 @@ class EarningsService:
         """Get earnings for popular tickers using yfinance"""
         earnings = []
         
-        # Popular tickers to check
+        # Expanded list of popular tickers
         popular_tickers = [
             'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'NFLX',
-            'AMD', 'INTC', 'JPM', 'BAC', 'WMT', 'DIS', 'V', 'MA', 'PYPL',
-            'CRM', 'ORCL', 'ADBE', 'CSCO', 'IBM', 'QCOM', 'TXN', 'AVGO'
+            'AMD', 'INTC', 'JPM', 'BAC', 'WMT', 'DIS', 'V', 'MA',
+            'CRM', 'ORCL', 'ADBE', 'CSCO', 'IBM', 'QCOM', 'AVGO',
+            'COST', 'HD', 'MCD', 'NKE', 'TGT', 'GS', 'JNJ', 'PG',
+            'KO', 'PEP', 'WFC', 'C', 'AXP', 'UNH', 'JNJ', 'VZ', 'T'
         ]
+        
+        print(f"Searching earnings for {len(popular_tickers)} tickers from {start_date} to {end_date}")
         
         for ticker in popular_tickers:
             try:
                 tk = yf.Ticker(ticker)
-                info = tk.info
+                # Use timeout for info fetch - skip if it takes too long
+                try:
+                    info = tk.info
+                    # Skip if info is empty or None
+                    if not info:
+                        continue
+                except Exception as e:
+                    # Skip this ticker if there's an error
+                    continue
                 
-                # Check for earnings date
+                # Method 1: Check earningsDate from info
                 earnings_date_str = info.get('earningsDate')
                 if earnings_date_str:
                     if isinstance(earnings_date_str, list) and len(earnings_date_str) > 0:
@@ -133,9 +179,10 @@ class EarningsService:
                         if isinstance(earnings_date_str, (int, float)):
                             earnings_date = datetime.fromtimestamp(earnings_date_str).date()
                         else:
-                            earnings_date = datetime.fromisoformat(str(earnings_date_str)).date()
+                            # Try parsing as string
+                            earnings_date = pd.to_datetime(str(earnings_date_str)).date()
                         
-                        # Check if date is in range
+                        # Check if date is in range (include past earnings too)
                         if start_date <= earnings_date <= end_date:
                             earnings.append({
                                 'symbol': ticker,
@@ -144,9 +191,87 @@ class EarningsService:
                                 'time': 'TBD',
                                 'source': 'yfinance'
                             })
+                            print(f"Found earnings for {ticker} on {earnings_date}")
                     except Exception as e:
-                        continue
+                        pass
+                
+                # Method 2: Try to get from calendar (more reliable)
+                try:
+                    calendar = tk.calendar
+                    if calendar is not None and not calendar.empty:
+                        for idx in calendar.index:
+                            try:
+                                if isinstance(idx, pd.Timestamp):
+                                    cal_date = idx.date()
+                                else:
+                                    cal_date = pd.to_datetime(idx).date()
+                                
+                                # Check if date is in range
+                                if start_date <= cal_date <= end_date:
+                                    # Check if we already added this ticker for this date
+                                    existing = [e for e in earnings if e['symbol'] == ticker and e['date'] == cal_date.isoformat()]
+                                    if not existing:
+                                        earnings.append({
+                                            'symbol': ticker,
+                                            'company': info.get('longName', info.get('shortName', ticker)),
+                                            'date': cal_date.isoformat(),
+                                            'time': 'TBD',
+                                            'source': 'yfinance'
+                                        })
+                                        print(f"Found earnings for {ticker} on {cal_date} from calendar")
+                            except Exception as e:
+                                continue
+                except Exception as e:
+                    pass
+                    
             except Exception as e:
+                continue
+        
+        print(f"Total earnings found: {len(earnings)}")
+        return earnings
+    
+    def _get_sp500_earnings(self, start_date, end_date) -> List[Dict[str, Any]]:
+        """Get earnings for a sample of S&P 500 tickers"""
+        earnings = []
+        
+        # Sample of S&P 500 tickers
+        sp500_sample = [
+            'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'BRK.B',
+            'UNH', 'JNJ', 'V', 'PG', 'JPM', 'MA', 'HD', 'DIS', 'BAC', 'ABBV',
+            'AVGO', 'PFE', 'KO', 'PEP', 'TMO', 'COST', 'WMT', 'MRK', 'ABT',
+            'ACN', 'NFLX', 'ADBE', 'CRM', 'NKE', 'T', 'LIN', 'DHR', 'VZ'
+        ]
+        
+        for ticker in sp500_sample:
+            try:
+                tk = yf.Ticker(ticker)
+                info = tk.info
+                
+                if not info:
+                    continue
+                
+                earnings_date_str = info.get('earningsDate')
+                if earnings_date_str:
+                    if isinstance(earnings_date_str, list) and len(earnings_date_str) > 0:
+                        earnings_date_str = earnings_date_str[0]
+                    
+                    try:
+                        if isinstance(earnings_date_str, (int, float)):
+                            earnings_date = datetime.fromtimestamp(earnings_date_str).date()
+                        else:
+                            earnings_date = pd.to_datetime(str(earnings_date_str)).date()
+                        
+                        if start_date <= earnings_date <= end_date:
+                            earnings.append({
+                                'symbol': ticker,
+                                'company': info.get('longName', info.get('shortName', ticker)),
+                                'date': earnings_date.isoformat(),
+                                'time': 'TBD',
+                                'source': 'yfinance'
+                            })
+                    except:
+                        continue
+            except:
                 continue
         
         return earnings

@@ -55,6 +55,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import api from '../services/api'
+import { getCached, setCached, clearCache } from '../utils/cache'
 
 const props = defineProps({
   onTickerSelect: {
@@ -122,21 +123,45 @@ const loadEarnings = async (reset = true) => {
   error.value = null
   
   try {
+    // For week 0, start from today. For other weeks, start from that week
     const startDate = new Date()
-    startDate.setDate(startDate.getDate() + (currentWeek.value * 7))
+    if (currentWeek.value > 0) {
+      startDate.setDate(startDate.getDate() + (currentWeek.value * 7))
+    }
+    const startDateStr = startDate.toISOString().split('T')[0]
+    console.log('Loading earnings for week', currentWeek.value, 'starting from', startDateStr)
     
-    const response = await api.getEarnings(
-      startDate.toISOString().split('T')[0],
-      1,
-      currentWeek.value
-    )
+    // Create cache key
+    const cacheKey = `${startDateStr}_${currentWeek.value}`
     
-    if (response.data && response.data.earnings) {
+    // Check cache first (but allow refresh if needed)
+    let earningsData = getCached('earnings', cacheKey)
+    
+    if (!earningsData) {
+      console.log('Fetching earnings from API for', startDateStr, 'week', currentWeek.value)
+      const response = await api.getEarnings(
+        startDateStr,
+        1,
+        currentWeek.value
+      )
+      earningsData = response.data
+      console.log('Earnings response:', earningsData)
+      // Cache the response
+      setCached('earnings', earningsData, cacheKey)
+    } else {
+      console.log('Using cached earnings data')
+    }
+    
+    if (earningsData && earningsData.earnings) {
+      console.log('Loaded', earningsData.earnings.length, 'earnings')
       if (reset) {
-        earnings.value = response.data.earnings
+        earnings.value = earningsData.earnings
       } else {
-        earnings.value = [...earnings.value, ...response.data.earnings]
+        earnings.value = [...earnings.value, ...earningsData.earnings]
       }
+    } else {
+      console.log('No earnings data in response:', earningsData)
+      earnings.value = []
     }
   } catch (err) {
     error.value = err.response?.data?.detail || 'Failed to load earnings'

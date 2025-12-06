@@ -5,6 +5,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from typing import Dict, Any, Optional
+from typing import List
 import asyncio
 from datetime import datetime
 
@@ -50,12 +51,38 @@ class MarketDataService:
             if data.empty:
                 raise ValueError(f"No valid data after cleaning for {ticker}")
             
-            # Calculate RSI if needed
+            # Calculate RSI
             rsi_data = None
             try:
                 rsi_data = self._calculate_rsi(data['Close'])
             except:
                 pass
+            
+            # Calculate Moving Averages (13, 50, 200, 800)
+            ma_data = {}
+            ma_periods = [13, 50, 200, 800]
+            for period in ma_periods:
+                try:
+                    ma_data[f'ma{period}'] = data['Close'].rolling(window=period, min_periods=1).mean()
+                except:
+                    pass
+            
+            # Calculate Bull Run signal (based on RSI and price momentum)
+            bull_run_data = None
+            if rsi_data is not None and len(data) > 1:
+                try:
+                    price_diff = data['Close'].diff()
+                    rsi_diff = rsi_data.diff()
+                    # Bull signal: price down but RSI up (divergence bullish)
+                    bull_core = (price_diff < 0) & (rsi_diff > 0)
+                    # Bear signal: price up but RSI down (divergence bearish)
+                    bear_core = (price_diff > 0) & (rsi_diff < 0)
+                    # Create signals
+                    bull_run_data = pd.Series(0, index=data.index)
+                    bull_run_data[bull_core] = 1  # Bull signal
+                    bull_run_data[bear_core] = -1  # Bear signal
+                except:
+                    pass
             
             # Get earnings dates if requested
             earnings_dates = []
@@ -73,10 +100,32 @@ class MarketDataService:
             chart_data = []
             for idx, row in data.iterrows():
                 timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                
+                # RSI value
                 rsi_value = None
                 if rsi_data is not None and idx in rsi_data.index:
                     try:
                         rsi_value = float(rsi_data.loc[idx]) if not pd.isna(rsi_data.loc[idx]) else None
+                    except:
+                        pass
+                
+                # MA values
+                ma_values = {}
+                for period in ma_periods:
+                    ma_key = f'ma{period}'
+                    if ma_key in ma_data and idx in ma_data[ma_key].index:
+                        try:
+                            ma_val = ma_data[ma_key].loc[idx]
+                            if not pd.isna(ma_val):
+                                ma_values[f'ma{period}'] = float(ma_val)
+                        except:
+                            pass
+                
+                # Bull run signal
+                bull_run_value = None
+                if bull_run_data is not None and idx in bull_run_data.index:
+                    try:
+                        bull_run_value = int(bull_run_data.loc[idx]) if not pd.isna(bull_run_data.loc[idx]) else None
                     except:
                         pass
                 
@@ -87,7 +136,9 @@ class MarketDataService:
                     "low": float(row['Low']),
                     "close": float(row['Close']),
                     "volume": float(row['Volume']),
-                    "rsi": rsi_value
+                    "rsi": rsi_value,
+                    **ma_values,  # Spread MA values into the object
+                    "bull_run": bull_run_value
                 })
             
             return {
@@ -211,25 +262,46 @@ class MarketDataService:
             print(f"Error in _get_earnings_dates: {e}")
             return []
     
-    async def get_quote(self, ticker: str) -> Dict[str, Any]:
-        """Get current quote for a ticker"""
+    async def get_quote(self, ticker: str, timeframe: str = "1d") -> Dict[str, Any]:
+        """Get current quote for a ticker with change calculated based on timeframe"""
         loop = asyncio.get_event_loop()
         
         def fetch_quote():
             tk = yf.Ticker(ticker)
             info = tk.info
-            quote = tk.history(period="1d", interval="1m")
             
+            # Get current price
+            quote = tk.history(period="1d", interval="1m")
             current_price = None
             if not quote.empty:
                 current_price = float(quote['Close'].iloc[-1])
+            
+            # Calculate change based on timeframe
+            change = 0
+            change_percent = 0
+            
+            if current_price is not None:
+                # Get historical data for the timeframe
+                params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
+                historical = tk.history(**params)
+                
+                if not historical.empty and len(historical) > 1:
+                    # Get the first (oldest) close price in the timeframe
+                    start_price = float(historical['Close'].iloc[0])
+                    change = current_price - start_price
+                    if start_price > 0:
+                        change_percent = (change / start_price) * 100
+                else:
+                    # Fallback to regular market change if historical data not available
+                    change = info.get("regularMarketChange", 0)
+                    change_percent = info.get("regularMarketChangePercent", 0)
             
             return {
                 "symbol": ticker,
                 "name": info.get("longName", info.get("shortName", ticker)),
                 "price": current_price,
-                "change": info.get("regularMarketChange", 0),
-                "changePercent": info.get("regularMarketChangePercent", 0),
+                "change": change,
+                "changePercent": change_percent,
                 "volume": info.get("regularMarketVolume", 0),
                 "marketCap": info.get("marketCap"),
                 "currency": info.get("currency", "USD")

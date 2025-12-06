@@ -9,8 +9,9 @@
           placeholder="Search news..."
           class="search-input"
         />
-        <select v-model="selectedTicker" @change="filterNews" class="ticker-filter">
+        <select v-model="selectedTicker" @change="handleFilterChange" class="ticker-filter">
           <option value="">All Tickers</option>
+          <option value="__watchlist__">My Watchlist</option>
           <option v-for="ticker in uniqueTickers" :key="ticker" :value="ticker">
             {{ ticker }}
           </option>
@@ -47,8 +48,11 @@ import { ref, computed, onMounted, watch } from 'vue'
 import NewsCard from './NewsCard.vue'
 import api from '../services/api'
 import { useNewsStore } from '../stores/news'
+import { useWatchlistStore } from '../stores/watchlist'
+import { getCached, setCached } from '../utils/cache'
 
 const newsStore = useNewsStore()
+const watchlistStore = useWatchlistStore()
 
 // Load saved publisher filters
 const getSavedPublishers = () => {
@@ -97,12 +101,16 @@ const filteredNews = computed(() => {
   }
 
   // Filter by ticker
-  if (selectedTicker.value) {
+  if (selectedTicker.value && selectedTicker.value !== '__watchlist__') {
     filtered = filtered.filter(item => item.ticker === selectedTicker.value)
   }
 
   return filtered
 })
+
+const handleFilterChange = () => {
+  loadNews(1)
+}
 
 const loadNews = async (page = 1) => {
   if (page === 1) {
@@ -116,24 +124,78 @@ const loadNews = async (page = 1) => {
 
   try {
     const savedPublishers = getSavedPublishers()
-    const response = await api.getNews(null, pageSize * page, savedPublishers)
+    let tickers = null
     
-    if (response.data && response.data.news) {
+    // If "My Watchlist" is selected, use watchlist tickers
+    if (selectedTicker.value === '__watchlist__') {
+      // Ensure watchlist is loaded
+      if (watchlistStore.watchlist.length === 0) {
+        await watchlistStore.loadWatchlist()
+      }
+      
+      tickers = watchlistStore.watchlist.map(item => item.symbol)
+      
+      if (tickers.length === 0) {
+        loading.value = false
+        loadingMore.value = false
+        error.value = 'No items in watchlist'
+        return // No items in watchlist
+      }
+    }
+    
+    // Create cache key
+    const tickersKey = tickers ? tickers.sort().join(',') : 'all'
+    const publishersKey = savedPublishers ? savedPublishers.sort().join(',') : 'all'
+    const cacheKey = `${tickersKey}_${publishersKey}_${page}`
+    
+    // Check cache first
+    let newsData = getCached('news', cacheKey)
+    
+    if (!newsData) {
+      console.log('Fetching news from API...', { tickers, limit: pageSize * page, publishers: savedPublishers })
+      const response = await api.getNews(tickers, pageSize * page, savedPublishers)
+      console.log('News API response:', response)
+      newsData = response.data
+      
+      // Validate response structure
+      if (!newsData || !newsData.news) {
+        console.error('Invalid news response structure:', newsData)
+        error.value = 'Invalid response from server'
+        return
+      }
+      
+      // Cache the response
+      setCached('news', newsData, cacheKey)
+    } else {
+      console.log('Using cached news data')
+    }
+    
+    if (newsData && newsData.news) {
       if (page === 1) {
-        newsItems.value = response.data.news
+        newsItems.value = newsData.news
       } else {
         // Merge new items, avoiding duplicates
         const existingLinks = new Set(newsItems.value.map(n => n.link))
-        const newItems = response.data.news.filter(n => !existingLinks.has(n.link))
+        const newItems = newsData.news.filter(n => !existingLinks.has(n.link))
         newsItems.value = [...newsItems.value, ...newItems]
       }
       
-      hasMore.value = response.data.news.length === pageSize * page
+      hasMore.value = newsData.news.length === pageSize
       currentPage.value = page
+      
+      console.log(`Loaded ${newsData.news.length} news items`)
+    } else {
+      console.error('No news data in response:', newsData)
+      error.value = 'No news data received'
     }
   } catch (err) {
-    error.value = err.response?.data?.detail || 'Failed to load news'
     console.error('Error loading news:', err)
+    error.value = err.response?.data?.detail || err.message || 'Failed to load news'
+    console.error('Error details:', {
+      message: err.message,
+      response: err.response?.data,
+      status: err.response?.status
+    })
   } finally {
     loading.value = false
     loadingMore.value = false

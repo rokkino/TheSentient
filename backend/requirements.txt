@@ -1,14 +1,21 @@
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-websockets==12.0
-pydantic==2.5.0
-python-multipart==0.0.6
-yfinance==0.2.32
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+websockets>=13.0
+pydantic>=2.10.0
+python-multipart>=0.0.12
+yfinance>=0.2.40
 pandas>=2.2.0
 numpy>=1.26.0
-requests==2.31.0
-beautifulsoup4==4.12.2
-lxml==4.9.3
+requests>=2.32.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+sqlalchemy>=2.0.36
+psycopg2-binary>=2.9.9
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-dotenv>=1.0.1
+alpaca-trade-api>=3.0.0
+Pillow>=10.0.0
 
 # Optional for AI
 # torch

@@ -9,43 +9,78 @@ export const useWebSocketStore = defineStore('websocket', {
   
   actions: {
     connect() {
+      // Don't reconnect if already connected or connecting
+      if (this.ws && (this.ws.readyState === WebSocket.CONNECTING || this.ws.readyState === WebSocket.OPEN)) {
+        return
+      }
+      
       const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000'
       const wsUrl = `${WS_URL}/ws`
       
-      this.ws = new WebSocket(wsUrl)
-      
-      this.ws.onopen = () => {
-        this.connected = true
-        console.log('WebSocket connected')
-        // Subscribe to news updates
-        this.ws.send(JSON.stringify({
-          type: 'subscribe_news',
-          tickers: []
-        }))
-      }
-      
-      this.ws.onmessage = (event) => {
-        const message = JSON.parse(event.data)
+      try {
+        this.ws = new WebSocket(wsUrl)
         
-        if (message.type === 'new_news') {
-          const newsStore = useNewsStore()
-          newsStore.news.unshift(message.data)
-          // Keep only last 100 news items
-          if (newsStore.news.length > 100) {
-            newsStore.news = newsStore.news.slice(0, 100)
+        this.ws.onopen = () => {
+          this.connected = true
+          console.log('WebSocket connected')
+          // Subscribe to news updates
+          try {
+            this.ws.send(JSON.stringify({
+              type: 'subscribe_news',
+              tickers: []
+            }))
+          } catch (e) {
+            console.error('Error sending WebSocket message:', e)
           }
         }
-      }
-      
-      this.ws.onerror = (error) => {
-        console.error('WebSocket error:', error)
-      }
-      
-      this.ws.onclose = () => {
+        
+        this.ws.onmessage = (event) => {
+          try {
+            const message = JSON.parse(event.data)
+            
+            if (message.type === 'new_news') {
+              const newsStore = useNewsStore()
+              newsStore.news.unshift(message.data)
+              // Keep only last 100 news items
+              if (newsStore.news.length > 100) {
+                newsStore.news = newsStore.news.slice(0, 100)
+              }
+            } else if (message.type === 'chat_message') {
+              // Handle chat messages
+              // This will be handled by FlexChat component
+            }
+          } catch (e) {
+            console.error('Error parsing WebSocket message:', e)
+          }
+        }
+        
+        this.ws.onerror = (error) => {
+          console.warn('WebSocket error (will retry):', error)
+          this.connected = false
+        }
+        
+        this.ws.onclose = (event) => {
+          this.connected = false
+          console.log('WebSocket disconnected', event.code, event.reason)
+          // Only reconnect if it wasn't a manual close
+          if (event.code !== 1000) {
+            // Reconnect after 5 seconds
+            setTimeout(() => {
+              if (!this.connected) {
+                this.connect()
+              }
+            }, 5000)
+          }
+        }
+      } catch (error) {
+        console.error('Failed to create WebSocket connection:', error)
         this.connected = false
-        console.log('WebSocket disconnected')
-        // Reconnect after 5 seconds
-        setTimeout(() => this.connect(), 5000)
+        // Retry after 5 seconds
+        setTimeout(() => {
+          if (!this.connected) {
+            this.connect()
+          }
+        }, 5000)
       }
     },
     

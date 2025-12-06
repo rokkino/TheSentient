@@ -43,7 +43,34 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-5. Start the backend server:
+5. **Database Setup (PostgreSQL)**:
+   
+   The application uses PostgreSQL by default. You need to:
+   
+   a. Install PostgreSQL on your system (if not already installed)
+   
+   b. Create a database:
+   ```sql
+   CREATE DATABASE thesentient;
+   ```
+   
+   c. Set the `DATABASE_URL` environment variable:
+   ```bash
+   # Windows (PowerShell)
+   $env:DATABASE_URL="postgresql://postgres:your_password@localhost:5432/thesentient"
+   
+   # Linux/Mac
+   export DATABASE_URL="postgresql://postgres:your_password@localhost:5432/thesentient"
+   ```
+   
+   Or create a `.env` file in the `backend` directory:
+   ```
+   DATABASE_URL=postgresql://postgres:your_password@localhost:5432/thesentient
+   ```
+   
+   **Note**: If `DATABASE_URL` is not set, the app will fallback to SQLite for development.
+
+6. Start the backend server:
 ```bash
 python main.py
 ```

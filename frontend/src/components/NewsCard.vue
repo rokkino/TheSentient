@@ -1,10 +1,14 @@
 <template>
   <div class="news-card" @click="openLink">
-    <div class="news-title">{{ newsItem.title }}</div>
-    <div class="news-info">
-      {{ newsItem.publisher }} ({{ newsItem.ticker }}) - {{ formatTime(newsItem.timestamp) }}
+    <div class="news-header">
+      <div class="news-title">{{ newsItem.title || 'No title' }}</div>
+      <div class="news-meta">
+        <span class="news-publisher">{{ newsItem.publisher || 'Yahoo Finance' }}</span>
+        <span class="news-ticker">{{ formatTicker(newsItem.ticker) }}</span>
+        <span class="news-time">{{ formatTime(newsItem.timestamp) }}</span>
+      </div>
     </div>
-    <div class="news-text">{{ newsItem.text }}</div>
+    <div v-if="newsItem.text && newsItem.text !== newsItem.title" class="news-text">{{ newsItem.text }}</div>
     
     <div v-if="newsItem.trading_signal" class="trading-signal" :class="signalClass">
       <div class="signal-label">
@@ -36,8 +40,31 @@ const signalClass = computed(() => {
 })
 
 const formatTime = (timestamp) => {
-  const date = new Date(timestamp)
-  return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+  if (!timestamp) return ''
+  try {
+    const date = new Date(timestamp)
+    if (isNaN(date.getTime())) return ''
+    const now = new Date()
+    const diffMs = now - date
+    const diffMins = Math.floor(diffMs / 60000)
+    const diffHours = Math.floor(diffMs / 3600000)
+    const diffDays = Math.floor(diffMs / 86400000)
+    
+    if (diffMins < 1) return 'Just now'
+    if (diffMins < 60) return `${diffMins}m ago`
+    if (diffHours < 24) return `${diffHours}h ago`
+    if (diffDays < 7) return `${diffDays}d ago`
+    
+    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+  } catch (e) {
+    return ''
+  }
+}
+
+const formatTicker = (ticker) => {
+  if (!ticker) return ''
+  // Replace = with - for futures, remove ^ for indices
+  return ticker.replace('=', '-').replace('^', '')
 }
 
 const openLink = () => {
@@ -49,40 +76,75 @@ const openLink = () => {
 
 <style scoped>
 .news-card {
-  background-color: #2d2d2d;
-  border: 1px solid #444;
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 12px;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .news-card:hover {
-  background-color: #3a3a3a;
-  border-color: #555;
+  background: rgba(26, 26, 26, 0.95);
+  border-color: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.news-header {
+  margin-bottom: 12px;
 }
 
 .news-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #f0f0f0;
-  margin-bottom: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
 }
 
-.news-info {
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
   font-size: 12px;
-  color: #888;
-  font-style: italic;
-  margin-bottom: 8px;
+  color: #9ca3af;
+}
+
+.news-publisher {
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+.news-ticker {
+  background: rgba(66, 153, 225, 0.15);
+  color: #4299e1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.news-time {
+  color: #6b7280;
+  font-weight: 400;
 }
 
 .news-text {
-  font-size: 15px;
-  color: #d0d0d0;
+  font-size: 14px;
+  color: #d1d5db;
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-top: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .trading-signal {

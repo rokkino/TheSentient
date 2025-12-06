@@ -28,10 +28,12 @@ class WatchlistService:
     
     def add_item(self, symbol: str, name: str):
         """Add item to watchlist"""
+        print(f"Service: Adding item {symbol}")
         watchlist = self.get_watchlist()
         
         # Check if already exists
         if any(item['symbol'] == symbol for item in watchlist):
+            print(f"Service: Item {symbol} already exists")
             return
         
         watchlist.append({
@@ -40,6 +42,7 @@ class WatchlistService:
         })
         
         self._save_watchlist(watchlist)
+        print(f"Service: Watchlist saved with {len(watchlist)} items")
     
     def remove_item(self, symbol: str):
         """Remove item from watchlist"""

@@ -16,6 +16,7 @@ passlib[bcrypt]>=1.7.4
 python-dotenv>=1.0.1
 alpaca-trade-api>=3.0.0
 Pillow>=10.0.0
+feedparser>=6.0.10
 
 # Optional for AI
 # torch

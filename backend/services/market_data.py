@@ -96,6 +96,18 @@ class MarketDataService:
                     import traceback
                     traceback.print_exc()
             
+            # Helper function to clean float values
+            def clean_float(val):
+                if val is None:
+                    return None
+                try:
+                    f_val = float(val)
+                    if pd.isna(f_val) or np.isnan(f_val) or np.isinf(f_val):
+                        return None
+                    return f_val
+                except (ValueError, TypeError):
+                    return None
+
             # Format data for frontend
             chart_data = []
             for idx, row in data.iterrows():
@@ -105,7 +117,8 @@ class MarketDataService:
                 rsi_value = None
                 if rsi_data is not None and idx in rsi_data.index:
                     try:
-                        rsi_value = float(rsi_data.loc[idx]) if not pd.isna(rsi_data.loc[idx]) else None
+                        val = rsi_data.loc[idx]
+                        rsi_value = clean_float(val)
                     except:
                         pass
                 
@@ -115,9 +128,10 @@ class MarketDataService:
                     ma_key = f'ma{period}'
                     if ma_key in ma_data and idx in ma_data[ma_key].index:
                         try:
-                            ma_val = ma_data[ma_key].loc[idx]
-                            if not pd.isna(ma_val):
-                                ma_values[f'ma{period}'] = float(ma_val)
+                            val = ma_data[ma_key].loc[idx]
+                            cleaned_val = clean_float(val)
+                            if cleaned_val is not None:
+                                ma_values[f'ma{period}'] = cleaned_val
                         except:
                             pass
                 
@@ -125,17 +139,19 @@ class MarketDataService:
                 bull_run_value = None
                 if bull_run_data is not None and idx in bull_run_data.index:
                     try:
-                        bull_run_value = int(bull_run_data.loc[idx]) if not pd.isna(bull_run_data.loc[idx]) else None
+                        val = bull_run_data.loc[idx]
+                        if not pd.isna(val):
+                            bull_run_value = int(val)
                     except:
                         pass
                 
                 chart_data.append({
                     "time": timestamp,
-                    "open": float(row['Open']),
-                    "high": float(row['High']),
-                    "low": float(row['Low']),
-                    "close": float(row['Close']),
-                    "volume": float(row['Volume']),
+                    "open": clean_float(row['Open']),
+                    "high": clean_float(row['High']),
+                    "low": clean_float(row['Low']),
+                    "close": clean_float(row['Close']),
+                    "volume": clean_float(row['Volume']),
                     "rsi": rsi_value,
                     **ma_values,  # Spread MA values into the object
                     "bull_run": bull_run_value
@@ -296,14 +312,26 @@ class MarketDataService:
                     change = info.get("regularMarketChange", 0)
                     change_percent = info.get("regularMarketChangePercent", 0)
             
+            # Helper function to clean float values
+            def clean_float(val):
+                if val is None:
+                    return None
+                try:
+                    f_val = float(val)
+                    if pd.isna(f_val) or np.isnan(f_val) or np.isinf(f_val):
+                        return None
+                    return f_val
+                except (ValueError, TypeError):
+                    return None
+
             return {
                 "symbol": ticker,
                 "name": info.get("longName", info.get("shortName", ticker)),
-                "price": current_price,
-                "change": change,
-                "changePercent": change_percent,
-                "volume": info.get("regularMarketVolume", 0),
-                "marketCap": info.get("marketCap"),
+                "price": clean_float(current_price),
+                "change": clean_float(change),
+                "changePercent": clean_float(change_percent),
+                "volume": clean_float(info.get("regularMarketVolume", 0)),
+                "marketCap": clean_float(info.get("marketCap")),
                 "currency": info.get("currency", "USD")
             }
         

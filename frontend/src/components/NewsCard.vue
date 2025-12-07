@@ -1,15 +1,23 @@
 <template>
   <div class="news-card" @click="openLink">
     <div class="news-header">
-      <div class="news-title">{{ newsItem.title || 'No title' }}</div>
-      <div class="news-meta">
-        <span class="news-publisher">{{ newsItem.publisher || 'Yahoo Finance' }}</span>
-        <span class="news-ticker">{{ formatTicker(newsItem.ticker) }}</span>
-        <span class="news-time">{{ formatTime(newsItem.timestamp) }}</span>
+      <div v-if="newsItem.thumbnail" class="news-thumbnail">
+        <img :src="newsItem.thumbnail" alt="News thumbnail" @error="handleImageError" />
+      </div>
+      <div class="news-content-wrapper">
+        <div class="news-title">{{ newsItem.title || 'No title' }}</div>
+        <div class="news-meta">
+          <span class="news-publisher">{{ newsItem.publisher || 'Yahoo Finance' }}</span>
+          <span class="news-ticker">{{ formatTicker(newsItem.ticker) }}</span>
+          <span class="news-time">{{ formatTime(newsItem.timestamp) }}</span>
+        </div>
       </div>
     </div>
-    <div v-if="newsItem.text && newsItem.text !== newsItem.title" class="news-text">{{ newsItem.text }}</div>
     
+    <div class="news-summary" v-if="newsItem.text || newsItem.summary">
+      {{ newsItem.text || newsItem.summary }}
+    </div>
+
     <div v-if="newsItem.trading_signal" class="trading-signal" :class="signalClass">
       <div class="signal-label">
         {{ newsItem.trading_signal.direction }} - Confidence: {{ newsItem.trading_signal.confidence }}%
@@ -72,6 +80,10 @@ const openLink = () => {
     window.open(props.newsItem.link, '_blank')
   }
 }
+
+const handleImageError = (e) => {
+  e.target.style.display = 'none'
+}
 </script>
 
 <style scoped>
@@ -96,6 +108,30 @@ const openLink = () => {
 
 .news-header {
   margin-bottom: 12px;
+  display: flex;
+  gap: 15px;
+}
+
+.news-thumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #222;
+}
+
+.news-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .news-title {

@@ -888,7 +888,7 @@ const loadChart = async (tabId) => {
     const cacheKey = `${tab.selectedTicker}_${tab.timeframe}_${tab.chartType}`
     let chartData = getCached('chart', cacheKey)
     
-    if (!chartData) {
+    if (!chartData || !chartData.data || chartData.data.length === 0) {
       // Fetch from API
       const response = await api.getChart({
         ticker: tab.selectedTicker,
@@ -1008,21 +1008,26 @@ const loadChart = async (tabId) => {
         color: '#2196F3',
         lineWidth: 2,
       })
-      tab.lineSeries.setData(data.map(d => ({
+      
+      const lineData = validData.map(d => ({
         time: d.time / 1000,
         value: d.close,
-      })))
+      })).filter(d => !isNaN(d.value))
+      
+      if (lineData.length > 0) {
+        tab.lineSeries.setData(lineData)
+      }
       
       // Add earnings markers
-      if (earningsDates.length > 0) {
+      if (earningsDates.length > 0 && lineData.length > 0) {
         const markers = earningsDates.map(earning => {
           // Find the closest data point to the earnings date
           const earningsTime = earning.timestamp / 1000
-          let closestDataPoint = data[0]
-          let minDiff = Math.abs(data[0].time / 1000 - earningsTime)
+          let closestDataPoint = lineData[0]
+          let minDiff = Math.abs(lineData[0].time - earningsTime)
           
-          for (const point of data) {
-            const diff = Math.abs(point.time / 1000 - earningsTime)
+          for (const point of lineData) {
+            const diff = Math.abs(point.time - earningsTime)
             if (diff < minDiff) {
               minDiff = diff
               closestDataPoint = point
@@ -1030,7 +1035,7 @@ const loadChart = async (tabId) => {
           }
           
           return {
-            time: closestDataPoint.time / 1000,
+            time: closestDataPoint.time,
             position: 'aboveBar',
             color: '#ff9800',
             shape: 'arrowDown',
@@ -1044,11 +1049,9 @@ const loadChart = async (tabId) => {
     }
 
     // Add vertical lines for earnings using a separate series
-    // Note: Lightweight-charts doesn't support true vertical lines directly
-    // We create a line series with many points close together to simulate a vertical line
-    if (earningsDates.length > 0 && data.length > 0) {
+    if (earningsDates.length > 0 && validData.length > 0) {
       // Find min and max prices in the dataset
-      const allPrices = data.flatMap(d => [d.high, d.low, d.close, d.open].filter(p => p != null))
+      const allPrices = validData.flatMap(d => [d.high, d.low, d.close, d.open].filter(p => p != null))
       const minPrice = Math.min(...allPrices)
       const maxPrice = Math.max(...allPrices)
       const pricePadding = (maxPrice - minPrice) * 0.02 // 2% padding
@@ -1349,6 +1352,33 @@ const handleSettingsSave = (settings) => {
 .add-tab-btn:hover {
   background-color: #333;
   color: #fff;
+}
+
+/* Tab Content */
+.tab-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.tab-panel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stocks-panel, .earnings-panel, .news-panel, .bot-panel, .flex-panel {
+  height: 100%;
+}
+
+/* Main Content Layout for Stocks Tab */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0; /* Important for flex scrolling */
 }
 
 /* Chart Info Bar */

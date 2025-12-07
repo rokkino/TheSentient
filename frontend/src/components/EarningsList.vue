@@ -137,7 +137,8 @@ const loadEarnings = async (reset = true) => {
     // Check cache first (but allow refresh if needed)
     let earningsData = getCached('earnings', cacheKey)
     
-    if (!earningsData) {
+    // Force refresh if no data in cache or empty earnings list
+    if (!earningsData || !earningsData.earnings || earningsData.earnings.length === 0) {
       console.log('Fetching earnings from API for', startDateStr, 'week', currentWeek.value)
       const response = await api.getEarnings(
         startDateStr,
@@ -268,6 +269,7 @@ onMounted(() => {
 .earnings-content {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .earnings-grouped {

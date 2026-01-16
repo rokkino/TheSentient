@@ -1,11 +1,12 @@
 """
 User Model - Database models for user authentication
 """
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, create_engine
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import os
+import json
 
 Base = declarative_base()
 
@@ -28,6 +29,9 @@ class User(Base):
     location = Column(String, nullable=True)
     website = Column(String, nullable=True)
     profile_picture_url = Column(String, nullable=True)
+    tabs = Column(Text, nullable=True)  # JSON string storing user's tab configuration
+    use_local_llama = Column(Boolean, default=False)  # Toggle for local Llama (Ollama)
+    gemini_api_key = Column(String, nullable=True)  # Google Gemini API Key
 
 # Database setup
 # Default to SQLite for development, use PostgreSQL if DATABASE_URL is set
@@ -51,12 +55,21 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def init_db():
     """Initialize database tables"""
     try:
+        # Import bot and message models to ensure they're registered with Base
+        from models.bot import Bot
+        from models.chat import Message
+        from models.news import News
+        from models.strategy import Strategy
+        
         # Check if we need to migrate (add missing columns for SQLite)
         if DATABASE_URL.startswith('sqlite'):
             try:
                 from sqlalchemy import inspect, text
                 inspector = inspect(engine)
                 table_names = inspector.get_table_names()
+                
+                # Always create all tables first (including bots table)
+                Base.metadata.create_all(bind=engine)
                 
                 if 'users' in table_names:
                     # Table exists, check for missing columns
@@ -70,7 +83,10 @@ def init_db():
                         'phone': 'VARCHAR',
                         'location': 'VARCHAR',
                         'website': 'VARCHAR',
-                        'profile_picture_url': 'VARCHAR'
+                        'profile_picture_url': 'VARCHAR',
+                        'tabs': 'TEXT',
+                        'use_local_llama': 'BOOLEAN',
+                        'gemini_api_key': 'VARCHAR'
                     }
                     
                     # Add missing columns
@@ -81,18 +97,29 @@ def init_db():
                                     conn.execute(text(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}"))
                                     print(f"Added column {col_name} to users table")
                                 except Exception as e:
+                                    conn.execute(text(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}"))
+                                    print(f"Added column {col_name} to users table")
+                                except Exception as e:
                                     print(f"Could not add column {col_name}: {e}")
-                else:
-                    # Table doesn't exist, create it
-                    Base.metadata.create_all(bind=engine)
+                
+                if 'messages' in table_names:
+                    # Check for missing columns in messages table
+                    existing_columns = [col['name'] for col in inspector.get_columns('messages')]
+                    
+                    if 'recipient_id' not in existing_columns:
+                        try:
+                            with engine.begin() as conn:
+                                conn.execute(text("ALTER TABLE messages ADD COLUMN recipient_id INTEGER"))
+                                print("Added column recipient_id to messages table")
+                        except Exception as e:
+                            print(f"Could not add column recipient_id: {e}")
             except Exception as e:
-                print(f"Migration check failed: {e}, recreating tables...")
-                # Fallback: recreate tables
+                print(f"Migration check failed: {e}, creating all tables...")
+                # Fallback: create all tables
                 try:
-                    Base.metadata.drop_all(bind=engine)
-                except:
-                    pass
-                Base.metadata.create_all(bind=engine)
+                    Base.metadata.create_all(bind=engine)
+                except Exception as e2:
+                    print(f"Failed to create tables: {e2}")
         else:
             # For PostgreSQL, just create/update tables
             Base.metadata.create_all(bind=engine)

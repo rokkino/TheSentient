@@ -1,6 +1,5 @@
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
-websockets>=13.0
 pydantic>=2.10.0
 python-multipart>=0.0.12
 yfinance>=0.2.40
@@ -14,11 +13,18 @@ psycopg2-binary>=2.9.9
 python-jose[cryptography]>=3.3.0
 passlib[bcrypt]>=1.7.4
 python-dotenv>=1.0.1
-alpaca-trade-api>=3.0.0
+alpaca-trade-api>=3.0.0  # Optional: Required for paper trading features. App works without it.
 Pillow>=10.0.0
 feedparser>=6.0.10
+yahoo-earnings-calendar>=0.6.0  # For Yahoo Finance earnings calendar API
 
 # Optional for AI
 # torch
 # transformers
+google-generativeai>=0.3.0  # Google Gemini API
+trading-ig>=0.0.22  # IG Markets API
+munch>=4.0.0  # Required by trading-ig
 
+langchain>=0.1.0
+langchain-community>=0.0.10
+duckduckgo-search>=4.0.0

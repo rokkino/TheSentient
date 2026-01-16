@@ -13,8 +13,8 @@
           <div class="profile-picture-section">
             <div class="profile-picture-preview">
               <img 
-                v-if="profilePicturePreview || profileData.profile_picture_url" 
-                :src="profilePicturePreview || profileData.profile_picture_url" 
+                v-if="displayPictureUrl" 
+                :src="displayPictureUrl" 
                 alt="Profile"
                 class="profile-picture-img"
               />
@@ -32,7 +32,7 @@
               />
               <button @click="triggerFileInput" class="btn-upload">Choose Image</button>
               <button 
-                v-if="profilePicturePreview || profileData.profile_picture_url" 
+                v-if="displayPictureUrl" 
                 @click="removeProfilePicture" 
                 class="btn-remove"
               >
@@ -40,16 +40,6 @@
               </button>
             </div>
           </div>
-        </div>
-        
-        <div class="form-group">
-          <label>First Name</label>
-          <input v-model="profileData.first_name" type="text" class="form-input" />
-        </div>
-        
-        <div class="form-group">
-          <label>Last Name</label>
-          <input v-model="profileData.last_name" type="text" class="form-input" />
         </div>
         
         <div class="form-group">
@@ -65,11 +55,6 @@
         </div>
         
         <div class="form-group">
-          <label>Phone</label>
-          <input v-model="profileData.phone" type="tel" class="form-input" />
-        </div>
-        
-        <div class="form-group">
           <label>Location</label>
           <input v-model="profileData.location" type="text" class="form-input" />
         </div>
@@ -77,6 +62,33 @@
         <div class="form-group">
           <label>Website</label>
           <input v-model="profileData.website" type="url" class="form-input" placeholder="https://..." />
+        </div>
+
+        <div class="form-group">
+          <label>AI Settings</label>
+          <div class="toggle-container">
+            <span class="toggle-label">Activate Local Llama (Ollama)</span>
+            <label class="switch">
+              <input type="checkbox" v-model="profileData.use_local_llama">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="help-text" v-if="profileData.use_local_llama">
+            Requires Ollama running locally. Enables AI chat with search & memory.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Google Gemini API Key</label>
+          <input 
+            v-model="profileData.gemini_api_key" 
+            type="password" 
+            class="form-input" 
+            placeholder="AIza..." 
+          />
+          <div class="help-text">
+            Required for calling Gemini Flash 3 from Llama.
+          </div>
         </div>
       </div>
       
@@ -94,6 +106,8 @@
 import { ref, watch, computed } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import api from '../services/api'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const props = defineProps({
   show: {
@@ -115,39 +129,49 @@ const profilePicturePreview = ref(null)
 const selectedFile = ref(null)
 
 const profileData = ref({
-  first_name: '',
-  last_name: '',
   bio: '',
-  phone: '',
   location: '',
   website: '',
-  profile_picture_url: ''
+  profile_picture_url: '',
+  profile_picture_url: '',
+  use_local_llama: false,
+  gemini_api_key: ''
 })
 
 const userInitials = computed(() => {
-  if (props.user) {
-    const firstName = props.user.first_name || ''
-    const lastName = props.user.last_name || ''
-    if (firstName && lastName) {
-      return (firstName[0] + lastName[0]).toUpperCase()
-    }
-    if (props.user.username) {
-      return props.user.username.substring(0, 2).toUpperCase()
-    }
+  if (props.user && props.user.username) {
+    return props.user.username.substring(0, 2).toUpperCase()
   }
   return 'U'
+})
+
+const getFullImageUrl = (url) => {
+  if (!url) return null
+  // If it's already a full URL, return as is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  // If it's a relative URL, prepend the API base URL
+  if (url.startsWith('/')) {
+    return `${API_URL}${url}`
+  }
+  return url
+}
+
+const displayPictureUrl = computed(() => {
+  return profilePicturePreview.value || getFullImageUrl(profileData.value.profile_picture_url)
 })
 
 watch(() => props.user, (newUser) => {
   if (newUser) {
     profileData.value = {
-      first_name: newUser.first_name || '',
-      last_name: newUser.last_name || '',
       bio: newUser.bio || '',
-      phone: newUser.phone || '',
       location: newUser.location || '',
       website: newUser.website || '',
-      profile_picture_url: newUser.profile_picture_url || ''
+      profile_picture_url: newUser.profile_picture_url || '',
+      profile_picture_url: newUser.profile_picture_url || '',
+      use_local_llama: newUser.use_local_llama || false,
+      gemini_api_key: newUser.gemini_api_key || ''
     }
     profilePicturePreview.value = null
     selectedFile.value = null
@@ -459,6 +483,84 @@ const save = async () => {
   text-align: right;
   margin-top: 6px;
   font-family: 'Roboto Mono', monospace;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  padding: 12px 15px;
+  border-radius: 2px;
+  border: 1px solid #333;
+}
+
+.toggle-label {
+  color: #fff;
+  font-size: 14px;
+}
+
+.help-text {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4CAF50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 </style>
 

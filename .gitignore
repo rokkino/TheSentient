@@ -20,3 +20,9 @@ __pycache__/
 # Spesso contiene percorsi locali o API key (se le aggiungerai).
 # È meglio non caricarlo, ma caricare un file 'settings.example.json'
 settings.json
+
+# 6. Cache Earnings Service
+# Cache persistente per earnings (salvato per 12h)
+backend/cache/
+cache/
+*.cache.json

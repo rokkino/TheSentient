@@ -1,0 +1,18 @@
+--- Schema ---
+(0, 'id', 'INTEGER', 1, None, 1)
+(1, 'user_id', 'INTEGER', 1, None, 0)
+(2, 'name', 'VARCHAR', 1, None, 0)
+(3, 'bot_type', 'VARCHAR', 1, None, 0)
+(4, 'description', 'TEXT', 0, None, 0)
+(5, 'status', 'VARCHAR', 0, None, 0)
+(6, 'is_active', 'BOOLEAN', 0, None, 0)
+(7, 'config', 'TEXT', 0, None, 0)
+(8, 'win_rate', 'FLOAT', 0, None, 0)
+(9, 'total_trades', 'INTEGER', 0, None, 0)
+(10, 'profit', 'FLOAT', 0, None, 0)
+(11, 'created_at', 'DATETIME', 0, None, 0)
+(12, 'updated_at', 'DATETIME', 0, None, 0)
+(13, 'activated_at', 'DATETIME', 0, None, 0)
+--------------
+--- Bots ---
+(1, 1, 'Earnings Report Genius', 'earnings_report_genius', None, 'active', 1, '{"alpaca_api_key": "PKFXM5AFC26FGAWCGGO2BLJ2JL", "alpaca_api_secret": "BmcQ8VUJypnJHNXc951FoXNBLP5nGkPeM6bL4kHJZ1bS", "ig_username": "rokkino", "ig_password": "120196aA!", "ig_api_key": "25a5f25a20c2679da6ea12c5edab2d09aae5cc19", "ig_acc_type": "DEMO", "gemini_api_key": "AIzaSyBufMqeYsqgbOqTerqjp1beP7110X_3Dtk"}', 0.0, 0, 0.0, '2026-01-06 22:23:22.942145', '2026-01-12 23:46:37.000117', '2026-01-12 23:46:37.000117')

@@ -9,7 +9,10 @@ WATCHLIST_FILE = "watchlist.json"
 
 class WatchlistService:
     def __init__(self):
-        self.watchlist_file = WATCHLIST_FILE
+        # Use absolute path relative to this file's directory
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.watchlist_file = os.path.join(base_dir, WATCHLIST_FILE)
+        print(f"WatchlistService initialized with file: {self.watchlist_file}")
         self._ensure_file()
     
     def _ensure_file(self):

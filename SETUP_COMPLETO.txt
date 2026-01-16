@@ -1,0 +1,114 @@
+================================================================================
+✅ SETUP COMPLETATO - PROGRAMMA EARNINGS PRONTO ALL'USO
+================================================================================
+
+L'ambiente virtuale è stato creato e configurato con successo!
+Tutto è pronto per funzionare subito.
+
+================================================================================
+COME USARE IL PROGRAMMA
+================================================================================
+
+OPZIONE 1 - PIÙ SEMPLICE (Windows):
+-----------------------------------
+Doppio clic su: run_earnings.bat
+
+Oppure dal prompt dei comandi:
+   run_earnings.bat 2025-01-15
+
+
+OPZIONE 2 - PowerShell:
+-----------------------
+Apri PowerShell e esegui:
+   .\run_earnings.ps1 2025-01-15
+
+
+OPZIONE 3 - Manuale (se preferisci):
+------------------------------------
+1. Apri un terminale
+2. Attiva l'ambiente virtuale:
+   venv_earnings\Scripts\activate
+   
+3. Esegui il programma:
+   python get_earnings_by_date.py 2025-01-15
+
+4. Disattiva quando finisci:
+   deactivate
+
+
+================================================================================
+ESEMPI DI USO
+================================================================================
+
+# Cerca earnings per una data specifica
+run_earnings.bat 2025-01-15
+
+# Modalità interattiva (ti chiederà la data)
+run_earnings.bat
+
+# Formati data supportati:
+   2025-01-15    (YYYY-MM-DD)
+   15-01-2025    (DD-MM-YYYY)
+   15/01/2025    (DD/MM/YYYY)
+   01/15/2025    (MM/DD/YYYY)
+   January 15 2025
+
+# Se non inserisci una data, userà quella di oggi
+
+
+================================================================================
+COSA È STATO INSTALLATO
+================================================================================
+
+✓ Ambiente virtuale: venv_earnings/
+✓ yahoo_fin (versione completa con tutte le dipendenze)
+✓ requests_html (per funzionalità avanzate)
+✓ lxml_html_clean (fix per compatibilità)
+✓ Tutte le dipendenze necessarie
+
+Il programma usa yahoo_fin come fonte principale e yfinance come fallback.
+
+
+================================================================================
+NOTE IMPORTANTI
+================================================================================
+
+• L'ambiente virtuale è isolato - non interferisce con altri progetti
+• Se non trova earnings per una data, significa che non ci sono earnings
+  programmati per quel giorno
+• Il programma mostra anche EPS stimato ed effettivo quando disponibili
+• Puoi salvare i risultati in un file di testo se preferisci
+
+
+================================================================================
+RISOLUZIONE PROBLEMI
+================================================================================
+
+Se vedi errori di encoding (caratteri strani):
+   → Usa run_earnings.bat o run_earnings.ps1 (gestiscono l'encoding)
+
+Se yahoo_fin non funziona:
+   → Il programma usa automaticamente yfinance come fallback
+
+Se non trova earnings:
+   → Prova con date diverse (passate o future vicine)
+   → Verifica che la data sia corretta
+
+
+================================================================================
+FILE CREATI
+================================================================================
+
+✓ venv_earnings/          - Ambiente virtuale Python
+✓ get_earnings_by_date.py - Programma principale
+✓ run_earnings.bat        - Script di avvio rapido (Windows)
+✓ run_earnings.ps1        - Script PowerShell
+✓ requirements_earnings.txt - Dipendenze installate
+✓ AVVIA_EARNINGS.txt      - Guida rapida
+
+
+================================================================================
+
+Tutto pronto! Puoi iniziare a usare il programma subito! 🚀
+
+================================================================================

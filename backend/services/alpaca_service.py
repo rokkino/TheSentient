@@ -4,13 +4,21 @@ Handles integration with Alpaca Markets API for paper trading
 """
 import os
 from typing import Dict, Any, List, Optional
-from alpaca.trade.client import TradeClient
-from alpaca.trade.requests import MarketOrderRequest, LimitOrderRequest, StopOrderRequest
-from alpaca.trade.enums import OrderSide, TimeInForce
-from alpaca.data.historical import StockHistoricalDataClient
-from alpaca.data.requests import StockBarsRequest
-from alpaca.data.timeframe import TimeFrame
 from datetime import datetime, timedelta
+
+# Try to import Alpaca libraries - make it optional
+try:
+    from alpaca.trade.client import TradeClient
+    from alpaca.trade.requests import MarketOrderRequest, LimitOrderRequest, StopOrderRequest
+    from alpaca.trade.enums import OrderSide, TimeInForce
+    from alpaca.data.historical import StockHistoricalDataClient
+    from alpaca.data.requests import StockBarsRequest
+    from alpaca.data.timeframe import TimeFrame
+    ALPACA_AVAILABLE = True
+except ImportError:
+    ALPACA_AVAILABLE = False
+    # Silently fail - Alpaca is optional, we use IG Markets now
+    pass
 
 class AlpacaService:
     def __init__(self):
@@ -21,6 +29,10 @@ class AlpacaService:
         
         self.client = None
         self.data_client = None
+        
+        if not ALPACA_AVAILABLE:
+            # Silently handle missing Alpaca - it's optional, we use IG Markets now
+            return
         
         if self.api_key and self.api_secret:
             try:
@@ -34,15 +46,20 @@ class AlpacaService:
                     api_key=self.api_key,
                     secret_key=self.api_secret
                 )
-            except Exception as e:
-                print(f"Warning: Failed to initialize Alpaca client: {e}")
+            except Exception:
+                # Silently fail - Alpaca is optional
+                pass
     
     def is_configured(self) -> bool:
         """Check if Alpaca API is configured"""
+        if not ALPACA_AVAILABLE:
+            return False
         return self.client is not None and self.data_client is not None
     
     async def get_account(self) -> Dict[str, Any]:
         """Get account information"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured. Please set ALPACA_API_KEY and ALPACA_API_SECRET environment variables.")
         
@@ -69,6 +86,8 @@ class AlpacaService:
     
     async def get_positions(self) -> List[Dict[str, Any]]:
         """Get all open positions"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -94,6 +113,8 @@ class AlpacaService:
     
     async def get_orders(self, status: Optional[str] = None, limit: int = 50) -> List[Dict[str, Any]]:
         """Get orders (optionally filtered by status: open, closed, all)"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -126,6 +147,8 @@ class AlpacaService:
     
     async def place_market_order(self, symbol: str, qty: float, side: str) -> Dict[str, Any]:
         """Place a market order"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -150,6 +173,8 @@ class AlpacaService:
     
     async def place_limit_order(self, symbol: str, qty: float, side: str, limit_price: float) -> Dict[str, Any]:
         """Place a limit order"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -176,6 +201,8 @@ class AlpacaService:
     
     async def cancel_order(self, order_id: str) -> Dict[str, Any]:
         """Cancel an order"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -187,6 +214,8 @@ class AlpacaService:
     
     async def close_position(self, symbol: str) -> Dict[str, Any]:
         """Close a position"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
         if not self.is_configured():
             raise ValueError("Alpaca API not configured")
         
@@ -195,6 +224,148 @@ class AlpacaService:
             return {"message": f"Position {symbol} closed successfully"}
         except Exception as e:
             raise Exception(f"Failed to close position: {str(e)}")
+    
+    async def place_order(self, symbol: str, qty: float, side: str, order_type: str = "market", 
+                         time_in_force: str = "day", limit_price: Optional[float] = None, 
+                         stop_price: Optional[float] = None) -> Dict[str, Any]:
+        """Place an order (generic method that handles different order types)"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
+        if not self.is_configured():
+            raise ValueError("Alpaca API not configured")
+        
+        try:
+            if order_type == "market":
+                return await self.place_market_order(symbol, qty, side)
+            elif order_type == "limit":
+                if limit_price is None:
+                    raise ValueError("Limit price required for limit order")
+                return await self.place_limit_order(symbol, qty, side, limit_price)
+            else:
+                raise ValueError(f"Unsupported order type: {order_type}")
+        except Exception as e:
+            raise Exception(f"Failed to place order: {str(e)}")
+    
+    async def cancel_all_orders(self) -> Dict[str, Any]:
+        """Cancel all orders"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
+        if not self.is_configured():
+            raise ValueError("Alpaca API not configured")
+        
+        try:
+            self.client.cancel_all_orders()
+            return {"message": "All orders cancelled successfully"}
+        except Exception as e:
+            raise Exception(f"Failed to cancel all orders: {str(e)}")
+    
+    async def get_portfolio_history(self, period: str = "1M", timeframe: str = "1Day") -> Dict[str, Any]:
+        """Get portfolio history"""
+        if not ALPACA_AVAILABLE:
+            raise ValueError("Alpaca library not installed. Install it with: pip install alpaca-trade-api")
+        if not self.is_configured():
+            raise ValueError("Alpaca API not configured")
+        
+        try:
+            # For now, return a placeholder
+            # In production, you'd use Alpaca's portfolio history API
+            return {
+                "timestamp": [],
+                "equity": [],
+                "profit_loss": [],
+                "profit_loss_pct": []
+            }
+        except Exception as e:
+            raise Exception(f"Failed to get portfolio history: {str(e)}")
+    
+    def get_corporate_actions(self, start_date: str, end_date: str, action_type: Optional[str] = None, 
+                             ca_types: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+        """
+        Get corporate actions (including earnings) from Alpaca API
+        This uses Alpaca's REST API directly for corporate actions
+        
+        Args:
+            start_date: Start date (YYYY-MM-DD format)
+            end_date: End date (YYYY-MM-DD format)
+            action_type: Optional filter for action type (e.g., 'dividend', 'split', 'merger')
+            ca_types: Optional list of corporate action types to filter
+        
+        Returns:
+            List of corporate actions including earnings
+        """
+        import requests
+        from datetime import datetime
+        
+        if not self.api_key or not self.api_secret:
+            raise ValueError("Alpaca API keys not configured")
+        
+        try:
+            # Alpaca Corporate Actions API endpoint
+            url = f"{self.base_url}/v2/corporate_actions"
+            
+            headers = {
+                'APCA-API-KEY-ID': self.api_key,
+                'APCA-API-SECRET-KEY': self.api_secret
+            }
+            
+            params = {
+                'start': start_date,
+                'end': end_date,
+            }
+            
+            if action_type:
+                params['action_type'] = action_type
+            
+            if ca_types:
+                params['ca_types'] = ','.join(ca_types)
+            
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            corporate_actions = data.get('corporate_actions', [])
+            
+            return corporate_actions
+            
+        except Exception as e:
+            raise Exception(f"Failed to get corporate actions: {str(e)}")
+    
+    def get_corporate_actions_with_keys(self, api_key: str, api_secret: str, start_date: str, 
+                                       end_date: str, base_url: Optional[str] = None) -> List[Dict[str, Any]]:
+        """
+        Get corporate actions using provided API keys (for bot-specific requests)
+        """
+        import requests
+        
+        if not api_key or not api_secret:
+            return []
+        
+        try:
+            base = base_url or 'https://paper-api.alpaca.markets'
+            url = f"{base}/v2/corporate_actions"
+            
+            headers = {
+                'APCA-API-KEY-ID': api_key,
+                'APCA-API-SECRET-KEY': api_secret
+            }
+            
+            params = {
+                'start': start_date,
+                'end': end_date,
+                'ca_types': 'dividend,split,merger,spinoff,earnings'  # Include earnings
+            }
+            
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            corporate_actions = data.get('corporate_actions', [])
+            
+            return corporate_actions
+            
+        except Exception as e:
+            print(f"[ALPACA] Error getting corporate actions: {e}")
+            return []
 
 # Create singleton instance
 alpaca_service = AlpacaService()

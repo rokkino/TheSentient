@@ -1,0 +1,2 @@
+yahoo_fin>=0.8.9
+lxml_html_clean>=0.4.3

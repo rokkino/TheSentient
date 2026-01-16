@@ -1,25 +1,27 @@
 <template>
   <div class="user-profile">
-    <div class="profile-trigger" @click="toggleMenu">
-      <div class="profile-avatar">
-        <img 
-          v-if="profilePictureUrl" 
-          :src="profilePictureUrl" 
-          alt="Profile" 
-          class="avatar-img"
-        />
-        <span v-else class="avatar-icon">{{ userInitials }}</span>
+    <div class="profile-trigger">
+      <div class="profile-main" @click="handleProfileClick">
+        <div class="profile-avatar">
+          <img 
+            v-if="fullProfilePictureUrl" 
+            :src="fullProfilePictureUrl" 
+            alt="Profile" 
+            class="avatar-img"
+          />
+          <span v-else class="avatar-icon">{{ userInitials }}</span>
+        </div>
+        <span class="profile-name">{{ username || 'Guest' }}</span>
       </div>
-      <span class="profile-name">{{ username || 'Guest' }}</span>
-      <span class="dropdown-arrow" :class="{ open: showMenu }">▼</span>
+      <span class="dropdown-arrow" :class="{ open: showMenu }" @click.stop="toggleMenu">▼</span>
     </div>
     
     <div v-if="showMenu" class="profile-menu" @click.stop>
       <div class="menu-header">
         <div class="menu-avatar">
           <img 
-            v-if="profilePictureUrl" 
-            :src="profilePictureUrl" 
+            v-if="fullProfilePictureUrl" 
+            :src="fullProfilePictureUrl" 
             alt="Profile" 
             class="avatar-img-large"
           />
@@ -62,6 +64,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
 const props = defineProps({
   username: {
     type: String,
@@ -92,12 +96,36 @@ const userInitials = computed(() => {
   return 'GU'
 })
 
+const fullProfilePictureUrl = computed(() => {
+  if (!props.profilePictureUrl) return null
+  // If it's already a full URL, return as is
+  if (props.profilePictureUrl.startsWith('http://') || props.profilePictureUrl.startsWith('https://')) {
+    return props.profilePictureUrl
+  }
+  // If it's a relative URL, prepend the API base URL
+  if (props.profilePictureUrl.startsWith('/')) {
+    return `${API_URL}${props.profilePictureUrl}`
+  }
+  return props.profilePictureUrl
+})
+
 const toggleMenu = () => {
   showMenu.value = !showMenu.value
 }
 
 const closeMenu = () => {
   showMenu.value = false
+}
+
+const handleProfileClick = () => {
+  if (props.isLoggedIn) {
+    // If logged in, directly open profile modal
+    emit('profile')
+    closeMenu()
+  } else {
+    // If not logged in, toggle menu to show login/register options
+    toggleMenu()
+  }
 }
 
 const showLogin = () => {
@@ -149,9 +177,20 @@ onUnmounted(() => {
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
+  user-select: none;
+}
+
+.profile-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
   cursor: pointer;
   transition: all 0.2s;
-  user-select: none;
+}
+
+.profile-main:hover {
+  opacity: 0.8;
 }
 
 .profile-trigger:hover {
@@ -168,6 +207,13 @@ onUnmounted(() => {
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .avatar-icon {
@@ -192,7 +238,18 @@ onUnmounted(() => {
 .dropdown-arrow {
   font-size: 8px;
   color: #666;
-  transition: transform 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-arrow:hover {
+  color: #fff;
+  background-color: #333;
 }
 
 .dropdown-arrow.open {
@@ -237,6 +294,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .avatar-icon-large {

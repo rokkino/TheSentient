@@ -8,6 +8,10 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 import yfinance as yf
 import feedparser
+from sqlalchemy.orm import Session
+import requests
+from bs4 import BeautifulSoup
+import re
 
 class NewsService:
     def __init__(self):
@@ -20,8 +24,8 @@ class NewsService:
             "https://www.cnbc.com/id/100003114/device/rss/rss.html"
         ]
     
-    async def get_news(self, tickers: Optional[List[str]] = None, limit: int = 50, allowed_publishers: Optional[List[str]] = None) -> List[Dict[str, Any]]:
-        """Get news items with optional publisher filtering"""
+    async def get_news(self, tickers: Optional[List[str]] = None, limit: int = 50, allowed_publishers: Optional[List[str]] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        """Get news items with optional publisher filtering and caching"""
         try:
             loop = asyncio.get_event_loop()
         except RuntimeError:
@@ -29,23 +33,25 @@ class NewsService:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         
+        # 1. Fetch from DB first if db session provided
+        cached_news = []
+        if db:
+            try:
+                cached_news = await self.get_news_from_db(db, tickers, limit, allowed_publishers)
+                print(f"Loaded {len(cached_news)} news items from cache")
+            except Exception as e:
+                print(f"Error reading from cache: {e}")
+
+        # 2. Fetch fresh news
         def fetch_news_sync():
-            # If no tickers provided, use a broad list of market indices and popular stocks
-            # to simulate a "general news" feed
-            target_tickers = tickers if tickers else [
-                # Indices
-                '^GSPC', '^DJI', '^IXIC', '^RUT', '^FTSE', '^N225', 
-                # Commodities
-                'GC=F', 'CL=F', 'SI=F', 'NG=F',
-                # Crypto
-                'BTC-USD', 'ETH-USD',
-                # Tech Giants
-                'NVDA', 'MSFT', 'GOOGL', 'AAPL', 'TSLA', 'AMD', 'INTC', 'META', 'AMZN',
-                # Financials
-                'JPM', 'BAC', 'GS',
-                # Others
-                'DIS', 'WMT', 'KO'
-            ]
+            # Only fetch news for tickers explicitly provided
+            # No automatic/default tickers - must be explicitly requested
+            if not tickers:
+                # Return empty list instead of fetching default tickers
+                print("No tickers provided, returning empty news list")
+                return []
+            
+            target_tickers = tickers
             print(f"Fetching news for tickers: {target_tickers}")
             all_news_items = []
             
@@ -163,48 +169,148 @@ class NewsService:
                     print(f"Error processing news for {ticker}: {e}")
                     continue
             
-            # Sort by timestamp descending
-            all_news_items.sort(key=lambda x: x['timestamp'], reverse=True)
-            result = all_news_items[:limit]
-            print(f"Returning {len(result)} news items (limit: {limit})")
-            return result
+            return all_news_items
         
-        return await loop.run_in_executor(None, fetch_news_sync)
+        fresh_news = await loop.run_in_executor(None, fetch_news_sync)
+        
+        # 3. Save fresh news to DB and cleanup old news
+        if db and fresh_news:
+            try:
+                await self.save_news_to_db(db, fresh_news)
+                await self.cleanup_old_news(db)
+            except Exception as e:
+                print(f"Error saving to cache: {e}")
+        
+        # 4. Merge and sort
+        # Create a dict by link to merge (fresh news overwrites cache if same link)
+        merged_news = {item['link']: item for item in cached_news}
+        for item in fresh_news:
+            merged_news[item['link']] = item
+            
+        final_list = list(merged_news.values())
+        
+        # Sort by timestamp descending
+        final_list.sort(key=lambda x: x['timestamp'], reverse=True)
+        result = final_list[:limit]
+        print(f"Returning {len(result)} news items (limit: {limit})")
+        return result
     
-    async def get_ticker_news(self, ticker: str, limit: int = 20, allowed_publishers: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+    async def get_news_from_db(self, db: Session, tickers: Optional[List[str]], limit: int, allowed_publishers: Optional[List[str]]) -> List[Dict[str, Any]]:
+        """Fetch news from database"""
+        from models.news import News
+        from sqlalchemy import desc
+        
+        query = db.query(News)
+        
+        if tickers:
+            query = query.filter(News.ticker.in_(tickers))
+            
+        if allowed_publishers:
+            query = query.filter(News.publisher.in_(allowed_publishers))
+            
+        # Get more than limit to allow for some post-filtering if needed, but limit is good
+        news_objs = query.order_by(desc(News.timestamp)).limit(limit).all()
+        
+        return [{
+            "source": "Yahoo Finance", # Hardcoded as we mostly use YF
+            "ticker": n.ticker,
+            "title": n.title,
+            "link": n.link,
+            "publisher": n.publisher,
+            "timestamp": n.timestamp.isoformat(),
+            "text": n.content,
+            "thumbnail": n.thumbnail_url,
+            "trading_signal": None
+        } for n in news_objs]
+
+    async def save_news_to_db(self, db: Session, news_items: List[Dict[str, Any]]):
+        """Save new news items to database"""
+        from models.news import News
+        
+        count = 0
+        for item in news_items:
+            try:
+                # Check if exists
+                exists = db.query(News).filter(News.link == item['link']).first()
+                if not exists:
+                    # Parse timestamp
+                    ts_str = item['timestamp']
+                    try:
+                        ts = datetime.fromisoformat(ts_str)
+                    except:
+                        ts = datetime.utcnow()
+                        
+                    new_news = News(
+                        ticker=item['ticker'],
+                        title=item['title'],
+                        link=item['link'],
+                        publisher=item['publisher'],
+                        timestamp=ts,
+                        content=item['text'],
+                        thumbnail_url=item['thumbnail']
+                    )
+                    db.add(new_news)
+                    count += 1
+            except Exception as e:
+                print(f"Error saving news item: {e}")
+                continue
+        
+        if count > 0:
+            db.commit()
+            print(f"Saved {count} new news items to database")
+
+    async def cleanup_old_news(self, db: Session, days: int = 7):
+        """Remove news older than N days"""
+        from models.news import News
+        from datetime import timedelta
+        
+        cutoff = datetime.utcnow() - timedelta(days=days)
+        try:
+            deleted = db.query(News).filter(News.timestamp < cutoff).delete()
+            db.commit()
+            if deleted > 0:
+                print(f"Cleaned up {deleted} old news items (older than {days} days)")
+        except Exception as e:
+            print(f"Error cleaning up old news: {e}")
+            db.rollback()
+
+    async def get_ticker_news(self, ticker: str, limit: int = 20, allowed_publishers: Optional[List[str]] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
         """Get news for a specific ticker"""
-        return await self.get_news([ticker], limit, allowed_publishers)
+        return await self.get_news([ticker], limit, allowed_publishers, db)
         
     async def get_available_publishers(self) -> List[str]:
         """Get list of available publishers from recent news"""
-        # Fetch news from a broad set of tickers to get publishers
-        tickers = ['GC=F', 'CL=F', '^GSPC', 'NVDA', 'MSFT', 'GOOGL', 'AAPL', 'TSLA']
-        news_items = await self.get_news(tickers, limit=100)
-        
-        publishers = set()
-        for item in news_items:
-            if item.get('publisher'):
-                publishers.add(item.get('publisher'))
-        
-        return sorted(list(publishers))
+        # No longer fetching default tickers - return empty list or hardcoded common publishers
+        # Publishers will be discovered from actual news requests when tickers are provided
+        common_publishers = [
+            'Yahoo Finance', 'MarketWatch', 'CNBC', 'Bloomberg', 'Reuters',
+            'Wall Street Journal', 'Financial Times', 'Investing.com', 'Seeking Alpha',
+            'Benzinga', 'The Motley Fool', 'Zacks', 'Barron\'s', 'Forbes'
+        ]
+        return sorted(common_publishers)
     
-    async def start_news_monitor(self, ws_manager):
+    async def start_news_monitor(self, ws_manager, tickers: Optional[List[str]] = None):
         """Start monitoring news and sending updates via WebSocket"""
         if self.is_monitoring:
             return
         
         self.is_monitoring = True
-        # Monitor a broad set of tickers for real-time updates
-        default_tickers = [
-            '^GSPC', '^DJI', '^IXIC', 
-            'GC=F', 'CL=F', 'BTC-USD',
-            'NVDA', 'MSFT', 'GOOGL', 'AAPL', 'TSLA', 'META', 'AMZN'
-        ]
+        
+        # Only monitor tickers explicitly provided - no default tickers
+        # If no tickers provided, don't monitor anything
+        if not tickers:
+            print("[NEWS] No tickers provided for monitoring, stopping monitor")
+            self.is_monitoring = False
+            return
+        
+        print(f"[NEWS] Starting news monitor for tickers: {tickers}")
         
         while self.is_monitoring:
             try:
-                # Use self.get_news directly
-                current_news = await self.get_news(default_tickers, limit=20)
+                # Use self.get_news with provided tickers only
+                # Note: Monitor doesn't use DB cache to avoid complexity with session management in loop
+                # It just fetches fresh and broadcasts
+                current_news = await self.get_news(tickers, limit=20)
                 
                 new_items = []
                 for item in current_news:
@@ -226,3 +332,106 @@ class NewsService:
             except Exception as e:
                 print(f"Error in news monitor: {e}")
                 await asyncio.sleep(60)
+
+
+    async def fetch_article_content(self, url: str) -> str:
+        """Fetch and parse full article content from URL"""
+        try:
+            # Basic headers to mimic a browser
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            
+            # Run blocking request in executor
+            loop = asyncio.get_event_loop()
+            response = await loop.run_in_executor(None, lambda: requests.get(url, headers=headers, timeout=10))
+            
+            if response.status_code != 200:
+                return ""
+            
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # Remove unwanted elements
+            for script in soup(["script", "style", "nav", "header", "footer", "iframe", "noscript"]):
+                script.decompose()
+            
+            # Try to find the main content
+            # Strategy 1: Known selectors
+            article_text = ""
+            
+            # Common selectors for article bodies
+            selectors = [
+                'div.caas-body', # Yahoo Finance
+                'div.article-body',
+                'div.story-body',
+                'article',
+                'div.content',
+                'div.post-content',
+                'div.entry-content',
+                'section[itemprop="articleBody"]'
+            ]
+            
+            content_element = None
+            for selector in selectors:
+                element = soup.select_one(selector)
+                if element:
+                    # Check if it has substantial content
+                    text = element.get_text().strip()
+                    if len(text) > 500:
+                        content_element = element
+                        print(f"Found content using selector: {selector}")
+                        break
+            
+            # Strategy 2: Heuristic - Find div/article with most p tags or text
+            if not content_element:
+                print("Selectors failed or returned short text, trying heuristic...")
+                candidates = soup.find_all(['div', 'article', 'section'])
+                best_candidate = None
+                max_score = 0
+                
+                for candidate in candidates:
+                    # Score based on length of text in p tags
+                    paragraphs = candidate.find_all('p', recursive=False) # Direct children preferred
+                    if not paragraphs:
+                        paragraphs = candidate.find_all('p') # Or all descendants
+                        
+                    score = sum(len(p.get_text().strip()) for p in paragraphs)
+                    
+                    # Penalize if too many links (nav menus etc)
+                    links = candidate.find_all('a')
+                    link_text_length = sum(len(a.get_text().strip()) for a in links)
+                    if score > 0 and link_text_length / score > 0.5:
+                        score = 0
+                        
+                    if score > max_score:
+                        max_score = score
+                        best_candidate = candidate
+                
+                if best_candidate and max_score > 200:
+                    content_element = best_candidate
+                    print(f"Found content using heuristic (score: {max_score})")
+
+            if content_element:
+                # Get text from paragraphs
+                paragraphs = content_element.find_all('p')
+                article_text = "\n\n".join([p.get_text().strip() for p in paragraphs if p.get_text().strip()])
+            else:
+                # Fallback: get all text from body
+                print("Heuristic failed, falling back to body text")
+                body = soup.find('body')
+                if body:
+                    # Get text but try to preserve some structure
+                    text = body.get_text(separator='\n\n')
+                    # Clean up excessive newlines
+                    article_text = re.sub(r'\n\s*\n', '\n\n', text).strip()
+            
+            # Clean up text
+            if len(article_text) < 100: # If too short, it's probably failed
+                print(f"Fetched text too short: {len(article_text)} chars")
+                return ""
+                
+            return article_text
+            
+        except Exception as e:
+            print(f"Error fetching article content: {e}")
+            return ""

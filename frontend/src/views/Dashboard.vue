@@ -3,15 +3,38 @@
     <!-- Top Tab Bar -->
     <div class="tab-bar">
       <div class="tabs-section">
-        <button
-          v-for="tab in tabs"
+        <div
+          v-for="(tab, index) in tabs"
           :key="tab.id"
-          :class="['tab-btn', { active: activeTab === tab.id }]"
-          @click="setActiveTab(tab.id)"
+          :class="['tab-wrapper', { active: activeTab === tab.id, dragging: draggedTabId === tab.id, 'drag-over': dragOverIndex === index }]"
+          :draggable="!editingTab || editingTab.id !== tab.id"
+          @dragstart="handleDragStart($event, tab, index)"
+          @dragend="handleDragEnd"
+          @dragover.prevent="handleDragOver($event, index)"
+          @dragenter.prevent="dragOverIndex = index"
+          @dragleave="handleDragLeave($event, index)"
+          @drop="handleDrop($event, index)"
+          @contextmenu.prevent="showTabContextMenu($event, tab)"
         >
-          {{ tab.name }}
-        </button>
-        <button class="add-tab-btn" @click="addNewTab">+</button>
+          <button
+            :class="['tab-btn', { active: activeTab === tab.id }]"
+            @click="setActiveTab(tab.id)"
+            @dblclick="startRenameTab(tab)"
+          >
+            <span v-if="!editingTab || editingTab.id !== tab.id">{{ tab.name }}</span>
+            <input
+              v-else
+              v-model="editingTabName"
+              @blur="finishRenameTab"
+              @keyup.enter="finishRenameTab"
+              @keyup.esc="cancelRenameTab"
+              class="tab-rename-input"
+              @click.stop
+            />
+          </button>
+
+        </div>
+        <button class="add-tab-btn" @click="showTabWizard = true">+</button>
       </div>
       <UserProfile
         :username="currentUser?.username"
@@ -33,7 +56,10 @@
         v-if="activeTab === 2"
         class="tab-panel earnings-panel"
       >
-        <EarningsList @ticker-selected="(symbol) => handleEarningsTickerSelect(symbol)" />
+        <EarningsList 
+          @ticker-selected="(symbol) => handleEarningsTickerSelect(symbol)"
+          @open-settings="showSettings = true"
+        />
       </div>
 
       <!-- News Tab -->
@@ -56,12 +82,30 @@
         />
       </div>
 
-      <!-- Flex Chat Tab -->
+      <!-- Chat Tab -->
       <div
-        v-if="activeTab === 5"
+        v-for="tab in tabs"
+        :key="'chat-' + tab.id"
+        v-show="activeTab === tab.id && (tab.type === 'chat' || tab.type === 'flex')"
         class="tab-panel flex-panel"
       >
-        <FlexChat />
+        <FlexChat 
+          :tab-id="tab.id" 
+          :initial-config="tab.chatConfig" 
+          @update-config="(config) => updateTabConfig(tab.id, config)" 
+        />
+      </div>
+
+      <!-- Strategy Tab -->
+      <div
+        v-for="tab in tabs"
+        :key="'strategy-' + tab.id"
+        v-show="activeTab === tab.id && tab.type === 'strategy'"
+        class="tab-panel strategy-panel"
+      >
+        <StrategyBuilder 
+          @save="saveUserTabs"
+        />
       </div>
 
       <!-- Stocks Tab -->
@@ -171,16 +215,14 @@
             </button>
           </div>
 
+          <div class="ai-analysis-input">
+            <IndicatorSearch
+              :loading="tab.aiLoading"
+              @analyze="(query) => { tab.aiQuery = query; handleAIAnalysis(tab.id) }"
+            />
+          </div>
+
           <div class="toolbar-actions">
-            <button
-              v-for="mode in viewModes"
-              :key="mode.id"
-              :class="['view-mode-btn', { active: tab.viewMode === mode.id }]"
-              @click="setViewMode(tab.id, mode.id)"
-              :title="mode.name"
-            >
-              {{ mode.icon }}
-            </button>
             <button class="settings-btn" @click="showSettings = true">⚙️</button>
           </div>
         </div>
@@ -188,44 +230,75 @@
         <!-- Main Content Area -->
         <div v-if="tab" class="main-content">
           <!-- Left Panel: Watchlist -->
-          <div class="left-panel" v-if="tab.viewMode !== 3">
+          <div class="left-panel">
             <div class="search-section">
-              <input
-                v-model="searchQuery"
-                @input="handleSearch"
-                @keyup.enter="addTopResult"
-                placeholder="Search to add to watchlist..."
-                class="search-input"
-              />
-              <button 
-                @click="addTopResult" 
-                class="add-btn"
-                :disabled="searchResults.length === 0"
-                :title="searchResults.length > 0 ? 'Add first result' : 'No results'"
-              >
-                ✓
-              </button>
+              <div class="search-input-wrapper">
+                <input
+                  v-model="searchQuery"
+                  @input="handleSearch"
+                  @focus="isSearchFocused = true"
+                  @blur="isSearchFocused = false"
+                  @keyup.enter="addTopResult"
+                  @keydown.down.prevent="navigateResults(1)"
+                  @keydown.up.prevent="navigateResults(-1)"
+                  placeholder="Search stocks, crypto (BTC-USD), futures (CL=F)..."
+                  class="search-input"
+                  ref="searchInputRef"
+                />
+                <div class="search-input-glow" :class="{ active: isSearchFocused }"></div>
+                <button 
+                  @click="addTopResult" 
+                  class="add-btn"
+                  :disabled="searchResults.length === 0"
+                  :title="searchResults.length > 0 ? 'Add first result (Enter)' : 'No results'"
+                  :class="{ enabled: searchResults.length > 0 }"
+                >
+                  <span class="add-icon">✓</span>
+                </button>
+              </div>
             </div>
             
             <div v-if="searchLoading" class="search-loading">
-              <span class="loading-spinner">⏳</span> Searching...
+              <div class="loading-spinner"></div>
+              <span>Searching...</span>
             </div>
             
             <div v-else-if="searchQuery.length >= 2 && searchResults.length === 0" class="search-no-results">
-              No results found. Try a different search term.
+              <span class="no-results-icon">🔍</span>
+              <p>No results found</p>
+              <p class="no-results-hint">Try a different search term</p>
             </div>
             
             <div v-else-if="searchResults.length > 0" class="search-results">
               <div
-                v-for="result in searchResults"
+                v-for="(result, index) in searchResults"
                 :key="result.symbol"
                 @click.stop="handleResultClick(result, tab.id)"
+                @mouseenter="hoveredResultIndex = index"
+                @mouseleave="hoveredResultIndex = null"
                 @mousedown.prevent
                 class="search-result-item"
-                :title="`Click to add ${result.symbol} to watchlist`"
+                :class="{ 
+                  hovered: hoveredResultIndex === index,
+                  selected: selectedResultIndex === index
+                }"
+                :title="`${result.symbol} - ${result.name} (${getAssetTypeLabel(result.type)})`"
               >
-                <span class="result-symbol">{{ result.symbol }}</span>
-                <span class="result-name">- {{ result.name }}</span>
+                <div class="result-main">
+                  <div class="result-header">
+                    <span class="result-symbol">{{ result.symbol }}</span>
+                    <span class="asset-type-badge" :class="getAssetTypeClass(result.type)">
+                      {{ getAssetTypeIcon(result.type) }} {{ getAssetTypeLabel(result.type) }}
+                    </span>
+                  </div>
+                  <div class="result-details">
+                    <span class="result-name">{{ result.name }}</span>
+                    <span v-if="result.exchange && result.exchange !== 'N/A'" class="result-exchange">{{ result.exchange }}</span>
+                  </div>
+                </div>
+                <div class="result-action">
+                  <span class="add-hint">Click to add</span>
+                </div>
               </div>
             </div>
 
@@ -250,32 +323,126 @@
               <h1>Portfolio Tracker</h1>
               <p>Add an asset from the search bar to begin.</p>
             </div>
-            <div v-else :ref="el => setChartRef(tab.id, el)" class="chart-wrapper"></div>
+            <div v-else class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
+              @contextmenu.prevent="showChartContextMenu($event, tab.id)"
+              @click="handleChartClick($event, tab.id)"
+              @mousemove="handleChartMouseMove($event, tab.id)"
+            ></div>
+            
+            <!-- Drawing Overlay -->
+            <svg v-if="tab.selectedTicker && renderedDrawings[tab.id]" class="drawing-overlay">
+              <defs>
+                <marker 
+                  v-for="drawing in renderedDrawings[tab.id].filter(d => d.type === 'arrow')" 
+                  :key="'marker-' + drawing.id"
+                  :id="'arrowhead-' + drawing.id" 
+                  markerWidth="10" 
+                  markerHeight="10" 
+                  refX="9" 
+                  refY="3" 
+                  orient="auto"
+                >
+                  <polygon points="0 0, 10 3, 0 6" :fill="drawing.color" />
+                </marker>
+              </defs>
+              <g v-for="drawing in renderedDrawings[tab.id]" :key="drawing.id">
+                <!-- Line -->
+                <line
+                  v-if="drawing.type === 'line'"
+                  :x1="drawing.x1"
+                  :y1="drawing.y1"
+                  :x2="drawing.x2"
+                  :y2="drawing.y2"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Square -->
+                <rect
+                  v-if="drawing.type === 'square'"
+                  :x="Math.min(drawing.x1, drawing.x2)"
+                  :y="Math.min(drawing.y1, drawing.y2)"
+                  :width="Math.abs(drawing.x2 - drawing.x1)"
+                  :height="Math.abs(drawing.y2 - drawing.y1)"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  :fill="drawing.color + '1A'"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Circle -->
+                <ellipse
+                  v-if="drawing.type === 'circle'"
+                  :cx="(drawing.x1 + drawing.x2) / 2"
+                  :cy="(drawing.y1 + drawing.y2) / 2"
+                  :rx="Math.abs(drawing.x2 - drawing.x1) / 2"
+                  :ry="Math.abs(drawing.y2 - drawing.y1) / 2"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  :fill="drawing.color + '1A'"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Arrow -->
+                <line
+                  v-if="drawing.type === 'arrow'"
+                  :x1="drawing.x1"
+                  :y1="drawing.y1"
+                  :x2="drawing.x2"
+                  :y2="drawing.y2"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  :marker-end="'url(#arrowhead-' + drawing.id + ')'"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Horizontal Line -->
+                <line
+                  v-if="drawing.type === 'hline'"
+                  :x1="0"
+                  :y1="drawing.y1"
+                  :x2="10000"
+                  :y2="drawing.y1"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  stroke-dasharray="5,5"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Vertical Line -->
+                <line
+                  v-if="drawing.type === 'vline'"
+                  :x1="drawing.x1"
+                  :y1="0"
+                  :x2="drawing.x1"
+                  :y2="10000"
+                  :stroke="drawing.color"
+                  stroke-width="2"
+                  stroke-dasharray="5,5"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Text -->
+                <text
+                  v-if="drawing.type === 'text'"
+                  :x="drawing.x1"
+                  :y="drawing.y1"
+                  :fill="drawing.color"
+                  font-size="14"
+                  font-weight="600"
+                  :class="{ 'temp-drawing': drawing.isTemp }"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                >
+                  {{ drawing.text }}
+                </text>
+              </g>
+            </svg>
           </div>
 
-          <!-- Right Panel: News (View Mode 2) -->
-          <div class="right-panel" v-if="tab.viewMode === 2">
-            <h3 class="panel-title">Feed Notizie</h3>
-            <div class="news-feed">
-              <NewsCard
-                v-for="newsItem in newsItems"
-                :key="newsItem.link"
-                :news-item="newsItem"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
-
-    <!-- Flyout News Panel (View Mode 3) -->
-    <template v-for="tab in tabs" :key="`flyout-${tab.id}`">
-      <FlyoutNewsPanel
-        v-if="tab && tab.viewMode === 3 && activeTab === tab.id"
-        :news-items="filteredNews"
-        @view-toggle="(mode) => setViewMode(tab.id, mode)"
-      />
-    </template>
 
     <!-- Settings Modal -->
     <SettingsModal
@@ -291,17 +458,83 @@
       @close="showProfileModal = false"
       @saved="handleProfileSaved"
     />
+    
+    <!-- Tab Wizard -->
+    <TabWizard
+      :show="showTabWizard"
+      @close="showTabWizard = false"
+      @create="handleCreateTab"
+    />
+    
+    <!-- Tab Context Menu -->
+    <div
+      v-if="contextMenu.show"
+      class="context-menu"
+      :style="{ left: contextMenu.x + 'px', top: contextMenu.y + 'px' }"
+      @click.stop
+    >
+      <button @click="startRenameTab(contextMenu.tab)" class="context-menu-item">
+        Rename
+      </button>
+      <button
+        v-if="tabs.length > 1"
+        @click="removeTab(contextMenu.tab.id)"
+        class="context-menu-item"
+      >
+        Remove
+      </button>
+    </div>
+
+    <!-- Chart Context Menu -->
+    <div
+      v-if="chartContextMenu.show"
+      class="context-menu"
+      :style="{ left: chartContextMenu.x + 'px', top: chartContextMenu.y + 'px' }"
+      @click.stop
+    >
+      <template v-if="!chartContextMenu.drawingId">
+        <div class="color-picker-section">
+          <label>Color:</label>
+          <input type="color" v-model="selectedColor" class="color-input" />
+        </div>
+        <div class="menu-divider"></div>
+        <button @click="startDrawing('line')" class="context-menu-item">
+          📏 Line
+        </button>
+        <button @click="startDrawing('square')" class="context-menu-item">
+          ⬜ Square
+        </button>
+        <button @click="startDrawing('circle')" class="context-menu-item">
+          ⭕ Circle
+        </button>
+        <button @click="startDrawing('arrow')" class="context-menu-item">
+          ➡️ Arrow
+        </button>
+        <button @click="startDrawing('hline')" class="context-menu-item">
+          ➖ Horizontal Line
+        </button>
+        <button @click="startDrawing('vline')" class="context-menu-item">
+          ↕️ Vertical Line
+        </button>
+        <button @click="startDrawing('text')" class="context-menu-item">
+          📝 Text
+        </button>
+      </template>
+      <template v-else>
+        <button @click="removeDrawing(chartContextMenu.tabId, chartContextMenu.drawingId)" class="context-menu-item delete">
+          Remove Drawing
+        </button>
+      </template>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { createChart } from 'lightweight-charts'
 import { useWatchlistStore } from '../stores/watchlist'
 import { useNewsStore } from '../stores/news'
 import { useAuthStore } from '../stores/auth'
-import NewsCard from '../components/NewsCard.vue'
-import FlyoutNewsPanel from '../components/FlyoutNewsPanel.vue'
 import SettingsModal from '../components/SettingsModal.vue'
 import EarningsList from '../components/EarningsList.vue'
 import NewsFeed from '../components/NewsFeed.vue'
@@ -311,6 +544,10 @@ import UserProfile from '../components/UserProfile.vue'
 import LoginModal from '../components/LoginModal.vue'
 import RegisterModal from '../components/RegisterModal.vue'
 import ProfileModal from '../components/ProfileModal.vue'
+import StrategyBuilder from '../components/StrategyBuilder.vue'
+
+import TabWizard from '../components/TabWizard.vue'
+import IndicatorSearch from '../components/IndicatorSearch.vue'
 import api from '../services/api'
 import { getCached, setCached, saveIndicatorSettings, loadIndicatorSettings } from '../utils/cache'
 
@@ -320,13 +557,8 @@ const authStore = useAuthStore()
 
 const timeframes = ['1d', '5d', '1m', '3m', '6m', '1y', '5y']
 const chartTypes = ['Candle', 'Line']
-const viewModes = [
-  { id: 1, name: 'Chart Only', icon: '📊' },
-  { id: 2, name: 'Chart + News', icon: '📰' },
-  { id: 3, name: 'Chart + Flyout', icon: '🔔' }
-]
 
-const activeTab = ref(1)
+const activeTab = ref(parseInt(localStorage.getItem('activeTab')) || 1)
 const tabs = ref([
   {
     id: 1,
@@ -335,7 +567,6 @@ const tabs = ref([
     selectedTicker: null,
     timeframe: '1y',
     chartType: 'Candle',
-    viewMode: 1,
     chartInfo: {
       symbol: '',
       name: '',
@@ -346,7 +577,11 @@ const tabs = ref([
     },
     chart: null,
     candlestickSeries: null,
-    lineSeries: null
+    lineSeries: null,
+    aiQuery: '',
+    aiLoading: false,
+    aiIndicators: [],
+    drawings: []
   },
   {
     id: 2,
@@ -365,8 +600,12 @@ const tabs = ref([
   },
   {
     id: 5,
-    name: 'Flex',
-    type: 'flex'
+    name: 'Chat',
+    type: 'chat',
+    chatConfig: {
+      recipientId: null,
+      inviteLlama: false
+    }
   }
 ])
 
@@ -376,25 +615,34 @@ const showSettings = ref(false)
 const showLoginModal = ref(false)
 const showRegisterModal = ref(false)
 const showProfileModal = ref(false)
+const showTabWizard = ref(false)
 const chartRefs = ref({})
+const editingTab = ref(null)
+const editingTabName = ref('')
+const contextMenu = ref({ show: false, x: 0, y: 0, tab: null })
+const chartContextMenu = ref({ show: false, x: 0, y: 0, tabId: null, drawingId: null })
+const drawingMode = ref(null) // null, 'line', 'square', 'circle', 'arrow', 'hline', 'vline', 'text'
+const drawingStart = ref(null) // { time, price }
+const tempDrawing = ref(null) // { type, p1: {time, price}, p2: {time, price}, color, text }
+const renderedDrawings = ref({}) // Map tabId -> array of { id, type, x1, y1, x2, y2, selected }
+const selectedColor = ref('#2196F3') // Default blue
+const showColorPicker = ref(false)
+const draggedTabId = ref(null)
+const draggedTabIndex = ref(null)
+const dragOverIndex = ref(null)
 const searchTimeout = ref(null)
 const searchLoading = ref(false)
 const searchError = ref(null)
 const isAddingToWatchlist = ref(false)
+const isSearchFocused = ref(false)
+const hoveredResultIndex = ref(null)
+const selectedResultIndex = ref(null)
+const searchInputRef = ref(null)
 const currentUser = computed(() => authStore.user)
 const isLoggedIn = computed(() => authStore.isAuthenticated)
 
 const watchlist = computed(() => watchlistStore.watchlist)
 const newsItems = computed(() => newsStore.news)
-const filteredNews = computed(() => {
-  const currentTab = tabs.value.find(t => t && t.id === activeTab.value)
-  if (currentTab && currentTab.viewMode === 3) {
-    return newsItems.value.filter(item => 
-      watchlist.value.some(w => w.symbol === item.ticker)
-    )
-  }
-  return newsItems.value
-})
 
 const setChartRef = (tabId, el) => {
   if (el) {
@@ -406,21 +654,27 @@ onMounted(async () => {
   // Check authentication
   await authStore.checkAuth()
   
-  // Restore active tab from localStorage
-  const savedActiveTab = localStorage.getItem('activeTab')
-  if (savedActiveTab) {
-    const tabId = parseInt(savedActiveTab)
-    if (tabs.value.find(t => t && t.id === tabId)) {
-      activeTab.value = tabId
-    }
+  // Load user tabs if authenticated
+  if (isLoggedIn.value) {
+    await loadUserTabs()
   }
   
   await watchlistStore.loadWatchlist()
   await newsStore.loadNews()
   if (watchlist.value.length > 0) {
-    const firstTab = tabs.value[0]
-    selectTicker(firstTab.id, watchlist.value[0].symbol)
+    const firstTab = tabs.value.find(t => t.type === 'stocks')
+    if (firstTab) {
+      selectTicker(firstTab.id, watchlist.value[0].symbol)
+    }
   }
+  
+  // Close context menu when clicking outside
+  document.addEventListener('click', closeContextMenu)
+  document.addEventListener('keydown', handleKeyDown)
+})
+onUnmounted(() => {
+  document.removeEventListener('click', closeContextMenu)
+  document.removeEventListener('keydown', handleKeyDown)
 })
 
 const setActiveTab = (tabId) => {
@@ -428,37 +682,478 @@ const setActiveTab = (tabId) => {
   // Persist active tab to localStorage
   localStorage.setItem('activeTab', tabId.toString())
   const tab = tabs.value.find(t => t.id === tabId)
-  if (tab && tab.selectedTicker) {
+  if (tab && tab.selectedTicker && tab.type === 'stocks') {
     nextTick(() => {
       loadChart(tabId)
     })
   }
+  closeContextMenu()
+  closeChartContextMenu()
 }
 
-const addNewTab = () => {
-  const newId = Math.max(...tabs.value.map(t => t.id)) + 1
-  tabs.value.push({
+const loadUserTabs = async () => {
+  try {
+    const response = await api.getUserTabs()
+    if (response.data && response.data.tabs && response.data.tabs.length > 0) {
+      // Restore tabs from user account
+      tabs.value = response.data.tabs.map(tab => ({
+        ...tab,
+        chart: null,
+        candlestickSeries: null,
+        lineSeries: null,
+        earningsLines: tab.earningsLines || [],
+        drawings: tab.drawings || []
+      }))
+    } else {
+      // First time user - save default tabs to account
+      const defaultTabs = tabs.value.map(tab => {
+        const { chart, candlestickSeries, lineSeries, resizeObserver, ...tabData } = tab
+        return tabData
+      })
+      await api.saveUserTabs(defaultTabs)
+    }
+  } catch (error) {
+    console.error('Error loading user tabs:', error)
+    // If error loading, keep default tabs
+  }
+}
+
+const saveUserTabs = async () => {
+  if (!isLoggedIn.value) return
+  
+  try {
+    // Remove chart references before saving
+    const tabsToSave = tabs.value.map(tab => {
+      const { chart, candlestickSeries, lineSeries, resizeObserver, ...tabData } = tab
+      return tabData
+    })
+    await api.saveUserTabs(tabsToSave)
+  } catch (error) {
+    console.error('Error saving user tabs:', error)
+  }
+}
+
+const handleCreateTab = (tabConfig) => {
+  const newId = tabs.value.length > 0 ? Math.max(...tabs.value.map(t => t.id)) + 1 : 1
+  const newTab = {
     id: newId,
-    name: `Tab ${newId}`,
-    type: 'stocks',
-    selectedTicker: null,
-    timeframe: '1y',
-    chartType: 'Candle',
-    viewMode: 1,
-    chartInfo: {
-      symbol: '',
-      name: '',
-      price: null,
-      change: null,
-      changePercent: null,
-      volume: null
-    },
+    ...tabConfig,
     chart: null,
     candlestickSeries: null,
     lineSeries: null,
-    earningsLines: []
-  })
+    earningsLines: [],
+    drawings: []
+  }
+  tabs.value.push(newTab)
   activeTab.value = newId
+  saveUserTabs()
+}
+
+const startRenameTab = (tab) => {
+  editingTab.value = tab
+  editingTabName.value = tab.name
+}
+
+const finishRenameTab = () => {
+  if (editingTab.value && editingTabName.value.trim()) {
+    editingTab.value.name = editingTabName.value.trim()
+    saveUserTabs()
+  }
+  editingTab.value = null
+  editingTabName.value = ''
+}
+
+const cancelRenameTab = () => {
+  editingTab.value = null
+  editingTabName.value = ''
+}
+
+const removeTab = (tabId) => {
+  const index = tabs.value.findIndex(t => t.id === tabId)
+  if (index === -1) return
+  
+  const tab = tabs.value[index]
+  
+  // Confirm before removing
+  if (!confirm(`Are you sure you want to remove the tab "${tab.name}"?`)) {
+    return
+  }
+  
+  // Clean up chart if it exists
+  if (tab.chart) {
+    try {
+      if (tab.earningsLines && tab.earningsLines.length > 0) {
+        tab.earningsLines.forEach(line => {
+          try {
+            tab.chart.removeSeries(line)
+          } catch (e) {
+            // Series might already be removed
+          }
+        })
+      }
+      tab.chart.remove()
+    } catch (e) {
+      console.error('Error removing chart:', e)
+    }
+  }
+  
+  tabs.value.splice(index, 1)
+  
+  // If removed tab was active, switch to another tab
+  if (activeTab.value === tabId) {
+    if (tabs.value.length > 0) {
+      activeTab.value = tabs.value[Math.max(0, index - 1)].id
+    } else {
+      // If no tabs left, create a default one
+      handleCreateTab({
+        name: 'Stocks',
+        type: 'stocks',
+        selectedTicker: null,
+        timeframe: '1y',
+        chartType: 'Candle',
+        chartInfo: {
+          symbol: '',
+          name: '',
+          price: null,
+          change: null,
+          changePercent: null,
+          volume: null
+        }
+      })
+    }
+  }
+  
+  saveUserTabs()
+  closeContextMenu()
+  closeChartContextMenu()
+}
+
+const showTabContextMenu = (event, tab) => {
+  contextMenu.value = {
+    show: true,
+    x: event.clientX,
+    y: event.clientY,
+    tab: tab
+  }
+}
+
+const closeContextMenu = () => {
+  contextMenu.value.show = false
+  chartContextMenu.value.show = false
+}
+
+const closeChartContextMenu = () => {
+  chartContextMenu.value.show = false
+}
+
+const showChartContextMenu = (event, tabId, drawingId = null) => {
+  event.preventDefault()
+  chartContextMenu.value = {
+    show: true,
+    x: event.clientX,
+    y: event.clientY,
+    tabId: tabId,
+    drawingId: drawingId
+  }
+}
+
+const startDrawing = (type) => {
+  drawingMode.value = type
+  closeChartContextMenu()
+  
+  // For text, prompt immediately
+  if (type === 'text') {
+    const text = prompt('Enter text:')
+    if (!text) {
+      drawingMode.value = null
+      return
+    }
+    tempDrawing.value = { type: 'text', text, color: selectedColor.value }
+  }
+}
+
+const removeDrawing = (tabId, drawingId) => {
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (tab && tab.drawings) {
+    const index = tab.drawings.findIndex(d => d.id === drawingId)
+    if (index !== -1) {
+      tab.drawings.splice(index, 1)
+      saveUserTabs()
+      updateDrawingCoordinates(tabId)
+    }
+  }
+  closeChartContextMenu()
+}
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Escape') {
+    if (drawingMode.value) {
+      drawingMode.value = null
+      drawingStart.value = null
+      tempDrawing.value = null
+    }
+    closeContextMenu()
+    closeChartContextMenu()
+  }
+}
+
+const handleChartClick = (event, tabId) => {
+  if (!drawingMode.value) return
+
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (!tab || !tab.chart || !tab.candlestickSeries) return
+
+  const rect = chartRefs.value[tabId].getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+
+  // Convert coordinates to time/price
+  const time = tab.chart.timeScale().coordinateToTime(x)
+  const price = tab.candlestickSeries.coordinateToPrice(y)
+
+  if (!time || !price) return
+
+  // For text, single click to place
+  if (drawingMode.value === 'text' && tempDrawing.value) {
+    const newDrawing = {
+      id: Date.now().toString(),
+      type: 'text',
+      p1: { time, price },
+      text: tempDrawing.value.text,
+      color: tempDrawing.value.color
+    }
+    if (!tab.drawings) tab.drawings = []
+    tab.drawings.push(newDrawing)
+    drawingMode.value = null
+    drawingStart.value = null
+    tempDrawing.value = null
+    saveUserTabs()
+    updateDrawingCoordinates(tabId)
+    return
+  }
+
+  // For horizontal line, single click to place
+  if (drawingMode.value === 'hline') {
+    const newDrawing = {
+      id: Date.now().toString(),
+      type: 'hline',
+      p1: { time, price },
+      color: selectedColor.value
+    }
+    if (!tab.drawings) tab.drawings = []
+    tab.drawings.push(newDrawing)
+    drawingMode.value = null
+    drawingStart.value = null
+    tempDrawing.value = null
+    saveUserTabs()
+    updateDrawingCoordinates(tabId)
+    return
+  }
+
+  // For vertical line, single click to place
+  if (drawingMode.value === 'vline') {
+    const newDrawing = {
+      id: Date.now().toString(),
+      type: 'vline',
+      p1: { time, price },
+      color: selectedColor.value
+    }
+    if (!tab.drawings) tab.drawings = []
+    tab.drawings.push(newDrawing)
+    drawingMode.value = null
+    drawingStart.value = null
+    tempDrawing.value = null
+    saveUserTabs()
+    updateDrawingCoordinates(tabId)
+    return
+  }
+
+  if (!drawingStart.value) {
+    // First click
+    drawingStart.value = { time, price }
+    tempDrawing.value = {
+      type: drawingMode.value,
+      p1: { time, price },
+      p2: { time, price },
+      color: selectedColor.value
+    }
+  } else {
+    // Second click - finish drawing
+    const newDrawing = {
+      id: Date.now().toString(),
+      type: drawingMode.value,
+      p1: drawingStart.value,
+      p2: { time, price },
+      color: selectedColor.value
+    }
+    
+    if (!tab.drawings) tab.drawings = []
+    tab.drawings.push(newDrawing)
+    
+    // Reset state
+    drawingMode.value = null
+    drawingStart.value = null
+    tempDrawing.value = null
+    
+    saveUserTabs()
+    updateDrawingCoordinates(tabId)
+  }
+}
+
+const handleChartMouseMove = (event, tabId) => {
+  if (!drawingMode.value || !drawingStart.value) return
+
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (!tab || !tab.chart || !tab.candlestickSeries) return
+
+  const rect = chartRefs.value[tabId].getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+
+  const time = tab.chart.timeScale().coordinateToTime(x)
+  const price = tab.candlestickSeries.coordinateToPrice(y)
+
+  if (time && price) {
+    tempDrawing.value = {
+      type: drawingMode.value,
+      p1: drawingStart.value,
+      p2: { time, price },
+      color: selectedColor.value
+    }
+    // Force update of temp drawing
+    updateDrawingCoordinates(tabId) 
+  }
+}
+
+const updateDrawingCoordinates = (tabId) => {
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (!tab || !tab.chart || !tab.candlestickSeries) return
+
+  const drawings = []
+  
+  // Process saved drawings
+  if (tab.drawings) {
+    tab.drawings.forEach(d => {
+      const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
+      const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
+      
+      let x2 = null, y2 = null
+      if (d.p2) {
+        x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
+        y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
+      }
+      
+      if (x1 !== null && y1 !== null) {
+        drawings.push({
+          id: d.id,
+          type: d.type,
+          x1, y1, x2, y2,
+          color: d.color || '#2196F3',
+          text: d.text,
+          selected: false
+        })
+      }
+    })
+  }
+
+  // Process temp drawing
+  if (tempDrawing.value) {
+    const d = tempDrawing.value
+    const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
+    const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
+    let x2 = null, y2 = null
+    if (d.p2) {
+      x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
+      y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
+    }
+    
+    if (x1 !== null && y1 !== null) {
+      drawings.push({
+        id: 'temp',
+        type: d.type,
+        x1, y1, x2, y2,
+        color: d.color || '#2196F3',
+        text: d.text,
+        isTemp: true
+      })
+    }
+  }
+
+  renderedDrawings.value = {
+    ...renderedDrawings.value,
+    [tabId]: drawings
+  }
+}
+
+const handleDragStart = (event, tab, index) => {
+  if (editingTab.value && editingTab.value.id === tab.id) {
+    event.preventDefault()
+    return
+  }
+  draggedTabId.value = tab.id
+  draggedTabIndex.value = index
+  event.dataTransfer.effectAllowed = 'move'
+  event.dataTransfer.setData('text/html', event.target)
+  // Add a slight delay to allow drag image to be set
+  setTimeout(() => {
+    if (event.target) {
+      event.target.style.opacity = '0.5'
+    }
+  }, 0)
+}
+
+const handleDragEnd = (event) => {
+  if (event.target) {
+    event.target.style.opacity = ''
+  }
+  draggedTabId.value = null
+  draggedTabIndex.value = null
+  dragOverIndex.value = null
+}
+
+const handleDragOver = (event, index) => {
+  if (draggedTabId.value === null) return
+  dragOverIndex.value = index
+  event.dataTransfer.dropEffect = 'move'
+}
+
+const handleDragLeave = (event, index) => {
+  // Only clear drag over if we're actually leaving the element (not entering a child)
+  const rect = event.currentTarget.getBoundingClientRect()
+  const x = event.clientX
+  const y = event.clientY
+  
+  if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+    dragOverIndex.value = null
+  }
+}
+
+const handleDrop = (event, dropIndex) => {
+  event.preventDefault()
+  
+  if (draggedTabId.value === null || draggedTabIndex.value === null) {
+    return
+  }
+  
+  const dragIndex = draggedTabIndex.value
+  
+  if (dragIndex === dropIndex) {
+    dragOverIndex.value = null
+    return
+  }
+  
+  // Reorder tabs
+  const tabToMove = tabs.value[dragIndex]
+  tabs.value.splice(dragIndex, 1)
+  tabs.value.splice(dropIndex, 0, tabToMove)
+  
+  // Save new order
+  saveUserTabs()
+  
+  // Reset drag state
+  draggedTabId.value = null
+  draggedTabIndex.value = null
+  dragOverIndex.value = null
 }
 
 const handleEarningsTickerSelect = (symbol) => {
@@ -485,9 +1180,8 @@ const handleCompete = (bot) => {
 }
 
 const handleCreateBot = () => {
-  console.log('Create new bot')
-  // TODO: Implement bot creation
-  alert('Bot creation feature coming soon!')
+  // Bot creation is now handled in BotList component
+  console.log('Create bot event received')
 }
 
 const handleLoginSuccess = (userData) => {
@@ -538,6 +1232,14 @@ const setTimeframe = async (tabId, tf) => {
   }
 }
 
+const updateTabConfig = (tabId, config) => {
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (tab) {
+    tab.chatConfig = { ...tab.chatConfig, ...config }
+    saveUserTabs()
+  }
+}
+
 const setChartType = (tabId, type) => {
   const tab = tabs.value.find(t => t && t.id === tabId)
   if (tab) {
@@ -570,12 +1272,233 @@ const toggleIndicator = (tabId, indicator) => {
   }
 }
 
-const setViewMode = (tabId, mode) => {
+const handleAIAnalysis = async (tabId) => {
   const tab = tabs.value.find(t => t && t.id === tabId)
-  if (tab) {
-    tab.viewMode = mode
+  if (!tab || !tab.selectedTicker || !tab.aiQuery.trim()) return
+
+  tab.aiLoading = true
+  try {
+    const response = await api.analyzeChart({
+      ticker: tab.selectedTicker,
+      timeframe: tab.timeframe,
+      query: tab.aiQuery
+    })
+    
+    const result = response.data
+    // Backend now returns { data: [indicator1, indicator2, ...] }
+    const indicators = result.data || []
+    let shouldReload = false
+    
+    // Initialize indicators if missing
+    if (!tab.indicators) {
+      tab.indicators = {
+        rsi: false,
+        ma13: false,
+        ma50: false,
+        ma200: false,
+        ma800: false,
+        bullRun: false
+      }
+    }
+    
+    if (indicators.length > 0) {
+      for (const indicatorResult of indicators) {
+        // Add indicator to chart
+        const indicatorType = indicatorResult.indicator
+        const data = indicatorResult.data
+        const config = indicatorResult.config
+        const params = config.params || {}
+        const color = config.color || '#2196F3'
+        
+        // Check if this matches a standard indicator button
+        let isStandard = false
+        
+        if (indicatorType === 'RSI' && (params.period == 14 || !params.period)) {
+          tab.indicators.rsi = !tab.indicators.rsi // Toggle or just enable? User said "light up and turn off", implying toggle or sync. Let's enable if asking to add.
+          // Actually, if the user says "add RSI", they expect it to appear. If it's already there, maybe they want to remove it?
+          // But the AI parser usually just says "RSI". 
+          // Let's assume "ensure it is on".
+          tab.indicators.rsi = true
+          isStandard = true
+        } else if ((indicatorType === 'SMA' || indicatorType === 'MA')) {
+          if (params.period == 13) { tab.indicators.ma13 = true; isStandard = true; }
+          else if (params.period == 50) { tab.indicators.ma50 = true; isStandard = true; }
+          else if (params.period == 200) { tab.indicators.ma200 = true; isStandard = true; }
+          else if (params.period == 800) { tab.indicators.ma800 = true; isStandard = true; }
+        }
+        
+        if (isStandard) {
+          shouldReload = true
+          continue // Skip adding as custom series
+        }
+        
+        if (indicatorType === 'BB') {
+          // Bollinger Bands (Area/Lines)
+          const upperSeries = tab.chart.addLineSeries({
+            color: color,
+            lineWidth: 1,
+            title: 'BB Upper'
+          })
+          const lowerSeries = tab.chart.addLineSeries({
+            color: color,
+            lineWidth: 1,
+            title: 'BB Lower'
+          })
+          const basisSeries = tab.chart.addLineSeries({
+            color: color,
+            lineWidth: 1,
+            lineStyle: 2, // Dashed
+            title: 'BB Basis'
+          })
+          
+          upperSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.upper })))
+          lowerSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.lower })))
+          basisSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.basis })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: 'BB', series: [upperSeries, lowerSeries, basisSeries] })
+          
+        } else if (['SMA', 'EMA'].includes(indicatorType)) {
+          // Moving Averages
+          const series = tab.chart.addLineSeries({
+            color: color,
+            lineWidth: 2,
+            title: `${indicatorType} ${config.params.period}`
+          })
+          
+          series.setData(data.map(d => ({ time: d.time / 1000, value: d.value })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: indicatorType, series: [series] })
+          
+        } else if (indicatorType === 'RSI') {
+          // RSI (Separate Pane)
+          const series = tab.chart.addLineSeries({
+            color: color,
+            lineWidth: 2,
+            priceScaleId: 'ai_rsi',
+            title: `RSI ${config.params.period}`
+          })
+          
+          tab.chart.priceScale('ai_rsi').applyOptions({
+            scaleMargins: {
+              top: 0.1,
+              bottom: 0.1,
+            },
+          })
+          
+          series.setData(data.map(d => ({ time: d.time / 1000, value: d.value })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: 'RSI', series: [series] })
+          
+        } else if (indicatorType === 'MACD') {
+          // MACD (Separate Pane)
+          const histogramSeries = tab.chart.addHistogramSeries({
+            color: '#26a69a',
+            priceScaleId: 'ai_macd',
+            title: 'MACD Histogram'
+          })
+          const macdSeries = tab.chart.addLineSeries({
+            color: '#2962FF',
+            lineWidth: 2,
+            priceScaleId: 'ai_macd',
+            title: 'MACD'
+          })
+          const signalSeries = tab.chart.addLineSeries({
+            color: '#FF6D00',
+            lineWidth: 2,
+            priceScaleId: 'ai_macd',
+            title: 'Signal'
+          })
+          
+          tab.chart.priceScale('ai_macd').applyOptions({
+            scaleMargins: {
+              top: 0.1,
+              bottom: 0.1,
+            },
+          })
+          
+          histogramSeries.setData(data.map(d => ({ 
+            time: d.time / 1000, 
+            value: d.histogram,
+            color: d.histogram >= 0 ? '#26a69a' : '#ef5350'
+          })))
+          macdSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.macd })))
+          signalSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.signal })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: 'MACD', series: [histogramSeries, macdSeries, signalSeries] })
+  
+        } else if (indicatorType === 'VOL') {
+          // Volume (Separate Pane)
+          const volumeSeries = tab.chart.addHistogramSeries({
+            color: '#26a69a',
+            priceScaleId: 'ai_vol',
+            title: 'Volume'
+          })
+          
+          tab.chart.priceScale('ai_vol').applyOptions({
+            scaleMargins: {
+              top: 0.1,
+              bottom: 0.1,
+            },
+          })
+          
+          volumeSeries.setData(data.map(d => ({ 
+            time: d.time / 1000, 
+            value: d.value,
+            color: d.color
+          })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: 'VOL', series: [volumeSeries] })
+  
+        } else if (indicatorType === 'STOCH') {
+          // Stochastic (Separate Pane)
+          const kSeries = tab.chart.addLineSeries({
+            color: '#2962FF',
+            lineWidth: 2,
+            priceScaleId: 'ai_stoch',
+            title: '%K'
+          })
+          const dSeries = tab.chart.addLineSeries({
+            color: '#FF6D00',
+            lineWidth: 2,
+            priceScaleId: 'ai_stoch',
+            title: '%D'
+          })
+          
+          tab.chart.priceScale('ai_stoch').applyOptions({
+            scaleMargins: {
+              top: 0.1,
+              bottom: 0.1,
+            },
+          })
+          
+          kSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.k })))
+          dSeries.setData(data.map(d => ({ time: d.time / 1000, value: d.d })))
+          
+          if (!tab.aiIndicators) tab.aiIndicators = []
+          tab.aiIndicators.push({ type: 'STOCH', series: [kSeries, dSeries] })
+        }
+      }
+      
+      tab.aiQuery = '' // Clear input on success
+      
+      if (shouldReload) {
+        saveIndicatorSettings(tab.selectedTicker, tab.indicators)
+        loadChart(tabId)
+      }
+    }
+  } catch (error) {
+    console.error('AI Analysis failed:', error)
+    alert('Failed to analyze chart: ' + (error.response?.data?.detail || error.message))
+  } finally {
+    tab.aiLoading = false
   }
 }
+
 
 const updateChartInfo = async (tabId) => {
   const tab = tabs.value.find(t => t && t.id === tabId)
@@ -653,6 +1576,7 @@ const handleSearch = async () => {
       
       if (response.data && response.data.results) {
         searchResults.value = response.data.results
+        selectedResultIndex.value = null // Reset selection on new results
       } else {
         searchResults.value = []
       }
@@ -664,14 +1588,30 @@ const handleSearch = async () => {
       
       // Handle timeout or errors - try to use query as direct ticker if it looks like one
       const queryUpper = currentQuery.trim().toUpperCase()
-      if (queryUpper.length >= 1 && queryUpper.length <= 5 && queryUpper.replace('.', '').replace('=', '').replace('^', '').match(/^[A-Z0-9]+$/)) {
-        // Query looks like a ticker, add it directly
-        searchResults.value = [{
-          symbol: queryUpper,
-          name: queryUpper,
-          type: 'EQUITY',
-          exchange: 'N/A'
-        }]
+      if (queryUpper.length >= 1 && queryUpper.length <= 10) {
+        // Detect asset type based on symbol pattern
+        let assetType = 'EQUITY'
+        if (queryUpper.endsWith('-USD') || queryUpper.endsWith('-EUR') || queryUpper.endsWith('-GBP')) {
+          assetType = 'CRYPTOCURRENCY'
+        } else if (queryUpper.endsWith('=F')) {
+          assetType = 'FUTURE'
+        } else if (queryUpper.startsWith('^')) {
+          assetType = 'INDEX'
+        }
+        
+        // Check if it looks like a valid ticker (alphanumeric with allowed separators)
+        const cleaned = queryUpper.replace(/[-=^.]/g, '')
+        if (cleaned.match(/^[A-Z0-9]+$/)) {
+          searchResults.value = [{
+            symbol: queryUpper,
+            name: queryUpper,
+            type: assetType,
+            exchange: 'N/A'
+          }]
+          selectedResultIndex.value = null // Reset selection
+        } else {
+          searchResults.value = []
+        }
       } else {
         searchResults.value = []
       }
@@ -684,10 +1624,66 @@ const handleSearch = async () => {
   }, 400) // 400ms debounce - good balance between responsiveness and performance
 }
 
+const getAssetTypeLabel = (type) => {
+  const typeMap = {
+    'EQUITY': 'Stock',
+    'ETF': 'ETF',
+    'CRYPTOCURRENCY': 'Crypto',
+    'FUTURE': 'Future',
+    'INDEX': 'Index',
+    'OPTION': 'Option',
+    'CURRENCY': 'Currency'
+  }
+  return typeMap[type] || type || 'Asset'
+}
+
+const getAssetTypeIcon = (type) => {
+  const iconMap = {
+    'EQUITY': '📈',
+    'ETF': '📊',
+    'CRYPTOCURRENCY': '₿',
+    'FUTURE': '📉',
+    'INDEX': '📋',
+    'OPTION': '⚡',
+    'CURRENCY': '💱'
+  }
+  return iconMap[type] || '📌'
+}
+
+const getAssetTypeClass = (type) => {
+  const classMap = {
+    'EQUITY': 'type-equity',
+    'ETF': 'type-etf',
+    'CRYPTOCURRENCY': 'type-crypto',
+    'FUTURE': 'type-future',
+    'INDEX': 'type-index',
+    'OPTION': 'type-option',
+    'CURRENCY': 'type-currency'
+  }
+  return classMap[type] || 'type-default'
+}
+
+const navigateResults = (direction) => {
+  if (searchResults.value.length === 0) return
+  
+  if (selectedResultIndex.value === null) {
+    selectedResultIndex.value = direction > 0 ? 0 : searchResults.value.length - 1
+  } else {
+    selectedResultIndex.value += direction
+    if (selectedResultIndex.value < 0) {
+      selectedResultIndex.value = searchResults.value.length - 1
+    } else if (selectedResultIndex.value >= searchResults.value.length) {
+      selectedResultIndex.value = 0
+    }
+  }
+}
+
 const addTopResult = () => {
   if (searchResults.value.length > 0) {
     const currentTab = tabs.value.find(t => t.id === activeTab.value)
-    addToWatchlist(searchResults.value[0], currentTab.id)
+    const indexToAdd = selectedResultIndex.value !== null ? selectedResultIndex.value : 0
+    addToWatchlist(searchResults.value[indexToAdd], currentTab.id)
+    selectedResultIndex.value = null
   }
 }
 
@@ -870,16 +1866,32 @@ const loadChart = async (tabId) => {
     return
   }
 
-  const chartContainer = chartRefs.value[tabId]
+  let chartContainer = chartRefs.value[tabId]
   if (!chartContainer) {
     console.error('Chart container not found for tab:', tabId, 'Available refs:', Object.keys(chartRefs.value))
     // Try to wait a bit more for the DOM to be ready
     await nextTick()
     await new Promise(resolve => setTimeout(resolve, 200))
-    const retryContainer = chartRefs.value[tabId]
-    if (!retryContainer) {
+    chartContainer = chartRefs.value[tabId]
+    if (!chartContainer) {
       console.error('Chart container still not found after retry')
       return
+    }
+  }
+
+  // Ensure container has valid dimensions
+  if (chartContainer.clientWidth === 0 || chartContainer.clientHeight === 0) {
+    console.warn('Chart container has zero dimensions, waiting for layout...')
+    await new Promise(resolve => setTimeout(resolve, 300))
+    // Retry getting dimensions
+    if (chartContainer.clientWidth === 0 || chartContainer.clientHeight === 0) {
+      console.error('Chart container still has zero dimensions:', {
+        width: chartContainer.clientWidth,
+        height: chartContainer.clientHeight
+      })
+      // Use fallback dimensions
+      chartContainer.style.width = '100%'
+      chartContainer.style.height = '100%'
     }
   }
 
@@ -889,6 +1901,7 @@ const loadChart = async (tabId) => {
     let chartData = getCached('chart', cacheKey)
     
     if (!chartData || !chartData.data || chartData.data.length === 0) {
+      console.log('Fetching chart data from API for', tab.selectedTicker)
       // Fetch from API
       const response = await api.getChart({
         ticker: tab.selectedTicker,
@@ -896,10 +1909,19 @@ const loadChart = async (tabId) => {
         chart_type: tab.chartType.toLowerCase()
       })
       chartData = response.data
+      console.log('Chart data received:', { 
+        dataPoints: chartData.data?.length || 0,
+        earningsDates: chartData.earnings_dates?.length || 0
+      })
       // Cache the response
       setCached('chart', chartData, cacheKey)
     } else {
-      console.log('Using cached chart data for', tab.selectedTicker)
+      console.log('Using cached chart data for', tab.selectedTicker, 'points:', chartData.data?.length || 0)
+    }
+
+    if (!chartData || !chartData.data || chartData.data.length === 0) {
+      console.error('No chart data available')
+      return
     }
 
     await nextTick()
@@ -922,9 +1944,14 @@ const loadChart = async (tabId) => {
       tab.chart.remove()
     }
 
+    const containerWidth = chartContainer.clientWidth || 800
+    const containerHeight = chartContainer.clientHeight || 600
+
+    console.log('Creating chart with dimensions:', { width: containerWidth, height: containerHeight })
+
     tab.chart = createChart(chartContainer, {
-      width: chartContainer.clientWidth,
-      height: chartContainer.clientHeight,
+      width: containerWidth,
+      height: containerHeight,
       layout: {
         background: { color: '#1e1e1e' },
         textColor: '#dcdcdc',
@@ -938,6 +1965,19 @@ const loadChart = async (tabId) => {
         secondsVisible: false,
       },
     })
+
+    // Subscribe to visible time range changes to update drawings
+    tab.chart.timeScale().subscribeVisibleTimeRangeChange(() => {
+      updateDrawingCoordinates(tabId)
+    })
+    
+    // Also update on resize
+    if (!tab.resizeObserver) {
+      tab.resizeObserver = new ResizeObserver(() => {
+        updateDrawingCoordinates(tabId)
+      })
+      tab.resizeObserver.observe(chartContainer)
+    }
 
     // Initialize indicators state if not exists, load from cache if available
     if (!tab.indicators) {
@@ -1009,7 +2049,7 @@ const loadChart = async (tabId) => {
         lineWidth: 2,
       })
       
-      const lineData = validData.map(d => ({
+      const lineData = data.map(d => ({
         time: d.time / 1000,
         value: d.close,
       })).filter(d => !isNaN(d.value))
@@ -1049,9 +2089,9 @@ const loadChart = async (tabId) => {
     }
 
     // Add vertical lines for earnings using a separate series
-    if (earningsDates.length > 0 && validData.length > 0) {
+    if (earningsDates.length > 0 && data.length > 0) {
       // Find min and max prices in the dataset
-      const allPrices = validData.flatMap(d => [d.high, d.low, d.close, d.open].filter(p => p != null))
+      const allPrices = data.flatMap(d => [d.high, d.low, d.close, d.open].filter(p => p != null))
       const minPrice = Math.min(...allPrices)
       const maxPrice = Math.max(...allPrices)
       const pricePadding = (maxPrice - minPrice) * 0.02 // 2% padding
@@ -1247,12 +2287,39 @@ const loadChart = async (tabId) => {
 
     tab.chart.timeScale().fitContent()
     
+    // Add resize observer to handle container size changes
+    if (!tab.resizeObserver) {
+      tab.resizeObserver = new ResizeObserver(() => {
+        if (tab.chart && chartContainer) {
+          const width = chartContainer.clientWidth
+          const height = chartContainer.clientHeight
+          if (width > 0 && height > 0) {
+            tab.chart.applyOptions({ width, height })
+          }
+        }
+      })
+      tab.resizeObserver.observe(chartContainer)
+    }
+    
     // Save indicator settings for this ticker
     if (tab.indicators) {
       saveIndicatorSettings(tab.selectedTicker, tab.indicators)
     }
+    
+    console.log('Chart loaded successfully for', tab.selectedTicker)
+    
+    // Update drawing coordinates after chart is fully loaded
+    await nextTick()
+    updateDrawingCoordinates(tabId)
   } catch (error) {
     console.error('Chart load error:', error)
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      ticker: tab.selectedTicker,
+      timeframe: tab.timeframe,
+      chartType: tab.chartType
+    })
   }
 }
 
@@ -1264,19 +2331,9 @@ const formatVolume = (volume) => {
   return volume.toString()
 }
 
-const handleSettingsSave = (settings) => {
-  // Save settings to localStorage
-  if (settings.newsTickers) {
-    localStorage.setItem('newsTickers', JSON.stringify(settings.newsTickers))
-  }
-  if (settings.selectedPublishers) {
-    localStorage.setItem('selectedPublishers', JSON.stringify(settings.selectedPublishers))
-  }
-  
+const handleSettingsSave = () => {
+  // Placeholder for future settings
   showSettings.value = false
-  
-  // Note: NewsFeed component will automatically reload when settings change
-  // because it reads from localStorage on each load
 }
 </script>
 
@@ -1307,6 +2364,37 @@ const handleSettingsSave = (settings) => {
   gap: 2px;
   height: 100%;
   align-items: flex-end;
+  position: relative;
+}
+
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: move;
+  transition: transform 0.2s;
+}
+
+.tab-wrapper:hover .tab-close-btn {
+  opacity: 1;
+}
+
+.tab-wrapper.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.tab-wrapper.drag-over {
+  transform: translateX(4px);
+}
+
+.tab-wrapper[draggable="true"] {
+  cursor: grab;
+}
+
+.tab-wrapper[draggable="true"]:active {
+  cursor: grabbing;
 }
 
 .tab-btn {
@@ -1333,6 +2421,49 @@ const handleSettingsSave = (settings) => {
   background-color: #000;
   border-bottom: 2px solid #fff;
   color: #fff;
+}
+
+.tab-rename-input {
+  background: transparent;
+  border: 1px solid #4299e1;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 8px;
+  margin: 0;
+  width: 100px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  font-family: inherit;
+}
+
+.tab-close-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  color: #aaa;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.tab-close-btn:hover {
+  background: rgba(244, 67, 54, 1);
+  color: #fff;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .add-tab-btn {
@@ -1509,7 +2640,7 @@ const handleSettingsSave = (settings) => {
   margin-left: auto;
 }
 
-.view-mode-btn, .settings-btn {
+.settings-btn {
   padding: 8px;
   background-color: transparent;
   border: none;
@@ -1519,11 +2650,7 @@ const handleSettingsSave = (settings) => {
   transition: color 0.2s;
 }
 
-.view-mode-btn:hover, .settings-btn:hover {
-  color: #fff;
-}
-
-.view-mode-btn.active {
+.settings-btn:hover {
   color: #fff;
 }
 
@@ -1533,30 +2660,378 @@ const handleSettingsSave = (settings) => {
   background-color: #050505;
   border-right: 1px solid #222;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .search-section {
   margin-bottom: 20px;
+  position: relative;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .search-input {
-  width: 100%;
-  padding: 10px 12px;
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 2px;
+  flex: 1;
+  padding: 12px 16px;
+  background-color: #0a0a0a;
+  border: 2px solid #222;
+  border-radius: 6px;
   color: #fff;
   font-size: 13px;
-  transition: border-color 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: text;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.3px;
+}
+
+.search-input::placeholder {
+  color: #555;
+  transition: color 0.3s;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #666;
+  border-color: #4299e1;
+  background-color: #111;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  transform: translateY(-1px);
+}
+
+.search-input:focus::placeholder {
+  color: #777;
+}
+
+.search-input-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 6px;
+  opacity: 0;
+  background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(139, 92, 246, 0.1));
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.search-input-glow.active {
+  opacity: 1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .add-btn {
-  display: none; /* Hide default add button, use enter key */
+  padding: 10px 14px;
+  background-color: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 6px;
+  color: #666;
+  cursor: not-allowed;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+}
+
+.add-btn.enabled {
+  background-color: #4299e1;
+  border-color: #4299e1;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+}
+
+.add-btn.enabled:hover {
+  background-color: #3182ce;
+  border-color: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(66, 153, 225, 0.4);
+}
+
+.add-btn.enabled:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+}
+
+.add-icon {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.add-btn.enabled:hover .add-icon {
+  transform: scale(1.2);
+}
+
+/* Search Results */
+.search-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  color: #888;
+  font-size: 13px;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #333;
+  border-top-color: #4299e1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search-no-results {
+  padding: 24px 16px;
+  text-align: center;
+  color: #666;
+}
+
+.no-results-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.search-no-results p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.no-results-hint {
+  font-size: 11px;
+  color: #555;
+}
+
+.search-results {
+  margin-top: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 6px;
+  background-color: #0a0a0a;
+  border: 1px solid #222;
+}
+
+/* Custom scrollbar for search results */
+.search-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  background-color: #0a0a0a;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover,
+.search-result-item.hovered {
+  background-color: #111;
+  padding-left: 20px;
+  transform: translateX(4px);
+}
+
+.search-result-item:hover::before,
+.search-result-item.hovered::before {
+  background-color: #4299e1;
+}
+
+.search-result-item.selected {
+  background-color: #1a1a1a;
+  border-left: 3px solid #4299e1;
+  padding-left: 13px;
+}
+
+.result-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.result-symbol {
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.asset-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.asset-type-badge.type-equity {
+  background-color: rgba(66, 153, 225, 0.15);
+  color: #4299e1;
+  border: 1px solid rgba(66, 153, 225, 0.3);
+}
+
+.asset-type-badge.type-etf {
+  background-color: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.asset-type-badge.type-crypto {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.asset-type-badge.type-future {
+  background-color: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.asset-type-badge.type-index {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.asset-type-badge.type-option {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.asset-type-badge.type-currency {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.asset-type-badge.type-default {
+  background-color: rgba(107, 114, 128, 0.15);
+  color: #6b7280;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.result-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.result-name {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.result-exchange {
+  font-size: 10px;
+  color: #666;
+  font-family: 'Roboto Mono', monospace;
+  padding: 2px 6px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+}
+
+.result-action {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.search-result-item:hover .result-action,
+.search-result-item.hovered .result-action {
+  opacity: 1;
+}
+
+.add-hint {
+  font-size: 10px;
+  color: #4299e1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .panel-title {
@@ -1573,7 +3048,30 @@ const handleSettingsSave = (settings) => {
 .watchlist {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 15px;
+  min-height: 0;
+  max-height: 100%;
+}
+
+/* Custom scrollbar for watchlist */
+.watchlist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.watchlist::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 3px;
+}
+
+.watchlist::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.watchlist::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .watchlist-item {
@@ -1640,12 +3138,32 @@ const handleSettingsSave = (settings) => {
 }
 
 .chart-container {
+  flex: 1;
   background-color: #000;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.right-panel {
-  background-color: #050505;
-  border-left: 1px solid #222;
+.chart-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
 }
 
 .welcome-screen h1 {
@@ -1665,5 +3183,186 @@ const handleSettingsSave = (settings) => {
 /* Custom overrides for lightweight charts */
 :deep(.tv-lightweight-charts) {
   font-family: 'Roboto Mono', monospace !important;
+}
+
+/* Context Menu */
+.context-menu {
+  position: fixed;
+  background-color: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10001;
+  min-width: 120px;
+  padding: 4px 0;
+}
+
+.context-menu-item {
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.context-menu-item:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+/* AI Analysis Input */
+.ai-analysis-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  width: 250px;
+}
+
+.ai-input {
+  width: 100%;
+  padding: 6px 12px;
+  padding-right: 30px; /* Space for spinner */
+  background-color: #151515;
+  border: 1px solid #333;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+  transition: all 0.2s;
+}
+
+.ai-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  background-color: #1a1a1a;
+}
+
+.ai-input::placeholder {
+  color: #555;
+}
+
+.ai-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.ai-loading-spinner {
+  position: absolute;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #333;
+  border-top-color: #4299e1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Drawing Overlay */
+.chart-container {
+  position: relative;
+}
+
+.drawing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.drawing-overlay line,
+.drawing-overlay rect {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.drawing-overlay rect {
+  vector-effect: non-scaling-stroke;
+}
+
+.temp-drawing {
+  opacity: 0.5;
+  pointer-events: none !important;
+}
+
+/* Context Menu */
+.context-menu {
+  position: fixed;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  min-width: 150px;
+  padding: 4px 0;
+}
+
+.context-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+.context-menu-item:hover {
+  background-color: #333;
+}
+
+.context-menu-item.delete {
+  color: #ef5350;
+}
+
+.context-menu-item.delete:hover {
+  background-color: rgba(239, 83, 80, 0.1);
+}
+
+.color-picker-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+}
+
+.color-picker-section label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+}
+
+.color-input {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.color-input::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: #333;
+  margin: 4px 0;
 }
 </style>

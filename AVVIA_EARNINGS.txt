@@ -1,0 +1,52 @@
+========================================
+ISTRUZIONI PER USARE IL PROGRAMMA EARNINGS
+========================================
+
+METODO 1: Script Batch (Windows) - PIÙ SEMPLICE
+------------------------------------------------
+Doppio clic su: run_earnings.bat
+
+Oppure dal terminale:
+  run_earnings.bat 2025-01-15
+
+METODO 2: Script PowerShell
+---------------------------
+Apri PowerShell e esegui:
+  .\run_earnings.ps1 2025-01-15
+
+Oppure modalità interattiva:
+  .\run_earnings.ps1
+
+METODO 3: Manuale (se vuoi più controllo)
+------------------------------------------
+1. Attiva l'ambiente virtuale:
+   venv_earnings\Scripts\activate
+
+2. Esegui il programma:
+   python get_earnings_by_date.py 2025-01-15
+
+3. Disattiva l'ambiente virtuale (quando finisci):
+   deactivate
+
+========================================
+ESEMPI DI USO
+========================================
+
+# Cerca earnings per una data specifica
+run_earnings.bat 2025-01-15
+
+# Modalità interattiva (ti chiederà la data)
+run_earnings.bat
+
+# Formati data supportati:
+#   2025-01-15  (YYYY-MM-DD)
+#   15-01-2025  (DD-MM-YYYY)
+#   15/01/2025  (DD/MM/YYYY)
+#   01/15/2025  (MM/DD/YYYY)
+#   January 15 2025
+
+========================================
+NOTA IMPORTANTE
+========================================
+L'ambiente virtuale è già configurato e pronto all'uso.
+Non serve installare nulla di nuovo!

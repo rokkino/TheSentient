@@ -1,10 +1,14 @@
 [
   {
-    "symbol": "NVDA",
-    "name": "NVIDIA Corporation"
-  },
-  {
     "symbol": "GOOGL",
     "name": "Alphabet Inc."
+  },
+  {
+    "symbol": "BTC-USD",
+    "name": "Bitcoin USD"
+  },
+  {
+    "symbol": "GC=F",
+    "name": "Gold Futures"
   }
 ]

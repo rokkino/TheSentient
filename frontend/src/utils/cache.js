@@ -7,7 +7,7 @@ const CACHE_TTL = {
   chart: 5 * 60 * 1000, // 5 minutes for chart data
   news: 10 * 60 * 1000, // 10 minutes for news
   news_store: 10 * 60 * 1000, // 10 minutes for news store
-  earnings: 30 * 60 * 1000, // 30 minutes for earnings
+  earnings: 60 * 60 * 1000, // 60 minutes (1 hour) for earnings - they don't change frequently
 }
 
 /**

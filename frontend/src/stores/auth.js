@@ -21,14 +21,14 @@ export const useAuthStore = defineStore('auth', {
         this.token = response.data.access_token
         this.isAuthenticated = true
         localStorage.setItem('token', this.token)
-        
+
         // Get user info
         await this.fetchUser()
         return { success: true }
       } catch (error) {
-        return { 
-          success: false, 
-          error: error.response?.data?.detail || 'Login failed' 
+        return {
+          success: false,
+          error: error.response?.data?.detail || 'Login failed'
         }
       }
     },
@@ -42,16 +42,16 @@ export const useAuthStore = defineStore('auth', {
         if (loginResult.success) {
           return { success: true }
         } else {
-          return { 
-            success: false, 
-            error: loginResult.error || 'Registration successful but login failed. Please try logging in manually.' 
+          return {
+            success: false,
+            error: loginResult.error || 'Registration successful but login failed. Please try logging in manually.'
           }
         }
       } catch (error) {
         console.error('Registration error:', error)
         const errorMessage = error.response?.data?.detail || error.message || 'Registration failed'
-        return { 
-          success: false, 
+        return {
+          success: false,
           error: errorMessage
         }
       }
@@ -68,6 +68,9 @@ export const useAuthStore = defineStore('auth', {
         this.isAuthenticated = false
         localStorage.removeItem('token')
         localStorage.removeItem('user')
+        if (window.location.pathname !== '/') {
+          window.location.href = '/'
+        }
       }
     },
 
@@ -94,9 +97,9 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('user', JSON.stringify(this.user))
         return { success: true }
       } catch (error) {
-        return { 
-          success: false, 
-          error: error.response?.data?.detail || 'Failed to update profile' 
+        return {
+          success: false,
+          error: error.response?.data?.detail || 'Failed to update profile'
         }
       }
     },

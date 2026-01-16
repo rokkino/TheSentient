@@ -346,3 +346,172 @@ class MarketDataService:
         rsi = 100 - (100 / (1 + rs))
         return rsi
 
+    def _calculate_macd(self, prices: pd.Series, fast: int = 12, slow: int = 26, signal: int = 9) -> pd.DataFrame:
+        """Calculate MACD indicator"""
+        exp1 = prices.ewm(span=fast, adjust=False).mean()
+        exp2 = prices.ewm(span=slow, adjust=False).mean()
+        macd = exp1 - exp2
+        signal_line = macd.ewm(span=signal, adjust=False).mean()
+        histogram = macd - signal_line
+        return pd.DataFrame({'macd': macd, 'signal': signal_line, 'histogram': histogram})
+
+    def _calculate_stochastic(self, high: pd.Series, low: pd.Series, close: pd.Series, k_period: int = 14, d_period: int = 3, slowing: int = 3) -> pd.DataFrame:
+        """Calculate Stochastic Oscillator"""
+        lowest_low = low.rolling(window=k_period).min()
+        highest_high = high.rolling(window=k_period).max()
+        
+        k = 100 * ((close - lowest_low) / (highest_high - lowest_low))
+        
+        if slowing > 1:
+            k = k.rolling(window=slowing).mean()
+            
+        d = k.rolling(window=d_period).mean()
+        
+        return pd.DataFrame({'k': k, 'd': d})
+
+    async def calculate_indicator(self, ticker: str, timeframe: str, indicator_configs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Calculate technical indicators based on configuration list"""
+        loop = asyncio.get_event_loop()
+        
+        # Ensure input is a list
+        if isinstance(indicator_configs, dict):
+            indicator_configs = [indicator_configs]
+        
+        def calculate():
+            params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
+            tk = yf.Ticker(ticker)
+            data = tk.history(**params)
+            
+            if data.empty:
+                raise ValueError(f"No data available for {ticker}")
+            
+            # Clean data
+            for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
+                if col in data.columns:
+                    data[col] = pd.to_numeric(data[col], errors='coerce')
+            data = data.dropna()
+            
+            results = []
+            
+            for config in indicator_configs:
+                if not isinstance(config, dict):
+                    print(f"Skipping invalid config item: {config} (type: {type(config)})")
+                    continue
+                    
+                indicator_type = config.get("indicator", "").upper()
+                ind_params = config.get("params", {})
+                result_data = []
+                
+                try:
+                    if indicator_type == "SMA":
+                        period = int(ind_params.get("period", 20))
+                        sma = data['Close'].rolling(window=period).mean()
+                        
+                        for idx, val in sma.items():
+                            if not pd.isna(val):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "value": float(val)
+                                })
+                                
+                    elif indicator_type == "EMA":
+                        period = int(ind_params.get("period", 20))
+                        ema = data['Close'].ewm(span=period, adjust=False).mean()
+                        
+                        for idx, val in ema.items():
+                            if not pd.isna(val):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "value": float(val)
+                                })
+                                
+                    elif indicator_type == "RSI":
+                        period = int(ind_params.get("period", 14))
+                        rsi = self._calculate_rsi(data['Close'], period)
+                        
+                        for idx, val in rsi.items():
+                            if not pd.isna(val):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "value": float(val)
+                                })
+                                
+                    elif indicator_type == "BB":
+                        period = int(ind_params.get("period", 20))
+                        std_dev = float(ind_params.get("std_dev", 2))
+                        
+                        sma = data['Close'].rolling(window=period).mean()
+                        std = data['Close'].rolling(window=period).std()
+                        
+                        upper = sma + (std * std_dev)
+                        lower = sma - (std * std_dev)
+                        
+                        for idx in data.index:
+                            if idx in upper.index and not pd.isna(upper[idx]):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "upper": float(upper[idx]),
+                                    "lower": float(lower[idx]),
+                                    "basis": float(sma[idx])
+                                })
+
+                    elif indicator_type == "MACD":
+                        fast = int(ind_params.get("fast_period", 12))
+                        slow = int(ind_params.get("slow_period", 26))
+                        signal = int(ind_params.get("signal_period", 9))
+                        
+                        macd_data = self._calculate_macd(data['Close'], fast, slow, signal)
+                        
+                        for idx in data.index:
+                            if idx in macd_data.index and not pd.isna(macd_data.loc[idx, 'macd']):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "macd": float(macd_data.loc[idx, 'macd']),
+                                    "signal": float(macd_data.loc[idx, 'signal']),
+                                    "histogram": float(macd_data.loc[idx, 'histogram'])
+                                })
+
+                    elif indicator_type == "VOL":
+                        for idx in data.index:
+                            timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                            result_data.append({
+                                "time": timestamp,
+                                "value": float(data.loc[idx, 'Volume']),
+                                "color": "#26a69a" if data.loc[idx, 'Close'] >= data.loc[idx, 'Open'] else "#ef5350"
+                            })
+
+                    elif indicator_type == "STOCH":
+                        k_period = int(ind_params.get("k_period", 14))
+                        d_period = int(ind_params.get("d_period", 3))
+                        slowing = int(ind_params.get("slowing", 3))
+                        
+                        stoch_data = self._calculate_stochastic(data['High'], data['Low'], data['Close'], k_period, d_period, slowing)
+                        
+                        for idx in data.index:
+                            if idx in stoch_data.index and not pd.isna(stoch_data.loc[idx, 'k']):
+                                timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+                                result_data.append({
+                                    "time": timestamp,
+                                    "k": float(stoch_data.loc[idx, 'k']),
+                                    "d": float(stoch_data.loc[idx, 'd'])
+                                })
+                    
+                    results.append({
+                        "indicator": indicator_type,
+                        "data": result_data,
+                        "config": config
+                    })
+                except Exception as e:
+                    print(f"Error calculating {indicator_type}: {e}")
+                    # Continue to next indicator even if one fails
+                    continue
+
+            return results
+
+        return await loop.run_in_executor(None, calculate)
+

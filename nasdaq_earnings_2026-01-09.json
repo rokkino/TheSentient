@@ -1,0 +1,57 @@
+{
+  "data": {
+    "asOf": "Fri, Jan 9, 2026",
+    "headers": {
+      "time": "Time",
+      "symbol": "Symbol",
+      "name": "Company Name",
+      "marketCap": "Market Cap",
+      "fiscalQuarterEnding": "Fiscal Quarter Ending",
+      "epsForecast": "Consensus EPS* Forecast",
+      "noOfEsts": "# of Ests",
+      "lastYearRptDt": "Last Year's Report Date",
+      "lastYearEPS": "Last year's EPS*"
+    },
+    "rows": [
+      {
+        "lastYearRptDt": "1/10/2025",
+        "lastYearEPS": "($0.09)",
+        "time": "time-not-supplied",
+        "symbol": "ANIX",
+        "name": "Anixa Biosciences, Inc.",
+        "marketCap": "$112,575,849",
+        "fiscalQuarterEnding": "Oct/2025",
+        "epsForecast": "($0.09)",
+        "noOfEsts": "1"
+      },
+      {
+        "lastYearRptDt": "N/A",
+        "lastYearEPS": "($0.08)",
+        "time": "time-not-supplied",
+        "symbol": "LEDS",
+        "name": "SemiLEDS Corporation",
+        "marketCap": "$16,781,352",
+        "fiscalQuarterEnding": "Nov/2025",
+        "epsForecast": "",
+        "noOfEsts": "1"
+      },
+      {
+        "lastYearRptDt": "1/10/2025",
+        "lastYearEPS": "($0.16)",
+        "time": "time-not-supplied",
+        "symbol": "LEXX",
+        "name": "Lexaria Bioscience Corp.",
+        "marketCap": "$15,446,963",
+        "fiscalQuarterEnding": "Nov/2025",
+        "epsForecast": "($0.13)",
+        "noOfEsts": "1"
+      }
+    ]
+  },
+  "message": null,
+  "status": {
+    "rCode": 200,
+    "bCodeMessage": null,
+    "developerMessage": null
+  }
+}

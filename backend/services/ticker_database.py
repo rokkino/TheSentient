@@ -81,9 +81,29 @@ POPULAR_TICKERS = {
     '^GSPC': {'name': 'S&P 500', 'type': 'INDEX', 'exchange': 'INDEX'},
     '^DJI': {'name': 'Dow Jones Industrial Average', 'type': 'INDEX', 'exchange': 'INDEX'},
     '^IXIC': {'name': 'NASDAQ Composite', 'type': 'INDEX', 'exchange': 'INDEX'},
+    
+    # Cryptocurrencies
+    'BTC-USD': {'name': 'Bitcoin USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'ETH-USD': {'name': 'Ethereum USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'SOL-USD': {'name': 'Solana USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'BNB-USD': {'name': 'Binance Coin USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'XRP-USD': {'name': 'XRP USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'ADA-USD': {'name': 'Cardano USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'DOGE-USD': {'name': 'Dogecoin USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+    'AVAX-USD': {'name': 'Avalanche USD', 'type': 'CRYPTOCURRENCY', 'exchange': 'CCC'},
+
+    # Futures
+    'ES=F': {'name': 'S&P 500 Futures', 'type': 'FUTURE', 'exchange': 'CME'},
+    'NQ=F': {'name': 'Nasdaq 100 Futures', 'type': 'FUTURE', 'exchange': 'CME'},
+    'YM=F': {'name': 'Dow Jones Futures', 'type': 'FUTURE', 'exchange': 'CBOT'},
+    'RTY=F': {'name': 'Russell 2000 Futures', 'type': 'FUTURE', 'exchange': 'CME'},
     'GC=F': {'name': 'Gold Futures', 'type': 'FUTURE', 'exchange': 'CME'},
     'CL=F': {'name': 'Crude Oil Futures', 'type': 'FUTURE', 'exchange': 'NYMEX'},
     'SI=F': {'name': 'Silver Futures', 'type': 'FUTURE', 'exchange': 'CME'},
+    'NG=F': {'name': 'Natural Gas Futures', 'type': 'FUTURE', 'exchange': 'NYMEX'},
+    'HG=F': {'name': 'Copper Futures', 'type': 'FUTURE', 'exchange': 'COMEX'},
+    'ZB=F': {'name': 'U.S. Treasury Bond Futures', 'type': 'FUTURE', 'exchange': 'CBOT'},
+    'ZN=F': {'name': '10-Year T-Note Futures', 'type': 'FUTURE', 'exchange': 'CBOT'},
 }
 
 def search_local(query: str) -> List[Dict[str, Any]]:

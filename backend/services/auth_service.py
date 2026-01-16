@@ -2,6 +2,7 @@
 Authentication Service - Handles user authentication and authorization
 """
 from datetime import datetime, timedelta
+import os
 from typing import Optional
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -11,7 +12,10 @@ import secrets
 import bcrypt
 
 # JWT Configuration
-SECRET_KEY = secrets.token_urlsafe(32)  # Generate a secure random key
+# JWT Configuration
+# Use a persistent key to avoid invalidating tokens on restart
+# In production, this should be loaded from environment variables
+SECRET_KEY = os.getenv("JWT_SECRET_KEY", "development_secret_key_change_in_production_892374")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 

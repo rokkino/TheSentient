@@ -4,6 +4,8 @@ Gemini Service - Handles Google Gemini API calls for earnings analysis
 import os
 from typing import Dict, Any, List, Optional
 import json
+import asyncio
+from services.web_search_service import web_search_service
 
 try:
     import google.generativeai as genai
@@ -14,11 +16,11 @@ except ImportError:
 
 class GeminiService:
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.getenv('GOOGLE_GEMINI_API_KEY')
+        self.api_key = api_key or os.getenv('GOOGLE_GEMINI_API_KEY') or os.getenv('GOOGLE_API_KEY')
         if GEMINI_AVAILABLE and self.api_key:
             try:
                 genai.configure(api_key=self.api_key)
-                self.model = genai.GenerativeModel('gemini-3-flash-preview')
+                self.model = genai.GenerativeModel('gemini-1.5-flash')
                 self.available = True
             except Exception as e:
                 print(f"[GEMINI] Error initializing Gemini: {e}")
@@ -29,6 +31,8 @@ class GeminiService:
             self.model = None
             if not self.api_key:
                 print("[GEMINI] Warning: GOOGLE_GEMINI_API_KEY not set")
+        
+        self.user_memories: Dict[int, List[Dict[str, str]]] = {}
     
     def _safe_get_text(self, response) -> str:
         """Safely extract text from Gemini response"""
@@ -58,7 +62,11 @@ class GeminiService:
                                      earnings_date: str,
                                      eps_history: List[Dict[str, Any]],
                                      reliability: Dict[str, Any],
-                                     available_cash: float) -> Dict[str, Any]:
+                                     available_cash: float,
+                                     current_price: float = 0.0,
+                                     current_time: str = "",
+                                     short_interest: str = "N/A",
+                                     iv_rank: str = "N/A") -> Dict[str, Any]:
         """
         Analyze earnings safety using Gemini AI
         Returns safety score (0-100) and allocation recommendation
@@ -94,10 +102,32 @@ class GeminiService:
             miss_count = reliability.get('miss_count', 0)
             total_quarters = reliability.get('quarters_with_data', 0)
             
-            prompt = f"""You are a financial analyst evaluating earnings trading opportunities.
+            # Read system prompt file
+            system_prompt = ""
+            try:
+                prompt_path = os.path.join("backend", "memory", "bot", "earning_report_genius", "system_prompt_gemini.txt")
+                if os.path.exists(prompt_path):
+                    with open(prompt_path, "r", encoding="utf-8") as f:
+                        system_prompt = f.read()
+                else:
+                    # Fallback to strategy.md if system prompt doesn't exist
+                    strategy_path = os.path.join("backend", "memory", "bot", "earning_report_genius", "strategy.md")
+                    if os.path.exists(strategy_path):
+                        with open(strategy_path, "r", encoding="utf-8") as f:
+                            system_prompt = f.read()
+            except Exception as e:
+                print(f"[GEMINI] Warning: Could not read system prompt file: {e}")
 
-Company: {company} ({symbol})
+            prompt = f"""{system_prompt}
+
+*** DATI ATTUALI DAL MERCATO ***
+Ticker: {symbol}
+Company: {company}
+Prezzo Attuale: ${current_price}
+Orario attuale: {current_time}
 Earnings Date: {earnings_date}
+Short Interest: {short_interest}
+IV Rank: {iv_rank}
 Available Cash: ${available_cash:,.2f}
 
 EPS History (last 2 years):
@@ -108,19 +138,7 @@ Reliability Metrics:
 - Beat Count: {beat_count}/{total_quarters} quarters
 - Miss Count: {miss_count}/{total_quarters} quarters
 
-Based on this information, provide:
-1. A safety score from 0-100 (where 100 = very safe, 0 = very risky)
-2. Recommended allocation percentage (0-1.0) of available cash to invest in this stock
-3. Recommendation: 'buy', 'avoid', or 'sell'
-4. Brief reasoning (max 100 words)
-
-Respond ONLY with a JSON object in this exact format:
-{{
-    "safety_score": <number 0-100>,
-    "allocation_percentage": <number 0-1.0>,
-    "recommendation": "<buy|avoid|sell>",
-    "reasoning": "<brief explanation>"
-}}
+ANALIZZA E DAMMI IL JSON.
 """
             
             # Call Gemini API
@@ -132,7 +150,6 @@ Respond ONLY with a JSON object in this exact format:
                 return self._fallback_analysis(reliability)
             
             # Try to extract JSON from response
-            # Sometimes Gemini wraps JSON in markdown code blocks
             if '```json' in response_text:
                 response_text = response_text.split('```json')[1].split('```')[0].strip()
             elif '```' in response_text:
@@ -142,20 +159,23 @@ Respond ONLY with a JSON object in this exact format:
                 result = json.loads(response_text)
                 
                 # Validate and sanitize results
-                safety_score = max(0, min(100, float(result.get('safety_score', 50))))
-                allocation = max(0, min(1.0, float(result.get('allocation_percentage', 0))))
-                recommendation = result.get('recommendation', 'avoid').lower()
-                reasoning = result.get('reasoning', 'No reasoning provided')
+                decision = result.get('decision', 'NO_GO')
+                confidence = max(0, min(100, float(result.get('confidence_score', 0))))
                 
-                # Ensure recommendation is valid
-                if recommendation not in ['buy', 'avoid', 'sell']:
-                    recommendation = 'avoid'
-                
+                # Map to old format for compatibility if needed, but prefer new format
                 return {
-                    'safety_score': round(safety_score, 2),
-                    'allocation_percentage': round(allocation, 4),
-                    'recommendation': recommendation,
-                    'reasoning': reasoning,
+                    'decision': decision,
+                    'confidence_score': confidence,
+                    'reasoning_summary': result.get('reasoning_summary', 'No reasoning provided'),
+                    'entry_zone': result.get('entry_zone', {}),
+                    'stop_loss_pre_earning': result.get('stop_loss_pre_earning'),
+                    'warning_flag': result.get('warning_flag', 'Nessuno'),
+                    
+                    # Backwards compatibility fields for bot_service
+                    'safety_score': confidence,
+                    'allocation_percentage': 0.1 if decision == 'BUY' else 0.0, # Default 10% if BUY, else 0
+                    'recommendation': 'buy' if decision == 'BUY' else 'avoid',
+                    'reasoning': result.get('reasoning_summary', ''),
                     'source': 'gemini'
                 }
                 
@@ -186,7 +206,55 @@ Respond ONLY with a JSON object in this exact format:
             'source': 'fallback'
         }
 
-    async def chat_about_bot(self, context: str, history: List[Dict[str, str]], prompt: str) -> str:
+    def generate_response(self, prompt: str, context: str = "", user_id: Optional[int] = None) -> str:
+        """Generate response for general chat with per-user memory"""
+        if not self.available or not self.model:
+            return "Gemini AI is not available. Please check your API key."
+
+        try:
+            # Manage history
+            history = []
+            if user_id is not None:
+                if user_id not in self.user_memories:
+                    self.user_memories[user_id] = []
+                history = self.user_memories[user_id]
+
+            # Construct prompt with history
+            full_prompt = ""
+            if context:
+                full_prompt += f"Context: {context}\n\n"
+            
+            # Add history to prompt (since Gemini API handles history differently, we'll just append it to prompt for simplicity here, 
+            # or we could use start_chat if we wanted to maintain session object, but stateless is easier for this service pattern)
+            for msg in history:
+                role = "User" if msg['role'] == 'user' else "Assistant"
+                full_prompt += f"{role}: {msg['content']}\n"
+            
+            full_prompt += f"User: {prompt}\nAssistant:"
+
+            # Call Gemini
+            response = self.model.generate_content(full_prompt)
+            response_text = self._safe_get_text(response)
+            
+            if not response_text:
+                return "I apologize, but I couldn't generate a response."
+
+            # Update memory
+            if user_id is not None:
+                self.user_memories[user_id].append({"role": "user", "content": prompt})
+                self.user_memories[user_id].append({"role": "assistant", "content": response_text})
+                
+                # Keep memory size manageable (last 20 messages)
+                if len(self.user_memories[user_id]) > 20:
+                    self.user_memories[user_id] = self.user_memories[user_id][-20:]
+            
+            return response_text
+
+        except Exception as e:
+            print(f"[GEMINI] Error generating response: {e}")
+            return f"Error: {str(e)}"
+
+    async def chat_about_bot(self, context: str, history: List[Dict[str, str]], prompt: str, search_web: bool = True) -> str:
         """Chat about bot activity with history"""
         if not self.available or not self.model:
             return "Gemini AI is not available."
@@ -198,11 +266,23 @@ Respond ONLY with a JSON object in this exact format:
                 role = "User" if msg.get('role') == 'user' else "Assistant"
                 history_str += f"{role}: {msg.get('content')}\n"
             
+            # Perform web search if enabled
+            search_context = ""
+            if search_web:
+                try:
+                    print(f"[GEMINI] Performing web search for: {prompt}")
+                    # Run search in executor to avoid blocking
+                    loop = asyncio.get_event_loop()
+                    search_results = await loop.run_in_executor(None, web_search_service.search, prompt)
+                    search_context = f"\n\nWEB SEARCH RESULTS:\n{search_results}"
+                except Exception as e:
+                    print(f"[GEMINI] Search failed: {e}")
+
             full_prompt = f"""You are a helpful assistant for a trading bot.
-Your goal is to explain the bot's activity and answer user questions based on the provided data.
+Your goal is to explain the bot's activity and answer user questions based on the provided data and web search results.
 
 DATA SOURCE:
-{context}
+{context}{search_context}
 
 CONVERSATION HISTORY:
 {history_str}
@@ -246,3 +326,81 @@ Keep it under 200 words. Be professional but conversational.
         except Exception as e:
             print(f"[GEMINI] Error generating explanation: {e}")
             return f"I tried to analyze the bot's activity but encountered an error: {str(e)}"
+
+    async def generate_drawing(self, prompt: str, color: str, chart_data: List[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Generate a drawing based on prompt and chart data.
+        Returns a drawing object compatible with frontend.
+        """
+        if not self.available or not self.model:
+            raise Exception("Gemini AI is not available")
+
+        try:
+            # Prepare context from chart data
+            context = ""
+            if chart_data:
+                # Summarize chart data to keep prompt size manageable
+                # We'll take a sample of points to give the AI an idea of the trend and price range
+                step = max(1, len(chart_data) // 50)  # Limit to ~50 points
+                sampled_data = chart_data[::step]
+                
+                context = "Chart Data (Time, Open, High, Low, Close):\n"
+                for d in sampled_data:
+                    # Convert timestamp to readable date if possible, or keep as is
+                    # Assuming time is unix timestamp in seconds or milliseconds
+                    context += f"T:{d.get('time')} O:{d.get('open')} H:{d.get('high')} L:{d.get('low')} C:{d.get('close')}\n"
+                
+                # Add min/max context
+                all_highs = [d.get('high') for d in chart_data if d.get('high') is not None]
+                all_lows = [d.get('low') for d in chart_data if d.get('low') is not None]
+                if all_highs and all_lows:
+                    context += f"\nPrice Range: {min(all_lows)} to {max(all_highs)}\n"
+                    context += f"Time Range: {chart_data[0].get('time')} to {chart_data[-1].get('time')}\n"
+
+            system_prompt = f"""You are a technical analysis assistant. 
+The user wants you to draw on a financial chart based on their request.
+You must return a JSON object representing the drawing.
+
+Available drawing types and their required fields:
+1. "line": {{ "type": "line", "p1": {{ "time": <timestamp>, "price": <price> }}, "p2": {{ "time": <timestamp>, "price": <price> }}, "color": "{color}" }}
+2. "square": {{ "type": "square", "p1": {{ "time": <timestamp>, "price": <price> }}, "p2": {{ "time": <timestamp>, "price": <price> }}, "color": "{color}" }}
+3. "circle": {{ "type": "circle", "p1": {{ "time": <timestamp>, "price": <price> }}, "p2": {{ "time": <timestamp>, "price": <price> }}, "color": "{color}" }}
+4. "arrow": {{ "type": "arrow", "p1": {{ "time": <timestamp>, "price": <price> }}, "p2": {{ "time": <timestamp>, "price": <price> }}, "color": "{color}" }}
+5. "hline": {{ "type": "hline", "price": <price>, "color": "{color}" }} (Horizontal Line)
+6. "vline": {{ "type": "vline", "time": <timestamp>, "color": "{color}" }} (Vertical Line)
+7. "text": {{ "type": "text", "p1": {{ "time": <timestamp>, "price": <price> }}, "text": "Your text here", "color": "{color}" }}
+
+Rules:
+- Use the provided Chart Data to determine appropriate coordinates (time and price).
+- Ensure the coordinates are within the Price Range and Time Range provided.
+- For "support" or "resistance", use "hline" or "line".
+- For "trendline", use "line".
+- For "box" or "zone", use "square".
+- For specific patterns (like "bull flag"), try to draw the main trendlines.
+- Return ONLY the JSON object. Do not include markdown formatting or explanations.
+
+User Request: {prompt}
+
+{context}
+"""
+            response = self.model.generate_content(system_prompt)
+            text = self._safe_get_text(response)
+            
+            # Clean up response
+            if '```json' in text:
+                text = text.split('```json')[1].split('```')[0].strip()
+            elif '```' in text:
+                text = text.split('```')[1].split('```')[0].strip()
+            
+            drawing_data = json.loads(text)
+            
+            # Add ID if missing
+            if 'id' not in drawing_data:
+                import uuid
+                drawing_data['id'] = str(uuid.uuid4())[:8]
+                
+            return drawing_data
+
+        except Exception as e:
+            print(f"[GEMINI] Error generating drawing: {e}")
+            raise e

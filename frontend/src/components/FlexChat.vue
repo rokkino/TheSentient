@@ -6,7 +6,7 @@
           <h2>{{ chatTitle }}</h2>
           <div class="chat-info">
             <span class="online-indicator"></span>
-            <span class="online-count">{{ onlineUsersCount }} online</span>
+            <span class="online-count">{{ visibleOnlineCount }} online</span>
           </div>
         </div>
         <button class="settings-btn" @click="showSettings = true" title="Chat Settings">
@@ -29,7 +29,13 @@
         @contextmenu.prevent="showContextMenu($event, message)"
       >
         <div class="message-avatar">
-          <span>{{ getInitials(message.username) }}</span>
+          <img 
+            v-if="message.profile_picture_url" 
+            :src="getProfilePictureUrl(message.profile_picture_url, message.user_id)" 
+            :alt="message.username"
+            class="avatar-image"
+          />
+          <span v-else>{{ getInitials(message.username) }}</span>
         </div>
         <div class="message-content-wrapper">
           <div class="message-header">
@@ -37,7 +43,7 @@
             <span class="message-time">{{ formatTime(message.timestamp) }}</span>
           </div>
           <div class="message-bubble">
-            <p v-if="message.type === 'text'">{{ message.message }}</p>
+            <p v-if="message.type === 'text'" style="white-space: pre-wrap;">{{ message.message }}</p>
             <img
               v-else-if="message.type === 'image' && message.image_data"
               :src="`data:image/jpeg;base64,${message.image_data}`"
@@ -51,9 +57,17 @@
     </div>
 
     <div class="chat-input-container">
-      <div class="input-wrapper">
+      <div class="input-wrapper" :class="{ 'search-mode': isSearchMode }">
         <div class="input-actions">
-          <label class="action-btn upload-btn" title="Upload Image">
+          <button 
+            class="action-btn search-btn" 
+            :class="{ active: isSearchMode }"
+            @click="toggleSearchMode"
+            title="Toggle Web Search"
+          >
+            <span class="icon">🔍</span>
+          </button>
+          <label class="action-btn upload-btn" title="Upload Image" v-if="!isSearchMode">
             <input
               type="file"
               accept="image/*"
@@ -62,7 +76,7 @@
             />
             <span class="icon">📷</span>
           </label>
-          <label class="action-btn upload-btn" title="Upload Document">
+          <label class="action-btn upload-btn" title="Upload Document" v-if="!isSearchMode">
             <input
               type="file"
               accept=".pdf,.doc,.docx,.txt"
@@ -76,7 +90,7 @@
         <input
           v-model="newMessage"
           @keydown.enter.prevent="sendMessage"
-          placeholder="Type a message..."
+          :placeholder="isSearchMode ? 'Search the web...' : 'Type a message...'"
           class="chat-input"
           :disabled="sending"
         />
@@ -85,8 +99,9 @@
           @click="sendMessage"
           :disabled="!canSend || sending"
           class="send-btn"
+          :class="{ 'search-send-btn': isSearchMode }"
         >
-          {{ sending ? '...' : 'Send' }}
+          {{ sending ? '...' : (isSearchMode ? 'Search' : 'Send') }}
         </button>
       </div>
       
@@ -123,7 +138,7 @@
             <select v-model="config.recipientId" class="form-select" @change="updateConfig">
               <option :value="null">Everyone (Public)</option>
               <option 
-                v-for="user in availableUsers" 
+                v-for="user in visibleOnlineUsers" 
                 :key="user.id" 
                 :value="user.id"
                 v-show="user.id !== currentUserId"
@@ -133,13 +148,24 @@
             </select>
           </div>
           
-          <div class="setting-group checkbox-group">
-            <label class="checkbox-label">
-              <input type="checkbox" v-model="config.inviteLlama" @change="updateConfig">
-              Invite Llama AI
-            </label>
-            <p class="setting-hint">If enabled, Llama will read messages and respond when relevant.</p>
-          </div>
+            <div class="setting-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" v-model="config.inviteLlama" @change="updateConfig">
+                Invite Llama AI
+              </label>
+              <label class="checkbox-label" style="margin-top: 8px;">
+                <input type="checkbox" v-model="config.inviteGemini" @change="updateConfig">
+                Invite Gemini AI
+              </label>
+              <p class="setting-hint">If enabled, AI will read messages and respond when relevant.</p>
+            </div>
+            
+            <div class="setting-group danger-zone">
+              <label>Danger Zone</label>
+              <button class="clear-history-btn" @click="clearHistory">
+                🗑️ Clear Chat History
+              </button>
+            </div>
         </div>
       </div>
     </div>
@@ -163,6 +189,8 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import api from '../services/api'
 import { useAuthStore } from '../stores/auth'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
 const props = defineProps({
   tabId: {
     type: Number,
@@ -172,7 +200,8 @@ const props = defineProps({
     type: Object,
     default: () => ({
       recipientId: null,
-      inviteLlama: false
+      inviteLlama: false,
+      inviteGemini: false
     })
   }
 })
@@ -190,16 +219,6 @@ const loading = ref(true)
 const messagesContainer = ref(null)
 const imageModalOpen = ref(false)
 const modalImageData = ref(null)
-const onlineUsersCount = ref(0)
-const onlineUsersList = ref([])
-const ws = ref(null)
-const showSettings = ref(false)
-
-const config = ref({
-  recipientId: props.initialConfig?.recipientId || null,
-  inviteLlama: props.initialConfig?.inviteLlama || false
-})
-
 const contextMenu = ref({
   visible: false,
   x: 0,
@@ -207,10 +226,29 @@ const contextMenu = ref({
   messageId: null
 })
 
+const onlineUsersList = ref([])
+const onlineUsersCount = ref(0)
+const ws = ref(null)
+const showSettings = ref(false)
+const config = ref({ ...props.initialConfig })
+const isSearchMode = ref(false)
+
 const currentUserId = computed(() => authStore.user?.id)
 
+const visibleOnlineUsers = computed(() => {
+  return onlineUsersList.value.filter(user => {
+    if (user.id === -1 && !config.value.inviteLlama) return false // Llama AI
+    if (user.id === -2 && !config.value.inviteGemini) return false // Gemini AI
+    return true
+  })
+})
+
+const visibleOnlineCount = computed(() => {
+  return visibleOnlineUsers.value.length
+})
+
 const availableUsers = computed(() => {
-  return onlineUsersList.value
+  return visibleOnlineUsers.value
 })
 
 const chatTitle = computed(() => {
@@ -228,6 +266,27 @@ const canSend = computed(() => {
 const getInitials = (username) => {
   if (!username) return 'GU'
   return username.substring(0, 2).toUpperCase()
+}
+
+const getProfilePictureUrl = (url, userId) => {
+  // Custom icons for AI bots
+  if (userId === -1) { // Llama
+    return 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Meta_Llama_logo.svg'
+  }
+  if (userId === -2) { // Gemini
+    return 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg'
+  }
+
+  if (!url) return null
+  // If it's already a full URL, return as is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+  // If it's a relative URL, prepend the API base URL
+  if (url.startsWith('/')) {
+    return `${API_URL}${url}`
+  }
+  return url
 }
 
 const formatTime = (timestamp) => {
@@ -266,6 +325,13 @@ const handleImageSelect = (event) => {
   reader.readAsDataURL(file)
 }
 
+const toggleSearchMode = () => {
+  isSearchMode.value = !isSearchMode.value
+  if (isSearchMode.value) {
+    clearAttachments()
+  }
+}
+
 const handleDocumentSelect = (event) => {
   const file = event.target.files[0]
   if (!file) return
@@ -290,8 +356,38 @@ const clearAttachments = () => {
 }
 
 const updateConfig = () => {
+  // Check for changes in AI invitation status
+  if (config.value.inviteLlama !== props.initialConfig.inviteLlama) {
+    const action = config.value.inviteLlama ? 'entrato' : 'uscito'
+    messages.value.push({
+      id: Date.now(),
+      user_id: -1, // Llama ID
+      username: 'Llama AI',
+      message: `Llama è ${action}`,
+      type: 'text',
+      timestamp: new Date().toISOString()
+    })
+  }
+
+  if (config.value.inviteGemini !== props.initialConfig.inviteGemini) {
+    const action = config.value.inviteGemini ? 'entrato' : 'uscito'
+    messages.value.push({
+      id: Date.now() + 1,
+      user_id: -2, // Gemini ID
+      username: 'Gemini AI',
+      message: `Gemini è ${action}`,
+      type: 'text',
+      timestamp: new Date().toISOString()
+    })
+  }
+
   emit('update-config', config.value)
-  loadMessages() // Reload messages when switching chat context
+  
+  // Only reload messages if switching chat context
+  if (config.value.recipientId !== props.initialConfig.recipientId) {
+    loadMessages()
+  }
+  scrollToBottom()
 }
 
 const sendMessage = async () => {
@@ -310,13 +406,18 @@ const sendMessage = async () => {
       type: selectedImage.value ? 'image' : 'text',
       image_data: selectedImage.value || null,
       recipient_id: config.value.recipientId,
-      invite_llama: config.value.inviteLlama
+      invite_llama: config.value.inviteLlama,
+      invite_gemini: config.value.inviteGemini,
+      is_search: isSearchMode.value
     }
     
     await api.sendChatMessage(messageData)
     
     newMessage.value = ''
     clearAttachments()
+    if (isSearchMode.value) {
+      isSearchMode.value = false // Reset search mode after sending
+    }
     
     // Message will be added via WebSocket
   } catch (error) {
@@ -386,6 +487,11 @@ const connectWebSocket = () => {
       }
     } else if (message.type === 'message_deleted') {
       messages.value = messages.value.filter(m => m.id !== message.message_id)
+    } else if (message.type === 'history_cleared') {
+      // If public chat cleared (recipient_id is null) or private chat cleared (matches current recipient)
+      if (message.recipient_id === config.value.recipientId) {
+        messages.value = []
+      }
     }
   }
   
@@ -436,15 +542,32 @@ const deleteMessage = async (messageId) => {
   }
 }
 
+const clearHistory = async () => {
+  if (!confirm('Are you sure you want to delete ALL messages in this chat? This cannot be undone.')) return
+  
+  try {
+    await api.clearChatHistory(config.value.recipientId)
+    showSettings.value = false
+    // Clearing will be handled by WebSocket event
+  } catch (error) {
+    console.error('Error clearing history:', error)
+    alert('Failed to clear history: ' + (error.response?.data?.detail || error.message))
+  }
+}
+
 watch(messages, () => {
   scrollToBottom()
 }, { deep: true })
 
 // Watch for config changes from parent (if any)
-watch(() => props.initialConfig, (newConfig) => {
+// Watch for config changes from parent (if any)
+watch(() => props.initialConfig, (newConfig, oldConfig) => {
   if (newConfig) {
     config.value = { ...newConfig }
-    loadMessages()
+    // Only reload messages if the recipient (chat room) changed
+    if (newConfig.recipientId !== oldConfig?.recipientId) {
+      loadMessages()
+    }
   }
 }, { deep: true })
 
@@ -604,7 +727,7 @@ onUnmounted(() => {
 .message-avatar {
   width: 42px;
   height: 42px;
-  border-radius: 12px;
+  border-radius: 50%;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   align-items: center;
@@ -614,6 +737,13 @@ onUnmounted(() => {
   font-weight: 700;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensure image stays within rounded corners */
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .message.own-message .message-avatar {
@@ -649,43 +779,52 @@ onUnmounted(() => {
 }
 
 .message-bubble {
-  background: rgba(45, 45, 45, 0.6);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  border-radius: 18px;
   border-top-left-radius: 4px;
-  padding: 12px 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  transition: transform 0.2s;
+  padding: 12px 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s;
+  position: relative;
 }
 
 .message:hover .message-bubble {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .message.own-message .message-bubble {
-  background: linear-gradient(135deg, rgba(66, 153, 225, 0.2) 0%, rgba(49, 130, 206, 0.2) 100%);
-  border-color: rgba(66, 153, 225, 0.3);
-  border-radius: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border: none;
+  border-radius: 18px;
   border-top-right-radius: 4px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.message.own-message:hover .message-bubble {
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
 .message-bubble p {
   margin: 0;
   color: #e2e8f0;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
   word-wrap: break-word;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .message-image {
   max-width: 100%;
   max-height: 300px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   transition: transform 0.2s;
   display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .message-image:hover {
@@ -694,13 +833,127 @@ onUnmounted(() => {
 
 .chat-input-container {
   padding: 20px;
-  background: rgba(30, 30, 30, 0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: transparent;
+  position: relative;
+  z-index: 10;
 }
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 6px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+  background: rgba(40, 40, 40, 0.9);
+}
+
+.input-wrapper.search-mode {
+  border-color: #4299e1;
+  box-shadow: 0 0 15px rgba(66, 153, 225, 0.2);
+}
+
+.chat-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 15px;
+  outline: none;
+}
+
+.chat-input::placeholder {
+  color: #718096;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #a0aec0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-right: 4px;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.action-btn.active {
+  color: #4299e1;
+  background: rgba(66, 153, 225, 0.1);
+}
+
+.send-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+  filter: brightness(1.1);
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.danger-zone {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.clear-history-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #ef4444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.clear-history-btn:hover {
+  background: rgba(220, 38, 38, 0.2);
+  border-color: #ef4444;
+  transform: translateY(-1px);
+}
+
 
 .input-wrapper {
   display: flex;
@@ -720,6 +973,15 @@ onUnmounted(() => {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
 }
 
+.input-wrapper.search-mode {
+  border-color: #9f7aea;
+  box-shadow: 0 0 0 1px rgba(159, 122, 234, 0.3);
+}
+
+.input-wrapper.search-mode:focus-within {
+  box-shadow: 0 0 0 3px rgba(159, 122, 234, 0.2);
+}
+
 .input-actions {
   display: flex;
   align-items: center;
@@ -736,12 +998,19 @@ onUnmounted(() => {
   justify-content: center;
   transition: all 0.2s;
   color: #a0aec0;
+  background: transparent;
+  border: none;
 }
 
 .action-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   transform: scale(1.1);
+}
+
+.action-btn.active {
+  color: #9f7aea;
+  background: rgba(159, 122, 234, 0.1);
 }
 
 .action-btn .icon {
@@ -769,12 +1038,30 @@ onUnmounted(() => {
   border: none;
   border-radius: 20px;
   color: white;
-  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
 }
+
+.send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.send-btn.search-send-btn {
+  background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+}
+
 
 .preview-area {
   display: flex;

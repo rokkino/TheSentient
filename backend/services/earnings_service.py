@@ -63,53 +63,81 @@ class EarningsService:
         self.cache_ttl = 86400  # 24 hours cache (in seconds) - refresh every 24h
         self.calendar_cache_ttl = 86400  # 24 hours for calendar cache (6 months data)
         
-        # Usa directory cache nella root del backend se non specificata
+        # Use memory directory in backend root
         if cache_dir is None:
-            # Cerca di trovare la directory backend
+            # Try to find the backend directory
             current_dir = os.path.dirname(os.path.abspath(__file__))
-            if os.path.basename(current_dir) == 'services':
-                cache_dir = os.path.join(os.path.dirname(current_dir), 'cache')
-            else:
-                cache_dir = os.path.join(current_dir, 'cache')
+            backend_dir = os.path.dirname(current_dir)
+            cache_dir = os.path.join(backend_dir, 'memory', 'earnings')
         
         self.cache_dir = cache_dir
-        self.cache_file = os.path.join(cache_dir, "earnings_cache.json")
+        # self.cache_file is no longer used for monolithic cache
         
-        # Crea la directory cache se non esiste
+        # Create cache directory if it doesn't exist
         if not os.path.exists(cache_dir):
             try:
                 os.makedirs(cache_dir, exist_ok=True)
-                print(f"[EARNINGS] Created cache directory: {cache_dir}")
+                print(f"[EARNINGS] Created memory directory: {cache_dir}")
             except Exception as e:
-                print(f"[EARNINGS] Warning: Could not create cache directory {cache_dir}: {e}")
+                print(f"[EARNINGS] Warning: Could not create memory directory {cache_dir}: {e}")
         
-        # Carica cache esistente
+        # Load existing cache
         self._load_cache()
     
     def _load_cache(self):
-        """Carica il cache da file"""
+        """Load cache from individual JSON files in memory directory"""
         try:
-            if os.path.exists(self.cache_file):
-                with open(self.cache_file, 'r', encoding='utf-8') as f:
-                    cache_data = json.load(f)
-                    # Verifica che il cache non sia scaduto
-                    current_time = time.time()
-                    for key, value in cache_data.items():
-                        cache_time = value.get('timestamp', 0)
-                        if current_time - cache_time < self.cache_ttl:
-                            self.cache[key] = value
-                    print(f"[EARNINGS] Loaded {len(self.cache)} valid cache entries")
+            if not os.path.exists(self.cache_dir):
+                return
+
+            count = 0
+            # Iterate over all files in the cache directory
+            for filename in os.listdir(self.cache_dir):
+                if filename.endswith('.json'):
+                    file_path = os.path.join(self.cache_dir, filename)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            cache_entry = json.load(f)
+                            
+                            # Extract key from filename (remove .json)
+                            key = filename[:-5]
+                            
+                            # Verify cache is not expired
+                            cache_time = cache_entry.get('timestamp', 0)
+                            current_time = time.time()
+                            
+                            # Check TTL based on key type
+                            ttl = self.calendar_cache_ttl if 'calendar' in key else self.cache_ttl
+                            
+                            if current_time - cache_time < ttl:
+                                self.cache[key] = cache_entry
+                                count += 1
+                            else:
+                                # Optional: Delete expired files to keep directory clean
+                                # os.remove(file_path)
+                                pass
+                    except Exception as e:
+                        print(f"[EARNINGS] Error loading cache file {filename}: {e}")
+            
+            print(f"[EARNINGS] Loaded {count} valid cache entries from {self.cache_dir}")
         except Exception as e:
             print(f"[EARNINGS] Error loading cache: {e}")
             self.cache = {}
     
-    def _save_cache(self):
-        """Salva il cache su file"""
+    def _save_entry(self, key: str, data: Dict[str, Any]):
+        """Save a single cache entry to a JSON file"""
         try:
-            with open(self.cache_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cache, f, indent=2, ensure_ascii=False, default=str)
+            # Sanitize key for filename
+            safe_key = "".join([c for c in key if c.isalpha() or c.isdigit() or c in ('-', '_')]).strip()
+            if not safe_key:
+                safe_key = "unknown_entry"
+                
+            file_path = os.path.join(self.cache_dir, f"{safe_key}.json")
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False, default=str)
         except Exception as e:
-            print(f"[EARNINGS] Error saving cache: {e}")
+            print(f"[EARNINGS] Error saving cache entry {key}: {e}")
     
     def _get_cache_key(self, target_date: date) -> str:
         """Genera una chiave per il cache basata sulla data"""
@@ -141,7 +169,7 @@ class EarningsService:
             'data': earnings,
             'date': target_date.isoformat()
         }
-        self._save_cache()
+        self._save_entry(cache_key, self.cache[cache_key])
         print(f"[EARNINGS] 💾 Saved to cache: {target_date.isoformat()} ({len(earnings)} earnings)")
     
     def _get_nasdaq_earnings_api(self, target_date: date) -> List[Dict[str, Any]]:
@@ -745,7 +773,7 @@ class EarningsService:
             'start_date': start_date.isoformat(),
             'months': months
         }
-        self._save_cache()
+        self._save_entry(cache_key, self.cache[cache_key])
         print(f"[EARNINGS] 💾 Saved to calendar cache: {start_date.isoformat()} ({months} months, {len(earnings)} earnings)")
     
     async def get_earnings_calendar(self, start_date: Optional[str] = None, months: int = 6, offset_months: int = 0) -> List[Dict[str, Any]]:
@@ -773,11 +801,6 @@ class EarningsService:
         if months == 6:
             calendar_end = calendar_start + timedelta(days=180)
         
-        print("=" * 60)
-        print(f"[EARNINGS] STARTING CALENDAR FETCH (Nasdaq API with 24h cache)")
-        print(f"[EARNINGS] Date range: {calendar_start} to {calendar_end} ({months} months, offset: {offset_months})")
-        print("=" * 60)
-        
         # Check calendar cache first (6-month blocks with 24h TTL)
         cached_earnings = self._get_from_calendar_cache(calendar_start, months)
         if cached_earnings is not None:
@@ -785,6 +808,11 @@ class EarningsService:
             filtered = [e for e in cached_earnings if calendar_start <= datetime.fromisoformat(e.get('date', '')).date() <= calendar_end]
             print(f"[EARNINGS] ✅ Returning {len(filtered)} earnings from cache (filtered to range)")
             return filtered
+
+        print("=" * 60)
+        print(f"[EARNINGS] STARTING CALENDAR FETCH (Nasdaq API with 24h cache)")
+        print(f"[EARNINGS] Date range: {calendar_start} to {calendar_end} ({months} months, offset: {offset_months})")
+        print("=" * 60)
         
         earnings_list = []
         start_time = time.time()

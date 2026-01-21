@@ -3,15 +3,18 @@
     <div class="earnings-header">
       <h2>Earnings Calendar</h2>
       <div class="earnings-controls">
-        <button class="ask-ai-btn" @click="askLlama(null)" title="Ask AI General Question">
-            🤖 Ask AI
-        </button>
-        <input 
-            v-model="searchQuery" 
-            type="text" 
-            placeholder="Search symbol..." 
-            class="search-input"
-        />
+        <div class="search-container">
+            <input 
+                v-model="searchQuery" 
+                type="text" 
+                placeholder="Search symbol or ask AI..." 
+                class="search-input"
+                @keyup.enter="handleSearchEnter"
+            />
+            <button class="search-ai-btn" @click="askLlamaGeneral" title="Ask AI">
+                🤖
+            </button>
+        </div>
         <button class="settings-icon-btn" @click="$emit('open-settings')" title="Settings">
             ⚙️
         </button>
@@ -75,6 +78,13 @@
                   🦙
                 </button>
                 <button
+                  class="gemini-btn" 
+                  @click.stop="askGemini(earning)"
+                  title="Ask Gemini"
+                >
+                  ✨
+                </button>
+                <button
                   class="star-btn"
                   :class="{ 'starred': isInWatchlist(earning.symbol) }"
                   @click.stop="addToStockTab(earning)"
@@ -101,7 +111,7 @@
     <div v-if="showLlamaModal" class="modal-overlay" @click="closeLlamaModal">
       <div class="modal-content" @click.stop>
         <div class="modal-header">
-          <h3>{{ selectedEarning ? `Ask Llama about ${selectedEarning.symbol}` : 'Ask Llama AI' }}</h3>
+          <h3>{{ selectedEarning ? `Ask ${selectedProvider === 'gemini' ? 'Gemini' : 'Llama'} about ${selectedEarning.symbol}` : `Ask ${selectedProvider === 'gemini' ? 'Gemini' : 'Llama'} AI` }}</h3>
           <button class="close-btn" @click="closeLlamaModal">×</button>
         </div>
         <div class="modal-body">
@@ -222,6 +232,7 @@ const selectedEarning = ref(null)
 const llamaResponse = ref('')
 const llamaLoading = ref(false)
 const llamaQuestion = ref('')
+const selectedProvider = ref('local') // 'local' (Llama) or 'gemini'
 
 // Chart modal state
 const showChartModal = ref(false)
@@ -667,6 +678,37 @@ onUnmounted(() => {
 
 const askLlama = (earning) => {
   selectedEarning.value = earning
+  selectedProvider.value = 'local'
+  showLlamaModal.value = true
+  llamaResponse.value = ''
+  // If asking about specific earning, clear question. If general (from search bar), use search query
+  if (earning) {
+      llamaQuestion.value = ''
+  } else {
+      llamaQuestion.value = searchQuery.value
+  }
+}
+
+const askLlamaGeneral = () => {
+    askLlama(null)
+}
+
+const handleSearchEnter = () => {
+    // If search query looks like a question or user explicitly wants to ask AI
+    // For now, let's say if it's long and has spaces, it might be a question
+    if (searchQuery.value.length > 0) {
+        // Check if it matches any symbol exactly
+        const exactMatch = earnings.value.find(e => e.symbol.toLowerCase() === searchQuery.value.toLowerCase())
+        
+        if (!exactMatch && (searchQuery.value.includes(' ') || searchQuery.value.length > 5)) {
+            askLlamaGeneral()
+        }
+    }
+}
+
+const askGemini = (earning) => {
+  selectedEarning.value = earning
+  selectedProvider.value = 'gemini'
   showLlamaModal.value = true
   llamaResponse.value = ''
   llamaQuestion.value = ''
@@ -697,11 +739,15 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
             payload.symbol,
             payload.company,
             payload.date,
-            payload.question
+            payload.symbol,
+            payload.company,
+            payload.date,
+            payload.question,
+            selectedProvider.value
         )
         llamaResponse.value = response.data.response
     } catch (e) {
-        llamaResponse.value = "Error asking Llama: " + (e.response?.data?.detail || e.message)
+        llamaResponse.value = `Error asking ${selectedProvider.value === 'gemini' ? 'Gemini' : 'Llama'}: ` + (e.response?.data?.detail || e.message)
     } finally {
         llamaLoading.value = false
     }
@@ -733,6 +779,52 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
   font-size: 24px;
   font-weight: 600;
   letter-spacing: 0.5px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  background-color: #222;
+}
+
+.search-ai-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-ai-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
 }
 
 .settings-icon-btn {

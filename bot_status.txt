@@ -1,0 +1,254 @@
+﻿python : Traceback 
+(most recent call 
+last):
+At line:1 char:1
++ python 
+test_bot_status.py 
+2>&1 | Out-File 
+-Encoding utf8 
+bot_status.t ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Traceba   
+ ck (most recent     
+call last)::Stri    
+ng) [], RemoteEx    
+ception
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1967, in 
+_exec_single_context
+    self.dialect.do_e
+xecute(
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\def
+ault.py", line 952, 
+in do_execute
+    cursor.execute(st
+atement, parameters)
+sqlite3.OperationalEr
+ror: no such table: 
+bots
+
+The above exception 
+was the direct cause 
+of the following 
+exception:
+
+Traceback (most 
+recent call last):
+  File "C:\Users\Gian
+luca\Documents\TheSen
+tient\test_bot_status
+.py", line 21, in 
+test_bot
+    bots = 
+db.query(Bot).all()
+           
+^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\orm\query.
+py", line 2704, in 
+all
+    return 
+self._iter().all()  
+# type: ignore
+           
+^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\orm\query.
+py", line 2857, in 
+_iter
+    result: Union[Sca
+larResult[_T], 
+Result[_T]] = 
+self.session.execute(
+                     
+                     
+        
+^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\orm\sessio
+n.py", line 2351, in 
+execute
+    return self._exec
+ute_internal(
+           ^^^^^^^^^^
+^^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\orm\sessio
+n.py", line 2249, in 
+_execute_internal
+    result: 
+Result[Any] = compile
+_state_cls.orm_execut
+e_statement(
+                     
+     ^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\orm\contex
+t.py", line 306, in 
+orm_execute_statement
+    result = 
+conn.execute(
+             
+^^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1419, in 
+execute
+    return meth(
+           ^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\sql\elemen
+ts.py", line 527, in 
+_execute_on_connectio
+n
+    return connection
+._execute_clauseeleme
+nt(
+           ^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1641, in 
+_execute_clauseelemen
+t
+    ret = self._execu
+te_context(
+          ^^^^^^^^^^^
+^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1846, in 
+_execute_context
+    return self._exec
+_single_context(
+           ^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1986, in 
+_exec_single_context
+    self._handle_dbap
+i_exception(
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 2363, in 
+_handle_dbapi_excepti
+on
+    raise sqlalchemy_
+exception.with_traceb
+ack(exc_info[2]) 
+from e
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\bas
+e.py", line 1967, in 
+_exec_single_context
+    self.dialect.do_e
+xecute(
+  File "C:\Users\Gian
+luca\AppData\Local\Pr
+ograms\Python\Python3
+12\Lib\site-packages\
+sqlalchemy\engine\def
+ault.py", line 952, 
+in do_execute
+    cursor.execute(st
+atement, parameters)
+sqlalchemy.exc.Operat
+ionalError: (sqlite3.
+OperationalError) no 
+such table: bots
+[SQL: SELECT bots.id 
+AS bots_id, 
+bots.user_id AS 
+bots_user_id, 
+bots.name AS 
+bots_name, 
+bots.bot_type AS 
+bots_bot_type, 
+bots.description AS 
+bots_description, 
+bots.status AS 
+bots_status, 
+bots.is_active AS 
+bots_is_active, 
+bots.config AS 
+bots_config, 
+bots.activity_data 
+AS 
+bots_activity_data, 
+bots.win_rate AS 
+bots_win_rate, 
+bots.total_trades AS 
+bots_total_trades, 
+bots.profit AS 
+bots_profit, 
+bots.created_at AS 
+bots_created_at, 
+bots.updated_at AS 
+bots_updated_at, 
+bots.activated_at AS 
+bots_activated_at 
+FROM bots]
+(Background on this 
+error at: https://sql
+alche.me/e/20/e3q8)
+=== Testing Earnings Bot ===
+
+Error: (sqlite3.OperationalError) no such table: bots
+[SQL: SELECT bots.id AS bots_id, bots.user_id AS bots_user_id, bots.name AS bots_name, bots.bot_type AS bots_bot_type, bots.description AS bots_description, bots.status AS bots_status, bots.is_active AS bots_is_active, bots.config AS bots_config, bots.activity_data AS bots_activity_data, bots.win_rate AS bots_win_rate, bots.total_trades AS bots_total_trades, bots.profit AS bots_profit, bots.created_at AS bots_created_at, bots.updated_at AS bots_updated_at, bots.activated_at AS bots_activated_at 
+FROM bots]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

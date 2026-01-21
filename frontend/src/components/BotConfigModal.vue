@@ -8,7 +8,25 @@
       
       <div class="modal-body">
         <div class="config-section">
-          <h3>IG Markets Trading Account</h3>
+          <h3>Broker Selection</h3>
+          <div class="form-group">
+            <label for="broker-select">
+              Select Broker *
+              <span v-if="isFieldSaved('broker') || config.broker" class="filled-dot" title="Saved">●</span>
+            </label>
+            <select
+              id="broker-select"
+              v-model="config.broker"
+              class="form-input"
+              required
+            >
+              <option value="IG">IG Markets (CFD Trading)</option>
+              <option value="Alpaca">Alpaca (Stock Trading)</option>
+            </select>
+          </div>
+
+          <div v-if="config.broker === 'IG'">
+            <h3>IG Markets Trading Account</h3>
           <p class="help-text">
             Configure your IG Markets account credentials for trading. We use perpetual money (perp) trading through IG Markets.
             Each bot can have its own IG account.
@@ -81,6 +99,61 @@
             </select>
             <p class="field-help">Start with DEMO account for testing</p>
           </div>
+          </div>
+
+          <div v-if="config.broker === 'Alpaca'">
+            <h3>Alpaca Trading Account</h3>
+            <p class="help-text">
+              Configure your Alpaca account credentials.
+              <strong>These credentials are stored securely and only accessible by this bot.</strong>
+            </p>
+
+            <div class="form-group">
+              <label for="alpaca-api-key">
+                Alpaca API Key *
+                <span v-if="isFieldSaved('alpaca_api_key') || config.alpaca_api_key" class="filled-dot" title="Saved">●</span>
+              </label>
+              <input
+                id="alpaca-api-key"
+                v-model="config.alpaca_api_key"
+                type="password"
+                :placeholder="isFieldSaved('alpaca_api_key') ? '••••••••' : 'Enter your Alpaca API Key'"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="alpaca-api-secret">
+                Alpaca Secret Key *
+                <span v-if="isFieldSaved('alpaca_api_secret') || config.alpaca_api_secret" class="filled-dot" title="Saved">●</span>
+              </label>
+              <input
+                id="alpaca-api-secret"
+                v-model="config.alpaca_api_secret"
+                type="password"
+                :placeholder="isFieldSaved('alpaca_api_secret') ? '••••••••' : 'Enter your Alpaca Secret Key'"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="alpaca-paper">
+                Account Type *
+                <span v-if="isFieldSaved('alpaca_paper') || config.alpaca_paper !== undefined" class="filled-dot" title="Saved">●</span>
+              </label>
+              <select
+                id="alpaca-paper"
+                v-model="config.alpaca_paper"
+                class="form-input"
+                required
+              >
+                <option :value="true">Paper Trading (Demo)</option>
+                <option :value="false">Live Trading</option>
+              </select>
+            </div>
+          </div>
         </div>
         
         <div class="config-section">
@@ -152,11 +225,15 @@ const props = defineProps({
 const emit = defineEmits(['close', 'saved'])
 
 const config = ref({
+  broker: 'IG',
   ig_username: '',
   ig_password: '',
   ig_api_key: '',
   ig_acc_type: 'DEMO',
-  gemini_api_key: ''
+  gemini_api_key: '',
+  alpaca_api_key: '',
+  alpaca_api_secret: '',
+  alpaca_paper: true
 })
 
 const saving = ref(false)
@@ -172,27 +249,30 @@ watch(() => props.show, (newVal) => {
           ? JSON.parse(props.bot.config) 
           : props.bot.config
         config.value = {
+          broker: existingConfig.broker || 'IG',
           ig_username: existingConfig.ig_username || '',
           ig_password: existingConfig.ig_password || '',
           ig_api_key: existingConfig.ig_api_key || '',
           ig_acc_type: existingConfig.ig_acc_type || 'DEMO',
           gemini_api_key: existingConfig.gemini_api_key || '',
-          // Keep legacy Alpaca fields for backward compatibility (not used)
           alpaca_api_key: existingConfig.alpaca_api_key || '',
-          alpaca_api_secret: existingConfig.alpaca_api_secret || ''
+          alpaca_api_secret: existingConfig.alpaca_api_secret || '',
+          alpaca_paper: existingConfig.alpaca_paper !== undefined ? existingConfig.alpaca_paper : true
         }
       } catch (e) {
         console.error('Error parsing bot config:', e)
       }
       } else {
         config.value = {
+          broker: 'IG',
           ig_username: '',
           ig_password: '',
           ig_api_key: '',
           ig_acc_type: 'DEMO',
           gemini_api_key: '',
           alpaca_api_key: '',
-          alpaca_api_secret: ''
+          alpaca_api_secret: '',
+          alpaca_paper: true
         }
       }
     error.value = null
@@ -212,10 +292,17 @@ const isFieldSaved = (fieldName) => {
 const saveConfig = async () => {
   if (!props.bot) return
   
-  // Validate required fields
-  if (!config.value.ig_username || !config.value.ig_password || !config.value.ig_api_key) {
-    error.value = 'Please fill in all required IG Markets fields (Username, Password, API Key)'
-    return
+  // Validate required fields based on broker
+  if (config.value.broker === 'IG') {
+    if (!config.value.ig_username || !config.value.ig_password || !config.value.ig_api_key) {
+      error.value = 'Please fill in all required IG Markets fields (Username, Password, API Key)'
+      return
+    }
+  } else if (config.value.broker === 'Alpaca') {
+    if (!config.value.alpaca_api_key || !config.value.alpaca_api_secret) {
+      error.value = 'Please fill in all required Alpaca fields (API Key, Secret Key)'
+      return
+    }
   }
   
   if (!config.value.gemini_api_key) {
@@ -229,14 +316,15 @@ const saveConfig = async () => {
   
   try {
     await api.updateBotConfig(props.bot.id, {
+      broker: config.value.broker,
       ig_username: config.value.ig_username,
       ig_password: config.value.ig_password,
       ig_api_key: config.value.ig_api_key,
       ig_acc_type: config.value.ig_acc_type || 'DEMO',
       gemini_api_key: config.value.gemini_api_key || undefined,
-      // Keep legacy fields if they exist (backward compatibility)
       alpaca_api_key: config.value.alpaca_api_key || undefined,
-      alpaca_api_secret: config.value.alpaca_api_secret || undefined
+      alpaca_api_secret: config.value.alpaca_api_secret || undefined,
+      alpaca_paper: config.value.alpaca_paper
     })
     
     success.value = true

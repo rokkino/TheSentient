@@ -69,7 +69,10 @@ export const useAuthStore = defineStore('auth', {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         if (window.location.pathname !== '/') {
-          window.location.href = '/'
+          window.location.href = '/?login=true'
+        } else {
+          // If already on home, reload with login param to trigger modal
+          window.location.href = '/?login=true'
         }
       }
     },
@@ -109,7 +112,14 @@ export const useAuthStore = defineStore('auth', {
       if (token) {
         this.token = token
         this.isAuthenticated = true
-        await this.fetchUser()
+        const user = await this.fetchUser()
+        if (!user) {
+          this.isAuthenticated = false
+          this.token = null
+          this.user = null
+          localStorage.removeItem('token')
+          localStorage.removeItem('user')
+        }
       }
     },
   },

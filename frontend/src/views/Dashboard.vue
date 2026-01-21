@@ -1,8 +1,9 @@
 <template>
   <div class="dashboard">
     <!-- Top Tab Bar -->
-    <div class="tab-bar">
-      <div class="tabs-section">
+    <div class="tab-bar-container">
+      <div class="tab-bar">
+        <div class="tabs-section">
         <div
           v-for="(tab, index) in tabs"
           :key="tab.id"
@@ -36,17 +37,18 @@
         </div>
         <button class="add-tab-btn" @click="showTabWizard = true">+</button>
       </div>
-      <UserProfile
-        :username="currentUser?.username"
-        :email="currentUser?.email"
-        :is-logged-in="isLoggedIn"
-        :profile-picture-url="currentUser?.profile_picture_url"
-        @login="showLoginModal = true"
-        @register="showRegisterModal = true"
-        @logout="handleLogout"
-        @profile="handleViewProfile"
-        @settings="showSettings = true"
-      />
+        <UserProfile
+          :username="currentUser?.username"
+          :email="currentUser?.email"
+          :is-logged-in="isLoggedIn"
+          :profile-picture-url="currentUser?.profile_picture_url"
+          @login="showLoginModal = true"
+          @register="showRegisterModal = true"
+          @logout="handleLogout"
+          @profile="handleViewProfile"
+          @settings="showSettings = true"
+        />
+      </div>
     </div>
 
     <!-- Tab Content -->
@@ -348,94 +350,113 @@
               <g v-for="drawing in renderedDrawings[tab.id]" :key="drawing.id">
                 <!-- Line -->
                 <line
-                  v-if="drawing.type === 'line'"
-                  :x1="drawing.x1"
-                  :y1="drawing.y1"
-                  :x2="drawing.x2"
-                  :y2="drawing.y2"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Square -->
-                <rect
-                  v-if="drawing.type === 'square'"
-                  :x="Math.min(drawing.x1, drawing.x2)"
-                  :y="Math.min(drawing.y1, drawing.y2)"
-                  :width="Math.abs(drawing.x2 - drawing.x1)"
-                  :height="Math.abs(drawing.y2 - drawing.y1)"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  :fill="drawing.color + '1A'"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Circle -->
-                <ellipse
-                  v-if="drawing.type === 'circle'"
-                  :cx="(drawing.x1 + drawing.x2) / 2"
-                  :cy="(drawing.y1 + drawing.y2) / 2"
-                  :rx="Math.abs(drawing.x2 - drawing.x1) / 2"
-                  :ry="Math.abs(drawing.y2 - drawing.y1) / 2"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  :fill="drawing.color + '1A'"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Arrow -->
-                <line
-                  v-if="drawing.type === 'arrow'"
-                  :x1="drawing.x1"
-                  :y1="drawing.y1"
-                  :x2="drawing.x2"
-                  :y2="drawing.y2"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  :marker-end="'url(#arrowhead-' + drawing.id + ')'"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Horizontal Line -->
-                <line
-                  v-if="drawing.type === 'hline'"
-                  :x1="0"
-                  :y1="drawing.y1"
-                  :x2="10000"
-                  :y2="drawing.y1"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  stroke-dasharray="5,5"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Vertical Line -->
-                <line
-                  v-if="drawing.type === 'vline'"
-                  :x1="drawing.x1"
-                  :y1="0"
-                  :x2="drawing.x1"
-                  :y2="10000"
-                  :stroke="drawing.color"
-                  stroke-width="2"
-                  stroke-dasharray="5,5"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                />
-                <!-- Text -->
-                <text
-                  v-if="drawing.type === 'text'"
-                  :x="drawing.x1"
-                  :y="drawing.y1"
-                  :fill="drawing.color"
-                  font-size="14"
-                  font-weight="600"
-                  :class="{ 'temp-drawing': drawing.isTemp }"
-                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-                >
-                  {{ drawing.text }}
-                </text>
+              v-if="drawing.type === 'line'"
+              :x1="drawing.x1"
+              :y1="drawing.y1"
+              :x2="drawing.x2"
+              :y2="drawing.y2"
+              :stroke="drawing.color"
+              stroke-width="2"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <rect
+              v-if="drawing.type === 'square'"
+              :x="Math.min(drawing.x1, drawing.x2)"
+              :y="Math.min(drawing.y1, drawing.y2)"
+              :width="Math.abs(drawing.x2 - drawing.x1)"
+              :height="Math.abs(drawing.y2 - drawing.y1)"
+              :stroke="drawing.color"
+              stroke-width="2"
+              :fill="drawing.color + '1A'"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Circle -->
+            <ellipse
+              v-if="drawing.type === 'circle'"
+              :cx="(drawing.x1 + drawing.x2) / 2"
+              :cy="(drawing.y1 + drawing.y2) / 2"
+              :rx="Math.abs(drawing.x2 - drawing.x1) / 2"
+              :ry="Math.abs(drawing.y2 - drawing.y1) / 2"
+              :stroke="drawing.color"
+              stroke-width="2"
+              :fill="drawing.color + '1A'"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Arrow -->
+            <line
+              v-if="drawing.type === 'arrow'"
+              :x1="drawing.x1"
+              :y1="drawing.y1"
+              :x2="drawing.x2"
+              :y2="drawing.y2"
+              :stroke="drawing.color"
+              stroke-width="2"
+              :marker-end="'url(#arrowhead-' + drawing.id + ')'"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Horizontal Line -->
+            <line
+              v-if="drawing.type === 'hline'"
+              :x1="0"
+              :y1="drawing.y1"
+              :x2="10000"
+              :y2="drawing.y1"
+              :stroke="drawing.color"
+              stroke-width="2"
+              stroke-dasharray="5,5"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Vertical Line -->
+            <line
+              v-if="drawing.type === 'vline'"
+              :x1="drawing.x1"
+              :y1="0"
+              :x2="drawing.x1"
+              :y2="10000"
+              :stroke="drawing.color"
+              stroke-width="2"
+              stroke-dasharray="5,5"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Polygon / Freehand -->
+            <polyline
+              v-if="drawing.type === 'polygon' || drawing.type === 'freehand'"
+              :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
+              :stroke="drawing.color"
+              stroke-width="2"
+              fill="none"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Triangle (as polygon with 3 points) -->
+            <polygon
+              v-if="drawing.type === 'triangle'"
+              :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
+              :stroke="drawing.color"
+              stroke-width="2"
+              :fill="drawing.color + '1A'"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            />
+            <!-- Text -->
+            <text
+              v-if="drawing.type === 'text'"
+              :x="drawing.x1"
+              :y="drawing.y1"
+              :fill="drawing.color"
+              font-size="14"
+              font-weight="600"
+              :class="{ 'temp-drawing': drawing.isTemp }"
+              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+            >
+              {{ drawing.text }}
+            </text>
               </g>
             </svg>
           </div>
@@ -457,6 +478,15 @@
       :user="currentUser"
       @close="showProfileModal = false"
       @saved="handleProfileSaved"
+    />
+
+    <!-- AI Draw Modal -->
+    <AiDrawModal
+      v-if="showAiDrawModal"
+      :chart-data="getCurrentChartData()"
+      :selected-color="selectedColor"
+      @close="showAiDrawModal = false"
+      @drawing-added="handleAiDrawingAdded"
     />
     
     <!-- Tab Wizard -->
@@ -516,8 +546,36 @@
         <button @click="startDrawing('vline')" class="context-menu-item">
           ↕️ Vertical Line
         </button>
+        <button @click="startDrawing('triangle')" class="context-menu-item">
+          🔺 Triangle
+        </button>
+        <button @click="startDrawing('polygon')" class="context-menu-item">
+          📐 Polygon
+        </button>
+        <button @click="startDrawing('freehand')" class="context-menu-item">
+          ✍️ Freehand
+        </button>
         <button @click="startDrawing('text')" class="context-menu-item">
           📝 Text
+        </button>
+        <div class="menu-divider"></div>
+        <button @click="openAiDrawModal()" class="context-menu-item">
+          ✨ AI Draw
+        </button>
+        <div class="menu-divider"></div>
+        <button 
+          v-if="tabs.find(t => t.id === chartContextMenu.tabId)?.drawings?.length" 
+          @click="undoLastDrawing(chartContextMenu.tabId)" 
+          class="context-menu-item"
+        >
+          ↩️ Undo Last
+        </button>
+        <button 
+          v-if="tabs.find(t => t.id === chartContextMenu.tabId)?.drawings?.length" 
+          @click="clearAllDrawings(chartContextMenu.tabId)" 
+          class="context-menu-item delete"
+        >
+          🗑️ Clear All
         </button>
       </template>
       <template v-else>
@@ -548,6 +606,7 @@ import StrategyBuilder from '../components/StrategyBuilder.vue'
 
 import TabWizard from '../components/TabWizard.vue'
 import IndicatorSearch from '../components/IndicatorSearch.vue'
+import AiDrawModal from '../components/AiDrawModal.vue'
 import api from '../services/api'
 import { getCached, setCached, saveIndicatorSettings, loadIndicatorSettings } from '../utils/cache'
 
@@ -612,7 +671,7 @@ const tabs = ref([
 const searchQuery = ref('')
 const searchResults = ref([])
 const showSettings = ref(false)
-const showLoginModal = ref(false)
+const showAiDrawModal = ref(false)
 const showRegisterModal = ref(false)
 const showProfileModal = ref(false)
 const showTabWizard = ref(false)
@@ -621,10 +680,10 @@ const editingTab = ref(null)
 const editingTabName = ref('')
 const contextMenu = ref({ show: false, x: 0, y: 0, tab: null })
 const chartContextMenu = ref({ show: false, x: 0, y: 0, tabId: null, drawingId: null })
-const drawingMode = ref(null) // null, 'line', 'square', 'circle', 'arrow', 'hline', 'vline', 'text'
+const drawingMode = ref(null) // null, 'line', 'square', 'circle', 'arrow', 'hline', 'vline', 'text', 'triangle', 'polygon', 'freehand'
 const drawingStart = ref(null) // { time, price }
-const tempDrawing = ref(null) // { type, p1: {time, price}, p2: {time, price}, color, text }
-const renderedDrawings = ref({}) // Map tabId -> array of { id, type, x1, y1, x2, y2, selected }
+const tempDrawing = ref(null) // { type, points: [], color, text }
+const renderedDrawings = ref({}) // Map tabId -> array of { id, type, points, color, text, isTemp }
 const selectedColor = ref('#2196F3') // Default blue
 const showColorPicker = ref(false)
 const draggedTabId = ref(null)
@@ -681,7 +740,7 @@ const setActiveTab = (tabId) => {
   activeTab.value = tabId
   // Persist active tab to localStorage
   localStorage.setItem('activeTab', tabId.toString())
-  const tab = tabs.value.find(t => t.id === tabId)
+  const tab = tabs.value.find(t => t && t.id === tabId)
   if (tab && tab.selectedTicker && tab.type === 'stocks') {
     nextTick(() => {
       loadChart(tabId)
@@ -848,13 +907,53 @@ const closeChartContextMenu = () => {
 
 const showChartContextMenu = (event, tabId, drawingId = null) => {
   event.preventDefault()
+  
+  // Calculate position to keep menu on screen
+  const menuWidth = 220 // Approximate width
+  const menuHeight = drawingId ? 60 : 450 // Approximate height (larger for main menu)
+  
+  let x = event.clientX
+  let y = event.clientY
+  
+  // Adjust horizontal
+  if (x + menuWidth > window.innerWidth) {
+    x = window.innerWidth - menuWidth - 10
+  }
+  
+  // Adjust vertical
+  if (y + menuHeight > window.innerHeight) {
+    y = window.innerHeight - menuHeight - 10
+  }
+  
   chartContextMenu.value = {
     show: true,
-    x: event.clientX,
-    y: event.clientY,
+    x: x,
+    y: y,
     tabId: tabId,
     drawingId: drawingId
   }
+}
+
+const undoLastDrawing = (tabId) => {
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (tab && tab.drawings && tab.drawings.length > 0) {
+    tab.drawings.pop()
+    saveUserTabs()
+    updateDrawingCoordinates(tabId)
+  }
+  closeChartContextMenu()
+}
+
+const clearAllDrawings = (tabId) => {
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (tab && tab.drawings && tab.drawings.length > 0) {
+    if (confirm('Are you sure you want to clear all drawings?')) {
+      tab.drawings = []
+      saveUserTabs()
+      updateDrawingCoordinates(tabId)
+    }
+  }
+  closeChartContextMenu()
 }
 
 const startDrawing = (type) => {
@@ -907,13 +1006,12 @@ const handleChartClick = (event, tabId) => {
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
 
-  // Convert coordinates to time/price
   const time = tab.chart.timeScale().coordinateToTime(x)
   const price = tab.candlestickSeries.coordinateToPrice(y)
 
   if (!time || !price) return
 
-  // For text, single click to place
+  // Text drawing (single click)
   if (drawingMode.value === 'text' && tempDrawing.value) {
     const newDrawing = {
       id: Date.now().toString(),
@@ -932,44 +1030,52 @@ const handleChartClick = (event, tabId) => {
     return
   }
 
-  // For horizontal line, single click to place
-  if (drawingMode.value === 'hline') {
-    const newDrawing = {
-      id: Date.now().toString(),
-      type: 'hline',
-      p1: { time, price },
-      color: selectedColor.value
+  // Triangle drawing – collect three points
+  if (drawingMode.value === 'triangle') {
+    if (!drawingStart.value) {
+      drawingStart.value = { time, price }
+      tempDrawing.value = { type: 'triangle', points: [{ time, price }], color: selectedColor.value }
+    } else if (tempDrawing.value.points.length === 1) {
+      tempDrawing.value.points.push({ time, price })
+    } else if (tempDrawing.value.points.length === 2) {
+      // third point, finalize
+      const points = [...tempDrawing.value.points, { time, price }]
+      const newDrawing = { id: Date.now().toString(), type: 'triangle', points, color: selectedColor.value }
+      if (!tab.drawings) tab.drawings = []
+      tab.drawings.push(newDrawing)
+      // drawingMode.value = null // Keep tool selected
+      drawingStart.value = null
+      tempDrawing.value = null
+      saveUserTabs()
+      updateDrawingCoordinates(tabId)
     }
-    if (!tab.drawings) tab.drawings = []
-    tab.drawings.push(newDrawing)
-    drawingMode.value = null
-    drawingStart.value = null
-    tempDrawing.value = null
-    saveUserTabs()
-    updateDrawingCoordinates(tabId)
     return
   }
 
-  // For vertical line, single click to place
-  if (drawingMode.value === 'vline') {
-    const newDrawing = {
-      id: Date.now().toString(),
-      type: 'vline',
-      p1: { time, price },
-      color: selectedColor.value
+  // Polygon drawing – collect points until double click (handled in mousemove/doubleclick)
+  if (drawingMode.value === 'polygon') {
+    if (!drawingStart.value) {
+      drawingStart.value = { time, price }
+      tempDrawing.value = { type: 'polygon', points: [{ time, price }], color: selectedColor.value }
+    } else {
+      tempDrawing.value.points.push({ time, price })
     }
-    if (!tab.drawings) tab.drawings = []
-    tab.drawings.push(newDrawing)
-    drawingMode.value = null
-    drawingStart.value = null
-    tempDrawing.value = null
-    saveUserTabs()
-    updateDrawingCoordinates(tabId)
     return
   }
 
+  // Freehand drawing – collect continuous points while mouse is down
+  if (drawingMode.value === 'freehand') {
+    if (!drawingStart.value) {
+      drawingStart.value = { time, price }
+      tempDrawing.value = { type: 'freehand', points: [{ time, price }], color: selectedColor.value }
+    } else {
+      tempDrawing.value.points.push({ time, price })
+    }
+    return
+  }
+
+  // Default two‑point shapes (line, square, circle, arrow, hline, vline)
   if (!drawingStart.value) {
-    // First click
     drawingStart.value = { time, price }
     tempDrawing.value = {
       type: drawingMode.value,
@@ -978,7 +1084,6 @@ const handleChartClick = (event, tabId) => {
       color: selectedColor.value
     }
   } else {
-    // Second click - finish drawing
     const newDrawing = {
       id: Date.now().toString(),
       type: drawingMode.value,
@@ -986,12 +1091,11 @@ const handleChartClick = (event, tabId) => {
       p2: { time, price },
       color: selectedColor.value
     }
-    
     if (!tab.drawings) tab.drawings = []
     tab.drawings.push(newDrawing)
     
-    // Reset state
-    drawingMode.value = null
+    // Reset state but keep drawing mode
+    // drawingMode.value = null // Keep tool selected
     drawingStart.value = null
     tempDrawing.value = null
     
@@ -1014,11 +1118,28 @@ const handleChartMouseMove = (event, tabId) => {
   const price = tab.candlestickSeries.coordinateToPrice(y)
 
   if (time && price) {
-    tempDrawing.value = {
-      type: drawingMode.value,
-      p1: drawingStart.value,
-      p2: { time, price },
-      color: selectedColor.value
+    // For polygon and freehand, continuously add points
+    if (drawingMode.value === 'polygon' || drawingMode.value === 'freehand') {
+      if (tempDrawing.value) {
+        // Only add if the mouse has moved significantly to avoid too many points
+        const lastPoint = tempDrawing.value.points[tempDrawing.value.points.length - 1]
+        if (!lastPoint || Math.abs(lastPoint.time - time) > 0.0001 || Math.abs(lastPoint.price - price) > 0.0001) {
+          tempDrawing.value.points.push({ time, price })
+        }
+      }
+    } else if (drawingMode.value === 'triangle') {
+      // For triangle, update the last point if it's the 2nd or 3rd point being drawn
+      if (tempDrawing.value && tempDrawing.value.points.length >= 1) {
+        tempDrawing.value.points[tempDrawing.value.points.length - 1] = { time, price }
+      }
+    } else {
+      // For two-point shapes, update the second point
+      tempDrawing.value = {
+        type: drawingMode.value,
+        p1: drawingStart.value,
+        p2: { time, price },
+        color: selectedColor.value
+      }
     }
     // Force update of temp drawing
     updateDrawingCoordinates(tabId) 
@@ -1034,24 +1155,39 @@ const updateDrawingCoordinates = (tabId) => {
   // Process saved drawings
   if (tab.drawings) {
     tab.drawings.forEach(d => {
-      const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
-      const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
-      
-      let x2 = null, y2 = null
-      if (d.p2) {
-        x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
-        y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
-      }
-      
-      if (x1 !== null && y1 !== null) {
-        drawings.push({
-          id: d.id,
-          type: d.type,
-          x1, y1, x2, y2,
-          color: d.color || '#2196F3',
-          text: d.text,
-          selected: false
-        })
+      if (d.points && d.points.length > 0) {
+        const screenPoints = d.points.map(p => {
+          const x = tab.chart.timeScale().timeToCoordinate(p.time)
+          const y = tab.candlestickSeries.priceToCoordinate(p.price)
+          return { x, y }
+        }).filter(pt => pt.x !== null && pt.y !== null)
+        if (screenPoints.length > 0) {
+          drawings.push({
+            id: d.id,
+            type: d.type,
+            points: screenPoints,
+            color: d.color || '#2196F3',
+            selected: false
+          })
+        }
+      } else {
+        const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
+        const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
+        let x2 = null, y2 = null
+        if (d.p2) {
+          x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
+          y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
+        }
+        if (x1 !== null && y1 !== null) {
+          drawings.push({
+            id: d.id,
+            type: d.type,
+            x1, y1, x2, y2,
+            color: d.color || '#2196F3',
+            text: d.text,
+            selected: false
+          })
+        }
       }
     })
   }
@@ -1059,23 +1195,40 @@ const updateDrawingCoordinates = (tabId) => {
   // Process temp drawing
   if (tempDrawing.value) {
     const d = tempDrawing.value
-    const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
-    const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
-    let x2 = null, y2 = null
-    if (d.p2) {
-      x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
-      y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
-    }
-    
-    if (x1 !== null && y1 !== null) {
-      drawings.push({
-        id: 'temp',
-        type: d.type,
-        x1, y1, x2, y2,
-        color: d.color || '#2196F3',
-        text: d.text,
-        isTemp: true
-      })
+    // For polygon / freehand / triangle we have an array of points
+    if (d.points && d.points.length > 0) {
+      const screenPoints = d.points.map(p => {
+        const x = tab.chart.timeScale().timeToCoordinate(p.time)
+        const y = tab.candlestickSeries.priceToCoordinate(p.price)
+        return { x, y }
+      }).filter(pt => pt.x !== null && pt.y !== null)
+      if (screenPoints.length > 0) {
+        drawings.push({
+          id: 'temp',
+          type: d.type,
+          points: screenPoints,
+          color: d.color || '#2196F3',
+          isTemp: true
+        })
+      }
+    } else {
+      const x1 = tab.chart.timeScale().timeToCoordinate(d.p1.time)
+      const y1 = tab.candlestickSeries.priceToCoordinate(d.p1.price)
+      let x2 = null, y2 = null
+      if (d.p2) {
+        x2 = tab.chart.timeScale().timeToCoordinate(d.p2.time)
+        y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
+      }
+      if (x1 !== null && y1 !== null) {
+        drawings.push({
+          id: 'temp',
+          type: d.type,
+          x1, y1, x2, y2,
+          color: d.color || '#2196F3',
+          text: d.text,
+          isTemp: true
+        })
+      }
     }
   }
 
@@ -1178,6 +1331,8 @@ const handleCompete = (bot) => {
   // TODO: Implement competition feature
   alert(`Starting competition with ${bot.name}`)
 }
+
+
 
 const handleCreateBot = () => {
   // Bot creation is now handled in BotList component
@@ -1914,6 +2069,7 @@ const loadChart = async (tabId) => {
         earningsDates: chartData.earnings_dates?.length || 0
       })
       // Cache the response
+      // Cache the response
       setCached('chart', chartData, cacheKey)
     } else {
       console.log('Using cached chart data for', tab.selectedTicker, 'points:', chartData.data?.length || 0)
@@ -1923,6 +2079,9 @@ const loadChart = async (tabId) => {
       console.error('No chart data available')
       return
     }
+    
+    // Store chart data in tab for AI context
+    tab.chartData = chartData.data
 
     await nextTick()
 
@@ -2335,6 +2494,39 @@ const handleSettingsSave = () => {
   // Placeholder for future settings
   showSettings.value = false
 }
+
+const openAiDrawModal = () => {
+  showAiDrawModal.value = true
+  closeChartContextMenu()
+}
+
+const getCurrentChartData = () => {
+  const tab = tabs.value.find(t => t.id === activeTab.value)
+  if (!tab || !tab.candlestickSeries) return []
+  
+  // Get visible data or recent data
+  // We'll try to get the data from the series if possible, or fallback to what we have in memory if we stored it
+  // Since we don't strictly store the raw data in the tab object after loading (we pass it to series),
+  // we might need to rely on what we can get.
+  // For now, let's assume we can't easily get data back from series without keeping a reference.
+  // Let's modify loadChart to store data in tab.chartData for this purpose.
+  return tab.chartData || []
+}
+
+const handleAiDrawingAdded = (drawing) => {
+  const tabId = activeTab.value
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (!tab) return
+
+  if (!tab.drawings) tab.drawings = []
+  
+  // Ensure drawing has an ID
+  if (!drawing.id) drawing.id = Date.now().toString()
+  
+  tab.drawings.push(drawing)
+  updateDrawingCoordinates(tabId)
+  saveUserTabs()
+}
 </script>
 
 <style scoped>
@@ -2555,14 +2747,20 @@ const handleSettingsSave = () => {
 .price-item {
   margin-left: auto;
   align-items: flex-end;
+  justify-content: center;
+  padding-left: 20px;
+  border-left: 1px solid #222;
+  height: 100%;
 }
 
 .price-value {
-  font-size: 24px;
-  font-weight: 300;
+  font-size: 36px;
+  font-weight: 700;
   color: #fff;
   font-family: 'Roboto Mono', monospace;
   letter-spacing: -1px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  line-height: 1;
 }
 
 /* Chart Toolbar */

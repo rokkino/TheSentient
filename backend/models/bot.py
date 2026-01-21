@@ -56,14 +56,25 @@ class Bot(Base):
         """Check if bot has required configuration"""
         config = self.get_config()
         
-        # For earnings_report_genius, we need IG Markets credentials AND Gemini API key
+        # For earnings_report_genius, we need broker credentials AND Gemini API key
         if self.bot_type == 'earnings_report_genius':
-            return bool(
-                config.get('ig_username') and 
-                config.get('ig_password') and 
-                config.get('ig_api_key') and
-                config.get('gemini_api_key')  # Gemini API key is now required
-            )
+            gemini_configured = bool(config.get('gemini_api_key'))
+            
+            broker = config.get('broker', 'IG')  # Default to IG
+            
+            if broker == 'Alpaca':
+                return bool(
+                    gemini_configured and
+                    config.get('alpaca_api_key') and
+                    config.get('alpaca_api_secret')
+                )
+            else:  # IG Markets
+                return bool(
+                    gemini_configured and
+                    config.get('ig_username') and 
+                    config.get('ig_password') and 
+                    config.get('ig_api_key')
+                )
         
         return False
     

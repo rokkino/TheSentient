@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 import uvicorn
 import asyncio
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import sys
 
@@ -28,7 +28,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.append(PROJECT_ROOT)
 
 # Helpful for debugging "wrong server process" issues
-SERVER_BUILD = f"backend-main.py@{datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')}"
+SERVER_BUILD = f"backend-main.py@{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}"
 
 from services.market_data import MarketDataService
 from services.news_service import NewsService
@@ -80,6 +80,17 @@ except Exception as e:
 
 # OAuth2 scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
+
+def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    """Get current authenticated user"""
+    payload = verify_token(token)
+    if not payload:
+        raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+    user_id = payload.get("sub")
+    user = get_user_by_id(db, int(user_id))
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found")
+    return user
 
 # CORS middleware for Vue.js frontend
 app.add_middleware(
@@ -159,6 +170,11 @@ class UserResponse(BaseModel):
     website: Optional[str] = None
     use_local_llama: bool = False
     gemini_api_key: Optional[str] = None
+    ai_provider: Optional[str] = "gemini"
+    gemini_pro_api_key: Optional[str] = None
+    openai_api_key: Optional[str] = None
+    anthropic_api_key: Optional[str] = None
+    deepseek_api_key: Optional[str] = None
 
 class ProfileUpdate(BaseModel):
     bio: Optional[str] = None
@@ -167,6 +183,11 @@ class ProfileUpdate(BaseModel):
     profile_picture_url: Optional[str] = None
     use_local_llama: Optional[bool] = None
     gemini_api_key: Optional[str] = None
+    ai_provider: Optional[str] = None
+    gemini_pro_api_key: Optional[str] = None
+    openai_api_key: Optional[str] = None
+    anthropic_api_key: Optional[str] = None
+    deepseek_api_key: Optional[str] = None
 
 class TabsUpdate(BaseModel):
     tabs: List[Dict[str, Any]]
@@ -177,6 +198,11 @@ class ChatMessage(BaseModel):
     image_data: Optional[str] = None  # Base64 encoded image
     recipient_id: Optional[int] = None
     invite_llama: bool = False
+    invite_gemini: bool = False
+    is_search: bool = False
+    
+class ChatHistoryClear(BaseModel):
+    recipient_id: Optional[int] = None
 
 class AlpacaOrderRequest(BaseModel):
     symbol: str
@@ -214,11 +240,9 @@ class AskLlamaRequest(BaseModel):
     symbol: Optional[str] = None
     company: Optional[str] = None
     date: Optional[str] = None
-class AskLlamaRequest(BaseModel):
-    symbol: Optional[str] = None
-    company: Optional[str] = None
-    date: Optional[str] = None
-    question: str  # Question is now required if context is missing, but we'll handle logic in endpoint
+    question: Optional[str] = None
+    provider: Optional[str] = "local"
+
 
 class AskLlamaNewsRequest(BaseModel):
     title: str
@@ -298,6 +322,16 @@ async def get_quote(ticker: str, timeframe: str = "1d"):
         quote = await market_data_service.get_quote(ticker, timeframe)
         return quote
     except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/stock/{ticker}/financials")
+async def get_stock_financials(ticker: str):
+    """Get financial data (Revenue, Earnings, EPS History) for a ticker"""
+    try:
+        data = await market_data_service.get_financials(ticker)
+        return data
+    except Exception as e:
+        print(f"Error getting financials for {ticker}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Search Endpoints
@@ -390,14 +424,46 @@ async def fetch_news_content(request: NewsContentRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# AI Analysis Endpoints
-@app.post("/api/analyze")
-async def analyze_news(news_item: Dict[str, Any]):
-    """Analyze news item with AI"""
+# AI Draw Endpoint
+@app.post("/api/ai/draw")
+async def ai_draw(request: Request, current_user: User = Depends(get_current_user)):
+    """Generate a drawing via AI based on prompt.
+    Expects JSON body with {"prompt": str, "color": optional str, "chartData": optional list}
+    Returns a drawing object compatible with frontend drawing format.
+    """
     try:
-        analysis = await ai_service.analyze_news(news_item)
-        return {"analysis": analysis}
+        data = await request.json()
+        prompt = data.get("prompt")
+        color = data.get("color") or "#2196F3"
+        chart_data = data.get("chartData")
+        
+        # Determine provider
+        use_gemini = False
+        if current_user.gemini_api_key:
+            use_gemini = True
+        elif os.getenv("GOOGLE_GEMINI_API_KEY"):
+            use_gemini = True
+            
+        # Check if user explicitly prefers local llama (if we had that setting, but for now fallback logic)
+        if current_user.use_local_llama:
+            use_gemini = False
+
+        if use_gemini:
+            try:
+                print(f"[API] Using Gemini for AI Draw: {prompt}")
+                gemini = GeminiService(api_key=current_user.gemini_api_key)
+                drawing = await gemini.generate_drawing(prompt, color, chart_data)
+                return {"drawing": drawing}
+            except Exception as e:
+                print(f"[API] Gemini failed, falling back to Llama: {e}")
+                # Fallback to Llama
+        
+        print(f"[API] Using Llama for AI Draw: {prompt}")
+        drawing = llama_service.generate_drawing(prompt, color, chart_data)
+        return {"drawing": drawing}
+
     except Exception as e:
+        print(f"[API] Error in AI draw endpoint: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Earnings Endpoints
@@ -469,7 +535,7 @@ async def get_earnings(
         return {"earnings": [], "offset": offset_months, "months": months}
 
 @app.post("/api/earnings/ask")
-async def ask_llama_earnings(request: AskLlamaRequest):
+async def ask_llama_earnings(request: AskLlamaRequest, current_user: Optional[User] = Depends(get_current_user)):
     """Ask Llama about an earning event or general question"""
     try:
         if request.symbol and request.company and request.date:
@@ -484,7 +550,41 @@ async def ask_llama_earnings(request: AskLlamaRequest):
         else:
             raise HTTPException(status_code=400, detail="Either a question or earnings context (symbol, company, date) must be provided")
             
-        response = llama_service.generate_response(prompt)
+        # Determine provider and key
+        provider = "local"
+        api_key = None
+        user_id = None
+        
+        if current_user:
+            user_id = current_user.id
+            if current_user.ai_provider and current_user.ai_provider != "local":
+                provider = current_user.ai_provider
+                if provider == "openai":
+                    api_key = current_user.openai_api_key
+                elif provider == "anthropic":
+                    api_key = current_user.anthropic_api_key
+                elif provider == "deepseek":
+                    api_key = current_user.deepseek_api_key
+                elif provider == "gemini_pro":
+                    api_key = current_user.gemini_pro_api_key
+                elif provider == "gemini":
+                    # Use GeminiService directly or via factory if we added it
+                    # For now, let's stick to the pattern
+                    pass
+
+        # Override provider if specified in request (and allowed)
+        if request.provider and request.provider != "local":
+             # Basic validation could go here, for now trust the frontend/user preference
+             provider = request.provider
+             
+             # If provider is gemini, ensure we have a key
+             if provider == "gemini":
+                 if current_user and current_user.gemini_api_key:
+                     api_key = current_user.gemini_api_key
+                 elif os.getenv("GOOGLE_GEMINI_API_KEY"):
+                     api_key = os.getenv("GOOGLE_GEMINI_API_KEY")
+
+        response = llama_service.generate_response(prompt, user_id=user_id, provider=provider, api_key=api_key)
         return {"response": response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -521,17 +621,6 @@ async def get_ticker_eps_history(ticker: str, years: int = 2):
         raise HTTPException(status_code=500, detail=str(e))
 
 # Authentication Endpoints
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
-    """Get current authenticated user"""
-    payload = verify_token(token)
-    if not payload:
-        raise HTTPException(status_code=401, detail="Invalid authentication credentials")
-    user_id = payload.get("sub")
-    user = get_user_by_id(db, int(user_id))
-    if not user:
-        raise HTTPException(status_code=401, detail="User not found")
-    return user
-
 @app.options("/api/auth/register")
 async def register_options():
     """Handle CORS preflight for register endpoint"""
@@ -634,6 +723,11 @@ async def login(request: Request, db: Session = Depends(get_db)):
                 "profile_picture_url": user.profile_picture_url,
                 "use_local_llama": user.use_local_llama,
                 "gemini_api_key": user.gemini_api_key,
+                "ai_provider": user.ai_provider,
+                "gemini_pro_api_key": user.gemini_pro_api_key,
+                "openai_api_key": user.openai_api_key,
+                "anthropic_api_key": user.anthropic_api_key,
+                "deepseek_api_key": user.deepseek_api_key,
             }
         }
     except HTTPException:
@@ -660,6 +754,11 @@ async def get_me(current_user: User = Depends(get_current_user)):
         "profile_picture_url": current_user.profile_picture_url,
         "use_local_llama": current_user.use_local_llama,
         "gemini_api_key": current_user.gemini_api_key,
+        "ai_provider": current_user.ai_provider,
+        "gemini_pro_api_key": current_user.gemini_pro_api_key,
+        "openai_api_key": current_user.openai_api_key,
+        "anthropic_api_key": current_user.anthropic_api_key,
+        "deepseek_api_key": current_user.deepseek_api_key,
     }
 
 @app.post("/api/auth/logout")
@@ -684,7 +783,7 @@ async def save_user_tabs(tabs_data: TabsUpdate, current_user: User = Depends(get
     """Save user's tab configuration"""
     try:
         current_user.tabs = json.dumps(tabs_data.tabs)
-        current_user.updated_at = datetime.utcnow()
+        current_user.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(current_user)
         return {"message": "Tabs saved successfully", "tabs": tabs_data.tabs}
@@ -708,8 +807,18 @@ async def update_profile(profile_data: ProfileUpdate, current_user: User = Depen
             current_user.use_local_llama = profile_data.use_local_llama
         if profile_data.gemini_api_key is not None:
             current_user.gemini_api_key = profile_data.gemini_api_key
+        if profile_data.ai_provider is not None:
+            current_user.ai_provider = profile_data.ai_provider
+        if profile_data.gemini_pro_api_key is not None:
+            current_user.gemini_pro_api_key = profile_data.gemini_pro_api_key
+        if profile_data.openai_api_key is not None:
+            current_user.openai_api_key = profile_data.openai_api_key
+        if profile_data.anthropic_api_key is not None:
+            current_user.anthropic_api_key = profile_data.anthropic_api_key
+        if profile_data.deepseek_api_key is not None:
+            current_user.deepseek_api_key = profile_data.deepseek_api_key
         
-        current_user.updated_at = datetime.utcnow()
+        current_user.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(current_user)
         
@@ -726,6 +835,11 @@ async def update_profile(profile_data: ProfileUpdate, current_user: User = Depen
             "profile_picture_url": current_user.profile_picture_url,
             "use_local_llama": current_user.use_local_llama,
             "gemini_api_key": current_user.gemini_api_key,
+            "ai_provider": current_user.ai_provider,
+            "gemini_pro_api_key": current_user.gemini_pro_api_key,
+            "openai_api_key": current_user.openai_api_key,
+            "anthropic_api_key": current_user.anthropic_api_key,
+            "deepseek_api_key": current_user.deepseek_api_key,
         }
     except Exception as e:
         db.rollback()
@@ -809,7 +923,15 @@ async def send_chat_message(message: ChatMessage, current_user: User = Depends(g
         
         # Process AI response in background
         # Note: In a real app, this should be a background task
-        await chat_service.process_ai_response(current_user.id, message.message, db, invite_llama=message.invite_llama)
+        await chat_service.process_ai_response(
+            current_user.id, 
+            message.message, 
+            db, 
+            invite_llama=message.invite_llama, 
+            invite_gemini=message.invite_gemini, 
+            is_search=message.is_search,
+            ws_manager=ws_manager
+        )
         
         return {"message": chat_msg}
     except Exception as e:
@@ -1339,7 +1461,7 @@ async def import_bot(
         # Set the configuration (including API keys if provided in the import file)
         if import_data.config:
             bot.set_config(import_data.config)
-            bot.updated_at = datetime.utcnow()
+            bot.updated_at = datetime.now(timezone.utc)
             db.commit()
             db.refresh(bot)
         
@@ -1374,7 +1496,7 @@ async def import_bot_config(
         if import_data.config:
             bot.set_config(import_data.config)
             
-        bot.updated_at = datetime.utcnow()
+        bot.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(bot)
         
@@ -1582,7 +1704,7 @@ async def get_earnings(
             earnings_file_path = os.path.join(BACKEND_DIR, "earnings_data.json")
             with open(earnings_file_path, 'w', encoding='utf-8') as f:
                 json.dump({
-                    "last_updated": datetime.utcnow().isoformat(),
+                    "last_updated": datetime.now(timezone.utc).isoformat(),
                     "total_earnings": len(earnings_data),
                     "earnings": earnings_data
                 }, f, indent=2, ensure_ascii=False, default=str)
@@ -1598,29 +1720,39 @@ async def get_earnings(
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/api/earnings/ask")
-async def ask_llama_about_earning(
-    request: Dict[str, Any],
-    current_user: User = Depends(get_current_user)
-):
-    """Ask Llama AI about a specific earning"""
+
+@app.delete("/api/chat/message/{message_id}")
+async def delete_chat_message(message_id: str, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Delete a chat message"""
     try:
-        symbol = request.get('symbol')
-        company = request.get('company', symbol)
-        date = request.get('date')
-        question = request.get('question', 'Tell me about this earnings report')
-        
-        # Build context for Llama
-        context = f"Company: {company} ({symbol})\nEarnings Date: {date}\n"
-        
-        # Get response from Llama
-        response = llama_service.ask_about_earning(context, question)
-        
-        return {"response": response}
+        success = chat_service.delete_message(db, message_id)
+        if success:
+            # Broadcast deletion
+            await ws_manager.broadcast({
+                "type": "message_deleted",
+                "message_id": message_id
+            })
+            return {"message": "Message deleted"}
+        else:
+            raise HTTPException(status_code=404, detail="Message not found")
     except Exception as e:
-        print(f"[API] Error asking Llama about earning: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.delete("/api/chat/history")
+async def clear_chat_history(recipient_id: Optional[int] = None, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Clear chat history"""
+    try:
+        count = chat_service.clear_history(db, current_user.id, recipient_id)
+        
+        # Broadcast clear event so clients can clear their view
+        await ws_manager.broadcast({
+            "type": "history_cleared",
+            "recipient_id": recipient_id
+        })
+        
+        return {"message": f"History cleared, {count} messages deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(

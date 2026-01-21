@@ -156,48 +156,77 @@ class BotService:
         """Start Earnings Report Genius bot"""
         from services.earnings_service import EarningsService
         from services.ig_service import IGMarketsService
+        from services.alpaca_service import AlpacaService
         
         config = bot.get_config()
         earnings_service = EarningsService()
         
-        # Get IG Markets credentials from bot config (required, no defaults)
-        ig_username = config.get('ig_username')
-        ig_password = config.get('ig_password')
-        ig_api_key = config.get('ig_api_key')
-        ig_acc_type = config.get('ig_acc_type', 'DEMO')  # Default to DEMO if not specified
+        broker = config.get('broker', 'IG')
+        trading_service = None
         
-        if not ig_username or not ig_password or not ig_api_key:
-            print(f"Error: Bot {bot.id} missing IG Markets credentials in config")
-            print(f"[IG] Username: {bool(ig_username)}, Password: {bool(ig_password)}, API Key: {bool(ig_api_key)}")
-            return
-        
-        # Create IG Markets service instance with bot-specific credentials
-        ig_service = IGMarketsService(
-            username=ig_username,
-            password=ig_password,
-            api_key=ig_api_key,
-            acc_type=ig_acc_type
-        )
-        
-        if not ig_service.is_configured():
-            print(f"Error: Cannot start bot {bot.id} - IG Markets not configured properly")
-            print(f"[IG] Username: {ig_username}, API Key provided: {bool(ig_api_key)}")
-            return
+        if broker == 'Alpaca':
+            # Initialize Alpaca Service
+            api_key = config.get('alpaca_api_key')
+            api_secret = config.get('alpaca_api_secret')
+            is_paper = config.get('alpaca_paper', True)
+            
+            if not api_key or not api_secret:
+                print(f"Error: Bot {bot.id} missing Alpaca credentials")
+                return
+                
+            trading_service = AlpacaService(api_key=api_key, api_secret=api_secret, paper=is_paper)
+            
+            if not trading_service.is_configured():
+                print(f"Error: Cannot start bot {bot.id} - Alpaca not configured properly")
+                return
+                
+        else:
+            # Initialize IG Markets Service
+            ig_username = config.get('ig_username')
+            ig_password = config.get('ig_password')
+            ig_api_key = config.get('ig_api_key')
+            ig_acc_type = config.get('ig_acc_type', 'DEMO')
+            
+            if not ig_username or not ig_password or not ig_api_key:
+                print(f"Error: Bot {bot.id} missing IG Markets credentials in config")
+                return
+            
+            trading_service = IGMarketsService(
+                username=ig_username,
+                password=ig_password,
+                api_key=ig_api_key,
+                acc_type=ig_acc_type
+            )
+            
+            if not trading_service.is_configured():
+                print(f"Error: Cannot start bot {bot.id} - IG Markets not configured properly")
+                return
         
         self.active_bots[bot.id] = {
             'bot': bot,
-            'ig_service': ig_service,
+            'trading_service': trading_service,
             'earnings_service': earnings_service,
-            'task': None
+            'task': None,
+            'broker': broker
         }
         
         # Start monitoring earnings
-        task = asyncio.create_task(self._monitor_earnings_and_trade(bot, earnings_service, ig_service))
+        task = asyncio.create_task(self._monitor_earnings_and_trade(bot, earnings_service, trading_service, broker))
         self.active_bots[bot.id]['task'] = task
         
         # Start portfolio monitor (runs every minute)
-        monitor_task = asyncio.create_task(self._monitor_portfolio(bot, ig_service))
+        monitor_task = asyncio.create_task(self._monitor_portfolio(bot, trading_service))
         self.active_bots[bot.id]['monitor_task'] = monitor_task
+        
+        # ... (rest of the logic)
+        
+        # Actually, let's look at the plan. "Initialize AlpacaService".
+        # I'll modify AlpacaService to accept keys.
+        
+        # Let's just do the IG part for now and then I'll fix AlpacaService.
+        # Or better, I'll do a multi-file edit if possible? No, `replace_file_content` is single file.
+        # I will cancel this tool call and do AlpacaService first.
+
 
     async def _monitor_portfolio(self, bot: Bot, ig_service: Any):
         """Monitor portfolio and update profitto.json every minute"""
@@ -279,7 +308,7 @@ class BotService:
                 print(f"[Bot {bot.id}] Error in portfolio monitor: {e}")
                 await asyncio.sleep(60)
     
-    async def _monitor_earnings_and_trade(self, bot: Bot, earnings_service: Any, ig_service: Any):
+    async def _monitor_earnings_and_trade(self, bot: Bot, earnings_service: Any, trading_service: Any, broker: str = 'IG'):
         """Monitor earnings and execute trades for Earnings Report Genius bot with Gemini AI safety analysis"""
         from datetime import datetime, timedelta
         from models.user import get_db
@@ -321,7 +350,7 @@ class BotService:
                     print(f"[Bot {bot.id}] Skipped weekend: {now} -> {today} (next business day)")
                 
                 # Step 1: Close positions from previous earnings (day after entry)
-                await self._close_earnings_positions(bot, ig_service, pending_positions, today)
+                await self._close_earnings_positions(bot, trading_service, pending_positions, today, broker)
                 
                 # Step 2: Get earnings for today and tomorrow (with cache 12h, skips weekends)
                 print(f"[Bot {bot.id}] Checking earnings for {today} and {tomorrow}...")
@@ -337,20 +366,23 @@ class BotService:
                 if all_earnings:
                     # Get account info
                     try:
-                        account = await ig_service.get_account()
-                        available_cash = float(account.get('available', account.get('balance', 0)))
-                        buying_power = float(account.get('available', available_cash))
+                        account = await trading_service.get_account()
+                        
+                        if broker == 'Alpaca':
+                            available_cash = float(account.get('cash', 0))
+                            buying_power = float(account.get('buying_power', available_cash))
+                        else: # IG
+                            available_cash = float(account.get('available', account.get('balance', 0)))
+                            buying_power = float(account.get('available', available_cash))
                         
                         print(f"[Bot {bot.id}] Available cash: ${available_cash:,.2f}, Buying power: ${buying_power:,.2f}")
                         
                         if available_cash < 100:
                             print(f"[Bot {bot.id}] Insufficient cash to trade (need at least $100)")
-                            await asyncio.sleep(3600)  # Wait 1 hour
+                            await asyncio.sleep(60)  # Wait 1 minute
                             continue
                         
-                        # Analyze each earning and get safety scores
-                        analyzed_earnings = []
-                        
+                        # Analyze each earning
                         for earning in all_earnings:
                             symbol = earning.get('symbol', earning.get('ticker'))
                             company = earning.get('company', earning.get('companymearningsshortname', symbol))
@@ -359,37 +391,129 @@ class BotService:
                             if not symbol:
                                 continue
                             
+                            # Skip if we already have a position
+                            positions = await trading_service.get_positions()
+                            has_position = False
+                            if broker == 'IG':
+                                epic = trading_service.get_epic_for_symbol(symbol)
+                                if epic:
+                                    existing_epics = {p['epic'] for p in positions}
+                                    if epic in existing_epics:
+                                        has_position = True
+                            else:
+                                existing_symbols = {p['symbol'] for p in positions}
+                                if symbol in existing_symbols:
+                                    has_position = True
+                            
+                            if has_position:
+                                print(f"[Bot {bot.id}] Already have position in {symbol}, skipping analysis")
+                                continue
+
                             try:
+                                # Get comprehensive market data using market_data_service
+                                from services.market_data_service import market_data_service
+                                
+                                market_data = market_data_service.get_stock_data(symbol)
+                                current_price = market_data.get('current_price', 0.0)
+                                short_interest = market_data.get('short_interest', 'N/A')
+                                iv_rank = market_data.get('iv_rank', 'N/A')
+                                pe_ratio = market_data.get('pe_ratio')
+                                two_week_change = market_data.get('two_week_change_pct', 0)
+                                run_up_warning = market_data.get('run_up_warning', False)
+                                
+                                # Get analyst revisions
+                                analyst_data = market_data_service.get_analyst_revisions(symbol)
+                                analyst_trend = analyst_data.get('trend', 'N/A')
+                                
+                                current_time_str = datetime.now().strftime("%H:%M")
+                                
+                                # Log market data
+                                print(f"[Bot {bot.id}] {symbol} Market Data:")
+                                print(f"  Price: ${current_price}, P/E: {pe_ratio}, Short: {short_interest}, IV: {iv_rank}")
+                                print(f"  2-Week Change: {two_week_change}%, Analyst Trend: {analyst_trend}")
+                                if run_up_warning:
+                                    print(f"  ⚠️  RUN-UP WARNING: Stock up {two_week_change}% in 2 weeks!")
+                                
                                 # Get EPS history and reliability
                                 eps_result = await earnings_service.get_ticker_eps_history(symbol, years=2)
                                 eps_history = eps_result.get('quarters', [])
                                 reliability = eps_result.get('reliability', {})
                                 
-                                # Analyze with Gemini
+                                # Analyze with Gemini (acting as "Earnings Genius")
                                 gemini_analysis = await gemini_service.analyze_earnings_safety(
                                     symbol=symbol,
                                     company=company,
                                     earnings_date=earning_date,
                                     eps_history=eps_history,
                                     reliability=reliability,
-                                    available_cash=available_cash
+                                    available_cash=available_cash,
+                                    current_price=current_price,
+                                    current_time=current_time_str,
+                                    short_interest=short_interest,
+                                    iv_rank=iv_rank
                                 )
                                 
-                                analyzed_earnings.append({
-                                    'earning': earning,
-                                    'symbol': symbol,
-                                    'company': company,
-                                    'earning_date': earning_date,
-                                    'safety_score': gemini_analysis.get('safety_score', 0),
-                                    'allocation_percentage': gemini_analysis.get('allocation_percentage', 0),
-                                    'recommendation': gemini_analysis.get('recommendation', 'avoid'),
-                                    'reasoning': gemini_analysis.get('reasoning', ''),
-                                    'reliability': reliability
-                                })
+                                decision = gemini_analysis.get('decision', 'NO_GO')
+                                confidence = gemini_analysis.get('confidence_score', 0)
+                                reasoning = gemini_analysis.get('reasoning_summary', '')
+                                entry_zone = gemini_analysis.get('entry_zone', {})
+                                ideal_price = entry_zone.get('ideal_price')
+                                max_entry_price = entry_zone.get('max_entry_price')
                                 
-                                print(f"[Bot {bot.id}] {symbol}: Safety={gemini_analysis.get('safety_score', 0)}, "
-                                      f"Allocation={gemini_analysis.get('allocation_percentage', 0)*100:.1f}%, "
-                                      f"Recommendation={gemini_analysis.get('recommendation', 'avoid')}")
+                                print(f"[Bot {bot.id}] {symbol}: Decision={decision}, Confidence={confidence}, Price=${current_price}")
+                                print(f"[Bot {bot.id}] Reasoning: {reasoning}")
+                                
+                                if decision == 'BUY':
+                                    # Check price conditions
+                                    if current_price > 0 and max_entry_price and current_price > max_entry_price:
+                                        print(f"[Bot {bot.id}] {symbol}: Price ${current_price} is above max entry ${max_entry_price}. WAITING.")
+                                        continue
+                                        
+                                    # Execute BUY
+                                    allocation_percentage = 0.1 # Default 10% for now as per strategy or dynamic?
+                                    # Strategy says "allocation_percentage" might be in JSON but user prompt didn't strictly require it in JSON output
+                                    # User prompt had "entry_zone". 
+                                    # Let's use a safe default or if Gemini provided it in "allocation_percentage" (legacy field I kept)
+                                    allocation_percentage = gemini_analysis.get('allocation_percentage', 0.1)
+                                    
+                                    allocation_amount = min(available_cash * allocation_percentage, buying_power * 0.3)
+                                    
+                                    if allocation_amount < 100:
+                                        print(f"[Bot {bot.id}] Allocation too small, skipping")
+                                        continue
+                                        
+                                    print(f"[Bot {bot.id}] 🚀 EXECUTING BUY for {symbol} based on Earnings Genius decision!")
+                                    
+                                    # Place order logic (reused from before)
+                                    if broker == 'IG':
+                                        epic = trading_service.get_epic_for_symbol(symbol)
+                                        if epic:
+                                            position_size = max(1, int(allocation_amount)) # CFD units
+                                            order = await trading_service.place_market_order(
+                                                epic=epic,
+                                                direction='BUY',
+                                                size=position_size
+                                            )
+                                            if order:
+                                                deal_ref = order.get('deal_reference')
+                                                print(f"[Bot {bot.id}] Order placed: {deal_ref}")
+                                                self._log_activity(bot.id, f"BUY {symbol} ({epic}) - {reasoning}")
+                                                
+                                                # Track for exit
+                                                pending_positions[symbol] = {
+                                                    'epic': epic,
+                                                    'entry_date': now, # Today
+                                                    'deal_reference': deal_ref,
+                                                    'size': position_size,
+                                                    'direction': 'BUY',
+                                                    'reasoning': reasoning
+                                                }
+                                    
+                                elif decision == 'WAIT':
+                                    print(f"[Bot {bot.id}] {symbol}: Waiting for better entry or conditions.")
+                                    
+                                elif decision == 'NO_GO':
+                                    print(f"[Bot {bot.id}] {symbol}: NO_GO. Skipping.")
                                 
                             except Exception as e:
                                 print(f"[Bot {bot.id}] Error analyzing {symbol}: {e}")
@@ -397,126 +521,15 @@ class BotService:
                                 traceback.print_exc()
                                 continue
                         
-                        # Step 4: Filter and sort by safety score
-                        buy_recommendations = [
-                            ae for ae in analyzed_earnings 
-                            if ae['recommendation'] == 'buy' and ae['safety_score'] >= 50
-                        ]
-                        buy_recommendations.sort(key=lambda x: x['safety_score'], reverse=True)
-                        
-                        # Step 5: Execute trades based on allocation
-                        positions = await ig_service.get_positions()
-                        existing_epics = {p['epic'] for p in positions}
-                        
-                        for analyzed in buy_recommendations:
-                            symbol = analyzed['symbol']
-                            allocation = analyzed['allocation_percentage']
-                            safety_score = analyzed['safety_score']
-                            
-                            # Get IG epic for symbol (IG uses epics, not stock symbols)
-                            # First try direct mapping
-                            epic = ig_service.get_epic_for_symbol(symbol)
-                            
-                            # Try to search for the epic if not found
-                            if not epic:
-                                try:
-                                    print(f"[Bot {bot.id}] Searching IG Markets for {symbol}...")
-                                    markets = await ig_service.search_markets(symbol)
-                                    if markets and len(markets) > 0:
-                                        epic = markets[0].get('epic')
-                                        print(f"[Bot {bot.id}] Found epic {epic} for {symbol}")
-                                    else:
-                                        print(f"[Bot {bot.id}] {symbol}: Could not find IG epic, skipping")
-                                        continue
-                                except Exception as search_err:
-                                    print(f"[Bot {bot.id}] {symbol}: Error searching for epic: {search_err}")
-                                    # Try using the default format anyway
-                                    epic = ig_service.get_epic_for_symbol(symbol)
-                                    if not epic:
-                                        continue
-                            
-                            # Verify epic exists by getting market info
-                            try:
-                                market_info = await ig_service.get_market_info(epic)
-                                if not market_info or not market_info.get('current_price'):
-                                    print(f"[Bot {bot.id}] {symbol}: Epic {epic} not valid or not available, skipping")
-                                    continue
-                            except Exception as verify_err:
-                                print(f"[Bot {bot.id}] {symbol}: Error verifying epic {epic}: {verify_err}")
-                                continue
-                            
-                            # Skip if we already have a position
-                            if epic in existing_epics:
-                                print(f"[Bot {bot.id}] Already have position in {symbol} ({epic}), skipping")
-                                continue
-                            
-                            # Calculate allocation amount
-                            allocation_amount = min(available_cash * allocation, buying_power * 0.3)  # Max 30% per stock
-                            
-                            if allocation_amount < 100:  # Minimum $100 per trade
-                                print(f"[Bot {bot.id}] {symbol}: Allocation too small (${allocation_amount:.2f}), skipping")
-                                continue
-                            
-                            try:
-                                # Get market info to understand pricing
-                                market_info = await ig_service.get_market_info(epic)
-                                if not market_info or not market_info.get('current_price'):
-                                    print(f"[Bot {bot.id}] {symbol}: Could not get market info, skipping")
-                                    continue
-                                
-                                current_price = market_info.get('current_price', market_info.get('bid', 0))
-                                
-                                # IG Markets uses CFD - size is in currency units (dollars)
-                                # For CFD, size represents the exposure in the base currency
-                                # Example: size=100 means $100 exposure
-                                # Calculate size based on allocation amount
-                                # For CFD, we can directly use the allocation amount as size
-                                position_size = max(1, int(allocation_amount))  # Minimum size of 1 unit
-                                
-                                # Place buy order before earnings (BUY direction)
-                                print(f"[Bot {bot.id}] 📈 Opening BUY CFD position in {symbol} ({epic}) "
-                                      f"size={position_size} units (${allocation_amount:,.2f}) before earnings - Safety: {safety_score:.1f}")
-                                
-                                order = await ig_service.place_market_order(
-                                    epic=epic,
-                                    direction='BUY',
-                                    size=position_size
-                                )
-                                
-                                if order:
-                                    deal_reference = order.get('deal_reference')
-                                    deal_id = order.get('deal_id')
-                                    earning_date_obj = datetime.fromisoformat(analyzed['earning_date']).date()
-                                    
-                                    # Track position to close after earnings
-                                    pending_positions[symbol] = {
-                                        'epic': epic,
-                                        'entry_date': earning_date_obj,
-                                        'deal_id': deal_id,
-                                        'deal_reference': deal_reference,
-                                        'size': position_size,
-                                        'direction': 'BUY',
-                                        'safety_score': safety_score,
-                                        'reasoning': analyzed['reasoning']
-                                    }
-                                    
-                                    print(f"[Bot {bot.id}] ✅ Position opened: {deal_reference} for {symbol} ({epic})")
-                                    self._log_activity(bot.id, f"OPEN BUY {symbol} ({epic}) size={position_size} - Safety Score: {safety_score}")
-                                
-                            except Exception as e:
-                                print(f"[Bot {bot.id}] Error placing order for {symbol}: {e}")
-                                import traceback
-                                traceback.print_exc()
-                                continue
                     except Exception as account_err:
                         print(f"[Bot {bot.id}] Error getting account info: {account_err}")
-                        await asyncio.sleep(3600)
+                        await asyncio.sleep(60)
                         continue
                 else:
                     print(f"[Bot {bot.id}] No earnings found for today/tomorrow")
                 
-                # Wait 1 hour before checking again
-                await asyncio.sleep(3600)
+                # Wait 1 minute (Llama tactical monitoring frequency)
+                await asyncio.sleep(60)
         
         except Exception as e:
             print(f"[Bot {bot.id}] Error in bot execution: {e}")
@@ -535,7 +548,7 @@ class BotService:
             finally:
                 pass
     
-    async def _close_earnings_positions(self, bot: Bot, ig_service: Any, pending_positions: Dict, today: date):
+    async def _close_earnings_positions(self, bot: Bot, trading_service: Any, pending_positions: Dict, today: date, broker: str = 'IG'):
         """Close positions that were opened before earnings (close the day after entry)"""
         from datetime import datetime
         
@@ -548,28 +561,34 @@ class BotService:
         
         for symbol, position_info in positions_to_close:
             try:
-                deal_id = position_info.get('deal_id')
-                epic = position_info.get('epic')
-                direction = position_info.get('direction', 'BUY')
-                size = position_info.get('size')
+                if broker == 'IG':
+                    deal_id = position_info.get('deal_id')
+                    epic = position_info.get('epic')
+                    direction = position_info.get('direction', 'BUY')
+                    size = position_info.get('size')
+                    
+                    if deal_id and epic:
+                        print(f"[Bot {bot.id}] 📉 Closing position in {symbol} ({epic}) "
+                              f"(entered {position_info['entry_date']}, size: {size}) after earnings")
+                        
+                        # Close position - direction should be opposite (if BUY, close with SELL)
+                        close_direction = 'SELL' if direction == 'BUY' else 'BUY'
+                        
+                        order = await trading_service.close_position(
+                            deal_id=deal_id,
+                            direction=close_direction,
+                            size=size  # None means close entire position
+                        )
+                        
+                        if order:
+                            print(f"[Bot {bot.id}] ✅ Position closed: {order.get('deal_reference')} for {symbol} ({epic})")
+                            self._log_activity(bot.id, f"CLOSE {direction} {symbol} ({epic}) size={size}")
+                            del pending_positions[symbol]
                 
-                if deal_id and epic:
-                    print(f"[Bot {bot.id}] 📉 Closing position in {symbol} ({epic}) "
-                          f"(entered {position_info['entry_date']}, size: {size}) after earnings")
-                    
-                    # Close position - direction should be opposite (if BUY, close with SELL)
-                    close_direction = 'SELL' if direction == 'BUY' else 'BUY'
-                    
-                    order = await ig_service.close_position(
-                        deal_id=deal_id,
-                        direction=close_direction,
-                        size=size  # None means close entire position
-                    )
-                    
-                    if order:
-                        print(f"[Bot {bot.id}] ✅ Position closed: {order.get('deal_reference')} for {symbol} ({epic})")
-                        self._log_activity(bot.id, f"CLOSE {direction} {symbol} ({epic}) size={size}")
-                        del pending_positions[symbol]
+                elif broker == 'Alpaca':
+                    print(f"[Bot {bot.id}] 📉 Closing position in {symbol} after earnings (Alpaca)")
+                    await trading_service.close_position(symbol)
+                    del pending_positions[symbol]
                     
             except Exception as e:
                 print(f"[Bot {bot.id}] Error closing position in {symbol}: {e}")

@@ -1,216 +1,327 @@
 """
-Llama Service - Handles integration with local Ollama instance
+Llama Service - Handles integration with local Ollama instance directly via HTTP
 """
 import os
+import json
+import requests
 from typing import Optional, Dict, Any, List
-from langchain_community.llms import Ollama
-from langchain_community.tools import DuckDuckGoSearchRun
-from langchain.memory import ConversationBufferMemory
-from langchain.agents import initialize_agent, AgentType
-from langchain.callbacks.manager import CallbackManager
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from services.web_search_service import web_search_service
+from services.llm_factory import LLMFactory
+from services.gemini_service import GeminiService
 
 class LlamaService:
     def __init__(self, model_name: str = "llama3.2:1b"):
         self.model_name = model_name
-        self.llm = None
-        self.search = DuckDuckGoSearchRun()
-        self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-        self.agent = None
+        self.base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         self._initialized = False
+        self.user_memories: Dict[int, List[Dict[str, str]]] = {}
 
     def initialize(self):
-        """Initialize Ollama LLM and Agent"""
+        """Check if Ollama is reachable"""
         if self._initialized:
             return
 
         try:
-            print(f"[LlamaService] Initializing Ollama with model: {self.model_name}")
-            self.llm = Ollama(
-                model=self.model_name,
-                callback_manager=CallbackManager([StreamingStdOutCallbackHandler()])
-            )
-            
-            tools = [self.search]
-            
-            self.agent = initialize_agent(
-                tools, 
-                self.llm, 
-                agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, 
-                verbose=True, 
-                memory=self.memory,
-                handle_parsing_errors=True
-            )
-            
-            self._initialized = True
-            print("[LlamaService] Initialization successful")
+            print(f"[LlamaService] Connecting to Ollama at {self.base_url} with model: {self.model_name}")
+            response = requests.get(f"{self.base_url}/api/tags")
+            if response.status_code == 200:
+                self._initialized = True
+                print("[LlamaService] Initialization successful")
+            else:
+                print(f"[LlamaService] Initialization failed: Status {response.status_code}")
+                self._initialized = False
         except Exception as e:
-            print(f"[LlamaService] Initialization failed: {e}")
+            # print(f"[LlamaService] Initialization failed: {e}")
+            # Don't print error stack trace for connection refused, just mark as uninitialized
             self._initialized = False
 
-    def generate_response(self, prompt: str, context: str = "") -> str:
-        """Generate response using the agent"""
+    def _call_ollama(self, prompt: str, context: str = "", system_prompt: str = "", history: List[Dict[str, str]] = None) -> str:
+        """Helper to call Ollama chat endpoint with history"""
         if not self._initialized:
             self.initialize()
             if not self._initialized:
-                return "Error: Llama service is not available. Please ensure Ollama is running."
+                # Fallback logic handled in generate_response, but for direct calls:
+                return "Error: Llama service is not available (Ollama not running)."
 
         try:
-            # Enhance prompt with context if provided
-            full_prompt = prompt
-            if context:
-                full_prompt = f"""Context information is below.
----------------------
-{context}
----------------------
-Given the context information and not prior knowledge, answer the query.
-Query: {prompt}
-Answer:"""
+            messages = []
             
-            response = self.agent.run(full_prompt)
-            return response
-        except Exception as e:
-            print(f"[LlamaService] Error generating response: {e}")
-            return f"I encountered an error processing your request: {str(e)}"
+            # System message
+            if system_prompt:
+                messages.append({"role": "system", "content": system_prompt})
+            elif context:
+                # Default system message with context
+                messages.append({"role": "system", "content": f"You are a helpful assistant. Use the following context to answer the user's question. If the answer is not in the context, use your general knowledge.\n\nContext:\n{context}"})
+            else:
+                messages.append({"role": "system", "content": "You are a helpful assistant."})
 
-    def chat_about_bot(self, context: str, history: List[Dict[str, str]], prompt: str) -> str:
+            # Add history
+            if history:
+                messages.extend(history)
+            
+            # Add current prompt
+            messages.append({"role": "user", "content": prompt})
+
+            payload = {
+                "model": self.model_name,
+                "messages": messages,
+                "stream": False,
+                "options": {
+                    "num_gpu": 999
+                }
+            }
+
+            response = requests.post(f"{self.base_url}/api/chat", json=payload)
+            response.raise_for_status()
+            return response.json().get("message", {}).get("content", "")
+        except Exception as e:
+            print(f"[LlamaService] Error calling Ollama: {e}")
+            return f"Error processing request: {str(e)}"
+
+    def generate_response(self, prompt: str, context: str = "", user_id: Optional[int] = None, 
+                         provider: str = "local", api_key: Optional[str] = None) -> str:
+        """Generate response using specified provider with per-user memory"""
+        history = []
+        if user_id is not None:
+            if user_id not in self.user_memories:
+                self.user_memories[user_id] = []
+            history = self.user_memories[user_id]
+        
+        if provider != "local" and provider != "llama" and api_key:
+            # Use cloud provider
+            try:
+                client = LLMFactory.create_client(provider, api_key)
+                if client:
+                    # Construct prompt with history
+                    full_prompt = ""
+                    if context:
+                        full_prompt += f"Context: {context}\n\n"
+                    
+                    for msg in history:
+                        role = "User" if msg['role'] == 'user' else "Assistant"
+                        full_prompt += f"{role}: {msg['content']}\n"
+                    
+                    full_prompt += f"User: {prompt}"
+                    
+                    response = client.generate_content(full_prompt)
+                else:
+                    response = "Error: Invalid AI provider selected."
+            except Exception as e:
+                print(f"[LlamaService] Error with {provider}: {e}")
+                response = f"Error using {provider}: {str(e)}"
+        else:
+            # Use local Ollama
+            if not self._initialized:
+                self.initialize()
+            
+            if self._initialized:
+                response = self._call_ollama(prompt, context, history=history)
+            else:
+                # Fallback to Gemini if available
+                print("[LlamaService] Ollama not available, attempting fallback to Gemini...")
+                gemini_key = os.getenv("GOOGLE_GEMINI_API_KEY")
+                if gemini_key:
+                    try:
+                        gemini = GeminiService(api_key=gemini_key)
+                        # Construct prompt with context and history
+                        full_prompt = ""
+                        if context:
+                            full_prompt += f"Context: {context}\n\n"
+                        for msg in history:
+                            role = "User" if msg['role'] == 'user' else "Assistant"
+                            full_prompt += f"{role}: {msg['content']}\n"
+                        full_prompt += f"User: {prompt}"
+                        
+                        response = gemini.generate_response(full_prompt)
+                        response = f"[Fallback to Gemini] {response}"
+                    except Exception as e:
+                        response = "Error: Llama is not running and Gemini fallback failed."
+                else:
+                    response = "Error: Llama service is not available. Please ensure Ollama is running or configure Gemini API key."
+        
+        # Update memory
+        if user_id is not None:
+            self.user_memories[user_id].append({"role": "user", "content": prompt})
+            self.user_memories[user_id].append({"role": "assistant", "content": response})
+            
+            # Keep memory size manageable (last 20 messages)
+            if len(self.user_memories[user_id]) > 20:
+                self.user_memories[user_id] = self.user_memories[user_id][-20:]
+                
+        return response
+
+    def chat_about_bot(self, context: str, history: List[Dict[str, str]], prompt: str, search_web: bool = True,
+                      provider: str = "local", api_key: Optional[str] = None) -> str:
         """Chat about bot activity with history"""
+        if provider != "local" and provider != "llama" and api_key:
+            # Use cloud provider
+            try:
+                client = LLMFactory.create_client(provider, api_key)
+                if not client:
+                    return "Error: Invalid AI provider selected."
+                
+                # Construct prompt
+                search_context = ""
+                if search_web:
+                    try:
+                        search_results = web_search_service.search(prompt)
+                        search_context = f"\n\nWEB SEARCH RESULTS:\n{search_results}"
+                    except Exception as e:
+                        print(f"Search failed: {e}")
+
+                full_prompt = f"""You are a helpful assistant for a trading bot.
+Your goal is to explain the bot's activity and answer user questions based on the provided data and web search results.
+
+DATA SOURCE:
+{context}{search_context}
+
+CONVERSATION HISTORY:
+"""
+                for msg in history:
+                    role = "User" if msg.get('role') == 'user' else "Assistant"
+                    full_prompt += f"{role}: {msg.get('content')}\n"
+                
+                full_prompt += f"User: {prompt}"
+                
+                return client.generate_content(full_prompt)
+            except Exception as e:
+                return f"Error using {provider}: {str(e)}"
+
         if not self._initialized:
             self.initialize()
             if not self._initialized:
                 return "Llama (Ollama) is not available."
         
         try:
-            # Construct conversation history string
-            history_str = ""
+            # Construct messages for chat endpoint
+            messages = []
+            
+            # Perform web search if enabled
+            search_context = ""
+            if search_web:
+                print(f"[LlamaService] Performing web search for: {prompt}")
+                search_results = web_search_service.search(prompt)
+                search_context = f"\n\nWEB SEARCH RESULTS:\n{search_results}"
+            
+            # Read real-time bot activity logs
+            bot_activity_context = ""
+            try:
+                # Read bot activity log (last 50 lines)
+                log_path = os.path.join("backend", "bot_activity.log")
+                if os.path.exists(log_path):
+                    with open(log_path, "r") as f:
+                        lines = f.readlines()
+                        recent_lines = lines[-50:] if len(lines) > 50 else lines
+                        bot_activity_context += "\n\nRECENT BOT ACTIVITY LOG:\n" + "".join(recent_lines)
+                
+                # Read profitto.json for current P&L
+                profitto_path = os.path.join("backend", "profitto.json")
+                if os.path.exists(profitto_path):
+                    with open(profitto_path, "r") as f:
+                        profitto_data = json.load(f)
+                        bot_activity_context += f"\n\nCURRENT PROFIT/LOSS STATUS:\n{json.dumps(profitto_data, indent=2)}"
+                
+                # If no activity found, say so
+                if not bot_activity_context:
+                    bot_activity_context = "\n\nNOTE: No recent bot activity found. The bot may not be active yet."
+                    
+            except Exception as e:
+                print(f"[LlamaService] Error reading bot activity: {e}")
+                bot_activity_context = "\n\nNOTE: Could not read bot activity logs."
+
+            # System message with context
+            system_message = f"""You are a helpful assistant for the Earnings Report Genius trading bot.
+Your goal is to explain what the bot is currently doing, what decisions it's making, and answer user questions.
+
+You have access to:
+1. Recent bot activity logs (what the bot is analyzing and deciding)
+2. Current profit/loss status
+3. Web search results (if relevant)
+
+IMPORTANT: 
+- If the user asks what the bot is doing NOW, check the RECENT BOT ACTIVITY LOG
+- Explain the bot's current analysis, decisions (BUY/WAIT/NO_GO), and reasoning
+- If the bot is analyzing a stock, explain the market data it's looking at
+- If the bot made a trade, explain why
+- Be specific about stock symbols, prices, and decisions
+
+DATA SOURCES:
+{context}{bot_activity_context}{search_context}"""
+            messages.append({"role": "system", "content": system_message})
+
+            # Add history
             for msg in history:
-                role = "User" if msg.get('role') == 'user' else "Assistant"
-                history_str += f"{role}: {msg.get('content')}\n"
+                messages.append({
+                    "role": msg.get('role', 'user'),
+                    "content": msg.get('content', '')
+                })
             
-            full_prompt = f"""You are a helpful assistant for a trading bot.
-Your goal is to explain the bot's activity and answer user questions based on the provided data.
+            # Add current prompt
+            messages.append({"role": "user", "content": prompt})
 
-DATA SOURCE:
-{context}
+            payload = {
+                "model": self.model_name,
+                "messages": messages,
+                "stream": False,
+                "options": {
+                    "num_gpu": 999
+                }
+            }
 
-CONVERSATION HISTORY:
-{history_str}
-
-User: {prompt}
-Assistant:"""
-
-            # Use the agent or LLM directly. Since we're managing history manually here for the specific bot context,
-            # we can just use the LLM or the agent. The agent has tools, which might be useful.
-            # However, for strict explanation based on context, direct LLM might be safer to avoid tool hallucination.
-            # But let's use the agent to keep consistency if it needs to search (though we want it to stick to data).
-            # Actually, for "explanation", we want it to stick to the context.
-            
-            return self.agent.run(full_prompt)
+            response = requests.post(f"{self.base_url}/api/chat", json=payload)
+            response.raise_for_status()
+            return response.json().get("message", {}).get("content", "")
         except Exception as e:
             print(f"[LlamaService] Error in chat: {e}")
             return f"Error: {str(e)}"
 
     def generate_explanation(self, context: str) -> str:
         """Generate explanation for bot activity"""
-        if not self._initialized:
-            self.initialize()
-            if not self._initialized:
-                return "Llama (Ollama) is not available to explain the bot's actions."
-        
-        try:
-            prompt = f"""You are a strict reporting assistant for a trading bot.
-Your ONLY source of truth is the provided JSON data below. 
+        system_prompt = """You are a strict reporting assistant for a trading bot.
+Your ONLY source of truth is the provided JSON data. 
 DO NOT hallucinate. DO NOT make up trades, profits, or events not present in the data.
 If the data is empty or missing, state that no data is available.
-
-DATA SOURCE:
-{context}
-
-Based STRICTLY on the above data, provide a concise summary of:
+Based STRICTLY on the data, provide a concise summary of:
 1. Current financial status (Profit/Loss, Win Rate)
 2. Recent trades (Symbol, Action, Price)
 3. Active positions
-
-Keep it under 200 words. Use a professional, factual tone.
-"""
-            return self.agent.run(prompt)
-        except Exception as e:
-            error_msg = str(e)
-            if "WinError 10061" in error_msg or "Connection refused" in error_msg:
-                print(f"[LlamaService] Connection refused: {e}")
-                return "I cannot connect to Ollama. Please make sure the Ollama application is running on your computer."
-            
-            print(f"[LlamaService] Error generating explanation: {e}")
-            return f"I tried to analyze the bot's activity but encountered an error: {str(e)}"
+Keep it under 200 words. Use a professional, factual tone."""
+        
+        return self._call_ollama(f"Data: {context}", system_prompt=system_prompt)
 
     def parse_chart_request(self, query: str) -> List[Dict[str, Any]]:
         """Parse natural language chart request into structured data"""
-        if not self._initialized:
-            self.initialize()
-            if not self._initialized:
-                raise Exception("Llama service is not available")
+        system_prompt = """You are a financial charting assistant. Extract the technical indicators and parameters from the user's request.
+Return ONLY a JSON list of objects, where each object has the following keys:
+- "indicator": The type of indicator (SMA, EMA, RSI, BB, MACD, VOL, STOCH).
+- "params": A dictionary of parameters.
+- "color": A suggested hex color code.
+
+Example Response: [{"indicator": "SMA", "params": {"period": 20}, "color": "#2196F3"}]"""
 
         try:
-            prompt = f"""You are a financial charting assistant. Extract the technical indicators and parameters from the user's request.
-            Return ONLY a JSON list of objects, where each object has the following keys:
-            - "indicator": The type of indicator (SMA, EMA, RSI, BB, MACD, VOL, STOCH).
-            - "params": A dictionary of parameters (e.g., "period": 20, "std_dev": 2, "fast_period": 12, "slow_period": 26, "signal_period": 9).
-            - "color": A suggested hex color code for the indicator (e.g., "#FF5733").
-
-            User Request: "{query}"
-
-            Example 1:
-            Request: "Show me the 20 day moving average"
-            Response: [{{"indicator": "SMA", "params": {{"period": 20}}, "color": "#2196F3"}}]
-
-            Example 2:
-            Request: "Add RSI 14 and MACD"
-            Response: [
-                {{"indicator": "RSI", "params": {{"period": 14}}, "color": "#9C27B0"}},
-                {{"indicator": "MACD", "params": {{"fast_period": 12, "slow_period": 26, "signal_period": 9}}, "color": "#00BCD4"}}
-            ]
-
-            Example 3:
-            Request: "Bollinger bands with 20 period and 2 std dev"
-            Response: [{{"indicator": "BB", "params": {{"period": 20, "std_dev": 2}}, "color": "#FF9800"}}]
-
-            Example 4:
-            Request: "Add volume and stochastic"
-            Response: [
-                {{"indicator": "VOL", "params": {{}}, "color": "#4CAF50"}},
-                {{"indicator": "STOCH", "params": {{"k_period": 14, "d_period": 3, "slowing": 3}}, "color": "#E91E63"}}
-            ]
-
-            Response:"""
-            
-            response = self.agent.run(prompt)
+            response_text = self._call_ollama(query, system_prompt=system_prompt)
             
             # Clean up response to ensure it's valid JSON
-            import json
             import re
-            
-            # Find JSON block
-            json_match = re.search(r'\[.*\]', response, re.DOTALL)
+            json_match = re.search(r'\[.*\]', response_text, re.DOTALL)
             if json_match:
                 json_str = json_match.group(0)
                 return json.loads(json_str)
             else:
-                # Try parsing the whole response
-                result = json.loads(response)
-                if isinstance(result, dict):
-                    return [result]
-                return result
+                # Try parsing the whole response if it's just the array
+                return json.loads(response_text)
                 
         except Exception as e:
             print(f"[LlamaService] Error parsing chart request: {e}")
-            # Fallback for simple queries if LLM fails
+            # Fallback
             query_lower = query.lower()
             results = []
             if "rsi" in query_lower:
                 results.append({"indicator": "RSI", "params": {"period": 14}, "color": "#9C27B0"})
-            if "sma" in query_lower or "simple moving average" in query_lower:
+            if "sma" in query_lower:
                 results.append({"indicator": "SMA", "params": {"period": 20}, "color": "#2196F3"})
-            if "ema" in query_lower or "exponential" in query_lower:
+            if "ema" in query_lower:
                 results.append({"indicator": "EMA", "params": {"period": 20}, "color": "#4CAF50"})
             if "bollinger" in query_lower:
                 results.append({"indicator": "BB", "params": {"period": 20, "std_dev": 2}, "color": "#FF9800"})
@@ -218,86 +329,109 @@ Keep it under 200 words. Use a professional, factual tone.
                 results.append({"indicator": "MACD", "params": {"fast_period": 12, "slow_period": 26, "signal_period": 9}, "color": "#00BCD4"})
             if "volume" in query_lower:
                 results.append({"indicator": "VOL", "params": {}, "color": "#4CAF50"})
-            if "stoch" in query_lower:
-                results.append({"indicator": "STOCH", "params": {"k_period": 14, "d_period": 3, "slowing": 3}, "color": "#E91E63"})
             
-            if results:
-                return results
-            
-            raise e
+            return results
 
     def generate_strategy_from_prompt(self, prompt: str) -> Dict[str, Any]:
         """Generate a trading strategy from a natural language prompt"""
-        if not self._initialized:
-            self.initialize()
-            if not self._initialized:
-                raise Exception("Llama service is not available")
+        system_prompt = """You are an expert quantitative trading strategist. 
+Convert the user's trading strategy description into a structured JSON format.
+The JSON structure must be exactly as follows:
+{
+    "name": "Strategy Name",
+    "description": "Brief description",
+    "entry_rules": [{"indicator": "RSI", "condition": "<", "value": 30, "params": {"period": 14}}],
+    "exit_rules": [],
+    "risk_management": {"stop_loss_pct": 2.0, "take_profit_pct": 4.0}
+}
+Return ONLY the JSON."""
 
         try:
-            system_prompt = """You are an expert quantitative trading strategist. 
-            Convert the user's trading strategy description into a structured JSON format.
+            response_text = self._call_ollama(prompt, system_prompt=system_prompt)
             
-            The JSON structure must be exactly as follows:
-            {
-                "name": "Strategy Name",
-                "description": "Brief description of the strategy",
-                "entry_rules": [
-                    {
-                        "indicator": "RSI", 
-                        "condition": "<", 
-                        "value": 30,
-                        "params": {"period": 14}
-                    }
-                ],
-                "exit_rules": [
-                    {
-                        "indicator": "RSI", 
-                        "condition": ">", 
-                        "value": 70,
-                        "params": {"period": 14}
-                    }
-                ],
-                "risk_management": {
-                    "stop_loss_pct": 2.0,
-                    "take_profit_pct": 4.0
-                }
-            }
-            
-            Supported indicators: RSI, SMA, EMA, MACD, BB (Bollinger Bands), VOLUME, PRICE.
-            Supported conditions: >, <, >=, <=, ==, CROSS_ABOVE, CROSS_BELOW.
-            
-            User Description: """
-            
-            full_prompt = f"{system_prompt}\n\"{prompt}\"\n\nJSON Response:"
-            
-            response = self.agent.run(full_prompt)
-            
-            # Clean up response to ensure it's valid JSON
-            import json
             import re
-            
-            # Find JSON block
-            json_match = re.search(r'\{.*\}', response, re.DOTALL)
+            json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
             if json_match:
                 json_str = json_match.group(0)
                 return json.loads(json_str)
             else:
-                # Try parsing the whole response
-                return json.loads(response)
-                
+                return json.loads(response_text)
         except Exception as e:
             print(f"[LlamaService] Error generating strategy: {e}")
-            # Fallback/Mock response for testing if LLM fails
             return {
                 "name": "Generated Strategy",
                 "description": f"Strategy based on: {prompt}",
                 "entry_rules": [],
                 "exit_rules": [],
-                "risk_management": {
-                    "stop_loss_pct": 1.0,
-                    "take_profit_pct": 2.0
-                }
+                "risk_management": {"stop_loss_pct": 1.0, "take_profit_pct": 2.0}
             }
+
+    def generate_drawing(self, prompt: str, color: str, chart_data: List[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Generate a drawing based on prompt and chart data using Llama.
+        Returns a drawing object compatible with frontend.
+        """
+        try:
+            # Prepare context from chart data
+            context = ""
+            if chart_data:
+                # Summarize chart data
+                step = max(1, len(chart_data) // 30)  # Smaller sample for Llama context window
+                sampled_data = chart_data[::step]
+                
+                context = "Chart Data Sample (Time, Price):\n"
+                for d in sampled_data:
+                    context += f"T:{d.get('time')} P:{d.get('close')}\n"
+                
+                # Add min/max context
+                all_highs = [d.get('high') for d in chart_data if d.get('high') is not None]
+                all_lows = [d.get('low') for d in chart_data if d.get('low') is not None]
+                if all_highs and all_lows:
+                    context += f"\nPrice Range: {min(all_lows)} to {max(all_highs)}\n"
+                    context += f"Time Range: {chart_data[0].get('time')} to {chart_data[-1].get('time')}\n"
+
+            system_prompt = f"""You are a technical analysis assistant. 
+Generate a JSON object for a chart drawing based on the user's request and the provided chart data.
+
+Output Format (JSON ONLY):
+{{
+    "type": "line" | "square" | "circle" | "arrow" | "hline" | "vline" | "text",
+    "p1": {{ "time": <timestamp>, "price": <price> }},
+    "p2": {{ "time": <timestamp>, "price": <price> }}, // Optional for hline/vline/text
+    "color": "{color}",
+    "text": "..." // Only for type "text"
+}}
+
+Rules:
+- Use the provided Chart Data to determine valid coordinates.
+- "hline" needs "price". "vline" needs "time". Others need "p1" and usually "p2".
+- Return ONLY valid JSON. No explanations.
+"""
+            
+            full_prompt = f"{context}\n\nUser Request: {prompt}"
+            
+            response_text = self._call_ollama(full_prompt, system_prompt=system_prompt)
+            
+            # Clean up response
+            import re
+            json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+                drawing_data = json.loads(json_str)
+            else:
+                drawing_data = json.loads(response_text)
+            
+            # Add ID if missing
+            if 'id' not in drawing_data:
+                import uuid
+                drawing_data['id'] = str(uuid.uuid4())[:8]
+                
+            return drawing_data
+
+        except Exception as e:
+            print(f"[LlamaService] Error generating drawing: {e}")
+            # Return a safe fallback or raise
+            raise e
 
 # Singleton instance
 llama_service = LlamaService()

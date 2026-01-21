@@ -16,6 +16,47 @@
         </div>
         
         <div v-else>
+          <!-- Tabs -->
+          <div class="tabs">
+            <button 
+              class="tab-btn" 
+              :class="{ active: activeTab === 'earnings' }"
+              @click="activeTab = 'earnings'"
+            >
+              Earnings Calendar
+            </button>
+            <button 
+              class="tab-btn" 
+              :class="{ active: activeTab === 'financials' }"
+              @click="activeTab = 'financials'"
+            >
+              Financials & Charts
+            </button>
+          </div>
+
+          <!-- Financials Tab -->
+          <div v-if="activeTab === 'financials'" class="financials-tab">
+            <div v-if="loadingFinancials" class="loading-state">
+              <div class="spinner"></div>
+              <p>Loading financial charts...</p>
+            </div>
+            <div v-else-if="!financialsData" class="no-data">
+              <p>No financial data available for {{ bot?.name }}</p>
+            </div>
+            <div v-else class="charts-grid">
+              <div class="chart-card">
+                <h3>Revenue vs Earnings (Quarterly)</h3>
+                <RevenueEarningsChart :financials="financialsData.quarterly_financials" />
+              </div>
+              <div class="chart-card">
+                <h3>EPS History (Estimates vs Actual)</h3>
+                <EpsHistoryChart :history="financialsData.earnings_history" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings Calendar Tab -->
+          <div v-else class="earnings-calendar-tab">
           <!-- Debug info -->
           <div v-if="earnings.length > 0" class="debug-info" style="margin-bottom: 16px; padding: 12px; background: #1a202c; border-radius: 8px; font-size: 12px; color: #a0aec0;">
             <p>Total earnings loaded: {{ earnings.length }}</p>
@@ -327,6 +368,7 @@
               Total earnings available: {{ earnings.length }}
             </p>
           </div>
+          </div> <!-- End of Earnings Calendar Tab -->
         </div>
       </div>
       
@@ -338,8 +380,10 @@
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import api from '../services/api'
+import RevenueEarningsChart from './RevenueEarningsChart.vue'
+import EpsHistoryChart from './EpsHistoryChart.vue'
 
 const props = defineProps({
   show: {
@@ -360,6 +404,9 @@ const earnings = ref([])
 const expandedEarnings = ref({})
 const epsHistory = ref({})
 const loadingEps = ref({})
+const activeTab = ref('earnings') // 'earnings' or 'financials'
+const financialsData = ref(null)
+const loadingFinancials = ref(false)
 
 // Helper function to get next business day (skip weekends)
 const getNextBusinessDay = (date) => {
@@ -477,6 +524,38 @@ watch(() => props.show, async (newVal) => {
     error.value = null
   }
 })
+
+watch(activeTab, async (newTab) => {
+  if (newTab === 'financials' && !financialsData.value && props.bot) {
+    await loadFinancials()
+  }
+})
+
+const loadFinancials = async () => {
+  if (!props.bot) return
+  
+  loadingFinancials.value = true
+  try {
+    // Determine ticker from bot name or config
+    // Assuming bot.name is the ticker for now, or we need a way to get it
+    // If bot is a "stock" bot, name might be "AAPL"
+    let ticker = props.bot.name
+    if (props.bot.config && props.bot.config.symbol) {
+        ticker = props.bot.config.symbol
+    }
+    
+    // Clean ticker
+    ticker = ticker.split(' ')[0].trim()
+    
+    console.log(`Loading financials for ${ticker}...`)
+    const response = await api.getStockFinancials(ticker)
+    financialsData.value = response.data
+  } catch (err) {
+    console.error('Error loading financials:', err)
+  } finally {
+    loadingFinancials.value = false
+  }
+}
 
 const loadEarnings = async () => {
   loading.value = true
@@ -797,6 +876,60 @@ const close = () => {
   border-radius: 8px;
   margin-bottom: 16px;
   font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #4a5568;
+  padding-bottom: 10px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  color: #e2e8f0;
+  background: #4a5568;
+}
+
+.tab-btn.active {
+  color: #4299e1;
+  background: rgba(66, 153, 225, 0.1);
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.chart-card {
+  background: #1a202c;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.chart-card h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #e2e8f0;
 }
 
 .earnings-section {

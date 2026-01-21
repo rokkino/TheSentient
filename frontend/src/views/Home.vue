@@ -128,6 +128,14 @@ onMounted(async () => {
   await authStore.checkAuth()
   if (authStore.isLoggedIn) {
     router.push('/dashboard')
+  } else {
+    // Check for login query param
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('login') === 'true') {
+      showLoginModal.value = true
+      // Clean up the URL
+      window.history.replaceState({}, document.title, '/')
+    }
   }
 })
 

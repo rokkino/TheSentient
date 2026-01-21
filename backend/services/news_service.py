@@ -23,6 +23,89 @@ class NewsService:
             "https://www.investing.com/rss/news.rss",
             "https://www.cnbc.com/id/100003114/device/rss/rss.html"
         ]
+        
+        # Setup memory cache directory
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        backend_dir = os.path.dirname(current_dir)
+        self.cache_dir = os.path.join(backend_dir, 'memory', 'news')
+        
+        if not os.path.exists(self.cache_dir):
+            try:
+                os.makedirs(self.cache_dir, exist_ok=True)
+                print(f"[NEWS] Created memory directory: {self.cache_dir}")
+            except Exception as e:
+                print(f"[NEWS] Warning: Could not create memory directory {self.cache_dir}: {e}")
+                
+        # In-memory cache for fast access
+        self.memory_cache = []
+        self._load_cache()
+
+    def _load_cache(self):
+        """Load news from individual JSON files in memory directory"""
+        try:
+            if not os.path.exists(self.cache_dir):
+                return
+
+            loaded_items = []
+            count = 0
+            
+            # Iterate over all files in the cache directory
+            for filename in os.listdir(self.cache_dir):
+                if filename.endswith('.json'):
+                    file_path = os.path.join(self.cache_dir, filename)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            import json
+                            item = json.load(f)
+                            
+                            # Basic validation
+                            if 'link' in item and 'timestamp' in item:
+                                loaded_items.append(item)
+                                count += 1
+                    except Exception as e:
+                        print(f"[NEWS] Error loading cache file {filename}: {e}")
+            
+            # Sort by timestamp descending
+            loaded_items.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+            self.memory_cache = loaded_items
+            print(f"[NEWS] Loaded {count} news items from memory cache")
+        except Exception as e:
+            print(f"[NEWS] Error loading cache: {e}")
+            self.memory_cache = []
+
+    def _save_news_to_memory(self, news_items: List[Dict[str, Any]]):
+        """Save news items to individual JSON files"""
+        import hashlib
+        import json
+        
+        count = 0
+        for item in news_items:
+            try:
+                link = item.get('link', '')
+                if not link:
+                    continue
+                    
+                # Create a unique filename based on the link hash
+                # Using MD5 of link is a good way to get a unique, safe filename
+                link_hash = hashlib.md5(link.encode('utf-8')).hexdigest()
+                filename = f"news_{link_hash}.json"
+                file_path = os.path.join(self.cache_dir, filename)
+                
+                # Only save if it doesn't exist (immutable news items)
+                if not os.path.exists(file_path):
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        json.dump(item, f, indent=2, ensure_ascii=False)
+                    count += 1
+                    
+                    # Also update in-memory cache
+                    self.memory_cache.append(item)
+            except Exception as e:
+                print(f"[NEWS] Error saving news item to memory: {e}")
+        
+        if count > 0:
+            print(f"[NEWS] Saved {count} new news items to memory cache")
+            # Re-sort memory cache
+            self.memory_cache.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
     
     async def get_news(self, tickers: Optional[List[str]] = None, limit: int = 50, allowed_publishers: Optional[List[str]] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
         """Get news items with optional publisher filtering and caching"""
@@ -33,14 +116,31 @@ class NewsService:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         
-        # 1. Fetch from DB first if db session provided
+        # 1. Fetch from Memory Cache first (DB is secondary/legacy now)
         cached_news = []
-        if db:
+        
+        # Filter memory cache based on request
+        if self.memory_cache:
+            filtered_cache = self.memory_cache
+            
+            # Filter by tickers if provided
+            if tickers:
+                filtered_cache = [n for n in filtered_cache if n.get('ticker') in tickers]
+                
+            # Filter by publishers if provided
+            if allowed_publishers:
+                filtered_cache = [n for n in filtered_cache if n.get('publisher') in allowed_publishers]
+                
+            cached_news = filtered_cache[:limit]
+            print(f"Loaded {len(cached_news)} news items from memory cache")
+            
+        # Fallback to DB if provided and memory cache empty (migration path)
+        if not cached_news and db:
             try:
                 cached_news = await self.get_news_from_db(db, tickers, limit, allowed_publishers)
-                print(f"Loaded {len(cached_news)} news items from cache")
+                print(f"Loaded {len(cached_news)} news items from DB cache")
             except Exception as e:
-                print(f"Error reading from cache: {e}")
+                print(f"Error reading from DB cache: {e}")
 
         # 2. Fetch fresh news
         def fetch_news_sync():
@@ -173,11 +273,16 @@ class NewsService:
         
         fresh_news = await loop.run_in_executor(None, fetch_news_sync)
         
-        # 3. Save fresh news to DB and cleanup old news
-        if db and fresh_news:
+        # 3. Save fresh news to Memory Cache and DB
+        if fresh_news:
             try:
-                await self.save_news_to_db(db, fresh_news)
-                await self.cleanup_old_news(db)
+                # Save to file-based memory cache
+                self._save_news_to_memory(fresh_news)
+                
+                # Also save to DB if available (legacy support)
+                if db:
+                    await self.save_news_to_db(db, fresh_news)
+                    await self.cleanup_old_news(db)
             except Exception as e:
                 print(f"Error saving to cache: {e}")
         

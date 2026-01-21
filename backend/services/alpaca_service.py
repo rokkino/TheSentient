@@ -21,17 +21,22 @@ except ImportError:
     pass
 
 class AlpacaService:
-    def __init__(self):
-        # Get API keys from environment variables
-        self.api_key = os.getenv('ALPACA_API_KEY', '')
-        self.api_secret = os.getenv('ALPACA_API_SECRET', '')
-        self.base_url = os.getenv('ALPACA_BASE_URL', 'https://paper-api.alpaca.markets')  # Paper trading URL
+    def __init__(self, api_key: Optional[str] = None, api_secret: Optional[str] = None, paper: bool = True):
+        # Get API keys from arguments or environment variables
+        self.api_key = api_key or os.getenv('ALPACA_API_KEY', '')
+        self.api_secret = api_secret or os.getenv('ALPACA_API_SECRET', '')
         
+        # Determine base URL
+        if paper:
+            self.base_url = os.getenv('ALPACA_BASE_URL', 'https://paper-api.alpaca.markets')
+        else:
+            self.base_url = 'https://api.alpaca.markets'
+            
         self.client = None
         self.data_client = None
         
         if not ALPACA_AVAILABLE:
-            # Silently handle missing Alpaca - it's optional, we use IG Markets now
+            # Silently handle missing Alpaca - it's optional
             return
         
         if self.api_key and self.api_secret:
@@ -46,8 +51,8 @@ class AlpacaService:
                     api_key=self.api_key,
                     secret_key=self.api_secret
                 )
-            except Exception:
-                # Silently fail - Alpaca is optional
+            except Exception as e:
+                print(f"Error initializing Alpaca client: {e}")
                 pass
     
     def is_configured(self) -> bool:

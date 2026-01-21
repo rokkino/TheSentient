@@ -8,7 +8,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
   withCredentials: true, // Include cookies in requests
-  timeout: 30000, // 30 second timeout (increased for database operations)
+  timeout: 120000, // 120 second timeout (increased for AI + Web Search)
 })
 
 // Add token to requests if available
@@ -116,8 +116,8 @@ export default {
     return api.get('/earnings', { params, timeout: 300000 }) // 5 minute timeout for 6 months of data
   },
 
-  askLlamaAboutEarning(symbol, company, date, question = null) {
-    return api.post('/earnings/ask', { symbol, company, date, question })
+  askLlamaAboutEarning(symbol, company, date, question = null, provider = 'local') {
+    return api.post('/earnings/ask', { symbol, company, date, question, provider })
   },
 
   askLlamaAboutNews(newsItem, question) {
@@ -137,6 +137,10 @@ export default {
 
   getTickerEpsHistory(ticker, years = 2) {
     return api.get(`/earnings/${ticker}/eps-history`, { params: { years } })
+  },
+
+  getStockFinancials(ticker) {
+    return api.get(`/stock/${ticker}/financials`)
   },
 
   // Auth endpoints
@@ -219,6 +223,12 @@ export default {
 
   deleteChatMessage(messageId) {
     return api.delete(`/chat/message/${messageId}`)
+  },
+
+  clearChatHistory(recipientId = null) {
+    const params = {}
+    if (recipientId) params.recipient_id = recipientId
+    return api.delete('/chat/history', { params })
   },
 
   // User tabs endpoints

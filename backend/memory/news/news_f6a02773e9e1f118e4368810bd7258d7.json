@@ -1,0 +1,11 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin Miners are Losing $8,000 for Each BTC Mined, Hashrate Drops",
+  "link": "https://finance.yahoo.com/news/bitcoin-miners-losing-8-000-193444244.html",
+  "publisher": "Coinspeaker",
+  "timestamp": "2026-01-19T19:34:44",
+  "text": "Bitcoin hashrate and mining difficulty have been dropping since November 2025, as Bitcoin miners could have been mining unprofitably according to average cost data. In particular, data Coinspeaker retrieved from MacroMicro shows a net-negative difference of over $8,000 between Bitcoin’s average mining cost and its market price as of Jan. 19, ...",
+  "thumbnail": "https://media.zenfs.com/en/coinspeaker_us_106/0bdeff32b501e520c2d435b779e3e1a6",
+  "trading_signal": null
+}

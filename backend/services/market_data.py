@@ -8,6 +8,14 @@ from typing import Dict, Any, Optional
 from typing import List
 import asyncio
 from datetime import datetime
+import json
+import os
+from pathlib import Path
+try:
+    from yahoo_fin import stock_info as si
+    YAHOO_FIN_AVAILABLE = True
+except ImportError:
+    YAHOO_FIN_AVAILABLE = False
 
 class MarketDataService:
     def __init__(self):
@@ -20,6 +28,10 @@ class MarketDataService:
             "1y": {"period": "1y", "interval": "1d"},
             "5y": {"period": "5y", "interval": "1wk"},
         }
+        
+        # Ensure cache directory exists
+        self.cache_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "memory", "graph")
+        os.makedirs(self.cache_dir, exist_ok=True)
     
     async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True) -> Dict[str, Any]:
         """Get chart data for a ticker"""
@@ -28,28 +40,110 @@ class MarketDataService:
         params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
         
         def fetch_data():
-            tk = yf.Ticker(ticker)
-            data = tk.history(**params)
+            # Try to get from cache first if timeframe is 1y (default for watchlist sparklines)
+            # or if it's a standard timeframe that we want to cache
+            use_cache = True
             
-            if data.empty:
+            cached_data = None
+            last_timestamp = None
+            
+            if use_cache:
+                cached_data = self._get_cached_data(ticker, timeframe)
+                if cached_data and cached_data.get("data"):
+                    # Get last timestamp from cache
+                    try:
+                        last_item = cached_data["data"][-1]
+                        last_timestamp = last_item["time"] / 1000 # Convert back to seconds
+                        # print(f"Found cached data for {ticker}, last timestamp: {datetime.fromtimestamp(last_timestamp)}")
+                    except:
+                        pass
+
+            tk = yf.Ticker(ticker)
+            
+            # If we have cached data, only fetch new data
+            if last_timestamp:
+                # Add a small buffer (1 day) to ensure overlap/continuity
+                start_date = datetime.fromtimestamp(last_timestamp).strftime('%Y-%m-%d')
+                # print(f"Fetching new data for {ticker} starting from {start_date}")
+                
+                # Adjust params to use start date instead of period
+                fetch_params = params.copy()
+                if "period" in fetch_params:
+                    del fetch_params["period"]
+                fetch_params["start"] = start_date
+                
+                try:
+                    new_data = tk.history(**fetch_params)
+                except Exception as e:
+                    print(f"Error fetching incremental data: {e}, falling back to full fetch")
+                    new_data = tk.history(**params)
+                    cached_data = None # Invalidate cache on error
+            else:
+                data = tk.history(**params)
+                new_data = data
+            
+            if new_data.empty and not cached_data:
                 raise ValueError(f"No data available for {ticker}")
             
-            # Clean timezone if needed
-            if params.get("interval", "1d").endswith(("m", "h")):
-                try:
-                    data.index = data.index.tz_convert(None)
-                except (TypeError, AttributeError):
-                    pass
+            # Process new data
+            if not new_data.empty:
+                # Clean timezone if needed
+                if params.get("interval", "1d").endswith(("m", "h")):
+                    try:
+                        new_data.index = new_data.index.tz_convert(None)
+                    except (TypeError, AttributeError):
+                        pass
+                
+                # Convert to numeric
+                for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
+                    if col in new_data.columns:
+                        new_data[col] = pd.to_numeric(new_data[col], errors='coerce')
+                
+                new_data = new_data.dropna()
+
+            # Merge with cache if available
+            if cached_data and not new_data.empty:
+                # Convert cached list back to DataFrame for processing/indicators
+                # This is a bit expensive, but needed for indicators. 
+                # Alternatively, we could just append new processed data to cached processed data.
+                # Let's try the append approach for performance.
+                
+                # 1. Process new data into list format
+                new_chart_data = self._process_data_to_list(new_data, params)
+                
+                # 2. Merge lists (avoiding duplicates based on time)
+                existing_times = set(d["time"] for d in cached_data["data"])
+                
+                for item in new_chart_data:
+                    if item["time"] not in existing_times:
+                        cached_data["data"].append(item)
+                        # Also update earnings if any
+                
+                # Sort by time
+                cached_data["data"].sort(key=lambda x: x["time"])
+                
+                # Update metadata
+                cached_data["metadata"]["count"] = len(cached_data["data"])
+                cached_data["metadata"]["end"] = cached_data["data"][-1]["time"]
+                
+                # Save updated cache
+                self._save_cached_data(ticker, timeframe, cached_data)
+                
+                return cached_data
+                
+            elif not new_data.empty:
+                # Full fetch (no cache or cache invalid)
+                # Calculate indicators and format
+                
+                # ... (rest of original processing logic) ...
+                # We need to wrap the original logic to reuse it
+                pass
             
-            # Convert to numeric
-            for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
-                if col in data.columns:
-                    data[col] = pd.to_numeric(data[col], errors='coerce')
-            
-            data = data.dropna()
+            # If we are here, we need to process 'new_data' fully (either full fetch or fallback)
+            data = new_data # Rename for compatibility with original code
             
             if data.empty:
-                raise ValueError(f"No valid data after cleaning for {ticker}")
+                 raise ValueError(f"No valid data after cleaning for {ticker}")
             
             # Calculate RSI
             rsi_data = None
@@ -157,7 +251,7 @@ class MarketDataService:
                     "bull_run": bull_run_value
                 })
             
-            return {
+            result = {
                 "ticker": ticker,
                 "timeframe": timeframe,
                 "chart_type": chart_type,
@@ -169,8 +263,135 @@ class MarketDataService:
                     "end": chart_data[-1]["time"] if chart_data else None
                 }
             }
+            
+            # Save to cache
+            self._save_cached_data(ticker, timeframe, result)
+            
+            return result
         
         return await loop.run_in_executor(None, fetch_data)
+
+    def _get_cached_data(self, ticker: str, timeframe: str) -> Optional[Dict[str, Any]]:
+        """Get data from JSON cache"""
+        try:
+            # Only cache 1y/1d timeframe for now as it's the most common for watchlist
+            if timeframe != "1y":
+                return None
+                
+            file_path = os.path.join(self.cache_dir, f"{ticker}_{timeframe}.json")
+            if os.path.exists(file_path):
+                with open(file_path, 'r') as f:
+                    return json.load(f)
+        except Exception as e:
+            print(f"Error reading cache for {ticker}: {e}")
+        return None
+
+    def _save_cached_data(self, ticker: str, timeframe: str, data: Dict[str, Any]):
+        """Save data to JSON cache"""
+        try:
+            # Only cache 1y/1d timeframe
+            if timeframe != "1y":
+                return
+                
+            file_path = os.path.join(self.cache_dir, f"{ticker}_{timeframe}.json")
+            with open(file_path, 'w') as f:
+                json.dump(data, f)
+        except Exception as e:
+            print(f"Error saving cache for {ticker}: {e}")
+
+    def _process_data_to_list(self, data: pd.DataFrame, params: Dict) -> List[Dict[str, Any]]:
+        """Helper to process DataFrame to list of dicts (reused logic)"""
+        # Calculate RSI
+        rsi_data = None
+        try:
+            rsi_data = self._calculate_rsi(data['Close'])
+        except:
+            pass
+        
+        # Calculate Moving Averages (13, 50, 200, 800)
+        ma_data = {}
+        ma_periods = [13, 50, 200, 800]
+        for period in ma_periods:
+            try:
+                ma_data[f'ma{period}'] = data['Close'].rolling(window=period, min_periods=1).mean()
+            except:
+                pass
+        
+        # Calculate Bull Run signal
+        bull_run_data = None
+        if rsi_data is not None and len(data) > 1:
+            try:
+                price_diff = data['Close'].diff()
+                rsi_diff = rsi_data.diff()
+                bull_core = (price_diff < 0) & (rsi_diff > 0)
+                bear_core = (price_diff > 0) & (rsi_diff < 0)
+                bull_run_data = pd.Series(0, index=data.index)
+                bull_run_data[bull_core] = 1
+                bull_run_data[bear_core] = -1
+            except:
+                pass
+
+        # Helper function to clean float values
+        def clean_float(val):
+            if val is None:
+                return None
+            try:
+                f_val = float(val)
+                if pd.isna(f_val) or np.isnan(f_val) or np.isinf(f_val):
+                    return None
+                return f_val
+            except (ValueError, TypeError):
+                return None
+
+        chart_data = []
+        for idx, row in data.iterrows():
+            timestamp = int(idx.timestamp() * 1000) if isinstance(idx, pd.Timestamp) else int(idx)
+            
+            # RSI value
+            rsi_value = None
+            if rsi_data is not None and idx in rsi_data.index:
+                try:
+                    val = rsi_data.loc[idx]
+                    rsi_value = clean_float(val)
+                except:
+                    pass
+            
+            # MA values
+            ma_values = {}
+            for period in ma_periods:
+                ma_key = f'ma{period}'
+                if ma_key in ma_data and idx in ma_data[ma_key].index:
+                    try:
+                        val = ma_data[ma_key].loc[idx]
+                        cleaned_val = clean_float(val)
+                        if cleaned_val is not None:
+                            ma_values[f'ma{period}'] = cleaned_val
+                    except:
+                        pass
+            
+            # Bull run signal
+            bull_run_value = None
+            if bull_run_data is not None and idx in bull_run_data.index:
+                try:
+                    val = bull_run_data.loc[idx]
+                    if not pd.isna(val):
+                        bull_run_value = int(val)
+                except:
+                    pass
+            
+            chart_data.append({
+                "time": timestamp,
+                "open": clean_float(row['Open']),
+                "high": clean_float(row['High']),
+                "low": clean_float(row['Low']),
+                "close": clean_float(row['Close']),
+                "volume": clean_float(row['Volume']),
+                "rsi": rsi_value,
+                **ma_values,
+                "bull_run": bull_run_value
+            })
+            
+        return chart_data
     
     def _get_earnings_dates(self, ticker_obj, start_date, end_date) -> List[Dict[str, Any]]:
         """Get earnings dates for a ticker within the chart date range"""
@@ -336,6 +557,98 @@ class MarketDataService:
             }
         
         return await loop.run_in_executor(None, fetch_quote)
+
+    async def get_financials(self, ticker: str) -> Dict[str, Any]:
+        """Get financial data (Revenue, Earnings, EPS History)"""
+        loop = asyncio.get_event_loop()
+        
+        def fetch_financials():
+            tk = yf.Ticker(ticker)
+            result = {
+                "symbol": ticker,
+                "quarterly_financials": [],
+                "earnings_history": []
+            }
+            
+            # 1. Get Quarterly Financials (Revenue & Earnings)
+            try:
+                # quarterly_financials dataframe
+                # Rows: 'Total Revenue', 'Net Income', etc.
+                # Columns: Dates
+                qf = tk.quarterly_financials
+                if not qf.empty:
+                    # Transpose to get dates as rows
+                    qf_T = qf.T
+                    qf_T.index = pd.to_datetime(qf_T.index)
+                    qf_T = qf_T.sort_index()
+                    
+                    financials_data = []
+                    for date_idx, row in qf_T.iterrows():
+                        try:
+                            revenue = row.get('Total Revenue') or row.get('Operating Revenue')
+                            earnings = row.get('Net Income') or row.get('Net Income Common Stockholders')
+                            
+                            if revenue is not None or earnings is not None:
+                                financials_data.append({
+                                    "date": date_idx.strftime('%Y-%m-%d'),
+                                    "revenue": float(revenue) if revenue is not None and not pd.isna(revenue) else None,
+                                    "earnings": float(earnings) if earnings is not None and not pd.isna(earnings) else None
+                                })
+                        except:
+                            continue
+                    
+                    result["quarterly_financials"] = financials_data
+            except Exception as e:
+                print(f"Error fetching quarterly financials for {ticker}: {e}")
+
+            # 2. Get EPS History (Estimates vs Actuals)
+            # Try yahoo_fin first
+            try:
+                if YAHOO_FIN_AVAILABLE:
+                    history = si.get_earnings_history(ticker)
+                    if history:
+                        eps_data = []
+                        for entry in history:
+                            try:
+                                # entry keys: 'startdatetime', 'epsestimate', 'epsactual', 'epssurprisepct'
+                                date_str = entry.get('startdatetime', '')
+                                if date_str:
+                                    # Format: 2024-10-31T10:00:00.000Z
+                                    dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+                                    
+                                    eps_data.append({
+                                        "date": dt.strftime('%Y-%m-%d'),
+                                        "estimate": entry.get('epsestimate'),
+                                        "actual": entry.get('epsactual'),
+                                        "surprise": entry.get('epssurprisepct')
+                                    })
+                            except:
+                                continue
+                        
+                        # Sort by date
+                        eps_data.sort(key=lambda x: x['date'])
+                        result["earnings_history"] = eps_data
+            except Exception as e:
+                print(f"Error fetching earnings history for {ticker} with yahoo_fin: {e}")
+                
+            # Fallback for EPS History if yahoo_fin failed or empty
+            if not result["earnings_history"]:
+                try:
+                    # Try getting it from yfinance calendar (sometimes has next earnings)
+                    # or info['earningsHistory'] if available (rare in new yfinance)
+                    info = tk.info
+                    if 'earningsHistory' in info:
+                        history = info['earningsHistory']
+                        eps_data = []
+                        for entry in history:
+                            # Map fields if possible
+                            pass
+                except:
+                    pass
+                    
+            return result
+
+        return await loop.run_in_executor(None, fetch_financials)
     
     def _calculate_rsi(self, prices: pd.Series, period: int = 14) -> pd.Series:
         """Calculate RSI indicator"""

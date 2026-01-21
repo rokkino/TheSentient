@@ -18,10 +18,11 @@ class WebSocketManager:
             "username": username
         })
         # Broadcast online count
+        online_users = self.get_online_users()
         await self.broadcast({
             "type": "online_users",
-            "count": len(self.active_connections),
-            "users": self.get_online_users()
+            "count": len(online_users),
+            "users": online_users
         })
     
     def disconnect(self, websocket: WebSocket):
@@ -34,10 +35,11 @@ class WebSocketManager:
     async def disconnect_and_broadcast(self, websocket: WebSocket):
         """Remove connection and broadcast update"""
         self.disconnect(websocket)
+        online_users = self.get_online_users()
         await self.broadcast({
             "type": "online_users",
-            "count": len(self.active_connections),
-            "users": self.get_online_users()
+            "count": len(online_users),
+            "users": online_users
         })
     
     async def send_personal_message(self, message: dict, websocket: WebSocket):
@@ -87,5 +89,8 @@ class WebSocketManager:
             if conn["user_id"] and conn["username"]:
                 users[conn["user_id"]] = conn["username"]
         
-        return [{"id": uid, "username": uname} for uid, uname in users.items()]
+        return [{"id": uid, "username": uname} for uid, uname in users.items()] + [
+            {"id": -1, "username": "Llama AI"},
+            {"id": -2, "username": "Gemini AI"}
+        ]
 

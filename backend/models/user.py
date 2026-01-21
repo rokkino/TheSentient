@@ -31,7 +31,14 @@ class User(Base):
     profile_picture_url = Column(String, nullable=True)
     tabs = Column(Text, nullable=True)  # JSON string storing user's tab configuration
     use_local_llama = Column(Boolean, default=False)  # Toggle for local Llama (Ollama)
-    gemini_api_key = Column(String, nullable=True)  # Google Gemini API Key
+    gemini_api_key = Column(String, nullable=True)  # Google Gemini API Key (Flash/Free)
+    
+    # AI Configuration
+    ai_provider = Column(String, default="gemini")  # gemini, openai, anthropic, deepseek
+    gemini_pro_api_key = Column(String, nullable=True)  # Google Gemini Pro (Paid)
+    openai_api_key = Column(String, nullable=True)  # ChatGPT
+    anthropic_api_key = Column(String, nullable=True)  # Claude
+    deepseek_api_key = Column(String, nullable=True)  # Deepseek
 
 # Database setup
 # Default to SQLite for development, use PostgreSQL if DATABASE_URL is set
@@ -86,7 +93,12 @@ def init_db():
                         'profile_picture_url': 'VARCHAR',
                         'tabs': 'TEXT',
                         'use_local_llama': 'BOOLEAN',
-                        'gemini_api_key': 'VARCHAR'
+                        'gemini_api_key': 'VARCHAR',
+                        'ai_provider': 'VARCHAR DEFAULT "gemini"',
+                        'gemini_pro_api_key': 'VARCHAR',
+                        'openai_api_key': 'VARCHAR',
+                        'anthropic_api_key': 'VARCHAR',
+                        'deepseek_api_key': 'VARCHAR'
                     }
                     
                     # Add missing columns

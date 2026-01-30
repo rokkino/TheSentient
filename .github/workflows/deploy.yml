@@ -1,0 +1,43 @@
+name: Deploy Full Stack App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VMIP }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Entra nella cartella (creala se non esiste la prima volta)
+            mkdir -p ~/the-sentient
+            cd ~/the-sentient
+            
+            # Se la cartella è vuota, clona il repo, altrimenti pulla
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/${{ github.repository }} .
+            else
+              git pull origin main
+            fi
+
+            # --- BACKEND ---
+            cd backend
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+            pm2 delete backend || true
+            pm2 start main.py --name backend --interpreter ./venv/bin/python
+            
+            # --- FRONTEND ---
+            cd ../frontend
+            npm install
+            npm run build  # Ora con lo swap attivo la VM reggerà il colpo

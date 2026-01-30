@@ -1,5 +1,5 @@
 {
-  "timestamp": 1768862161.980798,
+  "timestamp": 1769210391.9980435,
   "data": [
     {
       "symbol": "YPF",
@@ -11,7 +11,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.31",
       "epsactual": "($0.74)",
-      "marketCap": "$13,262,507,380",
+      "marketCap": "$14,037,333,582",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "3/07/2025"
@@ -26,9 +26,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($36.60)",
-      "marketCap": "$5,332,029,238",
+      "marketCap": "$5,491,132,478",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
@@ -41,9 +41,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($36.60)",
-      "marketCap": "$5,332,029,238",
+      "marketCap": "$5,491,132,478",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
@@ -56,7 +56,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.05",
       "epsactual": "$0.06",
-      "marketCap": "$4,950,252,996",
+      "marketCap": "$4,915,633,079",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "3/07/2025"
@@ -71,7 +71,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.15",
       "epsactual": "$0.09",
-      "marketCap": "$2,294,397,783",
+      "marketCap": "$2,213,114,770",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/07/2025"
@@ -86,7 +86,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$3.73",
       "epsactual": "$3.26",
-      "marketCap": "$396,740,975",
+      "marketCap": "$378,285,397",
       "fiscalQuarter": "Jan/2026",
       "numEstimates": "2",
       "lastYearDate": "3/07/2025"
@@ -101,9 +101,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.47",
-      "marketCap": "$274,262,493",
+      "marketCap": "$276,117,010",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
@@ -116,7 +116,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.07",
       "epsactual": "($0.55)",
-      "marketCap": "$267,151,444",
+      "marketCap": "$272,437,049",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "3/07/2025"
@@ -131,9 +131,9 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.56)",
       "epsactual": "N/A",
-      "marketCap": "$165,703,423",
+      "marketCap": "$182,909,648",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
@@ -146,40 +146,25 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.27",
       "epsactual": "$0.34",
-      "marketCap": "$163,631,340",
+      "marketCap": "$162,469,185",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "3/07/2025"
     },
     {
-      "symbol": "AXR",
-      "ticker": "AXR",
-      "company": "AMREP Corporation",
-      "companymearningsshortname": "AMREP Corporation",
+      "symbol": "ONCY",
+      "ticker": "ONCY",
+      "company": "Oncolytics Biotech Inc.",
+      "companymearningsshortname": "Oncolytics Biotech Inc.",
       "date": "2026-03-06",
       "time": "TBD",
       "source": "nasdaq_api",
-      "epsestimate": "N/A",
-      "epsactual": "$0.13",
-      "marketCap": "$113,531,259",
-      "fiscalQuarter": "Jan/2026",
+      "epsestimate": "($0.06)",
+      "epsactual": "($0.07)",
+      "marketCap": "$136,660,098",
+      "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
-      "lastYearDate": "N/A"
-    },
-    {
-      "symbol": "HURC",
-      "ticker": "HURC",
-      "company": "Hurco Companies, Inc.",
-      "companymearningsshortname": "Hurco Companies, Inc.",
-      "date": "2026-03-06",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "N/A",
-      "epsactual": "($0.67)",
-      "marketCap": "$110,074,811",
-      "fiscalQuarter": "Jan/2026",
-      "numEstimates": "1",
-      "lastYearDate": "N/A"
+      "lastYearDate": "3/07/2025"
     },
     {
       "symbol": "INTT",
@@ -191,7 +176,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.16",
       "epsactual": "$0.23",
-      "marketCap": "$108,855,536",
+      "marketCap": "$118,467,779",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/07/2025"
@@ -206,25 +191,40 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.32)",
-      "marketCap": "$106,990,758",
+      "marketCap": "$116,147,624",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
-      "symbol": "ONCY",
-      "ticker": "ONCY",
-      "company": "Oncolytics Biotech Inc.",
-      "companymearningsshortname": "Oncolytics Biotech Inc.",
+      "symbol": "AXR",
+      "ticker": "AXR",
+      "company": "AMREP Corporation",
+      "companymearningsshortname": "AMREP Corporation",
       "date": "2026-03-06",
       "time": "TBD",
       "source": "nasdaq_api",
-      "epsestimate": "($0.06)",
-      "epsactual": "($0.07)",
-      "marketCap": "$104,701,004",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
-      "lastYearDate": "3/07/2025"
+      "epsestimate": "N/A",
+      "epsactual": "$0.13",
+      "marketCap": "$111,196,971",
+      "fiscalQuarter": "Jan/2026",
+      "numEstimates": "2",
+      "lastYearDate": "N/A"
+    },
+    {
+      "symbol": "HURC",
+      "ticker": "HURC",
+      "company": "Hurco Companies, Inc.",
+      "companymearningsshortname": "Hurco Companies, Inc.",
+      "date": "2026-03-06",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "N/A",
+      "epsactual": "($0.67)",
+      "marketCap": "$106,995,795",
+      "fiscalQuarter": "Jan/2026",
+      "numEstimates": "2",
+      "lastYearDate": "N/A"
     },
     {
       "symbol": "ZOOZ",
@@ -236,9 +236,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "N/A",
-      "marketCap": "$80,318,482",
+      "marketCap": "$76,011,948",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     },
     {
@@ -251,22 +251,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.68)",
       "epsactual": "($1.19)",
-      "marketCap": "$33,311,286",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
-      "lastYearDate": "3/07/2025"
-    },
-    {
-      "symbol": "LFWD",
-      "ticker": "LFWD",
-      "company": "Lifeward Ltd.",
-      "companymearningsshortname": "Lifeward Ltd.",
-      "date": "2026-03-06",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "($0.07)",
-      "epsactual": "($1.73)",
-      "marketCap": "$13,217,253",
+      "marketCap": "$36,051,175",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/07/2025"
@@ -281,10 +266,25 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($1.30)",
-      "marketCap": "$9,288,384",
+      "marketCap": "$13,099,498",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "2",
+      "lastYearDate": "N/A"
+    },
+    {
+      "symbol": "LFWD",
+      "ticker": "LFWD",
+      "company": "Lifeward Ltd.",
+      "companymearningsshortname": "Lifeward Ltd.",
+      "date": "2026-03-06",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "($0.07)",
+      "epsactual": "($1.73)",
+      "marketCap": "$12,619,047",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
-      "lastYearDate": "N/A"
+      "lastYearDate": "3/07/2025"
     },
     {
       "symbol": "CMCT",
@@ -296,9 +296,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($18.75)",
-      "marketCap": "$2,517,711",
+      "marketCap": "$3,646,066",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
+      "numEstimates": "2",
       "lastYearDate": "N/A"
     }
   ],

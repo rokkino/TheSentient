@@ -5,33 +5,40 @@ from typing import Optional, Dict, Any
 
 class LLMFactory:
     @staticmethod
-    def create_client(provider: str, api_key: str):
+    def create_client(provider: str, api_key: str, model: Optional[str] = None):
         if provider == "openai":
-            return OpenAIClient(api_key)
+            return OpenAIClient(api_key, model=model)
         elif provider == "anthropic":
-            return AnthropicClient(api_key)
+            return AnthropicClient(api_key, model=model)
         elif provider == "deepseek":
-            return DeepseekClient(api_key)
+            return DeepseekClient(api_key, model=model)
         elif provider == "gemini_pro":
             return GeminiProClient(api_key)
         else:
             return None
 
 class BaseLLMClient:
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, model: Optional[str] = None):
         self.api_key = api_key
+        self.model = (model or "").strip() or None
 
     def generate_content(self, prompt: str) -> str:
         raise NotImplementedError
 
 class OpenAIClient(BaseLLMClient):
+    DEFAULT_MODEL = "gpt-4o"
+
+    def __init__(self, api_key: str, model: Optional[str] = None):
+        super().__init__(api_key, model)
+
     def generate_content(self, prompt: str) -> str:
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
         }
+        model = self.model or self.DEFAULT_MODEL
         data = {
-            "model": "gpt-4o", # Default to a good model
+            "model": model,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7
         }
@@ -44,13 +51,19 @@ class OpenAIClient(BaseLLMClient):
             return f"Error calling OpenAI: {str(e)}"
 
 class DeepseekClient(BaseLLMClient):
+    DEFAULT_MODEL = "deepseek-chat"
+
+    def __init__(self, api_key: str, model: Optional[str] = None):
+        super().__init__(api_key, model)
+
     def generate_content(self, prompt: str) -> str:
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
         }
+        model = self.model or self.DEFAULT_MODEL
         data = {
-            "model": "deepseek-chat",
+            "model": model,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7
         }
@@ -63,14 +76,20 @@ class DeepseekClient(BaseLLMClient):
             return f"Error calling Deepseek: {str(e)}"
 
 class AnthropicClient(BaseLLMClient):
+    DEFAULT_MODEL = "claude-3-5-sonnet-20240620"
+
+    def __init__(self, api_key: str, model: Optional[str] = None):
+        super().__init__(api_key, model)
+
     def generate_content(self, prompt: str) -> str:
         headers = {
             "x-api-key": self.api_key,
             "anthropic-version": "2023-06-01",
             "Content-Type": "application/json"
         }
+        model = self.model or self.DEFAULT_MODEL
         data = {
-            "model": "claude-3-5-sonnet-20240620",
+            "model": model,
             "max_tokens": 1024,
             "messages": [{"role": "user", "content": prompt}]
         }

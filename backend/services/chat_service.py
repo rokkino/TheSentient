@@ -193,9 +193,10 @@ class ChatService:
                 
                 context_str = "\n".join(context_parts)
                 
-                # Instantiate GeminiService
+                # Instantiate GeminiService with user's model preference
                 gemini_api_key = user.gemini_api_key or os.getenv('GOOGLE_GEMINI_API_KEY')
-                gemini_service = GeminiService(api_key=gemini_api_key)
+                gemini_model = (getattr(user, 'gemini_model', None) or '').strip() or None
+                gemini_service = GeminiService(api_key=gemini_api_key, model_name=gemini_model)
                 
                 response_text = gemini_service.generate_response(message, context=context_str, user_id=user_id)
                 

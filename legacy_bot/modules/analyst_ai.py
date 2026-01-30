@@ -28,11 +28,11 @@ def analyze_opportunity(ticker: str, market_data: pd.DataFrame, news_summary: st
         
         logger.info(f"Consulting Analyst AI (Gemini) for {ticker}...")
         
-        model = genai.GenerativeModel('gemini-1.5-flash') # Or gemini-2.0-flash if available
+        model = genai.GenerativeModel('gemini-3.0-flash')
         
         # We can use system instruction if supported by the library version, 
         # otherwise we prepend it to the prompt. 
-        # For 'gemini-1.5-flash', system_instruction is supported in newer SDKs.
+        # For Gemini 3.0 Flash, system_instruction is supported in newer SDKs.
         # We will prepend for compatibility if needed, but let's try to use the system_instruction arg if possible
         # or just chat.
         

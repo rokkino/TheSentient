@@ -46,23 +46,13 @@
           @register="showRegisterModal = true"
           @logout="handleLogout"
           @profile="handleViewProfile"
-          @settings="showSettings = true"
         />
       </div>
     </div>
 
     <!-- Tab Content -->
     <div class="tab-content">
-      <!-- Earnings Tab -->
-      <div
-        v-if="activeTab === 2"
-        class="tab-panel earnings-panel"
-      >
-        <EarningsList 
-          @ticker-selected="(symbol) => handleEarningsTickerSelect(symbol)"
-          @open-settings="showSettings = true"
-        />
-      </div>
+
 
       <!-- News Tab -->
       <div
@@ -108,6 +98,24 @@
         <StrategyBuilder 
           @save="saveUserTabs"
         />
+      </div>
+
+      <!-- Earnings Tab -->
+      <div
+        v-for="tab in tabs"
+        :key="'earnings-' + tab.id"
+        v-show="activeTab === tab.id && tab.type === 'earnings'"
+        class="tab-panel earnings-panel"
+      >
+        <EarningsList />
+      </div>
+
+      <!-- Scheduler Tab -->
+      <div
+        v-if="activeTab === 6"
+        class="tab-panel scheduler-panel"
+      >
+        <SchedulerDashboard />
       </div>
 
       <!-- Stocks Tab -->
@@ -225,7 +233,7 @@
           </div>
 
           <div class="toolbar-actions">
-            <button class="settings-btn" @click="showSettings = true">⚙️</button>
+            <!-- Settings moved to Profile -->
           </div>
         </div>
 
@@ -465,12 +473,7 @@
       </div>
     </div>
 
-    <!-- Settings Modal -->
-    <SettingsModal
-      v-if="showSettings"
-      @close="showSettings = false"
-      @save="handleSettingsSave"
-    />
+    <!-- Settings Modal Removed (Redundant) -->
 
     <!-- Profile Modal -->
     <ProfileModal
@@ -515,75 +518,28 @@
       </button>
     </div>
 
-    <!-- Chart Context Menu -->
+    <!-- Chart Context Menu (Only for existing drawings) -->
     <div
-      v-if="chartContextMenu.show"
+      v-if="chartContextMenu.show && chartContextMenu.drawingId"
       class="context-menu"
       :style="{ left: chartContextMenu.x + 'px', top: chartContextMenu.y + 'px' }"
       @click.stop
     >
-      <template v-if="!chartContextMenu.drawingId">
-        <div class="color-picker-section">
-          <label>Color:</label>
-          <input type="color" v-model="selectedColor" class="color-input" />
-        </div>
-        <div class="menu-divider"></div>
-        <button @click="startDrawing('line')" class="context-menu-item">
-          📏 Line
-        </button>
-        <button @click="startDrawing('square')" class="context-menu-item">
-          ⬜ Square
-        </button>
-        <button @click="startDrawing('circle')" class="context-menu-item">
-          ⭕ Circle
-        </button>
-        <button @click="startDrawing('arrow')" class="context-menu-item">
-          ➡️ Arrow
-        </button>
-        <button @click="startDrawing('hline')" class="context-menu-item">
-          ➖ Horizontal Line
-        </button>
-        <button @click="startDrawing('vline')" class="context-menu-item">
-          ↕️ Vertical Line
-        </button>
-        <button @click="startDrawing('triangle')" class="context-menu-item">
-          🔺 Triangle
-        </button>
-        <button @click="startDrawing('polygon')" class="context-menu-item">
-          📐 Polygon
-        </button>
-        <button @click="startDrawing('freehand')" class="context-menu-item">
-          ✍️ Freehand
-        </button>
-        <button @click="startDrawing('text')" class="context-menu-item">
-          📝 Text
-        </button>
-        <div class="menu-divider"></div>
-        <button @click="openAiDrawModal()" class="context-menu-item">
-          ✨ AI Draw
-        </button>
-        <div class="menu-divider"></div>
-        <button 
-          v-if="tabs.find(t => t.id === chartContextMenu.tabId)?.drawings?.length" 
-          @click="undoLastDrawing(chartContextMenu.tabId)" 
-          class="context-menu-item"
-        >
-          ↩️ Undo Last
-        </button>
-        <button 
-          v-if="tabs.find(t => t.id === chartContextMenu.tabId)?.drawings?.length" 
-          @click="clearAllDrawings(chartContextMenu.tabId)" 
-          class="context-menu-item delete"
-        >
-          🗑️ Clear All
-        </button>
-      </template>
-      <template v-else>
-        <button @click="removeDrawing(chartContextMenu.tabId, chartContextMenu.drawingId)" class="context-menu-item delete">
-          Remove Drawing
-        </button>
-      </template>
+      <button @click="removeDrawing(chartContextMenu.tabId, chartContextMenu.drawingId)" class="context-menu-item delete">
+        Remove Drawing
+      </button>
     </div>
+
+    <!-- Floating Tool Palette -->
+    <FloatingToolPalette
+      v-if="tabs.find(t => t.id === activeTab && t.type === 'stocks')"
+      :current-tool="drawingMode"
+      v-model:color="selectedColor"
+      @set-tool="startDrawing"
+      @undo="undoLastDrawing(activeTab)"
+      @clear-all="clearAllDrawings(activeTab)"
+      @ai-draw="openAiDrawModal"
+    />
   </div>
 </template>
 
@@ -593,20 +549,22 @@ import { createChart } from 'lightweight-charts'
 import { useWatchlistStore } from '../stores/watchlist'
 import { useNewsStore } from '../stores/news'
 import { useAuthStore } from '../stores/auth'
-import SettingsModal from '../components/SettingsModal.vue'
-import EarningsList from '../components/EarningsList.vue'
+
 import NewsFeed from '../components/NewsFeed.vue'
 import BotList from '../components/BotList.vue'
 import FlexChat from '../components/FlexChat.vue'
+import EarningsList from '../components/EarningsList.vue'
 import UserProfile from '../components/UserProfile.vue'
 import LoginModal from '../components/LoginModal.vue'
 import RegisterModal from '../components/RegisterModal.vue'
 import ProfileModal from '../components/ProfileModal.vue'
 import StrategyBuilder from '../components/StrategyBuilder.vue'
+import SchedulerDashboard from '../components/SchedulerDashboard.vue'
 
 import TabWizard from '../components/TabWizard.vue'
 import IndicatorSearch from '../components/IndicatorSearch.vue'
 import AiDrawModal from '../components/AiDrawModal.vue'
+import FloatingToolPalette from '../components/FloatingToolPalette.vue'
 import api from '../services/api'
 import { getCached, setCached, saveIndicatorSettings, loadIndicatorSettings } from '../utils/cache'
 
@@ -642,11 +600,7 @@ const tabs = ref([
     aiIndicators: [],
     drawings: []
   },
-  {
-    id: 2,
-    name: 'Earnings',
-    type: 'earnings'
-  },
+
   {
     id: 3,
     name: 'News',
@@ -663,14 +617,18 @@ const tabs = ref([
     type: 'chat',
     chatConfig: {
       recipientId: null,
-      inviteLlama: false
+      inviteAi: false
     }
+  },
+  {
+    id: 6,
+    name: 'Auto-Trade',
+    type: 'scheduler'
   }
 ])
 
 const searchQuery = ref('')
 const searchResults = ref([])
-const showSettings = ref(false)
 const showAiDrawModal = ref(false)
 const showRegisterModal = ref(false)
 const showProfileModal = ref(false)
@@ -908,9 +866,12 @@ const closeChartContextMenu = () => {
 const showChartContextMenu = (event, tabId, drawingId = null) => {
   event.preventDefault()
   
+  // Only show context menu if clicking on an existing drawing (to delete it)
+  if (!drawingId) return
+
   // Calculate position to keep menu on screen
-  const menuWidth = 220 // Approximate width
-  const menuHeight = drawingId ? 60 : 450 // Approximate height (larger for main menu)
+  const menuWidth = 220 
+  const menuHeight = 60
   
   let x = event.clientX
   let y = event.clientY

@@ -3,36 +3,69 @@ Gemini Service - Handles Google Gemini API calls for earnings analysis
 """
 import os
 from typing import Dict, Any, List, Optional
+from datetime import datetime
 import json
 import asyncio
 from services.web_search_service import web_search_service
 
 try:
-    import google.generativeai as genai
+    from google import genai
     GEMINI_AVAILABLE = True
 except ImportError:
     GEMINI_AVAILABLE = False
-    print("Warning: google-generativeai not installed. Install with: pip install google-generativeai")
+    print("Warning: google-genai not installed. Install with: pip install google-genai")
 
 class GeminiService:
-    def __init__(self, api_key: Optional[str] = None):
+    DEFAULT_MODEL = 'gemini-3-flash-preview'
+
+    def __init__(self, api_key: Optional[str] = None, model_name: Optional[str] = None):
         self.api_key = api_key or os.getenv('GOOGLE_GEMINI_API_KEY') or os.getenv('GOOGLE_API_KEY')
+        model_name = (model_name or '').strip() or self.DEFAULT_MODEL
+        
+        # Remove 'models/' prefix if present (API adds it automatically)
+        if model_name.startswith('models/'):
+            model_name = model_name.replace('models/', '')
+        
+        # Migrate older/preview model names to Gemini 3.0 Flash
+        if model_name.startswith("gemini-3.0"):
+            print(f"[GEMINI] Migrating future model name '{model_name}' to 'gemini-3-flash-preview'")
+            model_name = 'gemini-3-flash-preview'
+        
+        self.model_name = model_name
         if GEMINI_AVAILABLE and self.api_key:
             try:
-                genai.configure(api_key=self.api_key)
-                self.model = genai.GenerativeModel('gemini-1.5-flash')
+
+                # Use v1beta for preview/experimental models, v1 for stable
+                api_version = 'v1'
+                if any(x in self.model_name for x in ['preview', 'exp', 'gemini-3', 'latest']):
+                    api_version = 'v1beta'
+                
+                self.client = genai.Client(
+                    api_key=self.api_key,
+                    http_options={'api_version': api_version}
+                )
                 self.available = True
+                print(f"[GEMINI] Initialized with model '{self.model_name}' using API {api_version}")
             except Exception as e:
                 print(f"[GEMINI] Error initializing Gemini: {e}")
                 self.available = False
-                self.model = None
+                self.client = None
         else:
             self.available = False
-            self.model = None
+            self.client = None
             if not self.api_key:
                 print("[GEMINI] Warning: GOOGLE_GEMINI_API_KEY not set")
         
         self.user_memories: Dict[int, List[Dict[str, str]]] = {}
+        
+        # Setup memory paths
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        backend_dir = os.path.dirname(current_dir)
+        self.chat_memory_dir = os.path.join(backend_dir, 'memory', 'chat')
+        self.decision_memory_dir = os.path.join(backend_dir, 'memory', 'bot', 'decisions')
+        
+        os.makedirs(self.chat_memory_dir, exist_ok=True)
+        os.makedirs(self.decision_memory_dir, exist_ok=True)
     
     def _safe_get_text(self, response) -> str:
         """Safely extract text from Gemini response"""
@@ -40,21 +73,77 @@ class GeminiService:
             return response.text.strip()
         except Exception as e:
             print(f"[GEMINI] Warning: Could not extract text directly: {e}")
-            
-            # Check for safety blocks or other issues
-            try:
-                if hasattr(response, 'prompt_feedback') and response.prompt_feedback:
-                    print(f"[GEMINI] Prompt feedback: {response.prompt_feedback}")
-                
-                if hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    print(f"[GEMINI] Finish reason: {candidate.finish_reason}")
-                    if candidate.content and candidate.content.parts:
-                        return candidate.content.parts[0].text.strip()
-            except Exception as inner_e:
-                print(f"[GEMINI] Error inspecting response: {inner_e}")
-            
             return ""
+
+    def _save_chat_to_memory(self, user_id: int, prompt: str, response: str):
+        """Save chat interaction to JSON file"""
+        try:
+            import uuid
+            timestamp = datetime.now().isoformat()
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            filename = f"chat_{user_id}_{date_str}.json"
+            file_path = os.path.join(self.chat_memory_dir, filename)
+            
+            entry = {
+                "id": str(uuid.uuid4()),
+                "timestamp": timestamp,
+                "user_id": user_id,
+                "role": "user",
+                "content": prompt,
+                "response": response,
+                "provider": "gemini"
+            }
+            
+            data = []
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                except:
+                    data = []
+            
+            data.append(entry)
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"[GEMINI] Error saving chat to memory: {e}")
+
+    def _save_decision_to_memory(self, symbol: str, decision_data: Dict[str, Any]):
+        """Save bot decision to JSON file"""
+        try:
+            import uuid
+            timestamp = datetime.now().isoformat()
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            # Use symbol and date for filename
+            filename = f"decision_{symbol}_{date_str}.json"
+            file_path = os.path.join(self.decision_memory_dir, filename)
+            
+            entry = {
+                "id": str(uuid.uuid4()),
+                "timestamp": timestamp,
+                "symbol": symbol,
+                "data": decision_data
+            }
+            
+            # Append if exists (multiple decisions per day possible)
+            data = []
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        if isinstance(data, dict): # Handle legacy if any
+                            data = [data]
+                except:
+                    data = []
+            
+            data.append(entry)
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                
+        except Exception as e:
+            print(f"[GEMINI] Error saving decision to memory: {e}")
     
     async def analyze_earnings_safety(self, 
                                      symbol: str, 
@@ -71,7 +160,7 @@ class GeminiService:
         Analyze earnings safety using Gemini AI
         Returns safety score (0-100) and allocation recommendation
         """
-        if not self.available or not self.model:
+        if not self.available or not self.client:
             # Fallback: simple safety score based on reliability
             beat_rate = reliability.get('beat_rate', 0)
             safety_score = beat_rate  # Simple: use beat rate as safety score
@@ -142,7 +231,7 @@ ANALIZZA E DAMMI IL JSON.
 """
             
             # Call Gemini API
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             response_text = self._safe_get_text(response)
             
             if not response_text:
@@ -179,6 +268,11 @@ ANALIZZA E DAMMI IL JSON.
                     'source': 'gemini'
                 }
                 
+                # Save decision to memory
+                self._save_decision_to_memory(symbol, final_result)
+                
+                return final_result
+                
             except json.JSONDecodeError as e:
                 print(f"[GEMINI] Error parsing Gemini response: {e}")
                 print(f"[GEMINI] Response text: {response_text[:200]}")
@@ -208,7 +302,7 @@ ANALIZZA E DAMMI IL JSON.
 
     def generate_response(self, prompt: str, context: str = "", user_id: Optional[int] = None) -> str:
         """Generate response for general chat with per-user memory"""
-        if not self.available or not self.model:
+        if not self.available or not self.client:
             return "Gemini AI is not available. Please check your API key."
 
         try:
@@ -233,7 +327,7 @@ ANALIZZA E DAMMI IL JSON.
             full_prompt += f"User: {prompt}\nAssistant:"
 
             # Call Gemini
-            response = self.model.generate_content(full_prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=full_prompt)
             response_text = self._safe_get_text(response)
             
             if not response_text:
@@ -248,6 +342,10 @@ ANALIZZA E DAMMI IL JSON.
                 if len(self.user_memories[user_id]) > 20:
                     self.user_memories[user_id] = self.user_memories[user_id][-20:]
             
+            # Save to disk
+            if user_id is not None:
+                self._save_chat_to_memory(user_id, prompt, response_text)
+            
             return response_text
 
         except Exception as e:
@@ -256,7 +354,7 @@ ANALIZZA E DAMMI IL JSON.
 
     async def chat_about_bot(self, context: str, history: List[Dict[str, str]], prompt: str, search_web: bool = True) -> str:
         """Chat about bot activity with history"""
-        if not self.available or not self.model:
+        if not self.available or not self.client:
             return "Gemini AI is not available."
             
         try:
@@ -290,7 +388,7 @@ CONVERSATION HISTORY:
 User: {prompt}
 Assistant:"""
             
-            response = self.model.generate_content(full_prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=full_prompt)
             text = self._safe_get_text(response)
             if not text:
                 return "I apologize, but I couldn't generate a response at this time. The model might be busy or the request was filtered."
@@ -301,7 +399,7 @@ Assistant:"""
 
     async def generate_explanation(self, context: str) -> str:
         """Generate explanation for bot activity"""
-        if not self.available or not self.model:
+        if not self.available or not self.client:
             return "Gemini AI is not available to explain the bot's actions."
             
         try:
@@ -318,7 +416,7 @@ Please provide a concise, friendly summary of:
 
 Keep it under 200 words. Be professional but conversational.
 """
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
             text = self._safe_get_text(response)
             if not text:
                 return "I couldn't generate an explanation at this time."
@@ -332,7 +430,7 @@ Keep it under 200 words. Be professional but conversational.
         Generate a drawing based on prompt and chart data.
         Returns a drawing object compatible with frontend.
         """
-        if not self.available or not self.model:
+        if not self.available or not self.client:
             raise Exception("Gemini AI is not available")
 
         try:
@@ -383,7 +481,7 @@ User Request: {prompt}
 
 {context}
 """
-            response = self.model.generate_content(system_prompt)
+            response = self.client.models.generate_content(model=self.model_name, contents=system_prompt)
             text = self._safe_get_text(response)
             
             # Clean up response
@@ -404,3 +502,78 @@ User Request: {prompt}
         except Exception as e:
             print(f"[GEMINI] Error generating drawing: {e}")
             raise e
+
+    async def analyze_market_opportunities(self, earnings_list: List[Dict[str, Any]], current_market_data: Dict[str, Any], current_time: str = "") -> List[Dict[str, Any]]:
+        """
+        Analyze a list of earnings and market data to generate trading decisions.
+        Follows the user's specific rules:
+        1. Big Cap + Positive Trend -> Immediate Entry
+        2. Others -> Entry at 21:50
+        """
+        if not self.available or not self.client:
+            print("[GEMINI] Service not available for market analysis")
+            return []
+
+        try:
+            # Prepare context
+            earnings_context = ""
+            for item in earnings_list:
+                symbol = item.get('symbol')
+                earnings_context += f"- {symbol}: {item.get('company', '')} (Time: {item.get('time', 'N/A')})\n"
+                # Add market data if available
+                if symbol in current_market_data:
+                    data = current_market_data[symbol]
+                    earnings_context += f"  Price: {data.get('price')}, Trend (1w): {data.get('trend_1w', 'Unknown')}\n"
+
+            prompt = f"""
+Sei un analista finanziario esperto. Analizza questi dati sugli utili aziendali previsti per il post-market di oggi e il pre-market di domani.
+
+DATI ATTUALI:
+Orario attuale (Server Time): {current_time}
+
+DATI EARNINGS:
+{earnings_context}
+
+REGOLE DI TRADING (CRITICHE):
+1. SELEZIONE SETTORIALE: DEVI considerare SOLAMENTE le aziende che operano nei settori "DIFESA" (Defense, Aerospace) o "INTELLIGENZA ARTIFICIALE" (AI, Semiconductor, Cloud Computing per AI).
+   - IGNORA COMPLETAMENTE tutte le altre aziende (es. Retail, Farmaceutico, ecc.), restituendo "NO_GO" o omettendo l'output.
+2. TIMING EARNINGS: Considera SOLO aziende che riportano utili in:
+   - POST-MARKET di OGGI (After Market Close / AMC).
+   - PRE-MARKET di DOMANI (Before Market Open / BMO).
+   - Ignora chi ha già riportato (oggi BMO).
+3. ORARIO DI ESECUZIONE:
+   - Se l'opportunità è ESTREMAMENTE CHIARA (Big Cap + Trend molto positivo), execution_time = "IMMEDIATE".
+   - Per TUTTI GLI ALTRI CASI (la norma), l'ordine deve essere preparato per la chiusura del mercato: execution_time = "21:59".
+4. DECISIONE: Determina se è un BUY o SELL basandoti sui dati. Se incerto, WAIT.
+
+OUTPUT RICHIESTO:
+Restituisci SOLAMENTE un array JSON valido. Nessun markdown.
+Formato:
+[
+  {{
+    "symbol": "PLTR",
+    "decision": "BUY",
+    "execution_time": "21:59",
+    "reasoning": "Settore Difesa/AI. Utili previsti in crescita..."
+  }}
+]
+"""
+            print(f"[GEMINI] Sending analysis prompt...")
+            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
+            text = self._safe_get_text(response)
+            
+            # Clean up response
+            if '```json' in text:
+                text = text.split('```json')[1].split('```')[0].strip()
+            elif '```' in text:
+                text = text.split('```')[1].split('```')[0].strip()
+            
+            decisions = json.loads(text)
+            print(f"[GEMINI] Generated {len(decisions)} decisions")
+            return decisions
+
+        except Exception as e:
+            print(f"[GEMINI] Error in analyze_market_opportunities: {e}")
+            import traceback
+            traceback.print_exc()
+            return []

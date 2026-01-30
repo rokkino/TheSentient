@@ -6,6 +6,7 @@ yfinance>=0.2.40
 pandas>=2.2.0
 numpy>=1.26.0
 requests>=2.32.0
+aiohttp>=3.9.0
 beautifulsoup4>=4.12.0
 lxml>=5.0.0
 sqlalchemy>=2.0.36
@@ -21,10 +22,11 @@ yahoo-earnings-calendar>=0.6.0  # For Yahoo Finance earnings calendar API
 # Optional for AI
 # torch
 # transformers
-google-generativeai>=0.3.0  # Google Gemini API
+google-genai>=0.3.0  # Google Gemini API (New SDK)
 trading-ig>=0.0.22  # IG Markets API
 munch>=4.0.0  # Required by trading-ig
 
 langchain>=0.1.0
 langchain-community>=0.0.10
-duckduckgo-search>=4.0.0
+ddgs>=1.0.0 # Replaces duckduckgo-search
+APScheduler>=3.10.0

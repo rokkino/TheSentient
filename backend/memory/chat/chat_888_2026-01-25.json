@@ -1,0 +1,11 @@
+[
+  {
+    "id": "d7bfb32c-4dda-4286-921b-08707778e771",
+    "timestamp": "2026-01-25T10:36:54.171500",
+    "user_id": 888,
+    "role": "user",
+    "content": "Test prompt for Gemini",
+    "response": "Test response from Gemini",
+    "provider": "gemini"
+  }
+]

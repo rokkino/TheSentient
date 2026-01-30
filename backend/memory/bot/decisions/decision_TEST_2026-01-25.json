@@ -1,0 +1,11 @@
+[
+  {
+    "id": "809209ab-a52d-49b6-88f6-c3e00b3d4eba",
+    "timestamp": "2026-01-25T10:36:54.171500",
+    "symbol": "TEST",
+    "data": {
+      "decision": "BUY",
+      "confidence": 99
+    }
+  }
+]

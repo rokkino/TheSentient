@@ -1,5 +1,5 @@
 {
-  "timestamp": 1768862159.9907906,
+  "timestamp": 1769210390.2755406,
   "data": [
     {
       "symbol": "UNH",
@@ -11,9 +11,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.09",
       "epsactual": "$6.81",
-      "marketCap": "$307,043,058,635",
+      "marketCap": "$321,092,615,631",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "11",
+      "numEstimates": "12",
       "lastYearDate": "1/16/2025"
     },
     {
@@ -24,11 +24,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$1.45",
+      "epsestimate": "$1.46",
       "epsactual": "$1.54",
-      "marketCap": "$267,926,457,170",
+      "marketCap": "$263,247,163,092",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "5",
+      "numEstimates": "6",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -39,9 +39,9 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "($0.39)",
+      "epsestimate": "($0.40)",
       "epsactual": "($5.90)",
-      "marketCap": "$188,306,051,242",
+      "marketCap": "$191,095,601,610",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "8",
       "lastYearDate": "1/28/2025"
@@ -54,11 +54,11 @@
       "date": "2026-01-27",
       "time": "After Market Close",
       "source": "nasdaq_api",
-      "epsestimate": "$1.28",
+      "epsestimate": "$1.30",
       "epsactual": "$1.30",
-      "marketCap": "$171,838,785,542",
+      "marketCap": "$177,172,402,670",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "10",
+      "numEstimates": "11",
       "lastYearDate": "1/23/2025"
     },
     {
@@ -69,11 +69,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.56",
+      "epsestimate": "$0.53",
       "epsactual": "$0.53",
-      "marketCap": "$171,169,689,928",
+      "marketCap": "$177,167,605,818",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "3",
+      "numEstimates": "4",
       "lastYearDate": "1/24/2025"
     },
     {
@@ -84,11 +84,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$2.89",
+      "epsestimate": "$2.90",
       "epsactual": "$2.91",
-      "marketCap": "$136,729,516,523",
+      "marketCap": "$137,239,634,888",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/23/2025"
     },
     {
@@ -99,11 +99,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$7.37",
+      "epsestimate": "$7.36",
       "epsactual": "$6.22",
-      "marketCap": "$110,400,208,820",
+      "marketCap": "$106,415,943,326",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "11",
+      "numEstimates": "12",
       "lastYearDate": "1/24/2025"
     },
     {
@@ -114,11 +114,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$6.99",
+      "epsestimate": "$7",
       "epsactual": "$6.39",
-      "marketCap": "$93,425,983,059",
+      "marketCap": "$95,685,241,719",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
+      "numEstimates": "7",
       "lastYearDate": "1/30/2025"
     },
     {
@@ -129,11 +129,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$2.23",
+      "epsestimate": "$2.22",
       "epsactual": "$2.75",
-      "marketCap": "$92,151,643,763",
+      "marketCap": "$92,728,545,971",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "10",
+      "numEstimates": "11",
       "lastYearDate": "1/30/2025"
     },
     {
@@ -146,9 +146,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.21",
       "epsactual": "$1.92",
-      "marketCap": "$75,477,808,026",
+      "marketCap": "$75,692,366,125",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -159,11 +159,11 @@
       "date": "2026-01-27",
       "time": "After Market Close",
       "source": "nasdaq_api",
-      "epsestimate": "$2.55",
+      "epsestimate": "$2.59",
       "epsactual": "$1.82",
-      "marketCap": "$68,406,934,756",
+      "marketCap": "$74,004,292,898",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "3",
+      "numEstimates": "4",
       "lastYearDate": "1/21/2025"
     },
     {
@@ -176,7 +176,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.06",
       "epsactual": "$1.66",
-      "marketCap": "$64,032,915,449",
+      "marketCap": "$64,894,250,598",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "5",
       "lastYearDate": "1/28/2025"
@@ -189,11 +189,11 @@
       "date": "2026-01-27",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$5.13",
+      "epsestimate": "$5.14",
       "epsactual": "$4.81",
-      "marketCap": "$44,588,805,378",
+      "marketCap": "$43,860,099,976",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "9",
+      "numEstimates": "10",
       "lastYearDate": "1/30/2025"
     },
     {
@@ -206,7 +206,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.97",
       "epsactual": "$0.93",
-      "marketCap": "$37,916,218,414",
+      "marketCap": "$36,795,683,543",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/28/2025"
@@ -221,7 +221,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.39",
       "epsactual": "$1.50",
-      "marketCap": "$33,325,387,778",
+      "marketCap": "$33,916,157,524",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/28/2025"
@@ -236,7 +236,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.02",
       "epsactual": "$1.91",
-      "marketCap": "$27,985,294,315",
+      "marketCap": "$28,129,362,754",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
       "lastYearDate": "1/28/2025"
@@ -249,11 +249,11 @@
       "date": "2026-01-27",
       "time": "After Market Close",
       "source": "nasdaq_api",
-      "epsestimate": "$1.58",
+      "epsestimate": "$1.57",
       "epsactual": "$1.61",
-      "marketCap": "$24,699,708,000",
+      "marketCap": "$25,561,404,000",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/30/2025"
     },
     {
@@ -266,7 +266,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$104.96",
       "epsactual": "$139.93",
-      "marketCap": "$21,645,018,530",
+      "marketCap": "$22,040,551,408",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/28/2025"
@@ -281,24 +281,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.40",
       "epsactual": "$2.47",
-      "marketCap": "$19,971,309,791",
+      "marketCap": "$19,683,383,177",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
-      "lastYearDate": "1/28/2025"
-    },
-    {
-      "symbol": "FFIV",
-      "ticker": "FFIV",
-      "company": "F5, Inc.",
-      "companymearningsshortname": "F5, Inc.",
-      "date": "2026-01-27",
-      "time": "After Market Close",
-      "source": "nasdaq_api",
-      "epsestimate": "$2.82",
-      "epsactual": "$3.11",
-      "marketCap": "$15,915,973,340",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -311,7 +296,22 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.76",
       "epsactual": "$0.89",
-      "marketCap": "$14,638,355,847",
+      "marketCap": "$15,607,321,520",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "6",
+      "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "FFIV",
+      "ticker": "FFIV",
+      "company": "F5, Inc.",
+      "companymearningsshortname": "F5, Inc.",
+      "date": "2026-01-27",
+      "time": "After Market Close",
+      "source": "nasdaq_api",
+      "epsestimate": "$2.83",
+      "epsactual": "$3.11",
+      "marketCap": "$15,219,478,868",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/28/2025"
@@ -326,7 +326,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.57",
       "epsactual": "$1.42",
-      "marketCap": "$14,186,450,246",
+      "marketCap": "$13,483,002,040",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/28/2025"
@@ -341,9 +341,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.57",
       "epsactual": "$0.52",
-      "marketCap": "$13,081,280,331",
+      "marketCap": "$13,014,516,396",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
+      "numEstimates": "7",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -356,7 +356,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.48",
       "epsactual": "$2.39",
-      "marketCap": "$10,654,178,038",
+      "marketCap": "$10,648,897,530",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/29/2025"
@@ -371,7 +371,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.80",
       "epsactual": "$1.79",
-      "marketCap": "$10,634,833,450",
+      "marketCap": "$10,363,851,999",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "8",
       "lastYearDate": "1/28/2025"
@@ -386,7 +386,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.73",
       "epsactual": "$0.86",
-      "marketCap": "$10,579,540,426",
+      "marketCap": "$10,255,953,639",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/28/2025"
@@ -401,7 +401,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.38",
       "epsactual": "$0.86",
-      "marketCap": "$10,369,958,836",
+      "marketCap": "$9,914,499,155",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "8",
       "lastYearDate": "1/23/2025"
@@ -416,7 +416,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.71",
       "epsactual": "$2.49",
-      "marketCap": "$9,365,209,578",
+      "marketCap": "$9,499,649,326",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
       "lastYearDate": "1/28/2025"
@@ -431,7 +431,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$3.02",
       "epsactual": "$2.51",
-      "marketCap": "$8,590,388,318",
+      "marketCap": "$8,441,036,643",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/28/2025"
@@ -444,11 +444,11 @@
       "date": "2026-01-27",
       "time": "After Market Close",
       "source": "nasdaq_api",
-      "epsestimate": "$1.52",
+      "epsestimate": "$1.51",
       "epsactual": "$1.34",
-      "marketCap": "$7,450,887,709",
+      "marketCap": "$7,538,664,784",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -461,9 +461,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.46",
       "epsactual": "N/A",
-      "marketCap": "$5,753,627,177",
+      "marketCap": "$5,968,225,787",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -476,7 +476,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.40",
       "epsactual": "$0.41",
-      "marketCap": "$5,520,173,179",
+      "marketCap": "$5,446,976,538",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/28/2025"
@@ -491,9 +491,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.61",
-      "marketCap": "$4,590,867,420",
+      "marketCap": "$4,824,354,835",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -506,7 +506,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.60",
       "epsactual": "$0.61",
-      "marketCap": "$4,590,867,420",
+      "marketCap": "$4,824,354,835",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -521,7 +521,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.06",
       "epsactual": "$0.92",
-      "marketCap": "$3,981,819,493",
+      "marketCap": "$3,989,131,776",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "5",
       "lastYearDate": "1/28/2025"
@@ -536,7 +536,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.94",
       "epsactual": "$2.37",
-      "marketCap": "$3,838,030,238",
+      "marketCap": "$3,972,780,382",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "2/04/2025"
@@ -551,10 +551,25 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.80",
       "epsactual": "$0.73",
-      "marketCap": "$3,507,239,210",
+      "marketCap": "$3,657,372,993",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "WSBC",
+      "ticker": "WSBC",
+      "company": "WesBanco, Inc.",
+      "companymearningsshortname": "WesBanco, Inc.",
+      "date": "2026-01-27",
+      "time": "After Market Close",
+      "source": "nasdaq_api",
+      "epsestimate": "$0.84",
+      "epsactual": "$0.71",
+      "marketCap": "$3,473,960,201",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "3",
+      "lastYearDate": "1/22/2025"
     },
     {
       "symbol": "GEF",
@@ -566,9 +581,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.69",
       "epsactual": "$0.39",
-      "marketCap": "$3,414,653,784",
+      "marketCap": "$3,419,869,891",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -581,25 +596,10 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.51",
       "epsactual": "$0.46",
-      "marketCap": "$3,386,167,629",
+      "marketCap": "$3,411,437,537",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/23/2025"
-    },
-    {
-      "symbol": "WSBC",
-      "ticker": "WSBC",
-      "company": "WesBanco, Inc.",
-      "companymearningsshortname": "WesBanco, Inc.",
-      "date": "2026-01-27",
-      "time": "After Market Close",
-      "source": "nasdaq_api",
-      "epsestimate": "$0.84",
-      "epsactual": "$0.71",
-      "marketCap": "$3,321,248,099",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "3",
-      "lastYearDate": "1/22/2025"
     },
     {
       "symbol": "CBU",
@@ -611,7 +611,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.13",
       "epsactual": "$0.94",
-      "marketCap": "$3,303,455,205",
+      "marketCap": "$3,386,133,743",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/21/2025"
@@ -626,24 +626,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$2.33",
       "epsactual": "$2.03",
-      "marketCap": "$3,060,893,578",
+      "marketCap": "$3,198,609,667",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
-      "lastYearDate": "1/28/2025"
-    },
-    {
-      "symbol": "ASH",
-      "ticker": "ASH",
-      "company": "Ashland Inc.",
-      "companymearningsshortname": "Ashland Inc.",
-      "date": "2026-01-27",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$0.23",
-      "epsactual": "$0.28",
-      "marketCap": "$2,933,731,311",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "4",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -656,7 +641,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.56",
       "epsactual": "$0.37",
-      "marketCap": "$2,650,328,171",
+      "marketCap": "$2,783,563,003",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/28/2025"
@@ -671,7 +656,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.91",
       "epsactual": "$0.92",
-      "marketCap": "$2,468,481,358",
+      "marketCap": "$2,550,624,168",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/28/2025"
@@ -686,24 +671,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.61",
       "epsactual": "$0.53",
-      "marketCap": "$2,197,848,809",
+      "marketCap": "$2,272,996,496",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
-      "lastYearDate": "1/28/2025"
-    },
-    {
-      "symbol": "FCF",
-      "ticker": "FCF",
-      "company": "First Commonwealth Financial Corporation",
-      "companymearningsshortname": "First Commonwealth Financial Corporation",
-      "date": "2026-01-27",
-      "time": "After Market Close",
-      "source": "nasdaq_api",
-      "epsestimate": "$0.41",
-      "epsactual": "$0.35",
-      "marketCap": "$1,826,281,371",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "3",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -716,9 +686,24 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.45)",
       "epsactual": "($0.21)",
-      "marketCap": "$1,811,279,386",
+      "marketCap": "$1,960,400,781",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
+      "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "FCF",
+      "ticker": "FCF",
+      "company": "First Commonwealth Financial Corporation",
+      "companymearningsshortname": "First Commonwealth Financial Corporation",
+      "date": "2026-01-27",
+      "time": "After Market Close",
+      "source": "nasdaq_api",
+      "epsestimate": "$0.41",
+      "epsactual": "$0.35",
+      "marketCap": "$1,876,089,045",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "3",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -731,7 +716,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.15",
       "epsactual": "$0.94",
-      "marketCap": "$1,719,136,390",
+      "marketCap": "$1,750,588,618",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -746,7 +731,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.15",
       "epsactual": "$0.11",
-      "marketCap": "$1,652,323,496",
+      "marketCap": "$1,718,040,907",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -761,7 +746,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.87",
       "epsactual": "$0.86",
-      "marketCap": "$1,555,787,966",
+      "marketCap": "$1,604,978,321",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/22/2025"
@@ -776,7 +761,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.26",
       "epsactual": "$0.20",
-      "marketCap": "$1,502,342,662",
+      "marketCap": "$1,560,026,468",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/27/2025"
@@ -791,7 +776,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.96",
       "epsactual": "$1.93",
-      "marketCap": "$1,467,993,769",
+      "marketCap": "$1,515,983,930",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/22/2025"
@@ -806,7 +791,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.84)",
       "epsactual": "($0.75)",
-      "marketCap": "$1,450,021,603",
+      "marketCap": "$1,490,769,824",
       "fiscalQuarter": "Nov/2025",
       "numEstimates": "7",
       "lastYearDate": "1/28/2025"
@@ -823,7 +808,7 @@
       "epsactual": "N/A",
       "marketCap": "$1,068,788,742",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -836,7 +821,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.90)",
       "epsactual": "$0.99",
-      "marketCap": "$947,180,768",
+      "marketCap": "$914,292,547",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -851,24 +836,9 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.71",
       "epsactual": "$0.58",
-      "marketCap": "$864,510,160",
+      "marketCap": "$885,778,428",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
-      "lastYearDate": "1/28/2025"
-    },
-    {
-      "symbol": "HTLD",
-      "ticker": "HTLD",
-      "company": "Heartland Express, Inc.",
-      "companymearningsshortname": "Heartland Express, Inc.",
-      "date": "2026-01-27",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "($0.07)",
-      "epsactual": "($0.02)",
-      "marketCap": "$826,365,220",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -881,10 +851,40 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.77",
       "epsactual": "$0.66",
-      "marketCap": "$795,858,480",
+      "marketCap": "$830,345,681",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "HTLD",
+      "ticker": "HTLD",
+      "company": "Heartland Express, Inc.",
+      "companymearningsshortname": "Heartland Express, Inc.",
+      "date": "2026-01-27",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "($0.07)",
+      "epsactual": "($0.02)",
+      "marketCap": "$829,463,121",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "2",
+      "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "MCBS",
+      "ticker": "MCBS",
+      "company": "MetroCity Bankshares, Inc.",
+      "companymearningsshortname": "MetroCity Bankshares, Inc.",
+      "date": "2026-01-27",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "N/A",
+      "epsactual": "$0.63",
+      "marketCap": "$824,779,231",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "8",
+      "lastYearDate": "N/A"
     },
     {
       "symbol": "CAC",
@@ -896,7 +896,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.32",
       "epsactual": "$1.03",
-      "marketCap": "$773,007,238",
+      "marketCap": "$805,328,688",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -911,10 +911,25 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.89",
       "epsactual": "$0.77",
-      "marketCap": "$762,976,478",
+      "marketCap": "$787,555,586",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/28/2025"
+    },
+    {
+      "symbol": "ORRF",
+      "ticker": "ORRF",
+      "company": "Orrstown Financial Services, Inc.",
+      "companymearningsshortname": "Orrstown Financial Services, Inc.",
+      "date": "2026-01-27",
+      "time": "After Market Close",
+      "source": "nasdaq_api",
+      "epsestimate": "$1.08",
+      "epsactual": "$0.87",
+      "marketCap": "$733,933,703",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "3",
+      "lastYearDate": "1/31/2025"
     },
     {
       "symbol": "WRLD",
@@ -922,11 +937,11 @@
       "company": "World Acceptance Corporation",
       "companymearningsshortname": "World Acceptance Corporation",
       "date": "2026-01-27",
-      "time": "TBD",
+      "time": "Before Market Open",
       "source": "nasdaq_api",
       "epsestimate": "$0.58",
       "epsactual": "$2.45",
-      "marketCap": "$703,063,645",
+      "marketCap": "$717,699,259",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/28/2025"
@@ -941,9 +956,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.71",
-      "marketCap": "$628,201,242",
+      "marketCap": "$653,842,109",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -956,7 +971,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.35",
       "epsactual": "$0.14",
-      "marketCap": "$525,592,495",
+      "marketCap": "$548,899,618",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/28/2025"
@@ -971,7 +986,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.65",
       "epsactual": "$0.52",
-      "marketCap": "$512,518,575",
+      "marketCap": "$546,756,712",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/28/2025"
@@ -986,40 +1001,10 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.41",
       "epsactual": "$0.27",
-      "marketCap": "$509,765,847",
+      "marketCap": "$527,695,923",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/29/2025"
-    },
-    {
-      "symbol": "GBFH",
-      "ticker": "GBFH",
-      "company": "GBank Financial Holdings Inc.",
-      "companymearningsshortname": "GBank Financial Holdings Inc.",
-      "date": "2026-01-27",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$0.50",
-      "epsactual": "$0.36",
-      "marketCap": "$465,211,017",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
-      "lastYearDate": "1/28/2025"
-    },
-    {
-      "symbol": "SFST",
-      "ticker": "SFST",
-      "company": "Southern First Bancshares, Inc.",
-      "companymearningsshortname": "Southern First Bancshares, Inc.",
-      "date": "2026-01-27",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$1.11",
-      "epsactual": "$0.70",
-      "marketCap": "$457,365,535",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
-      "lastYearDate": "1/28/2025"
     },
     {
       "symbol": "PDLB",
@@ -1031,7 +1016,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.28",
       "epsactual": "$0.12",
-      "marketCap": "$395,778,551",
+      "marketCap": "$405,138,990",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/28/2025"
@@ -1046,9 +1031,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.28",
-      "marketCap": "$325,580,034",
+      "marketCap": "$338,684,445",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1061,7 +1046,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.60",
       "epsactual": "$1.24",
-      "marketCap": "$271,983,419",
+      "marketCap": "$280,229,699",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/28/2025"
@@ -1076,7 +1061,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.21",
       "epsactual": "$0.16",
-      "marketCap": "$269,059,514",
+      "marketCap": "$270,493,951",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -1091,24 +1076,24 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.94",
       "epsactual": "$0.75",
-      "marketCap": "$247,926,411",
+      "marketCap": "$250,834,440",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
     },
     {
-      "symbol": "FRAF",
-      "ticker": "FRAF",
-      "company": "Franklin Financial Services Corporation",
-      "companymearningsshortname": "Franklin Financial Services Corporation",
+      "symbol": "FSFG",
+      "ticker": "FSFG",
+      "company": "First Savings Financial Group, Inc.",
+      "companymearningsshortname": "First Savings Financial Group, Inc.",
       "date": "2026-01-27",
       "time": "TBD",
       "source": "nasdaq_api",
       "epsestimate": "N/A",
-      "epsactual": "$0.11",
-      "marketCap": "$241,666,441",
+      "epsactual": "$0.62",
+      "marketCap": "$236,758,950",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1121,24 +1106,24 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$1.87",
-      "marketCap": "$230,367,824",
+      "marketCap": "$236,520,465",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
-      "symbol": "FSFG",
-      "ticker": "FSFG",
-      "company": "First Savings Financial Group, Inc.",
-      "companymearningsshortname": "First Savings Financial Group, Inc.",
+      "symbol": "FRAF",
+      "ticker": "FRAF",
+      "company": "Franklin Financial Services Corporation",
+      "companymearningsshortname": "Franklin Financial Services Corporation",
       "date": "2026-01-27",
       "time": "TBD",
       "source": "nasdaq_api",
       "epsestimate": "N/A",
-      "epsactual": "$0.62",
-      "marketCap": "$228,621,457",
+      "epsactual": "$0.11",
+      "marketCap": "$234,746,329",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1151,7 +1136,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.79",
       "epsactual": "$0.59",
-      "marketCap": "$211,749,835",
+      "marketCap": "$220,083,342",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -1166,9 +1151,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.86",
-      "marketCap": "$193,085,311",
+      "marketCap": "$198,948,031",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1181,9 +1166,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.53",
-      "marketCap": "$189,664,900",
+      "marketCap": "$195,223,881",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1196,7 +1181,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.47",
       "epsactual": "$0.44",
-      "marketCap": "$165,007,673",
+      "marketCap": "$166,916,195",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -1211,9 +1196,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.49",
-      "marketCap": "$154,300,820",
+      "marketCap": "$162,608,660",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1224,9 +1209,9 @@
       "date": "2026-01-27",
       "time": "TBD",
       "source": "nasdaq_api",
-      "epsestimate": "$0.14",
+      "epsestimate": "($0.26)",
       "epsactual": "$0.16",
-      "marketCap": "$139,031,622",
+      "marketCap": "$137,481,084",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/28/2025"
@@ -1237,13 +1222,13 @@
       "company": "Provident Financial Holdings, Inc.",
       "companymearningsshortname": "Provident Financial Holdings, Inc.",
       "date": "2026-01-27",
-      "time": "TBD",
+      "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.28",
+      "epsestimate": "$0.30",
       "epsactual": "$0.13",
-      "marketCap": "$103,652,422",
+      "marketCap": "$105,335,722",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "1",
       "lastYearDate": "1/28/2025"
     },
     {
@@ -1256,9 +1241,9 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.45",
-      "marketCap": "$84,931,823",
+      "marketCap": "$90,416,930",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     },
     {
@@ -1271,9 +1256,24 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.37)",
-      "marketCap": "$83,414,125",
+      "marketCap": "$89,753,599",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
+      "numEstimates": "8",
+      "lastYearDate": "N/A"
+    },
+    {
+      "symbol": "HIHO",
+      "ticker": "HIHO",
+      "company": "Highway Holdings Limited",
+      "companymearningsshortname": "Highway Holdings Limited",
+      "date": "2026-01-27",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "N/A",
+      "epsactual": "$0.02",
+      "marketCap": "$4,831,916",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "8",
       "lastYearDate": "N/A"
     }
   ],

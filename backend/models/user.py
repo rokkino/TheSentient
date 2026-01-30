@@ -39,6 +39,14 @@ class User(Base):
     openai_api_key = Column(String, nullable=True)  # ChatGPT
     anthropic_api_key = Column(String, nullable=True)  # Claude
     deepseek_api_key = Column(String, nullable=True)  # Deepseek
+    llama_api_key = Column(String, nullable=True)  # Llama API
+
+    # AI model versions (per-provider)
+    gemini_model = Column(String, nullable=True)  # e.g. gemini-3.0-flash
+    openai_model = Column(String, nullable=True)  # e.g. gpt-4o
+    anthropic_model = Column(String, nullable=True)  # e.g. claude-3-5-sonnet-20240620
+    deepseek_model = Column(String, nullable=True)  # e.g. deepseek-chat
+    llama_model = Column(String, nullable=True)  # e.g. llama-3.3-70b-instruct
 
 # Database setup
 # Default to SQLite for development, use PostgreSQL if DATABASE_URL is set
@@ -63,7 +71,7 @@ def init_db():
     """Initialize database tables"""
     try:
         # Import bot and message models to ensure they're registered with Base
-        from models.bot import Bot
+        from models.bot import Bot, Decision
         from models.chat import Message
         from models.news import News
         from models.strategy import Strategy
@@ -98,7 +106,13 @@ def init_db():
                         'gemini_pro_api_key': 'VARCHAR',
                         'openai_api_key': 'VARCHAR',
                         'anthropic_api_key': 'VARCHAR',
-                        'deepseek_api_key': 'VARCHAR'
+                        'deepseek_api_key': 'VARCHAR',
+                        'llama_api_key': 'VARCHAR',
+                        'gemini_model': 'VARCHAR',
+                        'openai_model': 'VARCHAR',
+                        'anthropic_model': 'VARCHAR',
+                        'deepseek_model': 'VARCHAR',
+                        'llama_model': 'VARCHAR'
                     }
                     
                     # Add missing columns

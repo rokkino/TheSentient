@@ -56,21 +56,21 @@ class Bot(Base):
         """Check if bot has required configuration"""
         config = self.get_config()
         
-        # For earnings_report_genius, we need broker credentials AND Gemini API key
+        # For any bot type, if a linked global account is used, it's configured
+        if config.get('account_id'):
+            return True
+
+        # For earnings_report_genius, we need broker credentials AND Gemini API key (legacy check)
         if self.bot_type == 'earnings_report_genius':
-            gemini_configured = bool(config.get('gemini_api_key'))
-            
             broker = config.get('broker', 'IG')  # Default to IG
             
             if broker == 'Alpaca':
                 return bool(
-                    gemini_configured and
                     config.get('alpaca_api_key') and
                     config.get('alpaca_api_secret')
                 )
             else:  # IG Markets
                 return bool(
-                    gemini_configured and
                     config.get('ig_username') and 
                     config.get('ig_password') and 
                     config.get('ig_api_key')
@@ -82,6 +82,7 @@ class Bot(Base):
         """Convert bot to dictionary"""
         # Get list of configured fields (keys in the config dict)
         config_keys = []
+        config_dict = None
         if self.config:
             try:
                 config_dict = json.loads(self.config)
@@ -99,6 +100,7 @@ class Bot(Base):
             'is_active': self.is_active,
             'is_configured': self.is_configured(),
             'configured_fields': config_keys,
+            'config': config_dict,  # Include config so frontend can access saved values
             'win_rate': self.win_rate,
             'total_trades': self.total_trades,
             'profit': self.profit,
@@ -109,3 +111,29 @@ class Bot(Base):
         }
 
 
+
+class Decision(Base):
+    __tablename__ = 'decisions'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    bot_id = Column(Integer, ForeignKey('bots.id'), nullable=False, index=True)
+    symbol = Column(String, index=True)
+    decision = Column(String)  # BUY, SELL, HOLD, WAIT
+    execution_time = Column(DateTime) # When to execute
+    status = Column(String, default="PENDING") # PENDING, EXECUTED, CANCELLED, FAILED
+    reasoning = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    executed_at = Column(DateTime, nullable=True)
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "bot_id": self.bot_id,
+            "symbol": self.symbol,
+            "decision": self.decision,
+            "execution_time": self.execution_time.isoformat() if self.execution_time else None,
+            "status": self.status,
+            "reasoning": self.reasoning,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "executed_at": self.executed_at.isoformat() if self.executed_at else None
+        }

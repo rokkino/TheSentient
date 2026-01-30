@@ -1,37 +1,40 @@
-import sqlite3
-import json
-import os
 
-db_path = os.path.join("backend", "thesentient.db")
+def check_file(filename):
+    with open(filename, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
 
-try:
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
+    # Simple check for balanced braces in template (ignoring script for now, just checking template lines 1-100)
+    # This is a naive check but might catch obvious unclosed things.
     
-    cursor.execute("SELECT id, name, config FROM bots")
-    bots = cursor.fetchall()
+    stack = []
+    in_template = True
     
-    print(f"Found {len(bots)} bots.")
-    
-    for bot_id, name, config_json in bots:
-        print(f"\nBot ID: {bot_id}, Name: {name}")
-        try:
-            config = json.loads(config_json)
-            # Mask key for security in logs, but I need to see if it exists
-            gemini_key = config.get('gemini_api_key')
-            if gemini_key:
-                print(f"Gemini Key found: {gemini_key[:5]}...{gemini_key[-5:]}")
-                # Write to a temp file so I can read it in test script without printing to logs if I want to be super safe
-                # But for now I'll just print it to confirm existence. 
-                # Actually, I'll print the whole key so I can copy it to my test script if needed, 
-                # or better, I'll modify the test script to read from DB too.
-                print(f"FULL_KEY_FOR_TEST: {gemini_key}")
-            else:
-                print("No Gemini Key in config.")
-        except Exception as e:
-            print(f"Error parsing config: {e}")
+    for i, line in enumerate(lines):
+        if '</template>' in line:
+            in_template = False
+            break
             
-    conn.close()
+        # Remove simple attributes to reduce noise (naive)
+        # We are looking for unclosed quotes mainly
+        
+        # Check quotes
+        sq = 0
+        dq = 0
+        for char in line:
+            if char == "'": sq += 1
+            if char == '"': dq += 1
+            
+        # This is too naive because of escaping and content.
+        # Let's focused on {{ }} matching and unclosed tags.
+        pass
 
-except Exception as e:
-    print(f"Database error: {e}")
+    # Let's try to match {{ and }}
+    content = "".join(lines[:100])
+    
+    # Check for unclosed tags?
+    # Or maybe just print the lines around 96 and 57 with clear representation of invisible chars
+    print(f"Line 57: {repr(lines[56])}")
+    print(f"Line 96: {repr(lines[95])}")
+
+if __name__ == "__main__":
+    check_file('C:/Users/Gianluca/Documents/TheSentient/frontend/src/components/BotConfigModal.vue')

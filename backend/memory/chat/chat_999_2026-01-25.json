@@ -1,0 +1,11 @@
+[
+  {
+    "id": "9169d1b0-f03f-45c5-835f-17ad0c36685b",
+    "timestamp": "2026-01-25T10:36:53.642893",
+    "user_id": 999,
+    "role": "user",
+    "content": "Test prompt for Llama",
+    "response": "Test response from Llama",
+    "provider": "llama"
+  }
+]

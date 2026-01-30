@@ -35,7 +35,7 @@ from services.news_service import NewsService
 from services.watchlist_service import WatchlistService
 from services.search_service import SearchService
 from services.ai_service import AIService
-from services.earnings_service import EarningsService
+
 from services.auth_service import create_user, authenticate_user, create_access_token, get_user_by_id, verify_token, get_user_by_username, get_user_by_email
 from services.chat_service import chat_service
 from services.strategy_service import strategy_service
@@ -49,12 +49,17 @@ except Exception:
 from services.bot_service import bot_service
 from services.llama_service import llama_service
 from services.gemini_service import GeminiService
+from services.scheduler_service import scheduler_service
+from services.scheduler_jobs import execute_orders_job, analyze_earnings_job
+from services.earnings_service import earnings_service
 from websocket_manager import WebSocketManager
 from models.user import init_db, get_db, User, SessionLocal
-from models.bot import Bot
+from models.bot import Bot, Decision
+from models.account import Account
 from fastapi import Depends, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from services.etoro_service import etoro_service
 
 app = FastAPI(title="The Sentient API", version="1.0.0")
 
@@ -77,6 +82,25 @@ try:
 except Exception as e:
     print(f"Warning: Database initialization failed: {e}")
     print("The app will continue, but database operations may fail")
+
+# Lifecycle events
+@app.on_event("startup")
+async def startup_event():
+    print("Starting up...")
+    scheduler_service.start()
+
+    
+    # Schedule execution job every 1 minute
+    scheduler_service.add_job(execute_orders_job, 'interval', minutes=1, id='execute_orders')
+    
+    # Schedule earnings analysis job every 30 minutes
+    scheduler_service.add_job(analyze_earnings_job, 'interval', minutes=30, id='analyze_earnings')
+    print("Scheduled execute_orders_job and analyze_earnings_job")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    print("Shutting down...")
+    scheduler_service.shutdown()
 
 # OAuth2 scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
@@ -115,7 +139,7 @@ news_service = NewsService()
 watchlist_service = WatchlistService()
 search_service = SearchService()
 ai_service = AIService()
-earnings_service = EarningsService()
+
 # Initialize Alpaca service only if available (optional - we use IG Markets now)
 alpaca_service = AlpacaService() if ALPACA_AVAILABLE and AlpacaService else None
 ws_manager = WebSocketManager()
@@ -181,13 +205,18 @@ class ProfileUpdate(BaseModel):
     location: Optional[str] = None
     website: Optional[str] = None
     profile_picture_url: Optional[str] = None
-    use_local_llama: Optional[bool] = None
     gemini_api_key: Optional[str] = None
     ai_provider: Optional[str] = None
     gemini_pro_api_key: Optional[str] = None
     openai_api_key: Optional[str] = None
     anthropic_api_key: Optional[str] = None
     deepseek_api_key: Optional[str] = None
+    llama_api_key: Optional[str] = None
+    gemini_model: Optional[str] = None
+    openai_model: Optional[str] = None
+    anthropic_model: Optional[str] = None
+    deepseek_model: Optional[str] = None
+    llama_model: Optional[str] = None
 
 class TabsUpdate(BaseModel):
     tabs: List[Dict[str, Any]]
@@ -219,16 +248,26 @@ class BotCreate(BaseModel):
     description: Optional[str] = None
 
 class BotConfig(BaseModel):
-    # IG Markets Configuration (required for Earnings Report Genius bot)
+    # Global Account (Alternative to manual credentials)
+    account_id: Optional[int] = None
+    broker: Optional[str] = 'IG'
+
+    # IG Markets configuration (required for Earnings Report Genius)
     ig_username: Optional[str] = None
     ig_password: Optional[str] = None
     ig_api_key: Optional[str] = None
-    ig_acc_type: Optional[str] = None  # "DEMO" or "LIVE"
+    ig_acc_type: Optional[str] = None  # 'DEMO' or 'LIVE'
+    
     # AI Analysis (optional but recommended)
     gemini_api_key: Optional[str] = None
     # Legacy Alpaca (deprecated, kept for backward compatibility)
     alpaca_api_key: Optional[str] = None
     alpaca_api_secret: Optional[str] = None
+    alpaca_paper: Optional[bool] = None
+
+class TestConnectionRequest(BaseModel):
+    broker: str
+    config: Dict[str, Any]
 
 class BotImport(BaseModel):
     name: str
@@ -272,6 +311,24 @@ class StrategyUpdate(BaseModel):
 class StrategyGenerateRequest(BaseModel):
     prompt: str
 
+class SchedulerStatusResponse(BaseModel):
+    running: bool
+    jobs: List[Dict[str, Any]]
+    logs: List[Dict[str, Any]]
+
+class DecisionCreate(BaseModel):
+    symbol: str
+    decision: str  # BUY, SELL, HOLD, WAIT
+    execution_time: Optional[str] = None  # ISO datetime
+    reasoning: Optional[str] = None
+
+class DecisionUpdate(BaseModel):
+    symbol: Optional[str] = None
+    decision: Optional[str] = None
+    execution_time: Optional[str] = None
+    reasoning: Optional[str] = None
+    status: Optional[str] = None  # PENDING, EXECUTED, CANCELLED, FAILED
+
 # API Routes
 @app.get("/")
 async def root():
@@ -280,6 +337,136 @@ async def root():
 @app.get("/api/health")
 async def health():
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+@app.get("/api/time")
+async def get_time():
+    """Get current server time"""
+    now = datetime.now()
+    return {
+        "server_time_iso": now.isoformat(),
+        "server_time_formatted": now.strftime("%Y-%m-%d %H:%M:%S"),
+        "timestamp": now.timestamp()
+    }
+
+# Scheduler Endpoints
+@app.get("/api/scheduler/status", response_model=SchedulerStatusResponse)
+async def get_scheduler_status(current_user: User = Depends(get_current_user)):
+    """Get scheduler status, jobs, and logs"""
+    return {
+        "running": scheduler_service.scheduler.running,
+        "jobs": scheduler_service.get_jobs(),
+        "logs": scheduler_service.get_logs()
+    }
+
+@app.get("/api/bot/decisions")
+async def get_bot_decisions(limit: int = 50, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Get recent bot decisions"""
+    from models.bot import Decision
+    decisions = db.query(Decision).order_by(Decision.created_at.desc()).limit(limit).all()
+    return {"decisions": [d.to_dict() for d in decisions]}
+
+@app.get("/api/bot/profit")
+async def get_bot_profit(current_user: User = Depends(get_current_user)):
+    """Get P&L and portfolio summary from profitto.json"""
+    profit_path = os.path.join(BACKEND_DIR, "profitto.json")
+    if not os.path.exists(profit_path):
+        return {
+            "profit_loss_value": 0.0,
+            "profit_loss_percent": 0.0,
+            "total_balance": 0.0,
+            "available_cash": 0.0,
+            "currency": "USD",
+            "timestamp": None,
+            "bot_name": None,
+        }
+    try:
+        with open(profit_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return {
+            "profit_loss_value": float(data.get("profit_loss_value", 0)),
+            "profit_loss_percent": float(data.get("profit_loss_percent", 0)),
+            "total_balance": float(data.get("total_balance", 0)),
+            "available_cash": float(data.get("available_cash", 0)),
+            "currency": data.get("currency", "USD"),
+            "timestamp": data.get("timestamp"),
+            "bot_name": data.get("bot_name"),
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/bot/decisions")
+async def create_bot_decision(
+    body: DecisionCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Create a new decision (manual order)"""
+    from models.bot import Decision
+    from datetime import datetime as dt
+    exec_time = None
+    if body.execution_time:
+        try:
+            exec_time = dt.fromisoformat(body.execution_time.replace("Z", "+00:00"))
+        except Exception:
+            exec_time = dt.utcnow()
+    if not exec_time:
+        exec_time = dt.utcnow()
+    d = Decision(
+        symbol=body.symbol.strip().upper(),
+        decision=body.decision.upper(),
+        execution_time=exec_time,
+        status="PENDING",
+        reasoning=body.reasoning or "",
+    )
+    db.add(d)
+    db.commit()
+    db.refresh(d)
+    return d.to_dict()
+
+@app.patch("/api/bot/decisions/{decision_id}")
+async def update_bot_decision(
+    decision_id: int,
+    body: DecisionUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Update a decision (manual edit)"""
+    from models.bot import Decision
+    from datetime import datetime as dt
+    d = db.query(Decision).filter(Decision.id == decision_id).first()
+    if not d:
+        raise HTTPException(status_code=404, detail="Decision not found")
+    if body.symbol is not None:
+        d.symbol = body.symbol.strip().upper()
+    if body.decision is not None:
+        d.decision = body.decision.upper()
+    if body.execution_time is not None:
+        try:
+            d.execution_time = dt.fromisoformat(body.execution_time.replace("Z", "+00:00"))
+        except Exception:
+            pass
+    if body.reasoning is not None:
+        d.reasoning = body.reasoning
+    if body.status is not None:
+        d.status = body.status.upper()
+    db.commit()
+    db.refresh(d)
+    return d.to_dict()
+
+@app.delete("/api/bot/decisions/{decision_id}")
+async def delete_bot_decision(
+    decision_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Delete/cancel a decision"""
+    from models.bot import Decision
+    d = db.query(Decision).filter(Decision.id == decision_id).first()
+    if not d:
+        raise HTTPException(status_code=404, detail="Decision not found")
+    db.delete(d)
+    db.commit()
+    return {"message": "Decision deleted"}
 
 # Market Data Endpoints
 @app.post("/api/chart")
@@ -451,7 +638,8 @@ async def ai_draw(request: Request, current_user: User = Depends(get_current_use
         if use_gemini:
             try:
                 print(f"[API] Using Gemini for AI Draw: {prompt}")
-                gemini = GeminiService(api_key=current_user.gemini_api_key)
+                gemini_model = (getattr(current_user, 'gemini_model', None) or '').strip() or None
+                gemini = GeminiService(api_key=current_user.gemini_api_key, model_name=gemini_model)
                 drawing = await gemini.generate_drawing(prompt, color, chart_data)
                 return {"drawing": drawing}
             except Exception as e:
@@ -466,158 +654,34 @@ async def ai_draw(request: Request, current_user: User = Depends(get_current_use
         print(f"[API] Error in AI draw endpoint: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# Earnings Endpoints
-@app.get("/api/earnings")
-async def get_earnings(
-    start_date: Optional[str] = None, 
-    end_date: Optional[str] = None,
-    months: int = 6, 
-    offset_months: int = 0, 
-    db: Session = Depends(get_db)
-):
-    """Get earnings calendar - loads 6 months at a time with 24h cache refresh"""
+
+
+
+
+
+
+
+
+
+# eToro Integration Endpoints
+@app.post("/api/etoro/login/google")
+async def etoro_google_login(current_user: User = Depends(get_current_user)):
+    """Initiates a browser for Google Login to eToro"""
     try:
-        print("\n" + "=" * 80)
-        print("[API] ENDPOINT CALLED: /api/earnings")
+        # This is a blocking (or long-running async) operation that opens a browser
+        # In a real production server, this might be handled by a task queue.
+        # For a local assistant, running it here is acceptable but will hold the connection.
+        print(f"Initiating eToro Google Login for user {current_user.username}")
+        result = await etoro_service.initiate_google_login()
+        if not result.get("success"):
+            raise HTTPException(status_code=400, detail=result.get("message"))
         
-        # If start_date and end_date provided, use new get_earnings method (range)
-        if start_date and end_date:
-            print(f"[API] Fetching range: {start_date} to {end_date}")
-            try:
-                s_date = datetime.strptime(start_date, "%Y-%m-%d").date()
-                e_date = datetime.strptime(end_date, "%Y-%m-%d").date()
-                earnings = await earnings_service.get_earnings(s_date, e_date)
-                print(f"[API] Returning {len(earnings)} earnings for range")
-                return {"earnings": earnings}
-            except Exception as e:
-                print(f"[API] Error getting earnings range: {e}")
-                import traceback
-                traceback.print_exc()
-                return {"earnings": []}
-
-        print(f"[API] start_date: {start_date}")
-        print(f"[API] months: {months} (6-month blocks)")
-        print(f"[API] offset_months: {offset_months} (for infinite scroll)")
-        print("=" * 80)
-        
-        # Always use calendar method for 6-month blocks with 24h cache
-        print("[API] Using get_earnings_calendar (Nasdaq API with 24h cache for 6-month blocks)...")
-        earnings = []
-        try:
-            earnings = await asyncio.wait_for(
-                earnings_service.get_earnings_calendar(start_date, months=months, offset_months=offset_months),
-                timeout=300.0  # 5 minutes timeout for 6 months of data
-            )
-        except asyncio.TimeoutError:
-            print("[API] ERROR: Request timed out after 300 seconds")
-            earnings = []
-        except Exception as e:
-            print(f"[API] Error getting earnings calendar: {e}")
-            import traceback
-            traceback.print_exc()
-            earnings = []
-        
-        print("=" * 80)
-        print(f"[API] RESPONSE: Returning {len(earnings)} earnings")
-        if earnings:
-            print(f"[API] First: {earnings[0].get('symbol')} on {earnings[0].get('date')}")
-            print(f"[API] Last: {earnings[-1].get('symbol')} on {earnings[-1].get('date')}")
-        print("=" * 80 + "\n")
-        
-        return {"earnings": earnings, "offset_months": offset_months, "months": months}
+        # In a real app we'd save the session here to the Account model
+        # For now, we return it to the frontend or confirm success
+        print("eToro login successful, session captured.")
+        return result
     except Exception as e:
-        print("=" * 80)
-        print(f"[API] ERROR: {e}")
-        print("=" * 80)
-        import traceback
-        traceback.print_exc()
-        # Return empty list instead of error to avoid breaking frontend
-        return {"earnings": [], "offset": offset_months, "months": months}
-
-@app.post("/api/earnings/ask")
-async def ask_llama_earnings(request: AskLlamaRequest, current_user: Optional[User] = Depends(get_current_user)):
-    """Ask Llama about an earning event or general question"""
-    try:
-        if request.symbol and request.company and request.date:
-            # Context-aware question
-            if not request.question:
-                prompt = f"Tell me about the earnings for {request.company} ({request.symbol}) on {request.date}. What are the expectations?"
-            else:
-                prompt = f"Regarding {request.company} ({request.symbol}) earnings on {request.date}: {request.question}"
-        elif request.question:
-            # General question
-            prompt = request.question
-        else:
-            raise HTTPException(status_code=400, detail="Either a question or earnings context (symbol, company, date) must be provided")
-            
-        # Determine provider and key
-        provider = "local"
-        api_key = None
-        user_id = None
-        
-        if current_user:
-            user_id = current_user.id
-            if current_user.ai_provider and current_user.ai_provider != "local":
-                provider = current_user.ai_provider
-                if provider == "openai":
-                    api_key = current_user.openai_api_key
-                elif provider == "anthropic":
-                    api_key = current_user.anthropic_api_key
-                elif provider == "deepseek":
-                    api_key = current_user.deepseek_api_key
-                elif provider == "gemini_pro":
-                    api_key = current_user.gemini_pro_api_key
-                elif provider == "gemini":
-                    # Use GeminiService directly or via factory if we added it
-                    # For now, let's stick to the pattern
-                    pass
-
-        # Override provider if specified in request (and allowed)
-        if request.provider and request.provider != "local":
-             # Basic validation could go here, for now trust the frontend/user preference
-             provider = request.provider
-             
-             # If provider is gemini, ensure we have a key
-             if provider == "gemini":
-                 if current_user and current_user.gemini_api_key:
-                     api_key = current_user.gemini_api_key
-                 elif os.getenv("GOOGLE_GEMINI_API_KEY"):
-                     api_key = os.getenv("GOOGLE_GEMINI_API_KEY")
-
-        response = llama_service.generate_response(prompt, user_id=user_id, provider=provider, api_key=api_key)
-        return {"response": response}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/earnings/{ticker}")
-async def get_ticker_earnings(ticker: str):
-    """Get earnings for a specific ticker"""
-    try:
-        earnings = await earnings_service.get_ticker_earnings(ticker)
-        if earnings:
-            return {"earnings": earnings}
-        else:
-            raise HTTPException(status_code=404, detail="Earnings not found for this ticker")
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/earnings/{ticker}/eps-history")
-async def get_ticker_eps_history(ticker: str, years: int = 2):
-    """Get EPS history for a ticker for the last N years (default 2 years = ~8 quarters) with reliability metrics"""
-    try:
-        result = await earnings_service.get_ticker_eps_history(ticker.upper(), years=years)
-        return {
-            "ticker": ticker.upper(), 
-            "eps_history": result.get('quarters', []), 
-            "reliability": result.get('reliability', {}),
-            "quarters_count": len(result.get('quarters', []))
-        }
-    except Exception as e:
-        print(f"[API] Error getting EPS history for {ticker}: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"eToro login error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Authentication Endpoints
@@ -662,6 +726,8 @@ async def login(request: Request, db: Session = Depends(get_db)):
     try:
         content_type = request.headers.get("content-type", "").lower()
         username = None
+        email = None
+        identifier = None
         password = None
         
         print(f"[LOGIN] Content-Type: {content_type}")
@@ -671,8 +737,10 @@ async def login(request: Request, db: Session = Depends(get_db)):
             try:
                 form_data = await request.form()
                 username = form_data.get("username")
+                email = form_data.get("email")
+                identifier = form_data.get("identifier")
                 password = form_data.get("password")
-                print(f"[LOGIN] Parsed form-data: username={username is not None}")
+                print(f"[LOGIN] Parsed form-data: username={username is not None}, email={email is not None}")
             except Exception as e:
                 print(f"[LOGIN] Error parsing form-data: {e}")
                 import traceback
@@ -685,10 +753,15 @@ async def login(request: Request, db: Session = Depends(get_db)):
                 if "application/json" in content_type or not content_type:
                     body = await request.json()
                     username = body.get("username")
+                    email = body.get("email")
+                    identifier = body.get("identifier")
                     password = body.get("password")
-                    print(f"[LOGIN] Parsed JSON: username={username is not None}")
+                    print(f"[LOGIN] Parsed JSON: username={username is not None}, email={email is not None}")
             except Exception as e:
                 print(f"[LOGIN] Error parsing JSON: {e}")
+
+        if not username:
+            username = email or identifier
         
         if not username or not password:
             print(f"[LOGIN] Missing credentials: username={username is not None}, password={password is not None}")
@@ -728,6 +801,12 @@ async def login(request: Request, db: Session = Depends(get_db)):
                 "openai_api_key": user.openai_api_key,
                 "anthropic_api_key": user.anthropic_api_key,
                 "deepseek_api_key": user.deepseek_api_key,
+                "llama_api_key": user.llama_api_key,
+                "gemini_model": user.gemini_model,
+                "openai_model": user.openai_model,
+                "anthropic_model": user.anthropic_model,
+                "deepseek_model": user.deepseek_model,
+                "llama_model": user.llama_model,
             }
         }
     except HTTPException:
@@ -759,6 +838,12 @@ async def get_me(current_user: User = Depends(get_current_user)):
         "openai_api_key": current_user.openai_api_key,
         "anthropic_api_key": current_user.anthropic_api_key,
         "deepseek_api_key": current_user.deepseek_api_key,
+        "llama_api_key": current_user.llama_api_key,
+        "gemini_model": current_user.gemini_model,
+        "openai_model": current_user.openai_model,
+        "anthropic_model": current_user.anthropic_model,
+        "deepseek_model": current_user.deepseek_model,
+        "llama_model": current_user.llama_model,
     }
 
 @app.post("/api/auth/logout")
@@ -803,8 +888,6 @@ async def update_profile(profile_data: ProfileUpdate, current_user: User = Depen
             current_user.website = profile_data.website
         if profile_data.profile_picture_url is not None:
             current_user.profile_picture_url = profile_data.profile_picture_url
-        if profile_data.use_local_llama is not None:
-            current_user.use_local_llama = profile_data.use_local_llama
         if profile_data.gemini_api_key is not None:
             current_user.gemini_api_key = profile_data.gemini_api_key
         if profile_data.ai_provider is not None:
@@ -817,7 +900,19 @@ async def update_profile(profile_data: ProfileUpdate, current_user: User = Depen
             current_user.anthropic_api_key = profile_data.anthropic_api_key
         if profile_data.deepseek_api_key is not None:
             current_user.deepseek_api_key = profile_data.deepseek_api_key
-        
+        if profile_data.llama_api_key is not None:
+            current_user.llama_api_key = profile_data.llama_api_key
+        if profile_data.gemini_model is not None:
+            current_user.gemini_model = profile_data.gemini_model
+        if profile_data.openai_model is not None:
+            current_user.openai_model = profile_data.openai_model
+        if profile_data.anthropic_model is not None:
+            current_user.anthropic_model = profile_data.anthropic_model
+        if profile_data.deepseek_model is not None:
+            current_user.deepseek_model = profile_data.deepseek_model
+        if profile_data.llama_model is not None:
+            current_user.llama_model = profile_data.llama_model
+
         current_user.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(current_user)
@@ -840,6 +935,12 @@ async def update_profile(profile_data: ProfileUpdate, current_user: User = Depen
             "openai_api_key": current_user.openai_api_key,
             "anthropic_api_key": current_user.anthropic_api_key,
             "deepseek_api_key": current_user.deepseek_api_key,
+            "llama_api_key": current_user.llama_api_key,
+            "gemini_model": current_user.gemini_model,
+            "openai_model": current_user.openai_model,
+            "anthropic_model": current_user.anthropic_model,
+            "deepseek_model": current_user.deepseek_model,
+            "llama_model": current_user.llama_model,
         }
     except Exception as e:
         db.rollback()
@@ -1311,6 +1412,12 @@ async def update_bot_config(
         # Build config dict with all fields (IG Markets + Gemini + legacy Alpaca)
         config_dict = {}
         
+        # Global Account
+        if config.account_id:
+            config_dict['account_id'] = config.account_id
+        if config.broker:
+            config_dict['broker'] = config.broker
+            
         # IG Markets configuration (required for Earnings Report Genius)
         if config.ig_username:
             config_dict['ig_username'] = config.ig_username
@@ -1507,6 +1614,176 @@ async def import_bot_config(
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/api/bots/test-connection")
+async def test_bot_connection(request: TestConnectionRequest, current_user: User = Depends(get_current_user)):
+    """Test broker connection with provided configuration"""
+    try:
+        broker = request.broker
+        config = request.config
+        
+        if broker == 'IG':
+            from services.ig_service import IGMarketsService
+            
+            username = config.get('ig_username')
+            password = config.get('ig_password')
+            api_key = config.get('ig_api_key')
+            acc_type = config.get('ig_acc_type', 'DEMO')
+            
+            if not username or not password or not api_key:
+                return {"success": False, "message": "Missing required IG credentials"}
+                
+            service = IGMarketsService(
+                username=username,
+                password=password,
+                api_key=api_key,
+                acc_type=acc_type
+            )
+            
+            if service.is_configured():
+                # Try to fetch account to verify
+                try:
+                    account = await service.get_account()
+                    if account:
+                        return {
+                            "success": True, 
+                            "message": f"Successfully connected to IG {acc_type} account: {account.get('account_name')}"
+                        }
+                except Exception as e:
+                    return {"success": False, "message": f"Connection failed: {str(e)}"}
+            
+            return {"success": False, "message": "Could not initialize IG service with provided credentials"}
+            
+        elif broker == 'Alpaca':
+            from services.alpaca_service import AlpacaService
+            
+            api_key = config.get('alpaca_api_key')
+            api_secret = config.get('alpaca_api_secret')
+            paper = config.get('alpaca_paper', True)
+            
+            if not api_key or not api_secret:
+                return {"success": False, "message": "Missing required Alpaca credentials"}
+            
+            try:
+                # Initialize service
+                service = AlpacaService(api_key=api_key, api_secret=api_secret, paper=paper)
+                if service.is_configured():
+                    account = await service.get_account()
+                    if account:
+                         return {"success": True, "message": "Successfully connected to Alpaca"}
+                return {"success": False, "message": "Alpaca service not configured properly"}
+            except Exception as e:
+                return {"success": False, "message": f"Alpaca connection failed: {str(e)}"}
+                
+        else:
+            # For other brokers (placeholders)
+            return {"success": False, "message": f"Connection test for {broker} is not yet implemented (Coming Soon)"}
+            
+    except Exception as e:
+        print(f"Error testing connection: {e}")
+        return {"success": False, "message": f"Error: {str(e)}"}
+
+class TestAIConnectionRequest(BaseModel):
+    provider: str  # gemini, openai, anthropic, deepseek, llama
+    api_key: str
+
+@app.post("/api/auth/test-ai-connection")
+async def test_ai_connection(request: TestAIConnectionRequest, current_user: User = Depends(get_current_user)):
+    """Test AI API connection with provided API key"""
+    try:
+        provider = request.provider.lower()
+        api_key = request.api_key.strip()
+        
+        if not api_key:
+            return {"success": False, "message": "API key is required"}
+        
+        if provider == 'gemini':
+            try:
+                from services.gemini_service import GeminiService
+                # Get model from user's profile if available, otherwise use default
+                gemini_model = (getattr(current_user, 'gemini_model', None) or '').strip() or None
+                service = GeminiService(api_key=api_key, model_name=gemini_model)
+                if service.available and service.client:
+                    # Try a simple test call to verify the API key works
+                    try:
+                        # Make a minimal test call to verify the API key is valid
+                        response = service.client.models.generate_content(
+                            model=service.model_name, 
+                            contents="test"
+                        )
+                        # Verify we got a response (don't access .text to avoid errors)
+                        if response is not None:
+                            return {"success": True, "message": f"Gemini API key is valid (using model: {service.model_name})"}
+                        else:
+                            return {"success": False, "message": "Received empty response from Gemini API"}
+                    except Exception as e:
+                        error_msg = str(e)
+                        # Check for common error types
+                        if "404" in error_msg or "not found" in error_msg.lower():
+                            return {"success": False, "message": f"Model '{service.model_name}' not found. Please check the model name in your settings."}
+                        elif "403" in error_msg or "permission" in error_msg.lower():
+                            return {"success": False, "message": "API key is invalid or lacks required permissions"}
+                        elif "401" in error_msg or "unauthorized" in error_msg.lower():
+                            return {"success": False, "message": "API key is invalid or unauthorized"}
+                        else:
+                            return {"success": False, "message": f"Gemini connection failed: {error_msg}"}
+                else:
+                    return {"success": False, "message": "Could not initialize Gemini service"}
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                return {"success": False, "message": f"Gemini test failed: {str(e)}"}
+        
+        elif provider == 'openai':
+            try:
+                from services.llm_factory import OpenAIClient
+                client = OpenAIClient(api_key)
+                # Make a minimal test call
+                response = client.generate_content("test")
+                if "Error calling OpenAI" in response:
+                    return {"success": False, "message": response}
+                return {"success": True, "message": "OpenAI API key is valid"}
+            except Exception as e:
+                return {"success": False, "message": f"OpenAI test failed: {str(e)}"}
+        
+        elif provider == 'anthropic' or provider == 'claude':
+            try:
+                from services.llm_factory import AnthropicClient
+                client = AnthropicClient(api_key)
+                # Make a minimal test call
+                response = client.generate_content("test")
+                if "Error calling Anthropic" in response:
+                    return {"success": False, "message": response}
+                return {"success": True, "message": "Claude API key is valid"}
+            except Exception as e:
+                return {"success": False, "message": f"Claude test failed: {str(e)}"}
+        
+        elif provider == 'deepseek':
+            try:
+                from services.llm_factory import DeepseekClient
+                client = DeepseekClient(api_key)
+                # Make a minimal test call
+                response = client.generate_content("test")
+                if "Error calling Deepseek" in response:
+                    return {"success": False, "message": response}
+                return {"success": True, "message": "DeepSeek API key is valid"}
+            except Exception as e:
+                return {"success": False, "message": f"DeepSeek test failed: {str(e)}"}
+        
+        elif provider == 'llama':
+            # For Llama API, we'd need to check if there's a way to test it
+            # For now, just validate the key format
+            if api_key.startswith('LA-'):
+                return {"success": True, "message": "Llama API key format is valid"}
+            else:
+                return {"success": False, "message": "Invalid Llama API key format (should start with 'LA-')"}
+        
+        else:
+            return {"success": False, "message": f"Unknown provider: {provider}"}
+            
+    except Exception as e:
+        print(f"Error testing AI connection: {e}")
+        return {"success": False, "message": f"Error: {str(e)}"}
+
 @app.post("/api/bots/{bot_id}/call/llama")
 async def call_llama_explanation(
     bot_id: int,
@@ -1589,15 +1866,20 @@ async def call_gemini_explanation(
         context += "Recent Activity Log:\n" + "".join(log_lines)
         
         # 4. Call Gemini
-        # Instantiate GeminiService with bot's API key
+        # Prefer profile key (site-wide) so user's Profile API key is used everywhere
         config = bot.get_config()
-        gemini_api_key = config.get('gemini_api_key')
-        
-        # Fallback to user profile key if not in bot config
+        gemini_api_key = (
+            current_user.gemini_api_key
+            or config.get('gemini_api_key')
+            or os.getenv('GOOGLE_GEMINI_API_KEY')
+        )
         if not gemini_api_key:
-            gemini_api_key = current_user.gemini_api_key
-            
-        gemini_service = GeminiService(api_key=gemini_api_key)
+            raise HTTPException(
+                status_code=400,
+                detail="No Gemini API key configured. Add one in Profile settings.",
+            )
+        gemini_model = (getattr(current_user, 'gemini_model', None) or '').strip() or None
+        gemini_service = GeminiService(api_key=gemini_api_key, model_name=gemini_model)
         
         if request and request.prompt:
             # Chat mode
@@ -1608,8 +1890,71 @@ async def call_gemini_explanation(
             explanation = await gemini_service.generate_explanation(context)
         
         return {"explanation": explanation}
+    except HTTPException:
+        raise
     except Exception as e:
         print(f"Error calling Gemini: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/bots/{bot_id}/call/weekly-plan")
+async def call_weekly_plan(
+    bot_id: int,
+    request: Optional[BotChatRequest] = None,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Get weekly trading plan from AI"""
+    try:
+        bot = bot_service.get_bot(db, bot_id, current_user.id)
+        if not bot:
+            raise HTTPException(status_code=404, detail="Bot not found")
+
+        # 1. Get Watchlist
+        watchlist = watchlist_service.get_watchlist()
+        
+        # 2. Get Quotes for Watchlist
+        market_data = []
+        for item in watchlist:
+            try:
+                quote = await market_data_service.get_quote(item['symbol'])
+                market_data.append(f"{item['symbol']} ({item['name']}): Price ${quote.get('price')}, Change {quote.get('change_percent')}%")
+            except Exception:
+                market_data.append(f"{item['symbol']}: Data unavailable")
+        
+        market_context = "\n".join(market_data)
+
+        # 3. Construct Context
+        context = f"Bot Name: {bot.name}\n"
+        context += f"Current Watchlist & Market Data:\n{market_context}\n\n"
+        context += "Task: Analyze the watchlist and provide a trading plan for the upcoming week. Identify potential entry/exit points and key levels to watch."
+
+        # 4. Call AI (Gemini preferred)
+        # Prefer profile key (site-wide) so user's Profile API key is used everywhere
+        config = bot.get_config()
+        gemini_api_key = (
+            current_user.gemini_api_key
+            or config.get('gemini_api_key')
+            or os.getenv('GOOGLE_GEMINI_API_KEY')
+        )
+        if gemini_api_key:
+            gemini_model = (getattr(current_user, 'gemini_model', None) or '').strip() or None
+            gemini_service = GeminiService(api_key=gemini_api_key, model_name=gemini_model)
+            if request and request.prompt:
+                history = request.history or []
+                explanation = await gemini_service.chat_about_bot(context, history, request.prompt)
+            else:
+                explanation = await gemini_service.generate_explanation(context)
+        else:
+            # Fallback to Llama
+            if request and request.prompt:
+                history = request.history or []
+                explanation = llama_service.chat_about_bot(context, history, request.prompt)
+            else:
+                explanation = llama_service.generate_explanation(context)
+        
+        return {"explanation": explanation}
+    except Exception as e:
+        print(f"Error calling Weekly Plan: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # WebSocket for real-time updates
@@ -1682,6 +2027,20 @@ async def get_earnings(
             months=months,
             offset_months=offset_months
         )
+
+        # Fallback to cached calendar if API returns empty
+        if not earnings_data:
+            try:
+                if start_date:
+                    start_dt = datetime.fromisoformat(start_date.replace('Z', '+00:00')).date()
+                else:
+                    start_dt = datetime.now().date()
+                cached_calendar = earnings_service._get_cached_calendar(start_dt, months)
+                if cached_calendar:
+                    earnings_data = cached_calendar
+                    print(f"[API] Using cached calendar fallback with {len(earnings_data)} items")
+            except Exception as cache_error:
+                print(f"[API] Cache fallback failed: {cache_error}")
         
         # Filter out weekend earnings (Saturday=5, Sunday=6)
         from datetime import datetime as dt
@@ -1762,4 +2121,335 @@ if __name__ == "__main__":
         reload=True,  # Hot reload for development
         log_level="info"
     )
+
+
+# ---------------------------------------------------------------------
+# Bot Decisions Endpoints
+# ---------------------------------------------------------------------
+
+class DecisionCreate(BaseModel):
+    bot_id: int
+    symbol: str
+    decision: str
+    execution_time: Optional[datetime] = None
+    reasoning: Optional[str] = None
+    status: Optional[str] = "PENDING"
+
+class DecisionUpdate(BaseModel):
+    symbol: Optional[str] = None
+    decision: Optional[str] = None
+    execution_time: Optional[datetime] = None
+    reasoning: Optional[str] = None
+    status: Optional[str] = None
+
+@app.get("/api/bot/decisions")
+async def get_bot_decisions(
+    limit: int = 50,
+    bot_id: Optional[int] = None,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Get bot decisions, optionally filtered by bot_id"""
+    try:
+        query = db.query(Decision)
+        
+        # If bot_id is provided, filter by it
+        if bot_id:
+            # Verify bot belongs to user
+            bot = bot_service.get_bot(db, bot_id, current_user.id)
+            if not bot:
+                # If not found for user, return empty or error? Customary to return empty or 404.
+                # But here we filter, so maybe empty list is safer if bot doesn't match?
+                # Actually, strictly enforcing ownership:
+                return {"decisions": []}
+            query = query.filter(Decision.bot_id == bot_id)
+        else:
+            # Filter by user's bots if no bot_id specified? 
+            # Or just all decisions? 
+            # To be safe, filter by user's bots
+            user_bot_ids = [b.id for b in bot_service.get_user_bots(db, current_user.id)]
+            if user_bot_ids:
+                query = query.filter(Decision.bot_id.in_(user_bot_ids))
+            else:
+                return {"decisions": []}
+                
+        decisions = query.order_by(Decision.created_at.desc()).limit(limit).all()
+        return {"decisions": [d.to_dict() for d in decisions]}
+    except Exception as e:
+        print(f"Error fetching decisions: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/bot/decisions")
+async def create_bot_decision(
+    decision: DecisionCreate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Create a new decision"""
+    try:
+        # Verify bot ownership
+        bot = bot_service.get_bot(db, decision.bot_id, current_user.id)
+        if not bot:
+            raise HTTPException(status_code=404, detail="Bot not found")
+
+        new_decision = Decision(
+            bot_id=decision.bot_id,
+            symbol=decision.symbol.upper(),
+            decision=decision.decision.upper(),
+            execution_time=decision.execution_time or datetime.now(),
+            status=decision.status or "PENDING",
+            reasoning=decision.reasoning
+        )
+        db.add(new_decision)
+        db.commit()
+        db.refresh(new_decision)
+        return new_decision.to_dict()
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error creating decision: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.patch("/api/bot/decisions/{decision_id}")
+async def update_bot_decision(
+    decision_id: int,
+    decision_update: DecisionUpdate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Update a decision"""
+    try:
+        db_decision = db.query(Decision).filter(Decision.id == decision_id).first()
+        if not db_decision:
+            raise HTTPException(status_code=404, detail="Decision not found")
+            
+        # Verify ownership via bot
+        bot = bot_service.get_bot(db, db_decision.bot_id, current_user.id)
+        if not bot:
+             raise HTTPException(status_code=403, detail="Not authorized")
+
+        if decision_update.symbol:
+            db_decision.symbol = decision_update.symbol.upper()
+        if decision_update.decision:
+            db_decision.decision = decision_update.decision.upper()
+        if decision_update.execution_time:
+            db_decision.execution_time = decision_update.execution_time
+        if decision_update.status:
+            db_decision.status = decision_update.status.upper()
+        if decision_update.reasoning is not None:
+            db_decision.reasoning = decision_update.reasoning
+            
+        db.commit()
+        db.refresh(db_decision)
+        return db_decision.to_dict()
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error updating decision: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/api/bot/decisions/{decision_id}")
+async def delete_bot_decision(
+    decision_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Delete a decision"""
+    try:
+        db_decision = db.query(Decision).filter(Decision.id == decision_id).first()
+        if not db_decision:
+            raise HTTPException(status_code=404, detail="Decision not found")
+            
+        # Verify ownership
+        bot = bot_service.get_bot(db, db_decision.bot_id, current_user.id)
+        if not bot:
+             raise HTTPException(status_code=403, detail="Not authorized")
+             
+        db.delete(db_decision)
+        db.commit()
+        return {"message": "Decision deleted"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error deleting decision: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/bot/profit")
+async def get_bot_profit(current_user: User = Depends(get_current_user)):
+    """Get bot profit summary (simple implementation)"""
+    try:
+        # Just return the latest profitto.json content for now
+        # Ideally this should be per-bot or aggregated
+        profit_path = os.path.join("backend", "profitto.json")
+        if os.path.exists(profit_path):
+            with open(profit_path, "r") as f:
+                data = json.load(f)
+                return data
+        return None
+    except Exception as e:
+        print(f"Error getting profit: {e}")
+        return None
+
+# Account Management Endpoints
+
+class AccountCreate(BaseModel):
+    platform: str # IG, Alpaca, eToro
+    name: str # "My IG Live", "eToro Demo"
+    credentials: Dict[str, Any]
+    is_active: bool = True
+    is_default: bool = False
+
+class AccountUpdate(BaseModel):
+    name: Optional[str] = None
+    credentials: Optional[Dict[str, Any]] = None
+    is_active: Optional[bool] = None
+    is_default: Optional[bool] = None
+
+@app.get("/api/accounts", response_model=Dict[str, List[Dict[str, Any]]])
+async def get_accounts(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Get all accounts for the current user"""
+    accounts = current_user.accounts
+    return {"accounts": [acc.to_dict(include_credentials=False) for acc in accounts]}
+
+@app.post("/api/accounts")
+async def create_account(
+    account_in: AccountCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Create a new account"""
+    # If this is set as default, unset other defaults for same platform
+    if account_in.is_default:
+        existing_defaults = db.query(Account).filter(
+            Account.user_id == current_user.id,
+            Account.platform == account_in.platform,
+            Account.is_default == True
+        ).all()
+        for acc in existing_defaults:
+            acc.is_default = False
+    
+    account = Account(
+        user_id=current_user.id,
+        platform=account_in.platform,
+        name=account_in.name,
+        is_active=account_in.is_active,
+        is_default=account_in.is_default
+    )
+    account.set_credentials(account_in.credentials)
+    
+    db.add(account)
+    db.commit()
+    db.refresh(account)
+    return account.to_dict()
+
+@app.put("/api/accounts/{account_id}")
+async def update_account(
+    account_id: int,
+    account_in: AccountUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Update an account"""
+    account = db.query(Account).filter(Account.id == account_id, Account.user_id == current_user.id).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+        
+    if account_in.name is not None:
+        account.name = account_in.name
+    
+    if account_in.is_active is not None:
+        account.is_active = account_in.is_active
+        
+    if account_in.credentials is not None:
+        account.set_credentials(account_in.credentials)
+        
+    if account_in.is_default is not None:
+        if account_in.is_default and not account.is_default:
+            # Unset other defaults
+            existing_defaults = db.query(Account).filter(
+                Account.user_id == current_user.id,
+                Account.platform == account.platform,
+                Account.is_default == True
+            ).all()
+            for acc in existing_defaults:
+                acc.is_default = False
+        account.is_default = account_in.is_default
+        
+    db.commit()
+    db.refresh(account)
+    return account.to_dict()
+
+@app.delete("/api/accounts/{account_id}")
+async def delete_account(
+    account_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Delete an account"""
+    account = db.query(Account).filter(Account.id == account_id, Account.user_id == current_user.id).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+        
+    db.delete(account)
+    db.commit()
+    return {"message": "Account deleted"}
+
+@app.post("/api/accounts/{account_id}/test")
+async def test_account_connection(
+    account_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Test connection for a saved account"""
+    account = db.query(Account).filter(Account.id == account_id, Account.user_id == current_user.id).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+        
+    creds = account.get_credentials()
+    
+    # Reuse the existing test logic from bot_service or a new service
+    # For now, we'll manually call the test logic here or import it
+    
+    try:
+        from services.bot_service import bot_service
+        # Reuse existing test_connection logic but adapt the input
+        # Note: bot_service.test_connection expects {'broker': ..., 'config': ...}
+        
+        # Map credentials to what bot_service expects
+        test_config = {}
+        if account.platform == 'IG':
+            test_config = {
+                'ig_username': creds.get('username'),
+                'ig_password': creds.get('password'),
+                'ig_api_key': creds.get('api_key'),
+                'ig_acc_type': creds.get('account_type', 'DEMO')
+            }
+        elif account.platform == 'Alpaca':
+            test_config = {
+                'alpaca_api_key': creds.get('api_key'),
+                'alpaca_api_secret': creds.get('secret_key'),
+                'alpaca_paper': creds.get('paper_trading', True)
+            }
+        # Add eToro stub
+        elif account.platform == 'eToro':
+             # Just a mock test for now as eToro API isn't real
+             import asyncio
+             await asyncio.sleep(1)
+             return {"success": True, "message": "eToro connection simulation successful"}
+             
+        # Call existing service
+        # We might need to expose a helper in bot_service or just replicate logic
+        # For simplicity, let's just use the existing behavior if possible
+        
+        # Since bot_service.test_connection is an instance method, we can try using it if we have an instance
+        # It's instantiated as bot_service in this file
+        
+        result = await bot_service.test_connection(account.platform, test_config)
+        return result
+        
+    except Exception as e:
+        return {"success": False, "message": str(e)}
 

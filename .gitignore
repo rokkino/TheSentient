@@ -1,3 +1,4 @@
+.env
 # 1. Ambiente Virtuale
 # Contiene migliaia di file di librerie, non deve mai essere caricato.
 .venv/

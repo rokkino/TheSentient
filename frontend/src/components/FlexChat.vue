@@ -150,12 +150,8 @@
           
             <div class="setting-group checkbox-group">
               <label class="checkbox-label">
-                <input type="checkbox" v-model="config.inviteLlama" @change="updateConfig">
-                Invite Llama AI
-              </label>
-              <label class="checkbox-label" style="margin-top: 8px;">
-                <input type="checkbox" v-model="config.inviteGemini" @change="updateConfig">
-                Invite Gemini AI
+                <input type="checkbox" v-model="config.inviteAi" @change="updateConfig">
+                Invite AI Agent
               </label>
               <p class="setting-hint">If enabled, AI will read messages and respond when relevant.</p>
             </div>
@@ -200,8 +196,7 @@ const props = defineProps({
     type: Object,
     default: () => ({
       recipientId: null,
-      inviteLlama: false,
-      inviteGemini: false
+      inviteAi: false
     })
   }
 })
@@ -237,8 +232,15 @@ const currentUserId = computed(() => authStore.user?.id)
 
 const visibleOnlineUsers = computed(() => {
   return onlineUsersList.value.filter(user => {
-    if (user.id === -1 && !config.value.inviteLlama) return false // Llama AI
-    if (user.id === -2 && !config.value.inviteGemini) return false // Gemini AI
+    // Show AI bots only if invited
+    if (user.id === -1 || user.id === -2) {
+      // If chatting with a specific AI, show only that AI
+      if (config.value.recipientId === -1 || config.value.recipientId === -2) {
+        return user.id === config.value.recipientId
+      }
+      // Otherwise, show AI bots only if inviteAi is true
+      return config.value.inviteAi
+    }
     return true
   })
 })
@@ -357,25 +359,18 @@ const clearAttachments = () => {
 
 const updateConfig = () => {
   // Check for changes in AI invitation status
-  if (config.value.inviteLlama !== props.initialConfig.inviteLlama) {
-    const action = config.value.inviteLlama ? 'entrato' : 'uscito'
+  if (config.value.inviteAi !== props.initialConfig.inviteAi) {
+    const action = config.value.inviteAi ? 'joined' : 'left'
+    // We don't know exactly which AI it is until we send a message, 
+    // but we can guess based on provider or just say "AI Agent"
+    const provider = authStore.user?.ai_provider || 'gemini'
+    const aiName = (provider === 'local' || provider === 'llama') ? 'Llama AI' : 'Gemini AI'
+    
     messages.value.push({
       id: Date.now(),
-      user_id: -1, // Llama ID
-      username: 'Llama AI',
-      message: `Llama è ${action}`,
-      type: 'text',
-      timestamp: new Date().toISOString()
-    })
-  }
-
-  if (config.value.inviteGemini !== props.initialConfig.inviteGemini) {
-    const action = config.value.inviteGemini ? 'entrato' : 'uscito'
-    messages.value.push({
-      id: Date.now() + 1,
-      user_id: -2, // Gemini ID
-      username: 'Gemini AI',
-      message: `Gemini è ${action}`,
+      user_id: -99, // System message
+      username: 'System',
+      message: `${aiName} has ${action} the chat`,
       type: 'text',
       timestamp: new Date().toISOString()
     })
@@ -401,13 +396,18 @@ const sendMessage = async () => {
   sending.value = true
   
   try {
+    // Determine which AI to invite based on user settings
+    const aiProvider = authStore.user?.ai_provider || 'gemini'
+    const useLlama = config.value.inviteAi && (aiProvider === 'local' || aiProvider === 'llama')
+    const useGemini = config.value.inviteAi && (aiProvider !== 'local' && aiProvider !== 'llama')
+
     const messageData = {
       message: newMessage.value || (selectedImage.value ? '📷 Image' : ''),
       type: selectedImage.value ? 'image' : 'text',
       image_data: selectedImage.value || null,
       recipient_id: config.value.recipientId,
-      invite_llama: config.value.inviteLlama,
-      invite_gemini: config.value.inviteGemini,
+      invite_llama: useLlama,
+      invite_gemini: useGemini,
       is_search: isSearchMode.value
     }
     

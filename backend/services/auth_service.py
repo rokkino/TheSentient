@@ -109,9 +109,11 @@ def create_user(db: Session, username: str, email: str, password: str) -> User:
     db.refresh(db_user)
     return db_user
 
-def authenticate_user(db: Session, username: str, password: str) -> Optional[User]:
-    """Authenticate a user"""
-    user = get_user_by_username(db, username)
+def authenticate_user(db: Session, identifier: str, password: str) -> Optional[User]:
+    """Authenticate a user by username or email"""
+    user = get_user_by_username(db, identifier)
+    if not user:
+        user = get_user_by_email(db, identifier)
     if not user:
         return None
     if not verify_password(password, user.hashed_password):

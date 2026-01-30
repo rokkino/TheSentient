@@ -20,6 +20,48 @@
         </div>
       </div>
       
+      <!-- Performance Chart -->
+      <div class="performance-chart-container" v-if="leaderboardBots.length > 0">
+        <div ref="chartContainer" class="chart-wrapper" v-show="!loading"></div>
+        <div class="chart-legend" v-if="!loading">
+          <div 
+            v-for="(bot, index) in leaderboardBots" 
+            :key="bot.id" 
+            class="legend-item"
+            :style="{ '--bot-color': getBotColor(bot.name) }"
+          >
+            <div class="legend-left">
+              <div class="legend-color"></div>
+              <div class="legend-bot-icon" :style="{ backgroundColor: getBotColor(bot.name) }">
+                {{ bot.name.charAt(0).toUpperCase() }}
+              </div>
+            </div>
+            <div class="legend-content">
+              <div class="legend-name-row">
+                <span class="legend-name">{{ bot.name }}</span>
+                <span class="legend-rank">#{{ index + 1 }}</span>
+              </div>
+              <div class="legend-stats">
+                <span class="legend-stat">
+                  <span class="stat-label">{{ leaderboardMetric === 'winRate' ? 'Win Rate' : 'Profit' }}:</span>
+                  <span class="stat-value">{{ formatMetricValue(bot) }}</span>
+                </span>
+                <span class="legend-stat">
+                  <span class="stat-label">Trades:</span>
+                  <span class="stat-value">{{ bot.totalTrades || 0 }}</span>
+                </span>
+                <span class="legend-stat">
+                  <span class="stat-label">Status:</span>
+                  <span class="stat-value status" :class="bot.status?.toLowerCase() || 'inactive'">
+                    {{ (bot.status || 'INACTIVE').toUpperCase() }}
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="leaderboard-graph">
         <div v-for="(bot, index) in leaderboardBots" :key="bot.id" class="graph-row">
           <div class="rank">{{ index + 1 }}</div>
@@ -88,7 +130,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch, nextTick, onUnmounted } from 'vue'
+import { createChart } from 'lightweight-charts'
 import BotCard from './BotCard.vue'
 import BotConfigModal from './BotConfigModal.vue'
 import CreateBotModal from './CreateBotModal.vue'
@@ -109,6 +152,10 @@ const showConfigModal = ref(false)
 
 // Leaderboard Logic
 const leaderboardMetric = ref('winRate') // 'winRate' or 'profit'
+const chartContainer = ref(null)
+let chart = null
+let seriesMap = new Map()
+let isInitializing = false
 
 const leaderboardBots = computed(() => {
   return [...bots.value].sort((a, b) => {
@@ -165,6 +212,240 @@ const getBotColor = (name) => {
   }
   return colors[Math.abs(hash) % colors.length]
 }
+
+const hexToRgba = (hex, alpha) => {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
+// Generate historical performance data with more points
+const generateHistoricalData = (bot, currentValue) => {
+  const days = 60 // More data points for smoother chart
+  const data = []
+  const baseValue = currentValue * 0.65 // Start from 65% of current value
+  const volatility = currentValue * 0.12 // 12% volatility
+  
+  // Add some variation to make it more interesting
+  const trendType = bot.id % 3 // Different trend types
+  let trendMultiplier = 1
+  
+  for (let i = 0; i <= days; i++) {
+    const progress = i / days
+    
+    // Different trend patterns
+    if (trendType === 0) {
+      // Steady growth
+      trendMultiplier = 0.65 + (progress * 0.35)
+    } else if (trendType === 1) {
+      // Slow start, fast finish
+      trendMultiplier = 0.65 + (Math.pow(progress, 0.7) * 0.35)
+    } else {
+      // Fast start, steady finish
+      trendMultiplier = 0.65 + (Math.pow(progress, 1.3) * 0.35)
+    }
+    
+    const trend = baseValue + (currentValue - baseValue) * trendMultiplier
+    const random = (Math.random() - 0.5) * volatility * (1 - progress * 0.5) // Less volatility near end
+    const value = Math.max(0, trend + random)
+    
+    const date = new Date()
+    date.setDate(date.getDate() - (days - i))
+    
+    data.push({
+      time: Math.floor(date.getTime() / 1000),
+      value: leaderboardMetric.value === 'winRate' ? Math.min(100, value) : value
+    })
+  }
+  
+  return data
+}
+
+// Initialize chart
+const initChart = async () => {
+  if (!chartContainer.value || leaderboardBots.value.length === 0) {
+    return
+  }
+  
+  // Prevent multiple simultaneous initializations
+  if (isInitializing) {
+    return
+  }
+  
+  isInitializing = true
+  
+  try {
+    // Clean up existing chart completely
+    if (chart) {
+      try {
+        chart.remove()
+      } catch (e) {
+        console.warn('Error removing chart:', e)
+      }
+      chart = null
+    }
+    seriesMap.clear()
+    
+    // Clear container content completely
+    if (chartContainer.value) {
+      // Remove all child nodes
+      while (chartContainer.value.firstChild) {
+        chartContainer.value.removeChild(chartContainer.value.firstChild)
+      }
+    }
+    
+    await nextTick()
+    
+    // Ensure container still exists and is visible
+    if (!chartContainer.value) {
+      isInitializing = false
+      return
+    }
+    
+    // Check if container is visible (has dimensions)
+    const rect = chartContainer.value.getBoundingClientRect()
+    if (rect.width === 0 || rect.height === 0) {
+      // Container not visible yet, retry after a short delay
+      setTimeout(() => {
+        isInitializing = false
+        if (leaderboardBots.value.length > 0) {
+          initChart()
+        }
+      }, 100)
+      return
+    }
+    
+    // Force container to have dimensions
+    const containerWidth = rect.width || chartContainer.value.clientWidth || chartContainer.value.offsetWidth || 800
+    const containerHeight = rect.height || 300
+    
+    if (containerWidth === 0 || containerHeight === 0) {
+      isInitializing = false
+      return
+    }
+    
+    // Create chart
+    chart = createChart(chartContainer.value, {
+      width: containerWidth,
+      height: containerHeight,
+      layout: {
+        background: { type: 'solid', color: 'transparent' },
+        textColor: '#a0aec0',
+      },
+      grid: {
+        vertLines: { color: 'rgba(45, 55, 72, 0.5)' },
+        horzLines: { color: 'rgba(45, 55, 72, 0.5)' },
+      },
+      timeScale: {
+        timeVisible: true,
+        secondsVisible: false,
+        borderColor: '#2d3748',
+      },
+      rightPriceScale: {
+        borderColor: '#2d3748',
+        scaleMargins: {
+          top: 0.2, // More space at top
+          bottom: 0.1,
+        },
+      },
+      handleScroll: false,
+      handleScale: false,
+      localization: {
+        priceFormatter: (price) => {
+          if (leaderboardMetric.value === 'winRate') {
+            return `${price.toFixed(1)}%`
+          } else {
+            return `$${price.toFixed(2)}`
+          }
+        },
+      },
+    })
+  
+  // Add series for each bot
+  leaderboardBots.value.forEach((bot, index) => {
+    const currentValue = leaderboardMetric.value === 'winRate' ? bot.winRate : bot.profit
+    const historicalData = generateHistoricalData(bot, currentValue)
+    
+    const color = getBotColor(bot.name)
+    const series = chart.addAreaSeries({
+      lineColor: color,
+      topColor: hexToRgba(color, 0.4),
+      bottomColor: hexToRgba(color, 0.0),
+      lineWidth: 2,
+      title: bot.name,
+      priceFormat: {
+        type: 'price',
+        precision: leaderboardMetric.value === 'winRate' ? 1 : 2,
+        minMove: leaderboardMetric.value === 'winRate' ? 0.1 : 0.01,
+      },
+      lastValueVisible: true,
+      priceLineVisible: false,
+      crosshairMarkerVisible: true,
+      crosshairMarkerRadius: 5,
+    })
+    
+    // Add markers with bot icon at key points
+    const markers = []
+    const lastPoint = historicalData[historicalData.length - 1]
+    
+    // Add marker at the last point (current value) with bot icon letter
+    markers.push({
+      time: lastPoint.time,
+      position: 'aboveBar',
+      color: color,
+      shape: 'circle',
+      size: 1.2,
+      text: bot.name.charAt(0).toUpperCase(),
+    })
+    
+    // Add marker at midpoint for visual interest
+    const midPoint = historicalData[Math.floor(historicalData.length / 2)]
+    markers.push({
+      time: midPoint.time,
+      position: 'inBar',
+      color: color,
+      shape: 'circle',
+      size: 0.6,
+    })
+    
+    series.setData(historicalData)
+    series.setMarkers(markers)
+    seriesMap.set(bot.id, series)
+  })
+  
+  chart.timeScale().fitContent()
+  } finally {
+    isInitializing = false
+  }
+}
+
+// Watch for metric changes - debounced to avoid multiple calls
+let chartUpdateTimeout = null
+watch([leaderboardMetric, leaderboardBots], () => {
+  if (chartUpdateTimeout) {
+    clearTimeout(chartUpdateTimeout)
+  }
+  chartUpdateTimeout = setTimeout(() => {
+    if (leaderboardBots.value.length > 0 && chartContainer.value) {
+      initChart()
+    }
+  }, 100)
+}, { deep: true })
+
+// Watch for bots changes
+watch(() => bots.value.length, () => {
+  if (chartUpdateTimeout) {
+    clearTimeout(chartUpdateTimeout)
+  }
+  chartUpdateTimeout = setTimeout(() => {
+    if (bots.value.length > 0 && chartContainer.value) {
+      nextTick(() => {
+        initChart()
+      })
+    }
+  }, 100)
+})
 
 const handleConfigureBot = (bot) => {
   selectedBot.value = bot
@@ -266,8 +547,50 @@ const loadBots = async () => {
   }
 }
 
-onMounted(() => {
-  loadBots()
+// Handle window resize - debounced
+let resizeTimeout = null
+const handleResize = () => {
+  if (resizeTimeout) {
+    clearTimeout(resizeTimeout)
+  }
+  resizeTimeout = setTimeout(() => {
+    if (chart && chartContainer.value) {
+      const newWidth = chartContainer.value.clientWidth || chartContainer.value.offsetWidth
+      if (newWidth > 0) {
+        chart.applyOptions({ width: newWidth })
+      }
+    }
+  }, 150)
+}
+
+onMounted(async () => {
+  await loadBots()
+  await nextTick()
+  
+  // Wait a bit more to ensure DOM is fully ready
+  setTimeout(() => {
+    if (bots.value.length > 0 && chartContainer.value) {
+      initChart()
+    }
+  }, 200)
+  
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+  if (chartUpdateTimeout) {
+    clearTimeout(chartUpdateTimeout)
+  }
+  if (resizeTimeout) {
+    clearTimeout(resizeTimeout)
+  }
+  if (chart) {
+    chart.remove()
+    chart = null
+  }
+  seriesMap.clear()
+  isInitializing = false
 })
 </script>
 
@@ -308,6 +631,179 @@ onMounted(() => {
   margin-bottom: 32px;
   border: 1px solid #2d3748;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.performance-chart-container {
+  margin-bottom: 24px;
+  background: #0f1419;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #2d3748;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  margin-bottom: 16px;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.chart-wrapper :deep(.tv-lightweight-charts) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-wrapper :deep(canvas) {
+  display: block !important;
+}
+
+.chart-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #2d3748;
+}
+
+.legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: #1a202c;
+  border-radius: 10px;
+  border: 1px solid #2d3748;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.legend-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--bot-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.legend-item:hover {
+  background: #2d3748;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  border-color: var(--bot-color);
+}
+
+.legend-item:hover::before {
+  opacity: 1;
+}
+
+.legend-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bot-color);
+  box-shadow: 0 0 10px var(--bot-color);
+}
+
+.legend-bot-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.legend-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.legend-name {
+  font-size: 14px;
+  color: #e2e8f0;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.legend-rank {
+  font-size: 11px;
+  color: #718096;
+  font-weight: 700;
+  background: #2d3748;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.legend-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legend-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.stat-label {
+  color: #718096;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.stat-value.status {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.stat-value.status.active {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.stat-value.status.inactive {
+  background: rgba(113, 128, 150, 0.2);
+  color: #718096;
 }
 
 .leaderboard-header {

@@ -5,6 +5,7 @@ import os
 import json
 import requests
 from typing import Optional, Dict, Any, List
+from datetime import datetime
 from services.web_search_service import web_search_service
 from services.llm_factory import LLMFactory
 from services.gemini_service import GeminiService
@@ -15,6 +16,53 @@ class LlamaService:
         self.base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         self._initialized = False
         self.user_memories: Dict[int, List[Dict[str, str]]] = {}
+        
+        # Setup memory path
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        backend_dir = os.path.dirname(current_dir)
+        self.memory_dir = os.path.join(backend_dir, 'memory', 'chat')
+        os.makedirs(self.memory_dir, exist_ok=True)
+
+    def _save_chat_to_memory(self, user_id: int, prompt: str, response: str, provider: str = "llama"):
+        """Save chat interaction to JSON file"""
+        try:
+            import time
+            import uuid
+            
+            timestamp = datetime.now().isoformat()
+            
+            # Create a session ID based on date/hour to group chats roughly
+            # or just append to a daily file per user
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            filename = f"chat_{user_id}_{date_str}.json"
+            file_path = os.path.join(self.memory_dir, filename)
+            
+            entry = {
+                "id": str(uuid.uuid4()),
+                "timestamp": timestamp,
+                "user_id": user_id,
+                "role": "user",
+                "content": prompt,
+                "response": response,
+                "provider": provider
+            }
+            
+            # Append to list in file
+            data = []
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                except:
+                    data = []
+            
+            data.append(entry)
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                
+        except Exception as e:
+            print(f"[LlamaService] Error saving chat to memory: {e}")
 
     def initialize(self):
         """Check if Ollama is reachable"""
@@ -143,6 +191,9 @@ class LlamaService:
         if user_id is not None:
             self.user_memories[user_id].append({"role": "user", "content": prompt})
             self.user_memories[user_id].append({"role": "assistant", "content": response})
+            
+            # Save to disk
+            self._save_chat_to_memory(user_id, prompt, response, provider)
             
             # Keep memory size manageable (last 20 messages)
             if len(self.user_memories[user_id]) > 20:

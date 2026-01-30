@@ -1,0 +1,98 @@
+[
+  {
+    "timestamp": "2026-01-31T00:00:09.860965",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:00:09.859210')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:01:09.861316",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:01:09.860218')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:02:09.856017",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:02:09.856017')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:03:09.861260",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:03:09.858574')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:04:09.853913",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:04:09.852529')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:05:09.856869",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:05:09.855987')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:06:09.858926",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:06:09.858395')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:07:51.523668",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:07:51.521046')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:08:51.521238",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:08:51.520710')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:09:51.515751",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:09:51.513375')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:10:51.514425",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:10:51.513158')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:11:51.509859",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:11:51.508751')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:12:51.511236",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:12:51.509675')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:13:51.519631",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:13:51.518491')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:14:51.514067",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:14:51.512484')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T00:15:51.525018",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:15:51.522272')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  }
+]

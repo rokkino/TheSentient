@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="modal-overlay" @click.self="close">
+  <div v-if="show" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
         <h2>Configure {{ bot?.name }}</h2>
@@ -12,7 +12,7 @@
           <div class="form-group">
             <label for="broker-select">
               Select Broker *
-              <span v-if="isFieldSaved('broker') || config.broker" class="filled-dot" title="Saved">●</span>
+              <span v-if="isFieldSaved('broker')" class="saved-badge" title="Saved">✓ Saved</span>
             </label>
             <select
               id="broker-select"
@@ -22,162 +22,41 @@
             >
               <option value="IG">IG Markets (CFD Trading)</option>
               <option value="Alpaca">Alpaca (Stock Trading)</option>
+              <option value="InteractiveBrokers">Interactive Brokers (Coming Soon)</option>
+              <option value="eToro">eToro (Coming Soon)</option>
+              <option value="Plus500">Plus500 (Coming Soon)</option>
+              <option value="Binance">Binance (Crypto - Coming Soon)</option>
+              <option value="XTB">XTB (Coming Soon)</option>
+              <option value="Pepperstone">Pepperstone (Coming Soon)</option>
             </select>
           </div>
 
-          <div v-if="config.broker === 'IG'">
-            <h3>IG Markets Trading Account</h3>
-          <p class="help-text">
-            Configure your IG Markets account credentials for trading. We use perpetual money (perp) trading through IG Markets.
-            Each bot can have its own IG account.
-            <strong>These credentials are stored securely and only accessible by this bot.</strong>
-          </p>
-          
-          <div class="form-group">
-            <label for="ig-username">
-              IG Username *
-
-              <span v-if="isFieldSaved('ig_username') || config.ig_username" class="filled-dot" title="Saved">●</span>
+          <!-- Account Selection (Global) -->
+           <div class="form-group" v-if="filteredAccounts.length > 0">
+            <label>
+              Use Saved Account
+              <span v-if="config.account_id" class="saved-badge">Linked</span>
             </label>
-            <input
-              id="ig-username"
-              v-model="config.ig_username"
-              type="text"
-              :placeholder="isFieldSaved('ig_username') ? '••••••••' : 'Enter your IG Markets username'"
-              class="form-input"
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="ig-password">
-              IG Password *
-
-              <span v-if="isFieldSaved('ig_password') || config.ig_password" class="filled-dot" title="Saved">●</span>
-            </label>
-            <input
-              id="ig-password"
-              v-model="config.ig_password"
-              type="password"
-              :placeholder="isFieldSaved('ig_password') ? '••••••••' : 'Enter your IG Markets password'"
-              class="form-input"
-              required
-            />
-          </div>
-          
-          <div class="form-group">
-            <label for="ig-api-key">
-              IG API Key *
-
-              <span v-if="isFieldSaved('ig_api_key') || config.ig_api_key" class="filled-dot" title="Saved">●</span>
-            </label>
-            <input
-              id="ig-api-key"
-              v-model="config.ig_api_key"
-              type="password"
-              :placeholder="isFieldSaved('ig_api_key') ? '••••••••' : 'Enter your IG Markets API Key'"
-              class="form-input"
-              required
-            />
-            <p class="field-help">Get your API key from IG Markets platform settings</p>
-          </div>
-          
-          <div class="form-group">
-            <label for="ig-acc-type">
-              Account Type *
-
-              <span v-if="isFieldSaved('ig_acc_type') || config.ig_acc_type" class="filled-dot" title="Saved">●</span>
-            </label>
-            <select
-              id="ig-acc-type"
-              v-model="config.ig_acc_type"
-              class="form-input"
-              required
-            >
-              <option value="DEMO">DEMO (Paper Trading)</option>
-              <option value="LIVE">LIVE (Real Trading)</option>
+            <select v-model="config.account_id" class="form-input">
+              <option :value="null">-- Manual Configuration --</option>
+              <option v-for="acc in filteredAccounts" :key="acc.id" :value="acc.id">
+                {{ acc.name }} ({{ acc.platform }})
+              </option>
             </select>
-            <p class="field-help">Start with DEMO account for testing</p>
-          </div>
-          </div>
-
-          <div v-if="config.broker === 'Alpaca'">
-            <h3>Alpaca Trading Account</h3>
-            <p class="help-text">
-              Configure your Alpaca account credentials.
-              <strong>These credentials are stored securely and only accessible by this bot.</strong>
+            <p class="field-help" v-if="config.account_id">
+              Using credentials from your saved account. Manual fields below are hidden.
             </p>
-
-            <div class="form-group">
-              <label for="alpaca-api-key">
-                Alpaca API Key *
-                <span v-if="isFieldSaved('alpaca_api_key') || config.alpaca_api_key" class="filled-dot" title="Saved">●</span>
-              </label>
-              <input
-                id="alpaca-api-key"
-                v-model="config.alpaca_api_key"
-                type="password"
-                :placeholder="isFieldSaved('alpaca_api_key') ? '••••••••' : 'Enter your Alpaca API Key'"
-                class="form-input"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="alpaca-api-secret">
-                Alpaca Secret Key *
-                <span v-if="isFieldSaved('alpaca_api_secret') || config.alpaca_api_secret" class="filled-dot" title="Saved">●</span>
-              </label>
-              <input
-                id="alpaca-api-secret"
-                v-model="config.alpaca_api_secret"
-                type="password"
-                :placeholder="isFieldSaved('alpaca_api_secret') ? '••••••••' : 'Enter your Alpaca Secret Key'"
-                class="form-input"
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="alpaca-paper">
-                Account Type *
-                <span v-if="isFieldSaved('alpaca_paper') || config.alpaca_paper !== undefined" class="filled-dot" title="Saved">●</span>
-              </label>
-              <select
-                id="alpaca-paper"
-                v-model="config.alpaca_paper"
-                class="form-input"
-                required
-              >
-                <option :value="true">Paper Trading (Demo)</option>
-                <option :value="false">Live Trading</option>
-              </select>
-            </div>
           </div>
-        </div>
-        
-        <div class="config-section">
-          <h3>AI Analysis (Google Gemini)</h3>
-          <p class="help-text">
-            Gemini AI is used to analyze earnings safety and recommend capital allocation for trading decisions.
-            <strong>Required</strong> for the bot to function properly.
-          </p>
-          
-          <div class="form-group">
-            <label for="gemini-api-key">
-              Google Gemini API Key *
 
-              <span v-if="isFieldSaved('gemini_api_key') || config.gemini_api_key" class="filled-dot" title="Saved">●</span>
-            </label>
-            <input
-              id="gemini-api-key"
-              v-model="config.gemini_api_key"
-              type="password"
-              :placeholder="isFieldSaved('gemini_api_key') ? '••••••••' : 'Enter your Google Gemini API Key'"
-              class="form-input"
-              required
-            />
-            <p class="field-help">Get your API key from <a href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer">Google AI Studio</a></p>
+          <div v-if="['InteractiveBrokers', 'eToro', 'Plus500', 'Binance', 'XTB', 'Pepperstone'].includes(config.broker)" class="info-message">
+            <p><strong>{{ config.broker }} integration is coming soon!</strong></p>
+            <p>You can save this selection, but trading features are not yet available for this broker.</p>
+          </div>
+
+
+          <div v-if="!config.account_id && (config.broker === 'IG' || config.broker === 'Alpaca')" class="info-message">
+            <p><strong>Please select a linked account</strong></p>
+            <p>Manual credential entry has been deprecated. Please add an account in your Profile > Accounts tab and select it above.</p>
           </div>
         </div>
         
@@ -188,6 +67,11 @@
           </p>
         </div>
         
+        <div v-if="testResult" :class="['test-result', testResult.success ? 'success' : 'error']">
+          <strong>{{ testResult.success ? '✓ Connection Successful' : '✗ Connection Failed' }}</strong>
+          <p>{{ testResult.message }}</p>
+        </div>
+
         <div v-if="error" class="error-message">
           {{ error }}
         </div>
@@ -199,7 +83,15 @@
       
       <div class="modal-footer">
         <button class="btn btn-secondary" @click="close">Cancel</button>
-        <button class="btn btn-primary" @click="saveConfig" :disabled="saving">
+        <button 
+          class="btn btn-info" 
+          @click="testConnection" 
+          :disabled="testing || saving"
+          style="margin-right: auto;"
+        >
+          {{ testing ? 'Testing...' : 'Test Connection' }}
+        </button>
+        <button class="btn btn-primary" @click="saveConfig" :disabled="saving || testing">
           {{ saving ? 'Saving...' : 'Save Configuration' }}
         </button>
       </div>
@@ -208,7 +100,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import api from '../services/api'
 
 const props = defineProps({
@@ -226,22 +118,47 @@ const emit = defineEmits(['close', 'saved'])
 
 const config = ref({
   broker: 'IG',
+  account_id: null,
   ig_username: '',
   ig_password: '',
   ig_api_key: '',
   ig_acc_type: 'DEMO',
-  gemini_api_key: '',
   alpaca_api_key: '',
   alpaca_api_secret: '',
   alpaca_paper: true
 })
 
+const accounts = ref([])
+const loadingAccounts = ref(false)
+
+const loadAccounts = async () => {
+  try {
+    const res = await api.getAccounts()
+    accounts.value = res.data.accounts
+  } catch (e) {
+    console.error("Failed to load accounts", e)
+  }
+}
+
+onMounted(() => {
+  loadAccounts()
+})
+
+const filteredAccounts = computed(() => {
+  return accounts.value.filter(acc => acc.platform === config.value.broker && acc.is_active)
+})
+
 const saving = ref(false)
+const testing = ref(false)
 const error = ref(null)
 const success = ref(false)
+const testResult = ref(null)
 
 watch(() => props.show, (newVal) => {
   if (newVal && props.bot) {
+    // Refresh accounts every time modal opens
+    loadAccounts()
+
     // Load existing config if any
     if (props.bot.config) {
       try {
@@ -250,11 +167,11 @@ watch(() => props.show, (newVal) => {
           : props.bot.config
         config.value = {
           broker: existingConfig.broker || 'IG',
+          account_id: existingConfig.account_id || null,
           ig_username: existingConfig.ig_username || '',
           ig_password: existingConfig.ig_password || '',
           ig_api_key: existingConfig.ig_api_key || '',
           ig_acc_type: existingConfig.ig_acc_type || 'DEMO',
-          gemini_api_key: existingConfig.gemini_api_key || '',
           alpaca_api_key: existingConfig.alpaca_api_key || '',
           alpaca_api_secret: existingConfig.alpaca_api_secret || '',
           alpaca_paper: existingConfig.alpaca_paper !== undefined ? existingConfig.alpaca_paper : true
@@ -269,7 +186,6 @@ watch(() => props.show, (newVal) => {
           ig_password: '',
           ig_api_key: '',
           ig_acc_type: 'DEMO',
-          gemini_api_key: '',
           alpaca_api_key: '',
           alpaca_api_secret: '',
           alpaca_paper: true
@@ -277,6 +193,7 @@ watch(() => props.show, (newVal) => {
       }
     error.value = null
     success.value = false
+    testResult.value = null
   }
 })
 
@@ -286,29 +203,60 @@ const close = () => {
 
 const isFieldSaved = (fieldName) => {
   if (!props.bot || !props.bot.configured_fields) return false
-  return props.bot.configured_fields.includes(fieldName)
+  // Check if field is in configured_fields AND has a non-empty value
+  if (!props.bot.configured_fields.includes(fieldName)) return false
+  
+  // Also verify that the value exists and is not empty in the saved config
+  if (props.bot.config && props.bot.config[fieldName]) {
+    const value = props.bot.config[fieldName]
+    return value !== null && value !== undefined && value !== ''
+  }
+  
+  // If config is not loaded but field is in configured_fields, assume it's saved
+  return true
+}
+
+const testConnection = async () => {
+  testing.value = true
+  testResult.value = null
+  error.value = null
+  
+  try {
+    // Merge form values with saved config values
+    // Use saved values if form values are empty
+    const testConfig = { ...config.value }
+    // Legacy support logic removed - relies on backend resolving account_id
+    
+    const res = await api.testBotConnection({
+      broker: testConfig.broker,
+      config: testConfig
+    })
+    
+    testResult.value = {
+      success: res.data.success,
+      message: res.data.message
+    }
+  } catch (err) {
+    testResult.value = {
+      success: false,
+      message: err.response?.data?.message || err.message || 'Connection test failed'
+    }
+  } finally {
+    testing.value = false
+  }
 }
 
 const saveConfig = async () => {
   if (!props.bot) return
   
+  // Validate required fields based on broker (only if no global account used)
   // Validate required fields based on broker
-  if (config.value.broker === 'IG') {
-    if (!config.value.ig_username || !config.value.ig_password || !config.value.ig_api_key) {
-      error.value = 'Please fill in all required IG Markets fields (Username, Password, API Key)'
-      return
-    }
-  } else if (config.value.broker === 'Alpaca') {
-    if (!config.value.alpaca_api_key || !config.value.alpaca_api_secret) {
-      error.value = 'Please fill in all required Alpaca fields (API Key, Secret Key)'
-      return
-    }
-  }
-  
-  if (!config.value.gemini_api_key) {
-    error.value = 'Please fill in the Google Gemini API Key (required for AI analysis)'
+  if ((config.value.broker === 'IG' || config.value.broker === 'Alpaca') && !config.value.account_id) {
+    error.value = 'Please select a linked account.'
     return
   }
+  
+
   
   saving.value = true
   error.value = null
@@ -317,11 +265,11 @@ const saveConfig = async () => {
   try {
     await api.updateBotConfig(props.bot.id, {
       broker: config.value.broker,
+      account_id: config.value.account_id,
       ig_username: config.value.ig_username,
       ig_password: config.value.ig_password,
       ig_api_key: config.value.ig_api_key,
       ig_acc_type: config.value.ig_acc_type || 'DEMO',
-      gemini_api_key: config.value.gemini_api_key || undefined,
       alpaca_api_key: config.value.alpaca_api_key || undefined,
       alpaca_api_secret: config.value.alpaca_api_secret || undefined,
       alpaca_paper: config.value.alpaca_paper
@@ -442,16 +390,16 @@ const saveConfig = async () => {
   gap: 8px;
 }
 
-.filled-dot {
+.saved-badge {
   color: #68d391;
-  font-size: 12px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
+  font-size: 11px;
+  background: rgba(104, 211, 145, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(104, 211, 145, 0.2);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
 }
 
 .form-input {
@@ -554,6 +502,45 @@ select.form-input {
 
 .btn-primary:hover:not(:disabled) {
   background: #3182ce;
+}
+
+.btn-info {
+  background: #3182ce;
+  color: white;
+  border: 1px solid #4299e1;
+}
+
+.btn-info:hover:not(:disabled) {
+  background: #2b6cb0;
+}
+
+.info-message {
+  background: #2a4365;
+  border: 1px solid #4299e1;
+  color: #bee3f8;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.test-result {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.test-result.success {
+  background: #2d5016;
+  border: 1px solid #68d391;
+  color: #68d391;
+}
+
+.test-result.error {
+  background: #4a2a2a;
+  border: 1px solid #fc8181;
+  color: #fc8181;
 }
 </style>
 

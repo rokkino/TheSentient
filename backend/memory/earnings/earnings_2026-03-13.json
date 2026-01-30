@@ -1,5 +1,5 @@
 {
-  "timestamp": 1768862161.9681056,
+  "timestamp": 1769210392.0439785,
   "data": [
     {
       "symbol": "AXIA",
@@ -11,7 +11,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.03",
-      "marketCap": "$27,162,651,805",
+      "marketCap": "$29,371,918,583",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "N/A",
       "lastYearDate": "3/14/2025"
@@ -26,7 +26,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.05",
       "epsactual": "$0.45",
-      "marketCap": "$17,344,901,002",
+      "marketCap": "$17,662,379,361",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/14/2025"
@@ -41,7 +41,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.01",
-      "marketCap": "$3,581,402,500",
+      "marketCap": "$3,644,234,122",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -56,7 +56,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$1.53",
-      "marketCap": "$2,709,766,479",
+      "marketCap": "$2,703,116,118",
       "fiscalQuarter": "Jan/2026",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -71,7 +71,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.29)",
-      "marketCap": "$2,483,937,341",
+      "marketCap": "$2,574,986,590",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "N/A",
       "lastYearDate": "3/14/2025"
@@ -86,7 +86,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.05)",
       "epsactual": "N/A",
-      "marketCap": "$2,053,476,914",
+      "marketCap": "$1,923,659,408",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -101,7 +101,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.24",
       "epsactual": "($0.15)",
-      "marketCap": "$1,217,093,409",
+      "marketCap": "$1,429,739,246",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/14/2025"
@@ -116,7 +116,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.03",
-      "marketCap": "$947,497,230",
+      "marketCap": "$931,672,642",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -131,7 +131,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.08",
-      "marketCap": "$857,601,846",
+      "marketCap": "$874,847,101",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -146,7 +146,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$2.91",
-      "marketCap": "$852,368,209",
+      "marketCap": "$874,753,781",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -161,7 +161,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.02)",
       "epsactual": "($0.11)",
-      "marketCap": "$747,688,860",
+      "marketCap": "$682,953,893",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "3/14/2025"
@@ -176,7 +176,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.02",
       "epsactual": "$0.07",
-      "marketCap": "$639,823,755",
+      "marketCap": "$661,240,449",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "3/14/2025"
@@ -191,7 +191,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.55",
-      "marketCap": "$349,584,972",
+      "marketCap": "$350,617,858",
       "fiscalQuarter": "Jan/2026",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -206,7 +206,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.01)",
-      "marketCap": "$337,164,813",
+      "marketCap": "$338,839,977",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -221,7 +221,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.72)",
-      "marketCap": "$205,439,089",
+      "marketCap": "$206,505,382",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "N/A",
       "lastYearDate": "3/14/2025"
@@ -236,7 +236,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.31)",
-      "marketCap": "$204,310,875",
+      "marketCap": "$197,671,526",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -251,7 +251,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$36.12",
-      "marketCap": "$183,765,206",
+      "marketCap": "$183,089,288",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -266,22 +266,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.03)",
       "epsactual": "($0.11)",
-      "marketCap": "$138,609,407",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "1",
-      "lastYearDate": "3/14/2025"
-    },
-    {
-      "symbol": "CREX",
-      "ticker": "CREX",
-      "company": "Creative Realities, Inc.",
-      "companymearningsshortname": "Creative Realities, Inc.",
-      "date": "2026-03-13",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "($0.07)",
-      "epsactual": "($0.27)",
-      "marketCap": "$79,424,967",
+      "marketCap": "$181,690,710",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/14/2025"
@@ -296,7 +281,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.01)",
-      "marketCap": "$77,958,128",
+      "marketCap": "$78,955,955",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -311,9 +296,24 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.09)",
       "epsactual": "($0.30)",
-      "marketCap": "$63,651,073",
+      "marketCap": "$69,276,051",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
+      "lastYearDate": "3/14/2025"
+    },
+    {
+      "symbol": "CREX",
+      "ticker": "CREX",
+      "company": "Creative Realities, Inc.",
+      "companymearningsshortname": "Creative Realities, Inc.",
+      "date": "2026-03-13",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "($0.07)",
+      "epsactual": "($0.27)",
+      "marketCap": "$37,657,777",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "1",
       "lastYearDate": "3/14/2025"
     },
     {
@@ -326,7 +326,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.13",
       "epsactual": "($0.05)",
-      "marketCap": "$37,657,497",
+      "marketCap": "$36,592,367",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "3/20/2025"
@@ -341,22 +341,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.10)",
-      "marketCap": "$35,401,558",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "2",
-      "lastYearDate": "N/A"
-    },
-    {
-      "symbol": "NXL",
-      "ticker": "NXL",
-      "company": "Nexalin Technology, Inc.",
-      "companymearningsshortname": "Nexalin Technology, Inc.",
-      "date": "2026-03-13",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "N/A",
-      "epsactual": "($0.28)",
-      "marketCap": "$12,869,838",
+      "marketCap": "$34,989,912",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -371,8 +356,38 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.18)",
-      "marketCap": "$11,574,602",
+      "marketCap": "$12,489,590",
       "fiscalQuarter": "Dec/2025",
+      "numEstimates": "2",
+      "lastYearDate": "N/A"
+    },
+    {
+      "symbol": "NXL",
+      "ticker": "NXL",
+      "company": "Nexalin Technology, Inc.",
+      "companymearningsshortname": "Nexalin Technology, Inc.",
+      "date": "2026-03-13",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "N/A",
+      "epsactual": "($0.28)",
+      "marketCap": "$11,750,722",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "2",
+      "lastYearDate": "N/A"
+    },
+    {
+      "symbol": "TPET",
+      "ticker": "TPET",
+      "company": "Trio Petroleum Corp.",
+      "companymearningsshortname": "Trio Petroleum Corp.",
+      "date": "2026-03-13",
+      "time": "TBD",
+      "source": "nasdaq_api",
+      "epsestimate": "N/A",
+      "epsactual": "($0.33)",
+      "marketCap": "$10,086,617",
+      "fiscalQuarter": "Jan/2026",
       "numEstimates": "2",
       "lastYearDate": "N/A"
     },
@@ -386,7 +401,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.37)",
       "epsactual": "($1.12)",
-      "marketCap": "$6,639,869",
+      "marketCap": "$7,863,003",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "3/14/2025"
@@ -401,7 +416,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($3.30)",
-      "marketCap": "$3,906,459",
+      "marketCap": "$3,865,610",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"
@@ -416,7 +431,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($1.04)",
       "epsactual": "N/A",
-      "marketCap": "$3,355,643",
+      "marketCap": "$1,985,752",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "N/A"

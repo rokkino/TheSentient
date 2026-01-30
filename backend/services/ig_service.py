@@ -25,12 +25,11 @@ class IGMarketsService:
             api_key: IG API key (required)
             acc_type: Account type - "DEMO" or "LIVE"
         """
-        # Use provided credentials (from bot config) - no default fallback to env vars
-        # This ensures each bot uses its own credentials
-        self.username = username
-        self.password = password
-        self.api_key = api_key
-        self.acc_type = acc_type or 'DEMO'
+        # Use provided credentials or fallback to environment variables
+        self.username = username or os.getenv('IG_USERNAME')
+        self.password = password or os.getenv('IG_PASSWORD')
+        self.api_key = api_key or os.getenv('IG_API_KEY')
+        self.acc_type = acc_type or os.getenv('IG_ACC_TYPE', 'DEMO')
         
         self.ig_service = None
         self.stream_service = None

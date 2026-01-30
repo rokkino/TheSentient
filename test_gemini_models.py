@@ -37,11 +37,9 @@ genai.configure(api_key=api_key)
 
 # Test different models
 models_to_test = [
-    'gemini-1.5-pro',
-    'gemini-1.5-flash',
-    'gemini-pro',
-    'gemini-1.5-pro-latest',
-    'gemini-1.5-flash-latest'
+    'gemini-3.0-flash',
+    'gemini-3-pro-preview',
+    'gemini-3-flash-preview'
 ]
 
 print("\nTesting models...\n")

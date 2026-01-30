@@ -10,5 +10,9 @@
   {
     "symbol": "GC=F",
     "name": "Gold Futures"
+  },
+  {
+    "symbol": "BKR",
+    "name": "Baker Hughes Company"
   }
 ]

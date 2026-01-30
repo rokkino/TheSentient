@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="modal-overlay" @click="close">
+  <div v-if="show" class="modal-overlay">
     <div class="modal-content" @click.stop>
       <div class="modal-header">
         <h2>Edit Profile</h2>
@@ -7,87 +7,373 @@
       </div>
       
       <div class="modal-body">
-        <!-- Profile Picture Upload -->
-        <div class="form-group">
-          <label>Profile Picture</label>
-          <div class="profile-picture-section">
-            <div class="profile-picture-preview">
-              <img 
-                v-if="displayPictureUrl" 
-                :src="displayPictureUrl" 
-                alt="Profile"
-                class="profile-picture-img"
-              />
-              <div v-else class="profile-picture-placeholder">
-                <span>{{ userInitials }}</span>
+        <!-- Menu Navigation -->
+        <div class="settings-menu">
+          <button 
+            v-for="tab in tabs" 
+            :key="tab.id"
+            @click="activeTab = tab.id"
+            :class="['menu-item', { active: activeTab === tab.id }]"
+          >
+            {{ tab.label }}
+          </button>
+        </div>
+
+        <!-- Profile Tab -->
+        <div v-if="activeTab === 'profile'" class="tab-content">
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <div class="profile-picture-section">
+              <div class="profile-picture-preview">
+                <img 
+                  v-if="displayPictureUrl" 
+                  :src="displayPictureUrl" 
+                  alt="Profile"
+                  class="profile-picture-img"
+                />
+                <div v-else class="profile-picture-placeholder">
+                  <span>{{ userInitials }}</span>
+                </div>
+              </div>
+              <div class="profile-picture-actions">
+                <input
+                  ref="fileInput"
+                  type="file"
+                  accept="image/*"
+                  @change="handleFileSelect"
+                  style="display: none"
+                />
+                <button @click="triggerFileInput" class="btn-upload">Choose Image</button>
+                <button 
+                  v-if="displayPictureUrl" 
+                  @click="removeProfilePicture" 
+                  class="btn-remove"
+                >
+                  Remove
+                </button>
               </div>
             </div>
-            <div class="profile-picture-actions">
-              <input
-                ref="fileInput"
-                type="file"
-                accept="image/*"
-                @change="handleFileSelect"
-                style="display: none"
-              />
-              <button @click="triggerFileInput" class="btn-upload">Choose Image</button>
-              <button 
-                v-if="displayPictureUrl" 
-                @click="removeProfilePicture" 
-                class="btn-remove"
-              >
-                Remove
-              </button>
+          </div>
+          
+          <div class="form-group">
+            <label>Motto / Bio</label>
+            <textarea
+              v-model="profileData.bio"
+              class="form-textarea"
+              rows="3"
+              placeholder="Your motto or bio..."
+              maxlength="200"
+            ></textarea>
+            <div class="char-count">{{ profileData.bio?.length || 0 }}/200</div>
+          </div>
+          
+          <div class="form-group">
+            <label>Location</label>
+            <input v-model="profileData.location" type="text" class="form-input" />
+          </div>
+          
+          <div class="form-group">
+            <label>Website</label>
+            <input v-model="profileData.website" type="url" class="form-input" placeholder="https://..." />
+          </div>
+        </div>
+
+        <!-- Accounts Tab -->
+        <div v-if="activeTab === 'accounts'" class="tab-content">
+          <div class="accounts-header">
+            <h3>Connected Accounts</h3>
+            <button @click="openAddAccountForm" class="btn-primary btn-sm">Add Account</button>
+          </div>
+
+          <!-- Account List -->
+          <div v-if="!showAccountForm" class="account-list">
+            <div v-if="loadingAccounts" class="loading-state">Loading accounts...</div>
+            <div v-else-if="accounts.length === 0" class="empty-state">
+              No accounts connected. Add an account to start trading.
+            </div>
+            <div v-else v-for="account in accounts" :key="account.id" class="account-item">
+              <div class="account-info">
+                <div class="account-platform-badge">{{ account.platform }}</div>
+                <div class="account-details">
+                  <span class="account-name">{{ account.name }}</span>
+                  <span class="account-status" :class="{ active: account.is_active }">
+                    {{ account.is_active ? 'Active' : 'Inactive' }}
+                  </span>
+                </div>
+              </div>
+              <div class="account-actions">
+                <button @click="editAccount(account)" class="btn-icon" title="Edit">✏️</button>
+                <button @click="deleteAccount(account.id)" class="btn-icon text-danger" title="Delete">🗑️</button>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="form-group">
-          <label>Motto / Bio</label>
-          <textarea
-            v-model="profileData.bio"
-            class="form-textarea"
-            rows="3"
-            placeholder="Your motto or bio..."
-            maxlength="200"
-          ></textarea>
-          <div class="char-count">{{ profileData.bio?.length || 0 }}/200</div>
-        </div>
-        
-        <div class="form-group">
-          <label>Location</label>
-          <input v-model="profileData.location" type="text" class="form-input" />
-        </div>
-        
-        <div class="form-group">
-          <label>Website</label>
-          <input v-model="profileData.website" type="url" class="form-input" placeholder="https://..." />
+
+          <!-- Add/Edit Account Form -->
+          <div v-else class="account-form">
+             <div class="form-header">
+               <h4>{{ editingAccount ? 'Edit Account' : 'Add New Account' }}</h4>
+               <button @click="cancelAccountEdit" class="close-sub-form">×</button>
+             </div>
+             
+             <div class="form-group">
+               <label>Platform</label>
+               <select v-model="accountForm.platform" class="form-input form-select" :disabled="editingAccount">
+                 <option value="IG">IG Markets (CFD)</option>
+                 <option value="Alpaca">Alpaca (Stocks)</option>
+                 <option value="eToro">eToro (Social Trading)</option>
+               </select>
+             </div>
+
+             <div class="form-group">
+               <label>Account Name</label>
+               <input v-model="accountForm.name" type="text" class="form-input" placeholder="e.g. My Live Account" />
+             </div>
+
+             <!-- IG Specific Fields -->
+             <div v-if="accountForm.platform === 'IG'">
+               <div class="form-group">
+                 <label>Username</label>
+                 <input v-model="accountForm.credentials.username" type="text" class="form-input" />
+               </div>
+               <div class="form-group">
+                 <label>Password</label>
+                 <input v-model="accountForm.credentials.password" type="password" class="form-input" placeholder="••••••••" />
+               </div>
+               <div class="form-group">
+                 <label>API Key</label>
+                 <input v-model="accountForm.credentials.api_key" type="password" class="form-input" placeholder="••••••••" />
+               </div>
+               <div class="form-group">
+                 <label>Account Type</label>
+                 <select v-model="accountForm.credentials.account_type" class="form-input form-select">
+                   <option value="DEMO">Demo</option>
+                   <option value="LIVE">Live</option>
+                 </select>
+               </div>
+             </div>
+
+             <!-- Alpaca Specific Fields -->
+             <div v-if="accountForm.platform === 'Alpaca'">
+               <div class="form-group">
+                 <label>API Key ID</label>
+                 <input v-model="accountForm.credentials.api_key" type="text" class="form-input" />
+               </div>
+               <div class="form-group">
+                 <label>Secret Key</label>
+                 <input v-model="accountForm.credentials.secret_key" type="password" class="form-input" placeholder="••••••••" />
+               </div>
+               <div class="form-group">
+                 <label>Trading Mode</label>
+                 <div class="checkbox-group">
+                   <input type="checkbox" id="paper-trading" v-model="accountForm.credentials.paper_trading" />
+                   <label for="paper-trading">Paper Trading</label>
+                 </div>
+               </div>
+             </div>
+
+             <!-- eToro Specific Fields -->
+             <div v-if="accountForm.platform === 'eToro'">
+               <div class="form-group">
+                 <label>Login Method</label>
+                 <select v-model="accountForm.credentials.login_method" class="form-input form-select">
+                   <option value="STANDARD">Standard</option>
+                   <option value="GOOGLE">Google Login</option>
+                 </select>
+               </div>
+
+               <!-- Standard Login Fields -->
+               <div v-if="accountForm.credentials.login_method === 'STANDARD'">
+                 <div class="form-group">
+                   <label>Username / Email</label>
+                   <input v-model="accountForm.credentials.username" type="text" class="form-input" />
+                 </div>
+                 <div class="form-group">
+                   <label>Password</label>
+                   <input v-model="accountForm.credentials.password" type="password" class="form-input" placeholder="••••••••" />
+                 </div>
+               </div>
+
+               <!-- Google Login Button -->
+               <div v-if="accountForm.credentials.login_method === 'GOOGLE'" class="google-login-section">
+                 <button class="btn-google" @click="initiateGoogleLogin">
+                   <svg class="google-icon" viewBox="0 0 24 24">
+                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                     <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                     <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                     <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                   </svg>
+                   <span>Sign in with Google</span>
+                 </button>
+                 <p class="help-text">Click to authenticate your eToro account via Google securely.</p>
+               </div>
+
+               <div class="form-group">
+                   <label>Account Type</label>
+                   <select v-model="accountForm.credentials.account_type" class="form-input form-select">
+                       <option value="DEMO">Virtual (Demo)</option>
+                       <option value="REAL">Real</option>
+                   </select>
+               </div>
+             </div>
+
+             <div class="form-actions">
+               <button @click="testNewAccountConnection" class="btn-secondary" :disabled="testingAccount">
+                 {{ testingAccount ? 'Testing...' : 'Test Connection' }}
+               </button>
+               <button @click="saveAccount" class="btn-primary" :disabled="savingAccount">
+                 {{ savingAccount ? 'Saving...' : 'Save Account' }}
+               </button>
+             </div>
+             
+             <div v-if="accountTestResult" :class="['connection-status', accountTestResult.success ? 'success' : 'error']">
+               {{ accountTestResult.message }}
+             </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label>AI Settings</label>
-          <div class="toggle-container">
-            <span class="toggle-label">Activate Local Llama (Ollama)</span>
-            <label class="switch">
-              <input type="checkbox" v-model="profileData.use_local_llama">
-              <span class="slider round"></span>
-            </label>
+        <!-- AI Settings Tab -->
+        <div v-if="activeTab === 'ai'" class="tab-content">
+          <div class="form-group">
+            <label>Google Gemini API Key</label>
+            <div class="api-key-input-group">
+              <input 
+                v-model="profileData.gemini_api_key" 
+                type="password" 
+                class="form-input" 
+                placeholder="AIza..." 
+              />
+              <button 
+                @click="testConnection('gemini', profileData.gemini_api_key)"
+                :disabled="!profileData.gemini_api_key || testingConnections.gemini"
+                class="btn-test"
+              >
+                {{ testingConnections.gemini ? 'Testing...' : 'Test' }}
+              </button>
+            </div>
+            <div class="model-version-row">
+              <label class="version-label">Model version</label>
+              <select v-model="profileData.gemini_model" class="form-input form-select">
+                <option v-for="opt in GEMINI_MODELS" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+              </select>
+            </div>
+            <div v-if="connectionStatus.gemini" :class="['connection-status', connectionStatus.gemini.success ? 'success' : 'error']">
+              {{ connectionStatus.gemini.message }}
+            </div>
+            <div class="help-text">
+              Required for calling Gemini from chat. Choose which model version to use.
+            </div>
           </div>
-          <div class="help-text" v-if="profileData.use_local_llama">
-            Requires Ollama running locally. Enables AI chat with search & memory.
-          </div>
-        </div>
 
-        <div class="form-group">
-          <label>Google Gemini API Key</label>
-          <input 
-            v-model="profileData.gemini_api_key" 
-            type="password" 
-            class="form-input" 
-            placeholder="AIza..." 
-          />
-          <div class="help-text">
-            Required for calling Gemini Flash 3 from Llama.
+          <div class="form-group">
+            <label>OpenAI API Key</label>
+            <div class="api-key-input-group">
+              <input 
+                v-model="profileData.openai_api_key" 
+                type="password" 
+                class="form-input" 
+                placeholder="sk-..." 
+              />
+              <button 
+                @click="testConnection('openai', profileData.openai_api_key)"
+                :disabled="!profileData.openai_api_key || testingConnections.openai"
+                class="btn-test"
+              >
+                {{ testingConnections.openai ? 'Testing...' : 'Test' }}
+              </button>
+            </div>
+            <div class="model-version-row">
+              <label class="version-label">Model version</label>
+              <select v-model="profileData.openai_model" class="form-input form-select">
+                <option v-for="opt in OPENAI_MODELS" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+              </select>
+            </div>
+            <div v-if="connectionStatus.openai" :class="['connection-status', connectionStatus.openai.success ? 'success' : 'error']">
+              {{ connectionStatus.openai.message }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Claude API Key (Anthropic)</label>
+            <div class="api-key-input-group">
+              <input 
+                v-model="profileData.anthropic_api_key" 
+                type="password" 
+                class="form-input" 
+                placeholder="sk-ant-..." 
+              />
+              <button 
+                @click="testConnection('anthropic', profileData.anthropic_api_key)"
+                :disabled="!profileData.anthropic_api_key || testingConnections.anthropic"
+                class="btn-test"
+              >
+                {{ testingConnections.anthropic ? 'Testing...' : 'Test' }}
+              </button>
+            </div>
+            <div class="model-version-row">
+              <label class="version-label">Model version</label>
+              <select v-model="profileData.anthropic_model" class="form-input form-select">
+                <option v-for="opt in ANTHROPIC_MODELS" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+              </select>
+            </div>
+            <div v-if="connectionStatus.anthropic" :class="['connection-status', connectionStatus.anthropic.success ? 'success' : 'error']">
+              {{ connectionStatus.anthropic.message }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>DeepSeek API Key</label>
+            <div class="api-key-input-group">
+              <input 
+                v-model="profileData.deepseek_api_key" 
+                type="password" 
+                class="form-input" 
+                placeholder="sk-..." 
+              />
+              <button 
+                @click="testConnection('deepseek', profileData.deepseek_api_key)"
+                :disabled="!profileData.deepseek_api_key || testingConnections.deepseek"
+                class="btn-test"
+              >
+                {{ testingConnections.deepseek ? 'Testing...' : 'Test' }}
+              </button>
+            </div>
+            <div class="model-version-row">
+              <label class="version-label">Model version</label>
+              <select v-model="profileData.deepseek_model" class="form-input form-select">
+                <option v-for="opt in DEEPSEEK_MODELS" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+              </select>
+            </div>
+            <div v-if="connectionStatus.deepseek" :class="['connection-status', connectionStatus.deepseek.success ? 'success' : 'error']">
+              {{ connectionStatus.deepseek.message }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Llama API Key</label>
+            <div class="api-key-input-group">
+              <input 
+                v-model="profileData.llama_api_key" 
+                type="password" 
+                class="form-input" 
+                placeholder="LA-..." 
+              />
+              <button 
+                @click="testConnection('llama', profileData.llama_api_key)"
+                :disabled="!profileData.llama_api_key || testingConnections.llama"
+                class="btn-test"
+              >
+                {{ testingConnections.llama ? 'Testing...' : 'Test' }}
+              </button>
+            </div>
+            <div class="model-version-row">
+              <label class="version-label">Model version</label>
+              <select v-model="profileData.llama_model" class="form-input form-select">
+                <option v-for="opt in LLAMA_MODELS" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+              </select>
+            </div>
+            <div v-if="connectionStatus.llama" :class="['connection-status', connectionStatus.llama.success ? 'success' : 'error']">
+              {{ connectionStatus.llama.message }}
+            </div>
           </div>
         </div>
       </div>
@@ -109,6 +395,48 @@ import api from '../services/api'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
+// AI model version options per provider
+const GEMINI_MODELS = [
+  { value: '', label: 'Default (gemini-3-flash-preview)' },
+  { value: 'gemini-3-flash-preview', label: 'Gemini 3 Flash Preview' },
+  { value: 'gemini-3-pro-preview', label: 'Gemini 3 Pro Preview' },
+  { value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash' },
+  { value: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro' },
+  { value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite' },
+  { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash' },
+  { value: 'gemini-2.0-flash-lite', label: 'Gemini 2.0 Flash Lite' },
+  { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
+  { value: 'gemini-1.5-pro', label: 'Gemini 1.5 Pro' }
+]
+const OPENAI_MODELS = [
+  { value: '', label: 'Default (gpt-4o)' },
+  { value: 'gpt-4o', label: 'GPT-4o' },
+  { value: 'gpt-4o-mini', label: 'GPT-4o Mini' },
+  { value: 'gpt-4-turbo', label: 'GPT-4 Turbo' },
+  { value: 'gpt-4', label: 'GPT-4' },
+  { value: 'gpt-3.5-turbo', label: 'GPT-3.5 Turbo' }
+]
+const ANTHROPIC_MODELS = [
+  { value: '', label: 'Default (claude-3-5-sonnet)' },
+  { value: 'claude-3-5-sonnet-20240620', label: 'Claude 3.5 Sonnet' },
+  { value: 'claude-sonnet-4-5', label: 'Claude Sonnet 4.5' },
+  { value: 'claude-3-5-haiku-20241022', label: 'Claude 3.5 Haiku' },
+  { value: 'claude-3-opus-20240229', label: 'Claude 3 Opus' }
+]
+const DEEPSEEK_MODELS = [
+  { value: '', label: 'Default (deepseek-chat)' },
+  { value: 'deepseek-chat', label: 'DeepSeek Chat' },
+  { value: 'deepseek-reasoner', label: 'DeepSeek Reasoner' },
+  { value: 'deepseek-coder', label: 'DeepSeek Coder' }
+]
+const LLAMA_MODELS = [
+  { value: '', label: 'Default (llama-3.3-70b-instruct)' },
+  { value: 'llama-3.3-70b-instruct', label: 'Llama 3.3 70B Instruct' },
+  { value: 'llama-3.1-70b-instruct', label: 'Llama 3.1 70B Instruct' },
+  { value: 'llama-3.1-8b-instruct', label: 'Llama 3.1 8B Instruct' },
+  { value: 'llama-3.2-3b-instruct', label: 'Llama 3.2 3B Instruct' }
+]
+
 const props = defineProps({
   show: {
     type: Boolean,
@@ -127,15 +455,231 @@ const saving = ref(false)
 const fileInput = ref(null)
 const profilePicturePreview = ref(null)
 const selectedFile = ref(null)
+const activeTab = ref('profile')
+
+// Account Management Logic
+const accounts = ref([])
+const loadingAccounts = ref(false)
+const showAccountForm = ref(false)
+const editingAccount = ref(null)
+const savingAccount = ref(false)
+const testingAccount = ref(false)
+const accountTestResult = ref(null)
+
+const accountForm = ref({
+  platform: 'IG',
+  name: '',
+  credentials: {
+    username: '',
+    password: '',
+    api_key: '',
+    secret_key: '',
+    account_type: 'DEMO',
+    paper_trading: true,
+    login_method: 'STANDARD'
+  },
+  is_active: true
+})
+
+const loadAccounts = async () => {
+  loadingAccounts.value = true
+  try {
+    const res = await api.getAccounts()
+    accounts.value = res.data.accounts
+  } catch (err) {
+    console.error("Failed to load accounts", err)
+  } finally {
+    loadingAccounts.value = false
+  }
+}
+
+// Watch active tab to load accounts
+watch(activeTab, (newTab) => {
+  if (newTab === 'accounts') {
+    loadAccounts()
+  }
+})
+
+const openAddAccountForm = () => {
+  editingAccount.value = null
+  accountForm.value = {
+    platform: 'IG',
+    name: '',
+    credentials: {
+      username: '',
+      password: '',
+      api_key: '',
+      secret_key: '',
+      account_type: 'DEMO',
+      paper_trading: true,
+      login_method: 'STANDARD'
+    },
+    is_active: true
+  }
+  showAccountForm.value = true
+  accountTestResult.value = null
+}
+
+const editAccount = (account) => {
+  editingAccount.value = account
+  // Clone data to form (note: credentials might be empty if not returned by API for security, 
+  // currently the API doesn't return them by default in list, but we might need them or just leave blank for update)
+  accountForm.value = {
+    platform: account.platform,
+    name: account.name,
+    credentials: { ...accountForm.value.credentials }, // Keep defaults or empty
+    is_active: account.is_active
+  }
+  showAccountForm.value = true
+  accountTestResult.value = null
+}
+
+const cancelAccountEdit = () => {
+  showAccountForm.value = false
+  editingAccount.value = null
+  accountTestResult.value = null
+}
+
+const saveAccount = async () => {
+  if (!accountForm.value.name) {
+    alert("Please enter an account name")
+    return
+  }
+  
+  savingAccount.value = true
+  try {
+    const data = {
+      platform: accountForm.value.platform,
+      name: accountForm.value.name,
+      credentials: accountForm.value.credentials,
+      is_active: accountForm.value.is_active
+    }
+    
+    if (editingAccount.value) {
+      await api.updateAccount(editingAccount.value.id, data)
+    } else {
+      await api.createAccount(data)
+    }
+    
+    await loadAccounts()
+    showAccountForm.value = false
+  } catch (err) {
+    alert("Failed to save account: " + (err.response?.data?.detail || err.message))
+  } finally {
+    savingAccount.value = false
+  }
+}
+
+const deleteAccount = async (id) => {
+  if (!confirm("Are you sure you want to delete this account? associated bots may stop working.")) return
+  try {
+    await api.deleteAccount(id)
+    await loadAccounts()
+  } catch (err) {
+    alert("Failed to delete account")
+  }
+}
+
+const testNewAccountConnection = async () => {
+  testingAccount.value = true
+  accountTestResult.value = null
+  try {
+     // For testing a NEW account or updated creds, we might need a specific endpoint that accepts creds payload
+     // But `testAccountConnection` in API uses stored ID. 
+     // So we'll simulate a test or save-and-test if needed. 
+     // Alternatively, the backend could have a /test-creds endpoint. 
+     // For now, let's rely on saving first or adding a specific verify endpoint later.
+     // EDIT: Actually, for now let's just create a temporary/mock test or implement a proper ad-hoc test endpoint.
+     // Given the constraints and the `test_connection` logic in `bot_service`, 
+     // I'll assume we verify by saving first or I should add a `testConnection` that takes raw creds. 
+     // Let's defer to "Save first then Test" behavior for simplicity unless I add a new endpoint.
+     // Wait, I can implement a check here:
+     
+     // Check validity of current form data
+     // Construct a temporary config object
+     const config = {} // construct based on platform
+     if (accountForm.value.platform === 'IG') {
+        config.ig_username = accountForm.value.credentials.username
+        config.ig_password = accountForm.value.credentials.password
+        config.ig_api_key = accountForm.value.credentials.api_key
+        config.ig_acc_type = accountForm.value.credentials.account_type
+     } else if (accountForm.value.platform === 'Alpaca') {
+        config.alpaca_api_key = accountForm.value.credentials.api_key
+        config.alpaca_api_secret = accountForm.value.credentials.secret_key
+        config.alpaca_paper = accountForm.value.credentials.paper_trading
+     }
+     
+     const res = await api.testBotConnection({
+         broker: accountForm.value.platform,
+         config: config
+     })
+     
+     accountTestResult.value = {
+         success: res.data.success,
+         message: res.data.message
+     }
+     
+  } catch (err) {
+    accountTestResult.value = {
+        success: false,
+        message: err.message || "Test failed"
+    }
+  } finally {
+    testingAccount.value = false
+  }
+}
+
+const initiateGoogleLogin = async () => {
+    try {
+        const res = await api.initiateEtoroGoogleAuth()
+        if (res.data.success) {
+            alert("Login initiated! Check the browser window.")
+        } else {
+            alert("Failed to initiate login: " + res.data.message)
+        }
+    } catch (err) {
+        // If it's 404/500, it might be that Playwright is not installed or service failing
+        alert("Error initiating Google Login. Ensure Playwright is installed on backend.\n" + (err.response?.data?.detail || err.message))
+    }
+}
+
+const tabs = [
+  { id: 'profile', label: 'Profile' },
+  { id: 'accounts', label: 'Accounts' },
+  { id: 'ai', label: 'AI Settings' }
+]
+
+const testingConnections = ref({
+  gemini: false,
+  openai: false,
+  anthropic: false,
+  deepseek: false,
+  llama: false
+})
+
+const connectionStatus = ref({
+  gemini: null,
+  openai: null,
+  anthropic: null,
+  deepseek: null,
+  llama: null
+})
 
 const profileData = ref({
   bio: '',
   location: '',
   website: '',
   profile_picture_url: '',
-  profile_picture_url: '',
-  use_local_llama: false,
-  gemini_api_key: ''
+  gemini_api_key: '',
+  openai_api_key: '',
+  anthropic_api_key: '',
+  deepseek_api_key: '',
+  llama_api_key: '',
+  gemini_model: '',
+  openai_model: '',
+  anthropic_model: '',
+  deepseek_model: '',
+  llama_model: ''
 })
 
 const userInitials = computed(() => {
@@ -169,12 +713,27 @@ watch(() => props.user, (newUser) => {
       location: newUser.location || '',
       website: newUser.website || '',
       profile_picture_url: newUser.profile_picture_url || '',
-      profile_picture_url: newUser.profile_picture_url || '',
-      use_local_llama: newUser.use_local_llama || false,
-      gemini_api_key: newUser.gemini_api_key || ''
+      gemini_api_key: newUser.gemini_api_key || '',
+      openai_api_key: newUser.openai_api_key || '',
+      anthropic_api_key: newUser.anthropic_api_key || '',
+      deepseek_api_key: newUser.deepseek_api_key || '',
+      llama_api_key: newUser.llama_api_key || '',
+      gemini_model: newUser.gemini_model ?? '',
+      openai_model: newUser.openai_model ?? '',
+      anthropic_model: newUser.anthropic_model ?? '',
+      deepseek_model: newUser.deepseek_model ?? '',
+      llama_model: newUser.llama_model ?? ''
     }
     profilePicturePreview.value = null
     selectedFile.value = null
+    // Reset connection status when user changes
+    connectionStatus.value = {
+      gemini: null,
+      openai: null,
+      anthropic: null,
+      deepseek: null,
+      llama: null
+    }
   }
 }, { immediate: true })
 
@@ -218,6 +777,30 @@ const removeProfilePicture = () => {
   }
 }
 
+const testConnection = async (provider, apiKey) => {
+  if (!apiKey || !apiKey.trim()) {
+    return
+  }
+
+  testingConnections.value[provider] = true
+  connectionStatus.value[provider] = null
+
+  try {
+    const response = await api.testAIConnection(provider, apiKey.trim())
+    connectionStatus.value[provider] = {
+      success: response.data.success,
+      message: response.data.message
+    }
+  } catch (error) {
+    connectionStatus.value[provider] = {
+      success: false,
+      message: error.response?.data?.message || error.message || 'Connection test failed'
+    }
+  } finally {
+    testingConnections.value[provider] = false
+  }
+}
+
 const save = async () => {
   saving.value = true
   try {
@@ -254,13 +837,52 @@ const save = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
 }
+
+.google-login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 10px;
+}
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #757575;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 240px;
+}
+
+.btn-google:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.btn-google .google-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+}
+
+
 
 .modal-content {
   background-color: #0a0a0a;
@@ -507,6 +1129,27 @@ const save = async () => {
   font-style: italic;
 }
 
+.model-version-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.model-version-row .version-label {
+  margin: 0;
+  min-width: 100px;
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.model-version-row .form-select {
+  flex: 1;
+  cursor: pointer;
+}
+
 /* Toggle Switch */
 .switch {
   position: relative;
@@ -561,6 +1204,247 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* Settings Menu */
+.settings-menu {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 15px;
+}
+
+.menu-item {
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  bottom: -1px;
+}
+
+.menu-item:hover {
+  color: #fff;
+}
+
+.menu-item.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.tab-content {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* API Key Input Group */
+.api-key-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.api-key-input-group .form-input {
+  flex: 1;
+}
+
+.btn-test {
+  padding: 12px 20px;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-test:hover:not(:disabled) {
+  background-color: #444;
+  border-color: #555;
+}
+
+.btn-test:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.connection-status {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.connection-status.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #4CAF50;
+}
+
+.connection-status.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  color: #f44336;
+}
+
+/* Account Styles */
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #151515;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
+.account-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.account-platform-badge {
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width: 60px;
+  text-align: center;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+.account-status {
+  font-size: 10px;
+  color: #666;
+}
+
+.account-status.active {
+  color: #4caf50;
+}
+
+.account-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.btn-icon:hover {
+  opacity: 1;
+}
+
+.text-danger {
+  color: #f44336;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  padding: 40px 0;
+  font-style: italic;
+}
+
+.account-form {
+  background: #151515;
+  padding: 20px;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-sub-form {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 11px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.info-box {
+    background-color: rgba(33, 150, 243, 0.1);
+    border: 1px solid #2196f3;
+    color: #2196f3;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    margin-bottom: 15px;
 }
 </style>
 

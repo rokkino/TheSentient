@@ -52,7 +52,6 @@
       </button>
       <button 
         class="action-btn configure-btn" 
-        :disabled="bot.status === 'active'"
         @click="$emit('configure', bot)"
       >
         Configure
@@ -65,54 +64,180 @@
       >
         {{ bot.status === 'active' ? 'Active' : 'Activate' }}
       </button>
+
     </div>
     
-    <div class="ai-actions" v-if="bot.status === 'active'">
-      <button class="ai-btn llama-btn" @click="callLlama" :disabled="loadingAi">
-        🦙 Llama Call
-      </button>
-      <button class="ai-btn gemini-btn" @click="callGemini" :disabled="loadingAi">
-        ✨ Gemini Call
-      </button>
-    </div>
+    <button 
+      class="check-orders-big" 
+      @click="openCheckOrdersModal"
+      title="Check orders & chat with the bot"
+    >
+      Check Orders
+    </button>
     
-    <!-- AI Explanation Modal -->
-    <!-- AI Explanation Modal -->
+    <!-- Check Orders Modal: summary + orders table + chat -->
     <Teleport to="body">
-      <div v-if="showAiModal" class="modal-overlay">
-        <div class="modal-content">
+      <div v-if="showOrdersModal" class="modal-overlay check-orders-overlay" @click.self="closeOrdersModal">
+        <div class="modal-content check-orders-panel">
           <div class="modal-header">
-            <h3>{{ aiSource }} Explanation</h3>
-            <button class="close-btn" @click="closeAiModal">&times;</button>
+            <h3>Check Orders – {{ bot.name }}</h3>
+            <button class="close-btn" @click="closeOrdersModal">&times;</button>
           </div>
-          <div class="modal-body chat-body" ref="chatContainer">
-            <div v-if="chatMessages.length === 0 && loadingAi" class="loading-spinner">
-              Thinking...
+
+          <div class="check-orders-summary">
+            <div class="summary-item">
+              <span class="summary-label">P&amp;L</span>
+              <span class="summary-value" :class="(profit?.profit_loss_value || 0) >= 0 ? 'positive' : 'negative'">
+                {{ formatPct(profit?.profit_loss_percent) }} ({{ formatCur(profit?.profit_loss_value) }})
+              </span>
             </div>
-            <div v-else class="chat-messages">
-              <div 
-                v-for="(msg, index) in chatMessages" 
-                :key="index" 
-                class="message"
-                :class="[msg.role, { error: msg.error }]"
-              >
-                <div class="message-content">{{ msg.content }}</div>
-              </div>
-              <div v-if="loadingAi && chatMessages.length > 0" class="message assistant loading">
-                <div class="typing-indicator"><span>.</span><span>.</span><span>.</span></div>
-              </div>
+            <div class="summary-item">
+              <span class="summary-label">Top profit</span>
+              <span class="summary-value positive">
+                {{ (profit?.profit_loss_value || 0) >= 0 ? formatCur(profit?.profit_loss_value) : '—' }}
+              </span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Balance</span>
+              <span class="summary-value">{{ formatCur(profit?.total_balance) }}</span>
+            </div>
+            <div class="summary-item" v-if="profit?.timestamp">
+              <span class="summary-label">Updated</span>
+              <span class="summary-value muted">{{ profit.timestamp }}</span>
+            </div>
+            <div class="summary-item" v-if="serverTime">
+              <span class="summary-label">Server Time</span>
+              <span class="summary-value">{{ serverTime }}</span>
             </div>
           </div>
-          <div class="modal-footer">
+
+          <div class="orders-section">
+            <div class="orders-toolbar">
+              <button class="btn-add-order" @click="showAddOrderForm = true" v-if="!showAddOrderForm">
+                + Add order
+              </button>
+              <div v-if="showAddOrderForm" class="add-order-form">
+                <input v-model="newOrder.symbol" placeholder="Symbol" class="add-input" />
+                <select v-model="newOrder.decision" class="add-select">
+                  <option value="BUY">BUY</option>
+                  <option value="SELL">SELL</option>
+                  <option value="HOLD">HOLD</option>
+                  <option value="WAIT">WAIT</option>
+                </select>
+                <input v-model="newOrder.execution_time" type="datetime-local" class="add-input" />
+                <input v-model="newOrder.reasoning" placeholder="Reasoning" class="add-input" />
+                <button class="btn-save" @click="createOrder">Create</button>
+                <button class="btn-cancel" @click="cancelAddOrder">Cancel</button>
+              </div>
+            </div>
+            <div v-if="loadingOrders" class="loading-spinner">Loading orders...</div>
+            <div v-else-if="!orders.length && !showAddOrderForm" class="orders-empty">
+              No planned or executed orders yet. Add one manually.
+            </div>
+            <div v-else class="orders-table-wrap">
+              <table v-if="orders.length > 0" class="orders-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Decision</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                    <th>Reasoning</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr 
+                    v-for="d in orders" 
+                    :key="d.id" 
+                    class="order-row"
+                    :class="d.decision?.toLowerCase()"
+                  >
+                    <td v-if="editingOrderId !== d.id">
+                      <span class="order-symbol">{{ d.symbol || '—' }}</span>
+                    </td>
+                    <td v-else>
+                      <input v-model="editForm.symbol" class="edit-input" />
+                    </td>
+                    <td v-if="editingOrderId !== d.id">
+                      <span class="order-decision">{{ d.decision }}</span>
+                    </td>
+                    <td v-else>
+                      <select v-model="editForm.decision" class="edit-select">
+                        <option value="BUY">BUY</option>
+                        <option value="SELL">SELL</option>
+                        <option value="HOLD">HOLD</option>
+                        <option value="WAIT">WAIT</option>
+                      </select>
+                    </td>
+                    <td v-if="editingOrderId !== d.id">
+                      <span class="order-status">{{ d.status }}</span>
+                    </td>
+                    <td v-else>
+                      <select v-model="editForm.status" class="edit-select">
+                        <option value="PENDING">PENDING</option>
+                        <option value="EXECUTED">EXECUTED</option>
+                        <option value="CANCELLED">CANCELLED</option>
+                        <option value="FAILED">FAILED</option>
+                      </select>
+                    </td>
+                    <td v-if="editingOrderId !== d.id">
+                      <span class="order-time">{{ formatOrderTime(d.execution_time || d.created_at) }}</span>
+                    </td>
+                    <td v-else>
+                      <input v-model="editForm.execution_time" type="datetime-local" class="edit-input" />
+                    </td>
+                    <td v-if="editingOrderId !== d.id">
+                      <span class="order-reasoning-cell">{{ d.reasoning || '—' }}</span>
+                    </td>
+                    <td v-else>
+                      <input v-model="editForm.reasoning" class="edit-input" placeholder="Reasoning" />
+                    </td>
+                    <td class="actions-cell">
+                      <template v-if="editingOrderId === d.id">
+                        <button class="btn-icon save" @click="saveEdit(d.id)" title="Save">✓</button>
+                        <button class="btn-icon cancel" @click="cancelEdit" title="Cancel">✕</button>
+                      </template>
+                      <template v-else>
+                        <button class="btn-icon btn-edit" @click="startEdit(d)" title="Edit">✎</button>
+                        <button class="btn-icon btn-del" @click="deleteOrder(d)" title="Delete">⌫</button>
+                      </template>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="check-orders-chat">
+            <div class="chat-body" ref="checkOrdersChatRef">
+              <div v-if="checkOrdersChatMessages.length === 0 && checkOrdersLoadingAi" class="loading-spinner">Thinking...</div>
+              <div v-else class="chat-messages">
+                <div 
+                  v-for="(msg, index) in checkOrdersChatMessages" 
+                  :key="index" 
+                  class="message"
+                  :class="[msg.role, { error: msg.error }]"
+                >
+                  <div class="message-content">{{ msg.content }}</div>
+                </div>
+                <div v-if="checkOrdersLoadingAi && checkOrdersChatMessages.length > 0" class="message assistant loading">
+                  <div class="typing-indicator"><span>.</span><span>.</span><span>.</span></div>
+                </div>
+              </div>
+            </div>
             <div class="chat-input-container">
+              <button class="btn-clear-history" @click="clearChatHistory" title="Clear History" v-if="checkOrdersChatMessages.length > 0">
+                 🗑️
+              </button>
               <input 
-                v-model="userMessage" 
-                @keyup.enter="sendMessage"
-                placeholder="Ask a follow-up question..."
-                :disabled="loadingAi"
+                v-model="checkOrdersUserMessage" 
+                @keyup.enter="sendCheckOrdersChat"
+                placeholder="Ask the bot..."
+                :disabled="checkOrdersLoadingAi"
                 class="chat-input"
               />
-              <button @click="sendMessage" :disabled="loadingAi || !userMessage.trim()" class="send-btn">
+              <button @click="sendCheckOrdersChat" :disabled="checkOrdersLoadingAi || !checkOrdersUserMessage.trim()" class="send-btn">
                 Send
               </button>
             </div>
@@ -120,6 +245,7 @@
         </div>
       </div>
     </Teleport>
+
   </div>
 </template>
 
@@ -137,125 +263,216 @@ const props = defineProps({
 
 const emit = defineEmits(['configure', 'activate', 'deactivate', 'import', 'export'])
 
-const showAiModal = ref(false)
-const aiSource = ref('')
-const loadingAi = ref(false)
-const chatMessages = ref([])
-const userMessage = ref('')
-const chatContainer = ref(null)
+const showOrdersModal = ref(false)
+const orders = ref([])
+const loadingOrders = ref(false)
+const profit = ref(null)
+const checkOrdersChatMessages = ref([])
+const checkOrdersUserMessage = ref('')
+const checkOrdersLoadingAi = ref(false)
+const checkOrdersChatRef = ref(null)
+const editingOrderId = ref(null)
+const editForm = ref({ symbol: '', decision: 'BUY', status: 'PENDING', execution_time: '', reasoning: '' })
+const showAddOrderForm = ref(false)
+const newOrder = ref({ symbol: '', decision: 'BUY', execution_time: '', reasoning: '' })
+const serverTime = ref('')
 
-const scrollToBottom = async () => {
+const openCheckOrdersModal = async () => {
+  showOrdersModal.value = true
+  profit.value = null
+  orders.value = []
+  loadingOrders.value = true
+  showAddOrderForm.value = false
+  editingOrderId.value = null
+  // checkOrdersChatMessages.value = []
+  checkOrdersUserMessage.value = ''
+  try {
+    const [decRes, profitRes, timeRes] = await Promise.all([
+      api.getBotDecisions(100, props.bot.id),
+      api.getBotProfit().catch(() => ({ data: null })),
+      api.getServerTime().catch(() => ({ data: { server_time_formatted: 'Unknown' } }))
+    ])
+    orders.value = decRes.data?.decisions ?? []
+    profit.value = profitRes?.data ?? null
+    serverTime.value = timeRes?.data?.server_time_formatted ?? ''
+  } catch (e) {
+    orders.value = []
+    console.error('Failed to load orders:', e)
+  } finally {
+    loadingOrders.value = false
+  }
+  // Removed auto-greeting logic
+  scrollCheckOrdersChat()
+}
+
+const closeOrdersModal = () => {
+  showOrdersModal.value = false
+  // checkOrdersChatMessages.value = []
+  checkOrdersUserMessage.value = ''
+  showAddOrderForm.value = false
+  editingOrderId.value = null
+}
+
+const scrollCheckOrdersChat = async () => {
   await nextTick()
-  if (chatContainer.value) {
-    chatContainer.value.scrollTop = chatContainer.value.scrollHeight
+  if (checkOrdersChatRef.value) {
+    checkOrdersChatRef.value.scrollTop = checkOrdersChatRef.value.scrollHeight
   }
 }
 
-const callLlama = async () => {
-  openAiModal('Llama')
-  // Initial explanation
+const formatPct = (v) => {
+  if (v == null || v === undefined) return '—'
+  const n = Number(v)
+  if (isNaN(n)) return '—'
+  const s = n >= 0 ? '+' : ''
+  return `${s}${n.toFixed(2)}%`
+}
+
+const formatCur = (v) => {
+  if (v == null || v === undefined) return '—'
+  const n = Number(v)
+  if (isNaN(n)) return '—'
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(n)
+}
+
+const toDatetimeLocal = (iso) => {
+  if (!iso) return ''
   try {
-    const response = await api.callLlama(props.bot.id)
-    chatMessages.value.push({
-      role: 'assistant',
-      content: response.data.explanation
-    })
-  } catch (err) {
-    chatMessages.value.push({
-      role: 'assistant',
-      content: 'Error calling Llama: ' + (err.response?.data?.detail || err.message),
-      error: true
-    })
-  } finally {
-    loadingAi.value = false
-    scrollToBottom()
+    const d = new Date(iso)
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    const h = String(d.getHours()).padStart(2, '0')
+    const min = String(d.getMinutes()).padStart(2, '0')
+    return `${y}-${m}-${day}T${h}:${min}`
+  } catch {
+    return ''
   }
 }
 
-const callGemini = async () => {
-  openAiModal('Gemini')
-  // Initial explanation
+const fromDatetimeLocal = (local) => {
+  if (!local) return null
   try {
-    const response = await api.callGemini(props.bot.id)
-    chatMessages.value.push({
-      role: 'assistant',
-      content: response.data.explanation
-    })
-  } catch (err) {
-    chatMessages.value.push({
-      role: 'assistant',
-      content: 'Error calling Gemini: ' + (err.response?.data?.detail || err.message),
-      error: true
-    })
-  } finally {
-    loadingAi.value = false
-    scrollToBottom()
+    return new Date(local).toISOString()
+  } catch {
+    return null
   }
 }
 
-const sendMessage = async () => {
-  if (!userMessage.value.trim() || loadingAi.value) return
-  
-  const message = userMessage.value.trim()
-  userMessage.value = ''
-  
-  // Add user message
-  chatMessages.value.push({
-    role: 'user',
-    content: message
-  })
-  scrollToBottom()
-  
-  loadingAi.value = true
-  
+const loadOrders = async () => {
   try {
-    // Prepare history for API (exclude error messages)
-    const history = chatMessages.value
+    const res = await api.getBotDecisions(100, props.bot.id)
+    orders.value = res.data?.decisions ?? []
+  } catch (e) {
+    console.error('Failed to reload orders:', e)
+  }
+}
+
+const createOrder = async () => {
+  const sym = (newOrder.value.symbol || '').trim().toUpperCase()
+  if (!sym) return
+  try {
+    await api.createBotDecision({
+      bot_id: props.bot.id,
+      symbol: sym,
+      decision: newOrder.value.decision || 'BUY',
+      execution_time: fromDatetimeLocal(newOrder.value.execution_time) || undefined,
+      reasoning: (newOrder.value.reasoning || '').trim() || undefined
+    })
+    newOrder.value = { symbol: '', decision: 'BUY', execution_time: '', reasoning: '' }
+    showAddOrderForm.value = false
+    await loadOrders()
+  } catch (e) {
+    console.error('Create order failed:', e)
+  }
+}
+
+const cancelAddOrder = () => {
+  showAddOrderForm.value = false
+  newOrder.value = { symbol: '', decision: 'BUY', execution_time: '', reasoning: '' }
+}
+
+const startEdit = (d) => {
+  editingOrderId.value = d.id
+  editForm.value = {
+    symbol: d.symbol || '',
+    decision: d.decision || 'BUY',
+    status: d.status || 'PENDING',
+    execution_time: toDatetimeLocal(d.execution_time || d.created_at),
+    reasoning: d.reasoning || ''
+  }
+}
+
+const saveEdit = async (id) => {
+  try {
+    await api.updateBotDecision(id, {
+      symbol: editForm.value.symbol,
+      decision: editForm.value.decision,
+      status: editForm.value.status,
+      execution_time: fromDatetimeLocal(editForm.value.execution_time) || undefined,
+      reasoning: editForm.value.reasoning
+    })
+    editingOrderId.value = null
+    await loadOrders()
+  } catch (e) {
+    console.error('Update order failed:', e)
+  }
+}
+
+const cancelEdit = () => {
+  editingOrderId.value = null
+}
+
+const deleteOrder = async (d) => {
+  if (!confirm(`Delete order ${d.symbol} ${d.decision}?`)) return
+  try {
+    await api.deleteBotDecision(d.id)
+    await loadOrders()
+  } catch (e) {
+    console.error('Delete order failed:', e)
+  }
+}
+
+const sendCheckOrdersChat = async () => {
+  if (!checkOrdersUserMessage.value.trim() || checkOrdersLoadingAi.value) return
+  const message = checkOrdersUserMessage.value.trim()
+  checkOrdersUserMessage.value = ''
+  checkOrdersChatMessages.value.push({ role: 'user', content: message })
+  scrollCheckOrdersChat()
+  checkOrdersLoadingAi.value = true
+  try {
+    const history = checkOrdersChatMessages.value
       .filter(m => !m.error)
-      .map(m => ({
-        role: m.role,
-        content: m.content
-      }))
-    
-    const requestData = {
-      prompt: message,
-      history: history
-    }
-    
-    let response
-    if (aiSource.value === 'Llama') {
-      response = await api.callLlama(props.bot.id, requestData)
-    } else {
-      response = await api.callGemini(props.bot.id, requestData)
-    }
-    
-    chatMessages.value.push({
-      role: 'assistant',
-      content: response.data.explanation
-    })
+      .map(m => ({ role: m.role, content: m.content }))
+    const res = await api.callGemini(props.bot.id, { prompt: message, history })
+    checkOrdersChatMessages.value.push({ role: 'assistant', content: res.data.explanation })
   } catch (err) {
-    chatMessages.value.push({
+    checkOrdersChatMessages.value.push({
       role: 'assistant',
-      content: `Error calling ${aiSource.value}: ` + (err.response?.data?.detail || err.message),
+      content: 'Error: ' + (err.response?.data?.detail || err.message),
       error: true
     })
   } finally {
-    loadingAi.value = false
-    scrollToBottom()
+    checkOrdersLoadingAi.value = false
+    scrollCheckOrdersChat()
   }
 }
 
-const openAiModal = (source) => {
-  aiSource.value = source
-  chatMessages.value = []
-  userMessage.value = ''
-  loadingAi.value = true
-  showAiModal.value = true
+const formatOrderTime = (iso) => {
+  if (!iso) return '—'
+  try {
+    const d = new Date(iso)
+    return d.toLocaleString()
+  } catch {
+    return iso
+  }
 }
 
-const closeAiModal = () => {
-  showAiModal.value = false
+
+const clearChatHistory = () => {
+  checkOrdersChatMessages.value = []
 }
+
 </script>
 
 <style scoped>
@@ -533,41 +750,78 @@ const closeAiModal = () => {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.ai-actions {
-  display: flex;
-  gap: 12px;
+.activate-btn.active {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: #68d391;
+  border: 1px solid #68d391;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.time-btn {
+  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+  color: white;
+}
+
+.time-btn:hover {
+  background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.check-orders-big {
+  width: 100%;
   margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #2d3748;
-}
-
-.ai-btn {
-  flex: 1;
-  padding: 8px;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 700;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.1s;
-  font-size: 13px;
+  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3);
+  transition: all 0.2s ease;
 }
 
-.ai-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
+.check-orders-big:hover {
+  background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(237, 137, 54, 0.4);
 }
 
-.ai-btn:active:not(:disabled) {
+.check-orders-big:active {
   transform: translateY(0);
 }
 
-.llama-btn {
-  background: #d97706; /* Amber */
-  color: white;
+.check-orders-panel {
+  width: 90vw !important;
+  max-width: 1200px !important;
+  height: 85vh !important;
+  display: flex !important;
+  flex-direction: column;
 }
 
-.gemini-btn {
-  background: #805ad5; /* Purple */
+.chat-input-container {
+  display: flex;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.btn-clear-history {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  color: #a0aec0;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0 12px;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.btn-clear-history:hover {
+  background: #e53e3e;
   color: white;
+  border-color: #e53e3e;
 }
 
 .modal-overlay {
@@ -752,5 +1006,258 @@ const closeAiModal = () => {
 @keyframes bounce {
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
-}</style>
+}
+
+/* Check Orders panel – larger modal */
+.check-orders-overlay .modal-content {
+  width: 95vw;
+  max-width: 1100px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.check-orders-panel {
+  background: #2d3748;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.check-orders-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 24px;
+  background: #1a202c;
+  border-bottom: 1px solid #4a5568;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #a0aec0;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.summary-value.positive { color: #68d391; }
+.summary-value.negative { color: #fc8181; }
+.summary-value.muted { font-size: 13px; font-weight: 500; color: #718096; }
+
+.orders-section {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  overflow: hidden;
+}
+
+.orders-toolbar {
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-add-order {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-add-order:hover {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.add-order-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-input, .add-select {
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #1a202c;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  color: #e2e8f0;
+}
+
+.add-input { min-width: 100px; }
+.add-input[placeholder="Reasoning"] { min-width: 160px; }
+
+.btn-save {
+  padding: 8px 14px;
+  font-weight: 600;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save:hover { background: #3182ce; }
+
+.add-order-form .btn-cancel {
+  padding: 8px 14px;
+  font-weight: 600;
+  background: #4a5568;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-order-form .btn-cancel:hover { background: #718096; }
+
+.orders-table-wrap {
+  flex: 1;
+  min-height: 120px;
+  overflow: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.orders-table th, .orders-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #2d3748;
+}
+
+.orders-table th {
+  background: #1a202c;
+  color: #a0aec0;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orders-table tbody tr.order-row { background: #1a202c; }
+.orders-table tbody tr.order-row:hover { background: #2d3748; }
+.orders-table tbody tr.order-row.buy { border-left: 4px solid #68d391; }
+.orders-table tbody tr.order-row.sell { border-left: 4px solid #fc8181; }
+.orders-table tbody tr.order-row.hold,
+.orders-table tbody tr.order-row.wait { border-left: 4px solid #ecc94b; }
+
+.order-symbol { font-weight: 700; color: #e2e8f0; }
+.order-decision { font-weight: 600; text-transform: uppercase; }
+.order-row.buy .order-decision { color: #68d391; }
+.order-row.sell .order-decision { color: #fc8181; }
+.order-row.hold .order-decision, .order-row.wait .order-decision { color: #ecc94b; }
+.order-status { color: #a0aec0; }
+.order-time { color: #718096; font-size: 12px; }
+.order-reasoning-cell { color: #cbd5e0; font-size: 12px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.edit-input, .edit-select {
+  width: 100%;
+  min-width: 60px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  color: #e2e8f0;
+}
+
+.actions-cell { white-space: nowrap; }
+.btn-icon {
+  padding: 6px 10px;
+  margin-right: 4px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #4a5568;
+  color: #e2e8f0;
+}
+.btn-icon:hover { background: #718096; }
+.btn-icon.save { background: #38a169; color: white; }
+.btn-icon.save:hover { background: #48bb78; }
+.btn-icon.cancel { background: #4a5568; }
+.btn-icon.btn-edit { background: #4299e1; color: white; }
+.btn-icon.btn-edit:hover { background: #63b3ed; }
+.btn-icon.btn-del { background: #e53e3e; color: white; }
+.btn-icon.btn-del:hover { background: #fc8181; }
+
+.orders-empty {
+  text-align: center;
+  color: #a0aec0;
+  padding: 32px 16px;
+}
+
+.check-orders-chat {
+  border-top: 1px solid #4a5568;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  max-height: 320px;
+}
+
+.check-orders-chat .chat-body {
+  flex: 1;
+  height: 180px;
+  overflow-y: auto;
+  padding: 12px 24px;
+  background: #1a202c;
+}
+
+.check-orders-chat .chat-input-container {
+  display: flex;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #2d3748;
+  border-top: 1px solid #4a5568;
+}
+
+.check-orders-chat .chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #1a202c;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.check-orders-chat .send-btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.check-orders-chat .send-btn:hover:not(:disabled) { background: #3182ce; }
+.check-orders-chat .send-btn:disabled { background: #4a5568; cursor: not-allowed; opacity: 0.7; }
+</style>
 

@@ -102,23 +102,9 @@ export default {
     return api.post('/analyze', newsItem)
   },
 
-  // Earnings endpoints - Now uses months (6-month blocks) instead of weeks
-  getEarnings(startDate = null, months = 6, offsetMonths = 0, endDate = null) {
-    console.log('🌐 API.getEarnings called:', { startDate, months, offsetMonths, endDate })
-    const params = { months, offset_months: offsetMonths }
-    if (startDate) {
-      params.start_date = startDate
-    }
-    if (endDate) {
-      params.end_date = endDate
-    }
-    console.log('🌐 API.getEarnings params:', params)
-    return api.get('/earnings', { params, timeout: 300000 }) // 5 minute timeout for 6 months of data
-  },
 
-  askLlamaAboutEarning(symbol, company, date, question = null, provider = 'local') {
-    return api.post('/earnings/ask', { symbol, company, date, question, provider })
-  },
+
+
 
   askLlamaAboutNews(newsItem, question) {
     return api.post('/news/ask', {
@@ -131,13 +117,7 @@ export default {
     })
   },
 
-  getTickerEarnings(ticker) {
-    return api.get(`/earnings/${ticker}`)
-  },
 
-  getTickerEpsHistory(ticker, years = 2) {
-    return api.get(`/earnings/${ticker}/eps-history`, { params: { years } })
-  },
 
   getStockFinancials(ticker) {
     return api.get(`/stock/${ticker}/financials`)
@@ -172,11 +152,43 @@ export default {
     return api.put('/auth/profile', profileData)
   },
 
+  testAIConnection(provider, apiKey) {
+    return api.post('/auth/test-ai-connection', {
+      provider,
+      api_key: apiKey
+    })
+  },
+
   uploadProfilePicture(fileFormData) {
     return api.post('/auth/profile/picture', fileFormData, {
       // Let axios set Content-Type automatically with correct boundary
       headers: {},
     })
+  },
+
+  // Account endpoints
+  getAccounts() {
+    return api.get('/accounts')
+  },
+
+  createAccount(accountData) {
+    return api.post('/accounts', accountData)
+  },
+
+  updateAccount(accountId, accountData) {
+    return api.put(`/accounts/${accountId}`, accountData)
+  },
+
+  deleteAccount(accountId) {
+    return api.delete(`/accounts/${accountId}`)
+  },
+
+  testAccountConnection(accountId) {
+    return api.post(`/accounts/${accountId}/test`)
+  },
+
+  initiateEtoroGoogleAuth() {
+    return api.post('/etoro/login/google')
   },
 
   // Alpaca Paper Trading endpoints
@@ -261,6 +273,10 @@ export default {
     return api.put(`/bots/${botId}/config`, config)
   },
 
+  testBotConnection(config) {
+    return api.post('/bots/test-connection', config)
+  },
+
   activateBot(botId) {
     return api.post(`/bots/${botId}/activate`)
   },
@@ -289,8 +305,12 @@ export default {
     return api.post(`/bots/${botId}/call/llama`, data)
   },
 
-  callGemini(botId) {
-    return api.post(`/bots/${botId}/call/gemini`)
+  callGemini(botId, data = null) {
+    return api.post(`/bots/${botId}/call/gemini`, data)
+  },
+
+  callWeeklyPlan(botId, data = null) {
+    return api.post(`/bots/${botId}/call/weekly-plan`, data)
   },
 
   // Strategy endpoints
@@ -312,5 +332,45 @@ export default {
 
   generateStrategy(prompt) {
     return api.post('/strategies/generate', { prompt })
+  },
+
+  // Scheduler endpoints
+  getSchedulerStatus() {
+    return api.get('/scheduler/status')
+  },
+
+  getBotDecisions(limit = 50, botId = null) {
+    const params = { limit }
+    if (botId) params.bot_id = botId
+    return api.get('/bot/decisions', { params })
+  },
+
+  getBotProfit() {
+    return api.get('/bot/profit')
+  },
+
+  createBotDecision(data) {
+    return api.post('/bot/decisions', data)
+  },
+
+  updateBotDecision(decisionId, data) {
+    return api.patch(`/bot/decisions/${decisionId}`, data)
+  },
+
+  deleteBotDecision(decisionId) {
+    return api.delete(`/bot/decisions/${decisionId}`)
+  },
+
+  // Earnings endpoints
+  getEarnings(startDate = null, months = 6, offsetMonths = 0, endDate = null) {
+    const params = { months, offset_months: offsetMonths }
+    if (startDate) params.start_date = startDate
+    if (endDate) params.end_date = endDate
+    return api.get('/earnings', { params })
+  },
+
+  // Time endpoint
+  getServerTime() {
+    return api.get('/time')
   },
 }

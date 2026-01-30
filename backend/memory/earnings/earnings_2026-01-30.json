@@ -1,5 +1,5 @@
 {
-  "timestamp": 1768862160.0075924,
+  "timestamp": 1769210390.1173847,
   "data": [
     {
       "symbol": "XOM",
@@ -9,9 +9,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$1.67",
+      "epsestimate": "$1.65",
       "epsactual": "$1.67",
-      "marketCap": "$544,562,595,736",
+      "marketCap": "$563,582,012,655",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
       "lastYearDate": "1/31/2025"
@@ -26,7 +26,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.53",
       "epsactual": "$2.06",
-      "marketCap": "$334,566,748,558",
+      "marketCap": "$335,573,509,356",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/31/2025"
@@ -41,7 +41,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$3.54",
       "epsactual": "$3.04",
-      "marketCap": "$246,174,915,233",
+      "marketCap": "$253,511,185,337",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "10",
       "lastYearDate": "1/24/2025"
@@ -56,25 +56,10 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.06",
       "epsactual": "$1.10",
-      "marketCap": "$165,958,507,247",
+      "marketCap": "$166,464,478,306",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "8",
       "lastYearDate": "1/24/2025"
-    },
-    {
-      "symbol": "ETN",
-      "ticker": "ETN",
-      "company": "Eaton Corporation, PLC",
-      "companymearningsshortname": "Eaton Corporation, PLC",
-      "date": "2026-01-30",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$3.33",
-      "epsactual": "$2.83",
-      "marketCap": "$129,515,864,000",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "9",
-      "lastYearDate": "1/31/2025"
     },
     {
       "symbol": "REGN",
@@ -84,11 +69,11 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$8.07",
+      "epsestimate": "$8.28",
       "epsactual": "$9.90",
-      "marketCap": "$77,975,394,331",
+      "marketCap": "$79,403,696,047",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
+      "numEstimates": "7",
       "lastYearDate": "2/04/2025"
     },
     {
@@ -101,7 +86,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$4.76",
       "epsactual": "$4.42",
-      "marketCap": "$74,118,276,783",
+      "marketCap": "$72,209,651,629",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "9",
       "lastYearDate": "1/31/2025"
@@ -114,9 +99,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.92",
+      "epsestimate": "$0.91",
       "epsactual": "$0.91",
-      "marketCap": "$67,983,517,208",
+      "marketCap": "$69,168,432,673",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "8",
       "lastYearDate": "1/31/2025"
@@ -129,11 +114,11 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$1.42",
+      "epsestimate": "$1.43",
       "epsactual": "$1.30",
-      "marketCap": "$61,143,208,260",
+      "marketCap": "$61,574,778,977",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/30/2025"
     },
     {
@@ -146,7 +131,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$3.05",
       "epsactual": "$2.86",
-      "marketCap": "$59,204,552,301",
+      "marketCap": "$58,772,727,234",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
       "lastYearDate": "2/06/2025"
@@ -159,9 +144,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$1.42",
+      "epsestimate": "$1.39",
       "epsactual": "$1.69",
-      "marketCap": "$47,957,121,545",
+      "marketCap": "$49,399,180,807",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/31/2025"
@@ -176,25 +161,10 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.12",
       "epsactual": "$0.05",
-      "marketCap": "$33,291,003,482",
+      "marketCap": "$32,850,313,194",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "7",
+      "numEstimates": "8",
       "lastYearDate": "1/27/2025"
-    },
-    {
-      "symbol": "BR",
-      "ticker": "BR",
-      "company": "Broadridge Financial Solutions, Inc.",
-      "companymearningsshortname": "Broadridge Financial Solutions, Inc.",
-      "date": "2026-01-30",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$1.34",
-      "epsactual": "$1.56",
-      "marketCap": "$25,605,357,342",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "4",
-      "lastYearDate": "1/31/2025"
     },
     {
       "symbol": "CHTR",
@@ -206,7 +176,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$10.40",
       "epsactual": "$10.10",
-      "marketCap": "$25,184,356,912",
+      "marketCap": "$24,933,302,740",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "7",
       "lastYearDate": "1/31/2025"
@@ -219,26 +189,11 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.85",
+      "epsestimate": "$0.84",
       "epsactual": "$0.77",
-      "marketCap": "$21,714,962,321",
+      "marketCap": "$22,320,090,099",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "9",
-      "lastYearDate": "1/31/2025"
-    },
-    {
-      "symbol": "BEP",
-      "ticker": "BEP",
-      "company": "Brookfield Renewable Partners L.P.",
-      "companymearningsshortname": "Brookfield Renewable Partners L.P.",
-      "date": "2026-01-30",
-      "time": "Before Market Open",
-      "source": "nasdaq_api",
-      "epsestimate": "($0.35)",
-      "epsactual": "($0.06)",
-      "marketCap": "$18,465,868,356",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "4",
       "lastYearDate": "1/31/2025"
     },
     {
@@ -251,9 +206,24 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.35",
       "epsactual": "$0.90",
-      "marketCap": "$17,794,651,128",
+      "marketCap": "$18,864,506,172",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
+      "lastYearDate": "1/31/2025"
+    },
+    {
+      "symbol": "BEP",
+      "ticker": "BEP",
+      "company": "Brookfield Renewable Partners L.P.",
+      "companymearningsshortname": "Brookfield Renewable Partners L.P.",
+      "date": "2026-01-30",
+      "time": "Before Market Open",
+      "source": "nasdaq_api",
+      "epsestimate": "($0.35)",
+      "epsactual": "($0.06)",
+      "marketCap": "$18,521,072,810",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "4",
       "lastYearDate": "1/31/2025"
     },
     {
@@ -264,26 +234,11 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.13",
+      "epsestimate": "$0.18",
       "epsactual": "$0.75",
-      "marketCap": "$16,376,896,408",
+      "marketCap": "$16,589,332,565",
       "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
-      "lastYearDate": "1/31/2025"
-    },
-    {
-      "symbol": "RBC",
-      "ticker": "RBC",
-      "company": "RBC Bearings Incorporated",
-      "companymearningsshortname": "RBC Bearings Incorporated",
-      "date": "2026-01-30",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$2.66",
-      "epsactual": "$2.16",
-      "marketCap": "$15,712,783,361",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "5",
+      "numEstimates": "7",
       "lastYearDate": "1/31/2025"
     },
     {
@@ -294,9 +249,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$0.58",
+      "epsestimate": "$0.59",
       "epsactual": "$0.61",
-      "marketCap": "$15,198,180,126",
+      "marketCap": "$16,578,548,005",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/31/2025"
@@ -311,7 +266,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.56",
       "epsactual": "$0.59",
-      "marketCap": "$13,529,605,963",
+      "marketCap": "$13,425,411,847",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "6",
       "lastYearDate": "1/31/2025"
@@ -326,7 +281,7 @@
       "source": "nasdaq_api",
       "epsestimate": "($0.14)",
       "epsactual": "($0.06)",
-      "marketCap": "$13,166,622,207",
+      "marketCap": "$13,366,887,922",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/31/2025"
@@ -339,9 +294,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$2.86",
+      "epsestimate": "$2.85",
       "epsactual": "$3.05",
-      "marketCap": "$9,843,589,794",
+      "marketCap": "$9,552,642,511",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/31/2025"
@@ -356,7 +311,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.38",
       "epsactual": "($2.02)",
-      "marketCap": "$7,610,183,708",
+      "marketCap": "$7,575,293,845",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/31/2025"
@@ -369,9 +324,9 @@
       "date": "2026-01-30",
       "time": "Before Market Open",
       "source": "nasdaq_api",
-      "epsestimate": "$1.18",
+      "epsestimate": "$1.19",
       "epsactual": "$1.07",
-      "marketCap": "$7,397,875,179",
+      "marketCap": "$7,428,770,461",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "1/31/2025"
@@ -386,7 +341,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.02",
       "epsactual": "($0.34)",
-      "marketCap": "$5,400,668,842",
+      "marketCap": "$5,521,238,047",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "10",
       "lastYearDate": "1/30/2025"
@@ -401,7 +356,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.42",
       "epsactual": "$0.39",
-      "marketCap": "$5,254,630,056",
+      "marketCap": "$5,195,515,468",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/31/2025"
@@ -416,7 +371,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.55",
       "epsactual": "$0.41",
-      "marketCap": "$3,326,819,641",
+      "marketCap": "$3,455,488,009",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "5",
       "lastYearDate": "1/31/2025"
@@ -431,25 +386,10 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "($0.27)",
-      "marketCap": "$3,249,628,519",
+      "marketCap": "$3,335,901,842",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
-    },
-    {
-      "symbol": "ARCB",
-      "ticker": "ARCB",
-      "company": "ArcBest Corporation",
-      "companymearningsshortname": "ArcBest Corporation",
-      "date": "2026-01-30",
-      "time": "Before Market Open",
-      "source": "nasdaq_api",
-      "epsestimate": "$0.45",
-      "epsactual": "$1.33",
-      "marketCap": "$2,059,533,311",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "6",
-      "lastYearDate": "1/31/2025"
     },
     {
       "symbol": "WT",
@@ -461,9 +401,24 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.23",
       "epsactual": "$0.17",
-      "marketCap": "$2,000,968,438",
+      "marketCap": "$2,241,591,224",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
+      "lastYearDate": "1/31/2025"
+    },
+    {
+      "symbol": "ARCB",
+      "ticker": "ARCB",
+      "company": "ArcBest Corporation",
+      "companymearningsshortname": "ArcBest Corporation",
+      "date": "2026-01-30",
+      "time": "Before Market Open",
+      "source": "nasdaq_api",
+      "epsestimate": "$0.45",
+      "epsactual": "$1.33",
+      "marketCap": "$2,071,013,932",
+      "fiscalQuarter": "Dec/2025",
+      "numEstimates": "6",
       "lastYearDate": "1/31/2025"
     },
     {
@@ -476,7 +431,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.53",
       "epsactual": "$0.52",
-      "marketCap": "$1,677,414,178",
+      "marketCap": "$1,720,923,548",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/30/2025"
@@ -491,7 +446,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.43",
-      "marketCap": "$1,252,158,072",
+      "marketCap": "$1,202,037,479",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -506,7 +461,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$6.52",
       "epsactual": "$7.50",
-      "marketCap": "$1,150,072,539",
+      "marketCap": "$1,144,263,751",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "3",
       "lastYearDate": "1/31/2025"
@@ -521,7 +476,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$1.77",
       "epsactual": "$1.37",
-      "marketCap": "$1,108,224,065",
+      "marketCap": "$1,141,128,752",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "1",
       "lastYearDate": "1/31/2025"
@@ -536,7 +491,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$0.06",
       "epsactual": "$0.14",
-      "marketCap": "$906,489,204",
+      "marketCap": "$890,655,332",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "2",
       "lastYearDate": "1/31/2025"
@@ -551,25 +506,10 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.92",
-      "marketCap": "$831,333,782",
+      "marketCap": "$836,699,262",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
-    },
-    {
-      "symbol": "ORRF",
-      "ticker": "ORRF",
-      "company": "Orrstown Financial Services, Inc.",
-      "companymearningsshortname": "Orrstown Financial Services, Inc.",
-      "date": "2026-01-30",
-      "time": "TBD",
-      "source": "nasdaq_api",
-      "epsestimate": "$1.08",
-      "epsactual": "$0.87",
-      "marketCap": "$722,624,416",
-      "fiscalQuarter": "Dec/2025",
-      "numEstimates": "3",
-      "lastYearDate": "1/31/2025"
     },
     {
       "symbol": "SRBK",
@@ -581,7 +521,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.12",
-      "marketCap": "$140,951,448",
+      "marketCap": "$144,364,316",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -596,7 +536,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.26",
-      "marketCap": "$125,202,321",
+      "marketCap": "$125,510,701",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -611,7 +551,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.69",
-      "marketCap": "$88,542,445",
+      "marketCap": "$85,456,426",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -626,7 +566,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.36",
-      "marketCap": "$83,597,419",
+      "marketCap": "$82,188,984",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -641,7 +581,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "$0.22",
-      "marketCap": "$22,263,536",
+      "marketCap": "$22,206,450",
       "fiscalQuarter": "Oct/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -656,7 +596,7 @@
       "source": "nasdaq_api",
       "epsestimate": "N/A",
       "epsactual": "N/A",
-      "marketCap": "$11,296,396",
+      "marketCap": "$13,311,086",
       "fiscalQuarter": "Oct/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"
@@ -671,7 +611,7 @@
       "source": "nasdaq_api",
       "epsestimate": "$10.97",
       "epsactual": "N/A",
-      "marketCap": "$4,063,337",
+      "marketCap": "$6,141,297",
       "fiscalQuarter": "Dec/2025",
       "numEstimates": "4",
       "lastYearDate": "N/A"

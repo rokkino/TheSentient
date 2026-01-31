@@ -21,28 +21,27 @@ jobs:
           # Questo evita che il check dell'host key fallisca
           use_insecure_cipher: true 
           script: |
-            # Entra nella cartella (creala se non esiste la prima volta)
             mkdir -p ~/the-sentient
             cd ~/the-sentient
-            
-            # Se la cartella è vuota, clona il repo, altrimenti pulla
             if [ ! -d ".git" ]; then
-              # Usiamo il token per clonare in caso il repo sia privato
               git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} .
             else
               git pull origin main
             fi
+
+            # CREA IL FILE .ENV AUTOMATICAMENTE
+            echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" > backend/.env
 
             # --- BACKEND ---
             cd backend
             python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
-            # PM2 deve essere installato sulla VM: sudo npm install -g pm2
             pm2 delete backend || true
             pm2 start main.py --name backend --interpreter ./venv/bin/python
-            
+
             # --- FRONTEND ---
             cd ../frontend
             npm install
+            # Se la VM ha poca RAM, questo comando potrebbe essere lento
             npm run build

@@ -18,6 +18,10 @@ market_data_service = MarketDataService()
 async def process_bot_earnings(bot_id: int):
     """
     Analyze earnings for a specific bot immediately.
+    - Looks for post-market earnings today and pre-market earnings tomorrow
+    - If nothing found, expands search to 5 days ahead
+    - Uses Gemini to determine BUY/SELL with confidence
+    - Creates paired orders: entry before earnings + exit after earnings
     """
     print(f"[JOB] Processing earnings for bot {bot_id}...")
     db = SessionLocal()
@@ -33,30 +37,92 @@ async def process_bot_earnings(bot_id: int):
 
         # Get earnings data
         from services.earnings_service import earnings_service
-        # For immediate trigger, we force refresh or use cache? Use cache for speed.
-        earnings_calendar = await earnings_service.get_earnings_calendar(months=1, use_cache=True)
         
-        # Filter for today/tomorrow
+        # Get dates for the next 5 days
         today = datetime.now().date()
-        tomorrow = today + timedelta(days=1)
+        search_dates = [today + timedelta(days=i) for i in range(5)]
+        print(f"[JOB] Looking for earnings from {search_dates[0]} to {search_dates[-1]}")
         
+        # First try with cache
+        earnings_calendar = await earnings_service.get_earnings_calendar(months=1, use_cache=True)
+        print(f"[JOB] Got {len(earnings_calendar)} total earnings from calendar")
+        
+        # Collect earnings by priority:
+        # 1. Post-market today (highest priority - happening soonest)
+        # 2. Pre-market tomorrow
+        # 3. Post-market tomorrow
+        # 4. Continue for next 5 days...
         relevant_earnings = []
+        
         for e in earnings_calendar:
             try:
                 date_str = e.get('date', '')
                 if 'T' in date_str:
                     date_str = date_str.split('T')[0]
                 e_date = datetime.fromisoformat(date_str).date()
-                if e_date == today or e_date == tomorrow:
+                time_str = e.get('time', 'TBD')
+                
+                if e_date in search_dates:
+                    # Add priority score (lower = higher priority)
+                    day_offset = (e_date - today).days
+                    time_priority = 0 if 'After' in time_str else 1 if 'Before' in time_str else 2
+                    priority = day_offset * 10 + time_priority
+                    
+                    e['_priority'] = priority
+                    e['_date'] = e_date
+                    e['_time_slot'] = time_str
                     relevant_earnings.append(e)
             except:
                 continue
+        
+        # Sort by priority
+        relevant_earnings.sort(key=lambda x: x.get('_priority', 999))
+        print(f"[JOB] Found {len(relevant_earnings)} earnings in next 5 days")
+        
+        # If no earnings found in cache, try fetching fresh
+        if not relevant_earnings:
+            print(f"[JOB] No cached earnings, fetching fresh data...")
+            earnings_calendar = await earnings_service.get_earnings_calendar(months=1, use_cache=False)
+            print(f"[JOB] Got {len(earnings_calendar)} total earnings after fresh fetch")
+            
+            for e in earnings_calendar:
+                try:
+                    date_str = e.get('date', '')
+                    if 'T' in date_str:
+                        date_str = date_str.split('T')[0]
+                    e_date = datetime.fromisoformat(date_str).date()
+                    time_str = e.get('time', 'TBD')
+                    
+                    if e_date in search_dates:
+                        day_offset = (e_date - today).days
+                        time_priority = 0 if 'After' in time_str else 1 if 'Before' in time_str else 2
+                        priority = day_offset * 10 + time_priority
+                        
+                        e['_priority'] = priority
+                        e['_date'] = e_date
+                        e['_time_slot'] = time_str
+                        relevant_earnings.append(e)
+                except:
+                    continue
+            
+            relevant_earnings.sort(key=lambda x: x.get('_priority', 999))
+            print(f"[JOB] After fresh fetch: {len(relevant_earnings)} relevant earnings")
                 
         if not relevant_earnings:
-            print(f"[JOB] No relevant earnings found for bot {bot.name}")
+            print(f"[JOB] No earnings found in the next 5 days for bot {bot.name}")
+            placeholder = Decision(
+                bot_id=bot.id,
+                symbol="MONITORING",
+                decision="WAIT",
+                reasoning=f"Bot is active and monitoring. No earnings found between {search_dates[0]} and {search_dates[-1]}. Will analyze when earnings are available.",
+                execution_time=datetime.now().replace(hour=21, minute=59, second=0),
+                status='PENDING'
+            )
+            db.add(placeholder)
+            db.commit()
             return
             
-        print(f"[JOB] Analyzing {len(relevant_earnings)} earnings events for bot {bot.name}")
+        print(f"[JOB] Analyzing top {min(15, len(relevant_earnings))} earnings events for bot {bot.name}")
         
         # Instantiate GeminiService with USER'S API KEY
         user_api_key = user.gemini_api_key
@@ -72,57 +138,106 @@ async def process_bot_earnings(bot_id: int):
             print(f"[JOB] Skipping bot {bot.name}: Gemini service unavailable")
             return
         
-        # Market data
+        # Market data for top candidates
         market_data_map = {}
-        symbols = [e.get('symbol') for e in relevant_earnings]
-        for symbol in symbols[:10]:
-                try:
-                    data = market_data_service.get_market_data(symbol)
-                    market_data_map[symbol] = data
-                except:
-                    pass
+        top_earnings = relevant_earnings[:15]  # Analyze top 15
+        symbols = [e.get('symbol') for e in top_earnings]
+        for symbol in symbols:
+            try:
+                data = market_data_service.get_market_data(symbol)
+                market_data_map[symbol] = data
+            except:
+                pass
         
-        opportunities = await bot_gemini.analyze_market_opportunities(relevant_earnings[:10], market_data_map, current_time=str(datetime.now()))
+        opportunities = await bot_gemini.analyze_market_opportunities(top_earnings, market_data_map, current_time=str(datetime.now()))
         
-        # Save Decisions
+        # Sort opportunities by confidence and pick the best ones
+        # Debug: log all opportunities
         for opp in opportunities:
+            print(f"[JOB] Opportunity: {opp.get('symbol')} {opp.get('decision')} conf={opp.get('confidence_score')}")
+        
+        valid_opportunities = [
+            opp for opp in opportunities 
+            if opp.get('decision') in ['BUY', 'SELL'] and opp.get('confidence_score', 0) >= 30  # Lowered threshold
+        ]
+        valid_opportunities.sort(key=lambda x: x.get('confidence_score', 0), reverse=True)
+        
+        print(f"[JOB] Found {len(valid_opportunities)} high-confidence opportunities")
+        
+        # Take top 5 most confident opportunities
+        for opp in valid_opportunities[:5]:
             symbol = opp.get('symbol')
             decision_type = opp.get('decision')
+            confidence_score = float(opp.get('confidence_score', 0) if opp.get('confidence_score') is not None else 0)
             
-            if decision_type in ['BUY', 'SELL']:
-                    # Check if decision already exists for this symbol today
-                    existing = db.query(Decision).filter(
-                        Decision.bot_id == bot.id,
-                        Decision.symbol == symbol,
-                        Decision.status.in_(['PENDING', 'EXECUTED', 'FAILED']),
-                        Decision.created_at >= datetime.now().replace(hour=0, minute=0, second=0)
-                    ).first()
-                    
-                    if existing:
-                        continue
-                        
-                    # Create new decision
-                    # Note: Decision model doesn't have confidence field, include it in reasoning
-                    confidence_score = float(opp.get('confidence_score', 0) if opp.get('confidence_score') is not None else 0)
-                    reasoning_text = opp.get('reasoning', '')
-                    if confidence_score > 0:
-                        reasoning_text = f"[Confidence: {confidence_score:.0f}%] {reasoning_text}"
-                    
-                    new_decision = Decision(
-                        bot_id=bot.id,
-                        symbol=symbol,
-                        decision=decision_type,
-                        reasoning=reasoning_text,
-                        execution_time=datetime.now() if opp.get('execution_time') == 'IMMEDIATE' else datetime.now().replace(hour=21, minute=59, second=0),
-                        status='PENDING'
-                    )
-                    db.add(new_decision)
-                    print(f"[JOB] Created decision for {bot.name}: {decision_type} {symbol}")
+            # Find the corresponding earning to get the date
+            earning_info = next((e for e in top_earnings if e.get('symbol') == symbol), None)
+            earnings_date = earning_info.get('_date', today) if earning_info else today
+            time_slot = earning_info.get('_time_slot', 'TBD') if earning_info else 'TBD'
+            
+            # Check if decision already exists for this symbol
+            existing = db.query(Decision).filter(
+                Decision.bot_id == bot.id,
+                Decision.symbol == symbol,
+                Decision.status.in_(['PENDING', 'EXECUTED']),
+            ).first()
+            
+            if existing:
+                print(f"[JOB] Skipping {symbol} - already have a pending/executed decision")
+                continue
+            
+            # Calculate execution times based on earnings timing
+            if 'After' in time_slot:
+                # After market close earnings - execute at 21:59 on earnings day
+                entry_time = datetime.combine(earnings_date, datetime.min.time()).replace(hour=21, minute=59)
+                # Exit next morning at market open (9:30 AM next day)
+                exit_time = datetime.combine(earnings_date + timedelta(days=1), datetime.min.time()).replace(hour=9, minute=35)
+            else:  # Before market open
+                # Before market earnings - execute previous day at 21:59
+                entry_time = datetime.combine(earnings_date - timedelta(days=1), datetime.min.time()).replace(hour=21, minute=59)
+                # Exit same day at 9:35 AM
+                exit_time = datetime.combine(earnings_date, datetime.min.time()).replace(hour=9, minute=35)
+            
+            # If entry time is in the past, skip
+            if entry_time < datetime.now():
+                print(f"[JOB] Skipping {symbol} - entry time {entry_time} is in the past")
+                continue
+            
+            reasoning_text = opp.get('reasoning', '')
+            reasoning_text = f"[Confidence: {confidence_score:.0f}%] [Earnings: {earnings_date} {time_slot}] {reasoning_text}"
+            
+            # Create ENTRY decision
+            entry_decision = Decision(
+                bot_id=bot.id,
+                symbol=symbol,
+                decision=decision_type,  # BUY or SELL
+                reasoning=f"ENTRY: {reasoning_text}",
+                execution_time=entry_time,
+                status='PENDING'
+            )
+            db.add(entry_decision)
+            print(f"[JOB] Created ENTRY: {decision_type} {symbol} @ {entry_time}")
+            
+            # Create EXIT decision (opposite action)
+            exit_decision_type = 'SELL' if decision_type == 'BUY' else 'BUY'
+            exit_decision = Decision(
+                bot_id=bot.id,
+                symbol=symbol,
+                decision=exit_decision_type,
+                reasoning=f"EXIT (close position): Close {decision_type} position after earnings announcement",
+                execution_time=exit_time,
+                status='PENDING'
+            )
+            db.add(exit_decision)
+            print(f"[JOB] Created EXIT: {exit_decision_type} {symbol} @ {exit_time}")
         
         db.commit()
+        print(f"[JOB] Successfully processed earnings for bot {bot.name}")
 
     except Exception as e:
         print(f"[JOB] Error processing bot {bot_id}: {e}")
+        import traceback
+        traceback.print_exc()
     finally:
         db.close()
 
@@ -206,12 +321,19 @@ async def execute_orders_job():
                 
             for decision in decisions:
                 try:
-                    symbol = decision.symbol
+                    original_symbol = decision.symbol
                     action = decision.decision # BUY/SELL
                     
-                    if action in ["WAIT", "HOLD", "NO_GO"]:
+                    if action in ["WAIT", "HOLD", "NO_GO", "MONITORING"]:
                         decision.status = "SKIPPED"
                         continue
+                    
+                    # Normalize symbol for Alpaca
+                    from services.symbol_mapper import symbol_mapper
+                    symbol = symbol_mapper.normalize_symbol(original_symbol)
+                    
+                    if symbol != original_symbol:
+                        print(f"[JOB] Symbol normalized: {original_symbol} → {symbol}")
                     
                     print(f"[JOB] Executing {action} {symbol} for bot {bot.name}...")
                     qty = 1 # Default quantity

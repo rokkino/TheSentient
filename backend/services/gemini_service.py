@@ -545,6 +545,7 @@ REGOLE DI TRADING (CRITICHE):
    - Se l'opportunità è ESTREMAMENTE CHIARA (Big Cap + Trend molto positivo), execution_time = "IMMEDIATE".
    - Per TUTTI GLI ALTRI CASI (la norma), l'ordine deve essere preparato per la chiusura del mercato: execution_time = "21:59".
 4. DECISIONE: Determina se è un BUY o SELL basandoti sui dati. Se incerto, WAIT.
+5. CONFIDENCE: Valuta la tua fiducia nella decisione (0-100). Solo le decisioni con confidence >= 50 saranno considerate.
 
 OUTPUT RICHIESTO:
 Restituisci SOLAMENTE un array JSON valido. Nessun markdown.
@@ -553,6 +554,7 @@ Formato:
   {{
     "symbol": "PLTR",
     "decision": "BUY",
+    "confidence_score": 75,
     "execution_time": "21:59",
     "reasoning": "Settore Difesa/AI. Utili previsti in crescita..."
   }}

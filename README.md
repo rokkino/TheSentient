@@ -1,36 +1,55 @@
-# The Sentient - Portfolio Tracker & News Analyzer
+# TheSentient - AI Trading Bot Platform
 
-A modern, web-based portfolio tracking application with real-time news feeds and AI-powered trading signal analysis.
+An intelligent trading platform that uses AI (Google Gemini) to analyze earnings reports and generate automated trading decisions.
 
-## Architecture
+## Features
 
-- **Frontend**: Vue.js 3 with Vite (hot reload enabled)
-- **Backend**: FastAPI (Python) with WebSocket support
-- **Charts**: TradingView Lightweight Charts
-- **Real-time**: WebSocket for live news updates
+- 🤖 **AI-Powered Analysis**: Uses Google Gemini to analyze earnings reports and market data
+- 📊 **Automated Trading**: Executes trades on Alpaca (paper trading) based on AI decisions
+- 📈 **Real-time Market Data**: Fetches earnings calendars, stock prices, and market trends
+- 🎯 **Smart Order Management**: Creates paired entry/exit orders with confidence scoring
+- 🔄 **Symbol Normalization**: Automatically maps alternative symbols (GOLD→GLD, BTC→BITO, etc.)
+- ⏰ **Scheduled Execution**: Background scheduler executes orders at specified times
+- 💬 **Interactive Dashboard**: Vue.js frontend with real-time order tracking
 
-## Quick Start
+## Tech Stack
+
+### Backend
+- **Framework**: FastAPI (Python 3.12+)
+- **Database**: SQLAlchemy + SQLite/PostgreSQL
+- **AI**: Google Gemini API
+- **Trading**: Alpaca API, IG Markets API
+- **Scheduling**: APScheduler
+- **Data**: yfinance, pandas, numpy
+
+### Frontend
+- **Framework**: Vue 3 + Vite
+- **State Management**: Pinia
+- **Charts**: Lightweight Charts
+- **HTTP Client**: Axios
+- **UI**: Custom CSS with modern design
+
+## Installation
 
 ### Prerequisites
-
-- Python 3.11+
+- Python 3.12+
 - Node.js 18+
-- npm or yarn
+- Alpaca Paper Trading Account
+- Google Gemini API Key
 
 ### Backend Setup
 
-1. Navigate to backend directory:
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd TheSentient
+```
+
+2. **Create virtual environment**
 ```bash
 cd backend
-```
-
-2. Create virtual environment (recommended):
-```bash
 python -m venv venv
-```
 
-3. Activate virtual environment:
-```bash
 # Windows
 venv\Scripts\activate
 
@@ -38,169 +57,227 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-4. Install dependencies:
+3. **Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-5. **Database Setup (PostgreSQL)**:
-   
-   The application uses PostgreSQL by default. You need to:
-   
-   a. Install PostgreSQL on your system (if not already installed)
-   
-   b. Create a database:
-   ```sql
-   CREATE DATABASE thesentient;
-   ```
-   
-   c. Set the `DATABASE_URL` environment variable:
-   ```bash
-   # Windows (PowerShell)
-   $env:DATABASE_URL="postgresql://postgres:your_password@localhost:5432/thesentient"
-   
-   # Linux/Mac
-   export DATABASE_URL="postgresql://postgres:your_password@localhost:5432/thesentient"
-   ```
-   
-   Or create a `.env` file in the `backend` directory:
-   ```
-   DATABASE_URL=postgresql://postgres:your_password@localhost:5432/thesentient
-   ```
-   
-   **Note**: If `DATABASE_URL` is not set, the app will fallback to SQLite for development.
+4. **Configure environment variables**
 
-6. Start the backend server:
-```bash
-python main.py
+Create a `.env` file in the `backend` directory:
+
+```env
+# Database
+DATABASE_URL=sqlite:///./thesentient.db
+
+# JWT Secret (generate a random string)
+SECRET_KEY=your-secret-key-here
+
+# Alpaca API (Paper Trading)
+ALPACA_API_KEY=your-alpaca-api-key
+ALPACA_API_SECRET=your-alpaca-secret-key
+ALPACA_BASE_URL=https://paper-api.alpaca.markets
+
+# Google Gemini API
+GOOGLE_GEMINI_API_KEY=your-gemini-api-key
+
+# Optional: IG Markets
+IG_API_KEY=your-ig-api-key
+IG_USERNAME=your-ig-username
+IG_PASSWORD=your-ig-password
+IG_ACC_NUMBER=your-ig-account-number
 ```
 
-The API will be available at `http://localhost:8000`
+5. **Run the backend**
+```bash
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Backend will be available at `http://localhost:8000`
 
 ### Frontend Setup
 
-1. Navigate to frontend directory:
+1. **Navigate to frontend directory**
 ```bash
 cd frontend
 ```
 
-2. Install dependencies:
+2. **Install dependencies**
 ```bash
 npm install
 ```
 
-3. Start the development server (with hot reload):
+3. **Run the development server**
 ```bash
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173`
+Frontend will be available at `http://localhost:5173`
 
-## Development
+## Usage
 
-### Hot Reload
+### 1. Create an Account
+- Navigate to `http://localhost:5173`
+- Register a new account
+- Configure your API keys in the profile settings
 
-Both frontend and backend support hot reload:
+### 2. Configure a Bot
+- Go to the Bots section
+- Click "Configure" on the "Earnings Report Genius" bot
+- Select your trading account (Alpaca or IG Markets)
+- Save the configuration
 
-- **Frontend**: Vite automatically reloads on file changes
-- **Backend**: Uvicorn reloads on Python file changes (enabled by default)
+### 3. Activate the Bot
+- Click "Activate" on the configured bot
+- The bot will automatically:
+  - Fetch earnings calendars for the next 5 days
+  - Analyze companies in defense/AI sectors
+  - Generate BUY/SELL decisions with confidence scores
+  - Create paired entry/exit orders
 
-### Project Structure
+### 4. Monitor Orders
+- Click "Check Orders" to view pending and executed orders
+- Orders show:
+  - Symbol (with normalization: NV→NVDA, GOLD→GLD, etc.)
+  - Decision (BUY/SELL)
+  - Execution time
+  - Confidence score
+  - Reasoning from AI
 
+### 5. Manual Order Creation
+- In "Check Orders" modal, click "+ Add order"
+- Enter symbol (supports alternatives: nv, nvidia, gold, btc, etc.)
+- Select BUY/SELL
+- Set execution time (optional)
+- Add reasoning (optional)
+- Click "Create"
+
+## Symbol Normalization
+
+The platform automatically normalizes alternative symbol names:
+
+| Input | Output | Description |
+|-------|--------|-------------|
+| NV, NVIDIA | NVDA | NVIDIA Corporation |
+| GOLD, XAU | GLD | Gold ETF |
+| SILVER, XAG | SLV | Silver ETF |
+| OIL, CRUDE | USO | Oil ETF |
+| BTC, BITCOIN | BITO | Bitcoin ETF |
+| ETH, ETHEREUM | ETHE | Ethereum ETF |
+| SPX, SP500 | SPY | S&P 500 ETF |
+| NDX, NASDAQ | QQQ | Nasdaq-100 ETF |
+
+## Architecture
+
+### Order Generation Flow
 ```
-TheSentient/
-├── backend/
-│   ├── main.py                 # FastAPI application
-│   ├── services/               # Business logic services
-│   │   ├── market_data.py     # Chart data service
-│   │   ├── news_service.py    # News fetching service
-│   │   ├── watchlist_service.py
-│   │   ├── search_service.py
-│   │   └── ai_service.py      # AI analysis service
-│   ├── websocket_manager.py   # WebSocket connection manager
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── components/        # Vue components
-│   │   ├── views/             # Page views
-│   │   ├── stores/            # Pinia stores
-│   │   ├── services/          # API services
-│   │   └── router/            # Vue Router
-│   ├── package.json
-│   └── vite.config.js
-└── README.md
+1. Bot Activation
+   ↓
+2. Fetch Earnings Calendar (next 5 days)
+   ↓
+3. Filter by Sector (Defense/AI)
+   ↓
+4. Gemini Analysis (confidence scoring)
+   ↓
+5. Create Paired Orders
+   - Entry: 21:59 before earnings
+   - Exit: 09:35 after earnings
+   ↓
+6. Store in Database (PENDING status)
 ```
 
-## Features
-
-- 📊 **Interactive Charts** - Real-time candlestick and line charts
-- 📰 **Live News Feed** - WebSocket-powered real-time news updates
-- 🤖 **AI Analysis** - Automated trading signal generation
-- 👀 **Watchlist** - Manage your favorite assets
-- 🔄 **Hot Reload** - Instant updates during development
-- 🎨 **Modern UI** - Dark theme with smooth animations
+### Order Execution Flow
+```
+1. Scheduler runs every minute
+   ↓
+2. Find PENDING orders where execution_time <= now
+   ↓
+3. Normalize symbols (GOLD→GLD, etc.)
+   ↓
+4. Execute on Alpaca/IG Markets
+   ↓
+5. Update status to EXECUTED
+   ↓
+6. Log order ID in reasoning
+```
 
 ## API Endpoints
 
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login
+- `GET /api/auth/me` - Get current user
+
+### Bots
+- `GET /api/bot` - List all bots
+- `POST /api/bot/{bot_id}/activate` - Activate bot
+- `POST /api/bot/{bot_id}/deactivate` - Deactivate bot
+- `PUT /api/bot/{bot_id}/config` - Update bot configuration
+
+### Orders (Decisions)
+- `GET /api/bot/decisions` - List orders
+- `POST /api/bot/decisions` - Create manual order
+- `PUT /api/bot/decisions/{decision_id}` - Update order
+- `DELETE /api/bot/decisions/{decision_id}` - Delete order
+
 ### Market Data
-- `POST /api/chart` - Get chart data
-- `GET /api/quote/{ticker}` - Get current quote
+- `GET /api/market/earnings` - Get earnings calendar
+- `GET /api/market/data/{symbol}` - Get stock data
 
-### Search
-- `POST /api/search` - Search for assets
+## Development
 
-### Watchlist
-- `GET /api/watchlist` - Get watchlist
-- `POST /api/watchlist` - Add to watchlist
-- `DELETE /api/watchlist/{symbol}` - Remove from watchlist
+### Project Structure
+```
+TheSentient/
+├── backend/
+│   ├── main.py                 # FastAPI app
+│   ├── models/                 # SQLAlchemy models
+│   │   ├── user.py
+│   │   └── bot.py
+│   ├── services/               # Business logic
+│   │   ├── bot_service.py
+│   │   ├── gemini_service.py
+│   │   ├── alpaca_service.py
+│   │   ├── earnings_service.py
+│   │   ├── scheduler_jobs.py
+│   │   └── symbol_mapper.py    # Symbol normalization
+│   ├── memory/                 # Cache & logs
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Dashboard.vue
+│   │   │   ├── BotCard.vue
+│   │   │   └── ...
+│   │   ├── stores/
+│   │   ├── router/
+│   │   └── main.js
+│   └── package.json
+│
+└── README.md
+```
 
-### News
-- `GET /api/news` - Get news feed
-- `GET /api/news/{ticker}` - Get ticker-specific news
-
-### AI
-- `POST /api/analyze` - Analyze news with AI
-
-### WebSocket
-- `WS /ws` - Real-time updates
-
-## Production Build
-
-### Frontend
+### Running Tests
 ```bash
+# Backend tests
+cd backend
+python test_symbol_mapper.py
+python test_order_execution.py
+
+# Frontend tests
 cd frontend
-npm run build
+npm run test
 ```
 
-The built files will be in `frontend/dist/`
+## Deployment
 
-### Backend
-The backend can be run with any ASGI server:
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
+See [.github/workflows/deploy.yml](.github/workflows/deploy.yml) for automated deployment configuration.
 
-## Troubleshooting
+## License
 
-### Backend won't start
-- Check Python version (3.11+)
-- Verify all dependencies are installed
-- Check if port 8000 is available
+MIT License
 
-### Frontend won't start
-- Check Node.js version (18+)
-- Delete `node_modules` and run `npm install` again
-- Check if port 5173 is available
+## Support
 
-### WebSocket connection fails
-- Ensure backend is running
-- Check CORS settings in `backend/main.py`
-- Verify proxy settings in `frontend/vite.config.js`
-
-## License & Disclaimer
-
-**DISCLAIMER**: This software is for educational purposes only. Trading involves risk of loss. Always do your own research.
-
----
-
-**Enjoy using The Sentient!** 📊📰🤖
+For issues and questions, please open an issue on GitHub.

@@ -368,9 +368,36 @@ const loadOrders = async () => {
   }
 }
 
+
 const createOrder = async () => {
-  const sym = (newOrder.value.symbol || '').trim().toUpperCase()
-  if (!sym) return
+  let sym = (newOrder.value.symbol || '').trim().toUpperCase()
+  if (!sym) {
+    alert('Please enter a symbol')
+    return
+  }
+  
+  // Symbol normalization - map common alternatives to official tickers
+  const symbolMap = {
+    'GOLD': 'GLD', 'XAU': 'GLD', 'XAUUSD': 'GLD',
+    'SILVER': 'SLV', 'XAG': 'SLV', 'XAGUSD': 'SLV',
+    'OIL': 'USO', 'CRUDE': 'USO', 'WTI': 'USO',
+    'BITCOIN': 'BITO', 'BTC': 'BITO', 'BTCUSD': 'BITO',
+    'ETHEREUM': 'ETHE', 'ETH': 'ETHE', 'ETHUSD': 'ETHE',
+    'NVIDIA': 'NVDA', 'NV': 'NVDA',  // Add NVIDIA mapping
+    'APPLE': 'AAPL',
+    'TESLA': 'TSLA',
+    'MICROSOFT': 'MSFT', 'MS': 'MSFT',
+    'GOOGLE': 'GOOGL',
+    'AMAZON': 'AMZN',
+    'META': 'META', 'FACEBOOK': 'META', 'FB': 'META'
+  }
+  
+  const originalSym = sym
+  if (symbolMap[sym]) {
+    sym = symbolMap[sym]
+    console.log(`Symbol normalized: ${originalSym} → ${sym}`)
+  }
+  
   try {
     await api.createBotDecision({
       bot_id: props.bot.id,
@@ -384,8 +411,10 @@ const createOrder = async () => {
     await loadOrders()
   } catch (e) {
     console.error('Create order failed:', e)
+    alert(`Failed to create order: ${e.message || e}`)
   }
 }
+
 
 const cancelAddOrder = () => {
   showAddOrderForm.value = false

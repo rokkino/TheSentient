@@ -127,13 +127,13 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 # CORS middleware for Vue.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
+    allow_origins=[  # <-- parentesi [ obbligatoria per la lista
         "http://localhost:5173",
         "http://localhost:3000",
         "http://127.0.0.1:5173",
-        "http://34.53.28.120",  # Production VM IP (HTTP)
-        "https://thesentient.duckdns.org",  # Production HTTPS (avoids Mixed Content)
-    ],
+        "http://34.53.28.120",
+        "https://thesentient.duckdns.org",
+    ],  # <-- chiusura lista
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
@@ -2194,7 +2194,9 @@ async def call_weekly_plan(
         print(f"Error calling Weekly Plan: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# WebSocket for real-time updates
+# WebSocket for real-time updates.
+# Backend listens on /ws. Nginx must proxy to this path (e.g. location /ws { proxy_pass http://127.0.0.1:8001/ws; })
+# so the frontend connects to /ws and not /ws/ws.
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
     """WebSocket endpoint for real-time news and chat updates"""

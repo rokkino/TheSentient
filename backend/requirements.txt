@@ -1,84 +1,52 @@
-# TheSentient - Backend Requirements
-# Python 3.12+
-
 # Web Framework
-fastapi==0.123.10
-uvicorn==0.38.0
-starlette==0.49.3
-python-multipart==0.0.20
+fastapi
+uvicorn[standard]
+python-multipart
 
 # Database
-SQLAlchemy==2.0.44
-psycopg2-binary==2.9.11
+SQLAlchemy
+psycopg2-binary
 
 # Authentication & Security
-python-jose==3.5.0
-passlib==1.7.4
-bcrypt==5.0.0
-cryptography==46.0.3
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
+cryptography
 
 # API Clients & Trading
-alpaca-py==0.43.2
-alpaca-trade-api==3.2.0
-trading-ig==0.0.22
-requests==2.32.5
-aiohttp==3.13.3
-httpx==0.28.1
+alpaca-py
+trading-ig
+requests
+aiohttp
+httpx
 
 # Google AI / Gemini
-google-genai==1.60.0
-google-generativeai==0.8.6
-google-ai-generativelanguage==0.6.15
-google-api-core==2.25.2
-google-api-python-client==2.188.0
-google-auth==2.47.0
+google-genai
+google-generativeai
 
-# LangChain (for AI orchestration)
-langchain==1.2.6
-langchain-core==1.2.7
-langchain-community==0.4.1
-langgraph==1.0.6
-langsmith==0.6.4
+# LangChain
+langchain
+langchain-community
+langgraph
 
 # Market Data & Financial APIs
-yfinance==0.2.58
-yahoo-fin==0.8.9.1
-yahoo-earnings-calendar==0.6.0
-pandas==2.3.3
-numpy==2.4.1
+yfinance
+pandas
+numpy
 
-# Scheduling & Background Jobs
-APScheduler==3.11.2
+# Scheduling & Utilities
+APScheduler
+python-dotenv
+pydantic
+pydantic-settings
+python-dateutil
+pytz
 
-# Web Scraping & Data Collection
-beautifulsoup4==4.12.3
-lxml==6.0.2
-selenium==4.25.0
-requests-html==0.10.0
-duckduckgo_search==8.1.1
+# Web Scraping
+beautifulsoup4
+lxml
+duckduckgo_search
 
-# Utilities
-python-dotenv==1.2.1
-pydantic==2.12.5
-pydantic-settings==2.12.0
-python-dateutil==2.9.0.post0
-pytz==2025.2
-
-# Rate Limiting
-slowapi==0.1.9
-
-# Caching
-requests-cache==0.5.2
-
-# Data Validation & Serialization
-orjson==3.11.5
-
-# Async Support
-anyio==4.11.0
-httptools==0.7.1
-watchfiles==1.1.1
-
-# Optional: Plotting (for chart generation)
-matplotlib==3.10.7
-plotly==6.3.1
-mplfinance==0.12.10b0
+# Async & Serialization
+anyio
+orjson

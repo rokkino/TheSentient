@@ -18,9 +18,8 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          # Questo evita che il check dell'host key fallisca
-          use_insecure_cipher: true 
           script: |
+            # 1. Preparazione cartella
             mkdir -p ~/the-sentient
             cd ~/the-sentient
             if [ ! -d ".git" ]; then
@@ -29,10 +28,11 @@ jobs:
               git pull origin main
             fi
 
-            # CREA IL FILE .ENV AUTOMATICAMENTE
+            # 2. Configurazione Backend (.env)
             echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" > backend/.env
+            # Aggiungi qui altre variabili se necessarie (es. API_KEYS)
 
-            # --- BACKEND ---
+            # 3. Aggiornamento Backend
             cd backend
             python3 -m venv venv
             source venv/bin/activate
@@ -40,8 +40,20 @@ jobs:
             pm2 delete backend || true
             pm2 start main.py --name backend --interpreter ./venv/bin/python
 
-            # --- FRONTEND ---
+            # 4. Aggiornamento Frontend
             cd ../frontend
+            # Configura l'URL delle API per la build (Risolve il Network Error)
+            echo "VITE_API_URL=https://thesentient.duckdns.org/api" > .env
+            
             npm install
-            # Se la VM ha poca RAM, questo comando potrebbe essere lento
-            npm run build
+            # Limitazione RAM per evitare crash su VM e2-micro
+            NODE_OPTIONS="--max-old-space-size=1024" npm run build
+
+            # 5. Permessi e Nginx
+            # Permetti a Nginx di leggere i file generati
+            sudo chmod -R 755 ~/the-sentient/frontend/dist
+            # Riavvio Nginx per attivare HTTPS (porta 443)
+            sudo systemctl restart nginx
+            
+            # 6. Salvataggio PM2 per il riavvio della VM
+            pm2 save

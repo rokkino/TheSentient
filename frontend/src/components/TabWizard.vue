@@ -104,6 +104,13 @@ const tabPresets = [
     description: 'Build trading strategies',
     icon: '♟️',
     defaultName: 'Strategy'
+  },
+  {
+    type: 'backtesting',
+    name: 'Backtesting',
+    description: 'Historical simulation (Earning Report Genius)',
+    icon: '📊',
+    defaultName: 'Backtesting'
   }
 ]
 

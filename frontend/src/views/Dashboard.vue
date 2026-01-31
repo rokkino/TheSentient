@@ -117,6 +117,16 @@
         <EarningsList />
       </div>
 
+      <!-- Backtesting Tab -->
+      <div
+        v-for="tab in tabs"
+        :key="'backtesting-' + tab.id"
+        v-show="activeTab === tab.id && tab.type === 'backtesting'"
+        class="tab-panel backtesting-panel"
+      >
+        <BacktestingPanel />
+      </div>
+
       <!-- Stocks Tab -->
       <div
         v-for="tab in tabs"
@@ -692,6 +702,7 @@ import LoginModal from '../components/LoginModal.vue'
 import RegisterModal from '../components/RegisterModal.vue'
 import ProfileModal from '../components/ProfileModal.vue'
 import StrategyBuilder from '../components/StrategyBuilder.vue'
+import BacktestingPanel from '../components/BacktestingPanel.vue'
 
 import TabWizard from '../components/TabWizard.vue'
 import IndicatorSearch from '../components/IndicatorSearch.vue'
@@ -2942,7 +2953,7 @@ const handleAiDrawingAdded = (drawing) => {
   flex-direction: column;
 }
 
-.stocks-panel, .earnings-panel, .news-panel, .bot-panel, .flex-panel {
+.stocks-panel, .earnings-panel, .news-panel, .bot-panel, .backtesting-panel, .flex-panel {
   height: 100%;
 }
 
@@ -4227,7 +4238,8 @@ const handleAiDrawingAdded = (drawing) => {
   .flex-panel,
   .news-panel,
   .bot-panel,
-  .earnings-panel {
+  .earnings-panel,
+  .backtesting-panel {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }

@@ -8,15 +8,22 @@
           v-for="(tab, index) in tabs"
           :key="tab.id"
           :class="['tab-wrapper', { active: activeTab === tab.id, dragging: draggedTabId === tab.id, 'drag-over': dragOverIndex === index }]"
-          :draggable="!editingTab || editingTab.id !== tab.id"
-          @dragstart="handleDragStart($event, tab, index)"
-          @dragend="handleDragEnd"
           @dragover.prevent="handleDragOver($event, index)"
           @dragenter.prevent="dragOverIndex = index"
           @dragleave="handleDragLeave($event, index)"
           @drop="handleDrop($event, index)"
           @contextmenu.prevent="showTabContextMenu($event, tab)"
         >
+          <span
+            v-if="!editingTab || editingTab.id !== tab.id"
+            class="tab-drag-handle"
+            draggable="true"
+            @dragstart="handleDragStart($event, tab, index)"
+            @dragend="handleDragEnd"
+            title="Trascina per riordinare"
+          >
+            <span class="divider-line"></span>
+          </span>
           <button
             :class="['tab-btn', { active: activeTab === tab.id }]"
             @click="setActiveTab(tab.id)"
@@ -110,14 +117,6 @@
         <EarningsList />
       </div>
 
-      <!-- Scheduler Tab -->
-      <div
-        v-if="activeTab === 6"
-        class="tab-panel scheduler-panel"
-      >
-        <SchedulerDashboard />
-      </div>
-
       <!-- Stocks Tab -->
       <div
         v-for="tab in tabs"
@@ -162,8 +161,9 @@
             <button
               v-for="tf in timeframes"
               :key="tf"
+              type="button"
               :class="['timeframe-btn', { active: tab.timeframe === tf }]"
-              @click="setTimeframe(tab.id, tf)"
+              @click.stop="setTimeframe(tab.id, tf)"
             >
               {{ tf }}
             </button>
@@ -173,8 +173,9 @@
             <button
               v-for="type in chartTypes"
               :key="type"
+              type="button"
               :class="['chart-type-btn', { active: tab.chartType === type }]"
-              @click="setChartType(tab.id, type)"
+              @click.stop="setChartType(tab.id, type)"
             >
               {{ type }}
             </button>
@@ -182,43 +183,49 @@
 
           <div class="indicators-buttons">
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.rsi }]"
-              @click="toggleIndicator(tab.id, 'rsi')"
+              @click.stop="toggleIndicator(tab.id, 'rsi')"
               title="RSI (Relative Strength Index)"
             >
               RSI
             </button>
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.ma13 }]"
-              @click="toggleIndicator(tab.id, 'ma13')"
+              @click.stop="toggleIndicator(tab.id, 'ma13')"
               title="MA 13"
             >
               MA13
             </button>
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.ma50 }]"
-              @click="toggleIndicator(tab.id, 'ma50')"
+              @click.stop="toggleIndicator(tab.id, 'ma50')"
               title="MA 50"
             >
               MA50
             </button>
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.ma200 }]"
-              @click="toggleIndicator(tab.id, 'ma200')"
+              @click.stop="toggleIndicator(tab.id, 'ma200')"
               title="MA 200"
             >
               MA200
             </button>
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.ma800 }]"
-              @click="toggleIndicator(tab.id, 'ma800')"
+              @click.stop="toggleIndicator(tab.id, 'ma800')"
               title="MA 800"
             >
               MA800
             </button>
             <button
+              type="button"
               :class="['indicator-btn', { active: tab.indicators?.bullRun }]"
-              @click="toggleIndicator(tab.id, 'bullRun')"
+              @click.stop="toggleIndicator(tab.id, 'bullRun')"
               title="Bull/Bear Run Signals"
             >
               🐂🐻
@@ -234,13 +241,17 @@
 
           <div class="toolbar-actions">
             <!-- Settings moved to Profile -->
+            <button class="mobile-watchlist-toggle" @click="showWatchlist = !showWatchlist">
+              {{ showWatchlist ? 'Close' : 'Watchlist' }}
+            </button>
           </div>
         </div>
 
         <!-- Main Content Area -->
         <div v-if="tab" class="main-content">
           <!-- Left Panel: Watchlist -->
-          <div class="left-panel">
+          <div class="left-panel" :class="{ active: showWatchlist }">
+            <button class="mobile-close-btn" @click="showWatchlist = false">×</button>
             <div class="search-section">
               <div class="search-input-wrapper">
                 <input
@@ -312,26 +323,64 @@
               </div>
             </div>
 
-            <h3 class="panel-title">My Watchlist</h3>
-            <div class="watchlist">
-              <div
-                v-for="item in watchlist"
-                :key="item.symbol"
-                :class="['watchlist-item', { active: tab.selectedTicker === item.symbol }]"
-                @click="selectTicker(tab.id, item.symbol)"
-              >
-                <div class="symbol">{{ item.symbol }}</div>
-                <div class="name">{{ item.name }}</div>
+            <div class="watchlist-sections">
+              <div class="watchlist-section watchlist-main">
+                <h3 class="panel-title">My Watchlist</h3>
+                <div class="watchlist">
+                  <div
+                    v-for="item in watchlist"
+                    :key="item.symbol"
+                    :class="['watchlist-item', { active: tab.selectedTicker === item.symbol }]"
+                    @click="selectTicker(tab.id, item.symbol)"
+                  >
+                    <div class="symbol">{{ item.symbol }}</div>
+                    <div class="name">{{ item.name }}</div>
+                  </div>
+                </div>
+                <button @click="removeSelected(tab.id)" class="remove-btn">🗑️ Remove</button>
+              </div>
+              <div class="watchlist-section bot-section">
+                <label class="bot-section-header">
+                  <input
+                    type="checkbox"
+                    id="include-bot-ticks"
+                    v-model="includeBotTickers"
+                    class="bot-tick-checkbox"
+                  />
+                  <h3 class="panel-title">Bot</h3>
+                </label>
+                <div v-show="includeBotTickers" class="watchlist bot-watchlist">
+                  <div
+                    v-for="item in botOrderSymbols"
+                    :key="item.symbol"
+                    :class="['watchlist-item', { active: tab.selectedTicker === item.symbol }]"
+                    @click="selectTicker(tab.id, item.symbol)"
+                  >
+                    <div class="symbol">{{ item.symbol }}</div>
+                    <div class="name">{{ item.name || item.symbol }}</div>
+                  </div>
+                  <div v-if="botOrderSymbols.length === 0" class="bot-empty">
+                    Nessun ordine attivo
+                  </div>
+                </div>
               </div>
             </div>
-            <button @click="removeSelected(tab.id)" class="remove-btn">🗑️ Remove</button>
           </div>
 
           <!-- Center: Chart -->
           <div class="chart-container">
-            <div v-if="!tab.selectedTicker" class="welcome-screen">
+            <div
+              v-if="!tab.selectedTicker"
+              class="welcome-screen"
+              @click="focusSearchInput"
+              role="button"
+              tabindex="0"
+              @keydown.enter.prevent="focusSearchInput"
+              @keydown.space.prevent="focusSearchInput"
+            >
               <h1>Portfolio Tracker</h1>
               <p>Add an asset from the search bar to begin.</p>
+              <p class="welcome-screen-hint">Clicca qui o sulla barra di ricerca per aggiungere un titolo</p>
             </div>
             <div v-else class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
               @contextmenu.prevent="showChartContextMenu($event, tab.id)"
@@ -358,115 +407,199 @@
               <g v-for="drawing in renderedDrawings[tab.id]" :key="drawing.id">
                 <!-- Line -->
                 <line
-              v-if="drawing.type === 'line'"
-              :x1="drawing.x1"
-              :y1="drawing.y1"
-              :x2="drawing.x2"
-              :y2="drawing.y2"
-              :stroke="drawing.color"
-              stroke-width="2"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <rect
-              v-if="drawing.type === 'square'"
-              :x="Math.min(drawing.x1, drawing.x2)"
-              :y="Math.min(drawing.y1, drawing.y2)"
-              :width="Math.abs(drawing.x2 - drawing.x1)"
-              :height="Math.abs(drawing.y2 - drawing.y1)"
-              :stroke="drawing.color"
-              stroke-width="2"
-              :fill="drawing.color + '1A'"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Circle -->
-            <ellipse
-              v-if="drawing.type === 'circle'"
-              :cx="(drawing.x1 + drawing.x2) / 2"
-              :cy="(drawing.y1 + drawing.y2) / 2"
-              :rx="Math.abs(drawing.x2 - drawing.x1) / 2"
-              :ry="Math.abs(drawing.y2 - drawing.y1) / 2"
-              :stroke="drawing.color"
-              stroke-width="2"
-              :fill="drawing.color + '1A'"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Arrow -->
-            <line
-              v-if="drawing.type === 'arrow'"
-              :x1="drawing.x1"
-              :y1="drawing.y1"
-              :x2="drawing.x2"
-              :y2="drawing.y2"
-              :stroke="drawing.color"
-              stroke-width="2"
-              :marker-end="'url(#arrowhead-' + drawing.id + ')'"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Horizontal Line -->
-            <line
-              v-if="drawing.type === 'hline'"
-              :x1="0"
-              :y1="drawing.y1"
-              :x2="10000"
-              :y2="drawing.y1"
-              :stroke="drawing.color"
-              stroke-width="2"
-              stroke-dasharray="5,5"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Vertical Line -->
-            <line
-              v-if="drawing.type === 'vline'"
-              :x1="drawing.x1"
-              :y1="0"
-              :x2="drawing.x1"
-              :y2="10000"
-              :stroke="drawing.color"
-              stroke-width="2"
-              stroke-dasharray="5,5"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Polygon / Freehand -->
-            <polyline
-              v-if="drawing.type === 'polygon' || drawing.type === 'freehand'"
-              :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
-              :stroke="drawing.color"
-              stroke-width="2"
-              fill="none"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Triangle (as polygon with 3 points) -->
-            <polygon
-              v-if="drawing.type === 'triangle'"
-              :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
-              :stroke="drawing.color"
-              stroke-width="2"
-              :fill="drawing.color + '1A'"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            />
-            <!-- Text -->
-            <text
-              v-if="drawing.type === 'text'"
-              :x="drawing.x1"
-              :y="drawing.y1"
-              :fill="drawing.color"
-              font-size="14"
-              font-weight="600"
-              :class="{ 'temp-drawing': drawing.isTemp }"
-              @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
-            >
-              {{ drawing.text }}
-            </text>
+                  v-if="drawing.type === 'line'"
+                  :x1="drawing.x1"
+                  :y1="drawing.y1"
+                  :x2="drawing.x2"
+                  :y2="drawing.y2"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <rect
+                  v-if="drawing.type === 'square'"
+                  :x="Math.min(drawing.x1, drawing.x2)"
+                  :y="Math.min(drawing.y1, drawing.y2)"
+                  :width="Math.abs(drawing.x2 - drawing.x1)"
+                  :height="Math.abs(drawing.y2 - drawing.y1)"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  :fill="drawing.color + '1A'"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Circle -->
+                <ellipse
+                  v-if="drawing.type === 'circle'"
+                  :cx="(drawing.x1 + drawing.x2) / 2"
+                  :cy="(drawing.y1 + drawing.y2) / 2"
+                  :rx="Math.abs(drawing.x2 - drawing.x1) / 2"
+                  :ry="Math.abs(drawing.y2 - drawing.y1) / 2"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  :fill="drawing.color + '1A'"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Arrow -->
+                <line
+                  v-if="drawing.type === 'arrow'"
+                  :x1="drawing.x1"
+                  :y1="drawing.y1"
+                  :x2="drawing.x2"
+                  :y2="drawing.y2"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  :marker-end="'url(#arrowhead-' + drawing.id + ')'"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Horizontal Line -->
+                <line
+                  v-if="drawing.type === 'hline'"
+                  :x1="0"
+                  :y1="drawing.y1"
+                  :x2="10000"
+                  :y2="drawing.y1"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  stroke-dasharray="5,5"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Vertical Line -->
+                <line
+                  v-if="drawing.type === 'vline'"
+                  :x1="drawing.x1"
+                  :y1="0"
+                  :x2="drawing.x1"
+                  :y2="10000"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  stroke-dasharray="5,5"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Polygon / Freehand -->
+                <polyline
+                  v-if="drawing.type === 'polygon' || drawing.type === 'freehand'"
+                  :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  fill="none"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Triangle -->
+                <polygon
+                  v-if="drawing.type === 'triangle'"
+                  :points="drawing.points.map(p => p.x + ',' + p.y).join(' ')"
+                  :stroke="drawing.color"
+                  :stroke-width="drawing.strokeWidth || 2"
+                  :fill="drawing.color + '1A'"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                />
+                <!-- Text -->
+                <text
+                  v-if="drawing.type === 'text'"
+                  :x="drawing.x1"
+                  :y="drawing.y1"
+                  :fill="drawing.color"
+                  :font-size="drawing.fontSize || 14"
+                  font-weight="600"
+                  :class="['drawing-element', { 'temp-drawing': drawing.isTemp, selected: drawing.selected }]"
+                  @click.stop="onDrawingClick(tab.id, drawing.id, drawing.isTemp)"
+                  @dblclick.stop="drawing.type === 'text' && !drawing.isTemp && (selectDrawing(tab.id, drawing.id), openEditTextForSelected())"
+                  @contextmenu.stop.prevent="showChartContextMenu($event, tab.id, drawing.id)"
+                >
+                  {{ drawing.text }}
+                </text>
               </g>
             </svg>
+
+            <!-- Floating Tool Palette (inside chart, constrained to bounds) -->
+            <FloatingToolPalette
+              v-if="tab.selectedTicker"
+              :current-tool="drawingMode"
+              v-model:color="selectedColor"
+              @set-tool="startDrawing"
+              @undo="undoLastDrawing(tab.id)"
+              @clear-all="clearAllDrawings(tab.id)"
+              @ai-draw="openAiDrawModal"
+            />
+
+            <!-- Drawing Properties Panel (when a drawing is selected) -->
+            <div
+              v-if="tab.selectedTicker && selectedDrawing.tabId === tab.id && selectedDrawing.drawingId && getSelectedDrawingRaw()"
+              class="drawing-properties-panel"
+              @mousedown.stop
+            >
+              <div class="drawing-properties-header">
+                <span>Proprietà disegno</span>
+                <button type="button" class="drawing-props-close" @click="deselectDrawing" title="Chiudi">×</button>
+              </div>
+              <div class="drawing-properties-body">
+                <div class="drawing-prop-row">
+                  <label>Colore</label>
+                  <input
+                    type="color"
+                    :value="getSelectedDrawingRaw()?.color || '#2196F3'"
+                    @input="updateSelectedDrawing({ color: $event.target.value })"
+                    class="drawing-color-input"
+                  />
+                </div>
+                <div v-if="getSelectedDrawingRaw()?.type !== 'text'" class="drawing-prop-row">
+                  <label>Spessore ({{ getSelectedDrawingRaw()?.strokeWidth || 2 }})</label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="6"
+                    :value="getSelectedDrawingRaw()?.strokeWidth ?? 2"
+                    @input="updateSelectedDrawing({ strokeWidth: parseInt($event.target.value, 10) })"
+                    class="drawing-thickness-slider"
+                  />
+                </div>
+                <div v-if="getSelectedDrawingRaw()?.type === 'text'" class="drawing-prop-row">
+                  <label>Dimensione testo ({{ getSelectedDrawingRaw()?.fontSize || 14 }})</label>
+                  <input
+                    type="range"
+                    min="10"
+                    max="28"
+                    :value="getSelectedDrawingRaw()?.fontSize ?? 14"
+                    @input="updateSelectedDrawing({ fontSize: parseInt($event.target.value, 10) })"
+                    class="drawing-thickness-slider"
+                  />
+                </div>
+                <div v-if="getSelectedDrawingRaw()?.type === 'text'" class="drawing-prop-row">
+                  <label>Testo</label>
+                  <div class="drawing-text-edit">
+                    <input
+                      type="text"
+                      :value="getSelectedDrawingRaw()?.text || ''"
+                      @input="updateSelectedDrawing({ text: $event.target.value })"
+                      class="drawing-text-input"
+                      placeholder="Testo"
+                    />
+                    <button type="button" class="drawing-edit-btn" @click="openEditTextForSelected" title="Modifica testo (finestra)">✎</button>
+                  </div>
+                </div>
+                <div class="drawing-prop-actions">
+                  <button type="button" class="drawing-delete-btn" @click="removeDrawing(selectedDrawing.tabId, selectedDrawing.drawingId); deselectDrawing()">
+                    Elimina
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -499,6 +632,13 @@
       @create="handleCreateTab"
     />
     
+    <!-- Backdrop per chiudere i menu contestuali cliccando fuori -->
+    <div
+      v-if="contextMenu.show || (chartContextMenu.show && chartContextMenu.drawingId)"
+      class="context-menu-backdrop"
+      @click="closeContextMenu(); closeChartContextMenu()"
+    ></div>
+
     <!-- Tab Context Menu -->
     <div
       v-if="contextMenu.show"
@@ -525,21 +665,14 @@
       :style="{ left: chartContextMenu.x + 'px', top: chartContextMenu.y + 'px' }"
       @click.stop
     >
+      <button @click="selectDrawing(chartContextMenu.tabId, chartContextMenu.drawingId); closeChartContextMenu()" class="context-menu-item">
+        Modifica proprietà
+      </button>
       <button @click="removeDrawing(chartContextMenu.tabId, chartContextMenu.drawingId)" class="context-menu-item delete">
-        Remove Drawing
+        Elimina disegno
       </button>
     </div>
 
-    <!-- Floating Tool Palette -->
-    <FloatingToolPalette
-      v-if="tabs.find(t => t.id === activeTab && t.type === 'stocks')"
-      :current-tool="drawingMode"
-      v-model:color="selectedColor"
-      @set-tool="startDrawing"
-      @undo="undoLastDrawing(activeTab)"
-      @clear-all="clearAllDrawings(activeTab)"
-      @ai-draw="openAiDrawModal"
-    />
   </div>
 </template>
 
@@ -559,7 +692,6 @@ import LoginModal from '../components/LoginModal.vue'
 import RegisterModal from '../components/RegisterModal.vue'
 import ProfileModal from '../components/ProfileModal.vue'
 import StrategyBuilder from '../components/StrategyBuilder.vue'
-import SchedulerDashboard from '../components/SchedulerDashboard.vue'
 
 import TabWizard from '../components/TabWizard.vue'
 import IndicatorSearch from '../components/IndicatorSearch.vue'
@@ -619,11 +751,6 @@ const tabs = ref([
       recipientId: null,
       inviteAi: false
     }
-  },
-  {
-    id: 6,
-    name: 'Auto-Trade',
-    type: 'scheduler'
   }
 ])
 
@@ -638,10 +765,12 @@ const editingTab = ref(null)
 const editingTabName = ref('')
 const contextMenu = ref({ show: false, x: 0, y: 0, tab: null })
 const chartContextMenu = ref({ show: false, x: 0, y: 0, tabId: null, drawingId: null })
+const showWatchlist = ref(false) // New state for mobile watchlist drawer
 const drawingMode = ref(null) // null, 'line', 'square', 'circle', 'arrow', 'hline', 'vline', 'text', 'triangle', 'polygon', 'freehand'
 const drawingStart = ref(null) // { time, price }
 const tempDrawing = ref(null) // { type, points: [], color, text }
 const renderedDrawings = ref({}) // Map tabId -> array of { id, type, points, color, text, isTemp }
+const selectedDrawing = ref({ tabId: null, drawingId: null }) // Currently selected drawing for editing
 const selectedColor = ref('#2196F3') // Default blue
 const showColorPicker = ref(false)
 const draggedTabId = ref(null)
@@ -657,6 +786,9 @@ const selectedResultIndex = ref(null)
 const searchInputRef = ref(null)
 const currentUser = computed(() => authStore.user)
 const isLoggedIn = computed(() => authStore.isAuthenticated)
+const botOrderSymbols = ref([])
+const includeBotTickers = ref(true)
+let botOrdersInterval = null
 
 const watchlist = computed(() => watchlistStore.watchlist)
 const newsItems = computed(() => newsStore.news)
@@ -667,6 +799,27 @@ const setChartRef = (tabId, el) => {
   }
 }
 
+const loadBotOrders = async () => {
+  if (!isLoggedIn.value) return
+  try {
+    const res = await api.getBotDecisions(100, null)
+    const decisions = res.data?.decisions ?? []
+    const pending = decisions.filter(d => d.status === 'PENDING' && d.symbol)
+    const seen = new Set()
+    const wlMap = Object.fromEntries(watchlist.value.map(w => [w.symbol, w.name]))
+    const symbols = []
+    for (const d of pending) {
+      if (!seen.has(d.symbol)) {
+        seen.add(d.symbol)
+        symbols.push({ symbol: d.symbol, name: wlMap[d.symbol] || d.symbol })
+      }
+    }
+    botOrderSymbols.value = symbols
+  } catch (e) {
+    botOrderSymbols.value = []
+  }
+}
+
 onMounted(async () => {
   // Check authentication
   await authStore.checkAuth()
@@ -674,6 +827,8 @@ onMounted(async () => {
   // Load user tabs if authenticated
   if (isLoggedIn.value) {
     await loadUserTabs()
+    await loadBotOrders()
+    botOrdersInterval = setInterval(loadBotOrders, 60000) // refresh every 60s
   }
   
   await watchlistStore.loadWatchlist()
@@ -690,8 +845,23 @@ onMounted(async () => {
   document.addEventListener('keydown', handleKeyDown)
 })
 onUnmounted(() => {
+  if (botOrdersInterval) clearInterval(botOrdersInterval)
   document.removeEventListener('click', closeContextMenu)
   document.removeEventListener('keydown', handleKeyDown)
+})
+
+watch(isLoggedIn, (val) => {
+  if (val) {
+    loadBotOrders()
+    if (botOrdersInterval) clearInterval(botOrdersInterval)
+    botOrdersInterval = setInterval(loadBotOrders, 60000)
+  } else {
+    if (botOrdersInterval) {
+      clearInterval(botOrdersInterval)
+      botOrdersInterval = null
+    }
+    botOrderSymbols.value = []
+  }
 })
 
 const setActiveTab = (tabId) => {
@@ -706,6 +876,8 @@ const setActiveTab = (tabId) => {
   }
   closeContextMenu()
   closeChartContextMenu()
+  deselectDrawing()
+  showWatchlist.value = false // Close watchlist on mobile when switching tabs
 }
 
 const loadUserTabs = async () => {
@@ -767,6 +939,7 @@ const handleCreateTab = (tabConfig) => {
 }
 
 const startRenameTab = (tab) => {
+  closeContextMenu()
   editingTab.value = tab
   editingTabName.value = tab.name
 }
@@ -917,9 +1090,45 @@ const clearAllDrawings = (tabId) => {
   closeChartContextMenu()
 }
 
+const selectDrawing = (tabId, drawingId) => {
+  selectedDrawing.value = { tabId, drawingId }
+}
+
+const deselectDrawing = () => {
+  selectedDrawing.value = { tabId: null, drawingId: null }
+}
+
+const getSelectedDrawingRaw = () => {
+  const { tabId, drawingId } = selectedDrawing.value
+  if (!tabId || !drawingId) return null
+  const tab = tabs.value.find(t => t.id === tabId)
+  if (!tab || !tab.drawings) return null
+  return tab.drawings.find(d => d.id === drawingId) || null
+}
+
+const updateSelectedDrawing = (updates) => {
+  const raw = getSelectedDrawingRaw()
+  if (!raw) return
+  Object.assign(raw, updates)
+  saveUserTabs()
+  if (selectedDrawing.value.tabId) {
+    updateDrawingCoordinates(selectedDrawing.value.tabId)
+  }
+}
+
+const openEditTextForSelected = () => {
+  const raw = getSelectedDrawingRaw()
+  if (!raw || raw.type !== 'text') return
+  const newText = prompt('Modifica testo:', raw.text || '')
+  if (newText !== null) {
+    updateSelectedDrawing({ text: newText })
+  }
+}
+
 const startDrawing = (type) => {
   drawingMode.value = type
   closeChartContextMenu()
+  deselectDrawing()
   
   // For text, prompt immediately
   if (type === 'text') {
@@ -940,6 +1149,9 @@ const removeDrawing = (tabId, drawingId) => {
       tab.drawings.splice(index, 1)
       saveUserTabs()
       updateDrawingCoordinates(tabId)
+      if (selectedDrawing.value.tabId === tabId && selectedDrawing.value.drawingId === drawingId) {
+        deselectDrawing()
+      }
     }
   }
   closeChartContextMenu()
@@ -979,7 +1191,9 @@ const handleChartClick = (event, tabId) => {
       type: 'text',
       p1: { time, price },
       text: tempDrawing.value.text,
-      color: tempDrawing.value.color
+      color: tempDrawing.value.color,
+      strokeWidth: 2,
+      fontSize: 14
     }
     if (!tab.drawings) tab.drawings = []
     tab.drawings.push(newDrawing)
@@ -1001,7 +1215,7 @@ const handleChartClick = (event, tabId) => {
     } else if (tempDrawing.value.points.length === 2) {
       // third point, finalize
       const points = [...tempDrawing.value.points, { time, price }]
-      const newDrawing = { id: Date.now().toString(), type: 'triangle', points, color: selectedColor.value }
+      const newDrawing = { id: Date.now().toString(), type: 'triangle', points, color: selectedColor.value, strokeWidth: 2 }
       if (!tab.drawings) tab.drawings = []
       tab.drawings.push(newDrawing)
       // drawingMode.value = null // Keep tool selected
@@ -1050,7 +1264,9 @@ const handleChartClick = (event, tabId) => {
       type: drawingMode.value,
       p1: drawingStart.value,
       p2: { time, price },
-      color: selectedColor.value
+      color: selectedColor.value,
+      strokeWidth: 2,
+      fontSize: 14
     }
     if (!tab.drawings) tab.drawings = []
     tab.drawings.push(newDrawing)
@@ -1123,12 +1339,14 @@ const updateDrawingCoordinates = (tabId) => {
           return { x, y }
         }).filter(pt => pt.x !== null && pt.y !== null)
         if (screenPoints.length > 0) {
+          const selected = selectedDrawing.value.tabId === tabId && selectedDrawing.value.drawingId === d.id
           drawings.push({
             id: d.id,
             type: d.type,
             points: screenPoints,
             color: d.color || '#2196F3',
-            selected: false
+            strokeWidth: d.strokeWidth ?? 2,
+            selected
           })
         }
       } else {
@@ -1140,13 +1358,16 @@ const updateDrawingCoordinates = (tabId) => {
           y2 = tab.candlestickSeries.priceToCoordinate(d.p2.price)
         }
         if (x1 !== null && y1 !== null) {
+          const selected = selectedDrawing.value.tabId === tabId && selectedDrawing.value.drawingId === d.id
           drawings.push({
             id: d.id,
             type: d.type,
             x1, y1, x2, y2,
             color: d.color || '#2196F3',
             text: d.text,
-            selected: false
+            strokeWidth: d.strokeWidth ?? 2,
+            fontSize: d.fontSize ?? 14,
+            selected
           })
         }
       }
@@ -1207,7 +1428,7 @@ const handleDragStart = (event, tab, index) => {
   draggedTabId.value = tab.id
   draggedTabIndex.value = index
   event.dataTransfer.effectAllowed = 'move'
-  event.dataTransfer.setData('text/html', event.target)
+  event.dataTransfer.setData('text/plain', tab.id.toString())
   // Add a slight delay to allow drag image to be set
   setTimeout(() => {
     if (event.target) {
@@ -1801,6 +2022,12 @@ const addTopResult = () => {
     addToWatchlist(searchResults.value[indexToAdd], currentTab.id)
     selectedResultIndex.value = null
   }
+}
+
+const focusSearchInput = () => {
+  nextTick(() => {
+    searchInputRef.value?.focus()
+  })
 }
 
 const handleResultClick = async (item, tabId) => {
@@ -2495,28 +2722,38 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #000000;
+  background: linear-gradient(180deg, #0d0d0f 0%, #08080a 100%);
   color: #e0e0e0;
+  pointer-events: auto;
 }
 
-/* Tab Bar */
+/* Tab Bar - barra full-width moderna senza spazi neri */
+.tab-bar-container {
+  position: relative;
+  z-index: 100;
+  pointer-events: auto;
+  flex-shrink: 0;
+  padding: 0;
+}
+
 .tab-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
-  padding: 0 20px;
-  background-color: #0a0a0a;
-  border-bottom: 1px solid #222;
-  height: 50px;
+  gap: 12px;
+  padding: 0 20px 0 16px;
+  background: linear-gradient(180deg, #151518 0%, #0f0f12 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  height: 56px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
 }
 
 .tabs-section {
   display: flex;
   flex: 1;
-  gap: 2px;
+  gap: 4px;
   height: 100%;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
 }
 
@@ -2542,49 +2779,92 @@ const handleAiDrawingAdded = (drawing) => {
   transform: translateX(4px);
 }
 
-.tab-wrapper[draggable="true"] {
+.tab-drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  margin-right: 4px;
   cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
 }
 
-.tab-wrapper[draggable="true"]:active {
+.tabs-section .tab-wrapper:first-child .tab-drag-handle {
+  padding: 0 4px;
+  margin-right: 0;
+}
+
+.tabs-section .tab-wrapper:first-child .tab-drag-handle .divider-line {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.tab-drag-handle .divider-line {
+  width: 1px;
+  height: 18px;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.15) 20%, 
+    rgba(255, 255, 255, 0.25) 50%, 
+    rgba(255, 255, 255, 0.15) 80%, 
+    transparent 100%);
+  border-radius: 1px;
+  transition: all 0.2s ease;
+}
+
+.tab-drag-handle:hover .divider-line {
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.25) 20%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0.25) 80%, 
+    transparent 100%);
+  height: 20px;
+}
+
+.tab-drag-handle:active {
   cursor: grabbing;
 }
 
 .tab-btn {
-  padding: 0 24px;
-  height: 40px;
+  padding: 0 18px;
+  height: 38px;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
-  color: #888;
+  border-radius: 10px;
+  color: #9ca3af;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  letter-spacing: 1px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.6px;
 }
 
 .tab-btn:hover {
   color: #fff;
-  background-color: #111;
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .tab-btn.active {
-  background-color: #000;
-  border-bottom: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .tab-rename-input {
-  background: transparent;
-  border: 1px solid #4299e1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(66, 153, 225, 0.6);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
   padding: 0 8px;
   margin: 0;
   width: 100px;
+  border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
   outline: none;
@@ -2620,32 +2900,41 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .add-tab-btn {
-  padding: 0 12px;
-  height: 30px;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 2px;
-  color: #888;
+  padding: 0 16px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #9ca3af;
   cursor: pointer;
-  font-size: 16px;
-  margin-left: 10px;
-  margin-bottom: 5px;
-  transition: all 0.2s;
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
 }
 
 .add-tab-btn:hover {
-  background-color: #333;
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Tab Content */
+/* Tab Content - stacking context per evitare che chart/overlay blocchino i tab */
 .tab-content {
   flex: 1;
   overflow: hidden;
   position: relative;
+  z-index: 0;
+  isolation: isolate;
 }
 
 .tab-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -2726,12 +3015,16 @@ const handleAiDrawingAdded = (drawing) => {
 
 /* Chart Toolbar */
 .chart-toolbar {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 10px 30px;
   background-color: #0a0a0a;
   border-bottom: 1px solid #222;
+  flex-shrink: 0;
+  pointer-events: auto;
 }
 
 .timeframe-buttons, .chart-type-buttons {
@@ -3193,6 +3486,66 @@ const handleAiDrawingAdded = (drawing) => {
   letter-spacing: 0.5px;
 }
 
+.watchlist-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.watchlist-section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.watchlist-section.watchlist-main {
+  flex: 2;
+  min-height: 0;
+}
+
+.watchlist-section.bot-section {
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid #222;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.bot-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bot-section-header .panel-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.bot-section-header .bot-tick-checkbox {
+  cursor: pointer;
+  accent-color: #4299e1;
+  flex-shrink: 0;
+}
+
+.bot-section .remove-btn {
+  display: none;
+}
+
+.bot-empty {
+  font-size: 11px;
+  color: #555;
+  padding: 12px;
+  text-align: center;
+}
+
 .panel-title {
   font-size: 11px;
   font-weight: 700;
@@ -3323,6 +3676,18 @@ const handleAiDrawingAdded = (drawing) => {
   justify-content: center;
   height: 100%;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+.welcome-screen:focus-visible {
+  outline: 2px solid rgba(66, 153, 225, 0.6);
+  outline-offset: 4px;
+}
+.welcome-screen-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #555;
 }
 
 .welcome-screen h1 {
@@ -3342,6 +3707,15 @@ const handleAiDrawingAdded = (drawing) => {
 /* Custom overrides for lightweight charts */
 :deep(.tv-lightweight-charts) {
   font-family: 'Roboto Mono', monospace !important;
+}
+
+/* Backdrop per chiudere menu contestuali cliccando fuori */
+.context-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: transparent;
+  cursor: default;
 }
 
 /* Context Menu */
@@ -3436,19 +3810,166 @@ const handleAiDrawingAdded = (drawing) => {
   z-index: 10;
 }
 
-.drawing-overlay line,
-.drawing-overlay rect {
+.drawing-overlay .drawing-element {
   pointer-events: auto;
   cursor: pointer;
+  transition: filter 0.15s ease;
 }
 
-.drawing-overlay rect {
+.drawing-overlay .drawing-element:hover {
+  filter: brightness(1.15);
+}
+
+.drawing-overlay .drawing-element.selected {
+  filter: brightness(1.25) drop-shadow(0 0 4px rgba(33, 150, 243, 0.6));
+  outline: none;
+}
+
+.drawing-overlay rect.drawing-element {
   vector-effect: non-scaling-stroke;
 }
 
 .temp-drawing {
   opacity: 0.5;
   pointer-events: none !important;
+}
+
+/* Drawing Properties Panel */
+.drawing-properties-panel {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  min-width: 200px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.drawing-properties-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #252525;
+  border-bottom: 1px solid #333;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.drawing-props-close {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.drawing-props-close:hover {
+  color: #fff;
+  background: #333;
+}
+
+.drawing-properties-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.drawing-prop-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawing-prop-row label {
+  font-size: 11px;
+  color: #888;
+  font-weight: 600;
+}
+
+.drawing-color-input {
+  width: 100%;
+  height: 32px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #151515;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.drawing-thickness-slider {
+  width: 100%;
+  accent-color: #2196F3;
+}
+
+.drawing-text-edit {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.drawing-text-input {
+  flex: 1;
+  padding: 6px 8px;
+  background: #151515;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.drawing-text-input:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+.drawing-edit-btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: #252525;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.drawing-edit-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.drawing-prop-actions {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+}
+
+.drawing-delete-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(239, 83, 80, 0.15);
+  border: 1px solid #d32f2f;
+  border-radius: 4px;
+  color: #ef5350;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.drawing-delete-btn:hover {
+  background: rgba(239, 83, 80, 0.25);
+  color: #fff;
 }
 
 /* Context Menu */
@@ -3524,4 +4045,276 @@ const handleAiDrawingAdded = (drawing) => {
   background-color: #333;
   margin: 4px 0;
 }
+
+/* Responsive Dashboard Styles */
+@media (max-width: 768px) {
+  .dashboard {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Tab Bar */
+  .tab-bar-container {
+    padding: 0;
+  }
+
+  .tab-bar {
+    padding: 0 12px 0 10px;
+    height: 52px;
+  }
+
+  .tabs-section {
+    overflow-x: auto;
+    overflow-y: hidden;
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    padding-right: 20px;
+  }
+  
+  .tab-btn {
+    padding: 0 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    height: 100%;
+  }
+
+  .add-tab-btn {
+    display: none; /* Hide add button on mobile for now */
+  }
+
+  /* Main Content Layout */
+  .main-content {
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Left Panel (Watchlist) */
+  .left-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85%; /* Drawer width */
+    max-width: 320px;
+    z-index: 100;
+    background-color: #0c0c0c;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.6);
+    border-right: 1px solid #222;
+  }
+
+  .left-panel.active {
+    transform: translateX(0);
+  }
+  
+  .mobile-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #222;
+    border: none;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .mobile-close-btn {
+    display: flex;
+  }
+
+  .mobile-watchlist-toggle {
+    display: inline-flex;
+    padding: 6px 12px;
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+
+  /* Chart Container */
+  .chart-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Chart Info Bar */
+  .chart-info-bar {
+    padding: 10px 15px;
+    gap: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-bottom: 1px solid #222;
+    background-color: #000;
+  }
+  
+  .chart-info-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .info-item {
+    flex-shrink: 0;
+  }
+  
+  .info-item label {
+    font-size: 9px;
+  }
+  
+  .info-value {
+    font-size: 13px;
+  }
+  
+  .price-item {
+    padding-left: 15px;
+    margin-left: 0;
+    position: sticky;
+    right: 0;
+    background: #000;
+    border-left: 1px solid #222;
+    padding-right: 5px;
+    z-index: 2;
+  }
+  
+  .price-value {
+    font-size: 20px;
+  }
+
+  /* Chart Toolbar */
+  .chart-toolbar {
+    padding: 8px 10px;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: #0a0a0a;
+  }
+  
+  .timeframe-buttons, .chart-type-buttons, .indicators-buttons {
+    flex-shrink: 0;
+  }
+  
+  .indicator-btn, .timeframe-btn, .chart-type-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+  
+  .ai-analysis-input {
+    min-width: 180px;
+  }
+  
+  /* Hide desktop-only elements or adjust */
+  .add-btn .add-icon {
+    font-size: 12px;
+  }
+
+  /* Tab panels full height on mobile */
+  .tab-panel {
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .flex-panel,
+  .news-panel,
+  .bot-panel,
+  .earnings-panel {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Context menu: keep on screen */
+  .context-menu {
+    max-width: min(260px, calc(100vw - 24px));
+  }
+
+  /* Drawing properties panel on mobile: full width bottom sheet style */
+  .drawing-properties-panel {
+    right: 8px;
+    left: 8px;
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    min-width: 0;
+    width: auto;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .tab-bar-container {
+    padding: 6px 8px 0;
+  }
+
+  .tab-bar {
+    height: 44px;
+    padding: 0 8px;
+  }
+
+  .tab-btn {
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .tab-drag-handle {
+    padding: 0 4px;
+    font-size: 10px;
+  }
+
+  .left-panel {
+    width: 92%;
+    max-width: none;
+  }
+
+  .chart-info-bar {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .info-value {
+    font-size: 12px;
+  }
+
+  .price-value {
+    font-size: 18px;
+  }
+
+  .chart-toolbar {
+    padding: 6px 8px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .indicators-buttons {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .indicator-btn,
+  .timeframe-btn,
+  .chart-type-btn {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .mobile-watchlist-toggle {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+}
+
+/* Default state for desktop */
+.mobile-close-btn, .mobile-watchlist-toggle {
+  display: none;
+}
+
 </style>

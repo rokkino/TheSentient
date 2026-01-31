@@ -173,11 +173,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 12px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  padding: 6px 12px 6px 8px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
   user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .profile-main {
@@ -190,11 +191,12 @@ onUnmounted(() => {
 }
 
 .profile-main:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .profile-trigger:hover {
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .profile-avatar {
@@ -237,11 +239,11 @@ onUnmounted(() => {
 
 .dropdown-arrow {
   font-size: 8px;
-  color: #666;
+  color: #888;
   transition: all 0.2s;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 2px;
+  padding: 6px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,7 +251,7 @@ onUnmounted(() => {
 
 .dropdown-arrow:hover {
   color: #fff;
-  background-color: #333;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .dropdown-arrow.open {
@@ -258,15 +260,17 @@ onUnmounted(() => {
 
 .profile-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   right: 0;
-  background-color: #0a0a0a;
-  border: 1px solid #333;
-  border-radius: 2px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background-color: rgba(26, 26, 26, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   min-width: 260px;
   z-index: 1000;
   overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .menu-header {
@@ -382,6 +386,65 @@ onUnmounted(() => {
 
 .menu-item:hover .menu-icon {
   color: #fff;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .user-profile {
+    margin-left: 0;
+  }
+
+  .profile-trigger {
+    padding: 6px 8px 6px 6px;
+    gap: 6px;
+    min-height: 44px;
+  }
+
+  .profile-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .avatar-icon {
+    font-size: 10px;
+  }
+
+  .profile-name {
+    font-size: 12px;
+    max-width: 72px;
+  }
+
+  .profile-menu {
+    right: 0;
+    left: auto;
+    min-width: 240px;
+    max-width: min(280px, calc(100vw - 24px));
+    top: calc(100% + 6px);
+  }
+
+  .menu-item {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-name {
+    display: none;
+  }
+
+  .profile-trigger {
+    padding: 8px;
+  }
+
+  .dropdown-arrow {
+    display: none;
+  }
+
+  .profile-menu {
+    width: calc(100vw - 24px);
+    max-width: 280px;
+  }
 }
 </style>
 

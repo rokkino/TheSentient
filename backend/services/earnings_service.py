@@ -121,8 +121,7 @@ class EarningsService:
                 dates_in_range = set()
                 current = start_date
                 while current <= end_date:
-                    if current.weekday() < 5:  # Weekdays only
-                        dates_in_range.add(current)
+                    dates_in_range.add(current)
                     current += timedelta(days=1)
                 
                 best_cache = None
@@ -339,12 +338,10 @@ class EarningsService:
             earnings_list = []
             current_date = start
             
-            # Collect dates to fetch
+            # Collect dates to fetch (includiamo anche sabato e domenica)
             dates_to_fetch = []
             while current_date <= end:
-                # Skip weekends (Saturday=5, Sunday=6)
-                if current_date.weekday() < 5:
-                    dates_to_fetch.append(current_date)
+                dates_to_fetch.append(current_date)
                 current_date += timedelta(days=1)
             
             # Check cache for each date first, then fetch missing ones

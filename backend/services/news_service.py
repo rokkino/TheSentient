@@ -5,7 +5,7 @@ import sys
 import os
 import asyncio
 from typing import List, Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 import yfinance as yf
 import feedparser
 from sqlalchemy.orm import Session
@@ -343,7 +343,7 @@ class NewsService:
                     try:
                         ts = datetime.fromisoformat(ts_str)
                     except:
-                        ts = datetime.utcnow()
+                        ts = datetime.now(timezone.utc)
                         
                     new_news = News(
                         ticker=item['ticker'],
@@ -369,7 +369,7 @@ class NewsService:
         from models.news import News
         from datetime import timedelta
         
-        cutoff = datetime.utcnow() - timedelta(days=days)
+        cutoff = datetime.now(timezone.utc) - timedelta(days=days)
         try:
             deleted = db.query(News).filter(News.timestamp < cutoff).delete()
             db.commit()

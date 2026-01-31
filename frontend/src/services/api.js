@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// Auto-detect environment: localhost (dev) vs production (VM)
+const API_URL = window.location.hostname === 'localhost'
+  ? '' // Use relative path in dev - Vite proxy handles routing to localhost:8000
+  : 'http://34.53.28.120' // Production VM IP
 
 const api = axios.create({
   baseURL: `${API_URL}/api`,
@@ -187,10 +190,6 @@ export default {
     return api.post(`/accounts/${accountId}/test`)
   },
 
-  initiateEtoroGoogleAuth() {
-    return api.post('/etoro/login/google')
-  },
-
   // Alpaca Paper Trading endpoints
   getAlpacaAccount() {
     return api.get('/alpaca/account')
@@ -222,6 +221,10 @@ export default {
     return api.get('/alpaca/portfolio/history', { params: { period, timeframe } })
   },
 
+  searchAlpacaAssets(query) {
+    return api.get('/alpaca/search', { params: { query } })
+  },
+
   // Chat endpoints
   getChatMessages(limit = 100, recipientId = null) {
     const params = { limit }
@@ -241,6 +244,10 @@ export default {
     const params = {}
     if (recipientId) params.recipient_id = recipientId
     return api.delete('/chat/history', { params })
+  },
+
+  getUserByUsername(username) {
+    return api.get('/users/by-username', { params: { username } })
   },
 
   // User tabs endpoints
@@ -359,6 +366,10 @@ export default {
 
   deleteBotDecision(decisionId) {
     return api.delete(`/bot/decisions/${decisionId}`)
+  },
+
+  executeBotDecision(decisionId) {
+    return api.post(`/bot/decisions/${decisionId}/execute`)
   },
 
   // Earnings endpoints

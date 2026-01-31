@@ -28,7 +28,7 @@ async def main():
                 hashed_password=hashed_pw,
                 is_active=True,
                 gemini_api_key=os.getenv("GOOGLE_GEMINI_API_KEY"), # Use env var for test
-                gemini_model="gemini-3-flash-preview"
+                gemini_model="gemini-2.5-pro"
             )
             db.add(user)
             db.commit()

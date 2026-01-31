@@ -89,8 +89,5 @@ class WebSocketManager:
             if conn["user_id"] and conn["username"]:
                 users[conn["user_id"]] = conn["username"]
         
-        return [{"id": uid, "username": uname} for uid, uname in users.items()] + [
-            {"id": -1, "username": "Llama AI"},
-            {"id": -2, "username": "Gemini AI"}
-        ]
+        return [{"id": uid, "username": uname} for uid, uname in users.items()]
 

@@ -1,10 +1,5 @@
 <template>
   <div class="bot-list-container">
-    <div class="bot-header-section">
-      <h2>🤖 Trading Bots Competition</h2>
-      <p class="subtitle">Compete with your friends' trading bots</p>
-    </div>
-
     <div class="leaderboard-section" v-if="bots.length > 0">
       <div class="leaderboard-header">
         <h3>🏆 Performance Leaderboard</h3>
@@ -22,7 +17,10 @@
       
       <!-- Performance Chart -->
       <div class="performance-chart-container" v-if="leaderboardBots.length > 0">
-        <div ref="chartContainer" class="chart-wrapper" v-show="!loading"></div>
+        <div class="chart-and-overlay">
+          <div ref="chartContainer" class="chart-wrapper" v-show="!loading"></div>
+          <div ref="chartOverlay" class="chart-avatar-overlay" v-show="!loading"></div>
+        </div>
         <div class="chart-legend" v-if="!loading">
           <div 
             v-for="(bot, index) in leaderboardBots" 
@@ -32,8 +30,8 @@
           >
             <div class="legend-left">
               <div class="legend-color"></div>
-              <div class="legend-bot-icon" :style="{ backgroundColor: getBotColor(bot.name) }">
-                {{ bot.name.charAt(0).toUpperCase() }}
+              <div class="legend-bot-icon" :style="{ borderColor: getBotColor(bot.name) }">
+                <img :src="botIconUrl" :alt="bot.name" class="legend-bot-img" />
               </div>
             </div>
             <div class="legend-content">
@@ -56,6 +54,13 @@
                     {{ (bot.status || 'INACTIVE').toUpperCase() }}
                   </span>
                 </span>
+                <span v-if="(bot.status === 'active') && (bot.activatedAt || bot.activated_at)" class="legend-stat legend-active-since">
+                  <span class="stat-label start-flag-label" title="Attivo da">
+                    <span class="start-flag-icon" aria-hidden="true">🏁</span>
+                    Attivo dal
+                  </span>
+                  <span class="stat-value">{{ formatActiveSince(bot.activatedAt || bot.activated_at) }}</span>
+                </span>
               </div>
             </div>
           </div>
@@ -63,22 +68,23 @@
       </div>
       
       <div class="leaderboard-graph">
-        <div v-for="(bot, index) in leaderboardBots" :key="bot.id" class="graph-row">
+        <div v-for="(bot, index) in leaderboardBots" :key="bot.id" class="graph-row" :style="{ '--bot-color': getBotColor(bot.name) }">
           <div class="rank">{{ index + 1 }}</div>
           <div class="bot-info">
-            <div class="bot-avatar" :style="{ backgroundColor: getBotColor(bot.name) }">
-              {{ bot.name.charAt(0).toUpperCase() }}
+            <div class="bot-avatar">
+              <img :src="botIconUrl" :alt="bot.name" class="bot-avatar-img" />
             </div>
-            <span class="bot-name">{{ bot.name }}</span>
+            <span class="bot-name" :title="bot.name">{{ bot.name }}</span>
           </div>
           <div class="bar-container">
             <div 
               class="bar" 
               :style="{ width: getBarWidth(bot) + '%' }"
-              :class="leaderboardMetric"
+              :class="[leaderboardMetric, { empty: getBarWidth(bot) === 0 }]"
             >
-              <div class="bar-glow"></div>
+              <div class="bar-glow" v-if="getBarWidth(bot) > 0"></div>
             </div>
+            <div class="bar-empty-hint" v-if="getBarWidth(bot) === 0">—</div>
           </div>
           <div class="metric-value">
             {{ formatMetricValue(bot) }}
@@ -132,6 +138,7 @@
 <script setup>
 import { ref, onMounted, computed, watch, nextTick, onUnmounted } from 'vue'
 import { createChart } from 'lightweight-charts'
+import botIconUrl from '../assets/bot_icon.jpg'
 import BotCard from './BotCard.vue'
 import BotConfigModal from './BotConfigModal.vue'
 import CreateBotModal from './CreateBotModal.vue'
@@ -153,8 +160,11 @@ const showConfigModal = ref(false)
 // Leaderboard Logic
 const leaderboardMetric = ref('winRate') // 'winRate' or 'profit'
 const chartContainer = ref(null)
+const chartOverlay = ref(null)
 let chart = null
 let seriesMap = new Map()
+const lastPointByBotId = new Map()
+let avatarOverlayUpdater = null
 let isInitializing = false
 
 const leaderboardBots = computed(() => {
@@ -202,6 +212,13 @@ const formatMetricValue = (bot) => {
   } else {
     return `$${bot.profit.toFixed(2)}`
   }
+}
+
+const formatActiveSince = (dateStr) => {
+  if (!dateStr) return '—'
+  const d = typeof dateStr === 'string' ? new Date(dateStr) : dateStr
+  if (isNaN(d.getTime())) return '—'
+  return d.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })
 }
 
 const getBotColor = (name) => {
@@ -287,13 +304,17 @@ const initChart = async () => {
     }
     seriesMap.clear()
     
-    // Clear container content completely
+    // Clear container and overlay
     if (chartContainer.value) {
-      // Remove all child nodes
       while (chartContainer.value.firstChild) {
         chartContainer.value.removeChild(chartContainer.value.firstChild)
       }
     }
+    if (chartOverlay.value) {
+      chartOverlay.value.innerHTML = ''
+    }
+    lastPointByBotId.clear()
+    avatarOverlayUpdater = null
     
     await nextTick()
     
@@ -373,33 +394,23 @@ const initChart = async () => {
       topColor: hexToRgba(color, 0.4),
       bottomColor: hexToRgba(color, 0.0),
       lineWidth: 2,
-      title: bot.name,
+      title: '', // no text label on chart - icon (marker) only; name is in legend
       priceFormat: {
         type: 'price',
         precision: leaderboardMetric.value === 'winRate' ? 1 : 2,
         minMove: leaderboardMetric.value === 'winRate' ? 0.1 : 0.01,
       },
-      lastValueVisible: true,
+      lastValueVisible: false,
       priceLineVisible: false,
       crosshairMarkerVisible: true,
       crosshairMarkerRadius: 5,
     })
     
-    // Add markers with bot icon at key points
-    const markers = []
     const lastPoint = historicalData[historicalData.length - 1]
-    
-    // Add marker at the last point (current value) with bot icon letter
-    markers.push({
-      time: lastPoint.time,
-      position: 'aboveBar',
-      color: color,
-      shape: 'circle',
-      size: 1.2,
-      text: bot.name.charAt(0).toUpperCase(),
-    })
-    
-    // Add marker at midpoint for visual interest
+    lastPointByBotId.set(bot.id, { time: lastPoint.time, value: lastPoint.value })
+
+    // Only midpoint marker; last point shows round image overlay instead
+    const markers = []
     const midPoint = historicalData[Math.floor(historicalData.length / 2)]
     markers.push({
       time: midPoint.time,
@@ -408,13 +419,44 @@ const initChart = async () => {
       shape: 'circle',
       size: 0.6,
     })
-    
+
     series.setData(historicalData)
     series.setMarkers(markers)
     seriesMap.set(bot.id, series)
   })
-  
+
   chart.timeScale().fitContent()
+
+  const updateAvatarOverlay = () => {
+    if (!chartOverlay.value || !chart) return
+    chartOverlay.value.innerHTML = ''
+    const w = chartContainer.value?.offsetWidth || 0
+    const h = chartContainer.value?.offsetHeight || 0
+    if (w === 0 || h === 0) return
+    chartOverlay.value.style.width = w + 'px'
+    chartOverlay.value.style.height = h + 'px'
+    const size = 28
+    const half = size / 2
+    leaderboardBots.value.forEach((bot) => {
+      const last = lastPointByBotId.get(bot.id)
+      const series = seriesMap.get(bot.id)
+      if (!last || !series) return
+      const x = chart.timeScale().timeToCoordinate(last.time)
+      const y = series.priceToCoordinate(last.value)
+      if (x == null || y == null) return
+      const img = document.createElement('img')
+      img.src = botIconUrl
+      img.alt = bot.name
+      img.className = 'chart-bot-avatar'
+      img.style.cssText = `position:absolute;left:${x - half}px;top:${y - half}px;width:${size}px;height:${size}px;border-radius:50%;object-fit:cover;border:2px solid ${getBotColor(bot.name)};pointer-events:none;`
+      chartOverlay.value.appendChild(img)
+    })
+  }
+
+  await nextTick()
+  updateAvatarOverlay()
+  chart.timeScale().subscribeVisibleTimeRangeChange(updateAvatarOverlay)
+  avatarOverlayUpdater = updateAvatarOverlay
   } finally {
     isInitializing = false
   }
@@ -531,7 +573,8 @@ const loadBots = async () => {
         profit: parseFloat(bot.profit) || 0,
         owner: bot.owner || bot.user?.username || 'You',
         status: bot.status || 'inactive',
-        description: bot.description || ''
+        description: bot.description || '',
+        activatedAt: bot.activated_at || null
       }))
       console.log('Bots loaded:', bots.value.length)
     } else {
@@ -556,9 +599,11 @@ const handleResize = () => {
   resizeTimeout = setTimeout(() => {
     if (chart && chartContainer.value) {
       const newWidth = chartContainer.value.clientWidth || chartContainer.value.offsetWidth
-      if (newWidth > 0) {
-        chart.applyOptions({ width: newWidth })
+      const newHeight = chartContainer.value.clientHeight || chartContainer.value.offsetHeight
+      if (newWidth > 0 && newHeight > 0) {
+        chart.applyOptions({ width: newWidth, height: newHeight })
       }
+      avatarOverlayUpdater?.()
     }
   }, 150)
 }
@@ -601,28 +646,6 @@ onUnmounted(() => {
   overflow-y: auto;
 }
 
-.bot-header-section {
-  text-align: center;
-  margin-bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.bot-header-section h2 {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-  color: #e2e8f0;
-}
-
-.subtitle {
-  margin: 0;
-  font-size: 16px;
-  color: #a0aec0;
-}
-
 /* Leaderboard Styles */
 .leaderboard-section {
   background: #1a202c;
@@ -641,12 +664,30 @@ onUnmounted(() => {
   border: 1px solid #2d3748;
 }
 
-.chart-wrapper {
+.chart-and-overlay {
+  position: relative;
   width: 100%;
   height: 300px;
-  position: relative;
   margin-bottom: 16px;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   overflow: hidden;
+}
+
+.chart-avatar-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
   min-height: 300px;
 }
 
@@ -722,15 +763,19 @@ onUnmounted(() => {
 .legend-bot-icon {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 16px;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--bot-color, #805ad5);
+}
+
+.legend-bot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .legend-content {
@@ -806,6 +851,17 @@ onUnmounted(() => {
   color: #718096;
 }
 
+.legend-active-since .stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.start-flag-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
 .leaderboard-header {
   display: flex;
   justify-content: space-between;
@@ -876,20 +932,26 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 180px;
+  min-width: 180px;
+  max-width: 220px;
   flex-shrink: 0;
 }
 
 .bot-avatar {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 14px;
+  overflow: hidden;
+  border: 2px solid var(--bot-color, #805ad5);
+}
+
+.bot-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .bot-name {
@@ -903,11 +965,14 @@ onUnmounted(() => {
 
 .bar-container {
   flex: 1;
-  height: 24px;
-  background: #2d3748;
-  border-radius: 6px;
+  min-width: 80px;
+  height: 28px;
+  background: linear-gradient(180deg, #1e2530 0%, #252d3a 100%);
+  border: 1px solid #3d4a5c;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .bar {
@@ -915,15 +980,35 @@ onUnmounted(() => {
   border-radius: 6px;
   position: relative;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 4px;
+  min-width: 0;
 }
 
 .bar.winRate {
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
 }
 
 .bar.profit {
-  background: linear-gradient(90deg, #10b981, #34d399);
+  background: linear-gradient(90deg, #059669 0%, #10b981 50%, #34d399 100%);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.bar.empty {
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+.bar-empty-hint {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.5px;
 }
 
 .bar-glow {
@@ -932,7 +1017,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
   transform: skewX(-20deg) translateX(-150%);
   animation: shimmer 2s infinite;
 }
@@ -942,11 +1027,12 @@ onUnmounted(() => {
 }
 
 .metric-value {
-  width: 80px;
+  min-width: 72px;
   text-align: right;
   font-weight: 700;
   color: #e2e8f0;
   font-size: 14px;
+  letter-spacing: 0.3px;
 }
 
 .section-divider {
@@ -979,17 +1065,94 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
+  .bot-list-container {
+    padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .leaderboard-section {
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .leaderboard-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .leaderboard-header h3 {
+    font-size: 16px;
+  }
+
+  .metric-toggles {
+    width: 100%;
+  }
+
+  .metric-toggles button {
+    flex: 1;
+    min-height: 40px;
+  }
+
+  .performance-chart-container {
+    padding: 12px;
+  }
+
+  .chart-and-overlay {
+    height: 220px;
+  }
+
+  .chart-avatar-overlay {
+    min-height: 220px;
+  }
+
+  .chart-legend {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .legend-item {
+    padding: 10px;
+  }
+
+  .graph-row {
+    flex-wrap: wrap;
+  }
+
   .bots-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-  
+
   .bot-info {
-    width: 120px;
+    min-width: 100px;
+    max-width: 140px;
   }
-  
+
   .metric-value {
-    width: 60px;
+    min-width: 52px;
     font-size: 12px;
+  }
+
+  .bar-container {
+    min-width: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bot-list-container {
+    padding: 12px;
+  }
+
+  .leaderboard-section {
+    padding: 12px;
+  }
+
+  .chart-and-overlay {
+    height: 180px;
+  }
+
+  .chart-avatar-overlay {
+    min-height: 180px;
   }
 }
 </style>

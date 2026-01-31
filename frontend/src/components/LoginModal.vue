@@ -371,18 +371,62 @@ const handleLogin = async () => {
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
   .modal-content {
     max-width: 100%;
-    margin: 20px;
-    border-radius: 20px;
+    width: 100%;
+    margin: 0;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
   }
-  
+
+  .modal-header {
+    padding: 20px 20px 16px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .submit-btn {
+    min-height: 48px;
+  }
+
+  .input-wrapper input {
+    min-height: 48px;
+    font-size: 16px; /* Avoid zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    border-radius: 16px 16px 0 0;
+  }
+
   .modal-header,
   .modal-body,
   .modal-footer {
-    padding: 24px;
+    padding: 16px;
+  }
+
+  .modal-title {
+    font-size: 22px;
   }
 }
 </style>

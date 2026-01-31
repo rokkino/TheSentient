@@ -94,5 +94,11 @@
     "job_name": "execute_orders",
     "status": "ERROR",
     "message": "(sqlite3.OperationalError) no such column: decisions.bot_id\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-01-31 00:15:51.522272')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-01-31T22:56:51.456455",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY NVDA (Bot Earnings Report Genius)"
   }
 ]

@@ -2,15 +2,42 @@
   <div class="bot-card">
     <div class="bot-header">
       <div class="bot-avatar">
-        <span class="bot-icon">🤖</span>
+        <img src="../assets/bot_icon.jpg" alt="Bot Icon" class="bot-icon-img" />
       </div>
       <div class="bot-info">
         <h3 class="bot-name">{{ bot.name }}</h3>
         <p class="bot-owner">by {{ bot.owner || 'You' }}</p>
       </div>
-      <div class="bot-status" :class="bot.status?.toLowerCase() || 'inactive'">
-        <span class="status-dot"></span>
-        {{ (bot.status || 'INACTIVE').toUpperCase() }}
+      <div class="bot-status-row">
+        <div class="bot-status" :class="bot.status?.toLowerCase() || 'inactive'">
+          <span class="status-dot"></span>
+          {{ (bot.status || 'INACTIVE').toUpperCase() }}
+        </div>
+        <div v-if="(bot.status === 'active') && (bot.activatedAt || bot.activated_at)" class="bot-active-since" :title="formatActiveSince(bot.activatedAt || bot.activated_at)">
+          <span class="start-flag-icon" aria-hidden="true">🏁</span>
+          <span>Attivo dal {{ formatActiveSince(bot.activatedAt || bot.activated_at) }}</span>
+        </div>
+      </div>
+      <div class="menu-container header-menu" ref="menuContainer">
+        <button 
+          class="action-btn menu-btn" 
+          @click.stop="toggleMenu"
+          title="More options"
+        >
+          <Menu :size="18" />
+        </button>
+        <Transition name="fade">
+          <div v-if="showMenu" class="dropdown-menu">
+            <div class="dropdown-item" @click="handleAction('import')">
+              <Download :size="16" />
+              <span>Import</span>
+            </div>
+            <div class="dropdown-item" @click="handleAction('export')">
+              <Upload :size="16" />
+              <span>Export</span>
+            </div>
+          </div>
+        </Transition>
       </div>
     </div>
     
@@ -36,20 +63,6 @@
     </div>
     
     <div class="bot-actions">
-      <button 
-        class="action-btn import-btn" 
-        @click="$emit('import', bot)"
-        title="Import bot configuration"
-      >
-        Import
-      </button>
-      <button 
-        class="action-btn export-btn" 
-        @click="$emit('export', bot)"
-        title="Export bot configuration"
-      >
-        Export
-      </button>
       <button 
         class="action-btn configure-btn" 
         @click="$emit('configure', bot)"
@@ -101,30 +114,49 @@
               <span class="summary-label">Balance</span>
               <span class="summary-value">{{ formatCur(profit?.total_balance) }}</span>
             </div>
-            <div class="summary-item" v-if="profit?.timestamp">
-              <span class="summary-label">Updated</span>
-              <span class="summary-value muted">{{ profit.timestamp }}</span>
-            </div>
-            <div class="summary-item" v-if="serverTime">
-              <span class="summary-label">Server Time</span>
-              <span class="summary-value">{{ serverTime }}</span>
-            </div>
           </div>
 
           <div class="orders-section">
             <div class="orders-toolbar">
-              <button class="btn-add-order" @click="showAddOrderForm = true" v-if="!showAddOrderForm">
+              <button class="btn-add-order" @click="openAddOrderForm" v-if="!showAddOrderForm">
                 + Add order
               </button>
               <div v-if="showAddOrderForm" class="add-order-form">
-                <input v-model="newOrder.symbol" placeholder="Symbol" class="add-input" />
+                <div class="symbol-input-wrapper">
+                  <input 
+                    :value="newOrder.symbol"
+                    @input="handleSymbolSearch"
+                    @blur="closeSearch"
+                    placeholder="Symbol" 
+                    class="add-input symbol-input" 
+                    autocomplete="off"
+                  />
+                  <div v-if="showSearchResults" class="search-results">
+                    <div 
+                      v-for="asset in searchResults" 
+                      :key="asset.symbol" 
+                      class="search-result-item"
+                      @click="selectAsset(asset)"
+                    >
+                      <span class="result-symbol">{{ asset.symbol }}</span>
+                      <span class="result-name">{{ asset.name }}</span>
+                    </div>
+                  </div>
+                </div>
                 <select v-model="newOrder.decision" class="add-select">
                   <option value="BUY">BUY</option>
                   <option value="SELL">SELL</option>
                   <option value="HOLD">HOLD</option>
                   <option value="WAIT">WAIT</option>
                 </select>
-                <input v-model="newOrder.execution_time" type="datetime-local" class="add-input" />
+                <div class="datetime-row">
+                  <input v-model="newOrder.execution_time" type="datetime-local" class="add-input datetime-input" />
+                  <div class="time-quick-btns">
+                    <button type="button" class="time-btn" @click="setNewOrderTimeNow" title="Ora attuale">Ora</button>
+                    <button type="button" class="time-btn" @click="addMinutesToNewOrder(15)">+15 min</button>
+                    <button type="button" class="time-btn" @click="addMinutesToNewOrder(60)">+1 h</button>
+                  </div>
+                </div>
                 <input v-model="newOrder.reasoning" placeholder="Reasoning" class="add-input" />
                 <button class="btn-save" @click="createOrder">Create</button>
                 <button class="btn-cancel" @click="cancelAddOrder">Cancel</button>
@@ -135,77 +167,112 @@
               No planned or executed orders yet. Add one manually.
             </div>
             <div v-else class="orders-table-wrap">
-              <table v-if="orders.length > 0" class="orders-table">
-                <thead>
-                  <tr>
-                    <th>Symbol</th>
-                    <th>Decision</th>
-                    <th>Status</th>
-                    <th>Time</th>
-                    <th>Reasoning</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr 
-                    v-for="d in orders" 
-                    :key="d.id" 
-                    class="order-row"
-                    :class="d.decision?.toLowerCase()"
-                  >
-                    <td v-if="editingOrderId !== d.id">
-                      <span class="order-symbol">{{ d.symbol || '—' }}</span>
-                    </td>
-                    <td v-else>
-                      <input v-model="editForm.symbol" class="edit-input" />
-                    </td>
-                    <td v-if="editingOrderId !== d.id">
-                      <span class="order-decision">{{ d.decision }}</span>
-                    </td>
-                    <td v-else>
-                      <select v-model="editForm.decision" class="edit-select">
-                        <option value="BUY">BUY</option>
-                        <option value="SELL">SELL</option>
-                        <option value="HOLD">HOLD</option>
-                        <option value="WAIT">WAIT</option>
-                      </select>
-                    </td>
-                    <td v-if="editingOrderId !== d.id">
-                      <span class="order-status">{{ d.status }}</span>
-                    </td>
-                    <td v-else>
-                      <select v-model="editForm.status" class="edit-select">
-                        <option value="PENDING">PENDING</option>
-                        <option value="EXECUTED">EXECUTED</option>
-                        <option value="CANCELLED">CANCELLED</option>
-                        <option value="FAILED">FAILED</option>
-                      </select>
-                    </td>
-                    <td v-if="editingOrderId !== d.id">
-                      <span class="order-time">{{ formatOrderTime(d.execution_time || d.created_at) }}</span>
-                    </td>
-                    <td v-else>
-                      <input v-model="editForm.execution_time" type="datetime-local" class="edit-input" />
-                    </td>
-                    <td v-if="editingOrderId !== d.id">
-                      <span class="order-reasoning-cell">{{ d.reasoning || '—' }}</span>
-                    </td>
-                    <td v-else>
-                      <input v-model="editForm.reasoning" class="edit-input" placeholder="Reasoning" />
-                    </td>
-                    <td class="actions-cell">
-                      <template v-if="editingOrderId === d.id">
-                        <button class="btn-icon save" @click="saveEdit(d.id)" title="Save">✓</button>
-                        <button class="btn-icon cancel" @click="cancelEdit" title="Cancel">✕</button>
-                      </template>
-                      <template v-else>
-                        <button class="btn-icon btn-edit" @click="startEdit(d)" title="Edit">✎</button>
-                        <button class="btn-icon btn-del" @click="deleteOrder(d)" title="Delete">⌫</button>
-                      </template>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="orders-table-container">
+                <table v-if="orders.length > 0" class="orders-table">
+                  <thead>
+                    <tr>
+                      <th>Symbol</th>
+                      <th>Decision</th>
+                      <th>Status</th>
+                      <th>Time</th>
+                      <th>Reasoning</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr 
+                      v-for="d in paginatedOrders" 
+                      :key="d.id" 
+                      class="order-row"
+                      :class="d.decision?.toLowerCase()"
+                    >
+                      <td v-if="editingOrderId !== d.id">
+                        <span class="order-symbol">{{ d.symbol || '—' }}</span>
+                      </td>
+                      <td v-else>
+                        <input v-model="editForm.symbol" class="edit-input" />
+                      </td>
+                      <td v-if="editingOrderId !== d.id">
+                        <span class="order-decision">{{ d.decision }}</span>
+                      </td>
+                      <td v-else>
+                        <select v-model="editForm.decision" class="edit-select">
+                          <option value="BUY">BUY</option>
+                          <option value="SELL">SELL</option>
+                          <option value="HOLD">HOLD</option>
+                          <option value="WAIT">WAIT</option>
+                        </select>
+                      </td>
+                      <td v-if="editingOrderId !== d.id">
+                        <span class="order-status">{{ d.status }}</span>
+                      </td>
+                      <td v-else>
+                        <select v-model="editForm.status" class="edit-select">
+                          <option value="PENDING">PENDING</option>
+                          <option value="EXECUTED">EXECUTED</option>
+                          <option value="CANCELLED">CANCELLED</option>
+                          <option value="FAILED">FAILED</option>
+                        </select>
+                      </td>
+                      <td v-if="editingOrderId !== d.id">
+                        <span class="order-time">{{ formatOrderTime(d.execution_time || d.created_at) }}</span>
+                      </td>
+                      <td v-else>
+                        <div class="datetime-row edit-datetime">
+                          <input v-model="editForm.execution_time" type="datetime-local" class="edit-input datetime-input" />
+                          <div class="time-quick-btns">
+                            <button type="button" class="time-btn" @click="setEditFormTimeNow" title="Ora attuale">Ora</button>
+                            <button type="button" class="time-btn" @click="addMinutesToEditForm(15)">+15 min</button>
+                            <button type="button" class="time-btn" @click="addMinutesToEditForm(60)">+1 h</button>
+                          </div>
+                        </div>
+                      </td>
+                      <td v-if="editingOrderId !== d.id">
+                        <div class="order-reasoning-cell" :title="d.reasoning">{{ d.reasoning || '—' }}</div>
+                      </td>
+                      <td v-else>
+                        <input v-model="editForm.reasoning" class="edit-input" placeholder="Reasoning" />
+                      </td>
+                      <td class="actions-cell">
+                        <template v-if="editingOrderId === d.id">
+                          <button class="btn-icon save" @click="saveEdit(d.id)" title="Save">✓</button>
+                          <button class="btn-icon cancel" @click="cancelEdit" title="Cancel">✕</button>
+                        </template>
+                        <template v-else>
+                           <button 
+                            class="btn-icon btn-exec" 
+                            v-if="d.status === 'PENDING' || d.status === 'FAILED'"
+                            @click="executeOrder(d)" 
+                            title="Execute Now (Real Order)"
+                          >
+                            🚀
+                          </button>
+                          <button class="btn-icon btn-edit" @click="startEdit(d)" title="Edit">✎</button>
+                          <button class="btn-icon btn-del" @click="deleteOrder(d)" title="Delete">⌫</button>
+                        </template>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div v-if="totalPages > 1" class="pagination-controls">
+                <button 
+                  class="page-btn" 
+                  :disabled="currentPage === 1" 
+                  @click="currentPage--"
+                >
+                  &lt; Prev
+                </button>
+                <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+                <button 
+                  class="page-btn" 
+                  :disabled="currentPage === totalPages" 
+                  @click="currentPage++"
+                >
+                  Next &gt;
+                </button>
+              </div>
             </div>
           </div>
 
@@ -251,8 +318,10 @@
 
 
 <script setup>
-import { ref, nextTick, watch } from 'vue'
+import { ref, nextTick, computed } from 'vue'
 import api from '../services/api'
+import { Menu, Download, Upload } from 'lucide-vue-next'
+import { onClickOutside } from '@vueuse/core'
 
 const props = defineProps({
   bot: {
@@ -275,7 +344,89 @@ const editingOrderId = ref(null)
 const editForm = ref({ symbol: '', decision: 'BUY', status: 'PENDING', execution_time: '', reasoning: '' })
 const showAddOrderForm = ref(false)
 const newOrder = ref({ symbol: '', decision: 'BUY', execution_time: '', reasoning: '' })
+const showMenu = ref(false) 
+const menuContainer = ref(null)
+
+const toggleMenu = () => {
+    showMenu.value = !showMenu.value
+}
+
+const closeMenu = () => {
+    showMenu.value = false
+}
+
+const handleAction = (action) => {
+    emit(action, props.bot)
+    closeMenu()
+}
+
+onClickOutside(menuContainer, () => {
+  showMenu.value = false
+})
+
 const serverTime = ref('')
+
+const currentPage = ref(1)
+const itemsPerPage = 8
+
+const totalPages = computed(() => {
+  return Math.ceil(orders.value.length / itemsPerPage) || 1
+})
+
+const paginatedOrders = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return orders.value.slice(start, end)
+})
+// Autocomplete state
+const searchResults = ref([])
+const showSearchResults = ref(false)
+const searchLoading = ref(false)
+let searchTimeout = null
+
+const handleSymbolSearch = (e) => {
+  const query = e.target.value
+  newOrder.value.symbol = query // update model
+  
+  if (searchTimeout) clearTimeout(searchTimeout)
+  if (!query || query.length < 1) {
+    searchResults.value = []
+    showSearchResults.value = false
+    return
+  }
+  
+  searchTimeout = setTimeout(async () => {
+    searchLoading.value = true
+    try {
+      console.log(`Searching for: ${query}`)
+      const res = await api.searchAlpacaAssets(query)
+      console.log('Search results:', res.data)
+      searchResults.value = res.data?.results || []
+      showSearchResults.value = searchResults.value.length > 0
+      if (searchResults.value.length === 0) {
+        console.warn('No results found. Check backend logs or Alpaca configuration.')
+      }
+    } catch (e) {
+      console.error('Search failed', e)
+    } finally {
+      searchLoading.value = false
+    }
+  }, 300)
+}
+
+const selectAsset = (asset) => {
+  newOrder.value.symbol = asset.symbol
+  showSearchResults.value = false
+  searchResults.value = []
+}
+
+// Close search results when clicking outside
+const closeSearch = () => {
+  // Delay to allow click event on result item to trigger first
+  setTimeout(() => {
+    showSearchResults.value = false
+  }, 200)
+}
 
 const openCheckOrdersModal = async () => {
   showOrdersModal.value = true
@@ -284,6 +435,7 @@ const openCheckOrdersModal = async () => {
   loadingOrders.value = true
   showAddOrderForm.value = false
   editingOrderId.value = null
+  currentPage.value = 1
   // checkOrdersChatMessages.value = []
   checkOrdersUserMessage.value = ''
   try {
@@ -333,6 +485,54 @@ const formatCur = (v) => {
   const n = Number(v)
   if (isNaN(n)) return '—'
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(n)
+}
+
+const formatActiveSince = (dateStr) => {
+  if (!dateStr) return '—'
+  const d = typeof dateStr === 'string' ? new Date(dateStr) : dateStr
+  if (isNaN(d.getTime())) return '—'
+  return d.toLocaleDateString('it-IT', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+
+const getNowDatetimeLocal = () => {
+  const d = new Date()
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  const h = String(d.getHours()).padStart(2, '0')
+  const min = String(d.getMinutes()).padStart(2, '0')
+  return `${y}-${m}-${day}T${h}:${min}`
+}
+
+const addMinutesToDatetimeLocal = (localStr, minutes) => {
+  const base = localStr && localStr.length >= 16 ? new Date(localStr) : new Date()
+  base.setMinutes(base.getMinutes() + minutes)
+  const d = base
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  const h = String(d.getHours()).padStart(2, '0')
+  const min = String(d.getMinutes()).padStart(2, '0')
+  return `${y}-${m}-${day}T${h}:${min}`
+}
+
+const openAddOrderForm = () => {
+  showAddOrderForm.value = true
+  newOrder.value.execution_time = getNowDatetimeLocal()
+}
+
+const setNewOrderTimeNow = () => {
+  newOrder.value.execution_time = getNowDatetimeLocal()
+}
+const addMinutesToNewOrder = (minutes) => {
+  newOrder.value.execution_time = addMinutesToDatetimeLocal(newOrder.value.execution_time, minutes)
+}
+
+const setEditFormTimeNow = () => {
+  editForm.value.execution_time = getNowDatetimeLocal()
+}
+const addMinutesToEditForm = (minutes) => {
+  editForm.value.execution_time = addMinutesToDatetimeLocal(editForm.value.execution_time, minutes)
 }
 
 const toDatetimeLocal = (iso) => {
@@ -411,7 +611,13 @@ const createOrder = async () => {
     await loadOrders()
   } catch (e) {
     console.error('Create order failed:', e)
-    alert(`Failed to create order: ${e.message || e}`)
+    let detail = e.response?.data?.detail
+    if (Array.isArray(detail)) {
+      detail = detail.map((x) => (x.msg || x.message || JSON.stringify(x))).join('; ')
+    } else if (typeof detail !== 'string') {
+      detail = detail || e.message || String(e)
+    }
+    alert(`Failed to create order: ${detail}`)
   }
 }
 
@@ -452,13 +658,55 @@ const cancelEdit = () => {
   editingOrderId.value = null
 }
 
-const deleteOrder = async (d) => {
+  const deleteOrder = async (d) => {
   if (!confirm(`Delete order ${d.symbol} ${d.decision}?`)) return
   try {
     await api.deleteBotDecision(d.id)
     await loadOrders()
   } catch (e) {
     console.error('Delete order failed:', e)
+  }
+}
+
+const executeOrder = async (d) => {
+  console.log('executeOrder called with:', d)
+  if (!d || !d.id) {
+    console.error('Invalid decision object:', d)
+    alert('Error: Invalid order data (missing ID)')
+    return
+  }
+
+  if (!confirm(`Are you sure you want to EXECUTE ${d.decision} ${d.symbol} for an estimated $1000?`)) return
+  if (d.status === 'EXECUTED') return
+  
+  // Optimistic update
+  const originalStatus = d.status
+  d.status = 'EXECUTING...'
+  
+  try {
+    console.log(`Executing order ID: ${d.id}`)
+    const res = await api.executeBotDecision(d.id)
+    console.log('Order executed:', res.data)
+    alert(`Order executed successfully! ID: ${res.data.id}`)
+    await loadOrders()
+    // Refresh profit display
+    try {
+       const profitRes = await api.getBotProfit()
+       profit.value = profitRes.data
+    } catch(e) {}
+  } catch (e) {
+    console.error('Execute order failed:', e)
+    const detail = e.response?.data?.detail || e.message || ''
+    const s = typeof detail === 'string' ? detail.toLowerCase() : ''
+    let message
+    if (s.includes('alpaca library not installed') || s.includes('alpaca-py'))
+      message = 'Backend non aggiornato: chiudi TUTTE le finestre del backend, poi esegui restart-backend.bat (o: cd backend && python main.py). Poi ricarica la pagina e riprova.'
+    else if (s.includes('unauthorized') || s.includes('credenziali non valide'))
+      message = 'Alpaca: credenziali non valide. Vai nel profilo del bot, verifica API Key e Secret (Paper o Live) e che l\'account Alpaca sia attivo.'
+    else
+      message = `Execution Failed: ${detail}`
+    alert(message)
+    d.status = originalStatus
   }
 }
 
@@ -533,22 +781,33 @@ const clearChatHistory = () => {
   margin-bottom: 20px;
   padding-bottom: 16px;
   border-bottom: 1px solid #4a5568;
+  flex-wrap: wrap;
+}
+
+.bot-header .menu-container.header-menu {
+  margin-left: auto;
 }
 
 .bot-avatar {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  background: white; /* Changed from gradient to white for image background if transparent, though image is jpg */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid #4a5568;
 }
 
-.bot-icon {
-  font-size: 32px;
+.bot-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+/* Removed old bot-icon style */
 
 .bot-info {
   flex: 1;
@@ -567,6 +826,13 @@ const clearChatHistory = () => {
   color: #a0aec0;
 }
 
+.bot-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
 .bot-status {
   display: flex;
   align-items: center;
@@ -577,6 +843,20 @@ const clearChatHistory = () => {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.bot-active-since {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.bot-active-since .start-flag-icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
 .bot-status.active {
@@ -656,6 +936,44 @@ const clearChatHistory = () => {
   color: #68d391;
 }
 
+.menu-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 5px;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  padding: 5px;
+  z-index: 10;
+  min-width: 120px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-item {
+  background: transparent;
+  border: none;
+  color: #e2e8f0;
+  padding: 8px 12px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .stat-value.negative {
   color: #fc8181;
 }
@@ -673,11 +991,65 @@ const clearChatHistory = () => {
   display: none;
 }
 
+
 .bot-description p {
   margin: 0;
   color: #cbd5e0;
   font-size: 14px;
   line-height: 1.6;
+}
+
+.symbol-input-wrapper {
+  position: relative;
+  width: 120px;
+}
+
+.symbol-input {
+  width: 100%;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #4a5568;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: #4a5568;
+}
+
+.result-symbol {
+  font-weight: bold;
+  color: #e2e8f0;
+}
+
+.result-name {
+  color: #a0aec0;
+  font-size: 0.9em;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bot-actions {
@@ -823,9 +1195,10 @@ const clearChatHistory = () => {
 }
 
 .check-orders-panel {
-  width: 90vw !important;
-  max-width: 1200px !important;
-  height: 85vh !important;
+  width: 95vw !important;
+  max-width: 1000px !important;
+  height: auto !important;
+  max-height: 90vh !important;
   display: flex !important;
   flex-direction: column;
 }
@@ -1037,10 +1410,11 @@ const clearChatHistory = () => {
   40% { transform: scale(1); }
 }
 
+
 /* Check Orders panel – larger modal */
 .check-orders-overlay .modal-content {
   width: 95vw;
-  max-width: 1100px;
+  max-width: 1000px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -1059,9 +1433,10 @@ const clearChatHistory = () => {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 16px 24px;
+  padding: 12px 24px;
   background: #1a202c;
   border-bottom: 1px solid #4a5568;
+  flex-shrink: 0;
 }
 
 .summary-item {
@@ -1102,6 +1477,7 @@ const clearChatHistory = () => {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .btn-add-order {
@@ -1138,6 +1514,28 @@ const clearChatHistory = () => {
 .add-input { min-width: 100px; }
 .add-input[placeholder="Reasoning"] { min-width: 160px; }
 
+.datetime-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.datetime-input {
+  min-width: 180px;
+}
+.time-quick-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.datetime-row.edit-datetime {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.datetime-row.edit-datetime .time-quick-btns {
+  margin-top: 4px;
+}
+
 .btn-save {
   padding: 8px 14px;
   font-weight: 600;
@@ -1164,7 +1562,14 @@ const clearChatHistory = () => {
 
 .orders-table-wrap {
   flex: 1;
-  min-height: 120px;
+  min-height: 0;
+  overflow: hidden; /* Changed from auto to hidden, inner container scrolls */
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-table-container {
+  flex: 1;
   overflow: auto;
 }
 
@@ -1175,7 +1580,7 @@ const clearChatHistory = () => {
 }
 
 .orders-table th, .orders-table td {
-  padding: 10px 12px;
+  padding: 8px 10px; /* Condensed padding */
   text-align: left;
   border-bottom: 1px solid #2d3748;
 }
@@ -1203,7 +1608,14 @@ const clearChatHistory = () => {
 .order-row.hold .order-decision, .order-row.wait .order-decision { color: #ecc94b; }
 .order-status { color: #a0aec0; }
 .order-time { color: #718096; font-size: 12px; }
-.order-reasoning-cell { color: #cbd5e0; font-size: 12px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.order-reasoning-cell { 
+  color: #cbd5e0; 
+  font-size: 12px; 
+  max-width: 300px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+}
 
 .edit-input, .edit-select {
   width: 100%;
@@ -1246,8 +1658,8 @@ const clearChatHistory = () => {
   border-top: 1px solid #4a5568;
   display: flex;
   flex-direction: column;
-  min-height: 220px;
-  max-height: 320px;
+  height: 200px; /* Fixed smaller height */
+  flex-shrink: 0;
 }
 
 .check-orders-chat .chat-body {
@@ -1288,5 +1700,180 @@ const clearChatHistory = () => {
 
 .check-orders-chat .send-btn:hover:not(:disabled) { background: #3182ce; }
 .check-orders-chat .send-btn:disabled { background: #4a5568; cursor: not-allowed; opacity: 0.7; }
-</style>
 
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: #1a202c;
+  border-top: 1px solid #2d3748;
+  margin-top: auto;
+}
+
+.page-btn {
+  padding: 4px 12px;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  color: #e2e8f0;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #4a5568;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* Search Autocomplete Styles */
+.symbol-input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 9999; /* High z-index to ensure visibility */
+  margin-top: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.search-result-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #4a5568;
+  gap: 8px;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: #4a5568;
+}
+
+.result-symbol { 
+  font-weight: bold; 
+  color: #e2e8f0; 
+  font-size: 13px;
+}
+
+.result-name { 
+  font-size: 11px; 
+  color: #a0aec0; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+/* Premium Menu Styles */
+
+.menu-container {
+  position: relative;
+  z-index: 20;
+}
+
+/* Override .action-btn styles for the menu button to look like a ghost button */
+.action-btn.menu-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent; /* Ghost style default */
+  color: #a0aec0;
+  box-shadow: none;
+  flex: 0 0 auto;
+  transition: all 0.2s ease;
+}
+
+.action-btn.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08); /* Subtle hover bg */
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: none; /* No lift for ghost buttons generally, or subtle */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #2d3748; /* Matching card or slightly darker diff */
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 140px;
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.5), /* Deep shadow */
+    0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 50;
+  transform-origin: top right;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: #e2e8f0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+  background: rgba(66, 153, 225, 0.15); /* Tint of blue on hover */
+  color: #63b3ed; /* Active blue color text */
+}
+
+.dropdown-item span {
+  flex: 1;
+}
+
+/* Vue Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.95);
+}
+</style>

@@ -20,10 +20,8 @@
               class="form-input"
               required
             >
-              <option value="IG">IG Markets (CFD Trading)</option>
               <option value="Alpaca">Alpaca (Stock Trading)</option>
               <option value="InteractiveBrokers">Interactive Brokers (Coming Soon)</option>
-              <option value="eToro">eToro (Coming Soon)</option>
               <option value="Plus500">Plus500 (Coming Soon)</option>
               <option value="Binance">Binance (Crypto - Coming Soon)</option>
               <option value="XTB">XTB (Coming Soon)</option>
@@ -48,13 +46,13 @@
             </p>
           </div>
 
-          <div v-if="['InteractiveBrokers', 'eToro', 'Plus500', 'Binance', 'XTB', 'Pepperstone'].includes(config.broker)" class="info-message">
+          <div v-if="['InteractiveBrokers', 'Plus500', 'Binance', 'XTB', 'Pepperstone'].includes(config.broker)" class="info-message">
             <p><strong>{{ config.broker }} integration is coming soon!</strong></p>
             <p>You can save this selection, but trading features are not yet available for this broker.</p>
           </div>
 
 
-          <div v-if="!config.account_id && (config.broker === 'IG' || config.broker === 'Alpaca')" class="info-message">
+          <div v-if="!config.account_id && config.broker === 'Alpaca'" class="info-message">
             <p><strong>Please select a linked account</strong></p>
             <p>Manual credential entry has been deprecated. Please add an account in your Profile > Accounts tab and select it above.</p>
           </div>

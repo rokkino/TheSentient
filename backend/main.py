@@ -2,6 +2,19 @@
 FastAPI Backend for The Sentient Portfolio Tracker
 """
 from __future__ import annotations
+
+import warnings
+from contextlib import asynccontextmanager
+
+# Suppress noisy third-party deprecation warnings so terminal stays readable
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="jose.jwt")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="websockets*")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="uvicorn*")
+warnings.filterwarnings("ignore", message=".*remove second argument of ws_handler.*", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=UserWarning, module="pydantic*")
+warnings.filterwarnings("ignore", message=".*Field.*shadows.*", category=UserWarning)
+warnings.filterwarnings("ignore", message=".*extra keyword arguments on Field.*", category=DeprecationWarning)
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -39,18 +52,14 @@ from services.ai_service import AIService
 from services.auth_service import create_user, authenticate_user, create_access_token, get_user_by_id, verify_token, get_user_by_username, get_user_by_email
 from services.chat_service import chat_service
 from services.strategy_service import strategy_service
-# AlpacaService is optional - only import if needed
-try:
-    from services.alpaca_service import AlpacaService
-    ALPACA_AVAILABLE = True
-except Exception:
-    ALPACA_AVAILABLE = False
-    AlpacaService = None
+from services.symbol_mapper import symbol_mapper
+# AlpacaService is optional - only available if alpaca-py is installed
+from services.alpaca_service import AlpacaService, ALPACA_AVAILABLE
 from services.bot_service import bot_service
 from services.llama_service import llama_service
 from services.gemini_service import GeminiService
 from services.scheduler_service import scheduler_service
-from services.scheduler_jobs import execute_orders_job, analyze_earnings_job
+from services.scheduler_jobs import execute_orders_job, analyze_earnings_job, refresh_earnings_cache_job
 from services.earnings_service import earnings_service
 from websocket_manager import WebSocketManager
 from models.user import init_db, get_db, User, SessionLocal
@@ -59,9 +68,23 @@ from models.account import Account
 from fastapi import Depends, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from services.etoro_service import etoro_service
 
-app = FastAPI(title="The Sentient API", version="1.0.0")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Startup/shutdown lifecycle - replaces deprecated on_event."""
+    # Startup
+    print("Starting up...")
+    scheduler_service.start()
+    scheduler_service.add_job(execute_orders_job, 'interval', minutes=1, id='execute_orders')
+    scheduler_service.add_job(analyze_earnings_job, 'interval', minutes=30, id='analyze_earnings')
+    scheduler_service.add_job(refresh_earnings_cache_job, 'interval', days=30, id='refresh_earnings_cache')
+    print("Scheduled execute_orders_job, analyze_earnings_job, refresh_earnings_cache_job")
+    yield
+    # Shutdown
+    print("Shutting down...")
+    scheduler_service.shutdown()
+
+app = FastAPI(title="The Sentient API", version="1.0.0", lifespan=lifespan)
 
 # Add build header to all responses (helps confirm you're hitting the right backend process)
 @app.middleware("http")
@@ -72,8 +95,12 @@ async def _add_build_header(request: Request, call_next):
 
 @app.get("/api/debug/build")
 async def debug_build():
-    """Return backend build marker (debugging)."""
-    return {"build": SERVER_BUILD}
+    """Return backend build marker and Alpaca availability (debugging)."""
+    try:
+        from services.alpaca_service import ALPACA_AVAILABLE
+        return {"build": SERVER_BUILD, "alpaca_available": ALPACA_AVAILABLE}
+    except Exception:
+        return {"build": SERVER_BUILD, "alpaca_available": False}
 
 # Initialize database (non-blocking)
 try:
@@ -82,25 +109,6 @@ try:
 except Exception as e:
     print(f"Warning: Database initialization failed: {e}")
     print("The app will continue, but database operations may fail")
-
-# Lifecycle events
-@app.on_event("startup")
-async def startup_event():
-    print("Starting up...")
-    scheduler_service.start()
-
-    
-    # Schedule execution job every 1 minute
-    scheduler_service.add_job(execute_orders_job, 'interval', minutes=1, id='execute_orders')
-    
-    # Schedule earnings analysis job every 30 minutes
-    scheduler_service.add_job(analyze_earnings_job, 'interval', minutes=30, id='analyze_earnings')
-    print("Scheduled execute_orders_job and analyze_earnings_job")
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    print("Shutting down...")
-    scheduler_service.shutdown()
 
 # OAuth2 scheme
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
@@ -119,7 +127,12 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 # CORS middleware for Vue.js frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"],  # Vite default ports
+    allow_origins=[
+        "http://localhost:5173", 
+        "http://localhost:3000", 
+        "http://127.0.0.1:5173",
+        "http://34.53.28.120",  # Production VM IP
+    ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
@@ -265,6 +278,29 @@ class BotConfig(BaseModel):
     alpaca_api_secret: Optional[str] = None
     alpaca_paper: Optional[bool] = None
 
+def _verify_alpaca_credentials_rest(api_key: str, api_secret: str, paper: bool = True) -> tuple[bool, str]:
+    """
+    Verify Alpaca API credentials via direct REST call (no alpaca-py required).
+    Returns (success, message).
+    """
+    import requests
+    base_url = "https://paper-api.alpaca.markets" if paper else "https://api.alpaca.markets"
+    url = f"{base_url}/v2/account"
+    headers = {
+        "APCA-API-KEY-ID": api_key,
+        "APCA-API-SECRET-KEY": api_secret,
+    }
+    try:
+        r = requests.get(url, headers=headers, timeout=15)
+        if r.status_code == 200:
+            return True, "Credentials valid"
+        if r.status_code in (401, 403):
+            return False, "Invalid API key or secret"
+        return False, f"Alpaca API returned {r.status_code}: {r.text[:200] if r.text else 'No body'}"
+    except requests.RequestException as e:
+        return False, f"Network error: {str(e)}"
+
+
 class TestConnectionRequest(BaseModel):
     broker: str
     config: Dict[str, Any]
@@ -317,6 +353,7 @@ class SchedulerStatusResponse(BaseModel):
     logs: List[Dict[str, Any]]
 
 class DecisionCreate(BaseModel):
+    bot_id: int
     symbol: str
     decision: str  # BUY, SELL, HOLD, WAIT
     execution_time: Optional[str] = None  # ISO datetime
@@ -401,27 +438,41 @@ async def create_bot_decision(
     current_user: User = Depends(get_current_user),
 ):
     """Create a new decision (manual order)"""
-    from models.bot import Decision
+    from models.bot import Decision, Bot
     from datetime import datetime as dt
-    exec_time = None
-    if body.execution_time:
-        try:
-            exec_time = dt.fromisoformat(body.execution_time.replace("Z", "+00:00"))
-        except Exception:
-            exec_time = dt.utcnow()
-    if not exec_time:
-        exec_time = dt.utcnow()
-    d = Decision(
-        symbol=body.symbol.strip().upper(),
-        decision=body.decision.upper(),
-        execution_time=exec_time,
-        status="PENDING",
-        reasoning=body.reasoning or "",
-    )
-    db.add(d)
-    db.commit()
-    db.refresh(d)
-    return d.to_dict()
+    try:
+        # Verify bot exists and user has access
+        bot = db.query(Bot).filter(Bot.id == body.bot_id).first()
+        if not bot:
+            raise HTTPException(status_code=404, detail="Bot not found")
+        exec_time = None
+        if body.execution_time:
+            try:
+                s = str(body.execution_time).strip()
+                s = s.replace("Z", "+00:00")
+                exec_time = dt.fromisoformat(s)
+            except Exception:
+                exec_time = dt.now(timezone.utc)
+        if not exec_time:
+            exec_time = dt.now(timezone.utc)
+        d = Decision(
+            bot_id=body.bot_id,
+            symbol=body.symbol.strip().upper(),
+            decision=body.decision.upper(),
+            execution_time=exec_time,
+            status="PENDING",
+            reasoning=body.reasoning or "",
+        )
+        db.add(d)
+        db.commit()
+        db.refresh(d)
+        return d.to_dict()
+    except HTTPException:
+        raise
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.patch("/api/bot/decisions/{decision_id}")
 async def update_bot_decision(
@@ -468,6 +519,102 @@ async def delete_bot_decision(
     db.commit()
     return {"message": "Decision deleted"}
 
+@app.post("/api/bot/decisions/{decision_id}/execute")
+async def execute_bot_decision(
+    decision_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Immediately execute a pending decision"""
+    print(f"[API] executing bot decision id: {decision_id}")
+    from models.bot import Decision, Bot
+    from services.bot_service import bot_service
+    from services.ig_service import IGMarketsService
+    from services.alpaca_service import AlpacaService, ALPACA_AVAILABLE
+    from services.symbol_mapper import symbol_mapper
+    
+    # 1. Get Decision
+    decision = db.query(Decision).filter(Decision.id == decision_id).first()
+    if not decision:
+        raise HTTPException(status_code=404, detail="Decision not found")
+        
+    if decision.status == "EXECUTED":
+         raise HTTPException(status_code=400, detail="Order already executed")
+         
+    # 2. Get Bot & Service
+    bot = db.query(Bot).filter(Bot.id == decision.bot_id).first()
+    if not bot:
+        raise HTTPException(status_code=404, detail="Bot associated with decision not found")
+        
+    service = bot_service._get_configured_service(db, bot)
+    if not service:
+        raise HTTPException(status_code=400, detail="Trading service not configured for this bot")
+        
+    try:
+        # 3. Prepare Execution
+        original_symbol = decision.symbol
+        action = decision.decision # BUY/SELL
+        
+        symbol = symbol_mapper.normalize_symbol(original_symbol)
+        
+        # Calculate Quantity (Same logic as scheduler)
+        ORDER_AMOUNT_USD = 1000.0 
+        qty = 1.0
+        current_price = 0.0
+        
+        try:
+            quote = await market_data_service.get_quote(symbol) 
+            current_price = quote.get('price', 0.0)
+        except Exception as e:
+            print(f"Could not get price: {e}")
+            
+        if current_price > 0:
+            raw_qty = ORDER_AMOUNT_USD / current_price
+            qty = round(raw_qty, 4)
+            if qty < 0.0001: qty = 0.0001
+        
+        print(f"[EXECUTE-API] Executing {action} {symbol} Qty:{qty} Price:{current_price}")
+        
+        # 4. Execute
+        order_result = None
+        if isinstance(service, IGMarketsService):
+            epic = service.get_epic_for_symbol(symbol)
+            if not epic:
+                raise HTTPException(status_code=400, detail=f"Could not resolve epic for {symbol}")
+            order_result = await service.place_market_order(
+                epic=epic,
+                direction=action.upper(),
+                size=1 # Keep 1 for IG for now
+            )
+        elif isinstance(service, AlpacaService):
+            if not ALPACA_AVAILABLE:
+                raise HTTPException(
+                    status_code=503,
+                    detail="Alpaca library not available in this backend process. Close ALL backend terminal windows, then restart: from project folder run start-dev.bat (or in backend folder: python main.py). Ensure alpaca-py is installed: pip install alpaca-py"
+                )
+            order_result = await service.place_market_order(
+                symbol=symbol,
+                qty=qty,
+                side=action.lower()
+            )
+        else:
+            raise HTTPException(status_code=400, detail="Unknown execution service")
+            
+        # 5. Update Decision
+        decision.status = "EXECUTED"
+        decision.executed_at = datetime.now(timezone.utc)
+        order_id = order_result.get('deal_reference') or order_result.get('id') or 'N/A'
+        decision.reasoning = (decision.reasoning or "") + f" | MANUALLY EXECUTED | Order ID: {order_id} | Qty: {qty}"
+        
+        db.commit()
+        db.refresh(decision)
+        return decision.to_dict()
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Execution failed: {str(e)}")
+
 # Market Data Endpoints
 @app.post("/api/chart")
 async def get_chart(request: ChartRequest):
@@ -478,7 +625,6 @@ async def get_chart(request: ChartRequest):
             request.timeframe,
             request.chart_type
         )
-        return data
         return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -530,6 +676,49 @@ async def search(request: SearchRequest):
         return {"results": results}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/alpaca/search")
+async def search_alpaca_assets(query: str, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Search Alpaca assets for autocomplete"""
+    print(f"[SEARCH_DEBUG] Received query: '{query}'")
+    if not alpaca_service:
+        # Fallback if Alpaca is not configured/installed - use local mapper
+        return {"results": symbol_mapper.search(query)}
+        
+    try:
+        # If globally configured, use it
+        if alpaca_service.is_configured():
+            results = await alpaca_service.search_assets(query)
+            return {"results": results}
+            
+        # If not globally configured, check user's accounts
+        from models.account import Account
+        alpaca_acc = db.query(Account).filter(
+            Account.user_id == current_user.id,
+            Account.platform == 'Alpaca',
+            Account.is_active == True
+        ).first()
+        
+        if alpaca_acc:
+            creds = alpaca_acc.get_credentials()
+            api_key = creds.get('api_key')
+            # Handle different key names from frontend form (api_key vs api_key_id)
+            if not api_key: api_key = creds.get('api_key_id')
+            
+            api_secret = creds.get('secret_key')
+            paper = creds.get('paper_trading', True)
+            
+            if api_key and api_secret:
+                results = await alpaca_service.search_assets(query, api_key, api_secret, paper)
+                return {"results": results}
+                
+        # Default fallback to local mapper if no Alpaca config found
+        return {"results": symbol_mapper.search(query)}
+    except Exception as e:
+        print(f"Error searching Alpaca assets: {e}")
+        # Fallback to local mapper on error
+        return {"results": symbol_mapper.search(query)}
+
 
 # Watchlist Endpoints
 @app.get("/api/watchlist")
@@ -662,27 +851,6 @@ async def ai_draw(request: Request, current_user: User = Depends(get_current_use
 
 
 
-
-# eToro Integration Endpoints
-@app.post("/api/etoro/login/google")
-async def etoro_google_login(current_user: User = Depends(get_current_user)):
-    """Initiates a browser for Google Login to eToro"""
-    try:
-        # This is a blocking (or long-running async) operation that opens a browser
-        # In a real production server, this might be handled by a task queue.
-        # For a local assistant, running it here is acceptable but will hold the connection.
-        print(f"Initiating eToro Google Login for user {current_user.username}")
-        result = await etoro_service.initiate_google_login()
-        if not result.get("success"):
-            raise HTTPException(status_code=400, detail=result.get("message"))
-        
-        # In a real app we'd save the session here to the Account model
-        # For now, we return it to the frontend or confirm success
-        print("eToro login successful, session captured.")
-        return result
-    except Exception as e:
-        print(f"eToro login error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
 
 # Authentication Endpoints
 @app.options("/api/auth/register")
@@ -984,6 +1152,22 @@ async def upload_profile_picture(
         raise HTTPException(status_code=500, detail=f"Failed to upload profile picture: {str(e)}")
 
 # Chat Endpoints
+async def _process_ai_background(user_id: int, message: str, invite_llama: bool = False, invite_gemini: bool = False, is_search: bool = False):
+    """Background task: process AI response with a fresh DB session"""
+    db = SessionLocal()
+    try:
+        await chat_service.process_ai_response(
+            user_id, message, db,
+            invite_llama=invite_llama,
+            invite_gemini=invite_gemini,
+            is_search=is_search,
+            ws_manager=ws_manager,
+        )
+    except Exception as e:
+        print(f"[Chat] AI background error: {e}")
+    finally:
+        db.close()
+
 @app.get("/api/chat/messages")
 async def get_chat_messages(
     limit: int = 100, 
@@ -1022,17 +1206,14 @@ async def send_chat_message(message: ChatMessage, current_user: User = Depends(g
                 "data": chat_msg
             }, recipient_id=current_user.id)
         
-        # Process AI response in background
-        # Note: In a real app, this should be a background task
-        await chat_service.process_ai_response(
-            current_user.id, 
-            message.message, 
-            db, 
-            invite_llama=message.invite_llama, 
-            invite_gemini=message.invite_gemini, 
+        # Ritorna subito: il frontend mostra il messaggio dalla risposta
+        # L'AI gira in background e invia la risposta via WebSocket
+        asyncio.create_task(_process_ai_background(
+            current_user.id, message.message,
+            invite_llama=message.invite_llama,
+            invite_gemini=message.invite_gemini,
             is_search=message.is_search,
-            ws_manager=ws_manager
-        )
+        ))
         
         return {"message": chat_msg}
     except Exception as e:
@@ -1615,12 +1796,35 @@ async def import_bot_config(
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/bots/test-connection")
-async def test_bot_connection(request: TestConnectionRequest, current_user: User = Depends(get_current_user)):
+async def test_bot_connection(request: TestConnectionRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """Test broker connection with provided configuration"""
     try:
         broker = request.broker
         config = request.config
         
+        # If account_id is provided, fetch credentials from DB
+        account_id = config.get('account_id')
+        if account_id:
+            from models.account import Account
+            saved_account = db.query(Account).filter(
+                Account.id == account_id,
+                Account.user_id == current_user.id
+            ).first()
+            
+            if saved_account:
+                creds = saved_account.get_credentials()
+                # Merge credentials into config (giving precedence to manual overrides if any, though usually hidden)
+                # We update config with saved credentials where missing
+                if saved_account.platform == 'Alpaca':
+                    if not config.get('alpaca_api_key'): config['alpaca_api_key'] = creds.get('api_key') or creds.get('api_key_id')
+                    if not config.get('alpaca_api_secret'): config['alpaca_api_secret'] = creds.get('secret_key')
+                    if config.get('alpaca_paper') is None: config['alpaca_paper'] = creds.get('paper_trading', True)
+                elif saved_account.platform == 'IG':
+                    if not config.get('ig_username'): config['ig_username'] = creds.get('username')
+                    if not config.get('ig_password'): config['ig_password'] = creds.get('password')
+                    if not config.get('ig_api_key'): config['ig_api_key'] = creds.get('api_key')
+                    if not config.get('ig_acc_type'): config['ig_acc_type'] = creds.get('account_type', 'DEMO')
+
         if broker == 'IG':
             from services.ig_service import IGMarketsService
             
@@ -1653,25 +1857,61 @@ async def test_bot_connection(request: TestConnectionRequest, current_user: User
             
             return {"success": False, "message": "Could not initialize IG service with provided credentials"}
             
-        elif broker == 'Alpaca':
+        if broker == 'Alpaca':
             from services.alpaca_service import AlpacaService
             
-            api_key = config.get('alpaca_api_key')
-            api_secret = config.get('alpaca_api_secret')
+            print(f"[DEBUG] Test Connection Request. Config: {config}")
+            if account_id:
+               print(f"[DEBUG] Found account_id: {account_id}. Attempting DB lookup.")
+               
+            api_key = config.get('alpaca_api_key', '').strip()
+            api_secret = config.get('alpaca_api_secret', '').strip()
             paper = config.get('alpaca_paper', True)
             
+            # Auto-detect paper mode if key starts with PK (standard for Alpaca Paper)
+            if api_key.startswith('PK'):
+                paper = True
+            
+            print(f"[DEBUG] Keys after lookup/strip - Key len: {len(api_key)}, Secret len: {len(api_secret)}, Paper: {paper}")
+            
             if not api_key or not api_secret:
-                return {"success": False, "message": "Missing required Alpaca credentials"}
+                print("[DEBUG] Missing credentials")
+                return {
+                    "success": False,
+                    "message": "Servono entrambi: API Key ID (es. PK...) e Secret Key. Su Alpaca la Secret si vede una sola volta alla creazione; se non ce l'hai più, clicca Regenerate e copia entrambi."
+                }
             
             try:
-                # Initialize service
+                # Initialize service (may fail if alpaca-py is not installed)
                 service = AlpacaService(api_key=api_key, api_secret=api_secret, paper=paper)
-                if service.is_configured():
-                    account = await service.get_account()
-                    if account:
-                         return {"success": True, "message": "Successfully connected to Alpaca"}
-                return {"success": False, "message": "Alpaca service not configured properly"}
+                
+                if service.is_configured() and service.client:
+                    # SDK available and configured: verify with get_account()
+                    try:
+                        account = await service.get_account()
+                        if account:
+                            return {"success": True, "message": "Successfully connected to Alpaca"}
+                    except Exception as e:
+                        return {"success": False, "message": f"Alpaca account error: {str(e)}"}
+                
+                # SDK not available or not configured: verify credentials via REST (no alpaca-py needed)
+                ok, rest_msg = _verify_alpaca_credentials_rest(api_key, api_secret, paper)
+                if ok:
+                    return {
+                        "success": True,
+                        "message": "Successfully connected to Alpaca (credentials verified via API). Install alpaca-py for full trading features."
+                    }
+                return {"success": False, "message": f"Connection Failed: {rest_msg}"}
             except Exception as e:
+                # Last resort: try REST verification (e.g. exception was from SDK init)
+                ok, rest_msg = _verify_alpaca_credentials_rest(api_key, api_secret, paper)
+                if ok:
+                    return {
+                        "success": True,
+                        "message": "Successfully connected to Alpaca (credentials verified via API). Install alpaca-py for full trading features."
+                    }
+                import traceback
+                traceback.print_exc()
                 return {"success": False, "message": f"Alpaca connection failed: {str(e)}"}
                 
         else:
@@ -1703,13 +1943,9 @@ async def test_ai_connection(request: TestAIConnectionRequest, current_user: Use
                 gemini_model = (getattr(current_user, 'gemini_model', None) or '').strip() or None
                 service = GeminiService(api_key=api_key, model_name=gemini_model)
                 if service.available and service.client:
-                    # Try a simple test call to verify the API key works
+                    # Try a simple test call to verify the API key works (uses fallback on 429)
                     try:
-                        # Make a minimal test call to verify the API key is valid
-                        response = service.client.models.generate_content(
-                            model=service.model_name, 
-                            contents="test"
-                        )
+                        response = service._generate_with_fallback("test")
                         # Verify we got a response (don't access .text to avoid errors)
                         if response is not None:
                             return {"success": True, "message": f"Gemini API key is valid (using model: {service.model_name})"}
@@ -2009,6 +2245,24 @@ async def get_online_users():
     """Get list of online users"""
     return {"users": ws_manager.get_online_users()}
 
+
+@app.get("/api/users/by-username")
+async def get_user_by_username(
+    username: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Look up user by username (for private chat). Returns id and username if found."""
+    if not username or not username.strip():
+        raise HTTPException(status_code=400, detail="Username required")
+    user = get_user_by_username(db, username.strip())
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.id == current_user.id:
+        raise HTTPException(status_code=400, detail="Cannot chat with yourself")
+    return {"id": user.id, "username": user.username}
+
+
 # Earnings Endpoints
 @app.get("/api/earnings")
 async def get_earnings(
@@ -2042,21 +2296,8 @@ async def get_earnings(
             except Exception as cache_error:
                 print(f"[API] Cache fallback failed: {cache_error}")
         
-        # Filter out weekend earnings (Saturday=5, Sunday=6)
-        from datetime import datetime as dt
-        filtered_earnings = []
-        for earning in earnings_data:
-            try:
-                earning_date = dt.fromisoformat(earning.get('date', ''))
-                # Only include weekdays (Monday=0 to Friday=4)
-                if earning_date.weekday() < 5:
-                    filtered_earnings.append(earning)
-            except:
-                # If date parsing fails, include it anyway
-                filtered_earnings.append(earning)
-        
-        earnings_data = filtered_earnings
-        print(f"[API] Filtered to {len(earnings_data)} weekday earnings (removed weekends)")
+        # Includiamo tutti i giorni (anche sabato e domenica)
+        print(f"[API] Returning {len(earnings_data)} earnings (including weekends)")
         
         # Save earnings data to JSON file for AI access
         try:
@@ -2114,10 +2355,12 @@ async def clear_chat_history(recipient_id: Optional[int] = None, current_user: U
         raise HTTPException(status_code=500, detail=str(e))
 if __name__ == "__main__":
     import uvicorn
+    import os
+    port = int(os.environ.get("PORT", 8001))
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,
+        port=port,
         reload=True,  # Hot reload for development
         log_level="info"
     )
@@ -2177,37 +2420,6 @@ async def get_bot_decisions(
         return {"decisions": [d.to_dict() for d in decisions]}
     except Exception as e:
         print(f"Error fetching decisions: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/api/bot/decisions")
-async def create_bot_decision(
-    decision: DecisionCreate,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    """Create a new decision"""
-    try:
-        # Verify bot ownership
-        bot = bot_service.get_bot(db, decision.bot_id, current_user.id)
-        if not bot:
-            raise HTTPException(status_code=404, detail="Bot not found")
-
-        new_decision = Decision(
-            bot_id=decision.bot_id,
-            symbol=decision.symbol.upper(),
-            decision=decision.decision.upper(),
-            execution_time=decision.execution_time or datetime.now(),
-            status=decision.status or "PENDING",
-            reasoning=decision.reasoning
-        )
-        db.add(new_decision)
-        db.commit()
-        db.refresh(new_decision)
-        return new_decision.to_dict()
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Error creating decision: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.patch("/api/bot/decisions/{decision_id}")
@@ -2420,26 +2632,15 @@ async def test_account_connection(
         
         # Map credentials to what bot_service expects
         test_config = {}
-        if account.platform == 'IG':
-            test_config = {
-                'ig_username': creds.get('username'),
-                'ig_password': creds.get('password'),
-                'ig_api_key': creds.get('api_key'),
-                'ig_acc_type': creds.get('account_type', 'DEMO')
-            }
-        elif account.platform == 'Alpaca':
+        if account.platform == 'Alpaca':
             test_config = {
                 'alpaca_api_key': creds.get('api_key'),
                 'alpaca_api_secret': creds.get('secret_key'),
                 'alpaca_paper': creds.get('paper_trading', True)
             }
-        # Add eToro stub
-        elif account.platform == 'eToro':
-             # Just a mock test for now as eToro API isn't real
-             import asyncio
-             await asyncio.sleep(1)
-             return {"success": True, "message": "eToro connection simulation successful"}
-             
+        elif account.platform in ('IG', 'eToro'):
+            return {"success": False, "message": "Platform no longer supported. Use Alpaca."}
+
         # Call existing service
         # We might need to expose a helper in bot_service or just replicate logic
         # For simplicity, let's just use the existing behavior if possible

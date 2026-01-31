@@ -16,7 +16,9 @@ except ImportError:
     print("Warning: google-genai not installed. Install with: pip install google-genai")
 
 class GeminiService:
-    DEFAULT_MODEL = 'gemini-3-flash-preview'
+    DEFAULT_MODEL = 'gemini-2.5-pro'
+    # Fallback chain when quota exceeded (429): Pro -> Flash -> Flash-Lite (higher free-tier limits)
+    FALLBACK_MODELS = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.5-flash-lite']
 
     def __init__(self, api_key: Optional[str] = None, model_name: Optional[str] = None):
         self.api_key = api_key or os.getenv('GOOGLE_GEMINI_API_KEY') or os.getenv('GOOGLE_API_KEY')
@@ -26,10 +28,10 @@ class GeminiService:
         if model_name.startswith('models/'):
             model_name = model_name.replace('models/', '')
         
-        # Migrate older/preview model names to Gemini 3.0 Flash
-        if model_name.startswith("gemini-3.0"):
-            print(f"[GEMINI] Migrating future model name '{model_name}' to 'gemini-3-flash-preview'")
-            model_name = 'gemini-3-flash-preview'
+        # Migrate older/preview model names to stable 2.5 chain
+        if model_name.startswith("gemini-3") or 'preview' in model_name.lower():
+            print(f"[GEMINI] Migrating '{model_name}' to '{self.DEFAULT_MODEL}' (better free-tier limits)")
+            model_name = self.DEFAULT_MODEL
         
         self.model_name = model_name
         if GEMINI_AVAILABLE and self.api_key:
@@ -74,6 +76,30 @@ class GeminiService:
         except Exception as e:
             print(f"[GEMINI] Warning: Could not extract text directly: {e}")
             return ""
+
+    def _is_quota_error(self, e: Exception) -> bool:
+        """Check if exception is a 429/quota exhausted error"""
+        msg = str(e).lower()
+        return '429' in msg or 'resource_exhausted' in msg or 'quota' in msg
+
+    def _generate_with_fallback(self, contents, **kwargs):
+        """Call generate_content with fallback chain on 429 quota errors."""
+        models_to_try = [self.model_name]
+        for m in self.FALLBACK_MODELS:
+            if m not in models_to_try:
+                models_to_try.append(m)
+        last_error = None
+        for model in models_to_try:
+            try:
+                return self.client.models.generate_content(model=model, contents=contents, **kwargs)
+            except Exception as e:
+                last_error = e
+                if self._is_quota_error(e) and model != models_to_try[-1]:
+                    next_idx = models_to_try.index(model) + 1
+                    print(f"[GEMINI] Quota exceeded for {model}, falling back to {models_to_try[next_idx]}...")
+                    continue
+                raise
+        raise last_error or RuntimeError("All models exhausted")
 
     def _save_chat_to_memory(self, user_id: int, prompt: str, response: str):
         """Save chat interaction to JSON file"""
@@ -230,8 +256,8 @@ Reliability Metrics:
 ANALIZZA E DAMMI IL JSON.
 """
             
-            # Call Gemini API
-            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
+            # Call Gemini API (with fallback on 429)
+            response = self._generate_with_fallback(prompt)
             response_text = self._safe_get_text(response)
             
             if not response_text:
@@ -326,8 +352,8 @@ ANALIZZA E DAMMI IL JSON.
             
             full_prompt += f"User: {prompt}\nAssistant:"
 
-            # Call Gemini
-            response = self.client.models.generate_content(model=self.model_name, contents=full_prompt)
+            # Call Gemini (with fallback on 429)
+            response = self._generate_with_fallback(full_prompt)
             response_text = self._safe_get_text(response)
             
             if not response_text:
@@ -388,7 +414,7 @@ CONVERSATION HISTORY:
 User: {prompt}
 Assistant:"""
             
-            response = self.client.models.generate_content(model=self.model_name, contents=full_prompt)
+            response = self._generate_with_fallback(full_prompt)
             text = self._safe_get_text(response)
             if not text:
                 return "I apologize, but I couldn't generate a response at this time. The model might be busy or the request was filtered."
@@ -416,7 +442,7 @@ Please provide a concise, friendly summary of:
 
 Keep it under 200 words. Be professional but conversational.
 """
-            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
+            response = self._generate_with_fallback(prompt)
             text = self._safe_get_text(response)
             if not text:
                 return "I couldn't generate an explanation at this time."
@@ -481,7 +507,7 @@ User Request: {prompt}
 
 {context}
 """
-            response = self.client.models.generate_content(model=self.model_name, contents=system_prompt)
+            response = self._generate_with_fallback(system_prompt)
             text = self._safe_get_text(response)
             
             # Clean up response
@@ -561,7 +587,7 @@ Formato:
 ]
 """
             print(f"[GEMINI] Sending analysis prompt...")
-            response = self.client.models.generate_content(model=self.model_name, contents=prompt)
+            response = self._generate_with_fallback(prompt)
             text = self._safe_get_text(response)
             
             # Clean up response

@@ -1,5 +1,7 @@
 import asyncio
-from datetime import datetime, date
+import os
+import json
+from datetime import datetime, date, timezone
 from sqlalchemy.orm import Session
 
 from services.gemini_service import GeminiService
@@ -14,6 +16,30 @@ from datetime import timedelta
 
 gemini_service = GeminiService()
 market_data_service = MarketDataService()
+
+
+async def refresh_earnings_cache_job():
+    """
+    Refresh full-year earnings cache and earnings_data.json.
+    Run monthly so the cache and JSON file stay up to date.
+    """
+    print("[JOB] refresh_earnings_cache_job: fetching 12 months earnings...")
+    try:
+        from services.earnings_service import earnings_service
+        earnings_data = await earnings_service.get_earnings_calendar(months=12, use_cache=False)
+        backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        earnings_file_path = os.path.join(backend_dir, "earnings_data.json")
+        with open(earnings_file_path, 'w', encoding='utf-8') as f:
+            json.dump({
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "total_earnings": len(earnings_data),
+                "earnings": earnings_data
+            }, f, indent=2, ensure_ascii=False, default=str)
+        print(f"[JOB] refresh_earnings_cache_job: saved {len(earnings_data)} earnings to {earnings_file_path}")
+    except Exception as e:
+        print(f"[JOB] refresh_earnings_cache_job error: {e}")
+        import traceback
+        traceback.print_exc()
 
 async def process_bot_earnings(bot_id: int):
     """
@@ -336,7 +362,39 @@ async def execute_orders_job():
                         print(f"[JOB] Symbol normalized: {original_symbol} → {symbol}")
                     
                     print(f"[JOB] Executing {action} {symbol} for bot {bot.name}...")
-                    qty = 1 # Default quantity
+                    
+                    # Default order amount in USD
+                    ORDER_AMOUNT_USD = 1000.0 
+                    qty = 1.0
+                    
+                    # 1. Get current price to calculate quantity
+                    current_price = 0.0
+                    try:
+                        # Try getting price from Service if possible, or MarketData
+                        if isinstance(service, IGMarketsService):
+                             # For IG, we might need a different approach or just use size=1 for spread betting
+                             # Placeholder for IG logic
+                             pass
+                        elif isinstance(service, AlpacaService):
+                             # Need price to calc quantity
+                             # We can use market_data_service as fallback
+                             quote = market_data_service.get_quote(symbol) 
+                             current_price = quote.get('price', 0.0)
+                    except Exception as px:
+                        print(f"[JOB] Could not get price for {symbol}: {px}")
+                    
+                    # 2. Calculate Quantity
+                    if current_price > 0:
+                        raw_qty = ORDER_AMOUNT_USD / current_price
+                        # Alpaca supports fractional shares, but let's stick to 2 decimals or integer for safety?
+                        # Alpaca paper supports fractionals.
+                        qty = round(raw_qty, 4)
+                        if qty < 0.0001: qty = 0.0001 # Min size
+                        print(f"[JOB] Calculated qty: {qty} based on price {current_price} and target ${ORDER_AMOUNT_USD}")
+                    else:
+                        print(f"[JOB] Warning: Using default qty 1 because price unknown")
+                        qty = 1
+
                     
                     order_result = None
                     
@@ -346,10 +404,12 @@ async def execute_orders_job():
                         if not epic:
                             raise Exception(f"Could not resolve epic for {symbol}")
                         
+                        # IG uses contracts, often 1 is large. Be careful.
+                        # Keeping 1 for IG for now as requested user focused on Alpaca.
                         order_result = await service.place_market_order(
                             epic=epic,
                             direction=action.upper(),
-                            size=qty
+                            size=1 
                         )
                     elif isinstance(service, AlpacaService):
                         # Alpaca Execution
@@ -365,12 +425,15 @@ async def execute_orders_job():
                     decision.executed_at = datetime.now()
                     # Extract ID from result if possible
                     order_id = order_result.get('deal_reference') or order_result.get('id') or 'N/A'
-                    decision.reasoning = (decision.reasoning or "") + f" | Order ID: {order_id}"
+                    decision.reasoning = (decision.reasoning or "") + f" | Order ID: {order_id} | Qty: {qty} | Price: {current_price}"
                     
                     scheduler_service.log_execution(job_name, "SUCCESS", f"Executed {action} {symbol} (Bot {bot.name})")
                     
                 except Exception as e:
                     print(f"[JOB] Error executing order for {decision.symbol}: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    
                     decision.status = "FAILED"
                     decision.reasoning = (decision.reasoning or "") + f" | Error: {str(e)}"
                     scheduler_service.log_execution(job_name, "ERROR", f"Failed {decision.symbol}: {e}")

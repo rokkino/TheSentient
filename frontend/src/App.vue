@@ -12,9 +12,9 @@ import { useAuthStore } from './stores/auth'
 const wsStore = useWebSocketStore()
 const authStore = useAuthStore()
 
-onMounted(async () => {
-  // Check authentication on app start
-  await authStore.checkAuth()
+onMounted(() => {
+  // Auth e WebSocket in background - non bloccano l'UI
+  authStore.checkAuth().catch(() => {})
   wsStore.connect()
 })
 </script>
@@ -29,13 +29,29 @@ onMounted(async () => {
 #app {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  min-height: -webkit-fill-available;
   overflow: hidden;
-  background-color: #000000;
+  background: linear-gradient(180deg, #0d0d0f 0%, #08080a 100%);
+  pointer-events: auto;
+  position: relative;
+  z-index: 0;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (max-width: 768px) {
+  #app {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 body {
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  background-color: #000000;
+  background: #0a0a0c;
   color: #e0e0e0;
   letter-spacing: 0.5px;
 }
@@ -59,11 +75,14 @@ body {
   background: #555;
 }
 
-/* Global button styles override */
+/* Global button styles - assicurarsi che siano cliccabili */
 button {
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-weight: 500;
   letter-spacing: 0.5px;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 </style>
 

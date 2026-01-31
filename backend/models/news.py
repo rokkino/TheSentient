@@ -2,7 +2,7 @@
 News Model - Database model for storing news items
 """
 from sqlalchemy import Column, Integer, String, DateTime, Text
-from datetime import datetime
+from datetime import datetime, timezone
 from .user import Base
 
 class News(Base):
@@ -16,4 +16,4 @@ class News(Base):
     timestamp = Column(DateTime, index=True)
     content = Column(Text, nullable=True)  # Summary or full text
     thumbnail_url = Column(String, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))

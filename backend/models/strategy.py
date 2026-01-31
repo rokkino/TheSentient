@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
-from datetime import datetime
+from datetime import datetime, timezone
 from models.user import Base
 
 class Strategy(Base):
@@ -11,8 +11,8 @@ class Strategy(Base):
     name = Column(String, index=True, nullable=False)
     description = Column(String, nullable=True)
     definition = Column(Text, nullable=False)  # JSON string storing the strategy logic
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     # Relationship
     user = relationship("User", backref="strategies")

@@ -613,6 +613,21 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
   }
 }
 
+@media (max-width: 480px) {
+  .news-feed-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .news-header-glass {
+    padding: 12px 16px;
+  }
+
+  .search-input {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+
 .loading-state, .error-state, .empty-state {
   display: flex;
   flex-direction: column;

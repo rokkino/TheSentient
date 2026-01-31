@@ -4,7 +4,7 @@ Bot Model - Database models for trading bots
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from models.user import Base
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 
 class Bot(Base):
@@ -32,8 +32,8 @@ class Bot(Base):
     profit = Column(Float, default=0.0)  # Total profit percentage
     
     # Timestamps
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     activated_at = Column(DateTime, nullable=True)
     
     # Relationship
@@ -122,7 +122,7 @@ class Decision(Base):
     execution_time = Column(DateTime) # When to execute
     status = Column(String, default="PENDING") # PENDING, EXECUTED, CANCELLED, FAILED
     reasoning = Column(Text)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     executed_at = Column(DateTime, nullable=True)
     
     def to_dict(self):

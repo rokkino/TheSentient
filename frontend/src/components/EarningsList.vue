@@ -1,18 +1,33 @@
 <template>
   <div class="earnings-list-container">
-    <div class="earnings-controls">
-      <div class="search-container">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Search symbol or company..." 
-          class="search-input"
-        />
-        <span v-if="searchQuery" class="clear-search" @click="searchQuery = ''">×</span>
+    <div class="earnings-header-glass">
+      <div class="header-content">
+        <h2>Earnings giornalieri</h2>
+        <div class="earnings-controls">
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input 
+              v-model="searchQuery" 
+              type="text" 
+              placeholder="Search symbol or company..." 
+              class="search-input"
+            />
+            <span v-if="searchQuery" class="clear-search" @click="searchQuery = ''">×</span>
+          </div>
+          <button
+            @click="loadEarnings"
+            class="refresh-btn"
+            :disabled="loading"
+            title="Aggiorna earnings"
+          >
+            <span class="refresh-icon" :class="{ spinning: loading }">↻</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div v-if="loading" class="loading-state">
+    <div class="scroll-container" ref="scrollRef">
+    <div v-if="loading && earnings.length === 0" class="loading-state">
       <div class="spinner"></div>
       <p>Loading earnings data...</p>
     </div>
@@ -49,281 +64,153 @@
         </div>
       </div>
 
-      <!-- Default View (Today/Tomorrow/Next) -->
+      <!-- Vista giornaliera: una sezione per giorno. Scroll in fondo = carica altro. -->
       <template v-else>
-        <!-- Today's Earnings -->
-        <div class="earnings-section">
-          <h3 class="section-title">
-            📅 Today's Earnings ({{ formatDate(today) }})
-          </h3>
-          <div v-if="todayEarnings.length === 0" class="no-earnings">
-            <p>No earnings scheduled for today</p>
-          </div>
-          <div v-else class="earnings-list">
-            <div 
-              v-for="earning in todayEarnings" 
-              :key="`today-${earning.symbol}-${earning.date}`"
-              class="earning-item"
-            >
-              <div class="earning-header">
-                <div class="earning-symbol">{{ earning.symbol || earning.ticker || 'N/A' }}</div>
-                <div class="earning-company">{{ earning.company || earning.companymearningsshortname || earning.companyshortname || earning.symbol || 'N/A' }}</div>
-                <div class="earning-time" :class="getTimeClass(earning.time)">
-                  {{ formatTime(earning.time) }}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="earnings-section week-intro">
+          <p class="week-summary">
+            Earnings per giorno. Scorri in fondo per caricare più date (oltre ~3 settimane).
+          </p>
         </div>
-        
-        <!-- Tomorrow's Earnings -->
-        <div class="earnings-section">
+        <div
+          v-for="day in earningsByDay"
+          :key="day.dateStr"
+          class="earnings-section"
+        >
           <h3 class="section-title">
-            📅 Tomorrow's Earnings ({{ formatDate(tomorrow) }})
-          </h3>
-          <div v-if="tomorrowEarnings.length === 0" class="no-earnings">
-            <p>No earnings scheduled for tomorrow</p>
-          </div>
-          <div v-else class="earnings-list">
-            <div 
-              v-for="earning in tomorrowEarnings" 
-              :key="`tomorrow-${earning.symbol}-${earning.date}`"
-              class="earning-item"
-            >
-              <div class="earning-header">
-                <div class="earning-symbol">{{ earning.symbol || earning.ticker || 'N/A' }}</div>
-                <div class="earning-company">{{ earning.company || earning.companymearningsshortname || earning.companyshortname || earning.symbol || 'N/A' }}</div>
-                <div class="earning-time" :class="getTimeClass(earning.time)">
-                  {{ formatTime(earning.time) }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Next Earnings (if no earnings today/tomorrow) -->
-        <div v-if="todayEarnings.length === 0 && tomorrowEarnings.length === 0 && nextEarnings.length > 0" class="earnings-section">
-          <h3 class="section-title">
-            📅 Next Available Earnings (Next 7 Days)
+            📅 {{ day.label }}
           </h3>
           <div class="earnings-list">
             <div 
-              v-for="earning in nextEarnings" 
-              :key="`next-${earning.symbol}-${earning.date}`"
+              v-for="earning in day.earnings" 
+              :key="`${day.dateStr}-${earning.symbol}-${earning.date}`"
               class="earning-item"
             >
               <div class="earning-header">
                 <div class="earning-symbol">{{ earning.symbol || earning.ticker || 'N/A' }}</div>
                 <div class="earning-company">{{ earning.company || earning.companymearningsshortname || earning.companyshortname || earning.symbol || 'N/A' }}</div>
-                <div class="earning-date">{{ formatDate(earning.date) }}</div>
                 <div class="earning-time" :class="getTimeClass(earning.time)">
                   {{ formatTime(earning.time) }}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <!-- Sentinel: quando entra in vista, carica altro -->
+        <div
+          v-if="!searchQuery && hasMore && earningsByDay.length > 0"
+          ref="loadMoreRef"
+          class="load-more-sentinel"
+        >
+          <p v-if="loadingMore">Caricamento...</p>
+          <p v-else>Scorri per caricare altre date</p>
         </div>
       </template>
       
       <div class="summary">
         <p v-if="searchQuery">
-          Found {{ filteredEarnings.length }} earnings for "{{ searchQuery }}"
+          Trovati {{ filteredEarnings.length }} earnings per "{{ searchQuery }}"
         </p>
-        <template v-else>
-          <p>
-            <strong>Today:</strong> {{ todayEarnings.length }} earnings | 
-            <strong>Tomorrow:</strong> {{ tomorrowEarnings.length }} earnings
-          </p>
-          <p v-if="todayEarnings.length === 0 && tomorrowEarnings.length === 0 && nextEarnings.length > 0" style="margin-top: 8px; font-size: 12px; color: #a0aec0;">
-            Showing next {{ nextEarnings.length }} upcoming earnings
-          </p>
-          <p v-else style="margin-top: 8px; font-size: 12px; color: #a0aec0;">
-            Total earnings available: {{ earnings.length }}
-          </p>
-        </template>
+        <p v-else>
+          <strong>{{ earningsByDay.length }}</strong> giorni · <strong>{{ earnings.length }}</strong> earnings. {{ hasMore ? 'Scorri in fondo per caricare altro.' : 'Tutti i dati caricati.' }}
+        </p>
       </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import api from '../services/api'
 
 const loading = ref(false)
 const error = ref(null)
 const earnings = ref([])
 const searchQuery = ref('')
+const scrollRef = ref(null)
+const loadMoreRef = ref(null)
+const loadingMore = ref(false)
+const offsetMonths = ref(0)
+const hasMore = ref(true)
+const MONTHS_CHUNK = 1
+const MAX_MONTHS = 12
 
-// Helper function to get next business day (skip weekends)
-const getNextBusinessDay = (date) => {
-  const newDate = new Date(date) // Don't mutate original
-  newDate.setDate(newDate.getDate() + 1)
-  
-  // Skip weekends
-  while (newDate.getDay() === 0 || newDate.getDay() === 6) {
-    newDate.setDate(newDate.getDate() + 1)
-  }
-  
-  return newDate.toISOString().split('T')[0]
+// Data locale YYYY-MM-DD (evita errori timezone)
+const toLocalDateStr = (date) => {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
 }
 
-const today = computed(() => {
-  const now = new Date()
-  return now.toISOString().split('T')[0]
-})
+function normalizeEarnings(data) {
+  return (data || []).map(earning => {
+    let symbol = (earning.symbol || earning.ticker || '').toString().trim().toUpperCase()
+    let company = (earning.company || earning.companymearningsshortname || earning.companyshortname || symbol).toString().trim()
+    return {
+      ...earning,
+      symbol: symbol || 'N/A',
+      company: company || symbol,
+      ticker: symbol,
+      date: earning.date || '',
+      time: earning.time || 'TBD'
+    }
+  })
+}
 
-const tomorrow = computed(() => {
-  return getNextBusinessDay(today.value)
-})
+function parseResponse(response) {
+  if (!response?.data) return []
+  if (Array.isArray(response.data)) return response.data
+  if (response.data.earnings && Array.isArray(response.data.earnings)) return response.data.earnings
+  if (response.data.data && Array.isArray(response.data.data)) return response.data.data
+  return []
+}
 
 const filteredEarnings = computed(() => {
   if (!searchQuery.value) return []
-  
   const query = searchQuery.value.toLowerCase().trim()
   return earnings.value.filter(e => {
     const symbol = (e.symbol || e.ticker || '').toLowerCase()
     const company = (e.company || e.companymearningsshortname || e.companyshortname || '').toLowerCase()
-    
     return symbol.includes(query) || company.includes(query)
-  }).slice(0, 50) // Limit results for performance
+  }).slice(0, 50)
 })
 
-const todayEarnings = computed(() => {
+// Raggruppa per giorno (giornalmente). Ordine cronologico.
+const earningsByDay = computed(() => {
   if (!earnings.value || earnings.value.length === 0) return []
-  
-  const filtered = earnings.value.filter(e => {
-    if (!e.date) return false
+  const byDay = {}
+  for (const e of earnings.value) {
+    if (!e.date) continue
     try {
-      // Normalize dates - handle different formats
-      let earningDateStr
-      if (typeof e.date === 'string') {
-        // Handle ISO format, YYYY-MM-DD, or other formats
-        earningDateStr = e.date.split('T')[0] // Remove time if present
-      } else {
-        earningDateStr = new Date(e.date).toISOString().split('T')[0]
-      }
-      
-      const todayDateStr = today.value
-      
-      // Compare normalized date strings
-      return earningDateStr === todayDateStr
-    } catch (err) {
-      console.warn('Error parsing date:', e.date, err)
-      return false
-    }
+      const dateStr = typeof e.date === 'string' ? e.date.split('T')[0] : toLocalDateStr(new Date(e.date))
+      if (!byDay[dateStr]) byDay[dateStr] = []
+      byDay[dateStr].push(e)
+    } catch (_) {}
+  }
+  const keys = Object.keys(byDay).sort()
+  return keys.map(dateStr => {
+    const list = byDay[dateStr]
+    const d = new Date(dateStr + 'T12:00:00')
+    const label = d.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' })
+    return { dateStr, label, earnings: list }
   })
-  
-  return filtered
-})
-
-const tomorrowEarnings = computed(() => {
-  if (!earnings.value || earnings.value.length === 0) return []
-  
-  const filtered = earnings.value.filter(e => {
-    if (!e.date) return false
-    try {
-      // Normalize dates - handle different formats
-      let earningDateStr
-      if (typeof e.date === 'string') {
-        // Handle ISO format, YYYY-MM-DD, or other formats
-        earningDateStr = e.date.split('T')[0] // Remove time if present
-      } else {
-        earningDateStr = new Date(e.date).toISOString().split('T')[0]
-      }
-      
-      const tomorrowDateStr = tomorrow.value
-      
-      // Compare normalized date strings
-      return earningDateStr === tomorrowDateStr
-    } catch (err) {
-      console.warn('Error parsing date:', e.date, err)
-      return false
-    }
-  })
-  
-  return filtered
-})
-
-// Get next available earnings (next 7 days)
-const nextEarnings = computed(() => {
-  if (!earnings.value || earnings.value.length === 0) return []
-  
-  const todayDate = new Date(today.value)
-  const nextWeek = new Date(todayDate)
-  nextWeek.setDate(todayDate.getDate() + 7)
-  
-  const filtered = earnings.value
-    .filter(e => {
-      if (!e.date) return false
-      try {
-        const earningDate = new Date(e.date)
-        return earningDate >= todayDate && earningDate <= nextWeek
-      } catch (err) {
-        return false
-      }
-    })
-    .slice(0, 20) // Limit to first 20
-  
-  return filtered
 })
 
 const loadEarnings = async () => {
   loading.value = true
   error.value = null
-  
+  offsetMonths.value = 0
+  hasMore.value = true
   try {
-    console.log('Loading earnings...')
-    console.log(`Today: ${today.value}, Tomorrow: ${tomorrow.value}`)
-    
-    // Fetch earnings for next 3 months to allow searching
-    const response = await api.getEarnings(null, 3, 0)
-    
-    console.log('Earnings API response:', response)
-    console.log('Response data:', response.data)
-    
-    // Handle different response structures
-    let earningsData = []
-    if (response.data) {
-      if (Array.isArray(response.data)) {
-        earningsData = response.data
-      } else if (response.data.earnings && Array.isArray(response.data.earnings)) {
-        earningsData = response.data.earnings
-      } else if (response.data.data && Array.isArray(response.data.data)) {
-        earningsData = response.data.data
-      }
-    }
-    
-    console.log(`Loaded ${earningsData.length} earnings from API`)
-    
-    // Normalize and clean earnings data
-    earningsData = earningsData.map(earning => {
-      let symbol = earning.symbol || earning.ticker || ''
-      if (typeof symbol !== 'string') {
-        symbol = String(symbol)
-      }
-      symbol = symbol.trim().toUpperCase()
-      
-      let company = earning.company || earning.companymearningsshortname || earning.companyshortname || symbol
-      if (typeof company !== 'string') {
-        company = String(company)
-      }
-      company = company.trim()
-      
-      return {
-        ...earning,
-        symbol: symbol,
-        company: company,
-        ticker: symbol,
-        date: earning.date || '',
-        time: earning.time || 'TBD'
-      }
-    })
-    
-    earnings.value = earningsData
-    
-    console.log(`Today earnings (${today.value}):`, todayEarnings.value.length)
-    console.log(`Tomorrow earnings (${tomorrow.value}):`, tomorrowEarnings.value.length)
+    const response = await api.getEarnings(null, MONTHS_CHUNK, 0)
+    const raw = parseResponse(response)
+    const data = normalizeEarnings(raw)
+    earnings.value = data
+    offsetMonths.value = 1
+    if (raw.length === 0 || offsetMonths.value >= MAX_MONTHS) hasMore.value = false
+    await nextTick()
+    scrollRef.value?.scrollTo(0, 0)
   } catch (err) {
     console.error('Error loading earnings:', err)
     error.value = err.response?.data?.detail || err.message || 'Impossibile caricare i dati degli earnings. Riprova più tardi.'
@@ -332,6 +219,53 @@ const loadEarnings = async () => {
     loading.value = false
   }
 }
+
+const loadMoreEarnings = async () => {
+  if (loadingMore.value || !hasMore.value || offsetMonths.value >= MAX_MONTHS) return
+  loadingMore.value = true
+  try {
+    const response = await api.getEarnings(null, MONTHS_CHUNK, offsetMonths.value)
+    const raw = parseResponse(response)
+    if (raw.length === 0) {
+      hasMore.value = false
+      return
+    }
+    const data = normalizeEarnings(raw)
+    const existing = new Set(earnings.value.map(e => `${e.symbol}-${e.date}`))
+    const newOnes = data.filter(e => !existing.has(`${e.symbol}-${e.date}`))
+    earnings.value = [...earnings.value, ...newOnes]
+    offsetMonths.value += 1
+    if (offsetMonths.value >= MAX_MONTHS) hasMore.value = false
+  } catch (err) {
+    console.error('Error loading more earnings:', err)
+  } finally {
+    loadingMore.value = false
+  }
+}
+
+let observer = null
+function setupLoadMoreObserver() {
+  if (!loadMoreRef.value || !scrollRef.value) return
+  observer?.disconnect()
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries[0]?.isIntersecting) return
+      loadMoreEarnings()
+    },
+    { root: scrollRef.value, rootMargin: '200px', threshold: 0 }
+  )
+  observer.observe(loadMoreRef.value)
+}
+
+onMounted(() => {
+  loadEarnings()
+})
+watch(loadMoreRef, (el) => {
+  if (el && scrollRef.value) nextTick(setupLoadMoreObserver)
+}, { flush: 'post' })
+onUnmounted(() => {
+  observer?.disconnect()
+})
 
 const formatDate = (dateString) => {
   if (!dateString) return 'N/A'
@@ -385,41 +319,97 @@ onMounted(() => {
 .earnings-list-container {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  padding: 20px;
+  min-height: 0; /* per catena flex (Dashboard) e scroll corretto */
+  display: flex;
+  flex-direction: column;
   background-color: #050505;
   color: #fff;
 }
 
-.earnings-controls {
-  margin-bottom: 20px;
+.earnings-header-glass {
+  padding: 20px 30px;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+  flex-shrink: 0;
 }
 
-.search-container {
+.header-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #fff, #888);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.earnings-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.week-intro .week-summary {
+  margin: 0;
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+.load-more-sentinel {
+  padding: 24px;
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+}
+
+.search-wrapper {
   position: relative;
-  max-width: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  opacity: 0.5;
 }
 
 .search-input {
-  width: 100%;
-  padding: 10px 35px 10px 15px;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 10px 35px 10px 35px;
   color: #fff;
   font-size: 14px;
-  transition: all 0.2s;
+  width: 250px;
+  transition: all 0.3s ease;
 }
 
 .search-input:focus {
-  border-color: #4299e1;
   outline: none;
-  background-color: #222;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  width: 300px;
 }
 
 .clear-search {
   position: absolute;
-  right: 18px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -432,13 +422,53 @@ onMounted(() => {
   color: #fff;
 }
 
+.refresh-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(66, 153, 225, 0.1);
+  border: 1px solid rgba(66, 153, 225, 0.2);
+  color: #4299e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: rgba(66, 153, 225, 0.2);
+  transform: rotate(180deg);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.scroll-container {
+  flex: 1;
+  min-height: 0; /* necessario in flex per far funzionare overflow-y */
+  overflow-y: auto;
+  padding: 30px;
+  scroll-behavior: smooth;
+}
+
+.refresh-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
 .loading-state, .error-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 400px;
   gap: 20px;
+  color: #888;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .spinner {
@@ -477,6 +507,7 @@ onMounted(() => {
 .earnings-content {
   max-width: 1200px;
   margin: 0 auto;
+  min-height: min-content; /* il contenuto (Oggi, Domani, ecc.) occupa spazio e scrolla */
 }
 
 .earnings-section {
@@ -576,5 +607,54 @@ onMounted(() => {
   border-radius: 4px;
   text-align: center;
   color: #a0aec0;
+}
+
+/* Scrollbar Styling */
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 800px) {
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .search-input:focus {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .earnings-list-container {
+    padding: 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .header-content {
+    gap: 12px;
+  }
+
+  .search-input {
+    min-height: 44px;
+    font-size: 16px;
+  }
 }
 </style>

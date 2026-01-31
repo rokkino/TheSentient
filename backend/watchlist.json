@@ -4,15 +4,11 @@
     "name": "Alphabet Inc."
   },
   {
-    "symbol": "BTC-USD",
-    "name": "Bitcoin USD"
+    "symbol": "NVDA",
+    "name": "NVIDIA Corporation"
   },
   {
-    "symbol": "GC=F",
-    "name": "Gold Futures"
-  },
-  {
-    "symbol": "BKR",
-    "name": "Baker Hughes Company"
+    "symbol": "SOL-USD",
+    "name": "Solana USD"
   }
 ]

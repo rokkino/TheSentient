@@ -5,7 +5,7 @@ from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
 from models.bot import Bot
 from models.user import User
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 import asyncio
 import asyncio
 import os
@@ -78,7 +78,7 @@ class BotService:
             raise ValueError("Bot not found")
         
         bot.set_config(config)
-        bot.updated_at = datetime.utcnow()
+        bot.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(bot)
         return bot
@@ -94,8 +94,8 @@ class BotService:
         
         bot.is_active = True
         bot.status = 'active'
-        bot.activated_at = datetime.utcnow()
-        bot.updated_at = datetime.utcnow()
+        bot.activated_at = datetime.now(timezone.utc)
+        bot.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(bot)
         
@@ -112,7 +112,7 @@ class BotService:
         
         bot.is_active = False
         bot.status = 'inactive'
-        bot.updated_at = datetime.utcnow()
+        bot.updated_at = datetime.now(timezone.utc)
         db.commit()
         db.refresh(bot)
         

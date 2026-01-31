@@ -1,5 +1,6 @@
 <template>
   <div 
+    ref="paletteRef"
     class="floating-tool-palette" 
     :style="{ left: x + 'px', top: y + 'px' }"
     @mousedown.stop
@@ -173,16 +174,21 @@ const props = defineProps({
 
 const emit = defineEmits(['set-tool', 'update:color', 'undo', 'clear-all', 'ai-draw'])
 
-const x = ref(20)
-const y = ref(100)
+// Default: top-left inside chart (like second reference image)
+const x = ref(16)
+const y = ref(16)
+const paletteRef = ref(null)
 const isDragging = ref(false)
 const dragOffset = ref({ x: 0, y: 0 })
 
 const startDrag = (event) => {
+  const container = paletteRef.value?.parentElement
+  if (!container) return
+  const rect = container.getBoundingClientRect()
   isDragging.value = true
   dragOffset.value = {
-    x: event.clientX - x.value,
-    y: event.clientY - y.value
+    x: event.clientX - (rect.left + x.value),
+    y: event.clientY - (rect.top + y.value)
   }
   document.addEventListener('mousemove', handleDrag)
   document.addEventListener('mouseup', stopDrag)
@@ -190,8 +196,22 @@ const startDrag = (event) => {
 
 const handleDrag = (event) => {
   if (!isDragging.value) return
-  x.value = event.clientX - dragOffset.value.x
-  y.value = event.clientY - dragOffset.value.y
+  const container = paletteRef.value?.parentElement
+  if (!container) return
+  const rect = container.getBoundingClientRect()
+  const paletteEl = paletteRef.value
+  const paletteW = paletteEl?.offsetWidth ?? 52
+  const paletteH = paletteEl?.offsetHeight ?? 500
+
+  let localX = (event.clientX - dragOffset.value.x) - rect.left
+  let localY = (event.clientY - dragOffset.value.y) - rect.top
+
+  // Clamp to stay inside chart bounds
+  localX = Math.max(0, Math.min(localX, rect.width - paletteW))
+  localY = Math.max(0, Math.min(localY, rect.height - paletteH))
+
+  x.value = localX
+  y.value = localY
 }
 
 const stopDrag = () => {
@@ -204,8 +224,7 @@ const stopDrag = () => {
 
 <style scoped>
 .floating-tool-palette {
-  position: absolute; /* Changed to absolute to be relative to chart container if needed, or fixed for viewport */
-  position: fixed; /* Fixed works better for "floating window" over everything */
+  position: absolute;
   z-index: 1000;
   background: #1e1e1e;
   border: 1px solid #333;
@@ -293,8 +312,46 @@ const stopDrag = () => {
   cursor: pointer;
 }
 
+
 .icon {
   font-size: 16px;
   line-height: 1;
 }
+
+@media (max-width: 768px) {
+  .floating-tool-palette {
+    flex-direction: row;
+    width: auto;
+    height: 48px;
+    min-height: 48px;
+    left: 50% !important;
+    top: auto !important;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    padding: 0 8px;
+    overflow-x: auto;
+    max-width: 95vw;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tools-container {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .separator {
+    width: 1px;
+    height: 20px;
+    margin: 0 2px;
+  }
+
+  .drag-handle {
+    display: none;
+  }
+  
+  .tool-btn {
+    flex-shrink: 0;
+  }
+}
+
 </style>

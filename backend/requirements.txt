@@ -14,7 +14,7 @@ bcrypt
 cryptography
 
 # API Clients & Trading
-alpaca-py
+alpaca-py==0.43.2
 trading-ig
 requests
 aiohttp

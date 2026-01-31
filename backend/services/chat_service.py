@@ -2,7 +2,7 @@
 Chat Service - Handles group chat messages
 """
 from typing import List, Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 from models.user import User
 from models.bot import Bot
@@ -28,7 +28,7 @@ class ChatService:
             type=message_type,
             image_data=image_data,
             recipient_id=recipient_id,
-            timestamp=datetime.utcnow()
+            timestamp=datetime.now(timezone.utc)
         )
         
         db.add(new_message)

@@ -118,10 +118,8 @@
              <div class="form-group">
                <label>Platform</label>
                <select v-model="accountForm.platform" class="form-input form-select" :disabled="editingAccount">
-                 <option value="IG">IG Markets (CFD)</option>
-                 <option value="Alpaca">Alpaca (Stocks)</option>
-                 <option value="eToro">eToro (Social Trading)</option>
-               </select>
+                 <option value="Alpaca">Alpaca</option>
+             </select>
              </div>
 
              <div class="form-group">
@@ -129,38 +127,16 @@
                <input v-model="accountForm.name" type="text" class="form-input" placeholder="e.g. My Live Account" />
              </div>
 
-             <!-- IG Specific Fields -->
-             <div v-if="accountForm.platform === 'IG'">
-               <div class="form-group">
-                 <label>Username</label>
-                 <input v-model="accountForm.credentials.username" type="text" class="form-input" />
-               </div>
-               <div class="form-group">
-                 <label>Password</label>
-                 <input v-model="accountForm.credentials.password" type="password" class="form-input" placeholder="••••••••" />
-               </div>
-               <div class="form-group">
-                 <label>API Key</label>
-                 <input v-model="accountForm.credentials.api_key" type="password" class="form-input" placeholder="••••••••" />
-               </div>
-               <div class="form-group">
-                 <label>Account Type</label>
-                 <select v-model="accountForm.credentials.account_type" class="form-input form-select">
-                   <option value="DEMO">Demo</option>
-                   <option value="LIVE">Live</option>
-                 </select>
-               </div>
-             </div>
-
              <!-- Alpaca Specific Fields -->
              <div v-if="accountForm.platform === 'Alpaca'">
+               <p class="form-hint">Su Alpaca trovi due valori: <strong>Key</strong> (API Key ID, es. PK...) e <strong>Secret</strong> (mostrata una sola volta alla creazione). Inserisci entrambi. L’Endpoint non serve qui.</p>
                <div class="form-group">
-                 <label>API Key ID</label>
-                 <input v-model="accountForm.credentials.api_key" type="text" class="form-input" />
+                 <label>API Key ID (su Alpaca: "Key")</label>
+                 <input v-model="accountForm.credentials.api_key" type="text" class="form-input" placeholder="es. PK..." />
                </div>
                <div class="form-group">
-                 <label>Secret Key</label>
-                 <input v-model="accountForm.credentials.secret_key" type="password" class="form-input" placeholder="••••••••" />
+                 <label>Secret Key (su Alpaca: "Secret", visibile solo alla creazione)</label>
+                 <input v-model="accountForm.credentials.secret_key" type="password" class="form-input" placeholder="Inserisci la Secret Key da Alpaca" />
                </div>
                <div class="form-group">
                  <label>Trading Mode</label>
@@ -168,51 +144,6 @@
                    <input type="checkbox" id="paper-trading" v-model="accountForm.credentials.paper_trading" />
                    <label for="paper-trading">Paper Trading</label>
                  </div>
-               </div>
-             </div>
-
-             <!-- eToro Specific Fields -->
-             <div v-if="accountForm.platform === 'eToro'">
-               <div class="form-group">
-                 <label>Login Method</label>
-                 <select v-model="accountForm.credentials.login_method" class="form-input form-select">
-                   <option value="STANDARD">Standard</option>
-                   <option value="GOOGLE">Google Login</option>
-                 </select>
-               </div>
-
-               <!-- Standard Login Fields -->
-               <div v-if="accountForm.credentials.login_method === 'STANDARD'">
-                 <div class="form-group">
-                   <label>Username / Email</label>
-                   <input v-model="accountForm.credentials.username" type="text" class="form-input" />
-                 </div>
-                 <div class="form-group">
-                   <label>Password</label>
-                   <input v-model="accountForm.credentials.password" type="password" class="form-input" placeholder="••••••••" />
-                 </div>
-               </div>
-
-               <!-- Google Login Button -->
-               <div v-if="accountForm.credentials.login_method === 'GOOGLE'" class="google-login-section">
-                 <button class="btn-google" @click="initiateGoogleLogin">
-                   <svg class="google-icon" viewBox="0 0 24 24">
-                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                     <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                     <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                     <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                   </svg>
-                   <span>Sign in with Google</span>
-                 </button>
-                 <p class="help-text">Click to authenticate your eToro account via Google securely.</p>
-               </div>
-
-               <div class="form-group">
-                   <label>Account Type</label>
-                   <select v-model="accountForm.credentials.account_type" class="form-input form-select">
-                       <option value="DEMO">Virtual (Demo)</option>
-                       <option value="REAL">Real</option>
-                   </select>
                </div>
              </div>
 
@@ -397,12 +328,12 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 // AI model version options per provider
 const GEMINI_MODELS = [
-  { value: '', label: 'Default (gemini-3-flash-preview)' },
-  { value: 'gemini-3-flash-preview', label: 'Gemini 3 Flash Preview' },
+  { value: '', label: 'Default (2.5 Pro → Flash → Lite fallback)' },
+  { value: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro (100 RPD free)' },
+  { value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash (250 RPD free)' },
+  { value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite (1000 RPD free)' },
+  { value: 'gemini-3-flash-preview', label: 'Gemini 3 Flash Preview (20 RPD free)' },
   { value: 'gemini-3-pro-preview', label: 'Gemini 3 Pro Preview' },
-  { value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash' },
-  { value: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro' },
-  { value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite' },
   { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash' },
   { value: 'gemini-2.0-flash-lite', label: 'Gemini 2.0 Flash Lite' },
   { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
@@ -467,7 +398,7 @@ const testingAccount = ref(false)
 const accountTestResult = ref(null)
 
 const accountForm = ref({
-  platform: 'IG',
+  platform: 'Alpaca',
   name: '',
   credentials: {
     username: '',
@@ -503,7 +434,7 @@ watch(activeTab, (newTab) => {
 const openAddAccountForm = () => {
   editingAccount.value = null
   accountForm.value = {
-    platform: 'IG',
+    platform: 'Alpaca',
     name: '',
     credentials: {
       username: '',
@@ -627,20 +558,6 @@ const testNewAccountConnection = async () => {
   } finally {
     testingAccount.value = false
   }
-}
-
-const initiateGoogleLogin = async () => {
-    try {
-        const res = await api.initiateEtoroGoogleAuth()
-        if (res.data.success) {
-            alert("Login initiated! Check the browser window.")
-        } else {
-            alert("Failed to initiate login: " + res.data.message)
-        }
-    } catch (err) {
-        // If it's 404/500, it might be that Playwright is not installed or service failing
-        alert("Error initiating Google Login. Ensure Playwright is installed on backend.\n" + (err.response?.data?.detail || err.message))
-    }
 }
 
 const tabs = [
@@ -951,6 +868,16 @@ const save = async () => {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.form-hint {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  background: rgba(100, 120, 180, 0.15);
+  border-left: 3px solid #6b7fd7;
+  color: #b0b8d0;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .form-input,
@@ -1437,14 +1364,96 @@ input:checked + .slider:before {
   margin-top: 20px;
 }
 
-.info-box {
-    background-color: rgba(33, 150, 243, 0.1);
-    border: 1px solid #2196f3;
-    color: #2196f3;
-    padding: 10px;
-    font-size: 12px;
-    border-radius: 2px;
-    margin-bottom: 15px;
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .settings-menu {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .menu-item {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+  
+  .api-key-input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .api-key-input-group .form-input, 
+  .btn-test {
+    width: 100%;
+  }
+  
+  .account-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .account-info {
+    width: 100%;
+  }
+  
+  .account-actions {
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid #333;
+    padding-top: 8px;
+  }
+  
+  .form-header {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-footer {
+    padding: 20px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  
+  .modal-footer button {
+    width: 100%;
+    margin: 0;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 100%;
+    max-height: 98vh;
+    margin: 8px;
+  }
+
+  .settings-menu {
+    gap: 8px;
+  }
+
+  .menu-item {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
 }
 </style>
+
 

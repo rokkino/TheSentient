@@ -60,6 +60,26 @@ class SymbolMapper:
         'DJIA': 'DIA',
         'DOW': 'DIA',
         'DOWJONES': 'DIA',
+
+        # Tech Giants & Popular
+        'NVIDIA': 'NVDA',
+        'APPLE': 'AAPL',
+        'MICROSOFT': 'MSFT',
+        'MS': 'MSFT',
+        'GOOGLE': 'GOOGL',
+        'ALPHABET': 'GOOGL',
+        'AMAZON': 'AMZN',
+        'META': 'META',
+        'FACEBOOK': 'META',
+        'FB': 'META',
+        'TESLA': 'TSLA',
+        'NETFLIX': 'NFLX',
+        'AMD': 'AMD',
+        'INTEL': 'INTC',
+        'PALANTIR': 'PLTR',
+        'GAMESTOP': 'GME',
+        'AMC': 'AMC',
+        'COINBASE': 'COIN',
     }
     
     def __init__(self):
@@ -116,6 +136,46 @@ class SymbolMapper:
     def get_all_mappings(self) -> Dict[str, str]:
         """Get all current symbol mappings"""
         return self.SYMBOL_MAP.copy()
+
+    def search(self, query: str) -> list[dict]:
+        """
+        Search for symbols in the local map.
+        
+        Args:
+            query: Search query string
+            
+        Returns:
+            List of dicts with 'symbol', 'name', 'exchange', 'tradable' keys
+        """
+        results = []
+        if not query:
+            return results
+        
+        q = query.strip().upper()
+        seen_symbols = set()
+        
+        # Search in SYMBOL_MAP
+        for name, ticker in self.SYMBOL_MAP.items():
+            if q in name:
+                if ticker not in seen_symbols:
+                    results.append({
+                        "symbol": ticker,
+                        "name": f"{ticker} ({name.capitalize()})",
+                        "exchange": "US",
+                        "tradable": True
+                    })
+                    seen_symbols.add(ticker)
+        
+        # Also check if query itself could be a ticker
+        if len(q) <= 5 and q not in seen_symbols:
+             results.append({
+                "symbol": q,
+                "name": q,
+                "exchange": "US",
+                "tradable": True
+            })
+            
+        return results
 
 # Singleton instance
 symbol_mapper = SymbolMapper()

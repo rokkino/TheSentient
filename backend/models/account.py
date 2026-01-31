@@ -5,7 +5,7 @@ Account Model - Database models for external platform accounts (IG, Alpaca, eTor
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, Text, ForeignKey, JSON
 from sqlalchemy.orm import relationship
 from models.user import Base
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 
 class Account(Base):
@@ -24,8 +24,8 @@ class Account(Base):
     is_active = Column(Boolean, default=True)
     is_default = Column(Boolean, default=False) # If true, this is the default account for this platform
     
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
     # Relationship
     user = relationship("User", backref="accounts")

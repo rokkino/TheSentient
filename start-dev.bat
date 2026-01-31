@@ -13,7 +13,7 @@ REM Start frontend
 start "Frontend Server" cmd /k "cd frontend && npm run dev"
 
 echo.
-echo Backend: http://localhost:8000
+echo Backend: http://localhost:8001
 echo Frontend: http://localhost:5173
 echo.
 echo Close the windows to stop the servers.

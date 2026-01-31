@@ -15,7 +15,7 @@ export const useWebSocketStore = defineStore('websocket', {
       }
       
       const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000'
-      const wsUrl = `${WS_URL}/ws`
+      const wsUrl = WS_URL
       
       try {
         this.ws = new WebSocket(wsUrl)

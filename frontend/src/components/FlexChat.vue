@@ -515,7 +515,7 @@ const connectWebSocket = () => {
       ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`
       : 'ws://localhost:8000'
   )
-  const wsUrl = `${WS_BASE}/ws?token=${authStore.token || ''}`
+  const wsUrl = `${WS_BASE}?token=${authStore.token || ''}`
   
   ws.value = new WebSocket(wsUrl)
   

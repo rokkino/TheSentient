@@ -128,10 +128,11 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173", 
-        "http://localhost:3000", 
+        "http://localhost:5173",
+        "http://localhost:3000",
         "http://127.0.0.1:5173",
-        "http://34.53.28.120",  # Production VM IP
+        "http://34.53.28.120",  # Production VM IP (HTTP)
+        "https://thesentient.duckdns.org",  # Production HTTPS (avoids Mixed Content)
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],

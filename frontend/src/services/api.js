@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-// Auto-detect environment: localhost (dev) vs production (VM)
-const API_URL = window.location.hostname === 'localhost'
-  ? '' // Use relative path in dev - Vite proxy handles routing to localhost:8000
-  : 'http://34.53.28.120' // Production VM IP
+// Use VITE_API_URL when set (e.g. https://thesentient.duckdns.org/api in production build).
+// Otherwise use relative /api (Vite proxy in dev, Nginx proxy in production).
+const API_BASE = import.meta.env.VITE_API_URL || '/api'
 
 const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: API_BASE,
   headers: {
     'Content-Type': 'application/json',
   },

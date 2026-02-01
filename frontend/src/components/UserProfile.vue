@@ -63,8 +63,9 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { getApiBaseAbsolute } from '@/utils/env'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = getApiBaseAbsolute()
 
 const props = defineProps({
   username: {

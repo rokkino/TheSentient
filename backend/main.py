@@ -124,16 +124,15 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         raise HTTPException(status_code=401, detail="User not found")
     return user
 
-# CORS middleware for Vue.js frontend
+# CORS: Produzione (HTTPS) + Sviluppo locale (Vite)
+CORS_ORIGINS = [
+    "https://thesentient.duckdns.org",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[  # <-- parentesi [ obbligatoria per la lista
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-        "http://34.53.28.120",
-        "https://thesentient.duckdns.org",
-    ],  # <-- chiusura lista
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],

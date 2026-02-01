@@ -323,8 +323,9 @@
 import { ref, watch, computed } from 'vue'
 import { useAuthStore } from '../stores/auth'
 import api from '../services/api'
+import { getApiBaseAbsolute } from '@/utils/env'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = getApiBaseAbsolute()
 
 // AI model version options per provider
 const GEMINI_MODELS = [

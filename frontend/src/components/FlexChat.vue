@@ -213,8 +213,9 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import api from '../services/api'
 import { useAuthStore } from '../stores/auth'
+import { getApiBaseAbsolute, getWsBase } from '@/utils/env'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_URL = getApiBaseAbsolute()
 
 const props = defineProps({
   tabId: {
@@ -509,13 +510,7 @@ const scrollToBottom = () => {
 }
 
 const connectWebSocket = () => {
-  // Usa stessa origine della pagina (funziona con proxy Vite in dev e nginx in prod)
-  const WS_BASE = import.meta.env.VITE_WS_URL || (
-    (typeof window !== 'undefined' && window.location)
-      ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`
-      : 'ws://localhost:8000'
-  )
-  const wsUrl = `${WS_BASE}?token=${authStore.token || ''}`
+  const wsUrl = `${getWsBase()}?token=${authStore.token || ''}`
   
   ws.value = new WebSocket(wsUrl)
   

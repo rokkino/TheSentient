@@ -85,38 +85,25 @@ class EarningsService:
             cache_pattern = f"calendar_{start_str}_months_{months}.json"
             cache_file = os.path.join(self.cache_dir, cache_pattern)
             
-            print(f"[EarningsService] Looking for calendar cache: {cache_file}")
             if os.path.exists(cache_file):
-                print(f"[EarningsService] Found calendar cache file, loading...")
                 with open(cache_file, 'r', encoding='utf-8') as f:
                     cache_data = json.load(f)
                 
                 # Check if cache has data
                 if 'data' not in cache_data:
-                    print(f"[EarningsService] Calendar cache has no 'data' field")
-                    return None
-                
-                # Check if cache is still valid (be very lenient - 30 days)
-                if 'timestamp' in cache_data:
-                    cache_age = time.time() - cache_data['timestamp']
-                    max_cache_age = 30 * 24 * 60 * 60  # 30 days
-                    if cache_age <= max_cache_age:
-                        age_str = f"{cache_age/3600:.1f}h" if cache_age < 24*3600 else f"{cache_age/(24*3600):.1f}d"
-                        print(f"[EarningsService] Using cached calendar ({len(cache_data['data'])} items, age: {age_str})")
-                        return cache_data['data']
-                    else:
-                        print(f"[EarningsService] Calendar cache too old (age: {cache_age/(24*3600):.1f} days)")
+                    pass
                 else:
-                    # No timestamp - use it anyway if it has data
-                    print(f"[EarningsService] Using cached calendar ({len(cache_data['data'])} items, no timestamp)")
-                    return cache_data['data']
-            else:
-                print(f"[EarningsService] Calendar cache file not found: {cache_file}")
+                    # Check if cache is still valid (be very lenient - 30 days)
+                    if 'timestamp' in cache_data:
+                        cache_age = time.time() - cache_data['timestamp']
+                        max_cache_age = 30 * 24 * 60 * 60  # 30 days
+                        if cache_age <= max_cache_age:
+                            return cache_data['data']
+                    else:
+                        return cache_data['data']
             
             # Also try to find any calendar cache file that might cover our range
-            # This helps if cache was created with a slightly different start date or months
             try:
-                print(f"[EarningsService] Searching for alternative calendar cache files...")
                 end_date = start_date + timedelta(days=30 * months)
                 dates_in_range = set()
                 current = start_date
@@ -164,13 +151,11 @@ class EarningsService:
                             if coverage > best_coverage and coverage >= 0.3:  # At least 30% coverage
                                 best_coverage = coverage
                                 best_cache = alt_cache_data['data']
-                                print(f"[EarningsService] Found better calendar cache: {filename} ({len(alt_cache_data['data'])} items, {len(matching_dates)}/{len(dates_in_range)} dates covered, {coverage*100:.1f}%)")
                         except Exception as e:
                             print(f"[EarningsService] Error reading cache file {filename}: {e}")
                             continue
                 
                 if best_cache:
-                    print(f"[EarningsService] Using best matching calendar cache ({len(best_cache)} items, {best_coverage*100:.1f}% coverage)")
                     return best_cache
             except Exception as e:
                 print(f"[EarningsService] Error checking alternative calendar caches: {e}")

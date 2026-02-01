@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, watch, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import api from '../services/api'
 
 const props = defineProps({

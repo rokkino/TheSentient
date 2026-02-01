@@ -266,9 +266,8 @@ const refreshNews = async (force = false) => {
 const loadNews = async (page = 1, forceRefresh = false) => {
   if (page === 1) {
     loading.value = true
-    if (forceRefresh) {
-      newsItems.value = []
-    }
+    // Non svuotare la lista durante il refresh: mantieni i contenuti attuali
+    // fino all'arrivo dei nuovi dati per evitare flash e layout instabile
   } else {
     loadingMore.value = true
     isLoadingNextPage.value = true

@@ -17,8 +17,9 @@ warnings.filterwarnings("ignore", message=".*extra keyword arguments on Field.*"
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response, FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional, Dict, Any
 import uvicorn
 import asyncio
@@ -139,12 +140,27 @@ app.add_middleware(
     expose_headers=["*"],
 )
 
-# Create uploads directory if it doesn't exist
-UPLOAD_DIR = Path("uploads/profile_pictures")
+# Create uploads directory if it doesn't exist (absolute path so it works from any cwd)
+UPLOAD_DIR = Path(BACKEND_DIR) / "uploads" / "profile_pictures"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-# Serve uploaded files
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+# 1x1 transparent PNG (avoid 404 broken image for missing profile pictures)
+_FALLBACK_PNG_B64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+import base64
+_FALLBACK_PNG_BYTES = base64.b64decode(_FALLBACK_PNG_B64)
+
+
+@app.get("/api/uploads/profile_pictures/{filename:path}")
+async def serve_profile_picture(filename: str):
+    """Serve profile picture or 1x1 transparent PNG if file missing (avoids 404 broken image)."""
+    file_path = UPLOAD_DIR / filename
+    if file_path.is_file():
+        return FileResponse(str(file_path), media_type="image/png")
+    return Response(content=_FALLBACK_PNG_BYTES, media_type="image/png")
+
+
+# Serve other uploaded files at /api/uploads (must be after specific routes)
+app.mount("/api/uploads", StaticFiles(directory=str(Path(BACKEND_DIR) / "uploads")), name="uploads")
 
 # Initialize services
 market_data_service = MarketDataService()
@@ -214,6 +230,7 @@ class UserResponse(BaseModel):
     deepseek_api_key: Optional[str] = None
 
 class ProfileUpdate(BaseModel):
+    model_config = ConfigDict(extra="ignore")  # ignora campi extra dal frontend (es. da user)
     bio: Optional[str] = None
     location: Optional[str] = None
     website: Optional[str] = None
@@ -374,6 +391,27 @@ async def root():
 @app.get("/api/health")
 async def health():
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+
+@app.get("/api/streamlit-health")
+async def streamlit_health():
+    """Check if Streamlit backtesting dashboard is running on localhost:8501."""
+    import asyncio
+    import socket
+
+    def _check():
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+            result = sock.connect_ex(("127.0.0.1", 8501))
+            sock.close()
+            return result == 0
+        except Exception:
+            return False
+
+    loop = asyncio.get_event_loop()
+    ok = await loop.run_in_executor(None, _check)
+    return {"running": ok, "url": "http://localhost:8501"}
 
 @app.get("/api/time")
 async def get_time():
@@ -1046,107 +1084,119 @@ async def save_user_tabs(tabs_data: TabsUpdate, current_user: User = Depends(get
 
 @app.put("/api/auth/profile")
 async def update_profile(profile_data: ProfileUpdate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    """Update user profile"""
+    """Update user profile. Re-query user in this session so commit persists."""
     try:
-        if profile_data.bio is not None:
-            current_user.bio = profile_data.bio
-        if profile_data.location is not None:
-            current_user.location = profile_data.location
-        if profile_data.website is not None:
-            current_user.website = profile_data.website
-        if profile_data.profile_picture_url is not None:
-            current_user.profile_picture_url = profile_data.profile_picture_url
-        if profile_data.gemini_api_key is not None:
-            current_user.gemini_api_key = profile_data.gemini_api_key
-        if profile_data.ai_provider is not None:
-            current_user.ai_provider = profile_data.ai_provider
-        if profile_data.gemini_pro_api_key is not None:
-            current_user.gemini_pro_api_key = profile_data.gemini_pro_api_key
-        if profile_data.openai_api_key is not None:
-            current_user.openai_api_key = profile_data.openai_api_key
-        if profile_data.anthropic_api_key is not None:
-            current_user.anthropic_api_key = profile_data.anthropic_api_key
-        if profile_data.deepseek_api_key is not None:
-            current_user.deepseek_api_key = profile_data.deepseek_api_key
-        if profile_data.llama_api_key is not None:
-            current_user.llama_api_key = profile_data.llama_api_key
-        if profile_data.gemini_model is not None:
-            current_user.gemini_model = profile_data.gemini_model
-        if profile_data.openai_model is not None:
-            current_user.openai_model = profile_data.openai_model
-        if profile_data.anthropic_model is not None:
-            current_user.anthropic_model = profile_data.anthropic_model
-        if profile_data.deepseek_model is not None:
-            current_user.deepseek_model = profile_data.deepseek_model
-        if profile_data.llama_model is not None:
-            current_user.llama_model = profile_data.llama_model
+        user = db.query(User).filter(User.id == current_user.id).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
 
-        current_user.updated_at = datetime.now(timezone.utc)
+        if profile_data.bio is not None:
+            user.bio = profile_data.bio
+        if profile_data.location is not None:
+            user.location = profile_data.location
+        if profile_data.website is not None:
+            user.website = profile_data.website
+        if profile_data.profile_picture_url is not None:
+            user.profile_picture_url = profile_data.profile_picture_url
+        if profile_data.gemini_api_key is not None:
+            user.gemini_api_key = profile_data.gemini_api_key
+        if profile_data.ai_provider is not None:
+            user.ai_provider = profile_data.ai_provider
+        if profile_data.gemini_pro_api_key is not None:
+            user.gemini_pro_api_key = profile_data.gemini_pro_api_key
+        if profile_data.openai_api_key is not None:
+            user.openai_api_key = profile_data.openai_api_key
+        if profile_data.anthropic_api_key is not None:
+            user.anthropic_api_key = profile_data.anthropic_api_key
+        if profile_data.deepseek_api_key is not None:
+            user.deepseek_api_key = profile_data.deepseek_api_key
+        if profile_data.llama_api_key is not None:
+            user.llama_api_key = profile_data.llama_api_key
+        if profile_data.gemini_model is not None:
+            user.gemini_model = profile_data.gemini_model
+        if profile_data.openai_model is not None:
+            user.openai_model = profile_data.openai_model
+        if profile_data.anthropic_model is not None:
+            user.anthropic_model = profile_data.anthropic_model
+        if profile_data.deepseek_model is not None:
+            user.deepseek_model = profile_data.deepseek_model
+        if profile_data.llama_model is not None:
+            user.llama_model = profile_data.llama_model
+
+        user.updated_at = datetime.now(timezone.utc)
         db.commit()
-        db.refresh(current_user)
-        
+        db.refresh(user)
+
         return {
-            "id": current_user.id,
-            "username": current_user.username,
-            "email": current_user.email,
-            "first_name": current_user.first_name,
-            "last_name": current_user.last_name,
-            "bio": current_user.bio,
-            "phone": current_user.phone,
-            "location": current_user.location,
-            "website": current_user.website,
-            "profile_picture_url": current_user.profile_picture_url,
-            "use_local_llama": current_user.use_local_llama,
-            "gemini_api_key": current_user.gemini_api_key,
-            "ai_provider": current_user.ai_provider,
-            "gemini_pro_api_key": current_user.gemini_pro_api_key,
-            "openai_api_key": current_user.openai_api_key,
-            "anthropic_api_key": current_user.anthropic_api_key,
-            "deepseek_api_key": current_user.deepseek_api_key,
-            "llama_api_key": current_user.llama_api_key,
-            "gemini_model": current_user.gemini_model,
-            "openai_model": current_user.openai_model,
-            "anthropic_model": current_user.anthropic_model,
-            "deepseek_model": current_user.deepseek_model,
-            "llama_model": current_user.llama_model,
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "bio": user.bio,
+            "phone": user.phone,
+            "location": user.location,
+            "website": user.website,
+            "profile_picture_url": user.profile_picture_url,
+            "use_local_llama": user.use_local_llama,
+            "gemini_api_key": user.gemini_api_key,
+            "ai_provider": user.ai_provider,
+            "gemini_pro_api_key": user.gemini_pro_api_key,
+            "openai_api_key": user.openai_api_key,
+            "anthropic_api_key": user.anthropic_api_key,
+            "deepseek_api_key": user.deepseek_api_key,
+            "llama_api_key": user.llama_api_key,
+            "gemini_model": user.gemini_model,
+            "openai_model": user.openai_model,
+            "anthropic_model": user.anthropic_model,
+            "deepseek_model": user.deepseek_model,
+            "llama_model": user.llama_model,
         }
+    except HTTPException:
+        raise
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/auth/profile/picture")
 async def upload_profile_picture(
-    file: UploadFile = File(...),
+    file: UploadFile = File(..., description="Image file; form field name must be 'file'"),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Upload profile picture"""
+    """Upload profile picture. Updates user in the same DB session so commit persists."""
     try:
-        # Create uploads directory if it doesn't exist
-        upload_dir = Path("uploads/profile_pictures")
+        upload_dir = UPLOAD_DIR
         upload_dir.mkdir(parents=True, exist_ok=True)
-        
-        # Generate unique filename
+
+        if not file.filename:
+            raise HTTPException(status_code=400, detail="No file selected")
+        if not file.content_type or not file.content_type.startswith("image/"):
+            raise HTTPException(status_code=400, detail="File must be an image")
+
+        contents = await file.read()
+        if len(contents) > 5 * 1024 * 1024:
+            raise HTTPException(status_code=400, detail="Image size must be less than 5MB")
+
         file_ext = Path(file.filename).suffix
         unique_filename = f"{current_user.id}_{uuid.uuid4()}{file_ext}"
         file_path = upload_dir / unique_filename
-        
-        # Save file
+
         with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-        
-        # Update user profile picture URL
-        # In production, you'd upload to S3/cloud storage and get a URL
-        # For now, we'll use a relative path
+            buffer.write(contents)
+
         profile_picture_url = f"/uploads/profile_pictures/{unique_filename}"
-        current_user.profile_picture_url = profile_picture_url
+        # Update user in this session so commit persists (current_user may be from another session)
+        user = db.query(User).filter(User.id == current_user.id).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        user.profile_picture_url = profile_picture_url
         db.commit()
-        db.refresh(current_user)
-        
-        return {
-            "url": profile_picture_url,
-            "message": "Profile picture uploaded successfully"
-        }
+        db.refresh(user)
+
+        return {"url": profile_picture_url, "message": "Profile picture uploaded successfully"}
+    except HTTPException:
+        raise
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=f"Failed to upload profile picture: {str(e)}")
@@ -1340,49 +1390,6 @@ async def generate_strategy(request: StrategyGenerateRequest, current_user: User
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/api/auth/profile/picture")
-async def upload_profile_picture(
-    file: UploadFile = File(...),
-    current_user: User = Depends(get_current_user)
-):
-    """Upload profile picture"""
-    try:
-        # Validate file type
-        if not file.content_type or not file.content_type.startswith('image/'):
-            raise HTTPException(status_code=400, detail="File must be an image")
-        
-        # Validate file size (max 5MB)
-        contents = await file.read()
-        if len(contents) > 5 * 1024 * 1024:
-            raise HTTPException(status_code=400, detail="Image size must be less than 5MB")
-        
-        # Generate unique filename
-        file_ext = Path(file.filename).suffix
-        unique_filename = f"{current_user.id}_{uuid.uuid4()}{file_ext}"
-        file_path = UPLOAD_DIR / unique_filename
-        
-        # Save file
-        with open(file_path, "wb") as buffer:
-            buffer.write(contents)
-        
-        # Generate URL (in production, use actual domain/CDN)
-        file_url = f"/uploads/profile_pictures/{unique_filename}"
-        
-        # Update user profile
-        db_gen = get_db()
-        db = next(db_gen)
-        try:
-            current_user.profile_picture_url = file_url
-            db.commit()
-            db.refresh(current_user)
-        finally:
-            pass  # get_db() is a generator, we don't close it manually
-        
-        return {"url": file_url, "message": "Profile picture uploaded successfully"}
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to upload image: {str(e)}")
 
 # Alpaca Paper Trading API endpoints (optional - deprecated, use IG Markets instead)
 @app.get("/api/alpaca/account")
@@ -2299,18 +2306,23 @@ async def get_earnings(
                 print(f"[API] Cache fallback failed: {cache_error}")
         
         # Includiamo tutti i giorni (anche sabato e domenica)
-        print(f"[API] Returning {len(earnings_data)} earnings (including weekends)")
         
-        # Save earnings data to JSON file for AI access
+        # Save earnings data to JSON file for AI access (only when content changed to avoid repeated writes)
+        earnings_file_path = os.path.join(BACKEND_DIR, "earnings_data.json")
+        payload = {
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "total_earnings": len(earnings_data),
+            "earnings": earnings_data
+        }
         try:
-            earnings_file_path = os.path.join(BACKEND_DIR, "earnings_data.json")
-            with open(earnings_file_path, 'w', encoding='utf-8') as f:
-                json.dump({
-                    "last_updated": datetime.now(timezone.utc).isoformat(),
-                    "total_earnings": len(earnings_data),
-                    "earnings": earnings_data
-                }, f, indent=2, ensure_ascii=False, default=str)
-            print(f"[API] Saved {len(earnings_data)} earnings to {earnings_file_path}")
+            existing = None
+            if os.path.exists(earnings_file_path):
+                with open(earnings_file_path, 'r', encoding='utf-8') as f:
+                    existing = json.load(f)
+            if existing is None or existing.get("total_earnings") != len(earnings_data):
+                with open(earnings_file_path, 'w', encoding='utf-8') as f:
+                    json.dump(payload, f, indent=2, ensure_ascii=False, default=str)
+                print(f"[API] Saved {len(earnings_data)} earnings to {earnings_file_path}")
         except Exception as save_error:
             print(f"[API] Warning: Failed to save earnings to JSON: {save_error}")
         

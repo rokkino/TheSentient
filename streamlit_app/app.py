@@ -1,6 +1,6 @@
 """
-TheSentient - Backtesting Dashboard (Streamlit)
-Tab Backtesting: Simulazione massiva Earning Report Genius
+TheSentient - Dashboard Backtesting (Streamlit)
+Simulazione storica su dati earnings (S&P 500 / Nasdaq).
 """
 import streamlit as st
 import pandas as pd
@@ -14,14 +14,28 @@ from backtest_engine import (
     bot_logic_placeholder,
 )
 
-st.set_page_config(page_title="TheSentient Backtesting", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Backtesting – TheSentient", page_icon="📊", layout="wide")
 
-st.title("📊 Backtesting - Earning Report Genius")
-st.markdown("*Simulazione storica massiva (What-If Analysis)*")
+# Parametri da frontend (selettore bot e data)
+try:
+    _qp = getattr(st, "query_params", None) or st.experimental_get_query_params()
+    _bot_id = _qp.get("bot_id", [None])[0] if isinstance(_qp.get("bot_id"), list) else _qp.get("bot_id")
+    _date_param = _qp.get("date", [None])[0] if isinstance(_qp.get("date"), list) else _qp.get("date")
+except Exception:
+    _bot_id = None
+    _date_param = None
+
+st.title("Backtesting – Simulazione earnings")
+st.markdown("*Simulazione storica su dati earnings (S&P 500 / Nasdaq).*")
 
 # Sidebar: Configurazione
 with st.sidebar:
     st.header("⚙️ Configurazione")
+
+    if _bot_id:
+        st.info(f"🤖 Bot selezionato (frontend): ID **{_bot_id}**")
+    if _date_param:
+        st.info(f"📅 Data backtest: **{_date_param}**")
 
     universe = st.selectbox(
         "Universo ticker",
@@ -32,8 +46,20 @@ with st.sidebar:
     max_tickers = st.slider("Limite ticker (per test rapidi)", 50, len(tickers_raw), min(200, len(tickers_raw)))
     tickers = tickers_raw[:max_tickers]
 
-    start_year = st.number_input("Anno inizio", 2015, 2024, 2020)
-    end_year = st.number_input("Anno fine", 2015, 2025, 2024)
+    # Se la frontend ha passato una data, usala per anno inizio/fine (singolo giorno)
+    if _date_param:
+        try:
+            from datetime import datetime as _dt
+            _single = _dt.strptime(_date_param, "%Y-%m-%d").date()
+            _year = _single.year
+            start_year = st.number_input("Anno inizio", 2015, 2025, _year)
+            end_year = st.number_input("Anno fine", 2015, 2025, _year)
+        except Exception:
+            start_year = st.number_input("Anno inizio", 2015, 2024, 2020)
+            end_year = st.number_input("Anno fine", 2015, 2025, 2024)
+    else:
+        start_year = st.number_input("Anno inizio", 2015, 2024, 2020)
+        end_year = st.number_input("Anno fine", 2015, 2025, 2024)
     if start_year > end_year:
         st.error("Anno inizio deve essere ≤ anno fine")
         st.stop()
@@ -44,7 +70,7 @@ with st.sidebar:
     use_cache = st.checkbox("Usa cache dati", value=True)
 
     st.divider()
-    st.caption("Il sistema usa la logica Earning Report Genius (placeholder) per ogni evento earnings storico.")
+    st.caption("Per ogni evento earnings storico viene usata la logica del bot selezionato (o placeholder).")
 
 # Tab principale
 tab1, tab2, tab3 = st.tabs(["▶️ Esegui Backtest", "📈 Report", "ℹ️ Info"])
@@ -68,6 +94,11 @@ with tab1:
                 use_cache=use_cache,
                 sample_days=sample_days,
             )
+
+            # Filtra per data singola se passata dalla frontend
+            if _date_param and earnings:
+                earnings = [e for e in earnings if (e.get("_parsed_date") or str(e.get("date", ""))).startswith(_date_param)]
+                status.info(f"Filtrati alla data {_date_param}: {len(earnings)} eventi.")
 
             if not earnings:
                 status.warning("Nessun evento earnings trovato per il periodo. Prova con più ticker o un altro intervallo.")
@@ -161,10 +192,10 @@ with tab3:
     st.markdown("""
     ### Come funziona
     1. **Data Ingestion**: Scarica la lista di ticker (S&P500 o Nasdaq100) e tutti gli earnings storici dal Nasdaq API.
-    2. **Simulation Loop**: Per ogni evento earnings, invoca la logica del bot (Earning Report Genius). Se il bot dice BUY, simula l'acquisto al prezzo del giorno e la vendita al prezzo del giorno successivo.
+    2. **Simulation Loop**: Per ogni evento earnings viene usata la logica del bot selezionato (o placeholder). Se la decisione è BUY, si simula l'acquisto al prezzo del giorno e la vendita al prezzo del giorno successivo.
     3. **Output**: Win Rate, P&L totale, filtri per anno e settore.
 
-    ### Bot Logic Placeholder
+    ### Logica placeholder
     Il file `backtest_engine.py` contiene `bot_logic_placeholder()` che implementa euristiche semplificate:
     - Run-up > 10% nelle ultime 2 settimane → NO_GO
     - Run-up < 5% → BUY

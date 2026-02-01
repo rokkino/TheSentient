@@ -1,0 +1,5 @@
+# Configurazione per embedding in iframe (frontend Vue su porta diversa)
+[server]
+enableCORS = false
+enableXsrfProtection = false
+port = 8501

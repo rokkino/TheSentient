@@ -15,6 +15,11 @@ export default defineConfig({
       '/ws': {
         target: 'ws://localhost:8001',
         ws: true,
+        configure: (proxy) => {
+          proxy.on('error', () => {
+            // Suppress ECONNRESET/ECONNABORTED when backend restarts or page reloads
+          })
+        },
       },
     },
   },

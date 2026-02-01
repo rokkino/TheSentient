@@ -147,8 +147,7 @@ class NewsService:
             # Only fetch news for tickers explicitly provided
             # No automatic/default tickers - must be explicitly requested
             if not tickers:
-                # Return empty list instead of fetching default tickers
-                print("No tickers provided, returning empty news list")
+                # No fresh fetch; cached_news (if any) will still be returned
                 return []
             
             target_tickers = tickers

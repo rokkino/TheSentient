@@ -588,7 +588,9 @@ const profileData = ref({
   location: '',
   website: '',
   profile_picture_url: '',
+  ai_provider: '',
   gemini_api_key: '',
+  gemini_pro_api_key: '',
   openai_api_key: '',
   anthropic_api_key: '',
   deepseek_api_key: '',
@@ -631,7 +633,9 @@ watch(() => props.user, (newUser) => {
       location: newUser.location || '',
       website: newUser.website || '',
       profile_picture_url: newUser.profile_picture_url || '',
+      ai_provider: newUser.ai_provider || '',
       gemini_api_key: newUser.gemini_api_key || '',
+      gemini_pro_api_key: newUser.gemini_pro_api_key || '',
       openai_api_key: newUser.openai_api_key || '',
       anthropic_api_key: newUser.anthropic_api_key || '',
       deepseek_api_key: newUser.deepseek_api_key || '',
@@ -722,18 +726,47 @@ const testConnection = async (provider, apiKey) => {
 const save = async () => {
   saving.value = true
   try {
-    // Upload image first if selected
+    // Upload image first if selected (form field name must be 'file')
     if (selectedFile.value) {
       const formData = new FormData()
       formData.append('file', selectedFile.value)
-      const uploadResponse = await api.uploadProfilePicture(formData)
-      if (uploadResponse.data?.url) {
-        profileData.value.profile_picture_url = uploadResponse.data.url
+      try {
+        const uploadResponse = await api.uploadProfilePicture(formData)
+        if (uploadResponse.data?.url) {
+          profileData.value.profile_picture_url = uploadResponse.data.url
+        } else {
+          alert('Upload completed but no image URL returned. Please try again.')
+          saving.value = false
+          return
+        }
+      } catch (uploadErr) {
+        const msg = uploadErr.response?.data?.detail || uploadErr.message || 'Upload failed'
+        alert('Error uploading image: ' + msg)
+        saving.value = false
+        return
       }
     }
     
-    // Update profile
-    const result = await authStore.updateProfile(profileData.value)
+    // Payload solo con i campi accettati dal backend (evita 422 per campi extra)
+    const payload = {
+      bio: profileData.value.bio ?? null,
+      location: profileData.value.location ?? null,
+      website: profileData.value.website ?? null,
+      profile_picture_url: profileData.value.profile_picture_url || null,
+      gemini_api_key: profileData.value.gemini_api_key || null,
+      ai_provider: profileData.value.ai_provider || null,
+      gemini_pro_api_key: profileData.value.gemini_pro_api_key || null,
+      openai_api_key: profileData.value.openai_api_key || null,
+      anthropic_api_key: profileData.value.anthropic_api_key || null,
+      deepseek_api_key: profileData.value.deepseek_api_key || null,
+      llama_api_key: profileData.value.llama_api_key || null,
+      gemini_model: profileData.value.gemini_model || null,
+      openai_model: profileData.value.openai_model || null,
+      anthropic_model: profileData.value.anthropic_model || null,
+      deepseek_model: profileData.value.deepseek_model || null,
+      llama_model: profileData.value.llama_model || null
+    }
+    const result = await authStore.updateProfile(payload)
     if (result.success) {
       emit('saved')
       close()
@@ -741,7 +774,9 @@ const save = async () => {
       alert(result.error || 'Failed to update profile')
     }
   } catch (error) {
-    alert('Error updating profile: ' + (error.message || 'Unknown error'))
+    const detail = error.response?.data?.detail
+    const msg = typeof detail === 'string' ? detail : (Array.isArray(detail) ? detail.map(d => d.msg || JSON.stringify(d)).join(', ') : (detail && JSON.stringify(detail)))
+    alert('Error updating profile: ' + (msg || error.message || 'Unknown error'))
   } finally {
     saving.value = false
   }

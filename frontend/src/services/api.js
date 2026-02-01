@@ -19,6 +19,10 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+  // Let axios/browser set Content-Type for FormData (multipart/form-data with boundary)
+  if (config.data && typeof FormData !== 'undefined' && config.data instanceof FormData) {
+    delete config.headers['Content-Type']
+  }
   return config
 })
 
@@ -163,8 +167,7 @@ export default {
 
   uploadProfilePicture(fileFormData) {
     return api.post('/auth/profile/picture', fileFormData, {
-      // Let axios set Content-Type automatically with correct boundary
-      headers: {},
+      timeout: 30000,
     })
   },
 

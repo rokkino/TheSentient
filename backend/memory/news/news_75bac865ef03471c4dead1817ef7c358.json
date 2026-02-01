@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wealth inequality and the 'K-shaped' economy are more striking than ever, data shows",
+  "link": "https://www.cnbc.com/2026/01/30/wealth-inequality-k-shaped-economy-united-states-consumer-spending-trump.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-01-30T20:08:17",
+  "text": "The K-shaped economy is as apparent as ever and isn't going away anytime soon, economists say.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "K",
+    "THAN",
+    "GOING",
+    "SAY",
+    "IS",
+    "AS",
+    "EVER",
+    "MORE",
+    "DATA",
+    "SOON"
+  ],
+  "relatedTickers": [
+    "K",
+    "THAN",
+    "GOING",
+    "SAY",
+    "IS",
+    "AS",
+    "EVER",
+    "MORE",
+    "DATA",
+    "SOON"
+  ]
+}

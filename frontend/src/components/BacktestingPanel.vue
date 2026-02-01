@@ -34,8 +34,8 @@
           <code>cd streamlit_app && streamlit run app.py</code>
           <p class="fallback-hint">Oppure usa <strong>start-dev.bat</strong> per avviare tutti i servizi.</p>
           <div class="fallback-buttons">
-            <button class="retry-btn" @click="checkStreamlit" :disabled="checking">
-              {{ checking ? 'Verifica...' : 'Riprova connessione' }}
+            <button class="retry-btn" @click="verifyAndRetry" :disabled="checking">
+              {{ checking ? 'Verifica...' : 'Verifica' }}
             </button>
             <button type="button" class="show-anyway-btn" @click="showAnyway">
               Mostra dashboard comunque
@@ -115,6 +115,24 @@ async function loadBots() {
   }
 }
 
+async function startStreamlit() {
+  const apiBase = getApiBase()
+  const url = apiBase.replace(/\/$/, '') + '/streamlit-start'
+  try {
+    const res = await fetch(url, { method: 'POST' })
+    const data = await res.json()
+    return data?.started === true || data?.already_running === true
+  } catch {
+    return false
+  }
+}
+
+async function verifyAndRetry() {
+  await startStreamlit()
+  await checkStreamlit()
+  if (!streamlitReady.value) startAutoRetry()
+}
+
 async function checkStreamlit(resetBefore = true) {
   checking.value = true
   if (resetBefore) streamlitReady.value = false
@@ -157,8 +175,11 @@ onMounted(() => {
   selectedDate.value = d.toISOString().slice(0, 10)
   streamlitEmbedUrl.value = getEmbedUrl()
   loadBots()
-  checkStreamlit().then(() => {
-    if (!streamlitReady.value) startAutoRetry()
+  checkStreamlit().then(async () => {
+    if (!streamlitReady.value) {
+      await startStreamlit()
+      startAutoRetry()
+    }
   })
 })
 

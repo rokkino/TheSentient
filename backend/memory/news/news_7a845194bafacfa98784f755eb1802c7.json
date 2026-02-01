@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘We live on Social Security and pensions’: I’m in my 70s and my house needs repairs. Do I take out a $50K loan — or sell stocks?",
+  "link": "https://www.marketwatch.com/story/we-live-on-social-security-and-pensions-im-in-my-70s-and-my-house-needs-repairs-do-i-take-out-a-50k-loan-or-sell-stocks-44c2ddbe?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-01T21:54:00",
+  "text": "“Our house is paid off.”",
+  "thumbnail": "https://images.mktw.net/im-22306594",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFF",
+    "LOAN",
+    "OUR",
+    "HOUSE",
+    "ON",
+    "I",
+    "TAKE",
+    "SELL",
+    "A",
+    "OUT"
+  ],
+  "relatedTickers": [
+    "OFF",
+    "LOAN",
+    "OUR",
+    "HOUSE",
+    "ON",
+    "I",
+    "TAKE",
+    "SELL",
+    "A",
+    "OUT"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russian drone strike kills 12 miners as Kyiv announces new talks",
+  "link": "https://www.investing.com/news/world-news/ukraine-talks-set-for-next-week-as-cold-sweeps-country-4477703",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T20:54:38",
+  "text": "Russian drone strike kills 12 miners as Kyiv announces new talks",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DRONE",
+    "KYIV",
+    "AS",
+    "TALKS",
+    "KILLS",
+    "NEW"
+  ],
+  "relatedTickers": [
+    "DRONE",
+    "KYIV",
+    "AS",
+    "TALKS",
+    "KILLS",
+    "NEW"
+  ]
+}

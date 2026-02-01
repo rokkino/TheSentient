@@ -1,0 +1,28 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Top US, Israeli generals meet at Pentagon amid soaring Iran tensions",
+  "link": "https://www.investing.com/news/world-news/top-us-israeli-generals-meet-at-pentagon-amid-soaring-iran-tensions-4477717",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T18:12:49",
+  "text": "Top US, Israeli generals meet at Pentagon amid soaring Iran tensions",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IRAN",
+    "AMID",
+    "AT",
+    "US",
+    "MEET",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "IRAN",
+    "AMID",
+    "AT",
+    "US",
+    "MEET",
+    "TOP"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Xi calls for China’s renminbi to attain global reserve currency status",
+  "link": "https://www.ft.com/content/c948b978-c22b-44b7-ba3d-4798e641e673",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T09:26:55",
+  "text": "Latest commentary details ambitions for ‘powerful currency’ to play a greater role in trade and forex",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Facbb7fcb-d445-4572-b84d-6caad0e75144.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TRADE",
+    "PLAY",
+    "CALLS",
+    "XI",
+    "TO",
+    "A",
+    "ROLE",
+    "CHINA",
+    "FOR",
+    "S"
+  ],
+  "relatedTickers": [
+    "TRADE",
+    "PLAY",
+    "CALLS",
+    "XI",
+    "TO",
+    "A",
+    "ROLE",
+    "CHINA",
+    "FOR",
+    "S"
+  ]
+}

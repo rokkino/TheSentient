@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "DP World boss discussed masseuse with Epstein, emails show",
+  "link": "https://www.ft.com/content/03e90cc3-fa03-452c-8ae9-d00134882940",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T16:52:45",
+  "text": "Documents released by DoJ indicate close relationship between Sultan Ahmed bin Sulayem and sex offender",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5875a7b3-6d34-4d87-b507-907c410bfa0e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLOSE",
+    "DP",
+    "BIN",
+    "AND",
+    "WORLD",
+    "AHMED",
+    "WITH",
+    "BOSS",
+    "BY",
+    "SEX"
+  ],
+  "relatedTickers": [
+    "CLOSE",
+    "DP",
+    "BIN",
+    "AND",
+    "WORLD",
+    "AHMED",
+    "WITH",
+    "BOSS",
+    "BY",
+    "SEX"
+  ]
+}

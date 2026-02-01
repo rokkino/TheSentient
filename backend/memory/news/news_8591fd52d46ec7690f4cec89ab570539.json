@@ -1,0 +1,30 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russia stocks lower at close of trade; MOEX Russia Index unchanged",
+  "link": "https://www.investing.com/news/stock-market-news/russia-stocks-lower-at-close-of-trade-moex-russia-index-unchanged-4477724",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T21:20:03",
+  "text": "Russia stocks lower at close of trade; MOEX Russia Index unchanged",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TRADE",
+    "OF",
+    "MOEX",
+    "AT",
+    "LOWER",
+    "INDEX",
+    "CLOSE"
+  ],
+  "relatedTickers": [
+    "TRADE",
+    "OF",
+    "MOEX",
+    "AT",
+    "LOWER",
+    "INDEX",
+    "CLOSE"
+  ]
+}

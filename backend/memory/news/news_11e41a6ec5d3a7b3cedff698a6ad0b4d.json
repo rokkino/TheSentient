@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UK to reconsider joining EU defence fund",
+  "link": "https://www.ft.com/content/ee84b8e4-cb6e-4d98-a953-8daa5313c9fd",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T18:00:04",
+  "text": "Ministers and officials meet on Monday to discuss ‘reset’ of relations, including closer security and trade ties",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ff7e7ef34-24e7-4af7-b5aa-82d1403e11c0.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TRADE",
+    "OF",
+    "TIES",
+    "EU",
+    "TO",
+    "UK",
+    "MEET",
+    "AND",
+    "FUND",
+    "RESET"
+  ],
+  "relatedTickers": [
+    "TRADE",
+    "OF",
+    "TIES",
+    "EU",
+    "TO",
+    "UK",
+    "MEET",
+    "AND",
+    "FUND",
+    "RESET"
+  ]
+}

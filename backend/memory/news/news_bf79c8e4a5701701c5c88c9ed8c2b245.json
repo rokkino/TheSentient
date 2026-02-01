@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Abu Dhabi royal bought big stake in Trump family crypto venture",
+  "link": "https://www.ft.com/content/188bc9f1-cb43-4b04-a548-79805153a20b",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T19:03:26",
+  "text": "Investors backed by Sheikh Tahnoon bin Zayed al-Nahyan put half a billion dollars into World Liberty Financial",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Faacc47ed-1614-49bf-8f44-d39edf007ec7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ROYAL",
+    "STAKE",
+    "ZAYED",
+    "ABU",
+    "A",
+    "TRUMP",
+    "BIG",
+    "BIN",
+    "INTO",
+    "WORLD"
+  ],
+  "relatedTickers": [
+    "ROYAL",
+    "STAKE",
+    "ZAYED",
+    "ABU",
+    "A",
+    "TRUMP",
+    "BIG",
+    "BIN",
+    "INTO",
+    "WORLD"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Speaker Johnson: 'Confident' government shutdown will end by Tuesday",
+  "link": "https://www.cnbc.com/2026/02/01/government-shutdown-mike-johnson.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T17:07:06",
+  "text": "The government shut down on Saturday after Senate Democrats demanded changes to a spending package following the killings of U.S. citizens in Minnesota.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "AFTER",
+    "OF",
+    "SHUT",
+    "A",
+    "TO",
+    "DOWN",
+    "S",
+    "BY",
+    "THE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "AFTER",
+    "OF",
+    "SHUT",
+    "A",
+    "TO",
+    "DOWN",
+    "S",
+    "BY",
+    "THE"
+  ]
+}

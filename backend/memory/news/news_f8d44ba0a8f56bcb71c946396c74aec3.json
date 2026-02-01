@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Japan PM talks up weak yen even as her government works to counter currency decline",
+  "link": "https://www.investing.com/news/economy-news/japans-takaichi-cites-weak-yens-benefits-even-as-her-government-threatens-intervention-4477640",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T22:00:30",
+  "providerPublishTime": 1769979630.0,
+  "text": "Japan PM talks up weak yen even as her government works to counter currency decline",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PM",
+    "UP",
+    "JAPAN",
+    "AS",
+    "WEAK",
+    "TALKS",
+    "WORKS",
+    "EVEN",
+    "YEN",
+    "TO"
+  ],
+  "relatedTickers": [
+    "PM",
+    "UP",
+    "JAPAN",
+    "AS",
+    "WEAK",
+    "TALKS",
+    "WORKS",
+    "EVEN",
+    "YEN",
+    "TO"
+  ]
+}

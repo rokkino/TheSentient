@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Apollo chief Marc Rowan consulted Epstein on firm’s tax affairs",
+  "link": "https://www.ft.com/content/092d9e44-ec17-4da7-8b58-e43bf09113ab",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T18:39:13",
+  "text": "New files reveal extensive talks between disgraced financier and key decision makers at US private capital firm",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F3ad7ebd0-fd74-444e-8986-c3e53071767e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NEW",
+    "FILES",
+    "KEY",
+    "AT",
+    "ROWAN",
+    "TALKS",
+    "US",
+    "S",
+    "FIRM",
+    "AND"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "FILES",
+    "KEY",
+    "AT",
+    "ROWAN",
+    "TALKS",
+    "US",
+    "S",
+    "FIRM",
+    "AND"
+  ]
+}

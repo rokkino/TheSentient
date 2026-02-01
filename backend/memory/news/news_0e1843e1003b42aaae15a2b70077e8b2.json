@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "'The haves and the have nots': Wall Street sees divide in tech stock performance after earnings reports",
+  "link": "https://finance.yahoo.com/news/the-haves-and-the-have-nots-wall-street-sees-divide-in-tech-stock-performance-after-earnings-reports-153043282.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-01T15:30:43",
+  "text": "'The haves and the have nots': Wall Street sees divide in tech stock performance after earnings reports",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-07/73f52450-5c06-11f0-afb7-9959af247292",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WALL",
+    "TECH",
+    "AFTER",
+    "SEES",
+    "STOCK",
+    "HAVES",
+    "AND",
+    "THE",
+    "NOTS",
+    "IN"
+  ],
+  "relatedTickers": [
+    "WALL",
+    "TECH",
+    "AFTER",
+    "SEES",
+    "STOCK",
+    "HAVES",
+    "AND",
+    "THE",
+    "NOTS",
+    "IN"
+  ]
+}

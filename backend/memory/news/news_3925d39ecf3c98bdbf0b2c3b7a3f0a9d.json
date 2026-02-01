@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Australia Set for U-Turn to Rate Hike in Break From Global Trend",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/australia-set-for-u-turn-to-rate-hike-in-break-from-global-trend",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T18:00:00",
+  "text": "Australia’s central bank faces the uncomfortable prospect of going against the global grain and switching back to raising interest rates this week to douse resurgent inflation &mdash; less than six months after it last cut.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iHrgkZY8jOhg/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DOUSE",
+    "HIKE",
+    "OF",
+    "FROM",
+    "SIX",
+    "TO",
+    "TURN",
+    "S",
+    "THIS",
+    "BREAK"
+  ],
+  "relatedTickers": [
+    "DOUSE",
+    "HIKE",
+    "OF",
+    "FROM",
+    "SIX",
+    "TO",
+    "TURN",
+    "S",
+    "THIS",
+    "BREAK"
+  ]
+}

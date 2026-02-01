@@ -1,0 +1,22 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Syria arrests group behind Mezzeh airport attacks, weapons traced to Hezbollah",
+  "link": "https://www.investing.com/news/world-news/syria-arrests-group-behind-mezzeh-airport-attacks-weapons-traced-to-hezbollah-4477718",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T19:00:16",
+  "text": "Syria arrests group behind Mezzeh airport attacks, weapons traced to Hezbollah",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SYRIA",
+    "TO",
+    "GROUP"
+  ],
+  "relatedTickers": [
+    "SYRIA",
+    "TO",
+    "GROUP"
+  ]
+}

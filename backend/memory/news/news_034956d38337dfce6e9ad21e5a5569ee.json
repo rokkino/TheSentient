@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hunger in One of America’s Wealthiest Counties",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-01/hunger-in-one-of-america-s-wealthiest-counties",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T16:03:36",
+  "text": "About one in three families are at risk of hunger in one of America’s wealthiest counties, just north of New York City. Feeding Westchester is the area’s only food bank, delivering more than 20 million pounds of food each year. COO Tami Wilson joins us to talk about the challenge of meeting that need. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iFAyBvKbL5Hk/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NORTH",
+    "OF",
+    "TO",
+    "CITY",
+    "S",
+    "COO",
+    "THAT",
+    "ABOUT",
+    "THE",
+    "NEW"
+  ],
+  "relatedTickers": [
+    "NORTH",
+    "OF",
+    "TO",
+    "CITY",
+    "S",
+    "COO",
+    "THAT",
+    "ABOUT",
+    "THE",
+    "NEW"
+  ]
+}

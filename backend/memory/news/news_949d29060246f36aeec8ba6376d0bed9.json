@@ -1,0 +1,28 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What comes after the bubble could be electrifying",
+  "link": "https://finance.yahoo.com/news/what-comes-after-the-bubble-could-be-electrifying-194823433.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-01T19:48:23",
+  "text": "What comes after the bubble could be electrifying",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/f3ad72d0-ffa6-11f0-bbb6-afcb1aee42b7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHAT",
+    "AFTER",
+    "COMES",
+    "BE",
+    "COULD",
+    "THE"
+  ],
+  "relatedTickers": [
+    "WHAT",
+    "AFTER",
+    "COMES",
+    "BE",
+    "COULD",
+    "THE"
+  ]
+}

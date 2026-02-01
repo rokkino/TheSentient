@@ -9,19 +9,26 @@
         <span class="publisher-badge">
           {{ newsItem.publisher || 'Yahoo Finance' }}
         </span>
-        <span class="time-badge">{{ formatTime(newsItem.providerPublishTime) }}</span>
+        <span class="time-badge">{{ formatTime(newsItem.providerPublishTime || newsItem.timestamp) }}</span>
       </div>
     </div>
     
     <div class="news-content">
       <div v-if="!newsItem.thumbnail" class="news-header">
         <span class="publisher-badge">{{ newsItem.publisher || 'Yahoo Finance' }}</span>
-        <span class="time-badge">{{ formatTime(newsItem.providerPublishTime) }}</span>
+        <span class="time-badge">{{ formatTime(newsItem.providerPublishTime || newsItem.timestamp) }}</span>
       </div>
       
-      <div class="news-tags" v-if="newsItem.relatedTickers && newsItem.relatedTickers.length">
-        <span v-for="ticker in newsItem.relatedTickers.slice(0, 3)" :key="ticker" class="ticker-tag">
-          {{ ticker }}
+      <!-- Sentiment Badge -->
+      <div v-if="newsItem.sentiment" class="sentiment-badge" :class="newsItem.sentiment">
+        <span class="sentiment-icon">{{ getSentimentIcon(newsItem.sentiment) }}</span>
+        <span class="sentiment-text">{{ getSentimentLabel(newsItem.sentiment) }}</span>
+      </div>
+      
+      <!-- Assets/Tickers -->
+      <div class="news-tags" v-if="getDisplayAssets().length > 0">
+        <span v-for="asset in getDisplayAssets()" :key="asset" class="ticker-tag">
+          {{ asset }}
         </span>
       </div>
       
@@ -80,7 +87,8 @@ const handleImageError = (e) => {
 
 const formatTime = (timestamp) => {
   if (!timestamp) return ''
-  const date = new Date(timestamp * 1000)
+  // Handle both Unix timestamp (number) and ISO string
+  const date = typeof timestamp === 'number' ? new Date(timestamp * 1000) : new Date(timestamp)
   const now = new Date()
   const diff = Math.floor((now - date) / 1000) // seconds
   
@@ -88,6 +96,37 @@ const formatTime = (timestamp) => {
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`
   return `${Math.floor(diff / 86400)}d ago`
+}
+
+const getDisplayAssets = () => {
+  // Prefer extracted_assets, fallback to relatedTickers, then ticker
+  const assets = props.newsItem.extracted_assets || props.newsItem.relatedTickers || []
+  if (assets.length > 0) {
+    return assets.slice(0, 5) // Show up to 5 assets
+  }
+  // Fallback to ticker if available
+  if (props.newsItem.ticker) {
+    return [props.newsItem.ticker]
+  }
+  return []
+}
+
+const getSentimentIcon = (sentiment) => {
+  switch(sentiment?.toLowerCase()) {
+    case 'positive': return '📈'
+    case 'negative': return '📉'
+    case 'neutral': return '➡️'
+    default: return ''
+  }
+}
+
+const getSentimentLabel = (sentiment) => {
+  switch(sentiment?.toLowerCase()) {
+    case 'positive': return 'Positiva'
+    case 'negative': return 'Negativa'
+    case 'neutral': return 'Neutrale'
+    default: return ''
+  }
 }
 </script>
 
@@ -214,6 +253,46 @@ const formatTime = (timestamp) => {
   margin-bottom: 10px;
 }
 
+.sentiment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  border: 1px solid;
+}
+
+.sentiment-badge.positive {
+  background: rgba(40, 167, 69, 0.15);
+  color: #4cd168;
+  border-color: rgba(40, 167, 69, 0.3);
+}
+
+.sentiment-badge.negative {
+  background: rgba(220, 53, 69, 0.15);
+  color: #ff6b6b;
+  border-color: rgba(220, 53, 69, 0.3);
+}
+
+.sentiment-badge.neutral {
+  background: rgba(108, 117, 125, 0.15);
+  color: #adb5bd;
+  border-color: rgba(108, 117, 125, 0.3);
+}
+
+.sentiment-icon {
+  font-size: 14px;
+}
+
+.sentiment-text {
+  font-size: 10px;
+}
+
 .ticker-tag {
   display: inline-block;
   background: rgba(66, 153, 225, 0.15);
@@ -224,6 +303,7 @@ const formatTime = (timestamp) => {
   border-radius: 4px;
   border: 1px solid rgba(66, 153, 225, 0.2);
   margin-right: 6px;
+  margin-bottom: 4px;
 }
 
 .news-summary {

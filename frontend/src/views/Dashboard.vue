@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <!-- Top Tab Bar -->
-    <div class="tab-bar-container">
+    <div class="tab-bar-container" v-if="tabsLoaded">
       <div class="tab-bar">
         <div class="tabs-section">
         <div
@@ -56,14 +56,40 @@
         />
       </div>
     </div>
+    
+    <!-- Loading bar durante il caricamento iniziale -->
+    <div v-else class="tab-bar-container loading-bar">
+      <div class="tab-bar">
+        <div class="tabs-section">
+          <div class="loading-tabs-placeholder"></div>
+        </div>
+        <UserProfile
+          :username="currentUser?.username"
+          :email="currentUser?.email"
+          :is-logged-in="isLoggedIn"
+          :profile-picture-url="currentUser?.profile_picture_url"
+          @login="showLoginModal = true"
+          @register="showRegisterModal = true"
+          @logout="handleLogout"
+          @profile="handleViewProfile"
+        />
+      </div>
+    </div>
 
     <!-- Tab Content -->
     <div class="tab-content">
-
+      <!-- Loading state durante il caricamento iniziale -->
+      <div v-if="!tabsLoaded || activeTab === null" class="tabs-loading">
+        <div class="loading-spinner"></div>
+      </div>
+      
+      <template v-else>
 
       <!-- News Tab -->
       <div
-        v-if="activeTab === 3"
+        v-for="tab in tabs"
+        :key="'news-' + tab.id"
+        v-show="activeTab === tab.id && tab.type === 'news'"
         class="tab-panel news-panel"
       >
         <NewsFeed />
@@ -71,7 +97,9 @@
 
       <!-- Bot Tab -->
       <div
-        v-if="activeTab === 4"
+        v-for="tab in tabs"
+        :key="'bot-' + tab.id"
+        v-show="activeTab === tab.id && tab.type === 'bot'"
         class="tab-panel bot-panel"
       >
         <BotList 
@@ -614,6 +642,7 @@
 
         </div>
       </div>
+      </template>
     </div>
 
     <!-- Settings Modal Removed (Redundant) -->
@@ -718,7 +747,9 @@ const authStore = useAuthStore()
 const timeframes = ['1d', '5d', '1m', '3m', '6m', '1y', '5y']
 const chartTypes = ['Candle', 'Line']
 
-const activeTab = ref(parseInt(localStorage.getItem('activeTab')) || 1)
+// Non inizializzare activeTab da localStorage subito - verrà impostato dopo il caricamento dei tab
+const activeTab = ref(null)
+const tabsLoaded = ref(false) // Flag per sapere quando i tab sono stati caricati
 const tabs = ref([
   {
     id: 1,
@@ -800,6 +831,8 @@ const isLoggedIn = computed(() => authStore.isAuthenticated)
 const botOrderSymbols = ref([])
 const includeBotTickers = ref(true)
 let botOrdersInterval = null
+let chartInfoInterval = null
+let chartDataInterval = null
 
 const watchlist = computed(() => watchlistStore.watchlist)
 const newsItems = computed(() => newsStore.news)
@@ -840,6 +873,12 @@ onMounted(async () => {
     await loadUserTabs()
     await loadBotOrders()
     botOrdersInterval = setInterval(loadBotOrders, 60000) // refresh every 60s
+  } else {
+    // Se non loggato, imposta il tab attivo dai default
+    const savedTabId = parseInt(localStorage.getItem('activeTab'))
+    const savedTabExists = tabs.value.some(tab => tab.id === savedTabId)
+    activeTab.value = savedTabExists ? savedTabId : (tabs.value.length > 0 ? tabs.value[0].id : 1)
+    tabsLoaded.value = true
   }
   
   await watchlistStore.loadWatchlist()
@@ -857,6 +896,7 @@ onMounted(async () => {
 })
 onUnmounted(() => {
   if (botOrdersInterval) clearInterval(botOrdersInterval)
+  stopChartRefresh()
   document.removeEventListener('click', closeContextMenu)
   document.removeEventListener('keydown', handleKeyDown)
 })
@@ -875,6 +915,29 @@ watch(isLoggedIn, (val) => {
   }
 })
 
+const stopChartRefresh = () => {
+  if (chartInfoInterval) {
+    clearInterval(chartInfoInterval)
+    chartInfoInterval = null
+  }
+  if (chartDataInterval) {
+    clearInterval(chartDataInterval)
+    chartDataInterval = null
+  }
+}
+
+const startChartRefresh = (tabId) => {
+  stopChartRefresh()
+  // Update price/quote in the info bar every 30s so the number moves
+  chartInfoInterval = setInterval(() => {
+    if (activeTab.value === tabId) updateChartInfo(tabId)
+  }, 30000)
+  // Refetch chart data every 60s so candlesticks update (last bar / new bars)
+  chartDataInterval = setInterval(() => {
+    if (activeTab.value === tabId) loadChart(tabId, true)
+  }, 60000)
+}
+
 const setActiveTab = (tabId) => {
   activeTab.value = tabId
   // Persist active tab to localStorage
@@ -883,7 +946,10 @@ const setActiveTab = (tabId) => {
   if (tab && tab.selectedTicker && tab.type === 'stocks') {
     nextTick(() => {
       loadChart(tabId)
+      startChartRefresh(tabId)
     })
+  } else {
+    stopChartRefresh()
   }
   closeContextMenu()
   closeChartContextMenu()
@@ -894,9 +960,13 @@ const setActiveTab = (tabId) => {
 const loadUserTabs = async () => {
   try {
     const response = await api.getUserTabs()
+    
+    // Salva il tab attivo corrente PRIMA di sostituire l'array
+    const currentActiveTab = activeTab.value
+    
     if (response.data && response.data.tabs && response.data.tabs.length > 0) {
-      // Restore tabs from user account
-      tabs.value = response.data.tabs.map(tab => ({
+      // Restore tabs from user account - usa nextTick per evitare flash
+      const newTabs = response.data.tabs.map(tab => ({
         ...tab,
         chart: null,
         candlestickSeries: null,
@@ -904,6 +974,9 @@ const loadUserTabs = async () => {
         earningsLines: tab.earningsLines || [],
         drawings: tab.drawings || []
       }))
+      
+      // Sostituisci l'array in un colpo solo per evitare re-render intermedi
+      tabs.value = newTabs
     } else {
       // First time user - save default tabs to account
       const defaultTabs = tabs.value.map(tab => {
@@ -912,9 +985,36 @@ const loadUserTabs = async () => {
       })
       await api.saveUserTabs(defaultTabs)
     }
+    
+    // Dopo aver caricato i tab, imposta il tab attivo
+    // Verifica che il tab salvato in localStorage esista ancora
+    const savedTabId = currentActiveTab || parseInt(localStorage.getItem('activeTab'))
+    const savedTabExists = tabs.value.some(tab => tab.id === savedTabId)
+    
+    // Usa nextTick per assicurarsi che Vue abbia aggiornato il DOM prima di cambiare activeTab
+    await nextTick()
+    
+    if (savedTabExists) {
+      activeTab.value = savedTabId
+    } else if (tabs.value.length > 0) {
+      // Se il tab salvato non esiste più, usa il primo tab disponibile
+      activeTab.value = tabs.value[0].id
+      localStorage.setItem('activeTab', activeTab.value.toString())
+    }
+    
+    // Imposta tabsLoaded solo dopo aver impostato activeTab
+    await nextTick()
+    tabsLoaded.value = true
   } catch (error) {
     console.error('Error loading user tabs:', error)
     // If error loading, keep default tabs
+    // Imposta comunque il tab attivo dai default
+    const savedTabId = parseInt(localStorage.getItem('activeTab'))
+    const savedTabExists = tabs.value.some(tab => tab.id === savedTabId)
+    activeTab.value = savedTabExists ? savedTabId : (tabs.value.length > 0 ? tabs.value[0].id : 1)
+    
+    await nextTick()
+    tabsLoaded.value = true
   }
 }
 
@@ -2210,13 +2310,75 @@ const selectTicker = async (tabId, symbol) => {
   
   console.log('Loading chart for tab:', tabId)
   await loadChart(tabId)
+  if (activeTab.value === tabId) startChartRefresh(tabId)
 }
 
-const loadChart = async (tabId) => {
-  console.log('loadChart called:', tabId)
+const loadChart = async (tabId, forceRefresh = false) => {
+  console.log('loadChart called:', tabId, forceRefresh ? '(refresh)' : '')
   const tab = tabs.value.find(t => t && t.id === tabId)
   if (!tab || !tab.selectedTicker) {
     console.error('Tab or ticker not found:', { tab: !!tab, ticker: tab?.selectedTicker })
+    return
+  }
+
+  // Real-time refresh: update series data only (no chart teardown)
+  if (forceRefresh && tab.chart && (tab.candlestickSeries || tab.lineSeries)) {
+    try {
+      const response = await api.getChart({
+        ticker: tab.selectedTicker,
+        timeframe: tab.timeframe,
+        chart_type: tab.chartType.toLowerCase()
+      })
+      const chartData = response.data
+      if (!chartData?.data?.length) return
+      const cacheKey = `${tab.selectedTicker}_${tab.timeframe}_${tab.chartType}`
+      setCached('chart', chartData, cacheKey)
+      tab.chartData = chartData.data
+      const data = chartData.data
+      const earningsDates = chartData.earnings_dates || []
+      if (tab.chartType === 'Candle' && tab.candlestickSeries) {
+        tab.candlestickSeries.setData(data.map(d => ({
+          time: d.time / 1000,
+          open: d.open,
+          high: d.high,
+          low: d.low,
+          close: d.close,
+        })))
+        if (earningsDates.length > 0) {
+          const markers = earningsDates.map(earning => {
+            const earningsTime = earning.timestamp / 1000
+            let closest = data[0]
+            let minDiff = Math.abs(data[0].time / 1000 - earningsTime)
+            for (const p of data) {
+              const diff = Math.abs(p.time / 1000 - earningsTime)
+              if (diff < minDiff) { minDiff = diff; closest = p }
+            }
+            return { time: closest.time / 1000, position: 'aboveBar', color: '#ff9800', shape: 'arrowDown', size: 3, text: 'E' }
+          })
+          tab.candlestickSeries.setMarkers(markers)
+        }
+      } else if (tab.lineSeries) {
+        const lineData = data.map(d => ({ time: d.time / 1000, value: d.close })).filter(d => !isNaN(d.value))
+        if (lineData.length > 0) tab.lineSeries.setData(lineData)
+        if (earningsDates.length > 0 && lineData.length > 0) {
+          const markers = earningsDates.map(earning => {
+            const earningsTime = earning.timestamp / 1000
+            let closest = lineData[0]
+            let minDiff = Math.abs(lineData[0].time - earningsTime)
+            for (const p of lineData) {
+              const diff = Math.abs(p.time - earningsTime)
+              if (diff < minDiff) { minDiff = diff; closest = p }
+            }
+            return { time: closest.time, position: 'aboveBar', color: '#ff9800', shape: 'arrowDown', size: 3, text: 'E' }
+          })
+          tab.lineSeries.setMarkers(markers)
+        }
+      }
+      await updateChartInfo(tabId)
+      return
+    } catch (e) {
+      console.error('Chart refresh error:', e)
+    }
     return
   }
 
@@ -2250,9 +2412,9 @@ const loadChart = async (tabId) => {
   }
 
   try {
-    // Check cache first
+    // Check cache first (skip cache when force-refreshing)
     const cacheKey = `${tab.selectedTicker}_${tab.timeframe}_${tab.chartType}`
-    let chartData = getCached('chart', cacheKey)
+    let chartData = forceRefresh ? null : getCached('chart', cacheKey)
     
     if (!chartData || !chartData.data || chartData.data.length === 0) {
       console.log('Fetching chart data from API for', tab.selectedTicker)
@@ -2745,6 +2907,17 @@ const handleAiDrawingAdded = (drawing) => {
   pointer-events: auto;
   flex-shrink: 0;
   padding: 0;
+}
+
+.tab-bar-container.loading-bar {
+  opacity: 0.7;
+}
+
+.loading-tabs-placeholder {
+  height: 48px;
+  width: 100%;
+  background: rgba(20, 20, 20, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .tab-bar {
@@ -3263,6 +3436,20 @@ const handleAiDrawingAdded = (drawing) => {
   border-top-color: #4299e1;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
+}
+
+.tabs-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+}
+
+.tabs-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
 }
 
 @keyframes spin {

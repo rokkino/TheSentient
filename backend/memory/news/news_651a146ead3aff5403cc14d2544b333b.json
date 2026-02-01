@@ -1,0 +1,28 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Democrat Menefee wins Texas special election for US House seat",
+  "link": "https://www.investing.com/news/politics-news/vote-count-continues-in-special-texas-election-to-fill-vacant-congressional-seat-4477687",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T21:42:25",
+  "text": "Democrat Menefee wins Texas special election for US House seat",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SEAT",
+    "WINS",
+    "FOR",
+    "HOUSE",
+    "US",
+    "TEXAS"
+  ],
+  "relatedTickers": [
+    "SEAT",
+    "WINS",
+    "FOR",
+    "HOUSE",
+    "US",
+    "TEXAS"
+  ]
+}

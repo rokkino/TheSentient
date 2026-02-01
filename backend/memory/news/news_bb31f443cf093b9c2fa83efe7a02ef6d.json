@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OPEC+ Sticks With Supply Pause Even as Oil Climbs on Iran",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/opec-sticks-with-supply-pause-even-as-oil-climbs-on-iran",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T15:26:53",
+  "text": "OPEC+ ratified plans to keep production steady in March &mdash; the last part of a three-month supply freeze, even after prices hit a four-month high on the prospect of a US strike against Iran.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ieYvBYWurU6k/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "TO",
+    "KEEP",
+    "WITH",
+    "MONTH",
+    "HIGH",
+    "THE",
+    "ON",
+    "EVEN",
+    "HIT"
+  ],
+  "relatedTickers": [
+    "OF",
+    "TO",
+    "KEEP",
+    "WITH",
+    "MONTH",
+    "HIGH",
+    "THE",
+    "ON",
+    "EVEN",
+    "HIT"
+  ]
+}

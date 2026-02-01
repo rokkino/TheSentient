@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold and silver’s $7 trillion wipeout delivers a painful lesson about risk",
+  "link": "https://www.marketwatch.com/story/gold-and-silvers-7-trillion-wipeout-delivers-a-painful-lesson-about-risk-22dbf70f?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-01T21:05:00",
+  "text": "If “safe” investments like gold and silver can crash in a single day, investors need to reconsider their portfolio hedges.",
+  "thumbnail": "https://images.mktw.net/im-30087800",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NEED",
+    "GOLD",
+    "IF",
+    "CAN",
+    "SAFE",
+    "LIKE",
+    "A",
+    "THEIR",
+    "DAY",
+    "TO"
+  ],
+  "relatedTickers": [
+    "NEED",
+    "GOLD",
+    "IF",
+    "CAN",
+    "SAFE",
+    "LIKE",
+    "A",
+    "THEIR",
+    "DAY",
+    "TO"
+  ]
+}

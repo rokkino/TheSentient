@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stock Market Volatility Takes Back Seat to Commodity, FX Swings",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/stock-market-volatility-takes-back-seat-to-commodity-fx-swings",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T15:00:00",
+  "text": "Equities have been far less volatile than almost everything else so far this year, with bigger swings racing through the markets for precious metals, currencies and commodities.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1biSzYl7Mlc/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ELSE",
+    "TO",
+    "FAR",
+    "WITH",
+    "THIS",
+    "THE",
+    "SEAT",
+    "SO",
+    "STOCK",
+    "BEEN"
+  ],
+  "relatedTickers": [
+    "ELSE",
+    "TO",
+    "FAR",
+    "WITH",
+    "THIS",
+    "THE",
+    "SEAT",
+    "SO",
+    "STOCK",
+    "BEEN"
+  ]
+}

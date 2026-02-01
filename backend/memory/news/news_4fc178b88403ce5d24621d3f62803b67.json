@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘Melania’ documentary’s $7 million box office is a win for the first lady — but not for Amazon",
+  "link": "https://www.marketwatch.com/story/melania-documentarys-8-million-box-office-is-a-win-for-the-first-lady-but-not-for-amazon-44256593?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-01T20:29:00",
+  "text": "The film’s box office receipts represent a drop in the ocean for Amazon MGM’s $75 million investment.",
+  "thumbnail": "https://images.mktw.net/im-67354971",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LADY",
+    "FILM",
+    "A",
+    "IS",
+    "BUT",
+    "DROP",
+    "OCEAN",
+    "FOR",
+    "BOX",
+    "S"
+  ],
+  "relatedTickers": [
+    "LADY",
+    "FILM",
+    "A",
+    "IS",
+    "BUT",
+    "DROP",
+    "OCEAN",
+    "FOR",
+    "BOX",
+    "S"
+  ]
+}

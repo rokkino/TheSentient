@@ -16,4 +16,6 @@ class News(Base):
     timestamp = Column(DateTime, index=True)
     content = Column(Text, nullable=True)  # Summary or full text
     thumbnail_url = Column(String, nullable=True)
+    sentiment = Column(String, nullable=True)  # 'positive', 'negative', 'neutral'
+    extracted_assets = Column(Text, nullable=True)  # JSON array of assets mentioned
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))

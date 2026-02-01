@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "'Melania' earns a surprising $7 million, best non-music documentary debut in a decade",
+  "link": "https://www.cnbc.com/2026/02/01/melania-documentary-posts-7-million-domestic-opening.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T16:34:11",
+  "text": "Amazon reportedly paid an estimated $40 million to acquire 'Melania' and spent an additional $35 million on marketing.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AN",
+    "PAID",
+    "SPENT",
+    "A",
+    "MUSIC",
+    "TO",
+    "NON",
+    "DEBUT",
+    "AND",
+    "BEST"
+  ],
+  "relatedTickers": [
+    "AN",
+    "PAID",
+    "SPENT",
+    "A",
+    "MUSIC",
+    "TO",
+    "NON",
+    "DEBUT",
+    "AND",
+    "BEST"
+  ]
+}

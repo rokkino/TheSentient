@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "United Arab Emirates' 'Spy Sheikh' bought secret stake in Trump crypto company: WSJ",
+  "link": "https://www.cnbc.com/2026/02/01/spy-sheikh-stake-trump-crypto.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T20:36:33",
+  "text": "“This is corruption, plain and simple,\" said Massachusetts Sen. Elizabeth Warren, the top Democrat on the Senate Banking Committee.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STAKE",
+    "WSJ",
+    "SEN",
+    "ARAB",
+    "IS",
+    "TRUMP",
+    "SPY",
+    "PLAIN",
+    "SAID",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "STAKE",
+    "WSJ",
+    "SEN",
+    "ARAB",
+    "IS",
+    "TRUMP",
+    "SPY",
+    "PLAIN",
+    "SAID",
+    "TOP"
+  ]
+}

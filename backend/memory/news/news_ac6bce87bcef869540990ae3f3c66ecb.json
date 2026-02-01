@@ -1,0 +1,28 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Iran warns of regional conflict if US attacks, designates EU armies ’terrorists’",
+  "link": "https://www.investing.com/news/world-news/tehran-warns-of-regional-conflict-if-us-attacks-iran-4477693",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T19:12:30",
+  "text": "Iran warns of regional conflict if US attacks, designates EU armies ’terrorists’",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IRAN",
+    "IF",
+    "OF",
+    "EU",
+    "US",
+    "WARNS"
+  ],
+  "relatedTickers": [
+    "IRAN",
+    "IF",
+    "OF",
+    "EU",
+    "US",
+    "WARNS"
+  ]
+}

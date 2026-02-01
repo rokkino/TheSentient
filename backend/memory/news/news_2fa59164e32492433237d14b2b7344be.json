@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How the EV pullback is affecting factories and jobs in the South",
+  "link": "https://www.cnbc.com/2026/02/01/ev-pullback-factories-jobs-south.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T12:00:01",
+  "text": "Automakers, suppliers and battery makers were funneling hundreds of billions of dollars into EV-related manufacturing in the U.S. Now it's all in question.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NOW",
+    "WERE",
+    "IT",
+    "ALL",
+    "OF",
+    "HOW",
+    "IS",
+    "INTO",
+    "JOBS",
+    "S"
+  ],
+  "relatedTickers": [
+    "NOW",
+    "WERE",
+    "IT",
+    "ALL",
+    "OF",
+    "HOW",
+    "IS",
+    "INTO",
+    "JOBS",
+    "S"
+  ]
+}

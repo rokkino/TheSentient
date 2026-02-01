@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NYC's iconic Flatiron Building officially has apartments for sale, starting at nearly $11 million—take a look inside",
+  "link": "https://www.cnbc.com/2026/01/31/flatiron-building-apartments-for-sale.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-01-31T15:00:01",
+  "text": "The Flatiron Building has gone from a commercial building to a residential one with 38 luxury condos.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GONE",
+    "NYC",
+    "HAS",
+    "TAKE",
+    "A",
+    "LOOK",
+    "AT",
+    "FROM",
+    "TO",
+    "ONE"
+  ],
+  "relatedTickers": [
+    "GONE",
+    "NYC",
+    "HAS",
+    "TAKE",
+    "A",
+    "LOOK",
+    "AT",
+    "FROM",
+    "TO",
+    "ONE"
+  ]
+}

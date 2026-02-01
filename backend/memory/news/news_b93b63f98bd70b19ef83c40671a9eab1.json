@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BYD Vehicle Sales Slump 30% in January as China Demand Cools",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/byd-vehicle-sales-slump-30-in-january-as-china-demand-cools",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T14:35:02",
+  "text": "BYD Co. said sales dropped 30% in January, underscoring the challenges facing the electric vehicle maker’s efforts to boost sales just as a winding back of subsidies hurts demand in China.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i.MCbpv_10Jo/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BOOST",
+    "OF",
+    "TO",
+    "CO",
+    "CHINA",
+    "S",
+    "THE",
+    "A",
+    "AS",
+    "HURTS"
+  ],
+  "relatedTickers": [
+    "BOOST",
+    "OF",
+    "TO",
+    "CO",
+    "CHINA",
+    "S",
+    "THE",
+    "A",
+    "AS",
+    "HURTS"
+  ]
+}

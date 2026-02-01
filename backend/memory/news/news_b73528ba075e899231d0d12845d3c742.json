@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BlackRock, Pimco See Inflation Risks the Wider Market Dismisses",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/blackrock-pimco-see-inflation-risks-the-wider-market-dismisses",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T19:40:19",
+  "text": "Money managers at BlackRock Inc., Bridgewater Associates and Pacific Investment Management Co. are shoring up their portfolios against a fresh bout of inflation.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iSpi276z9.qo/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOUT",
+    "FRESH",
+    "WIDER",
+    "INC",
+    "RISKS",
+    "OF",
+    "MONEY",
+    "THEIR",
+    "A",
+    "AT"
+  ],
+  "relatedTickers": [
+    "BOUT",
+    "FRESH",
+    "WIDER",
+    "INC",
+    "RISKS",
+    "OF",
+    "MONEY",
+    "THEIR",
+    "A",
+    "AT"
+  ]
+}

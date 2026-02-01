@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Don’t fear the AI ‘jobpocalypse’",
+  "link": "https://www.ft.com/content/7d9a2d8f-5fda-4b2b-a58f-fc8aea22558a",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T12:00:04",
+  "text": "The technology hasn’t yet hit employment notably, and could create more openings",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F750951f0-4a42-4d5d-8c31-d67d92b5a79b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HASN",
+    "YET",
+    "COULD",
+    "AND",
+    "MORE",
+    "T",
+    "DON",
+    "THE",
+    "HIT",
+    "FEAR"
+  ],
+  "relatedTickers": [
+    "HASN",
+    "YET",
+    "COULD",
+    "AND",
+    "MORE",
+    "T",
+    "DON",
+    "THE",
+    "HIT",
+    "FEAR"
+  ]
+}

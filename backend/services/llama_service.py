@@ -1,9 +1,11 @@
 """
 Llama Service - Handles integration with local Ollama instance directly via HTTP
+Percorsi file: pathlib da __file__, mai "backend/..." hardcodato (PM2/Linux).
 """
 import os
 import json
 import requests
+from pathlib import Path
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 from services.web_search_service import web_search_service
@@ -16,12 +18,10 @@ class LlamaService:
         self.base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         self._initialized = False
         self.user_memories: Dict[int, List[Dict[str, str]]] = {}
-        
-        # Setup memory path
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        backend_dir = os.path.dirname(current_dir)
-        self.memory_dir = os.path.join(backend_dir, 'memory', 'chat')
-        os.makedirs(self.memory_dir, exist_ok=True)
+        # Backend root: questo file è in backend/services/, la root è backend/
+        self.backend_dir = Path(__file__).resolve().parent.parent
+        self.memory_dir = self.backend_dir / "memory" / "chat"
+        self.memory_dir.mkdir(parents=True, exist_ok=True)
 
     def _save_chat_to_memory(self, user_id: int, prompt: str, response: str, provider: str = "llama"):
         """Save chat interaction to JSON file"""
@@ -35,7 +35,7 @@ class LlamaService:
             # or just append to a daily file per user
             date_str = datetime.now().strftime("%Y-%m-%d")
             filename = f"chat_{user_id}_{date_str}.json"
-            file_path = os.path.join(self.memory_dir, filename)
+            file_path = self.memory_dir / filename
             
             entry = {
                 "id": str(uuid.uuid4()),
@@ -49,7 +49,7 @@ class LlamaService:
             
             # Append to list in file
             data = []
-            if os.path.exists(file_path):
+            if file_path.exists():
                 try:
                     with open(file_path, 'r', encoding='utf-8') as f:
                         data = json.load(f)
@@ -254,21 +254,18 @@ CONVERSATION HISTORY:
                 search_results = web_search_service.search(prompt)
                 search_context = f"\n\nWEB SEARCH RESULTS:\n{search_results}"
             
-            # Read real-time bot activity logs
+            # Read real-time bot activity logs (path da __file__, no path hardcodati)
             bot_activity_context = ""
             try:
-                # Read bot activity log (last 50 lines)
-                log_path = os.path.join("backend", "bot_activity.log")
-                if os.path.exists(log_path):
-                    with open(log_path, "r") as f:
+                log_path = self.backend_dir / "bot_activity.log"
+                if log_path.exists():
+                    with open(log_path, "r", encoding="utf-8") as f:
                         lines = f.readlines()
                         recent_lines = lines[-50:] if len(lines) > 50 else lines
                         bot_activity_context += "\n\nRECENT BOT ACTIVITY LOG:\n" + "".join(recent_lines)
-                
-                # Read profitto.json for current P&L
-                profitto_path = os.path.join("backend", "profitto.json")
-                if os.path.exists(profitto_path):
-                    with open(profitto_path, "r") as f:
+                profitto_path = self.backend_dir / "profitto.json"
+                if profitto_path.exists():
+                    with open(profitto_path, "r", encoding="utf-8") as f:
                         profitto_data = json.load(f)
                         bot_activity_context += f"\n\nCURRENT PROFIT/LOSS STATUS:\n{json.dumps(profitto_data, indent=2)}"
                 

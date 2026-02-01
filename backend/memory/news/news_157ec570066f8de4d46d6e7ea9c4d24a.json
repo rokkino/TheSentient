@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Copper is on fire, tracking gold as a precious metal hitting record-high values. Should you start investing in it?",
+  "link": "https://finance.yahoo.com/news/copper-fire-tracking-gold-precious-200000162.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T20:00:00",
+  "text": "Copper is on fire, tracking gold as a precious metal hitting record-high values. Should you start investing in it?",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/7458390b0c2c274b9e06c71be018029e",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOLD",
+    "IT",
+    "IS",
+    "A",
+    "AS",
+    "START",
+    "METAL",
+    "HIGH",
+    "YOU",
+    "FIRE"
+  ],
+  "relatedTickers": [
+    "GOLD",
+    "IT",
+    "IS",
+    "A",
+    "AS",
+    "START",
+    "METAL",
+    "HIGH",
+    "YOU",
+    "FIRE"
+  ]
+}

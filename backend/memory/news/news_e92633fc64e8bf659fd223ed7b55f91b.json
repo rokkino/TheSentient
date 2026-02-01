@@ -1,0 +1,24 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SJS Investment Boosts Ultra-Short Treasury Position by $6.39 Million",
+  "link": "https://finance.yahoo.com/news/sjs-investment-boosts-ultra-short-213251365.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T21:32:51",
+  "text": "SJS Investment Boosts Ultra-Short Treasury Position by $6.39 Million",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0fa990b14f17bb2b976e65e5c2750f93",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SHORT",
+    "ULTRA",
+    "BY",
+    "SJS"
+  ],
+  "relatedTickers": [
+    "SHORT",
+    "ULTRA",
+    "BY",
+    "SJS"
+  ]
+}

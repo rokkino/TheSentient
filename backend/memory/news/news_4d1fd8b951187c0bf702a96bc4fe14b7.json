@@ -1,0 +1,30 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Costa Ricans vote as right-wing populists aim to extend mandate",
+  "link": "https://www.investing.com/news/world-news/costa-ricans-vote-as-rightwing-populists-aim-to--extend-mandate-4477705",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T19:18:28",
+  "text": "Costa Ricans vote as right-wing populists aim to extend mandate",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "VOTE",
+    "COSTA",
+    "TO",
+    "AS",
+    "RIGHT",
+    "AIM",
+    "WING"
+  ],
+  "relatedTickers": [
+    "VOTE",
+    "COSTA",
+    "TO",
+    "AS",
+    "RIGHT",
+    "AIM",
+    "WING"
+  ]
+}

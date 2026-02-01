@@ -1,0 +1,22 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jim Cramer Discusses Kimberly-Clark (KMB) & Dividends",
+  "link": "https://finance.yahoo.com/news/jim-cramer-discusses-kimberly-clark-182848080.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T18:28:48",
+  "text": "Jim Cramer Discusses Kimberly-Clark (KMB) & Dividends",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/b40bc5fb5be5b91cfdee4e27648675f5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLARK",
+    "KMB",
+    "JIM"
+  ],
+  "relatedTickers": [
+    "CLARK",
+    "KMB",
+    "JIM"
+  ]
+}

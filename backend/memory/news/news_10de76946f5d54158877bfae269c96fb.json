@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Microsoft’s $381 Billion Rout Exposes Dark Side of the AI Binge",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/microsoft-s-381-billion-rout-exposes-dark-side-of-the-ai-binge",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T14:00:07",
+  "text": "Wall Street’s apprehension about the cost of developing artificial intelligence technology has been simmering beneath the surface of the stock market for months. Now it’s starting to boil over.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/idJTpznIc96w/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "HAS",
+    "DARK",
+    "BOIL",
+    "TO",
+    "S",
+    "ABOUT",
+    "THE",
+    "ROUT",
+    "OVER"
+  ],
+  "relatedTickers": [
+    "OF",
+    "HAS",
+    "DARK",
+    "BOIL",
+    "TO",
+    "S",
+    "ABOUT",
+    "THE",
+    "ROUT",
+    "OVER"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I’m rich in everything but parents’: I inherited $400K. Is it unwise to use this money to buy a house with my fiancé?",
+  "link": "https://www.marketwatch.com/story/im-rich-in-everything-but-parents-i-inherited-400k-is-it-unwise-to-use-this-money-to-buy-a-house-with-my-boyfriend-37837138?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-01T16:41:00",
+  "text": "“I’m a 40-year-old woman in a committed relationship, and I’ve experienced the loss of both of my parents.”",
+  "thumbnail": "https://images.mktw.net/im-51306521",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "MONEY",
+    "RICH",
+    "BUT",
+    "TO",
+    "HOUSE",
+    "WITH",
+    "THIS",
+    "THE",
+    "I"
+  ],
+  "relatedTickers": [
+    "OF",
+    "MONEY",
+    "RICH",
+    "BUT",
+    "TO",
+    "HOUSE",
+    "WITH",
+    "THIS",
+    "THE",
+    "I"
+  ]
+}

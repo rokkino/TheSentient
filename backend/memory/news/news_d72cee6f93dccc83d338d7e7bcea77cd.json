@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Americans have drawn a red line in Minnesota",
+  "link": "https://www.ft.com/content/a21843e8-0a9b-4646-b6a8-c38f84b7775d",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T13:25:54",
+  "text": "The Trump administration’s partial retreat will not mend the damage to trust and lives",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fffd45c76-fcac-45cf-86d3-621fcc903189.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RED",
+    "WILL",
+    "LIVES",
+    "DRAWN",
+    "A",
+    "TRUMP",
+    "TO",
+    "LINE",
+    "MEND",
+    "S"
+  ],
+  "relatedTickers": [
+    "RED",
+    "WILL",
+    "LIVES",
+    "DRAWN",
+    "A",
+    "TRUMP",
+    "TO",
+    "LINE",
+    "MEND",
+    "S"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin Break Below $80,000 Signals New Crisis of Confidence",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/bitcoin-s-break-below-80-000-signals-new-crisis-of-confidence",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T06:13:55",
+  "text": "Price, relevance, conviction &mdash; Bitcoin is bleeding all three.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihu8EwaOA7nM/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MDASH",
+    "OF",
+    "IS",
+    "BREAK",
+    "THREE",
+    "BELOW",
+    "NEW",
+    "ALL",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "MDASH",
+    "OF",
+    "IS",
+    "BREAK",
+    "THREE",
+    "BELOW",
+    "NEW",
+    "ALL",
+    "PRICE"
+  ]
+}

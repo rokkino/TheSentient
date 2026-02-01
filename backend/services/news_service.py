@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 import requests
 from bs4 import BeautifulSoup
 import re
+import json
 
 class NewsService:
     def __init__(self):
@@ -21,7 +22,10 @@ class NewsService:
             "https://finance.yahoo.com/news/rssindex",
             "http://feeds.marketwatch.com/marketwatch/topstories/",
             "https://www.investing.com/rss/news.rss",
-            "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+            "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+            "https://feeds.bloomberg.com/markets/news.rss",
+            "https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best",
+            "https://www.ft.com/?format=rss"
         ]
         
         # Setup memory cache directory
@@ -39,6 +43,124 @@ class NewsService:
         # In-memory cache for fast access
         self.memory_cache = []
         self._load_cache()
+        
+        # Lazy import of llama_service to avoid circular imports
+        self._llama_service = None
+    
+    def _get_llama_service(self):
+        """Lazy load llama service"""
+        if self._llama_service is None:
+            try:
+                from services.llama_service import llama_service
+                self._llama_service = llama_service
+                self._llama_service.initialize()
+            except Exception as e:
+                print(f"[NEWS] Warning: Could not load Llama service: {e}")
+                return None
+        return self._llama_service
+    
+    async def analyze_news_sentiment_and_assets(self, news_item: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyze news item to extract sentiment and mentioned assets using LLM"""
+        try:
+            llama_service = self._get_llama_service()
+            if not llama_service or not llama_service._initialized:
+                # Fallback: simple keyword-based sentiment
+                return self._simple_sentiment_analysis(news_item)
+            
+            title = news_item.get('title', '')
+            text = news_item.get('text', '') or news_item.get('summary', '') or title
+            full_text = f"{title}\n\n{text}"[:2000]  # Limit to 2000 chars
+            
+            system_prompt = """You are a financial news analyst. Analyze the news article and extract:
+1. Sentiment: "positive", "negative", or "neutral" (based on market impact)
+2. Assets mentioned: List of stock tickers, crypto symbols, futures, or commodities mentioned
+
+Return ONLY a JSON object with this exact format:
+{
+    "sentiment": "positive" | "negative" | "neutral",
+    "assets": ["AAPL", "BTC", "GOLD", "TSLA", ...]
+}
+
+Rules:
+- Sentiment should reflect market impact: positive = bullish/good news, negative = bearish/bad news
+- Extract ALL financial assets mentioned (stocks, crypto, commodities, futures)
+- Use standard ticker symbols (e.g., AAPL, TSLA, BTC-USD, GC=F for gold futures)
+- Return empty array if no assets found
+- Be accurate and conservative"""
+            
+            prompt = f"Analyze this financial news:\n\n{full_text}"
+            
+            # Call Llama synchronously in executor
+            loop = asyncio.get_event_loop()
+            response_text = await loop.run_in_executor(
+                None,
+                lambda: llama_service._call_ollama(prompt, system_prompt=system_prompt)
+            )
+            
+            # Parse JSON response
+            try:
+                # Extract JSON from response
+                json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
+                if json_match:
+                    result = json.loads(json_match.group(0))
+                    return {
+                        'sentiment': result.get('sentiment', 'neutral'),
+                        'extracted_assets': result.get('assets', [])
+                    }
+            except json.JSONDecodeError:
+                print(f"[NEWS] Failed to parse LLM response: {response_text[:200]}")
+            
+            # Fallback to simple analysis
+            return self._simple_sentiment_analysis(news_item)
+            
+        except Exception as e:
+            print(f"[NEWS] Error analyzing sentiment/assets: {e}")
+            return self._simple_sentiment_analysis(news_item)
+    
+    def _simple_sentiment_analysis(self, news_item: Dict[str, Any]) -> Dict[str, Any]:
+        """Simple keyword-based sentiment analysis as fallback"""
+        title = news_item.get('title', '').lower()
+        text = (news_item.get('text', '') or news_item.get('summary', '') or '').lower()
+        combined = f"{title} {text}"
+        
+        # Simple sentiment keywords
+        positive_keywords = ['surge', 'rally', 'gain', 'up', 'rise', 'bullish', 'profit', 'beat', 'exceed', 'growth', 'record', 'high', 'soar', 'jump']
+        negative_keywords = ['drop', 'fall', 'decline', 'down', 'crash', 'bearish', 'loss', 'miss', 'warn', 'concern', 'risk', 'plunge', 'tumble', 'slump']
+        
+        pos_count = sum(1 for word in positive_keywords if word in combined)
+        neg_count = sum(1 for word in negative_keywords if word in combined)
+        
+        if pos_count > neg_count:
+            sentiment = 'positive'
+        elif neg_count > pos_count:
+            sentiment = 'negative'
+        else:
+            sentiment = 'neutral'
+        
+        # Simple asset extraction (look for common patterns)
+        assets = []
+        # Extract ticker from news_item if available
+        if news_item.get('ticker'):
+            assets.append(news_item['ticker'])
+        
+        # Look for common asset mentions in text
+        asset_patterns = [
+            r'\b([A-Z]{1,5})\b',  # Stock tickers (1-5 uppercase letters)
+            r'\b(BTC|ETH|XRP|DOGE|SOL|ADA|MATIC|DOT|AVAX|LINK)\b',  # Common crypto
+            r'\b(Gold|Silver|Oil|Crude|WTI|Brent)\b',  # Commodities
+        ]
+        
+        for pattern in asset_patterns:
+            matches = re.findall(pattern, title + ' ' + text, re.IGNORECASE)
+            assets.extend([m.upper() if isinstance(m, str) else m[0].upper() for m in matches if len(str(m)) <= 5])
+        
+        # Remove duplicates and limit
+        assets = list(set(assets))[:10]
+        
+        return {
+            'sentiment': sentiment,
+            'extracted_assets': assets
+        }
 
     def _load_cache(self):
         """Load news from individual JSON files in memory directory"""
@@ -130,6 +252,21 @@ class NewsService:
             # Filter by publishers if provided
             if allowed_publishers:
                 filtered_cache = [n for n in filtered_cache if n.get('publisher') in allowed_publishers]
+            
+            # Ensure all cached items have sentiment and extracted_assets fields
+            for item in filtered_cache:
+                if 'sentiment' not in item:
+                    item['sentiment'] = None
+                if 'extracted_assets' not in item:
+                    item['extracted_assets'] = []
+                # Add relatedTickers for backward compatibility
+                if 'relatedTickers' not in item:
+                    if item.get('extracted_assets'):
+                        item['relatedTickers'] = item['extracted_assets']
+                    elif item.get('ticker'):
+                        item['relatedTickers'] = [item['ticker']]
+                    else:
+                        item['relatedTickers'] = []
                 
             cached_news = filtered_cache[:limit]
             print(f"Loaded {len(cached_news)} news items from memory cache")
@@ -144,11 +281,82 @@ class NewsService:
 
         # 2. Fetch fresh news
         def fetch_news_sync():
-            # Only fetch news for tickers explicitly provided
-            # No automatic/default tickers - must be explicitly requested
+            all_news_items = []
+            
+            # If no tickers provided, fetch general market news from RSS feeds
             if not tickers:
-                # No fresh fetch; cached_news (if any) will still be returned
-                return []
+                print("No tickers provided, fetching general market news from RSS feeds...")
+                for feed_url in self.rss_feeds:
+                    try:
+                        print(f"Fetching from RSS feed: {feed_url}")
+                        feed = feedparser.parse(feed_url)
+                        
+                        for entry in feed.entries[:10]:  # Limit to 10 per feed
+                            try:
+                                title = entry.get('title', '').strip()
+                                link = entry.get('link', '').strip()
+                                
+                                if not title or not link:
+                                    continue
+                                
+                                # Parse published date
+                                pub_date = entry.get('published_parsed')
+                                if pub_date:
+                                    try:
+                                        import time
+                                        ts = time.mktime(pub_date)
+                                        timestamp = datetime.fromtimestamp(ts).isoformat()
+                                    except:
+                                        ts = datetime.now().timestamp()
+                                        timestamp = datetime.now().isoformat()
+                                else:
+                                    ts = datetime.now().timestamp()
+                                    timestamp = datetime.now().isoformat()
+                                
+                                # Extract publisher from feed or entry
+                                publisher = entry.get('source', {}).get('title', '') if hasattr(entry, 'source') else ''
+                                if not publisher:
+                                    # Try to extract from feed title
+                                    publisher = feed.feed.get('title', 'Unknown')
+                                
+                                # Extract summary/description
+                                summary = entry.get('summary', '') or entry.get('description', '')
+                                
+                                # Extract thumbnail if available
+                                thumbnail_url = ''
+                                if entry.get('media_content'):
+                                    thumbnail_url = entry.get('media_content')[0].get('url', '')
+                                elif entry.get('media_thumbnail'):
+                                    thumbnail_url = entry.get('media_thumbnail')[0].get('url', '')
+                                
+                                news_dict = {
+                                    "source": "RSS Feed",
+                                    "ticker": None,  # General news, no specific ticker
+                                    "title": title,
+                                    "link": link,
+                                    "publisher": publisher,
+                                    "timestamp": timestamp,
+                                    "providerPublishTime": ts,  # Unix timestamp for compatibility
+                                    "text": summary if summary else title,
+                                    "thumbnail": thumbnail_url,
+                                    "trading_signal": None,
+                                    "sentiment": None,
+                                    "extracted_assets": []
+                                }
+                                
+                                # Simple duplicate check
+                                if not any(n['link'] == news_dict['link'] for n in all_news_items):
+                                    all_news_items.append(news_dict)
+                            except Exception as e:
+                                print(f"Error processing RSS entry: {e}")
+                                continue
+                    except Exception as e:
+                        print(f"Error fetching RSS feed {feed_url}: {e}")
+                        continue
+                
+                return all_news_items
+            
+            # Fetch news for specific tickers
             
             target_tickers = tickers
             print(f"Fetching news for tickers: {target_tickers}")
@@ -251,10 +459,16 @@ class NewsService:
                                 "link": link or f"https://finance.yahoo.com/quote/{ticker}",
                                 "publisher": publisher,
                                 "timestamp": timestamp,
+                                "providerPublishTime": ts,  # Unix timestamp for compatibility
                                 "text": summary if summary else title, 
                                 "thumbnail": thumbnail_url,
-                                "trading_signal": None
+                                "trading_signal": None,
+                                "sentiment": None,
+                                "extracted_assets": []
                             }
+                            
+                            # Analyze sentiment and extract assets (async, but we're in sync function)
+                            # We'll do this after collecting all news items
                             
                             # Simple duplicate check based on title
                             if not any(n['title'] == news_dict['title'] for n in all_news_items):
@@ -272,7 +486,25 @@ class NewsService:
         
         fresh_news = await loop.run_in_executor(None, fetch_news_sync)
         
-        # 3. Save fresh news to Memory Cache and DB
+        # 3. Analyze sentiment and extract assets for fresh news
+        if fresh_news:
+            print(f"[NEWS] Analyzing sentiment and extracting assets for {len(fresh_news)} news items...")
+            for news_item in fresh_news:
+                try:
+                    analysis = await self.analyze_news_sentiment_and_assets(news_item)
+                    news_item['sentiment'] = analysis.get('sentiment', 'neutral')
+                    news_item['extracted_assets'] = analysis.get('extracted_assets', [])
+                    # Also add to relatedTickers for backward compatibility
+                    if 'relatedTickers' not in news_item:
+                        news_item['relatedTickers'] = news_item['extracted_assets']
+                    elif news_item['ticker'] and news_item['ticker'] not in news_item['relatedTickers']:
+                        news_item['relatedTickers'].insert(0, news_item['ticker'])
+                except Exception as e:
+                    print(f"[NEWS] Error analyzing news item: {e}")
+                    news_item['sentiment'] = 'neutral'
+                    news_item['extracted_assets'] = []
+        
+        # 4. Save fresh news to Memory Cache and DB
         if fresh_news:
             try:
                 # Save to file-based memory cache
@@ -285,7 +517,7 @@ class NewsService:
             except Exception as e:
                 print(f"Error saving to cache: {e}")
         
-        # 4. Merge and sort
+        # 5. Merge and sort
         # Create a dict by link to merge (fresh news overwrites cache if same link)
         merged_news = {item['link']: item for item in cached_news}
         for item in fresh_news:
@@ -315,17 +547,40 @@ class NewsService:
         # Get more than limit to allow for some post-filtering if needed, but limit is good
         news_objs = query.order_by(desc(News.timestamp)).limit(limit).all()
         
-        return [{
-            "source": "Yahoo Finance", # Hardcoded as we mostly use YF
-            "ticker": n.ticker,
-            "title": n.title,
-            "link": n.link,
-            "publisher": n.publisher,
-            "timestamp": n.timestamp.isoformat(),
-            "text": n.content,
-            "thumbnail": n.thumbnail_url,
-            "trading_signal": None
-        } for n in news_objs]
+        result = []
+        for n in news_objs:
+            # Convert timestamp to Unix timestamp for providerPublishTime
+            try:
+                if isinstance(n.timestamp, datetime):
+                    ts_unix = n.timestamp.timestamp()
+                else:
+                    ts_unix = datetime.fromisoformat(str(n.timestamp)).timestamp()
+            except:
+                ts_unix = datetime.now().timestamp()
+            
+            news_dict = {
+                "source": "Yahoo Finance", # Hardcoded as we mostly use YF
+                "ticker": n.ticker,
+                "title": n.title,
+                "link": n.link,
+                "publisher": n.publisher,
+                "timestamp": n.timestamp.isoformat() if isinstance(n.timestamp, datetime) else str(n.timestamp),
+                "providerPublishTime": ts_unix,
+                "text": n.content,
+                "thumbnail": n.thumbnail_url,
+                "trading_signal": None,
+                "sentiment": n.sentiment if hasattr(n, 'sentiment') else None,
+                "extracted_assets": json.loads(n.extracted_assets) if hasattr(n, 'extracted_assets') and n.extracted_assets else []
+            }
+            # Add relatedTickers for backward compatibility
+            if news_dict['extracted_assets']:
+                news_dict['relatedTickers'] = news_dict['extracted_assets']
+            elif news_dict['ticker']:
+                news_dict['relatedTickers'] = [news_dict['ticker']]
+            else:
+                news_dict['relatedTickers'] = []
+            result.append(news_dict)
+        return result
 
     async def save_news_to_db(self, db: Session, news_items: List[Dict[str, Any]]):
         """Save new news items to database"""
@@ -343,6 +598,11 @@ class NewsService:
                         ts = datetime.fromisoformat(ts_str)
                     except:
                         ts = datetime.now(timezone.utc)
+                    
+                    # Get sentiment and assets
+                    sentiment = item.get('sentiment')
+                    extracted_assets = item.get('extracted_assets', [])
+                    assets_json = json.dumps(extracted_assets) if extracted_assets else None
                         
                     new_news = News(
                         ticker=item['ticker'],
@@ -351,9 +611,18 @@ class NewsService:
                         publisher=item['publisher'],
                         timestamp=ts,
                         content=item['text'],
-                        thumbnail_url=item['thumbnail']
+                        thumbnail_url=item.get('thumbnail'),
+                        sentiment=sentiment,
+                        extracted_assets=assets_json
                     )
                     db.add(new_news)
+                    count += 1
+                else:
+                    # Update existing news with sentiment/assets if missing
+                    if not exists.sentiment and item.get('sentiment'):
+                        exists.sentiment = item.get('sentiment')
+                    if not exists.extracted_assets and item.get('extracted_assets'):
+                        exists.extracted_assets = json.dumps(item.get('extracted_assets'))
                     count += 1
             except Exception as e:
                 print(f"Error saving news item: {e}")
@@ -361,7 +630,7 @@ class NewsService:
         
         if count > 0:
             db.commit()
-            print(f"Saved {count} new news items to database")
+            print(f"Saved/updated {count} news items to database")
 
     async def cleanup_old_news(self, db: Session, days: int = 7):
         """Remove news older than N days"""

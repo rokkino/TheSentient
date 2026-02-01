@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "There’s now a bigger risk for stocks than the economy or corporate earnings",
+  "link": "https://www.marketwatch.com/story/theres-now-a-bigger-risk-for-stocks-than-the-economy-or-corporate-earnings-cff2eee0?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-01T20:45:00",
+  "text": "January reminded investors that even solid earnings and a strong economy can take a backseat when geopolitical shocks rattle markets.",
+  "thumbnail": "https://images.mktw.net/im-47557908",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NOW",
+    "WHEN",
+    "THERE",
+    "THAN",
+    "SOLID",
+    "CAN",
+    "TAKE",
+    "A",
+    "RISK",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "NOW",
+    "WHEN",
+    "THERE",
+    "THAN",
+    "SOLID",
+    "CAN",
+    "TAKE",
+    "A",
+    "RISK",
+    "FOR"
+  ]
+}

@@ -1,17 +1,21 @@
 """
 Bot Service - Handles bot management, configuration, and execution
+Percorsi file: pathlib da __file__, mai "backend/..." hardcodato (PM2/Linux).
 """
+from pathlib import Path
 from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
 from models.bot import Bot
 from models.user import User
 from datetime import datetime, date, timedelta, timezone
 import asyncio
-import asyncio
 import os
 import json
 from models.account import Account
 from models.user import SessionLocal
+
+# Backend root: questo file è in backend/services/, la root è backend/
+_BACKEND_DIR = Path(__file__).resolve().parent.parent
 
 class BotService:
     def __init__(self):
@@ -139,13 +143,12 @@ class BotService:
         return True
     
     def _log_activity(self, bot_id: int, message: str):
-        """Log bot activity to file"""
+        """Log bot activity to file (path da __file__, no path hardcodati)."""
         try:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             log_entry = f"[{timestamp}] [Bot {bot_id}] {message}\n"
-            
-            file_path = os.path.join("backend", "bot_activity.log")
-            with open(file_path, "a") as f:
+            file_path = _BACKEND_DIR / "bot_activity.log"
+            with open(file_path, "a", encoding="utf-8") as f:
                 f.write(log_entry)
         except Exception as e:
             print(f"Error logging activity: {e}")
@@ -304,16 +307,9 @@ class BotService:
                         "currency": account.get('currency', 'USD')
                     }
                     
-                    # Write to profitto.json
-                    file_path = os.path.join("backend", "profitto.json")
-                    
-                    # Read existing data to append or update? 
-                    # User said "creare un file in json... aggiornato anche da ollama"
-                    # We'll overwrite with the latest status for now, or append to a history list?
-                    # "dive quanto è il profito... aggiornato" implies current state.
-                    # Let's write the current state.
-                    
-                    with open(file_path, 'w') as f:
+                    # Write to profitto.json (path da __file__, no "backend/..." hardcodato)
+                    file_path = _BACKEND_DIR / "profitto.json"
+                    with open(file_path, 'w', encoding='utf-8') as f:
                         json.dump(data, f, indent=2)
                     
                     print(f"[Bot {bot.id}] Updated profitto.json: {profit_loss_value} ({profit_loss_percent:.2f}%)")

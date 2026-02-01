@@ -1,0 +1,34 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump orders DHS to stay away from protests in Democratic-led cities unless federal help sought",
+  "link": "https://www.investing.com/news/politics-news/trump-orders-dhs-to-stay-away-from-protests-in-democraticled-cities-unless-federal-help-is-sought-4477671",
+  "publisher": "All News",
+  "timestamp": "2026-02-01T20:12:29",
+  "text": "Trump orders DHS to stay away from protests in Democratic-led cities unless federal help sought",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DHS",
+    "FROM",
+    "TRUMP",
+    "TO",
+    "LED",
+    "HELP",
+    "STAY",
+    "IN",
+    "AWAY"
+  ],
+  "relatedTickers": [
+    "DHS",
+    "FROM",
+    "TRUMP",
+    "TO",
+    "LED",
+    "HELP",
+    "STAY",
+    "IN",
+    "AWAY"
+  ]
+}

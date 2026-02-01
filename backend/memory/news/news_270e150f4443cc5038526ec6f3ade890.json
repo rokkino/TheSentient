@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Epstein files: Ro Khanna says DOJ's latest release is 'not good enough'",
+  "link": "https://www.cnbc.com/2026/02/01/epstein-files-ro-khanna-says-dojs-release-is-not-good-enough.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T19:04:50",
+  "text": "The congressional Democrat said that Friday's Epstein disclosure was \"significant,\" but it is only about half of the files that have been collected.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FILES",
+    "OF",
+    "BUT",
+    "S",
+    "SAYS",
+    "THAT",
+    "ABOUT",
+    "THE",
+    "HALF",
+    "WAS"
+  ],
+  "relatedTickers": [
+    "FILES",
+    "OF",
+    "BUT",
+    "S",
+    "SAYS",
+    "THAT",
+    "ABOUT",
+    "THE",
+    "HALF",
+    "WAS"
+  ]
+}

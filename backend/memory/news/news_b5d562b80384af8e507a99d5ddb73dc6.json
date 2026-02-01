@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What Trump's choice of Kevin Warsh for Fed chair may mean for consumers",
+  "link": "https://www.cnbc.com/2026/01/30/trump-fed-chair-pick-kevin-warsh.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T19:21:15",
+  "text": "Trump's choice for Fed chair could have far-reaching consequences for almost all consumer borrowing costs and savings rates.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHAT",
+    "FED",
+    "OF",
+    "KEVIN",
+    "COULD",
+    "TRUMP",
+    "COSTS",
+    "AND",
+    "FAR",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "WHAT",
+    "FED",
+    "OF",
+    "KEVIN",
+    "COULD",
+    "TRUMP",
+    "COSTS",
+    "AND",
+    "FAR",
+    "FOR"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AstraZeneca is listing in New York, as Big Pharma balances the huge U.S. market with China's tempting innovation",
+  "link": "https://www.cnbc.com/2026/02/01/astrazeneca-nyse-listing-china-pharma-pours-15-billion-into-china.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-01T10:51:30",
+  "text": "AstraZeneca announces multibillion dollar investments in China as Big Pharma is increasingly looking east for innovation.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HUGE",
+    "THE",
+    "IS",
+    "BIG",
+    "AS",
+    "CHINA",
+    "EAST",
+    "WITH",
+    "S",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "HUGE",
+    "THE",
+    "IS",
+    "BIG",
+    "AS",
+    "CHINA",
+    "EAST",
+    "WITH",
+    "S",
+    "FOR"
+  ]
+}

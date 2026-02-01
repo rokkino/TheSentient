@@ -1,0 +1,36 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "I’m a 66-year-old retired homeowner in Fort Worth, sitting on $143,000 in cash. What should I do with my money?",
+  "link": "https://finance.yahoo.com/news/m-66-old-retired-homeowner-183300174.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T18:33:00",
+  "text": "I’m a 66-year-old retired homeowner in Fort Worth, sitting on $143,000 in cash. What should I do with my money?",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_ecomm_711/d15b71089d95a5f3d237116dc7a73589",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHAT",
+    "DO",
+    "MONEY",
+    "A",
+    "FORT",
+    "M",
+    "MY",
+    "WITH",
+    "YEAR",
+    "OLD"
+  ],
+  "relatedTickers": [
+    "WHAT",
+    "DO",
+    "MONEY",
+    "A",
+    "FORT",
+    "M",
+    "MY",
+    "WITH",
+    "YEAR",
+    "OLD"
+  ]
+}

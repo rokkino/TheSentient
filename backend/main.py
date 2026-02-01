@@ -34,7 +34,9 @@ from pathlib import Path
 
 # Ensure imports work no matter the working directory:
 # - prefer backend/ on sys.path so `services.*` and `models.*` resolve to our local code
+# - BASE_DIR (pathlib) per tutti i percorsi file: niente "backend/..." hardcodati (PM2/Linux)
 BACKEND_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = os.path.dirname(BACKEND_DIR)
 if BACKEND_DIR not in sys.path:
     sys.path.insert(0, BACKEND_DIR)
@@ -141,7 +143,7 @@ app.add_middleware(
 )
 
 # Create uploads directory if it doesn't exist (absolute path so it works from any cwd)
-UPLOAD_DIR = Path(BACKEND_DIR) / "uploads" / "profile_pictures"
+UPLOAD_DIR = BASE_DIR / "uploads" / "profile_pictures"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 # 1x1 transparent PNG (avoid 404 broken image for missing profile pictures)
@@ -160,7 +162,7 @@ async def serve_profile_picture(filename: str):
 
 
 # Serve other uploaded files at /api/uploads (must be after specific routes)
-app.mount("/api/uploads", StaticFiles(directory=str(Path(BACKEND_DIR) / "uploads")), name="uploads")
+app.mount("/api/uploads", StaticFiles(directory=str(BASE_DIR / "uploads")), name="uploads")
 
 # Initialize services
 market_data_service = MarketDataService()
@@ -413,6 +415,43 @@ async def streamlit_health():
     ok = await loop.run_in_executor(None, _check)
     return {"running": ok, "url": "http://localhost:8501"}
 
+
+@app.post("/api/streamlit-start")
+async def streamlit_start():
+    """Start the Streamlit backtesting dashboard in the background if not already running."""
+    import subprocess
+
+    def _is_running():
+        try:
+            import socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(2)
+            result = sock.connect_ex(("127.0.0.1", 8501))
+            sock.close()
+            return result == 0
+        except Exception:
+            return False
+
+    if _is_running():
+        return {"started": False, "already_running": True, "url": "http://localhost:8501"}
+
+    streamlit_dir = os.path.join(PROJECT_ROOT, "streamlit_app")
+    if not os.path.isdir(streamlit_dir):
+        raise HTTPException(status_code=500, detail="streamlit_app directory not found")
+
+    try:
+        subprocess.Popen(
+            [sys.executable, "-m", "streamlit", "run", "app.py", "--server.port", "8501"],
+            cwd=streamlit_dir,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to start Streamlit: {str(e)}")
+
+    return {"started": True, "url": "http://localhost:8501"}
+
 @app.get("/api/time")
 async def get_time():
     """Get current server time"""
@@ -443,8 +482,8 @@ async def get_bot_decisions(limit: int = 50, db: Session = Depends(get_db), curr
 @app.get("/api/bot/profit")
 async def get_bot_profit(current_user: User = Depends(get_current_user)):
     """Get P&L and portfolio summary from profitto.json"""
-    profit_path = os.path.join(BACKEND_DIR, "profitto.json")
-    if not os.path.exists(profit_path):
+    profit_path = BASE_DIR / "profitto.json"
+    if not profit_path.exists():
         return {
             "profit_loss_value": 0.0,
             "profit_loss_percent": 0.0,
@@ -2040,19 +2079,18 @@ async def call_llama_explanation(
         if not bot:
             raise HTTPException(status_code=404, detail="Bot not found")
             
-        # 1. Read profitto.json
+        # 1. Read profitto.json (path da __file__, no "backend/..." hardcodato)
         profit_data = {}
-        profit_path = os.path.join("backend", "profitto.json")
-        if os.path.exists(profit_path):
-            with open(profit_path, "r") as f:
+        profit_path = BASE_DIR / "profitto.json"
+        if profit_path.exists():
+            with open(profit_path, "r", encoding="utf-8") as f:
                 profit_data = json.load(f)
         
         # 2. Read last 20 lines of bot_activity.log
         log_lines = []
-        log_path = os.path.join("backend", "bot_activity.log")
-        if os.path.exists(log_path):
-            with open(log_path, "r") as f:
-                # Simple way to get last lines - for production use efficient tail
+        log_path = BASE_DIR / "bot_activity.log"
+        if log_path.exists():
+            with open(log_path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
                 log_lines = lines[-20:] if len(lines) > 20 else lines
         
@@ -2088,18 +2126,18 @@ async def call_gemini_explanation(
         if not bot:
             raise HTTPException(status_code=404, detail="Bot not found")
             
-        # 1. Read profitto.json
+        # 1. Read profitto.json (path da __file__, no "backend/..." hardcodato)
         profit_data = {}
-        profit_path = os.path.join("backend", "profitto.json")
-        if os.path.exists(profit_path):
-            with open(profit_path, "r") as f:
+        profit_path = BASE_DIR / "profitto.json"
+        if profit_path.exists():
+            with open(profit_path, "r", encoding="utf-8") as f:
                 profit_data = json.load(f)
         
         # 2. Read last 20 lines of bot_activity.log
         log_lines = []
-        log_path = os.path.join("backend", "bot_activity.log")
-        if os.path.exists(log_path):
-            with open(log_path, "r") as f:
+        log_path = BASE_DIR / "bot_activity.log"
+        if log_path.exists():
+            with open(log_path, "r", encoding="utf-8") as f:
                 lines = f.readlines()
                 log_lines = lines[-20:] if len(lines) > 20 else lines
         
@@ -2201,22 +2239,24 @@ async def call_weekly_plan(
         raise HTTPException(status_code=500, detail=str(e))
 
 # WebSocket for real-time updates.
-# Backend listens on /ws. Nginx must proxy to this path (e.g. location /ws { proxy_pass http://127.0.0.1:8001/ws; })
-# so the frontend connects to /ws and not /ws/ws.
+# Regola produzione: Validate Token -> Accept -> Loop. Mai receive_text prima di accept.
+# Nginx: location /ws { proxy_pass http://127.0.0.1:8001/ws; } (frontend si connette a /ws).
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
-    """WebSocket endpoint for real-time news and chat updates"""
+    """WebSocket endpoint for real-time news and chat updates.
+    Flow: accept first -> validate token -> if invalid close(1008) -> else register and receive loop.
+    """
+    # 1. Accept subito: mai leggere (receive_text) prima di accept (evita RuntimeError in produzione)
+    await websocket.accept()
     user_id = None
     username = None
-    
-    # Try to authenticate if token is provided
+
+    # 2. Valida token (solo query param; nessuna lettura dalla socket)
     if token:
         try:
             payload = verify_token(token)
             if payload:
                 user_id = int(payload.get("sub"))
-                # We need to get username. We can't use Depends(get_db) here easily.
-                # We'll use a fresh session.
                 db = SessionLocal()
                 try:
                     user = get_user_by_id(db, user_id)
@@ -2224,18 +2264,22 @@ async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
                         username = user.username
                 finally:
                     db.close()
+            else:
+                # Token fornito ma non valido: chiudi con 1008 (Policy Violation)
+                await websocket.close(code=1008)
+                return
         except Exception as e:
             print(f"WebSocket auth failed: {e}")
-            
-    await ws_manager.connect(websocket, user_id, username)
+            await websocket.close(code=1008)
+            return
+
+    # 3. Registra connessione (già accettata)
+    await ws_manager.connect(websocket, user_id, username, already_accepted=True)
+
+    # 4. Loop receive: solo dopo accept e registrazione
     try:
-        # Start background tasks (only if tickers are provided)
-        # News monitor no longer starts automatically - must be explicitly requested with tickers
-        # asyncio.create_task(news_service.start_news_monitor(ws_manager))
-        
         while True:
             data = await websocket.receive_text()
-            # Handle client messages if needed
             message = json.loads(data)
             if message.get("type") == "subscribe_news":
                 await ws_manager.send_personal_message(
@@ -2243,8 +2287,6 @@ async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
                     websocket
                 )
             elif message.get("type") == "chat_message":
-                # Handle chat messages via WebSocket (alternative to REST)
-                # For now, we use REST API for sending messages
                 pass
     except WebSocketDisconnect:
         await ws_manager.disconnect_and_broadcast(websocket)
@@ -2308,7 +2350,7 @@ async def get_earnings(
         # Includiamo tutti i giorni (anche sabato e domenica)
         
         # Save earnings data to JSON file for AI access (only when content changed to avoid repeated writes)
-        earnings_file_path = os.path.join(BACKEND_DIR, "earnings_data.json")
+        earnings_file_path = BASE_DIR / "earnings_data.json"
         payload = {
             "last_updated": datetime.now(timezone.utc).isoformat(),
             "total_earnings": len(earnings_data),
@@ -2316,7 +2358,7 @@ async def get_earnings(
         }
         try:
             existing = None
-            if os.path.exists(earnings_file_path):
+            if earnings_file_path.exists():
                 with open(earnings_file_path, 'r', encoding='utf-8') as f:
                     existing = json.load(f)
             if existing is None or existing.get("total_earnings") != len(earnings_data):
@@ -2499,22 +2541,6 @@ async def delete_bot_decision(
     except Exception as e:
         print(f"Error deleting decision: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/bot/profit")
-async def get_bot_profit(current_user: User = Depends(get_current_user)):
-    """Get bot profit summary (simple implementation)"""
-    try:
-        # Just return the latest profitto.json content for now
-        # Ideally this should be per-bot or aggregated
-        profit_path = os.path.join("backend", "profitto.json")
-        if os.path.exists(profit_path):
-            with open(profit_path, "r") as f:
-                data = json.load(f)
-                return data
-        return None
-    except Exception as e:
-        print(f"Error getting profit: {e}")
-        return None
 
 # Account Management Endpoints
 

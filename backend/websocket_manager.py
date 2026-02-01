@@ -9,9 +9,10 @@ class WebSocketManager:
     def __init__(self):
         self.active_connections: List[dict] = []
     
-    async def connect(self, websocket: WebSocket, user_id: int = None, username: str = None):
-        """Accept new WebSocket connection"""
-        await websocket.accept()
+    async def connect(self, websocket: WebSocket, user_id: int = None, username: str = None, already_accepted: bool = False):
+        """Register WebSocket connection (call accept() in endpoint first to avoid RuntimeError)."""
+        if not already_accepted:
+            await websocket.accept()
         self.active_connections.append({
             "ws": websocket,
             "user_id": user_id,

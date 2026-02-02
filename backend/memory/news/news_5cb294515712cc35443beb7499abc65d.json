@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Baldwin Insurance Group stock hits 52-week low at 21.25 USD",
+  "link": "https://www.investing.com/news/company-news/baldwin-insurance-group-stock-hits-52week-low-at-2125-usd-93CH-4479656",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:03:52",
+  "providerPublishTime": 1770051832.0,
+  "text": "Baldwin Insurance Group stock hits 52-week low at 21.25 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOW",
+    "WEEK",
+    "HITS",
+    "GROUP",
+    "STOCK",
+    "USD",
+    "AT"
+  ],
+  "relatedTickers": [
+    "LOW",
+    "WEEK",
+    "HITS",
+    "GROUP",
+    "STOCK",
+    "USD",
+    "AT"
+  ]
+}

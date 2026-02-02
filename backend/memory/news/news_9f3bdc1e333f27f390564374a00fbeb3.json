@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney supercharged its parks. The booming division still has room to run",
+  "link": "https://www.cnbc.com/2026/02/02/disney-parks-division-q1-results.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T17:21:27",
+  "providerPublishTime": 1770049287.0,
+  "text": "For Disney's fiscal first quarter, experiences represented 38% of the company's total revenue, yet generated a whopping 71% of its operating income.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ITS",
+    "PARKS",
+    "HAS",
+    "YET",
+    "TOTAL",
+    "FOR",
+    "TO",
+    "S",
+    "FIRST",
+    "THE"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "PARKS",
+    "HAS",
+    "YET",
+    "TOTAL",
+    "FOR",
+    "TO",
+    "S",
+    "FIRST",
+    "THE"
+  ]
+}

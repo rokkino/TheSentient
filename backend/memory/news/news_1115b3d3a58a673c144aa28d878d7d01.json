@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US to launch $12bn critical minerals stockpile to counter China’s dominance",
+  "link": "https://www.ft.com/content/0a27adbc-1c8b-4361-9c57-c9f7f53f49d3",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T16:01:38",
+  "providerPublishTime": 1770044498.0,
+  "text": "US Export-Import Bank will provide $10bn in debt financing for effort named Project Vault",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fed2fddea-2447-4a9f-9ba8-81a7e069706b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHINA",
+    "BANK",
+    "VAULT",
+    "FOR",
+    "NAMED",
+    "S",
+    "TO",
+    "DEBT",
+    "IN",
+    "US"
+  ],
+  "relatedTickers": [
+    "CHINA",
+    "BANK",
+    "VAULT",
+    "FOR",
+    "NAMED",
+    "S",
+    "TO",
+    "DEBT",
+    "IN",
+    "US"
+  ]
+}

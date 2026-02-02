@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "AMD to report Q4 earnings amid AI spending concerns",
+  "link": "https://finance.yahoo.com/news/amd-to-report-q4-earnings-amid-ai-spending-concerns-204747721.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-02T20:47:47",
+  "providerPublishTime": 1770061667.0,
+  "text": "AMD will report its Q4 earnings after the bell on Tuesday.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-01/06d05170-f72d-11f0-b7be-67dab4582a8a",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "GOOGL",
+    "ITS",
+    "AMID",
+    "AMD",
+    "AFTER",
+    "BELL",
+    "TO",
+    "ON",
+    "AI",
+    "THE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "ITS",
+    "AMID",
+    "AMD",
+    "AFTER",
+    "BELL",
+    "TO",
+    "ON",
+    "AI",
+    "THE"
+  ]
+}

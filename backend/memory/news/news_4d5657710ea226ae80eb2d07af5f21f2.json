@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Japan’s biggest wealth manager reduces crypto positions after Q3 losses",
+  "link": "https://finance.yahoo.com/news/japan-biggest-wealth-manager-reduces-130726640.html",
+  "publisher": "DLNews",
+  "timestamp": "2026-02-01T13:07:26",
+  "providerPublishTime": 1769947646.0,
+  "text": "Japan’s biggest wealth manager reduces crypto positions after Q3 losses",
+  "thumbnail": "https://media.zenfs.com/en/dlnews_702/757e80ce53e4f076d44005676b0b10de",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "JAPAN",
+    "AFTER",
+    "S"
+  ],
+  "relatedTickers": [
+    "JAPAN",
+    "AFTER",
+    "S"
+  ]
+}

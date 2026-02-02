@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Argentina Bought $808 Million from US to Pay IMF, La Nacion Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/argentina-bought-808-million-from-us-to-pay-imf-la-nacion-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T22:02:24",
+  "providerPublishTime": 1769979744.0,
+  "text": "Argentina bought $808 million in special drawing rights from the US Treasury to confront its latest interest payments at the International Monetary Fund without tapping a swap line shared between both countries, according to the local newspaper La Nacion.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iwAPYdW7C23s/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ITS",
+    "SAYS",
+    "LOCAL",
+    "FROM",
+    "US",
+    "FUND",
+    "IN",
+    "AT",
+    "BOTH",
+    "LA"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "SAYS",
+    "LOCAL",
+    "FROM",
+    "US",
+    "FUND",
+    "IN",
+    "AT",
+    "BOTH",
+    "LA"
+  ]
+}

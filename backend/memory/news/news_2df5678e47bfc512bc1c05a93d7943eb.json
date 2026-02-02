@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Auto & Transport Roundup: Market Talk",
+  "link": "https://www.wsj.com/business/auto-transport-roundup-market-talk-061a8e4c?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-02T17:24:00",
+  "providerPublishTime": 1770049440.0,
+  "text": "Find insight on Mercedes-Benz, Huawei and more in the latest Market Talks covering Auto and Transport.",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/aa823050cf04db9224bbf414cecf2a28",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "BENZ",
+    "FIND",
+    "TALKS",
+    "TALK",
+    "MORE",
+    "AUTO",
+    "AND",
+    "ON",
+    "IN"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "BENZ",
+    "FIND",
+    "TALKS",
+    "TALK",
+    "MORE",
+    "AUTO",
+    "AND",
+    "ON",
+    "IN"
+  ]
+}

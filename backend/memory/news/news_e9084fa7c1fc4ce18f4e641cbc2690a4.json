@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "S&P 500 ends higher; chipmakers and small caps jump",
+  "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-slide-as-commodity-rout-rattles-markets-4478176",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:06:51",
+  "providerPublishTime": 1770062811.0,
+  "text": "S&P 500 ends higher; chipmakers and small caps jump",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JUMP",
+    "SMALL",
+    "ENDS",
+    "AND",
+    "S",
+    "CAPS",
+    "P"
+  ],
+  "relatedTickers": [
+    "JUMP",
+    "SMALL",
+    "ENDS",
+    "AND",
+    "S",
+    "CAPS",
+    "P"
+  ]
+}

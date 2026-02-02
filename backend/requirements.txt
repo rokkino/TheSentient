@@ -16,6 +16,7 @@ cryptography
 # API Clients & Trading
 alpaca-py==0.43.2
 trading-ig
+ib_insync
 requests
 aiohttp
 httpx

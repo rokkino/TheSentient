@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "There’s a big new oil-and-gas merger, but shareholders aren’t happy",
+  "link": "https://www.marketwatch.com/story/theres-another-big-oil-and-gas-merger-but-shareholders-arent-happy-477170a4?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T16:39:00",
+  "providerPublishTime": 1770046740.0,
+  "text": "Devon plans to buy Coterra in an all-stock deal, as the companies look to increase scale so they can compete with larger rivals in the Permian Basin.",
+  "thumbnail": "https://images.mktw.net/im-01181227",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ALL",
+    "BUY",
+    "AS",
+    "LOOK",
+    "AND",
+    "IN",
+    "SCALE",
+    "GAS",
+    "THEY",
+    "OIL"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "BUY",
+    "AS",
+    "LOOK",
+    "AND",
+    "IN",
+    "SCALE",
+    "GAS",
+    "THEY",
+    "OIL"
+  ]
+}

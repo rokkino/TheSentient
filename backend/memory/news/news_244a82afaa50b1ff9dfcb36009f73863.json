@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "GDI’s Top Investors Oppose Birch Hill’s Takeover Bid as Too Low",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/gdi-s-top-investors-oppose-birch-hill-s-takeover-bid-as-too-low",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T20:39:51",
+  "providerPublishTime": 1770061191.0,
+  "text": "Two major shareholders in Canada’s GDI Integrated Facility Services Inc. say they’ll reject a take-private bid from Birch Hill Equity Partners Management and the company’s top executive.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "GDI",
+    "FROM",
+    "AND",
+    "TWO",
+    "MAJOR",
+    "LL",
+    "IN",
+    "THEY",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "AS",
+    "GDI",
+    "FROM",
+    "AND",
+    "TWO",
+    "MAJOR",
+    "LL",
+    "IN",
+    "THEY",
+    "TOP"
+  ]
+}

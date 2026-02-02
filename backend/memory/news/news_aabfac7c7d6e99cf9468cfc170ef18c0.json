@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Natural Gas Plunges by Most in About 30 Years on Warm Weather",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/us-natural-gas-prices-plummet-as-forecasts-show-warmer-weather",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T00:40:55",
+  "providerPublishTime": 1769989255.0,
+  "text": "US natural gas futures plummeted on Monday as weather forecasts for mid-February shifted significantly warmer, marking the largest daily loss for the front-month contract on a percentage basis since 1995, excluding contract rollover days.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irzjsO4pf2Xk/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "US",
+    "AS",
+    "LOSS",
+    "FOR",
+    "MOST",
+    "FRONT",
+    "ON",
+    "MONTH",
+    "IN",
+    "DAILY"
+  ],
+  "relatedTickers": [
+    "US",
+    "AS",
+    "LOSS",
+    "FOR",
+    "MOST",
+    "FRONT",
+    "ON",
+    "MONTH",
+    "IN",
+    "DAILY"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "RBC Capital Cuts PT on Venture Global (VG) to $11 From $13 – Here’s Why",
+  "link": "https://finance.yahoo.com/news/rbc-capital-cuts-pt-venture-073851565.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:51",
+  "providerPublishTime": 1769927931.0,
+  "text": "RBC Capital Cuts PT on Venture Global (VG) to $11 From $13 – Here’s Why",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/5515c0a6c72e2a559f3de11174a60fb3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CUTS",
+    "RBC",
+    "FROM",
+    "TO",
+    "S",
+    "ON",
+    "VG",
+    "PT",
+    "HERE",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "RBC",
+    "FROM",
+    "TO",
+    "S",
+    "ON",
+    "VG",
+    "PT",
+    "HERE",
+    "WHY"
+  ]
+}

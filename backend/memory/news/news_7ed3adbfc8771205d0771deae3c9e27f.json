@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Rare Earth Stocks Rise On Trump $12 Billion Stockpile Report",
+  "link": "https://www.investors.com/news/rare-earth-stocks-trump-critical-minerals-stockpile-usar-mp-price-floor/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-02T17:01:39",
+  "providerPublishTime": 1770048099.0,
+  "text": "Rare earth stocks rallied on Monday morning on a report that the Trump administration is set to provide $10 billion in financing for a nearly $12 billion critical minerals stockpile.  Bloomberg reported the initiative known as Project Vault, which includes General Motors, Google and Boeing among more than a dozen early participants.  USA Rare Earth and MP Materials rose.",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/4a9d8bb15c27261755b9aec55fbcaed2",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "USA",
+    "AS",
+    "FOR",
+    "WHICH",
+    "AND",
+    "MP",
+    "ON",
+    "ROSE",
+    "DOZEN",
+    "IN"
+  ],
+  "relatedTickers": [
+    "USA",
+    "AS",
+    "FOR",
+    "WHICH",
+    "AND",
+    "MP",
+    "ON",
+    "ROSE",
+    "DOZEN",
+    "IN"
+  ]
+}

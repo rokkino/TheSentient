@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "UBS Tests Bitcoin And Ether Access For Wealth Clients And Fees",
+  "link": "https://finance.yahoo.com/news/ubs-tests-bitcoin-ether-access-200928575.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T20:09:28",
+  "providerPublishTime": 1770059368.0,
+  "text": "UBS Group (SWX:UBSG) is preparing to let select clients trade bitcoin and Ether. The move will give a limited group of clients access to two of the largest cryptocurrencies by market value. This marks a step into digital assets for the Swiss bank as it responds to client interest and regulatory developments. For a global wealth manager like UBS, digital assets sit alongside traditional products in equities, bonds, funds and structured solutions. As more financial institutions explore crypto...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/7cb1b030f90c2f26d41f4e4084ec830c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BONDS",
+    "UBS",
+    "AS",
+    "LIKE",
+    "FEES",
+    "FOR",
+    "UBSG",
+    "AND",
+    "INTO",
+    "TWO"
+  ],
+  "relatedTickers": [
+    "BONDS",
+    "UBS",
+    "AS",
+    "LIKE",
+    "FEES",
+    "FOR",
+    "UBSG",
+    "AND",
+    "INTO",
+    "TWO"
+  ]
+}

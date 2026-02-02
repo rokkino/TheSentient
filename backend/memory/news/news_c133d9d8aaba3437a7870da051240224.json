@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bernstein Remains a Buy on ​Netflix, Inc. (NFLX)",
+  "link": "https://finance.yahoo.com/news/bernstein-remains-buy-netflix-inc-073845776.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:45",
+  "providerPublishTime": 1769927925.0,
+  "text": "Bernstein Remains a Buy on ​Netflix, Inc. (NFLX)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/44e9440e7a259c14f8ffdd3e47c6887e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "INC",
+    "ON",
+    "A",
+    "NFLX"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "INC",
+    "ON",
+    "A",
+    "NFLX"
+  ]
+}

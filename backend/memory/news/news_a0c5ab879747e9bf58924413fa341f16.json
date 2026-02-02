@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "3 Altcoins Facing Major Liquidation Risks in the First Week of February",
+  "link": "https://finance.yahoo.com/news/3-altcoins-facing-major-liquidation-170000650.html",
+  "publisher": "BeInCrypto",
+  "timestamp": "2026-02-02T17:00:00",
+  "providerPublishTime": 1770048000.0,
+  "text": "The market is in extreme fear, and these altcoins may trigger liquidations for both Long and Short traders.",
+  "thumbnail": "https://media.zenfs.com/en/beincrypto_us_662/454ffc5b80f9e9170abbdb7036387bf2",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LONG",
+    "IS",
+    "WEEK",
+    "FEAR",
+    "MAY",
+    "AND",
+    "FOR",
+    "MAJOR",
+    "SHORT",
+    "FIRST"
+  ],
+  "relatedTickers": [
+    "LONG",
+    "IS",
+    "WEEK",
+    "FEAR",
+    "MAY",
+    "AND",
+    "FOR",
+    "MAJOR",
+    "SHORT",
+    "FIRST"
+  ]
+}

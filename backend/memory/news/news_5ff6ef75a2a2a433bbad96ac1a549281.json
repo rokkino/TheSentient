@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump says U.S. and India reached trade deal, will lower tariffs immediately",
+  "link": "https://www.cnbc.com/2026/02/02/trump-india-trade-deal-tariffs.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T17:41:43",
+  "providerPublishTime": 1770050503.0,
+  "text": "The U.S. and India have reached a trade deal, President Donald Trump announced.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HAVE",
+    "A",
+    "TRUMP",
+    "U",
+    "DEAL",
+    "AND",
+    "S",
+    "LOWER",
+    "SAYS",
+    "INDIA"
+  ],
+  "relatedTickers": [
+    "HAVE",
+    "A",
+    "TRUMP",
+    "U",
+    "DEAL",
+    "AND",
+    "S",
+    "LOWER",
+    "SAYS",
+    "INDIA"
+  ]
+}

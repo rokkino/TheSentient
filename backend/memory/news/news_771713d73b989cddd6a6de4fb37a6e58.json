@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Palantir’s stock surges as AI demand drives another record quarter",
+  "link": "https://www.marketwatch.com/story/palantirs-stock-surges-as-ai-demand-drives-another-record-quarter-deb6b082?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T21:13:00",
+  "providerPublishTime": 1770063180.0,
+  "text": "Palantir’s guidance vastly exceeds expectations, with the company projecting 61% growth for the year",
+  "thumbnail": "https://images.mktw.net/im-13960380",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WITH",
+    "AS",
+    "YEAR",
+    "FOR",
+    "S",
+    "AI",
+    "THE",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "AS",
+    "YEAR",
+    "FOR",
+    "S",
+    "AI",
+    "THE",
+    "STOCK"
+  ]
+}

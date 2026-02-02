@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump’s Dollar ‘Yo-Yo’ Has Investors Looking Overseas",
+  "link": "https://www.bloomberg.com/news/articles/2026-01-31/trump-s-dollar-yo-yo-has-stock-investors-looking-overseas",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-01-31T14:00:00",
+  "providerPublishTime": 1769864400.0,
+  "text": "To President Donald Trump, the dollar is like a yo-yo that he can make go up and down. To equity investors, the toy looks broken &mdash; and a weaker dollar is now the latest obstacle they have to contend with when valuing stocks.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iEOs1AdMeuMw/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LIKE",
+    "LOOKS",
+    "AND",
+    "DOWN",
+    "YO",
+    "UP",
+    "NOW",
+    "THEY",
+    "WHEN",
+    "TOY"
+  ],
+  "relatedTickers": [
+    "LIKE",
+    "LOOKS",
+    "AND",
+    "DOWN",
+    "YO",
+    "UP",
+    "NOW",
+    "THEY",
+    "WHEN",
+    "TOY"
+  ]
+}

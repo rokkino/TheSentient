@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Kevin Warsh: you have to make a bet",
+  "link": "https://www.ft.com/content/057a215b-763c-450d-931c-4a92f9cc4ec1",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T06:30:01",
+  "providerPublishTime": 1770010201.0,
+  "text": "What comes after data dependence?",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fab5df66d-44fc-4b93-ac77-bf0b1fd3666c.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HAVE",
+    "WARSH",
+    "BET",
+    "AFTER",
+    "YOU",
+    "COMES",
+    "DATA",
+    "WHAT",
+    "TO",
+    "KEVIN"
+  ],
+  "relatedTickers": [
+    "HAVE",
+    "WARSH",
+    "BET",
+    "AFTER",
+    "YOU",
+    "COMES",
+    "DATA",
+    "WHAT",
+    "TO",
+    "KEVIN"
+  ]
+}

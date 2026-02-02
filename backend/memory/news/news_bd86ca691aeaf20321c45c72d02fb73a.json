@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Retiring Soon? This New Report Reveals a Withdrawal Rate That Challenges the 4% Rule",
+  "link": "https://finance.yahoo.com/news/retiring-soon-report-reveals-withdrawal-112300551.html",
+  "publisher": "Investopedia",
+  "timestamp": "2026-02-01T11:23:00",
+  "providerPublishTime": 1769941380.0,
+  "text": "Retiring Soon? This New Report Reveals a Withdrawal Rate That Challenges the 4% Rule",
+  "thumbnail": "https://media.zenfs.com/en/investopedia_245/afa15631a998ce8577fdc40f2add10a9",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NEW",
+    "RATE",
+    "RULE",
+    "THIS",
+    "THAT",
+    "THE",
+    "A",
+    "SOON"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "RATE",
+    "RULE",
+    "THIS",
+    "THAT",
+    "THE",
+    "A",
+    "SOON"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin Falls Below $80,000, Down 5% Over Past 24 Hours",
+  "link": "https://finance.yahoo.com/news/bitcoin-falls-below-80-000-193158377.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-01-31T19:31:58",
+  "providerPublishTime": 1769884318.0,
+  "text": "Bitcoin (CRYPTO: BTC) experienced a significant drop, falling below the $80,000 mark on Saturday. This sharp decline has triggered a widespread crash in the cryptocurrency market. On January 31, Bitcoin’s value plummeted by 5% within a span of 24 hours, trading at $78,479.21. This downfall had a domino effect on other cryptocurrencies as well. Ethereum (ETH) dropped around 12% to $2,395.58, BNB by 8% to $779.57, XRP by 11% to $1.56, and Solana (SOL) by 11% to $103.44. The total market cap of the",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/3f86dc1362a846b3cc8b4a294931c832",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BNB",
+    "XRP",
+    "SHARP",
+    "AT",
+    "IN",
+    "A",
+    "CRASH",
+    "S",
+    "FALLS",
+    "WELL"
+  ],
+  "relatedTickers": [
+    "BNB",
+    "XRP",
+    "SHARP",
+    "AT",
+    "IN",
+    "A",
+    "CRASH",
+    "S",
+    "FALLS",
+    "WELL"
+  ]
+}

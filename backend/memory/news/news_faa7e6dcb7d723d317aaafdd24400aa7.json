@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The government shutdown has delayed Friday’s jobs report. Here’s how the latest closure could end.",
+  "link": "https://www.marketwatch.com/story/the-government-shutdown-has-delayed-fridays-jobs-report-heres-how-the-latest-closure-could-end-5694e2e5?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T17:17:00",
+  "providerPublishTime": 1770049020.0,
+  "text": "Tax refunds and air travel are also being affected.",
+  "thumbnail": "https://images.mktw.net/im-61379898",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "HOW",
+    "HAS",
+    "HERE",
+    "COULD",
+    "AND",
+    "S",
+    "END",
+    "TAX",
+    "AIR"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "HOW",
+    "HAS",
+    "HERE",
+    "COULD",
+    "AND",
+    "S",
+    "END",
+    "TAX",
+    "AIR"
+  ]
+}

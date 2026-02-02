@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia: The Story Behind the Most Watched Company on Earth",
+  "link": "https://finance.yahoo.com/news/nvidia-story-behind-most-watched-172700609.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T17:27:00",
+  "providerPublishTime": 1770049620.0,
+  "text": "The chip giant's path to success is worth knowing.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/36d97141e8adbd86886a54ae3656d258",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHIP",
+    "IS",
+    "GIANT",
+    "PATH",
+    "MOST",
+    "STORY",
+    "S",
+    "TO",
+    "WORTH",
+    "ON"
+  ],
+  "relatedTickers": [
+    "CHIP",
+    "IS",
+    "GIANT",
+    "PATH",
+    "MOST",
+    "STORY",
+    "S",
+    "TO",
+    "WORTH",
+    "ON"
+  ]
+}

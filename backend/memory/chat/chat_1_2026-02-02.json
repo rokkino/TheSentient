@@ -1,0 +1,20 @@
+[
+  {
+    "id": "47cae2ca-d586-4068-8e2f-273a98950527",
+    "timestamp": "2026-02-02T21:36:34.776988",
+    "user_id": 1,
+    "role": "user",
+    "content": "hey gemini conosci rambo, di cosa si occupa e come mai fa tanti soldi?",
+    "response": "Il nome \"Rambo\" non mi è familiare in relazione a una persona o figura nota per fare molti soldi, né tantomeno come una figura di cui si parla comunemente in contesti finanziari o di trading.\n\nPotresti forse riferirti a qualcun altro, o si tratta di un riferimento meno conosciuto? Se hai più dettagli o il nome corretto, sarò felice di provare ad aiutarti a capire di chi si tratta e cosa fa.",
+    "provider": "gemini"
+  },
+  {
+    "id": "4daae2d2-051f-40dd-be8f-2cbc1126f498",
+    "timestamp": "2026-02-02T21:36:47.600599",
+    "user_id": 1,
+    "role": "user",
+    "content": "rambus inc",
+    "response": "That's a very direct motto, rokkino! It seems you're focused on what drives you.\n\nAs for your trading bot, 'Earnings Report Genius', it's currently showing 0.0% profit and a 0.0% win rate. Is this a new bot that you're just getting started with, or is it an existing one that you're looking to improve?\n\nI'm curious, what kind of earnings reports are you focusing on with this bot? And what's your overall trading strategy?",
+    "provider": "gemini"
+  }
+]

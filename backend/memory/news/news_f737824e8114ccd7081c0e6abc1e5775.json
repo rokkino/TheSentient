@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stifel financial president sells $1115 in shares",
+  "link": "https://www.investing.com/news/insider-trading-news/stifel-financial-president-sells-1115-in-shares-93CH-4480153",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:43:43",
+  "providerPublishTime": 1770065023.0,
+  "text": "Stifel financial president sells $1115 in shares",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELLS",
+    "IN"
+  ],
+  "relatedTickers": [
+    "SELLS",
+    "IN"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Woodward shares soar 10% as Q1 results, guidance top analyst expectations",
+  "link": "https://www.investing.com/news/earnings/woodward-shares-soar-10-as-q1-results-guidance-top-analyst-expectations-93CH-4479903",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:06:15",
+  "providerPublishTime": 1770062775.0,
+  "text": "Woodward shares soar 10% as Q1 results, guidance top analyst expectations",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOAR",
+    "TOP",
+    "AS"
+  ],
+  "relatedTickers": [
+    "SOAR",
+    "TOP",
+    "AS"
+  ]
+}

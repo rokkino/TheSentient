@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Nvidia, Google Lead Slew Of Stocks To Watch — With This Caveat",
+  "link": "https://www.investors.com/research/how-to-find-the-best-stocks-to-buy/google-stock-nvidia-drive-leaderboard-ahead-of-earnings/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-02T18:06:46",
+  "providerPublishTime": 1770052006.0,
+  "text": "As Google stock remains in buy range and Nvidia finds support for a new run, a rash of upcoming earnings comes into focus.",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/775a0739bb4908d0e7e740427dbfa680",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "AS",
+    "LEAD",
+    "WATCH",
+    "FOR",
+    "INTO",
+    "AND",
+    "RUN",
+    "IN",
+    "SLEW"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "AS",
+    "LEAD",
+    "WATCH",
+    "FOR",
+    "INTO",
+    "AND",
+    "RUN",
+    "IN",
+    "SLEW"
+  ]
+}

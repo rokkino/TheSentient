@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "A Once-in-a-Decade Investment Opportunity: 1 Artificial Intelligence (AI) Semiconductor Stock That Could Go Parabolic in 2026 (Hint: It's Not Nvidia)",
+  "link": "https://finance.yahoo.com/news/once-decade-investment-opportunity-1-184600976.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T18:46:00",
+  "providerPublishTime": 1769967960.0,
+  "text": "Advanced Micro Devices is swiftly becoming a major source of parallel processing power for hyperscalers.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/fa469fe7f14c056b367989925eca56e5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "POWER",
+    "MAJOR",
+    "NVDA",
+    "COULD",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "OF",
+    "ONCE"
+  ],
+  "relatedTickers": [
+    "POWER",
+    "MAJOR",
+    "NVDA",
+    "COULD",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "OF",
+    "ONCE"
+  ]
+}

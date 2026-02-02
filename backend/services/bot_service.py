@@ -189,6 +189,14 @@ class BotService:
                      'secret_key': config.get('alpaca_api_secret'),
                      'paper': config.get('alpaca_paper', True)
                  }
+             elif broker == 'InteractiveBrokers':
+                 credentials = {
+                     'host': config.get('ib_host', '127.0.0.1'),
+                     'port': config.get('ib_port', 7497),
+                     'client_id': config.get('ib_client_id', 1),
+                     'account': config.get('ib_account', ''),
+                     'paper': config.get('ib_paper', True)
+                 }
 
         # Instantiate Service
         if broker == 'IG':
@@ -206,6 +214,17 @@ class BotService:
                 return AlpacaService(
                     api_key=credentials.get('api_key'),
                     api_secret=credentials.get('secret_key'),
+                    paper=credentials.get('paper', True)
+                )
+        elif broker == 'InteractiveBrokers':
+            from services.interactive_brokers_service import InteractiveBrokersService
+            # IB uses host/port/client_id instead of API key
+            if credentials.get('host') or credentials.get('port'):
+                return InteractiveBrokersService(
+                    host=credentials.get('host', '127.0.0.1'),
+                    port=credentials.get('port', 7497),
+                    client_id=credentials.get('client_id', 1),
+                    account=credentials.get('account', ''),
                     paper=credentials.get('paper', True)
                 )
         

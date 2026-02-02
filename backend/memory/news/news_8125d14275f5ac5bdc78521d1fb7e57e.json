@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US dropping 25% separate tariff on Indian imports after pledge to cut Russian oil, White House says",
+  "link": "https://www.investing.com/news/economy-news/us-dropping-25-separate-tariff-on-indian-imports-after-pledge-to-cut-russian-oil-white-house-says-4479649",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:01:17",
+  "providerPublishTime": 1770051677.0,
+  "text": "US dropping 25% separate tariff on Indian imports after pledge to cut Russian oil, White House says",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OIL",
+    "AFTER",
+    "HOUSE",
+    "TO",
+    "ON",
+    "CUT",
+    "SAYS",
+    "WHITE",
+    "US"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "AFTER",
+    "HOUSE",
+    "TO",
+    "ON",
+    "CUT",
+    "SAYS",
+    "WHITE",
+    "US"
+  ]
+}

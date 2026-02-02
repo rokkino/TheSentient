@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "France adopts budget after premier survives no-confidence vote",
+  "link": "https://www.ft.com/content/c2008d99-2638-4009-ad9f-4bd80a9d6501",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T19:01:21",
+  "providerPublishTime": 1770055281.0,
+  "text": "Prime Minister Sébastien Lecornu resorts to special constitutional power in order to tackle deficit",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8277166e-cb79-41ed-84a9-903a0bedf287.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "VOTE",
+    "AFTER",
+    "ORDER",
+    "NO",
+    "TO",
+    "PRIME",
+    "IN",
+    "POWER"
+  ],
+  "relatedTickers": [
+    "VOTE",
+    "AFTER",
+    "ORDER",
+    "NO",
+    "TO",
+    "PRIME",
+    "IN",
+    "POWER"
+  ]
+}

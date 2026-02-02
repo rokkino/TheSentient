@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Royal Caribbean Says Two-Thirds Of 2026 Already Booked At Record Prices",
+  "link": "https://finance.yahoo.com/news/royal-caribbean-says-two-thirds-123104032.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-01T12:31:04",
+  "providerPublishTime": 1769945464.0,
+  "text": "Royal Caribbean Says Two-Thirds Of 2026 Already Booked At Record Prices",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/86369abb38603aa03933dba90bc8420c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ROYAL",
+    "TWO",
+    "SAYS",
+    "AT",
+    "OF"
+  ],
+  "relatedTickers": [
+    "ROYAL",
+    "TWO",
+    "SAYS",
+    "AT",
+    "OF"
+  ]
+}

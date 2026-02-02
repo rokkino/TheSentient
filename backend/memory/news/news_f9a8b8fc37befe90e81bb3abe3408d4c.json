@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "O’Day Michael Paul sells Corning (GLW) shares worth $558,231",
+  "link": "https://www.investing.com/news/insider-trading-news/oday-michael-paul-sells-corning-glw-shares-worth-558231-93CH-4479952",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:13:11",
+  "providerPublishTime": 1770063191.0,
+  "text": "O’Day Michael Paul sells Corning (GLW) shares worth $558,231",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DAY",
+    "SELLS",
+    "GLW",
+    "WORTH",
+    "O",
+    "PAUL"
+  ],
+  "relatedTickers": [
+    "DAY",
+    "SELLS",
+    "GLW",
+    "WORTH",
+    "O",
+    "PAUL"
+  ]
+}

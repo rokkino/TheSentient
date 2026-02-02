@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Robocap Offloads 35,000 NICE Shares Worth $5.1 Million, According to Recent SEC Filing",
+  "link": "https://finance.yahoo.com/news/robocap-offloads-35-000-nice-190448410.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T19:04:48",
+  "providerPublishTime": 1770055488.0,
+  "text": "NICE delivers AI-driven cloud platforms for enterprises, focusing on digital business, compliance, and fraud prevention solutions.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/beb751fe64b83c39e69071ee1b68bd95",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NICE",
+    "FOR",
+    "WORTH",
+    "TO",
+    "AND",
+    "ON",
+    "NVDA",
+    "AI",
+    "FRAUD",
+    "SEC"
+  ],
+  "relatedTickers": [
+    "NICE",
+    "FOR",
+    "WORTH",
+    "TO",
+    "AND",
+    "ON",
+    "NVDA",
+    "AI",
+    "FRAUD",
+    "SEC"
+  ]
+}

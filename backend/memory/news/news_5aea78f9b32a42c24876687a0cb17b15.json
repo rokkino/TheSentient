@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tesla’s stock falls as bleak new sales figures signal more pain for beleaguered EV business",
+  "link": "https://www.marketwatch.com/story/teslas-stock-falls-as-bleak-new-sales-figures-signal-more-pain-for-beleaguered-ev-business-ca1a7c50?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T17:22:00",
+  "providerPublishTime": 1770049320.0,
+  "text": "Tesla saw sharp January declines in new-vehicle registrations in several European markets.",
+  "thumbnail": "https://images.mktw.net/im-19995224",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NEW",
+    "AS",
+    "MORE",
+    "SHARP",
+    "TESLA",
+    "FALLS",
+    "SALES",
+    "FOR",
+    "S",
+    "PAIN"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "AS",
+    "MORE",
+    "SHARP",
+    "TESLA",
+    "FALLS",
+    "SALES",
+    "FOR",
+    "S",
+    "PAIN"
+  ]
+}

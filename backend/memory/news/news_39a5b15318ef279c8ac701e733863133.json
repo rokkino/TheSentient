@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Character Group finance director buys shares in company",
+  "link": "https://www.investing.com/news/company-news/character-group-finance-director-buys-shares-in-company-93CH-4479654",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:03:03",
+  "providerPublishTime": 1770051783.0,
+  "text": "Character Group finance director buys shares in company",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUYS",
+    "GROUP",
+    "IN"
+  ],
+  "relatedTickers": [
+    "BUYS",
+    "GROUP",
+    "IN"
+  ]
+}

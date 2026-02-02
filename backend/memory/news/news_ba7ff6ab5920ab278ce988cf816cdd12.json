@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "This Bearish Bet On Bitcoin Pays Off If Weakness Persists",
+  "link": "https://www.investors.com/research/options/bitcoin-prices-crypto-etf-ibit-options-trade-bearish-bet-investing-markets/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-02T19:17:15",
+  "providerPublishTime": 1770056235.0,
+  "text": "Bitcoin prices accelerated lower over the weekend, falling 7% to 78,000 as of Monday morning.  The cryptocurrency has struggled recently as investor excitement has shifted away from digital assets and toward hard assets, particularly metals, which have experienced record levels of volatility.  To position for further bitcoin weakness, investors can consider purchasing a put option on the iShares Bitcoin ETF.",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/d3f4b3b6b3b1807b1b0fcda26288ba4e",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "FROM",
+    "HARD",
+    "WHICH",
+    "AND",
+    "FOR",
+    "ON",
+    "BTC-USD",
+    "PAYS",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "FROM",
+    "HARD",
+    "WHICH",
+    "AND",
+    "FOR",
+    "ON",
+    "BTC-USD",
+    "PAYS",
+    "THIS"
+  ]
+}

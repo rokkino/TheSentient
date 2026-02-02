@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NXP earnings beat by $0.05, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/nxp-earnings-beat-by-005-revenue-topped-estimates-4480046",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:43",
+  "providerPublishTime": 1770063703.0,
+  "text": "NXP earnings beat by $0.05, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NXP",
+    "BY",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "NXP",
+    "BY",
+    "BEAT"
+  ]
+}

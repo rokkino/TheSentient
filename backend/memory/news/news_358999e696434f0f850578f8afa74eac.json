@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Could This Artificial Intelligence (AI) Stock Double in 2026?",
+  "link": "https://finance.yahoo.com/news/could-artificial-intelligence-ai-stock-213000514.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T21:30:00",
+  "providerPublishTime": 1769977800.0,
+  "text": "AMD is excited about its growth prospects for 2026.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/5f4e0815ad0a5c72af0c0e033ec46acf",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AMD",
+    "IS",
+    "NVDA",
+    "ABOUT",
+    "COULD",
+    "STOCK",
+    "IN",
+    "ITS",
+    "AI",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "AMD",
+    "IS",
+    "NVDA",
+    "ABOUT",
+    "COULD",
+    "STOCK",
+    "IN",
+    "ITS",
+    "AI",
+    "THIS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Forget AI Stocks: This REIT Could Be Your Ticket to AI Profits",
+  "link": "https://finance.yahoo.com/news/forget-ai-stocks-reit-could-195000565.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T19:50:00",
+  "providerPublishTime": 1769971800.0,
+  "text": "Prologis can make a lot of money developing AI data centers over the coming decade.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/1422bd2397aa8127db2e08b138c478d7",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "NVDA",
+    "CAN",
+    "COULD",
+    "LOT",
+    "REIT",
+    "A",
+    "MONEY",
+    "OVER",
+    "AI"
+  ],
+  "relatedTickers": [
+    "THE",
+    "NVDA",
+    "CAN",
+    "COULD",
+    "LOT",
+    "REIT",
+    "A",
+    "MONEY",
+    "OVER",
+    "AI"
+  ]
+}

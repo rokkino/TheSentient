@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Former doctor left his job to build an AI company that's worth $465M. What aspiring entrepreneurs can learn from him",
+  "link": "https://finance.yahoo.com/news/former-doctor-left-job-build-123000638.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T12:30:00",
+  "providerPublishTime": 1769945400.0,
+  "text": "Former doctor left his job to build an AI company that's worth $465M. What aspiring entrepreneurs can learn from him",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/8f80ed19869975bf1c706a7b4f3c6739",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JOB",
+    "AN",
+    "BUILD",
+    "FROM",
+    "LEFT",
+    "WORTH",
+    "TO",
+    "S",
+    "WHAT",
+    "LEARN"
+  ],
+  "relatedTickers": [
+    "JOB",
+    "AN",
+    "BUILD",
+    "FROM",
+    "LEFT",
+    "WORTH",
+    "TO",
+    "S",
+    "WHAT",
+    "LEARN"
+  ]
+}

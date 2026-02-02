@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "People who work for a paycheck have less money than you think",
+  "link": "https://www.marketwatch.com/story/people-who-work-for-a-paycheck-have-less-money-than-you-think-ec0e7f84?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T17:18:00",
+  "providerPublishTime": 1770049080.0,
+  "text": "The top wealth holders outpace everyone else.",
+  "thumbnail": "https://images.mktw.net/im-20632441",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HAVE",
+    "LESS",
+    "ELSE",
+    "MONEY",
+    "YOU",
+    "TOP",
+    "FOR",
+    "THE",
+    "WORK",
+    "A"
+  ],
+  "relatedTickers": [
+    "HAVE",
+    "LESS",
+    "ELSE",
+    "MONEY",
+    "YOU",
+    "TOP",
+    "FOR",
+    "THE",
+    "WORK",
+    "A"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "​Oracle Corporation (ORCL) Launches its AI Platform for Life Sciences Companies",
+  "link": "https://finance.yahoo.com/news/oracle-corporation-orcl-launches-ai-132123506.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T13:21:23",
+  "providerPublishTime": 1769948483.0,
+  "text": "​Oracle Corporation (ORCL) Launches its AI Platform for Life Sciences Companies",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/c388e80b395d28f87022b1339a8070b1",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ITS",
+    "FOR",
+    "AI",
+    "ORCL",
+    "LIFE"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "FOR",
+    "AI",
+    "ORCL",
+    "LIFE"
+  ]
+}

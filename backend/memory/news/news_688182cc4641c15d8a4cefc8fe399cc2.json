@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "EU struggling to diversify critical minerals supply, warns report",
+  "link": "https://www.ft.com/content/c48810c2-f5d8-4957-8ff4-ea75dc992304",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T16:00:13",
+  "providerPublishTime": 1770044413.0,
+  "text": "European Court of Auditors says bloc’s raw materials policy rests on ‘incomplete foundations’",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fe4d12e77-5410-4589-838f-18a9ac3db6a0.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RAW",
+    "WARNS",
+    "COURT",
+    "EU",
+    "TO",
+    "S",
+    "RESTS",
+    "ON",
+    "SAYS",
+    "BLOC"
+  ],
+  "relatedTickers": [
+    "RAW",
+    "WARNS",
+    "COURT",
+    "EU",
+    "TO",
+    "S",
+    "RESTS",
+    "ON",
+    "SAYS",
+    "BLOC"
+  ]
+}

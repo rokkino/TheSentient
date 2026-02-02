@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "It’s been a weird few days on Wall Street",
+  "link": "https://finance.yahoo.com/news/precious-metals-swing-bitcoin-tumbles-153119945.html",
+  "publisher": "CNN Business",
+  "timestamp": "2026-02-02T19:26:19",
+  "providerPublishTime": 1770056779.0,
+  "text": "Wall Street traders are grappling with sharp swings in precious metals, bitcoin is hovering at its lowest level since April and there are lingering nerves about technology stocks.",
+  "thumbnail": "https://media.zenfs.com/en/cnn_business_articles_218/453d88cc16dea3f73a6e80abb78d9b86",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "AND",
+    "ON",
+    "IN",
+    "BTC-USD",
+    "FEW",
+    "LEVEL",
+    "A",
+    "WITH",
+    "ITS"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AND",
+    "ON",
+    "IN",
+    "BTC-USD",
+    "FEW",
+    "LEVEL",
+    "A",
+    "WITH",
+    "ITS"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bank of America Securities Reiterates a Hold on Lloyds Banking Group (LYG)",
+  "link": "https://finance.yahoo.com/news/bank-america-securities-reiterates-hold-073854456.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:54",
+  "providerPublishTime": 1769927934.0,
+  "text": "Bank of America Securities Reiterates a Hold on Lloyds Banking Group (LYG)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/1ac6bdca43700e38513d093bc77c8870",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BANK",
+    "HOLD",
+    "GROUP",
+    "ON",
+    "LYG",
+    "A",
+    "OF"
+  ],
+  "relatedTickers": [
+    "BANK",
+    "HOLD",
+    "GROUP",
+    "ON",
+    "LYG",
+    "A",
+    "OF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin briefly tumbles below $75K, but these investors see a buying opportunity",
+  "link": "https://www.marketwatch.com/story/bitcoin-briefly-tumbles-below-75k-but-these-investors-see-a-buying-opportunity-724ebafa?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T17:51:00",
+  "providerPublishTime": 1770051060.0,
+  "text": "Bitcoin hit its lowest level since the “liberation day” selloff last April.",
+  "thumbnail": "https://images.mktw.net/im-57753193",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DAY",
+    "ITS",
+    "BELOW",
+    "APRIL",
+    "HIT",
+    "SEE",
+    "LEVEL",
+    "BUT",
+    "THESE",
+    "THE"
+  ],
+  "relatedTickers": [
+    "DAY",
+    "ITS",
+    "BELOW",
+    "APRIL",
+    "HIT",
+    "SEE",
+    "LEVEL",
+    "BUT",
+    "THESE",
+    "THE"
+  ]
+}

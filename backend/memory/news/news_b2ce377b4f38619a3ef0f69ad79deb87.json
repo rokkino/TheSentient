@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin crashes below $80K again as investors panic",
+  "link": "https://finance.yahoo.com/news/bitcoin-crashes-below-80k-again-203138265.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-01-31T20:31:38",
+  "providerPublishTime": 1769887898.0,
+  "text": "The cryptocurrency market suffered a massive blow on Jan. 31 as Bitcoin (BTC) crashed below $80,000. BTC fell 5% in a day to trade at $78,479.21 at the time of writing. It's Bitcoin's lowest price crash since April 2025, when the cryptocurrency crashed following U.S. ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/7f2f2f6f1b5e3914e4795503f733a004",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "APRIL",
+    "AT",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "CRASH",
+    "AS",
+    "U",
+    "OF"
+  ],
+  "relatedTickers": [
+    "APRIL",
+    "AT",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "CRASH",
+    "AS",
+    "U",
+    "OF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "ECB Likely to Leave Rate Unchanged: Anderson",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/ecb-likely-to-leave-rate-unchanged-anderson-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T17:45:43",
+  "providerPublishTime": 1770050743.0,
+  "text": "Nomura European Economist Josie Anderson looks ahead to this week's ECB meeting with Bloomberg's Lizzy Burden on 'Daybreak Europe.' (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJ3Tyu75uWdw/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LEAVE",
+    "WITH",
+    "ECB",
+    "RATE",
+    "LOOKS",
+    "WEEK",
+    "THIS",
+    "TO",
+    "S",
+    "ON"
+  ],
+  "relatedTickers": [
+    "LEAVE",
+    "WITH",
+    "ECB",
+    "RATE",
+    "LOOKS",
+    "WEEK",
+    "THIS",
+    "TO",
+    "S",
+    "ON"
+  ]
+}

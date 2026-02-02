@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Uber’s Robotaxi Push And Data Plans Reshape Long Term Investment Case",
+  "link": "https://finance.yahoo.com/news/uber-robotaxi-push-data-plans-180915518.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-01T18:09:15",
+  "providerPublishTime": 1769965755.0,
+  "text": "Uber Technologies (NYSE:UBER) is expanding its autonomous vehicle efforts through new partnerships with Mercedes-Benz and Nvidia to create a global robotaxi platform using the S-Class. The company is committing a billion-dollar investment to Waabi, with plans to deploy at least 25,000 Waabi-powered robotaxis on its network. Uber has launched AV Labs to use its trip data to advance autonomous technology and to build a new business around real-world driving data collection and...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/cfa0f05cef7298ff8df3db38405f2803",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLASS",
+    "NVDA",
+    "AT",
+    "A",
+    "S",
+    "ITS",
+    "BUILD",
+    "REAL",
+    "TERM",
+    "NYSE"
+  ],
+  "relatedTickers": [
+    "CLASS",
+    "NVDA",
+    "AT",
+    "A",
+    "S",
+    "ITS",
+    "BUILD",
+    "REAL",
+    "TERM",
+    "NYSE"
+  ]
+}

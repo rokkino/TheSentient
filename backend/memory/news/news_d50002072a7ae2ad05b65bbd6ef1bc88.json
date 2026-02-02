@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Crucial U.S. jobs report delayed again. What happens next?",
+  "link": "https://www.marketwatch.com/story/crucial-u-s-jobs-report-delayed-again-what-happens-next-8c616bb6?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T20:25:00",
+  "providerPublishTime": 1770060300.0,
+  "text": "The January jobs report won’t be published Friday as scheduled due to the partial government shutdown, but investors probably won’t have to wait long for critical insights into the health of the labor market.",
+  "thumbnail": "https://images.mktw.net/im-10931995",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "NEXT",
+    "FOR",
+    "INTO",
+    "BE",
+    "DUE",
+    "WHAT",
+    "JOBS",
+    "HAVE",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "AS",
+    "NEXT",
+    "FOR",
+    "INTO",
+    "BE",
+    "DUE",
+    "WHAT",
+    "JOBS",
+    "HAVE",
+    "BUT"
+  ]
+}

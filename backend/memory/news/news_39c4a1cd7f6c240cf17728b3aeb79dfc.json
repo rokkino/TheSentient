@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Merz Says Mercosur Trade Deal Will Take Effect Provisionally",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/merz-says-mercosur-trade-deal-will-take-effect-provisionally",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T18:25:21",
+  "providerPublishTime": 1770053121.0,
+  "text": "German Chancellor Friedrich Merz said the European Union’s trade agreement with the Mercosur states will take effect provisionally despite plans for a judicial review of the pact engineered by its opponents in the European Parliament.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJahGKeLmB3M/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "SAYS",
+    "IN",
+    "WILL",
+    "UNION",
+    "DEAL",
+    "MERZ",
+    "A",
+    "SAID",
+    "TAKE"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "SAYS",
+    "IN",
+    "WILL",
+    "UNION",
+    "DEAL",
+    "MERZ",
+    "A",
+    "SAID",
+    "TAKE"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Weekly Stock List",
+  "link": "https://finance.yahoo.com/research/reports/ARGUS_46033_StockPicks_1770037185000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+  "publisher": "Argus Research",
+  "timestamp": "2026-02-02T12:59:45",
+  "providerPublishTime": 1770033585.0,
+  "text": "Weekly Stock List",
+  "thumbnail": "https://s.yimg.com/uc/fin/img/non-sub-report-thumb.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "LIST"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "LIST"
+  ]
+}

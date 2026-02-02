@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "A world without nuclear arms control begins this week",
+  "link": "https://www.ft.com/content/fd1d2e57-dce7-489d-956a-22b839cfadd8",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T05:00:11",
+  "providerPublishTime": 1770004811.0,
+  "text": "New Start treaty, which expires on Thursday, capped the number of missiles and warheads in US and Russian arsenals",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F17b40b5b-e0ef-4bc2-a22e-57436f943d45.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "US",
+    "NEW",
+    "WEEK",
+    "THIS",
+    "START",
+    "WHICH",
+    "AND",
+    "WORLD",
+    "ON",
+    "IN"
+  ],
+  "relatedTickers": [
+    "US",
+    "NEW",
+    "WEEK",
+    "THIS",
+    "START",
+    "WHICH",
+    "AND",
+    "WORLD",
+    "ON",
+    "IN"
+  ]
+}

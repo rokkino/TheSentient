@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bookstore manager, 26, lives in Manhattan on $53K a year by cutting costs. Is a low-cost routine the key?",
+  "link": "https://finance.yahoo.com/news/bookstore-manager-26-lives-manhattan-131500133.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T13:15:00",
+  "providerPublishTime": 1769948100.0,
+  "text": "Bookstore manager, 26, lives in Manhattan on $53K a year by cutting costs. Is a low-cost routine the key?",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/001dd2447046e7741d46fbef0872b0dd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LOW",
+    "KEY",
+    "IS",
+    "YEAR",
+    "LIVES",
+    "BY",
+    "COST",
+    "ON",
+    "IN",
+    "THE"
+  ],
+  "relatedTickers": [
+    "LOW",
+    "KEY",
+    "IS",
+    "YEAR",
+    "LIVES",
+    "BY",
+    "COST",
+    "ON",
+    "IN",
+    "THE"
+  ]
+}

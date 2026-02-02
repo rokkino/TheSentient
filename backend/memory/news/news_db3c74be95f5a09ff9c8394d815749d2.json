@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Reeves takes aim at Trump as she calls for UK and EU to speak with one voice on trade",
+  "link": "https://www.ft.com/content/2ddcd456-aa87-4002-8b7e-56299df46d18",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T20:47:50",
+  "providerPublishTime": 1770061670.0,
+  "text": "British chancellor participates in talks with the bloc focused on resetting relations between the two sides",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5b30a69b-e3bd-48c1-95f9-6daea8265cd1.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "UK",
+    "AS",
+    "FOR",
+    "AND",
+    "TWO",
+    "ON",
+    "IN",
+    "CALLS",
+    "ONE",
+    "EU"
+  ],
+  "relatedTickers": [
+    "UK",
+    "AS",
+    "FOR",
+    "AND",
+    "TWO",
+    "ON",
+    "IN",
+    "CALLS",
+    "ONE",
+    "EU"
+  ]
+}

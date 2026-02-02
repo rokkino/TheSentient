@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Goldman Sachs BDC issues $400 million in 5.100% notes due 2029",
+  "link": "https://www.investing.com/news/sec-filings/goldman-sachs-bdc-issues-400-million-in-5100-notes-due-2029-93CH-4480161",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:50:01",
+  "providerPublishTime": 1770065401.0,
+  "text": "Goldman Sachs BDC issues $400 million in 5.100% notes due 2029",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BDC",
+    "NOTES",
+    "IN",
+    "SACHS",
+    "DUE"
+  ],
+  "relatedTickers": [
+    "BDC",
+    "NOTES",
+    "IN",
+    "SACHS",
+    "DUE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Devon Agrees to Buy US Shale Rival Coterra for $21.4 Billion",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/devon-and-rival-shale-driller-coterra-to-merge-in-all-stock-deal",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T12:06:54",
+  "providerPublishTime": 1770030414.0,
+  "text": "Devon Energy Corp. agreed to acquire Coterra Energy Inc. for about $21.4 billion in stock to create one of the world’s biggest shale companies as dwindling drilling sites spur producers to consolidate.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i_WAQnZowK8w/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "BUY",
+    "AS",
+    "FOR",
+    "IN",
+    "CORP",
+    "ONE",
+    "SPUR",
+    "WORLD",
+    "SHALE"
+  ],
+  "relatedTickers": [
+    "US",
+    "BUY",
+    "AS",
+    "FOR",
+    "IN",
+    "CORP",
+    "ONE",
+    "SPUR",
+    "WORLD",
+    "SHALE"
+  ]
+}

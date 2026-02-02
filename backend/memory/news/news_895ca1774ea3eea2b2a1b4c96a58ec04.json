@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 NUCOR CORP For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-nucor-corp-for-2-february-93CH-4479907",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:06:55",
+  "providerPublishTime": 1770062815.0,
+  "text": "Form 144 NUCOR CORP For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NUCOR",
+    "CORP",
+    "FORM",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "NUCOR",
+    "CORP",
+    "FORM",
+    "FOR"
+  ]
+}

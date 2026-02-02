@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dollar Extends Advance to Second Day as Metals Drop, Oil Sinks",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/traders-sold-dollars-just-before-warsh-choice-sparked-rebound",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T01:07:08",
+  "providerPublishTime": 1769990828.0,
+  "text": "The dollar gained, rounding out its biggest two-day rally since April, as precious metals extended their slump and as US manufacturing data came in unexpectedly strong.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iVX6J6xBD5pw/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "SINKS",
+    "OUT",
+    "AND",
+    "TWO",
+    "IN",
+    "THEIR",
+    "RALLY",
+    "OIL",
+    "DATA"
+  ],
+  "relatedTickers": [
+    "AS",
+    "SINKS",
+    "OUT",
+    "AND",
+    "TWO",
+    "IN",
+    "THEIR",
+    "RALLY",
+    "OIL",
+    "DATA"
+  ]
+}

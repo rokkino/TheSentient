@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin Falls Into 'Extreme Fear': How Low Will It Go?",
+  "link": "https://finance.yahoo.com/news/bitcoin-falls-extreme-fear-low-214544537.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-02T21:45:44",
+  "providerPublishTime": 1770065144.0,
+  "text": "Bitcoin has dropped by 13% in the last 30 days and the charts are screaming caution. Where does the price of BTC go from here?",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/cb68567a167a65d81f7f04d00327ef5d",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "FROM",
+    "FEAR",
+    "INTO",
+    "AND",
+    "BTC",
+    "WHERE",
+    "IN",
+    "WILL",
+    "BTC-USD"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "FROM",
+    "FEAR",
+    "INTO",
+    "AND",
+    "BTC",
+    "WHERE",
+    "IN",
+    "WILL",
+    "BTC-USD"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Treasury trims Q1 borrowing outlook as larger cash balance offsets weaker flows",
+  "link": "https://www.investing.com/news/economy-news/us-treasury-trims-q1-borrowing-outlook-as-larger-cash-balance-offsets-weaker-flows-4479948",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:13:01",
+  "providerPublishTime": 1770063181.0,
+  "text": "US Treasury trims Q1 borrowing outlook as larger cash balance offsets weaker flows",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FLOWS",
+    "AS",
+    "CASH",
+    "US",
+    "TRIMS"
+  ],
+  "relatedTickers": [
+    "FLOWS",
+    "AS",
+    "CASH",
+    "US",
+    "TRIMS"
+  ]
+}

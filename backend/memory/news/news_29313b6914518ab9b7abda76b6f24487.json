@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Alphabet’s quiet $110B Waymo move blows up ‘other bets’ narrative",
+  "link": "https://finance.yahoo.com/news/alphabet-quiet-110b-waymo-move-170649403.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-02T17:06:49",
+  "providerPublishTime": 1770048409.0,
+  "text": "Alphabet is often viewed as “too big to fail.” However, even the staunchest of bulls will inevitably look to the “other bets” segment as the area needing the most work. Until now. Waymo, Alphabet's fast-growing autonomous-driving asset, is looking to drum up some cash, Bloomberg reports. The aim? ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/86062ffb083361a6d5153c6b5846e544",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WORK",
+    "AS",
+    "LOOK",
+    "MOST",
+    "UNTIL",
+    "BULLS",
+    "UP",
+    "WILL",
+    "NOW",
+    "DRUM"
+  ],
+  "relatedTickers": [
+    "WORK",
+    "AS",
+    "LOOK",
+    "MOST",
+    "UNTIL",
+    "BULLS",
+    "UP",
+    "WILL",
+    "NOW",
+    "DRUM"
+  ]
+}

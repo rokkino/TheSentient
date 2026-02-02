@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Before the Crash, Oil and Gas Drillers Pounced on Price Rise",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/before-the-crash-oil-and-gas-drillers-pounced-on-price-spike",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T18:25:18",
+  "providerPublishTime": 1770053118.0,
+  "text": "Shale drillers engaged in record hedging amid soaring energy prices in the days and weeks preceding the worldwide commodities crash.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ib.UblqgNlV8/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WEEKS",
+    "PRICE",
+    "AMID",
+    "OIL",
+    "RISE",
+    "AND",
+    "ON",
+    "SHALE",
+    "DAYS",
+    "IN"
+  ],
+  "relatedTickers": [
+    "WEEKS",
+    "PRICE",
+    "AMID",
+    "OIL",
+    "RISE",
+    "AND",
+    "ON",
+    "SHALE",
+    "DAYS",
+    "IN"
+  ]
+}

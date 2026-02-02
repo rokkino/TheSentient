@@ -479,4 +479,91 @@ const scrollToBottom = () => {
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
 }
+
+@media (max-width: 900px) {
+  .builder-split {
+    flex-direction: column;
+  }
+
+  .chat-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333;
+    min-height: 38vh;
+  }
+
+  .editor-panel {
+    min-height: 0;
+  }
+
+  .panel-header {
+    padding: 14px 16px;
+  }
+
+  .chat-messages {
+    padding: 16px;
+  }
+
+  .chat-input {
+    padding: 12px 16px;
+  }
+
+  .chat-input textarea {
+    font-size: 16px;
+    height: 72px;
+  }
+
+  .strategy-name-input {
+    width: 100%;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .action-btn {
+    min-height: 38px;
+  }
+
+  .json-editor {
+    padding: 16px;
+  }
+
+  .visual-preview {
+    padding: 16px;
+  }
+
+  .rules-list {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel-header h3 {
+    font-size: 15px;
+  }
+
+  .panel-header p {
+    font-size: 11px;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+
+  .chat-input {
+    flex-direction: column;
+  }
+
+  .chat-input button {
+    width: 100%;
+    min-height: 40px;
+  }
+
+  .strategy-name-input {
+    font-size: 16px;
+  }
+}
 </style>

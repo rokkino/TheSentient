@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Xerox Q4 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/xerox-q4-earnings-call-highlights-124607369.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-01T12:46:07",
+  "providerPublishTime": 1769946367.0,
+  "text": "Xerox Q4 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/92aedc0650eea3cb9b03698354aff57d",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CALL",
+    "XEROX"
+  ],
+  "relatedTickers": [
+    "CALL",
+    "XEROX"
+  ]
+}

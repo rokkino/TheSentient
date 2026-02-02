@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia and Oracle put a price tag on AI — and OpenAI",
+  "link": "https://finance.yahoo.com/news/nvidia-oracle-put-price-tag-190303091.html",
+  "publisher": "Quartz",
+  "timestamp": "2026-02-02T19:03:03",
+  "providerPublishTime": 1770055383.0,
+  "text": "Nvidia tries to keep OpenAI rich without a $100 billion commitment, Oracle seeks $50 billion, and the boom keeps booming — for now",
+  "thumbnail": "https://media.zenfs.com/en/quartz_855/4f972a91a7db6862df480886b66311aa",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PUT",
+    "PRICE",
+    "TAG",
+    "SEEKS",
+    "RICH",
+    "TRIES",
+    "BOOM",
+    "KEEP",
+    "AND",
+    "TO"
+  ],
+  "relatedTickers": [
+    "PUT",
+    "PRICE",
+    "TAG",
+    "SEEKS",
+    "RICH",
+    "TRIES",
+    "BOOM",
+    "KEEP",
+    "AND",
+    "TO"
+  ]
+}

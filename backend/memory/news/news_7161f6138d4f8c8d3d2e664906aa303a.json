@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Jobs Report, Amazon, Disney, Alphabet, Palantir, and More to Watch This Week",
+  "link": "https://www.barrons.com/articles/jobs-report-amazon-disney-alphabet-palantir-and-more-to-watch-this-week-237b1b53?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-01T19:00:00",
+  "providerPublishTime": 1769968800.0,
+  "text": "AMD, Merck, Pepsi, Phillips 66, and many more report in the busiest of earnings weeks. And, provided the government stays open, we’ll see the January the jobs report on Friday.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/a926b7a54bde2dc85c7fe0aa9b2a19b3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WE",
+    "AMD",
+    "LL",
+    "IN",
+    "WATCH",
+    "THIS",
+    "OF",
+    "OPEN",
+    "PEPSI",
+    "MORE"
+  ],
+  "relatedTickers": [
+    "WE",
+    "AMD",
+    "LL",
+    "IN",
+    "WATCH",
+    "THIS",
+    "OF",
+    "OPEN",
+    "PEPSI",
+    "MORE"
+  ]
+}

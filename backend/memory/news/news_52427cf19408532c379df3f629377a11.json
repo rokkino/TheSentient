@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Werner Enterprises stock hits 52-week high at 36.07 USD",
+  "link": "https://www.investing.com/news/company-news/werner-enterprises-stock-hits-52week-high-at-3607-usd-93CH-4479736",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T19:06:14",
+  "providerPublishTime": 1770055574.0,
+  "text": "Werner Enterprises stock hits 52-week high at 36.07 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WEEK",
+    "HITS",
+    "STOCK",
+    "USD",
+    "HIGH",
+    "AT"
+  ],
+  "relatedTickers": [
+    "WEEK",
+    "HITS",
+    "STOCK",
+    "USD",
+    "HIGH",
+    "AT"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Carlyle Group Enters List of Top 10 European Oil Refiners",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/carlyle-group-breaks-into-list-of-europe-s-top-ten-oil-refiners",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T15:44:30",
+  "providerPublishTime": 1770043470.0,
+  "text": "The Carlyle Group has entered the ranking of Europe’s top 10 fuel makers as Big Oil companies streamline their portfolios.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4x_f3NJyLo8/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "LIST",
+    "OIL",
+    "HAS",
+    "BIG",
+    "TOP",
+    "GROUP",
+    "S",
+    "THEIR",
+    "FUEL"
+  ],
+  "relatedTickers": [
+    "AS",
+    "LIST",
+    "OIL",
+    "HAS",
+    "BIG",
+    "TOP",
+    "GROUP",
+    "S",
+    "THEIR",
+    "FUEL"
+  ]
+}

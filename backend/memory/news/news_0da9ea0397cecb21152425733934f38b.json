@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is GameStop the Next Berkshire Hathaway?",
+  "link": "https://finance.yahoo.com/news/gamestop-next-berkshire-hathaway-113200797.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T11:32:00",
+  "providerPublishTime": 1769941920.0,
+  "text": "Is GameStop the Next Berkshire Hathaway?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/2e2ee304c2fe133ab745cf26fa68334b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "THE",
+    "NEXT"
+  ],
+  "relatedTickers": [
+    "IS",
+    "THE",
+    "NEXT"
+  ]
+}

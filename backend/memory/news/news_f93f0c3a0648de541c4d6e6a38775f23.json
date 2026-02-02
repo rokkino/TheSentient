@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Jupiter Announces $35M ParaFi Investment, Deal to Settle in JupUSD",
+  "link": "https://finance.yahoo.com/news/jupiter-announces-35m-parafi-investment-084502586.html",
+  "publisher": "Coinspeaker",
+  "timestamp": "2026-02-02T08:45:02",
+  "providerPublishTime": 1770018302.0,
+  "text": "Jupiter JUP $0.19 24h volatility: 9.5% Market cap: $621.84 M Vol. 24h: $88.31 M , a Solana-based SOL $104.5 24h volatility: 1.5% Market cap: $59.29 B Vol. 24h: $9.02 B decentralized exchange aggregator, announced on Feb. 2 a $35 million investment in its JUP token from ParaFi Capital. The deal ...",
+  "thumbnail": "https://media.zenfs.com/en/coinspeaker_us_106/99961a1417d53c9c891b4e005cd31606",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "VOL",
+    "ITS",
+    "B",
+    "SOL",
+    "M",
+    "FEB",
+    "FROM",
+    "JUP",
+    "CAP",
+    "DEAL"
+  ],
+  "relatedTickers": [
+    "VOL",
+    "ITS",
+    "B",
+    "SOL",
+    "M",
+    "FEB",
+    "FROM",
+    "JUP",
+    "CAP",
+    "DEAL"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "How To Earn $500 A Month From Disney Stock Ahead Of Q1 Earnings",
+  "link": "https://finance.yahoo.com/news/earn-500-month-disney-stock-183112316.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-01T18:31:12",
+  "providerPublishTime": 1769967072.0,
+  "text": "The Walt Disney Company (NYSE:DIS) will release earnings for the first quarter before the opening bell on Monday, Feb. 2. Analysts expect the company to report earnings of $1.58 per share. That's down from $1.76 per share in the year-ago period. The consensus estimate for Disney's quarterly revenue is $25.6 billion (it reported $24.69 billion last year), according to Benzinga Pro. On Jan. 16, Citigroup analyst Jason Bazinet maintained Walt Disney with a Buy and lowered the price target from $145",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/058aed16f6f5874683755e0ed3db0bf2",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "YEAR",
+    "DIS",
+    "IN",
+    "A",
+    "S",
+    "IT",
+    "PRO",
+    "NYSE",
+    "OF",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "YEAR",
+    "DIS",
+    "IN",
+    "A",
+    "S",
+    "IT",
+    "PRO",
+    "NYSE",
+    "OF",
+    "THAT"
+  ]
+}

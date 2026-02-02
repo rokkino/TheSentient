@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Why Amazon's cloud revenue growth looks promising this year",
+  "link": "https://finance.yahoo.com/video/why-amazons-cloud-revenue-growth-looks-promising-this-year-110000198.html",
+  "publisher": "Yahoo Finance Video",
+  "timestamp": "2026-02-02T11:00:00",
+  "providerPublishTime": 1770026400.0,
+  "text": "Big Tech earnings are underway, with Meta (META), Microsoft (MSFT), Tesla (TSLA), and Apple (AAPL) having reported last week and Amazon (AMZN) and Alphabet (GOOG, GOOGL) reporting this week.WestEnd Capital Management senior equity analyst Ali Mogharabi joins Market Domination host Josh Lipton to discuss his expectations for cloud revenue growth this year.To watch more expert insights and analysis on the latest market action, check out more Market Domination.",
+  "thumbnail": "https://s.yimg.com/uu/api/res/1.2/73OuaGLzpl9qVAkvqgkqvQ--~B/aD0yOTYxO3c9NDQ0NDthcHBpZD15dGFjaHlvbg--/https://d29szjachogqwa.cloudfront.net/images/2026-01/8da8e7a1-d1e2-486a-9b39-9a5e13839545",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARE",
+    "TECH",
+    "LOOKS",
+    "WATCH",
+    "WEEK",
+    "YEAR",
+    "OUT",
+    "META",
+    "FOR",
+    "AND"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "TECH",
+    "LOOKS",
+    "WATCH",
+    "WEEK",
+    "YEAR",
+    "OUT",
+    "META",
+    "FOR",
+    "AND"
+  ]
+}

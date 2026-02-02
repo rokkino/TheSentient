@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Jim Cramer on Alphabet: “It May Be Even Making More Money From AI Than Meta”",
+  "link": "https://finance.yahoo.com/news/jim-cramer-alphabet-may-even-201827650.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T20:18:27",
+  "providerPublishTime": 1770059907.0,
+  "text": "Alphabet Inc. (NASDAQ:GOOGL) is one of the stocks Jim Cramer shared his thoughts on. Cramer was bullish on the company, as he said: … I bet when we hear from them next week, we’ll realize, nuh-uh, AI search winner. Alphabet may be next week’s rock, and it may be even making more money from AI […]",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/af2bb6bdbc4f56cfaf197a2118a94cf1",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HEAR",
+    "AS",
+    "NEXT",
+    "WEEK",
+    "FROM",
+    "META",
+    "MAY",
+    "AND",
+    "ON",
+    "BE"
+  ],
+  "relatedTickers": [
+    "HEAR",
+    "AS",
+    "NEXT",
+    "WEEK",
+    "FROM",
+    "META",
+    "MAY",
+    "AND",
+    "ON",
+    "BE"
+  ]
+}

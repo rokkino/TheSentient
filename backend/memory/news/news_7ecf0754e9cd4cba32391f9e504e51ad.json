@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tiger Global Opening San Francisco Post in Transamerica Pyramid",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/tiger-global-opening-san-francisco-post-in-transamerica-pyramid",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T20:36:20",
+  "providerPublishTime": 1770060980.0,
+  "text": "Tiger Global Management is opening a San Francisco office in the iconic Transamerica Pyramid tower, a sign of Wall Street’s renewed interest in the tech hub.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/in6Gk9sBIYZo/v2/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "POST",
+    "TECH",
+    "IS",
+    "WALL",
+    "S",
+    "SIGN",
+    "TOWER",
+    "HUB",
+    "IN",
+    "THE"
+  ],
+  "relatedTickers": [
+    "POST",
+    "TECH",
+    "IS",
+    "WALL",
+    "S",
+    "SIGN",
+    "TOWER",
+    "HUB",
+    "IN",
+    "THE"
+  ]
+}

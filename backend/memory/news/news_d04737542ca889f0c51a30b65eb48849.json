@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Stock market today: Dow, S&P 500, Nasdaq jump to kick off February as gold, silver, bitcoin remain volatile",
+  "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-jump-to-kick-off-february-as-gold-silver-bitcoin-remain-volatile-210457932.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-02T21:04:57",
+  "providerPublishTime": 1770062697.0,
+  "text": "Wall Street is on edge after Friday's sharp reversal ahead of a week defined by Trump's Fed pick, jobs data, and more Big Tech earnings.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-01/8df70f60-fc99-11f0-bebf-3653dc1a2c89",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "TECH",
+    "TODAY",
+    "AFTER",
+    "WEEK",
+    "AND",
+    "ON",
+    "AHEAD",
+    "BTC-USD",
+    "PICK"
+  ],
+  "relatedTickers": [
+    "AS",
+    "TECH",
+    "TODAY",
+    "AFTER",
+    "WEEK",
+    "AND",
+    "ON",
+    "AHEAD",
+    "BTC-USD",
+    "PICK"
+  ]
+}

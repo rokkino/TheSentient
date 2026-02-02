@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What Does Wall Street Think About Aegon Ltd. (AEG)?",
+  "link": "https://finance.yahoo.com/news/does-wall-street-think-aegon-073853003.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:53",
+  "providerPublishTime": 1769927933.0,
+  "text": "What Does Wall Street Think About Aegon Ltd. (AEG)?",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/6836cfa3c88e200359b6398e7e1c0864",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LTD",
+    "ABOUT",
+    "WHAT",
+    "WALL",
+    "AEGON",
+    "AEG",
+    "DOES",
+    "THINK"
+  ],
+  "relatedTickers": [
+    "LTD",
+    "ABOUT",
+    "WHAT",
+    "WALL",
+    "AEGON",
+    "AEG",
+    "DOES",
+    "THINK"
+  ]
+}

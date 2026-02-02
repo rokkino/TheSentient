@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Stocks to Watch Monday Recap: Coinbase, Newmont, Disney",
+  "link": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-02-2026/card/stocks-to-watch-monday-coinbase-newmont-oracle-kb7rAnHVjLpkySAxMNwU?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-02T21:31:46",
+  "providerPublishTime": 1770064306.0,
+  "text": "↘️ Coinbase (COIN), Strategy (MSTR) and Robinhood (HOOD): Shares of the crypto-linked companies slid after bitcoin prices sank. The digital token recently traded at around $78,000. 🔎Newmont (NEM) and Barrick Mining (B, CA: ABX): Shares in the gold miners finished higher.",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/3115d094e84e58d10aa402a7e739b1cc",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MSTR",
+    "WATCH",
+    "AFTER",
+    "AND",
+    "TOKEN",
+    "IN",
+    "SANK",
+    "NEM",
+    "BTC-USD",
+    "ABX"
+  ],
+  "relatedTickers": [
+    "MSTR",
+    "WATCH",
+    "AFTER",
+    "AND",
+    "TOKEN",
+    "IN",
+    "SANK",
+    "NEM",
+    "BTC-USD",
+    "ABX"
+  ]
+}

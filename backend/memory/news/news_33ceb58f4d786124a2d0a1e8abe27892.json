@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bank of America Securities Reiterates a Buy on Snowflake Inc. (SNOW)",
+  "link": "https://finance.yahoo.com/news/bank-america-securities-reiterates-buy-073836330.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:36",
+  "providerPublishTime": 1769927916.0,
+  "text": "Bank of America Securities Reiterates a Buy on Snowflake Inc. (SNOW)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/4a25e1c441831c55a553ed49bcb06b8e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SNOW",
+    "BUY",
+    "BANK",
+    "INC",
+    "ON",
+    "A",
+    "OF"
+  ],
+  "relatedTickers": [
+    "SNOW",
+    "BUY",
+    "BANK",
+    "INC",
+    "ON",
+    "A",
+    "OF"
+  ]
+}

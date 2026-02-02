@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Equities Rise Intraday as Markets Await Key Earnings; Oil Tumbles",
+  "link": "https://finance.yahoo.com/news/equities-rise-intraday-markets-await-192017012.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T19:20:17",
+  "providerPublishTime": 1770056417.0,
+  "text": "US benchmark equity indexes were higher after midday Monday, while oil prices slumped as investors a",
+  "thumbnail": "https://media.zenfs.com/en/mt_newswires_premium_news_706/0c887a492733aab96ac405a5871f559a",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "KEY",
+    "AS",
+    "AWAIT",
+    "OIL",
+    "AFTER",
+    "WERE",
+    "WHILE",
+    "US",
+    "A"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "KEY",
+    "AS",
+    "AWAIT",
+    "OIL",
+    "AFTER",
+    "WERE",
+    "WHILE",
+    "US",
+    "A"
+  ]
+}

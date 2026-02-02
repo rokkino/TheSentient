@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump says US will have ’very substantial’ response if Canada enacts trade deal with China",
+  "link": "https://www.investing.com/news/world-news/trump-says-us-will-have-very-substantial-response-if-canada-enacts-trade-deal-with-china-4479798",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T20:24:30",
+  "providerPublishTime": 1770060270.0,
+  "text": "Trump says US will have ’very substantial’ response if Canada enacts trade deal with China",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "HAVE",
+    "CHINA",
+    "TRUMP",
+    "DEAL",
+    "IF",
+    "SAYS",
+    "US",
+    "WILL",
+    "TRADE"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "HAVE",
+    "CHINA",
+    "TRUMP",
+    "DEAL",
+    "IF",
+    "SAYS",
+    "US",
+    "WILL",
+    "TRADE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "The ‘January barometer’ for stocks comes with a big asterisk this year",
+  "link": "https://finance.yahoo.com/news/january-barometer-stocks-comes-big-143000269.html",
+  "publisher": "MarketWatch",
+  "timestamp": "2026-02-01T20:41:00",
+  "providerPublishTime": 1769974860.0,
+  "text": "If the first month of 2026 can be any guide to the rest of the year, investors should buckle up.",
+  "thumbnail": "https://media.zenfs.com/en/marketwatch_hosted_869/142663a05276e753479e74ab13454bd8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "YEAR",
+    "A",
+    "THIS",
+    "OF",
+    "BIG",
+    "IF",
+    "BE",
+    "FOR",
+    "GUIDE",
+    "TO"
+  ],
+  "relatedTickers": [
+    "YEAR",
+    "A",
+    "THIS",
+    "OF",
+    "BIG",
+    "IF",
+    "BE",
+    "FOR",
+    "GUIDE",
+    "TO"
+  ]
+}

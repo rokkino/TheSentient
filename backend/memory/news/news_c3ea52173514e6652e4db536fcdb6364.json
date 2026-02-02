@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Investors are about to enter the 'Alphabet game for AI': Analyst",
+  "link": "https://finance.yahoo.com/video/investors-enter-alphabet-game-ai-172451541.html",
+  "publisher": "Yahoo Finance Video",
+  "timestamp": "2026-02-02T17:24:51",
+  "providerPublishTime": 1770049491.0,
+  "text": "Amazon (AMZN) and Alphabet (GOOG, GOOGL) are set to report earnings results this week, with Wall Street's attention focused on AI spending and cloud revenue figures. Lopez Research Founder Maribel Lopez comes on Market Catalysts to discuss this week's earnings expectations and what it will all mean for the next phase of the AI cycle. To watch more expert insights and analysis on the latest market action, check out more&nbsp;Market Catalysts.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/1e841ce0-0059-11f1-b6ee-e553c00a4b95",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ALL",
+    "ARE",
+    "NEXT",
+    "WEEK",
+    "WATCH",
+    "OUT",
+    "FOR",
+    "AND",
+    "CYCLE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "ARE",
+    "NEXT",
+    "WEEK",
+    "WATCH",
+    "OUT",
+    "FOR",
+    "AND",
+    "CYCLE",
+    "ON"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Knowles Corp stock hits 52-week high at $25.33",
+  "link": "https://www.investing.com/news/company-news/knowles-corp-stock-hits-52week-high-at-2533-93CH-4479657",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:03:59",
+  "providerPublishTime": 1770051839.0,
+  "text": "Knowles Corp stock hits 52-week high at $25.33",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CORP",
+    "WEEK",
+    "HITS",
+    "STOCK",
+    "HIGH",
+    "AT"
+  ],
+  "relatedTickers": [
+    "CORP",
+    "WEEK",
+    "HITS",
+    "STOCK",
+    "HIGH",
+    "AT"
+  ]
+}

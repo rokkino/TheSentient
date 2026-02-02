@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Simon Property earnings beat by $7.51, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/simon-property-earnings-beat-by-751-revenue-topped-estimates-4479945",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:12:01",
+  "providerPublishTime": 1770063121.0,
+  "text": "Simon Property earnings beat by $7.51, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SIMON",
+    "BEAT",
+    "BY"
+  ],
+  "relatedTickers": [
+    "SIMON",
+    "BEAT",
+    "BY"
+  ]
+}

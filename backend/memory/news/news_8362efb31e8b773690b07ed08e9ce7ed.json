@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia Stock Dips On OpenAI Funding Issues",
+  "link": "https://www.investors.com/news/technology/nvidia-stock-nvda-openai-funding-issues/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-02T16:35:20",
+  "providerPublishTime": 1770046520.0,
+  "text": "Nvidia stock dipped Monday on conflicting news reports that the artificial intelligence chipmaker lacked confidence in major customer OpenAI.",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/6ed93cc55e5d093dc817fdc2831992c3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THAT",
+    "MAJOR",
+    "ON",
+    "NVDA",
+    "DIPS",
+    "THE",
+    "NEWS",
+    "IN",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "THAT",
+    "MAJOR",
+    "ON",
+    "NVDA",
+    "DIPS",
+    "THE",
+    "NEWS",
+    "IN",
+    "STOCK"
+  ]
+}

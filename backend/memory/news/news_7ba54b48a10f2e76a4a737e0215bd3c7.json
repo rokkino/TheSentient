@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wanted: CEOs with backbone",
+  "link": "https://www.ft.com/content/89d0f1b2-3524-429b-b328-b2cb9ba11d15",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T05:00:19",
+  "providerPublishTime": 1770004819.0,
+  "text": "The killing of Alex Pretti in Minneapolis is a moment for leaders to challenge America’s direction",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F3256e92a-dc9c-4f40-b422-7d095d49dff0.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "IS",
+    "FOR",
+    "TO",
+    "S",
+    "IN",
+    "THE",
+    "A",
+    "CEOS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "IS",
+    "FOR",
+    "TO",
+    "S",
+    "IN",
+    "THE",
+    "A",
+    "CEOS",
+    "OF"
+  ]
+}

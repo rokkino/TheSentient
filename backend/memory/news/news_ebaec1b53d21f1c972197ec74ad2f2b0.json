@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia is Poised to Make \"The Largest Investment We've Ever Made.\" Here's What It Means for Investors",
+  "link": "https://finance.yahoo.com/news/nvidia-poised-largest-investment-weve-184930469.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T18:49:30",
+  "providerPublishTime": 1770054570.0,
+  "text": "Enigmatic CEO Jensen Huang called the potential investment \"huge.\"",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/4fa28e106283e681d68f3014f20e53da",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "VE",
+    "CEO",
+    "HERE",
+    "IS",
+    "HUANG",
+    "IT",
+    "FOR",
+    "WHAT",
+    "TO",
+    "S"
+  ],
+  "relatedTickers": [
+    "VE",
+    "CEO",
+    "HERE",
+    "IS",
+    "HUANG",
+    "IT",
+    "FOR",
+    "WHAT",
+    "TO",
+    "S"
+  ]
+}

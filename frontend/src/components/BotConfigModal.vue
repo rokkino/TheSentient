@@ -21,7 +21,7 @@
               required
             >
               <option value="Alpaca">Alpaca (Stock Trading)</option>
-              <option value="InteractiveBrokers">Interactive Brokers (Coming Soon)</option>
+              <option value="InteractiveBrokers">Interactive Brokers (TWS/Gateway)</option>
               <option value="Plus500">Plus500 (Coming Soon)</option>
               <option value="Binance">Binance (Crypto - Coming Soon)</option>
               <option value="XTB">XTB (Coming Soon)</option>
@@ -46,9 +46,15 @@
             </p>
           </div>
 
-          <div v-if="['InteractiveBrokers', 'Plus500', 'Binance', 'XTB', 'Pepperstone'].includes(config.broker)" class="info-message">
+          <div v-if="['Plus500', 'Binance', 'XTB', 'Pepperstone'].includes(config.broker)" class="info-message">
             <p><strong>{{ config.broker }} integration is coming soon!</strong></p>
             <p>You can save this selection, but trading features are not yet available for this broker.</p>
+          </div>
+
+          <div v-if="config.broker === 'InteractiveBrokers' && !config.account_id" class="info-message">
+            <p><strong>Interactive Brokers Configuration</strong></p>
+            <p>Per usare Interactive Brokers, devi avere TWS (Trader Workstation) o IB Gateway in esecuzione sul tuo computer.</p>
+            <p>Aggiungi un account IB nel tuo Profilo > Accounts per configurare host, porta e altre impostazioni.</p>
           </div>
 
 
@@ -249,7 +255,7 @@ const saveConfig = async () => {
   
   // Validate required fields based on broker (only if no global account used)
   // Validate required fields based on broker
-  if ((config.value.broker === 'IG' || config.value.broker === 'Alpaca') && !config.value.account_id) {
+  if ((config.value.broker === 'IG' || config.value.broker === 'Alpaca' || config.value.broker === 'InteractiveBrokers') && !config.value.account_id) {
     error.value = 'Please select a linked account.'
     return
   }

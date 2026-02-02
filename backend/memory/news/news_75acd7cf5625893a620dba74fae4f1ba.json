@@ -1,0 +1,33 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Waymo Targets $110 Billion Valuation in Massive $16 Billion Round",
+  "link": "https://finance.yahoo.com/news/waymo-targets-110-billion-valuation-192525169.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:25:25",
+  "providerPublishTime": 1770056725.0,
+  "text": "Alphabet unit seeks capital to scale robotaxi operations",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "SEEKS",
+    "WAYMO",
+    "UNIT",
+    "TO",
+    "ROUND",
+    "IN",
+    "SCALE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "SEEKS",
+    "WAYMO",
+    "UNIT",
+    "TO",
+    "ROUND",
+    "IN",
+    "SCALE"
+  ]
+}

@@ -1282,10 +1282,144 @@ const clearChatHistory = () => {
   font-style: italic;
 }
 
+@media (max-width: 768px) {
+  .bot-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .bot-header {
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .bot-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bot-name {
+    font-size: 18px;
+  }
+
+  .bot-owner {
+    font-size: 13px;
+  }
+
+  .bot-status-row {
+    width: 100%;
+  }
+
+  .bot-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stat-item {
+    padding: 10px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .bot-actions {
+    gap: 10px;
+  }
+
+  .action-btn {
+    min-height: 40px;
+  }
+
+  .check-orders-panel {
+    max-height: 92vh;
+  }
+
+  .check-orders-summary {
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .orders-section {
+    padding: 12px 16px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .check-orders-chat .chat-body {
+    padding: 12px 16px;
+  }
+
+  .check-orders-chat .chat-input-container {
+    padding: 10px 16px;
+  }
+}
+
 @media (max-width: 480px) {
+  .bot-card {
+    padding: 16px;
+  }
+
+  .bot-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .bot-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .check-orders-summary {
+    flex-direction: column;
+  }
+
+  .orders-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-order {
+    width: 100%;
+  }
+
+  .add-order-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-input,
+  .add-select,
+  .datetime-input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .time-quick-btns {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .orders-table-container {
+    border-radius: 10px;
+  }
+
+  .orders-table {
+    font-size: 12px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    white-space: nowrap;
   }
 }
 

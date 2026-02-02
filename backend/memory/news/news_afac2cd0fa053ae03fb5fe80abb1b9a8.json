@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Why is Crypto Down? Bitcoin, Ethereum, and XRP Prices Are Sliding Together Today",
+  "link": "https://finance.yahoo.com/news/why-crypto-down-bitcoin-ethereum-063926160.html",
+  "publisher": "99bitcoins",
+  "timestamp": "2026-02-02T06:39:26",
+  "providerPublishTime": 1770010766.0,
+  "text": "Bitcoin, Ethereum, and XRP fell hard last week as a broad crypto sell-off ripped through the market. Total crypto value slid to $2.66T. At the moment, it is down by over -3% in the last 24 hours, erasing roughly $400Bn in less than a week. Despite the slump, traders are ...",
+  "thumbnail": "https://media.zenfs.com/en/99bitcoins_us_315/a2152565e44c4a2400ef895a6e89314a",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SELL",
+    "ARE",
+    "AS",
+    "TODAY",
+    "WEEK",
+    "TOTAL",
+    "HARD",
+    "AND",
+    "DOWN",
+    "IN"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "ARE",
+    "AS",
+    "TODAY",
+    "WEEK",
+    "TOTAL",
+    "HARD",
+    "AND",
+    "DOWN",
+    "IN"
+  ]
+}

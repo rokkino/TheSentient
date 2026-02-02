@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia and Oracle are sending similar warning signs about the AI trade",
+  "link": "https://www.marketwatch.com/story/nvidia-and-oracle-are-sending-similar-warning-signs-about-the-ai-trade-415d0a62?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T16:23:00",
+  "providerPublishTime": 1770045780.0,
+  "text": "Oracle is raising more debt and Nvidia is walking back its OpenAI investment target. Both are signs that the AI trade could be on shaky ground, according to one analyst.",
+  "thumbnail": "https://images.mktw.net/im-48627040",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "AND",
+    "ON",
+    "BE",
+    "ONE",
+    "BACK",
+    "SHAKY",
+    "ITS",
+    "SIGNS",
+    "ABOUT"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AND",
+    "ON",
+    "BE",
+    "ONE",
+    "BACK",
+    "SHAKY",
+    "ITS",
+    "SIGNS",
+    "ABOUT"
+  ]
+}

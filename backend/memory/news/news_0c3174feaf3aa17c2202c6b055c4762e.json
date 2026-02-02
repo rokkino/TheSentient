@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold and silver deepen historic slump",
+  "link": "https://www.ft.com/content/e830a2cd-604f-4207-8ab8-fefafc6b5d70",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T17:47:58",
+  "providerPublishTime": 1770050878.0,
+  "text": "Losses in precious metals follow record-breaking rally",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5e7f0ffc-8e6c-4dfa-ab28-e7277786c1a3.png?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SLUMP",
+    "AND",
+    "GOLD",
+    "IN",
+    "RALLY"
+  ],
+  "relatedTickers": [
+    "SLUMP",
+    "AND",
+    "GOLD",
+    "IN",
+    "RALLY"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Why AMD Is Set to Outperform NVIDIA - A Top Buy AI Stock",
+  "link": "https://finance.yahoo.com/news/why-amd-set-outperform-nvidia-200000190.html",
+  "publisher": "Zacks",
+  "timestamp": "2026-02-02T20:00:00",
+  "providerPublishTime": 1770058800.0,
+  "text": "AMD's AI push, competitive chip pricing, and growing customer adoption have driven a 107% rally, raising questions about whether the stock can keep outpacing rivals.",
+  "thumbnail": "https://media.zenfs.com/en/zacks.com/e5c20aa8820202380aaf8bb5bc54831d",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "AND",
+    "WHY",
+    "RALLY",
+    "CHIP",
+    "AMD",
+    "TOP",
+    "A",
+    "PUSH",
+    "HAVE"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "AND",
+    "WHY",
+    "RALLY",
+    "CHIP",
+    "AMD",
+    "TOP",
+    "A",
+    "PUSH",
+    "HAVE"
+  ]
+}

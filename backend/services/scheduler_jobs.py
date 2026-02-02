@@ -323,6 +323,7 @@ async def execute_orders_job():
         from services.bot_service import bot_service
         from services.ig_service import IGMarketsService
         from services.alpaca_service import AlpacaService
+        from services.interactive_brokers_service import InteractiveBrokersService
         
         decisions_by_bot = {}
         for d in pending_decisions:
@@ -380,6 +381,10 @@ async def execute_orders_job():
                              # We can use market_data_service as fallback
                              quote = market_data_service.get_quote(symbol) 
                              current_price = quote.get('price', 0.0)
+                        elif isinstance(service, InteractiveBrokersService):
+                             # For IB, use market_data_service for price
+                             quote = market_data_service.get_quote(symbol) 
+                             current_price = quote.get('price', 0.0)
                     except Exception as px:
                         print(f"[JOB] Could not get price for {symbol}: {px}")
                     
@@ -413,6 +418,13 @@ async def execute_orders_job():
                         )
                     elif isinstance(service, AlpacaService):
                         # Alpaca Execution
+                        order_result = await service.place_market_order(
+                            symbol=symbol,
+                            qty=qty,
+                            side=action.lower()
+                        )
+                    elif isinstance(service, InteractiveBrokersService):
+                        # Interactive Brokers Execution
                         order_result = await service.place_market_order(
                             symbol=symbol,
                             qty=qty,

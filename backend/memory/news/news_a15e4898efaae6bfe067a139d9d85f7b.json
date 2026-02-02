@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Multi-Color Wins Access to Chapter 11 Loan Over Rival Lenders",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/multi-color-wins-access-to-chapter-11-loan-over-rival-lenders",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T17:34:17",
+  "providerPublishTime": 1770050057.0,
+  "text": "Private equity owned Multi-Color Corp. won court approval to start tapping a $250 million Chapter 11 loan, defeating an challenge from rival lenders that floated a competing financing.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0lWa4U0diNA/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OWNED",
+    "AN",
+    "CORP",
+    "MULTI",
+    "COURT",
+    "FROM",
+    "START",
+    "RIVAL",
+    "TO",
+    "WINS"
+  ],
+  "relatedTickers": [
+    "OWNED",
+    "AN",
+    "CORP",
+    "MULTI",
+    "COURT",
+    "FROM",
+    "START",
+    "RIVAL",
+    "TO",
+    "WINS"
+  ]
+}

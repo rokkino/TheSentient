@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Australia Names Sarah Court ASIC Chair, Taking Helm After Longo",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/australia-names-sarah-court-asic-chair-taking-helm-after-longo",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T21:23:18",
+  "providerPublishTime": 1770063798.0,
+  "text": "Sarah Court will become the head of Australia’s markets watchdog and the first woman to take the helm, replacing outgoing chairman Joe Longo.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ibMORmAK9N90/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHAIR",
+    "HEAD",
+    "COURT",
+    "AFTER",
+    "AND",
+    "SARAH",
+    "FIRST",
+    "WILL",
+    "NAMES",
+    "TAKE"
+  ],
+  "relatedTickers": [
+    "CHAIR",
+    "HEAD",
+    "COURT",
+    "AFTER",
+    "AND",
+    "SARAH",
+    "FIRST",
+    "WILL",
+    "NAMES",
+    "TAKE"
+  ]
+}

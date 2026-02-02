@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13D/A UWM Holdings Corporation For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-13da-uwm-holdings-corporation-for-2-february-93CH-4479915",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:09:11",
+  "providerPublishTime": 1770062951.0,
+  "text": "Form 13D/A UWM Holdings Corporation For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "FOR",
+    "FORM",
+    "UWM"
+  ],
+  "relatedTickers": [
+    "A",
+    "FOR",
+    "FORM",
+    "UWM"
+  ]
+}

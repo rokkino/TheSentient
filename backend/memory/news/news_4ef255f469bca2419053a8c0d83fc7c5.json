@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Sector Update: Tech Stocks Gain Late Afternoon",
+  "link": "https://finance.yahoo.com/news/sector-tech-stocks-gain-afternoon-204336795.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T20:43:36",
+  "providerPublishTime": 1770061416.0,
+  "text": "Tech stocks were higher late Monday afternoon, with the State Street Technology Select Sector SPDR E",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "WITH",
+    "GAIN",
+    "TECH",
+    "LATE",
+    "E",
+    "STATE",
+    "THE",
+    "SPDR",
+    "WERE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "WITH",
+    "GAIN",
+    "TECH",
+    "LATE",
+    "E",
+    "STATE",
+    "THE",
+    "SPDR",
+    "WERE"
+  ]
+}

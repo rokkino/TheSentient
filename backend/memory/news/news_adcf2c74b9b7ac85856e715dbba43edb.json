@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here’s the one thing the bond market is hoping to avoid on Wednesday",
+  "link": "https://www.marketwatch.com/story/heres-the-one-thing-the-bond-market-is-hoping-to-avoid-on-wednesday-62a19b06?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T17:39:00",
+  "providerPublishTime": 1770050340.0,
+  "text": "Any sign that the Treasury might significantly increase the sizes of its future note and bond auctions could rattle traders.",
+  "thumbnail": "https://images.mktw.net/im-98817136",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NOTE",
+    "AND",
+    "ON",
+    "BOND",
+    "SIZES",
+    "THING",
+    "ONE",
+    "HERE",
+    "ITS",
+    "ANY"
+  ],
+  "relatedTickers": [
+    "NOTE",
+    "AND",
+    "ON",
+    "BOND",
+    "SIZES",
+    "THING",
+    "ONE",
+    "HERE",
+    "ITS",
+    "ANY"
+  ]
+}

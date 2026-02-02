@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Confident Warsh Will Be a Good Fed Chair says Former Atlanta Fed President",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/confident-warsh-will-be-a-good-fed-chair-says-lockhart-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T17:45:25",
+  "providerPublishTime": 1770050725.0,
+  "text": "Donald Trump named Kevin Warsh to be the next chair of the Federal Reserve, ending months of speculation over who’d take charge of US interest rates as the president pushes for big cuts. \nTrump elevated Warsh, who’s advised him on economic policy and previously served as a Fed governor, to succeed Jerome Powell when his term at the helm ends in May. It marks a comeback for Warsh, 55, who’s called for a major overhaul of the Fed but was passed over for the top job in 2017 when Trump opted for Powell. Dennis Lockhart, Former Atlanta Fed President joins Bloomberg Intelligence to discuss. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDOQfKs.HNQc/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JOB",
+    "WARSH",
+    "CHAIR",
+    "US",
+    "AS",
+    "NEXT",
+    "FOR",
+    "ENDS",
+    "AND",
+    "MAY"
+  ],
+  "relatedTickers": [
+    "JOB",
+    "WARSH",
+    "CHAIR",
+    "US",
+    "AS",
+    "NEXT",
+    "FOR",
+    "ENDS",
+    "AND",
+    "MAY"
+  ]
+}

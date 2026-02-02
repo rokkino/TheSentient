@@ -1431,6 +1431,17 @@ onUnmounted(() => {
 
   .chat-input-container {
     padding: 10px 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .input-wrapper {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .send-btn {
+    flex: 1 1 100%;
+    justify-content: center;
   }
 }
 </style>

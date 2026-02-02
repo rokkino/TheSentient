@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Fed’s Bostic: I Don’t Know Kevin Warsh, But Wish Him the Best",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/fed-s-bostic-i-don-t-know-warsh-but-wish-him-the-best-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T18:39:35",
+  "providerPublishTime": 1770053975.0,
+  "text": "Federal Reserve Bank of Atlanta President Raphael Bostic describes the “very large job” performed by the Federal Reserve chair and wishes Kevin Warsh well after he was nominated by President Donald Trump to succeed Jerome Powell as Fed chair. Bostic speaks to the Rotary Club of Atlanta. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iQicDbArtHKQ/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JOB",
+    "WARSH",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "AND",
+    "WELL",
+    "I",
+    "VERY",
+    "LARGE"
+  ],
+  "relatedTickers": [
+    "JOB",
+    "WARSH",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "AND",
+    "WELL",
+    "I",
+    "VERY",
+    "LARGE"
+  ]
+}

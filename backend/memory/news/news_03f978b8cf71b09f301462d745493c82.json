@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Global Bond Sales Reach $1 Trillion at Their Fastest Pace Ever",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/global-bond-sales-reach-1-trillion-at-their-fastest-pace-ever",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T21:44:16",
+  "providerPublishTime": 1770065056.0,
+  "text": "Global publicly syndicated bond issuance has reached $1 trillion in record time as borrowers seize soaring demand to lock in relatively cheap costs.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iufvEpo807EI/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOCK",
+    "AS",
+    "HAS",
+    "SALES",
+    "REACH",
+    "TO",
+    "SEIZE",
+    "CHEAP",
+    "TIME",
+    "BOND"
+  ],
+  "relatedTickers": [
+    "LOCK",
+    "AS",
+    "HAS",
+    "SALES",
+    "REACH",
+    "TO",
+    "SEIZE",
+    "CHEAP",
+    "TIME",
+    "BOND"
+  ]
+}

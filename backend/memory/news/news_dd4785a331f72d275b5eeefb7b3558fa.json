@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "MGIC Investment reports in-line Q4 earnings, top-line miss as YoY loss ratio up",
+  "link": "https://www.investing.com/news/earnings/mgic-investment-reports-inline-q4-earnings-topline-miss-as-yoy-loss-ratio-up-93CH-4480050",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:23:24",
+  "providerPublishTime": 1770063804.0,
+  "text": "MGIC Investment reports in-line Q4 earnings, top-line miss as YoY loss ratio up",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "MGIC",
+    "LOSS",
+    "TOP",
+    "YOY",
+    "LINE",
+    "UP",
+    "IN",
+    "RATIO",
+    "MISS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "MGIC",
+    "LOSS",
+    "TOP",
+    "YOY",
+    "LINE",
+    "UP",
+    "IN",
+    "RATIO",
+    "MISS"
+  ]
+}

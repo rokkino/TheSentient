@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump announces creation of critical mineral reserve",
+  "link": "https://www.investing.com/news/stock-market-news/trump-announces-creation-of-critical-mineral-reserve-4480160",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:49:18",
+  "providerPublishTime": 1770065358.0,
+  "text": "Trump announces creation of critical mineral reserve",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "TRUMP"
+  ],
+  "relatedTickers": [
+    "OF",
+    "TRUMP"
+  ]
+}

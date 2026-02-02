@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Why Micron Stock Popped Again Today",
+  "link": "https://finance.yahoo.com/news/why-micron-stock-popped-again-174456544.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T17:44:56",
+  "providerPublishTime": 1770050696.0,
+  "text": "Micron's more than quadrupled in price already, and its run is not yet done.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/9d3e891c8e2f39d1b43a0e1d4c89dec7",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ITS",
+    "PRICE",
+    "DONE",
+    "MORE",
+    "TODAY",
+    "IS",
+    "YET",
+    "NOT",
+    "AND",
+    "S"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "PRICE",
+    "DONE",
+    "MORE",
+    "TODAY",
+    "IS",
+    "YET",
+    "NOT",
+    "AND",
+    "S"
+  ]
+}

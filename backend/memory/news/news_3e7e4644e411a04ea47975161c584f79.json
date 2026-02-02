@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Climb on Factory Data as Gold Selloff Eases: Markets Wrap",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/dollar-firms-stocks-look-weaker-as-sentiment-ebbs-markets-wrap",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T22:40:41",
+  "providerPublishTime": 1769982041.0,
+  "text": "Wall Street kicked off February with gains in stocks as solid factory data bolstered optimism about Corporate America while losses in gold and silver moderated after Friday’s dramatic rout. Bond yields rose alongside the dollar. The crypto world rebounded, with Bitcoin jumping.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDrX72vwAMGs/v36/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOLID",
+    "AS",
+    "AFTER",
+    "AND",
+    "ON",
+    "BOND",
+    "ROSE",
+    "IN",
+    "GAINS",
+    "ROUT"
+  ],
+  "relatedTickers": [
+    "SOLID",
+    "AS",
+    "AFTER",
+    "AND",
+    "ON",
+    "BOND",
+    "ROSE",
+    "IN",
+    "GAINS",
+    "ROUT"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Super Micro Computer Has Room to Outperform, Underperform in Fiscal Q2, Wedbush Says",
+  "link": "https://finance.yahoo.com/news/super-micro-computer-room-outperform-164640289.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T16:46:40",
+  "providerPublishTime": 1770047200.0,
+  "text": "Super Micro Computer (SMCI) has the potential to outperform or underperform market expectations in f",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SMCI",
+    "HAS",
+    "F",
+    "TO",
+    "MICRO",
+    "NVDA",
+    "SAYS",
+    "ROOM",
+    "SUPER",
+    "IN"
+  ],
+  "relatedTickers": [
+    "SMCI",
+    "HAS",
+    "F",
+    "TO",
+    "MICRO",
+    "NVDA",
+    "SAYS",
+    "ROOM",
+    "SUPER",
+    "IN"
+  ]
+}

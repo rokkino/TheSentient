@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Exclusive: OpenAI is unsatisfied with some Nvidia chips and looking for alternatives, sources say",
+  "link": "https://finance.yahoo.com/news/exclusive-openai-unsatisfied-nvidia-chips-211540696.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T21:15:40",
+  "providerPublishTime": 1770063340.0,
+  "text": "OpenAI is unsatisfied with some of Nvidia’s latest artificial intelligence chips, and it has sought alternatives since last year, eight sources familiar with the matter said, potentially complicating the relationship between the two highest-profile players in the AI boom.  The ChatGPT-maker’s shift in strategy, the details of which are first reported here, is over ​an increasing emphasis on chips used to perform specific elements of AI inference, the process when an AI model such as the one that powers the ChatGPT app responds to customer queries and requests.  Nvidia ‌remains dominant in chips for training large AI models, while inference has become a new front in the competition.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/2a0038426939073fb4c739b33963f17e",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARE",
+    "AS",
+    "YEAR",
+    "FOR",
+    "BOOM",
+    "AND",
+    "WHICH",
+    "TWO",
+    "USED",
+    "SHIFT"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AS",
+    "YEAR",
+    "FOR",
+    "BOOM",
+    "AND",
+    "WHICH",
+    "TWO",
+    "USED",
+    "SHIFT"
+  ]
+}

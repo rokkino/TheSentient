@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Apple Inc. (AAPL) Acquires Israeli Startup Q.ai For Approximately $2 Billion: Report",
+  "link": "https://finance.yahoo.com/news/apple-inc-aapl-acquires-israeli-175510473.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T17:55:10",
+  "providerPublishTime": 1769964910.0,
+  "text": "Apple Inc. (NASDAQ:AAPL) is among the 12 Most Profitable NASDAQ Stocks to Buy Right Now. The tech giant has acquired Israeli AI audio startup Q.ai, a company representative told the media on Thursday. While the representative did not reveal a purchase price, the Financial Times, quoting people familiar with the matter, said the deal was […]",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/410ac07c4c90786d8592963501a2ed84",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TIMES",
+    "TOLD",
+    "AMONG",
+    "MEDIA",
+    "A",
+    "MOST",
+    "TECH",
+    "Q",
+    "DID",
+    "WHILE"
+  ],
+  "relatedTickers": [
+    "TIMES",
+    "TOLD",
+    "AMONG",
+    "MEDIA",
+    "A",
+    "MOST",
+    "TECH",
+    "Q",
+    "DID",
+    "WHILE"
+  ]
+}

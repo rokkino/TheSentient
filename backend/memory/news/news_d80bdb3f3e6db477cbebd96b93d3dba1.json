@@ -1,0 +1,31 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Robinhood Slides as Crypto Weakness Hits Risk Assets",
+  "link": "https://finance.yahoo.com/news/robinhood-slides-crypto-weakness-hits-195902732.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:59:02",
+  "providerPublishTime": 1770058742.0,
+  "text": "Bitcoin drop drags on crypto-linked stocks",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "DRAGS",
+    "AS",
+    "HITS",
+    "ON",
+    "RISK",
+    "DROP"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "DRAGS",
+    "AS",
+    "HITS",
+    "ON",
+    "RISK",
+    "DROP"
+  ]
+}

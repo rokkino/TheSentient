@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Analyst warns Bitcoin could drop to $60K next",
+  "link": "https://finance.yahoo.com/news/analyst-warns-bitcoin-could-drop-192528247.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-02T19:25:28",
+  "providerPublishTime": 1770056728.0,
+  "text": "For people like me who are in crypto, weekends are no longer enjoyable. One move, one comment, one decision, and our entire portfolio can turn red. Last weekend, crypto investors globally saw the market nosedive to all-time lows. Bitcoin plunged to the 70's zone, dropping close to $74,000, ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/805571c46e8eb14cc2c9646b0a452c48",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ALL",
+    "ME",
+    "ARE",
+    "LIKE",
+    "NEXT",
+    "FOR",
+    "AND",
+    "CLOSE",
+    "IN",
+    "LOWS"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "ME",
+    "ARE",
+    "LIKE",
+    "NEXT",
+    "FOR",
+    "AND",
+    "CLOSE",
+    "IN",
+    "LOWS"
+  ]
+}

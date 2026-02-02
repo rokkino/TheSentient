@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Jupiter brings Polymarket to Solana and lands $35 million investment deal",
+  "link": "https://finance.yahoo.com/news/jupiter-brings-polymarket-solana-lands-055341208.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-02T05:53:41",
+  "providerPublishTime": 1770008021.0,
+  "text": "Jupiter said Polymarket will be integrated on its platform, while ParaFi Capital has made a $35 million strategic investment in JUP with an extended lockup.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/756e89f9f899cbd72acfc17723141f3b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WITH",
+    "AN",
+    "ITS",
+    "A",
+    "HAS",
+    "JUP",
+    "DEAL",
+    "AND",
+    "TO",
+    "LANDS"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "AN",
+    "ITS",
+    "A",
+    "HAS",
+    "JUP",
+    "DEAL",
+    "AND",
+    "TO",
+    "LANDS"
+  ]
+}

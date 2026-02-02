@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Market Update: RCL, SBUX, UPS, VLO, XOM",
+  "link": "https://finance.yahoo.com/research/reports/ARGUS_46035_MarketUpdate_1770061762000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+  "publisher": "Argus Research",
+  "timestamp": "2026-02-02T19:49:22",
+  "providerPublishTime": 1770058162.0,
+  "text": "Market Update: RCL, SBUX, UPS, VLO, XOM",
+  "thumbnail": "https://s.yimg.com/uc/fin/img/non-sub-report-thumb.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RCL",
+    "SBUX",
+    "XOM",
+    "VLO",
+    "UPS"
+  ],
+  "relatedTickers": [
+    "RCL",
+    "SBUX",
+    "XOM",
+    "VLO",
+    "UPS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jim Cramer says achieving early retirement comes down to just 3 key assets in your investment portfolio",
+  "link": "https://finance.yahoo.com/news/jim-cramer-says-achieving-early-110700150.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T11:07:00",
+  "providerPublishTime": 1769940420.0,
+  "text": "Jim Cramer says achieving early retirement comes down to just 3 key assets in your investment portfolio",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_ecomm_711/f1633dd6d50ac4dbc4dd205ea49d0935",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "KEY",
+    "EARLY",
+    "JUST",
+    "COMES",
+    "YOUR",
+    "TO",
+    "DOWN",
+    "SAYS",
+    "IN",
+    "JIM"
+  ],
+  "relatedTickers": [
+    "KEY",
+    "EARLY",
+    "JUST",
+    "COMES",
+    "YOUR",
+    "TO",
+    "DOWN",
+    "SAYS",
+    "IN",
+    "JIM"
+  ]
+}

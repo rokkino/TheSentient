@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13D/A E.W. SCRIPPS Co For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-13da-ew-scripps-co-for-2-february-93CH-4479916",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:09:12",
+  "providerPublishTime": 1770062952.0,
+  "text": "Form 13D/A E.W. SCRIPPS Co For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "W",
+    "FOR",
+    "E",
+    "FORM",
+    "A",
+    "CO"
+  ],
+  "relatedTickers": [
+    "W",
+    "FOR",
+    "E",
+    "FORM",
+    "A",
+    "CO"
+  ]
+}

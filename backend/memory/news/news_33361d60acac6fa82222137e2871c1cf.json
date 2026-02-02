@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Copper Pares Losses as Signs of Dip-Buying Emerge in China",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/copper-extends-slump-as-traders-eye-volatility-across-metals",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T01:21:03",
+  "providerPublishTime": 1769991663.0,
+  "text": "Copper clawed back some losses after a heavy sell-off in Asian trading hours amid signs that buyers in China who’ve been put off by high prices are dipping back into the market.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ilbnK8dY.tTU/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELL",
+    "ARE",
+    "AS",
+    "AFTER",
+    "INTO",
+    "IN",
+    "ASIAN",
+    "DIP",
+    "CHINA",
+    "AMID"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "ARE",
+    "AS",
+    "AFTER",
+    "INTO",
+    "IN",
+    "ASIAN",
+    "DIP",
+    "CHINA",
+    "AMID"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Broadcom and TSMC to emerge as big winners in the custom AI chip boom",
+  "link": "https://finance.yahoo.com/news/broadcom-and-tsmc-to-emerge-as-big-winners-in-the-custom-ai-chip-boom-130336239.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-02T13:03:36",
+  "providerPublishTime": 1770033816.0,
+  "text": "Nvidia still reigns, but a structural shift toward custom silicon is creating a new hierarchy of winners and laggards, and analysts are split.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-01/be491b90-fe01-11f0-b5ff-fae929deddf2",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "AS",
+    "SPLIT",
+    "BOOM",
+    "AND",
+    "SHIFT",
+    "IN",
+    "CHIP",
+    "BIG",
+    "A"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AS",
+    "SPLIT",
+    "BOOM",
+    "AND",
+    "SHIFT",
+    "IN",
+    "CHIP",
+    "BIG",
+    "A"
+  ]
+}

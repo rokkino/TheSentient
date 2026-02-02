@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OpenAI launches standalone Codex app for Apple computers",
+  "link": "https://www.cnbc.com/2026/02/02/openai-codex-app-apple-computers.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T18:09:32",
+  "providerPublishTime": 1770052172.0,
+  "text": "OpenAI is trying to win market share from rivals like Anthropic and Cursor as AI coding tools gain in popularity.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CODEX",
+    "GAIN",
+    "APP",
+    "LIKE",
+    "AS",
+    "APPLE",
+    "IS",
+    "FROM",
+    "FOR",
+    "AND"
+  ],
+  "relatedTickers": [
+    "CODEX",
+    "GAIN",
+    "APP",
+    "LIKE",
+    "AS",
+    "APPLE",
+    "IS",
+    "FROM",
+    "FOR",
+    "AND"
+  ]
+}

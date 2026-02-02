@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Undercover investigation of Meta heads to trial in New Mexico in first stand-alone case by state",
+  "link": "https://finance.yahoo.com/news/undercover-investigation-meta-heads-trial-052158804.html",
+  "publisher": "Associated Press Finance",
+  "timestamp": "2026-02-01T05:21:58",
+  "providerPublishTime": 1769919718.0,
+  "text": "Undercover investigation of Meta heads to trial in New Mexico in first stand-alone case by state",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-12/652c95c0-d758-11f0-baef-d3a36150de58",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HEADS",
+    "NEW",
+    "META",
+    "BY",
+    "ALONE",
+    "TO",
+    "TRIAL",
+    "FIRST",
+    "STATE",
+    "IN"
+  ],
+  "relatedTickers": [
+    "HEADS",
+    "NEW",
+    "META",
+    "BY",
+    "ALONE",
+    "TO",
+    "TRIAL",
+    "FIRST",
+    "STATE",
+    "IN"
+  ]
+}

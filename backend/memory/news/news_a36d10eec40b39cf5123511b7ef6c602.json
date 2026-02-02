@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US judge dissolves order blocking DHS from destroying shooting evidence",
+  "link": "https://www.investing.com/news/general-news/judge-dissolves-order-blocking-us-dhs-from-destroying-shooting-evidence-4480052",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:49:36",
+  "providerPublishTime": 1770065376.0,
+  "text": "US judge dissolves order blocking DHS from destroying shooting evidence",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JUDGE",
+    "ORDER",
+    "FROM",
+    "DHS",
+    "US"
+  ],
+  "relatedTickers": [
+    "JUDGE",
+    "ORDER",
+    "FROM",
+    "DHS",
+    "US"
+  ]
+}

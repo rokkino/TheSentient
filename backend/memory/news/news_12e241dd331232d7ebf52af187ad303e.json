@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How Russia weaponised global banking to silence dissidents",
+  "link": "https://www.ft.com/content/9f499f4d-f78b-4154-aa2e-cabe9bd22d16",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-01T16:00:03",
+  "providerPublishTime": 1769958003.0,
+  "text": "The Financial Action Task Force does not check whether terrorism labels are justified, letting autocrats abuse the system",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F65bd88f4-9b02-44a9-96fd-ea7b7ef59480.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHECK",
+    "THE",
+    "NOT",
+    "FORCE",
+    "HOW",
+    "TASK",
+    "ARE",
+    "DOES",
+    "ABUSE",
+    "TO"
+  ],
+  "relatedTickers": [
+    "CHECK",
+    "THE",
+    "NOT",
+    "FORCE",
+    "HOW",
+    "TASK",
+    "ARE",
+    "DOES",
+    "ABUSE",
+    "TO"
+  ]
+}

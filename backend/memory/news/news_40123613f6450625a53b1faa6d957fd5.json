@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Argentina buys $808 million in drawing rights from the U.S.",
+  "link": "https://www.investing.com/news/stock-market-news/argentina-buys-808-million-in-drawing-rights-from-the-us-93CH-4479808",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T20:22:22",
+  "providerPublishTime": 1770060142.0,
+  "text": "Argentina buys $808 million in drawing rights from the U.S.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUYS",
+    "FROM",
+    "U",
+    "S",
+    "IN",
+    "THE"
+  ],
+  "relatedTickers": [
+    "BUYS",
+    "FROM",
+    "U",
+    "S",
+    "IN",
+    "THE"
+  ]
+}

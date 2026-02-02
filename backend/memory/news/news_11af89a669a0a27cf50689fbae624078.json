@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘This is our second marriage’: We’re in our 60s. How do we split expenses if we move in together and rent one house?",
+  "link": "https://www.marketwatch.com/story/this-is-our-second-marriage-were-in-our-60s-how-do-we-split-expenses-if-we-move-in-together-and-rent-one-house-46d77656?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T20:00:00",
+  "providerPublishTime": 1770058800.0,
+  "text": "“We have been taking turns living in his house and my house.”",
+  "thumbnail": "https://images.mktw.net/im-27494383",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SPLIT",
+    "AND",
+    "RE",
+    "IN",
+    "HIS",
+    "ONE",
+    "THIS",
+    "DO",
+    "OUR",
+    "IF"
+  ],
+  "relatedTickers": [
+    "SPLIT",
+    "AND",
+    "RE",
+    "IN",
+    "HIS",
+    "ONE",
+    "THIS",
+    "DO",
+    "OUR",
+    "IF"
+  ]
+}

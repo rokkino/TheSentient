@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Big Banks Are Loading up on Bitcoin. Should Individual Investors Do the Same?",
+  "link": "https://finance.yahoo.com/news/big-banks-loading-bitcoin-individual-192000247.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T19:20:00",
+  "providerPublishTime": 1770056400.0,
+  "text": "The world's top cryptocurrency could still have a bright future.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/d19cff078a235de2de405f8e16597b50",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BTC-USD",
+    "HAVE",
+    "ARE",
+    "BIG",
+    "TOP",
+    "DO",
+    "COULD",
+    "S",
+    "WORLD",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "HAVE",
+    "ARE",
+    "BIG",
+    "TOP",
+    "DO",
+    "COULD",
+    "S",
+    "WORLD",
+    "ON"
+  ]
+}

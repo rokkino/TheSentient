@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Why Did Bitcoin Drop More Than 6% This Weekend?",
+  "link": "https://finance.yahoo.com/news/why-did-bitcoin-drop-more-213534202.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T21:35:34",
+  "providerPublishTime": 1770064534.0,
+  "text": "There's seemingly no place for investors to hide right now.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/011cc85c9d0bf32f0b234112ba6a6c7b",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "RIGHT",
+    "HIDE",
+    "MORE",
+    "THIS",
+    "FOR",
+    "NO",
+    "S",
+    "DROP",
+    "TO"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "RIGHT",
+    "HIDE",
+    "MORE",
+    "THIS",
+    "FOR",
+    "NO",
+    "S",
+    "DROP",
+    "TO"
+  ]
+}

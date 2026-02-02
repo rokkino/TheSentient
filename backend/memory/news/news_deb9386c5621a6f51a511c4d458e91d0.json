@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil Plunges as Iran Risks Ease and Commodities Selloff Deepens",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/latest-oil-market-news-and-analysis-for-feb-2",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T23:25:15",
+  "providerPublishTime": 1769984715.0,
+  "text": "Oil fell sharply as geopolitical risk premiums faded after US President Donald Trump said Washington is talking with Iran, while a broader commodities selloff exacerbated the slide.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikqIAOYHJY.c/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "AFTER",
+    "SLIDE",
+    "AND",
+    "EASE",
+    "IRAN",
+    "RISKS",
+    "FELL",
+    "OIL",
+    "WHILE"
+  ],
+  "relatedTickers": [
+    "AS",
+    "AFTER",
+    "SLIDE",
+    "AND",
+    "EASE",
+    "IRAN",
+    "RISKS",
+    "FELL",
+    "OIL",
+    "WHILE"
+  ]
+}

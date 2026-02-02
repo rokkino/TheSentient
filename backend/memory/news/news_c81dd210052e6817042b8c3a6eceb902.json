@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What Does the Street Think About Super Group Limited (SGHC)?",
+  "link": "https://finance.yahoo.com/news/does-street-think-super-group-073847464.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T07:38:47",
+  "providerPublishTime": 1769927927.0,
+  "text": "What Does the Street Think About Super Group Limited (SGHC)?",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/65457d49781354f8bf5450f382c43b9a",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SGHC",
+    "ABOUT",
+    "WHAT",
+    "GROUP",
+    "SUPER",
+    "DOES",
+    "THE",
+    "THINK"
+  ],
+  "relatedTickers": [
+    "SGHC",
+    "ABOUT",
+    "WHAT",
+    "GROUP",
+    "SUPER",
+    "DOES",
+    "THE",
+    "THINK"
+  ]
+}

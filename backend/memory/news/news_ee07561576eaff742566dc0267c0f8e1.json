@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dealers on Watch for Any Bessent Debt-Sale Move to Temper Yields",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/dealers-on-watch-for-any-bessent-debt-sale-move-to-temper-yields",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T11:00:01",
+  "providerPublishTime": 1770026401.0,
+  "text": "Bond market participants widely see the US Treasury refraining from any major shift in debt-issuance plans in a key statement Wednesday, though the Trump administration’s aggressive financial maneuvers elsewhere have put investors on watch for any surprise move to hold down yields.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iAdGRDU_XTuU/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WATCH",
+    "FROM",
+    "FOR",
+    "MAJOR",
+    "ON",
+    "BOND",
+    "SHIFT",
+    "DOWN",
+    "IN",
+    "KEY"
+  ],
+  "relatedTickers": [
+    "WATCH",
+    "FROM",
+    "FOR",
+    "MAJOR",
+    "ON",
+    "BOND",
+    "SHIFT",
+    "DOWN",
+    "IN",
+    "KEY"
+  ]
+}

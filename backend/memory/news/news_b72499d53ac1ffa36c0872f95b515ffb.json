@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "American brands have lost their cool",
+  "link": "https://www.ft.com/content/32762810-35b2-43ca-bd8c-502b95b73b83",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T17:55:54",
+  "providerPublishTime": 1770051354.0,
+  "text": "As boycotts spread, the US is discovering the price of being politically unpopular",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F86e9f023-ed67-4c48-8e27-abb846336edd.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HAVE",
+    "US",
+    "PRICE",
+    "AS",
+    "IS",
+    "BEING",
+    "LOST",
+    "COOL",
+    "THEIR",
+    "THE"
+  ],
+  "relatedTickers": [
+    "HAVE",
+    "US",
+    "PRICE",
+    "AS",
+    "IS",
+    "BEING",
+    "LOST",
+    "COOL",
+    "THEIR",
+    "THE"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PWV Outperforms the S&P 500 by 10 Points Thanks to Well-Timed Energy Bets",
+  "link": "https://finance.yahoo.com/news/pwv-outperforms-p-500-10-122357854.html",
+  "publisher": "24/7 Wall St.",
+  "timestamp": "2026-02-01T12:23:57",
+  "providerPublishTime": 1769945037.0,
+  "text": "PWV Outperforms the S&P 500 by 10 Points Thanks to Well-Timed Energy Bets",
+  "thumbnail": "https://media.zenfs.com/en/24_7_wall_st__718/48f0a3cdd7bf2499e00badf2dbc2abf7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PWV",
+    "TIMED",
+    "BY",
+    "S",
+    "TO",
+    "P",
+    "WELL",
+    "THE",
+    "BETS"
+  ],
+  "relatedTickers": [
+    "PWV",
+    "TIMED",
+    "BY",
+    "S",
+    "TO",
+    "P",
+    "WELL",
+    "THE",
+    "BETS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Vanguard Drops Average Fee to Just 0.06% With Latest Cuts",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/vanguard-drops-its-average-fee-to-just-0-06-with-latest-cuts",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T14:00:07",
+  "providerPublishTime": 1770037207.0,
+  "text": "Vanguard Group has unleashed another round of fee cuts across its lineup of mutual funds and exchange-traded funds, further tightening the screws on an industry already known for its low costs.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iqQpth.E7bk4/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JUST",
+    "FOR",
+    "AND",
+    "ON",
+    "FEE",
+    "CUTS",
+    "GROUP",
+    "WITH",
+    "ITS",
+    "FUNDS"
+  ],
+  "relatedTickers": [
+    "JUST",
+    "FOR",
+    "AND",
+    "ON",
+    "FEE",
+    "CUTS",
+    "GROUP",
+    "WITH",
+    "ITS",
+    "FUNDS"
+  ]
+}

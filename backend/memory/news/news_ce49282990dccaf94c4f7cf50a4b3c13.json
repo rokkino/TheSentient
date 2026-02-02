@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "$30M Stolen as Step Finance Treasury Wallets Compromised",
+  "link": "https://finance.yahoo.com/news/30m-stolen-step-finance-treasury-082939652.html",
+  "publisher": "Cryptonews",
+  "timestamp": "2026-02-01T08:29:39",
+  "providerPublishTime": 1769930979.0,
+  "text": "Step Finance, a major Solana DeFi platform, confirmed multiple treasury and fee wallets were compromised by a sophisticated attacker during Asian Pacific trading hours, resulting in the theft of approximately 261,854 SOL tokens worth roughly $30 million.The breach sent shockwaves through the Solana ecosystem as blockchain security firm CertiK flagged ...",
+  "thumbnail": "https://media.zenfs.com/en/cryptonews_us_711/a83069667afa1b7288ee90140fce2458",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STEP",
+    "MAJOR",
+    "IN",
+    "A",
+    "FIRM",
+    "HOURS",
+    "AS",
+    "THEFT",
+    "FEE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "STEP",
+    "MAJOR",
+    "IN",
+    "A",
+    "FIRM",
+    "HOURS",
+    "AS",
+    "THEFT",
+    "FEE",
+    "OF"
+  ]
+}

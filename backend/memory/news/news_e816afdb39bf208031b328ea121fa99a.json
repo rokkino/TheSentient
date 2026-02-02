@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nasdaq-Led Push to List Mag7 and IBIT Options Expiries Draw Traders",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/nasdaq-led-push-to-list-mag7-and-ibit-options-expiries-draw-traders",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T19:56:34",
+  "providerPublishTime": 1770058594.0,
+  "text": "Traders are embracing newly launched options that make it easier to place short-term bets on mega-cap technology stocks.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/il0LDWv.7y1I/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "LED",
+    "AND",
+    "SHORT",
+    "ON",
+    "IBIT",
+    "TERM",
+    "PUSH",
+    "PLACE",
+    "MEGA"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "LED",
+    "AND",
+    "SHORT",
+    "ON",
+    "IBIT",
+    "TERM",
+    "PUSH",
+    "PLACE",
+    "MEGA"
+  ]
+}

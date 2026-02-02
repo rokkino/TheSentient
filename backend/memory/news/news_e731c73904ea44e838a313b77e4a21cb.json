@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Starmer calls for Mandelson to lose House of Lords seat",
+  "link": "https://www.ft.com/content/f9d76ba8-12ef-40ca-9e4b-244efb879fc0",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T18:59:17",
+  "providerPublishTime": 1770055157.0,
+  "text": "Prime minister under fire from opponents, who say he should have taken action against Labour peer sooner",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F84129ca8-d13c-4fae-896f-823fae92247b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SEAT",
+    "HAVE",
+    "TAKEN",
+    "CALLS",
+    "UNDER",
+    "LORDS",
+    "HOUSE",
+    "FROM",
+    "FOR",
+    "FIRE"
+  ],
+  "relatedTickers": [
+    "SEAT",
+    "HAVE",
+    "TAKEN",
+    "CALLS",
+    "UNDER",
+    "LORDS",
+    "HOUSE",
+    "FROM",
+    "FOR",
+    "FIRE"
+  ]
+}

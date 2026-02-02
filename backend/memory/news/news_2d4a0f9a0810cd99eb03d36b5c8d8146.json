@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Olin stock price target maintained at $22 by Goldman Sachs",
+  "link": "https://www.investing.com/news/analyst-ratings/olin-stock-price-target-maintained-at-22-by-goldman-sachs-93CH-4480159",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:49:13",
+  "providerPublishTime": 1770065353.0,
+  "text": "Olin stock price target maintained at $22 by Goldman Sachs",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "OLIN",
+    "BY",
+    "SACHS",
+    "STOCK",
+    "AT"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "OLIN",
+    "BY",
+    "SACHS",
+    "STOCK",
+    "AT"
+  ]
+}

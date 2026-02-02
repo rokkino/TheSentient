@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mercuria Joins List of Traders Vying for Venezuela Oil",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/mercuria-joins-list-of-traders-vying-for-venezuela-oil",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T20:14:02",
+  "providerPublishTime": 1770059642.0,
+  "text": "Commodities trader Mercuria Energy Group is exploring Venezuelan oil trades, according to people with knowledge of the matter, after the Trump administration eased some sanctions on the South American country.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WITH",
+    "SOUTH",
+    "LIST",
+    "OIL",
+    "TRUMP",
+    "IS",
+    "JOINS",
+    "AFTER",
+    "SOME",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "SOUTH",
+    "LIST",
+    "OIL",
+    "TRUMP",
+    "IS",
+    "JOINS",
+    "AFTER",
+    "SOME",
+    "FOR"
+  ]
+}

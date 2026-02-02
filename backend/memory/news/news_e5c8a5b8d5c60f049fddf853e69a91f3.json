@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wheat Down Most Since December as Grains Join Commodities Rout",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/wheat-down-most-since-december-as-grains-join-commodities-rout",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T17:25:44",
+  "providerPublishTime": 1770049544.0,
+  "text": "Wheat fell as much as 2%, pressured by a firmer US dollar with agriculture commodities tracking a broad decline in Monday markets.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIqXlXkP8LQ0/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ROUT",
+    "MUCH",
+    "WITH",
+    "FELL",
+    "AS",
+    "BY",
+    "MOST",
+    "BROAD",
+    "DOWN",
+    "JOIN"
+  ],
+  "relatedTickers": [
+    "ROUT",
+    "MUCH",
+    "WITH",
+    "FELL",
+    "AS",
+    "BY",
+    "MOST",
+    "BROAD",
+    "DOWN",
+    "JOIN"
+  ]
+}

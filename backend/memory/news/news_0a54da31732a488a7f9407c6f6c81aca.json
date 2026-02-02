@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Albertsons issues $2.1 billion in senior notes to refinance existing debt",
+  "link": "https://www.investing.com/news/sec-filings/albertsons-issues-21-billion-in-senior-notes-to-refinance-existing-debt-93CH-4479949",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:13:03",
+  "providerPublishTime": 1770063183.0,
+  "text": "Albertsons issues $2.1 billion in senior notes to refinance existing debt",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NOTES",
+    "TO",
+    "DEBT",
+    "IN"
+  ],
+  "relatedTickers": [
+    "NOTES",
+    "TO",
+    "DEBT",
+    "IN"
+  ]
+}

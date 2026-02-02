@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Friday's jobs report will be delayed because of the partial government shutdown",
+  "link": "https://www.cnbc.com/2026/02/02/fridays-jobs-report-will-be-delayed-because-of-the-partial-government-shutdown.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T17:59:50",
+  "providerPublishTime": 1770051590.0,
+  "text": "Following last year's record shutdown, the BLS also was forced to delay a number of its releases.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ITS",
+    "DELAY",
+    "A",
+    "YEAR",
+    "S",
+    "TO",
+    "WAS",
+    "BE",
+    "JOBS",
+    "BLS"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "DELAY",
+    "A",
+    "YEAR",
+    "S",
+    "TO",
+    "WAS",
+    "BE",
+    "JOBS",
+    "BLS"
+  ]
+}

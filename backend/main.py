@@ -1541,6 +1541,122 @@ async def get_alpaca_portfolio_history(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+# Interactive Brokers API endpoints
+# Note: IB requires TWS/Gateway running locally for connection
+@app.get("/api/ib/account")
+async def get_ib_account(
+    host: str = "127.0.0.1",
+    port: int = 7497,
+    client_id: int = 1,
+    current_user: User = Depends(get_current_user)
+):
+    """Get Interactive Brokers account information"""
+    try:
+        from services.interactive_brokers_service import InteractiveBrokersService
+        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
+        
+        if not ib_service.is_configured():
+            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
+        
+        account_info = await ib_service.get_account()
+        await ib_service.disconnect()
+        return account_info
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/ib/positions")
+async def get_ib_positions(
+    host: str = "127.0.0.1",
+    port: int = 7497,
+    client_id: int = 1,
+    current_user: User = Depends(get_current_user)
+):
+    """Get all Interactive Brokers positions"""
+    try:
+        from services.interactive_brokers_service import InteractiveBrokersService
+        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
+        
+        if not ib_service.is_configured():
+            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
+        
+        positions = await ib_service.get_positions()
+        await ib_service.disconnect()
+        return positions
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/ib/orders")
+async def get_ib_orders(
+    host: str = "127.0.0.1",
+    port: int = 7497,
+    client_id: int = 1,
+    status: Optional[str] = None,
+    limit: int = 50,
+    current_user: User = Depends(get_current_user)
+):
+    """Get Interactive Brokers orders"""
+    try:
+        from services.interactive_brokers_service import InteractiveBrokersService
+        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
+        
+        if not ib_service.is_configured():
+            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
+        
+        orders = await ib_service.get_orders(status=status, limit=limit)
+        await ib_service.disconnect()
+        return orders
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+class IBOrderRequest(BaseModel):
+    symbol: str
+    qty: float
+    side: str  # buy or sell
+    order_type: str = "market"  # market or limit
+    limit_price: Optional[float] = None
+    host: str = "127.0.0.1"
+    port: int = 7497
+    client_id: int = 1
+
+@app.post("/api/ib/orders")
+async def place_ib_order(
+    order_data: IBOrderRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Place an Interactive Brokers order"""
+    try:
+        from services.interactive_brokers_service import InteractiveBrokersService
+        ib_service = InteractiveBrokersService(
+            host=order_data.host,
+            port=order_data.port,
+            client_id=order_data.client_id
+        )
+        
+        if not ib_service.is_configured():
+            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
+        
+        result = await ib_service.place_order(
+            symbol=order_data.symbol,
+            qty=order_data.qty,
+            side=order_data.side,
+            order_type=order_data.order_type,
+            limit_price=order_data.limit_price
+        )
+        await ib_service.disconnect()
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # Bot Endpoints
 @app.post("/api/bots")
 async def create_bot(
@@ -1959,6 +2075,65 @@ async def test_bot_connection(request: TestConnectionRequest, db: Session = Depe
                 import traceback
                 traceback.print_exc()
                 return {"success": False, "message": f"Alpaca connection failed: {str(e)}"}
+        
+        elif broker == 'InteractiveBrokers':
+            from services.interactive_brokers_service import InteractiveBrokersService
+            
+            print(f"[DEBUG] Test IB Connection. Config: {config}")
+            
+            host = config.get('ib_host', '127.0.0.1')
+            port = int(config.get('ib_port', 7497))
+            client_id = int(config.get('ib_client_id', 1))
+            account = config.get('ib_account', '')
+            paper = config.get('ib_paper', True)
+            
+            # Check if ib_insync is available
+            try:
+                from ib_insync import IB
+                IB_AVAILABLE = True
+            except ImportError:
+                IB_AVAILABLE = False
+            
+            if not IB_AVAILABLE:
+                return {
+                    "success": False,
+                    "message": "Libreria ib_insync non installata. Installa con: pip install ib_insync"
+                }
+            
+            try:
+                ib_service = InteractiveBrokersService(
+                    host=host,
+                    port=port,
+                    client_id=client_id,
+                    account=account,
+                    paper=paper
+                )
+                
+                if not ib_service.is_configured():
+                    return {
+                        "success": False,
+                        "message": f"Configurazione IB non valida: {ib_service.init_error or 'Errore sconosciuto'}"
+                    }
+                
+                # Try to connect and get account info
+                account_info = await ib_service.get_account()
+                
+                # Disconnect after test
+                await ib_service.disconnect()
+                
+                return {
+                    "success": True,
+                    "message": f"Connesso a Interactive Brokers! Account: {account_info.get('account_number', 'N/A')}, Saldo: ${account_info.get('portfolio_value', 0):,.2f}"
+                }
+                
+            except Exception as e:
+                err = str(e)
+                if "not connected" in err.lower() or "connection" in err.lower():
+                    return {
+                        "success": False,
+                        "message": f"Impossibile connettersi a TWS/Gateway su {host}:{port}. Assicurati che TWS o IB Gateway sia in esecuzione e che le connessioni API siano abilitate."
+                    }
+                return {"success": False, "message": f"Errore connessione IB: {err}"}
                 
         else:
             # For other brokers (placeholders)
@@ -2662,34 +2837,59 @@ async def test_account_connection(
         
     creds = account.get_credentials()
     
-    # Reuse the existing test logic from bot_service or a new service
-    # For now, we'll manually call the test logic here or import it
-    
     try:
-        from services.bot_service import bot_service
-        # Reuse existing test_connection logic but adapt the input
-        # Note: bot_service.test_connection expects {'broker': ..., 'config': ...}
-        
-        # Map credentials to what bot_service expects
-        test_config = {}
         if account.platform == 'Alpaca':
-            test_config = {
-                'alpaca_api_key': creds.get('api_key'),
-                'alpaca_api_secret': creds.get('secret_key'),
-                'alpaca_paper': creds.get('paper_trading', True)
-            }
+            from services.alpaca_service import AlpacaService
+            api_key = creds.get('api_key', '').strip()
+            api_secret = creds.get('secret_key', '').strip()
+            paper = creds.get('paper_trading', True)
+            
+            if not api_key or not api_secret:
+                return {"success": False, "message": "API Key e Secret Key sono obbligatorie"}
+            
+            try:
+                service = AlpacaService(api_key=api_key, api_secret=api_secret, paper=paper)
+                if not service.is_configured():
+                    return {"success": False, "message": f"Alpaca non configurato: {service.init_error or 'Errore sconosciuto'}"}
+                account_info = await service.get_account()
+                return {"success": True, "message": f"Connesso ad Alpaca! Account: {account_info.get('account_number', 'N/A')}"}
+            except Exception as e:
+                return {"success": False, "message": f"Errore Alpaca: {str(e)}"}
+                
+        elif account.platform == 'InteractiveBrokers':
+            from services.interactive_brokers_service import InteractiveBrokersService
+            
+            host = creds.get('host', '127.0.0.1')
+            port = int(creds.get('port', 7497))
+            client_id = int(creds.get('client_id', 1))
+            ib_account = creds.get('account', '')
+            paper = creds.get('paper_trading', True)
+            
+            try:
+                service = InteractiveBrokersService(
+                    host=host,
+                    port=port,
+                    client_id=client_id,
+                    account=ib_account,
+                    paper=paper
+                )
+                
+                if not service.is_configured():
+                    return {"success": False, "message": f"IB non configurato: {service.init_error or 'ib_insync non installato'}"}
+                
+                account_info = await service.get_account()
+                await service.disconnect()
+                return {"success": True, "message": f"Connesso a IB! Account: {account_info.get('account_number', 'N/A')}, Saldo: ${account_info.get('portfolio_value', 0):,.2f}"}
+            except Exception as e:
+                err = str(e)
+                if "not connected" in err.lower() or "connection" in err.lower():
+                    return {"success": False, "message": f"Impossibile connettersi a TWS/Gateway su {host}:{port}. Verifica che TWS sia in esecuzione."}
+                return {"success": False, "message": f"Errore IB: {err}"}
+                
         elif account.platform in ('IG', 'eToro'):
-            return {"success": False, "message": "Platform no longer supported. Use Alpaca."}
-
-        # Call existing service
-        # We might need to expose a helper in bot_service or just replicate logic
-        # For simplicity, let's just use the existing behavior if possible
-        
-        # Since bot_service.test_connection is an instance method, we can try using it if we have an instance
-        # It's instantiated as bot_service in this file
-        
-        result = await bot_service.test_connection(account.platform, test_config)
-        return result
+            return {"success": False, "message": "Platform no longer supported. Use Alpaca or Interactive Brokers."}
+        else:
+            return {"success": False, "message": f"Platform {account.platform} non supportata"}
         
     except Exception as e:
         return {"success": False, "message": str(e)}

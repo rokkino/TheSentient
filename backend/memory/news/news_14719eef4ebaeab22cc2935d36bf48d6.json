@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Top Cryptocurrencies Rise; Bitcoin Tops $77,000 Level",
+  "link": "https://finance.yahoo.com/news/top-cryptocurrencies-rise-bitcoin-tops-205945722.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T20:59:45",
+  "providerPublishTime": 1770062385.0,
+  "text": "Major digital assets rose Monday, with Bitcoin (BTC-USD) topping the $77,000 level. The CoinDesk",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BTC-USD",
+    "WITH",
+    "TOP",
+    "RISE",
+    "BTC",
+    "LEVEL",
+    "MAJOR",
+    "ROSE",
+    "THE",
+    "USD"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "WITH",
+    "TOP",
+    "RISE",
+    "BTC",
+    "LEVEL",
+    "MAJOR",
+    "ROSE",
+    "THE",
+    "USD"
+  ]
+}

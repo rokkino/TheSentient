@@ -1,0 +1,26 @@
+[
+  {
+    "timestamp": "2026-02-02T12:36:45.190717",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"82c404c1-c3cc-4dac-aff1-6af368b7a3a0\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-02T21:59:18.929992",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY PLTR (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-02T21:59:19.127025",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY NXPI (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-02T21:59:19.323152",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY RMBS (Bot Earnings Report Genius)"
+  }
+]

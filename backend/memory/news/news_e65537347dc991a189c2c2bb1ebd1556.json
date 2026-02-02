@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "As Ratings Shopping Takes Off, Morningstar Dominates Canada",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/how-morningstar-came-to-dominate-single-rated-credit-rating-sales-in-canada",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T12:00:00",
+  "providerPublishTime": 1770030000.0,
+  "text": "For years, one credit-ratings firm has handed out the most favorable grades to corporate borrowers in the Canadian bond market: Morningstar DBRS. On average, its ratings are one full notch higher than those assigned by S&amp;P Global Ratings, Moody’s Ratings and Fitch Ratings.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iXEPhRTrhP_E/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NOTCH",
+    "ARE",
+    "AS",
+    "OUT",
+    "FOR",
+    "MOST",
+    "AMP",
+    "AND",
+    "ON",
+    "BOND"
+  ],
+  "relatedTickers": [
+    "NOTCH",
+    "ARE",
+    "AS",
+    "OUT",
+    "FOR",
+    "MOST",
+    "AMP",
+    "AND",
+    "ON",
+    "BOND"
+  ]
+}

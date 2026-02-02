@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Crypto Market to See $638M in Token Unlocks as Altcoin Market Continues Bleeding",
+  "link": "https://finance.yahoo.com/news/crypto-market-see-638m-token-094509457.html",
+  "publisher": "Coinspeaker",
+  "timestamp": "2026-02-02T09:45:09",
+  "providerPublishTime": 1770021909.0,
+  "text": "Over $638 million in token supply is scheduled to enter the crypto market over the next seven days, according to data from Tokenomist. The upcoming releases arrive as the altcoin market remains under pressure with thin liquidity and weak buyer interest. Tokenomist data shows several large one time releases planned ...",
+  "thumbnail": "https://media.zenfs.com/en/coinspeaker_us_106/b5104db0cd89c41e631cb88ae0c47a20",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "NEXT",
+    "FROM",
+    "AND",
+    "TOKEN",
+    "IN",
+    "SEVEN",
+    "LARGE",
+    "ONE",
+    "DATA"
+  ],
+  "relatedTickers": [
+    "AS",
+    "NEXT",
+    "FROM",
+    "AND",
+    "TOKEN",
+    "IN",
+    "SEVEN",
+    "LARGE",
+    "ONE",
+    "DATA"
+  ]
+}

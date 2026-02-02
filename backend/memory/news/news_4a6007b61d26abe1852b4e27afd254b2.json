@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Why Super Micro (SMCI) Stock Is Trading Up Today",
+  "link": "https://finance.yahoo.com/news/why-super-micro-smci-stock-202542408.html",
+  "publisher": "StockStory",
+  "timestamp": "2026-02-02T20:25:42",
+  "providerPublishTime": 1770060342.0,
+  "text": "Shares of server solutions provider Super Micro (NASDAQ:SMCI) jumped 2.5% in the afternoon session after Rosenblatt analyst Kevin Cassidy reaffirmed a 'Buy' rating on the company, maintaining the price target at $55.00.",
+  "thumbnail": "https://media.zenfs.com/en/stockstory_922/c4599529ffedbf87b99c96756ce821c6",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "TODAY",
+    "AFTER",
+    "ON",
+    "UP",
+    "IN",
+    "WHY",
+    "SUPER",
+    "A",
+    "SMCI"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "TODAY",
+    "AFTER",
+    "ON",
+    "UP",
+    "IN",
+    "WHY",
+    "SUPER",
+    "A",
+    "SMCI"
+  ]
+}

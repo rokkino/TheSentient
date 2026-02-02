@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Equities Rise as Focus Shifts to Busy Earnings Week",
+  "link": "https://finance.yahoo.com/news/equities-rise-focus-shifts-busy-215212647.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T21:52:12",
+  "providerPublishTime": 1770065532.0,
+  "text": "US equity benchmarks rose Monday as investors geared up for more earnings reports this week, includi",
+  "thumbnail": "https://media.zenfs.com/en/mt_newswires_premium_news_706/2475a8618428bf41d7b045240805a142",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "BUSY",
+    "AS",
+    "MORE",
+    "WEEK",
+    "THIS",
+    "FOR",
+    "TO",
+    "FOCUS",
+    "ROSE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "BUSY",
+    "AS",
+    "MORE",
+    "WEEK",
+    "THIS",
+    "FOR",
+    "TO",
+    "FOCUS",
+    "ROSE"
+  ]
+}

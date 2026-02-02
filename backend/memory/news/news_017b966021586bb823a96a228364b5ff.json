@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia Isn’t Dead. But These  Dividend ETFs Are Crushing It.",
+  "link": "https://www.barrons.com/articles/dividend-etfs-coca-cola-exxon-walmart-ford-6dabf212?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T18:28:00",
+  "providerPublishTime": 1770053280.0,
+  "text": "Funds investing in high -yielding stocks like Exxon Mobil, Ford, Coca-Cola and Walmart are blowing it out of the water.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/8773ac85cb1ab498a6e95e182c01ce64",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARE",
+    "LIKE",
+    "OUT",
+    "AND",
+    "IN",
+    "THESE",
+    "ISN",
+    "ETFS",
+    "FUNDS",
+    "COLA"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "LIKE",
+    "OUT",
+    "AND",
+    "IN",
+    "THESE",
+    "ISN",
+    "ETFS",
+    "FUNDS",
+    "COLA"
+  ]
+}

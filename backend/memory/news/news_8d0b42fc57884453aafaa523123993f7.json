@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13D/A Soho House & Co Inc. For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-13da-soho-house--co-inc-for-2-february-93CH-4480039",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:11",
+  "providerPublishTime": 1770063671.0,
+  "text": "Form 13D/A Soho House & Co Inc. For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HOUSE",
+    "SOHO",
+    "INC",
+    "FOR",
+    "FORM",
+    "A",
+    "CO"
+  ],
+  "relatedTickers": [
+    "HOUSE",
+    "SOHO",
+    "INC",
+    "FOR",
+    "FORM",
+    "A",
+    "CO"
+  ]
+}

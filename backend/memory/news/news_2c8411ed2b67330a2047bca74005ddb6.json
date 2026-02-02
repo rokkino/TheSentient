@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin briefly falls near $74,000 as thin liquidity keeps traders on edge",
+  "link": "https://finance.yahoo.com/news/bitcoin-briefly-falls-near-74-041606906.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-02T04:16:06",
+  "providerPublishTime": 1770002166.0,
+  "text": "The bounce came as China factory data showed only mild growth, offering background support while dollar strength and thin exchange depth limit upside.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/df98d51100515824dd13589e127093cc",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EDGE",
+    "AS",
+    "NEAR",
+    "CHINA",
+    "ONLY",
+    "MILD",
+    "FALLS",
+    "DATA",
+    "AND",
+    "LIMIT"
+  ],
+  "relatedTickers": [
+    "EDGE",
+    "AS",
+    "NEAR",
+    "CHINA",
+    "ONLY",
+    "MILD",
+    "FALLS",
+    "DATA",
+    "AND",
+    "LIMIT"
+  ]
+}

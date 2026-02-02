@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How the stock market’s big turnaround on Monday put the S&P 500 back in record territory",
+  "link": "https://www.marketwatch.com/story/how-the-stock-markets-big-turnaround-on-monday-put-the-s-p-500-back-in-record-territory-612a568a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T21:41:00",
+  "providerPublishTime": 1770064860.0,
+  "text": "Small-caps and other signs of the ‘rotation’ beyond mega-cap tech were out in force to start February",
+  "thumbnail": "https://images.mktw.net/im-47072863",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TECH",
+    "OUT",
+    "AND",
+    "ON",
+    "IN",
+    "BIG",
+    "SMALL",
+    "FORCE",
+    "BACK",
+    "HOW"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "OUT",
+    "AND",
+    "ON",
+    "IN",
+    "BIG",
+    "SMALL",
+    "FORCE",
+    "BACK",
+    "HOW"
+  ]
+}

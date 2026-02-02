@@ -10,5 +10,9 @@
   {
     "symbol": "SOL-USD",
     "name": "Solana USD"
+  },
+  {
+    "symbol": "BTC-USD",
+    "name": "Bitcoin USD"
   }
 ]

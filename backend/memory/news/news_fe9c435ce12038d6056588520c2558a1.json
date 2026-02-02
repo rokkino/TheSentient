@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "I inherited a paid-off $300K home. Here’s the math on whether it’s better to sell and invest, or rent the home out",
+  "link": "https://finance.yahoo.com/news/inherited-paid-off-300k-home-130000770.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T13:00:00",
+  "providerPublishTime": 1769947200.0,
+  "text": "I inherited a paid-off $300K home. Here’s the math on whether it’s better to sell and invest, or rent the home out",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/1b88660ba90ccbf85a8a34ec72bbf945",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELL",
+    "MATH",
+    "RENT",
+    "OUT",
+    "IT",
+    "OFF",
+    "AND",
+    "S",
+    "TO",
+    "PAID"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "MATH",
+    "RENT",
+    "OUT",
+    "IT",
+    "OFF",
+    "AND",
+    "S",
+    "TO",
+    "PAID"
+  ]
+}

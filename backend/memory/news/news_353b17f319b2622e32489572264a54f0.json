@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Why These 2 Stocks Remain My Top Stocks to Buy for 2026 and Beyond",
+  "link": "https://finance.yahoo.com/news/why-2-stocks-remain-top-173914386.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T17:39:14",
+  "providerPublishTime": 1770050354.0,
+  "text": "Apple's surging iPhone sales and Berkshire's $378 billion cash hoard make a nice pair as an anchor for my portfolio in 2026.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/43b5bdde952f00ec382975ddba41644b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "AS",
+    "FOR",
+    "AND",
+    "IN",
+    "THESE",
+    "WHY",
+    "TOP",
+    "SALES",
+    "A"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "AS",
+    "FOR",
+    "AND",
+    "IN",
+    "THESE",
+    "WHY",
+    "TOP",
+    "SALES",
+    "A"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Tech, Media & Telecom Roundup: Market Talk",
+  "link": "https://www.wsj.com/business/tech-media-telecom-roundup-market-talk-69c4e5ac?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-02T17:24:00",
+  "providerPublishTime": 1770049440.0,
+  "text": "Find insight on Oracle, Disney and more in the latest Market Talks covering Technology, Media and Telecom.",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/483451ae1b0cc9c1ae1797fe8b342d93",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "TALKS",
+    "FIND",
+    "TECH",
+    "TALK",
+    "MORE",
+    "AND",
+    "ON",
+    "IN",
+    "THE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "TALKS",
+    "FIND",
+    "TECH",
+    "TALK",
+    "MORE",
+    "AND",
+    "ON",
+    "IN",
+    "THE"
+  ]
+}

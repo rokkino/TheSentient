@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin drops to $78,000 as Strategy-fueled rally runs out of buyers, traders say",
+  "link": "https://finance.yahoo.com/news/bitcoin-drops-78-000-microstrategy-063805535.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-01T06:38:05",
+  "providerPublishTime": 1769924285.0,
+  "text": "Bitcoin sank to its lowest levels since April as profit-taking by early holders collided with thinning liquidity and a sharp drop-off in fresh capital.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/1b6d3411561b69e1abf5c8ab03d2f752",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "APRIL",
+    "SHARP",
+    "IN",
+    "A",
+    "ITS",
+    "SAY",
+    "AS",
+    "OF",
+    "SINCE",
+    "BY"
+  ],
+  "relatedTickers": [
+    "APRIL",
+    "SHARP",
+    "IN",
+    "A",
+    "ITS",
+    "SAY",
+    "AS",
+    "OF",
+    "SINCE",
+    "BY"
+  ]
+}

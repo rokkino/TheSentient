@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Palantir beats fourth-quarter estimates on the strength of AI and defense demand",
+  "link": "https://www.cnbc.com/2026/02/02/palantir-pltr-q4-2025-earnings.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T21:06:55",
+  "providerPublishTime": 1770062815.0,
+  "text": "Palantir topped Wall Street's fourth-quarter estimates as more businesses and the U.S. government race to buy its artificial intelligence tools.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "ITS",
+    "AS",
+    "MORE",
+    "BEATS",
+    "U",
+    "AND",
+    "WALL",
+    "S",
+    "RACE"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "ITS",
+    "AS",
+    "MORE",
+    "BEATS",
+    "U",
+    "AND",
+    "WALL",
+    "S",
+    "RACE"
+  ]
+}

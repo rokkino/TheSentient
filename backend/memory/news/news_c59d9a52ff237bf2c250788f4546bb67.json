@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Warren Buffett Said If He Were 30 Starting Over With $1M, He'd Put It All In A Low-Cost Index Fund Then 'Forget It And Go Back To Work'",
+  "link": "https://finance.yahoo.com/news/warren-buffett-said-were-30-212608038.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-01T21:26:08",
+  "providerPublishTime": 1769977568.0,
+  "text": "Warren Buffett isn't known for overcomplicating things—and when it comes to investing, he doesn't think you should either. At the 2008 Berkshire Hathaway annual shareholders meeting, Buffett was asked, \"If you were 30 years old again and had your first million in the bank, how would you invest it assuming you're not a full-time investor, you have another full-time job, you can cover your expenses with other savings for about 18 months, and you have no dependents.\" \"I'll be very simple,\" he repli",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/c755ec9c53bedea276733e13a7112aed",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RE",
+    "AT",
+    "LL",
+    "IN",
+    "A",
+    "IT",
+    "YEARS",
+    "OVER",
+    "WORK",
+    "THINK"
+  ],
+  "relatedTickers": [
+    "RE",
+    "AT",
+    "LL",
+    "IN",
+    "A",
+    "IT",
+    "YEARS",
+    "OVER",
+    "WORK",
+    "THINK"
+  ]
+}

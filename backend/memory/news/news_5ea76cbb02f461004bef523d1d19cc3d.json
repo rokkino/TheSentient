@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump launches $12 billion minerals stockpile to boost US manufacturing, counter China",
+  "link": "https://www.investing.com/news/commodities-news/trump-launches-12-billion-minerals-stockpile-to-counter-china-bloomberg-news-reports-4478592",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T19:07:02",
+  "providerPublishTime": 1770055622.0,
+  "text": "Trump launches $12 billion minerals stockpile to boost US manufacturing, counter China",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOOST",
+    "CHINA",
+    "TRUMP",
+    "TO",
+    "US"
+  ],
+  "relatedTickers": [
+    "BOOST",
+    "CHINA",
+    "TRUMP",
+    "TO",
+    "US"
+  ]
+}

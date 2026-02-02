@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Earnings live: Disney, Tyson earnings beat expectations, with Palantir results on deck",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-disney-tyson-earnings-beat-expectations-with-palantir-results-on-deck-124403131.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-02T12:44:03",
+  "providerPublishTime": 1770032643.0,
+  "text": "More Big Tech earnings are ahead from Amazon and Alphabet.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/d2d4f5a0-0033-11f1-8dbf-fc166cb7a46b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "TYSON",
+    "WITH",
+    "ARE",
+    "TECH",
+    "MORE",
+    "LIVE",
+    "BIG",
+    "FROM",
+    "DECK"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "TYSON",
+    "WITH",
+    "ARE",
+    "TECH",
+    "MORE",
+    "LIVE",
+    "BIG",
+    "FROM",
+    "DECK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Strategy’s Underwater Bitcoin Bet Tests Equity Funding And Valuation Upside",
+  "link": "https://finance.yahoo.com/news/strategy-underwater-bitcoin-bet-tests-211644946.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T21:16:44",
+  "providerPublishTime": 1770063404.0,
+  "text": "Strategy's Bitcoin treasury has moved underwater for the first time as recent sharp declines in Bitcoin prices push the market value of its holdings below their average purchase cost. The company now sits on over $900 million in unrealized losses, increasing scrutiny of Michael Saylor's leveraged Bitcoin accumulation model. Tightening capital conditions and a shrinking equity premium are raising questions about Strategy's ability to keep issuing stock to fund new Bitcoin purchases and...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/0fe4d5d105492213ce106a92b49639d4",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "AS",
+    "FOR",
+    "AND",
+    "ON",
+    "FIRST",
+    "IN",
+    "THEIR",
+    "FUND",
+    "NOW"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AS",
+    "FOR",
+    "AND",
+    "ON",
+    "FIRST",
+    "IN",
+    "THEIR",
+    "FUND",
+    "NOW"
+  ]
+}

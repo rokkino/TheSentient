@@ -4,7 +4,7 @@
 
 const CACHE_PREFIX = 'thesentient_cache_'
 const CACHE_TTL = {
-  chart: 5 * 60 * 1000, // 5 minutes for chart data
+  chart: 15 * 60 * 1000, // 15 minutes for chart data (faster repeat opens)
   news: 10 * 60 * 1000, // 10 minutes for news
   news_store: 10 * 60 * 1000, // 10 minutes for news store
   earnings: 60 * 60 * 1000, // 60 minutes (1 hour) for earnings - they don't change frequently

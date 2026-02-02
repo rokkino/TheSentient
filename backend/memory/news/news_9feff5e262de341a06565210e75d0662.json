@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Strategy slides after bitcoin briefly dips below crypto firm's key breakeven level",
+  "link": "https://www.cnbc.com/2026/02/02/strategy-slides-after-bitcoin-briefly-dips-below-crypto-firms-key-breakeven-level-.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T15:19:30",
+  "providerPublishTime": 1770041970.0,
+  "text": "Bitcoin fell as low as about $74,500 early Monday, dipping below Strategy's average purchase price of $76,052 per token.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LOW",
+    "KEY",
+    "FELL",
+    "AS",
+    "EARLY",
+    "BELOW",
+    "FIRM",
+    "AFTER",
+    "ABOUT",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "LOW",
+    "KEY",
+    "FELL",
+    "AS",
+    "EARLY",
+    "BELOW",
+    "FIRM",
+    "AFTER",
+    "ABOUT",
+    "PRICE"
+  ]
+}

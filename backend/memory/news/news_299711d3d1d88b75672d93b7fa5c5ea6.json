@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle Eyes Up to $25 Billion in Bond Sale for AI Buildout",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/oracle-kicks-off-8-part-dollar-bond-sale-amid-ai-borrowing-push",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T13:02:19",
+  "providerPublishTime": 1770033739.0,
+  "text": "Oracle Corp. is selling bonds on Monday to help finance infrastructure that powers artificial intelligence projects, in what could be the biggest high-grade US offering since Meta Platforms Inc. raised $30 billion late last year.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ivrSh41lo5tU/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BONDS",
+    "US",
+    "HELP",
+    "YEAR",
+    "FOR",
+    "META",
+    "ON",
+    "BOND",
+    "UP",
+    "BE"
+  ],
+  "relatedTickers": [
+    "BONDS",
+    "US",
+    "HELP",
+    "YEAR",
+    "FOR",
+    "META",
+    "ON",
+    "BOND",
+    "UP",
+    "BE"
+  ]
+}

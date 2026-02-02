@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Banco Master’s Failed Suitor Files for Bankruptcy Protection",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/banco-master-s-failed-suitor-files-for-bankruptcy-protection",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T13:23:21",
+  "providerPublishTime": 1770035001.0,
+  "text": "Brazil’s Fictor Holding SA filed for bankruptcy protection less than three months after trying to buy Banco Master SA, as fallout spreads from the target bank’s liquidation in November.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i6ydxwYz_CrE/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "BANCO",
+    "SA",
+    "AS",
+    "BANK",
+    "AFTER",
+    "FILES",
+    "FROM",
+    "FOR",
+    "THREE"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "BANCO",
+    "SA",
+    "AS",
+    "BANK",
+    "AFTER",
+    "FILES",
+    "FROM",
+    "FOR",
+    "THREE"
+  ]
+}

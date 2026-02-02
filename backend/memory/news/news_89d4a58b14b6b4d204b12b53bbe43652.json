@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "S&P 500 and Nasdaq Climbs, Dow Rises 400 Points as Bitcoin, Silver Sell-Offs Shake Markets",
+  "link": "https://finance.yahoo.com/news/p-500-nasdaq-climbs-dow-172700331.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T17:27:00",
+  "providerPublishTime": 1770049620.0,
+  "text": "Nasdaq Edges Higher on Strong Start to February Trading",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SELL",
+    "RISES",
+    "AS",
+    "EDGES",
+    "START",
+    "AND",
+    "S",
+    "TO",
+    "ON",
+    "NVDA"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "RISES",
+    "AS",
+    "EDGES",
+    "START",
+    "AND",
+    "S",
+    "TO",
+    "ON",
+    "NVDA"
+  ]
+}

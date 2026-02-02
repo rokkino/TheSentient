@@ -2,26 +2,7 @@
   <div class="backtesting-panel">
     <div class="backtesting-header">
       <h2>Backtesting</h2>
-      <p class="subtitle">Simulazione storica su dati earnings. Scegli il bot e la data (S&P 500 / Nasdaq).</p>
-      <div class="backtesting-filters" v-if="streamlitReady">
-        <label class="filter-label">
-          <span>Bot</span>
-          <select v-model="selectedBotId" class="filter-select" @change="updateEmbedUrl">
-            <option :value="null">Placeholder (logica built-in)</option>
-            <option v-for="b in bots" :key="b.id" :value="b.id">{{ b.name }}</option>
-          </select>
-        </label>
-        <label class="filter-label">
-          <span>Data backtest</span>
-          <input
-            v-model="selectedDate"
-            type="date"
-            class="filter-input"
-            @change="updateEmbedUrl"
-          />
-        </label>
-        <button type="button" class="apply-btn" @click="reloadIframe">Applica e ricarica dashboard</button>
-      </div>
+      <p class="subtitle">Simulazione storica su dati earnings (S&P 500 / Nasdaq).</p>
     </div>
 
     <div class="backtesting-content">
@@ -60,7 +41,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { getApiBase } from '../utils/env.js'
-import api from '../services/api'
 
 const streamlitBaseUrl = ref(import.meta.env.VITE_STREAMLIT_URL || 'http://localhost:8501')
 const streamlitEmbedUrl = ref('')
@@ -68,7 +48,6 @@ const streamlitReady = ref(false)
 const checking = ref(false)
 const autoRetryActive = ref(false)
 let retryTimer = null
-const bots = ref([])
 const selectedBotId = ref(null)
 const selectedDate = ref('')
 
@@ -90,12 +69,6 @@ function updateEmbedUrl() {
   streamlitEmbedUrl.value = getEmbedUrl()
 }
 
-function reloadIframe() {
-  updateEmbedUrl()
-  streamlitEmbedUrl.value = ''
-  setTimeout(() => { streamlitEmbedUrl.value = getEmbedUrl() }, 0)
-}
-
 function showAnyway() {
   streamlitReady.value = true
   updateEmbedUrl()
@@ -103,15 +76,6 @@ function showAnyway() {
     clearInterval(retryTimer)
     retryTimer = null
     autoRetryActive.value = false
-  }
-}
-
-async function loadBots() {
-  try {
-    const res = await api.getBots()
-    bots.value = res?.bots ?? []
-  } catch {
-    bots.value = []
   }
 }
 
@@ -174,7 +138,6 @@ onMounted(() => {
   d.setMonth(d.getMonth() - 1)
   selectedDate.value = d.toISOString().slice(0, 10)
   streamlitEmbedUrl.value = getEmbedUrl()
-  loadBots()
   checkStreamlit().then(async () => {
     if (!streamlitReady.value) {
       await startStreamlit()
@@ -221,60 +184,6 @@ onUnmounted(() => {
   font-size: 13px;
   color: #888;
   flex: 1;
-}
-
-.backtesting-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #222;
-}
-
-.filter-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: #aaa;
-}
-
-.filter-label span {
-  white-space: nowrap;
-}
-
-.filter-select,
-.filter-input {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 4px;
-  color: #fff;
-  padding: 8px 12px;
-  font-size: 13px;
-  min-width: 180px;
-}
-
-.filter-input {
-  min-width: 140px;
-}
-
-.apply-btn {
-  padding: 8px 16px;
-  background: #2a4;
-  color: #111;
-  border: none;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.apply-btn:hover {
-  opacity: 0.9;
 }
 
 .backtesting-content {
@@ -400,5 +309,64 @@ onUnmounted(() => {
 
 .auto-retry-hint:empty {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .backtesting-header {
+    padding: 16px 18px;
+    gap: 10px;
+  }
+
+  .backtesting-header h2 {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .backtesting-content {
+    padding: 12px;
+  }
+
+  .embed-container {
+    border-radius: 12px;
+    min-height: 420px;
+  }
+
+  .backtesting-iframe {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .backtesting-header {
+    padding: 14px 16px;
+  }
+
+  .backtesting-content {
+    padding: 10px;
+  }
+
+  .fallback-content {
+    padding: 24px;
+  }
+
+  .fallback-content h3 {
+    font-size: 16px;
+  }
+
+  .fallback-content p {
+    font-size: 13px;
+  }
+
+  .fallback-buttons {
+    gap: 10px;
+  }
+
+  .retry-btn,
+  .show-anyway-btn {
+    width: 100%;
+  }
 }
 </style>

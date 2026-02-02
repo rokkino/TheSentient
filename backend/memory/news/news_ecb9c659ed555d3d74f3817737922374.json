@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Oracle Targets Up to $50 Billion to Fund AI-Driven Cloud Expansion",
+  "link": "https://finance.yahoo.com/news/oracle-targets-50-billion-fund-195138454.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:51:38",
+  "providerPublishTime": 1770058298.0,
+  "text": "Oracle launches a major bond offering and equity plans to finance new cloud capacity for large AI customers.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "PLANS",
+    "NEW",
+    "LARGE",
+    "FOR",
+    "AND",
+    "TO",
+    "MAJOR",
+    "NVDA",
+    "UP",
+    "AI"
+  ],
+  "relatedTickers": [
+    "PLANS",
+    "NEW",
+    "LARGE",
+    "FOR",
+    "AND",
+    "TO",
+    "MAJOR",
+    "NVDA",
+    "UP",
+    "AI"
+  ]
+}

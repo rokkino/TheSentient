@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "CoreWeave’s CEO Explains Why This Is Not Your Father’s Tech Company",
+  "link": "https://www.barrons.com/articles/coreweave-stock-ceo-michael-intrator-nvidia-ai-1394232b?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T19:29:00",
+  "providerPublishTime": 1770056940.0,
+  "text": "CoreWeave CEO Michael Intrator is not your typical tech company executive—but then again, CoreWeave isn’t your typical tech company.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/538ef40d1b4a3353c574951032f4dccc",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "TECH",
+    "ISN",
+    "IS",
+    "THIS",
+    "NOT",
+    "YOUR",
+    "S",
+    "AGAIN",
+    "THEN"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "TECH",
+    "ISN",
+    "IS",
+    "THIS",
+    "NOT",
+    "YOUR",
+    "S",
+    "AGAIN",
+    "THEN"
+  ]
+}

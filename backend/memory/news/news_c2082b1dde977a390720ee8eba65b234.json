@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "NVIDIA Recasts US$100b OpenAI Plan While Broadening AI Partnerships",
+  "link": "https://finance.yahoo.com/news/nvidia-recasts-us-100b-openai-181127993.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T18:11:27",
+  "providerPublishTime": 1770052287.0,
+  "text": "NVIDIA (NasdaqGS:NVDA) is no longer moving ahead with a previously floated US$100b investment in OpenAI in its original form. The plan is now expected to be significantly smaller or reshaped after internal concerns and a reassessment of terms. CEO Jensen Huang has described the original commitment as non binding and highlighted business discipline as a key factor in the rethink. NVIDIA sits at the center of the AI chip supply chain, supplying the graphics processing units and systems that...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/ce92e7ae6d602b61807a836f4291633e",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "HUANG",
+    "NON",
+    "AFTER",
+    "AND",
+    "AHEAD",
+    "BE",
+    "IN",
+    "NOW",
+    "CEO"
+  ],
+  "relatedTickers": [
+    "AS",
+    "HUANG",
+    "NON",
+    "AFTER",
+    "AND",
+    "AHEAD",
+    "BE",
+    "IN",
+    "NOW",
+    "CEO"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Another crypto platform gets hacked as market plunges",
+  "link": "https://finance.yahoo.com/news/another-crypto-platform-gets-hacked-223431155.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-01-31T22:34:31",
+  "providerPublishTime": 1769895271.0,
+  "text": "The cryptocurrency market took a heavy hit on Jan. 31, with Bitcoin (BTC) tumbling below $80,000. At press time, King Crypto fell by 7% in 24 hours to trade at $77,934.46. This is the lowest it has dropped to since April 2025, when a selloff happened right after U.S. President ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/a23e204b27d7d2907ab49e4a3b58cc3c",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "APRIL",
+    "AT",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "HOURS",
+    "THIS",
+    "AS",
+    "U"
+  ],
+  "relatedTickers": [
+    "APRIL",
+    "AT",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "HOURS",
+    "THIS",
+    "AS",
+    "U"
+  ]
+}

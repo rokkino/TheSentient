@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Pfizer shares edge up ahead of quarterly earnings report",
+  "link": "https://www.investing.com/news/stock-market-news/pfizer-shares-edge-up-ahead-of-quarterly-earnings-report-93CH-4479810",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T20:23:46",
+  "providerPublishTime": 1770060226.0,
+  "text": "Pfizer shares edge up ahead of quarterly earnings report",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EDGE",
+    "AHEAD",
+    "UP",
+    "OF"
+  ],
+  "relatedTickers": [
+    "EDGE",
+    "AHEAD",
+    "UP",
+    "OF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Why Micron (MU) Stock Is Up Today",
+  "link": "https://finance.yahoo.com/news/why-micron-mu-stock-today-175556614.html",
+  "publisher": "StockStory",
+  "timestamp": "2026-02-02T17:55:56",
+  "providerPublishTime": 1770051356.0,
+  "text": "Shares of memory chips maker Micron (NYSE:MU) jumped 5.7% in the afternoon session after investor optimism grew amid an industry-wide memory supply shortage and soaring demand for its chips used in artificial intelligence (AI) applications.",
+  "thumbnail": "https://media.zenfs.com/en/stockstory_922/dcf057c27655d03a050775ca9f19c022",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NYSE",
+    "TODAY",
+    "AFTER",
+    "FOR",
+    "AND",
+    "USED",
+    "UP",
+    "IN",
+    "WHY",
+    "AMID"
+  ],
+  "relatedTickers": [
+    "NYSE",
+    "TODAY",
+    "AFTER",
+    "FOR",
+    "AND",
+    "USED",
+    "UP",
+    "IN",
+    "WHY",
+    "AMID"
+  ]
+}

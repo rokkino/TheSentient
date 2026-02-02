@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "This is what a proper Brexit looks like",
+  "link": "https://www.ft.com/content/3be7216b-b96b-43a4-85bd-2d9dbf781435",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T18:00:09",
+  "providerPublishTime": 1770051609.0,
+  "text": "Prosperity and security will be driven by removing unnecessary barriers that hold businesses back",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F6aed6a0c-9a3c-4de0-b811-89d73cc68ef7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LIKE",
+    "LOOKS",
+    "IS",
+    "HOLD",
+    "THIS",
+    "BY",
+    "WHAT",
+    "AND",
+    "BACK",
+    "WILL"
+  ],
+  "relatedTickers": [
+    "LIKE",
+    "LOOKS",
+    "IS",
+    "HOLD",
+    "THIS",
+    "BY",
+    "WHAT",
+    "AND",
+    "BACK",
+    "WILL"
+  ]
+}

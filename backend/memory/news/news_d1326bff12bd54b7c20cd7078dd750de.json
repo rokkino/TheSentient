@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Jim Cramer on NVIDIA: “That’s the Best Place to Be”",
+  "link": "https://finance.yahoo.com/news/jim-cramer-nvidia-best-place-201828476.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T20:18:28",
+  "providerPublishTime": 1770059908.0,
+  "text": "NVIDIA Corporation (NASDAQ:NVDA) is one of the stocks Jim Cramer shared his thoughts on. Cramer said that the company is “running the game,” as he remarked: Is Amazon paper or scissors? I think it’s paper. But this game changes so quickly, you may actually have to rush the judgment. Unless, of course, you’re NVIDIA. They […]",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/6629cda35d240dc9f1a9552f313ca8c8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "YOU",
+    "MAY",
+    "ON",
+    "BE",
+    "RE",
+    "THEY",
+    "I",
+    "HIS",
+    "ONE"
+  ],
+  "relatedTickers": [
+    "AS",
+    "YOU",
+    "MAY",
+    "ON",
+    "BE",
+    "RE",
+    "THEY",
+    "I",
+    "HIS",
+    "ONE"
+  ]
+}

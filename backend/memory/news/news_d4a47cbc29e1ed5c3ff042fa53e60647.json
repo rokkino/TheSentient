@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "S&P 500 Heads for Record Following Manufacturing Data Surprise",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/us-stocks-muted-as-warsh-nomination-continues-to-weigh-on-market",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T14:48:47",
+  "providerPublishTime": 1770040127.0,
+  "text": "US stocks rebounded on Monday, after stronger-than-expected manufacturing data outweighed lingering questions about the interest-rate outlook following President Donald Trump’s decision to pick Kevin Warsh as the next Federal Reserve chair.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iZhBrkN4RuC0/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HEADS",
+    "WARSH",
+    "US",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "NEXT",
+    "FOR",
+    "ON",
+    "PICK"
+  ],
+  "relatedTickers": [
+    "HEADS",
+    "WARSH",
+    "US",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "NEXT",
+    "FOR",
+    "ON",
+    "PICK"
+  ]
+}

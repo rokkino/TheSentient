@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Google Project Genie Puts Unity Software’s Long-Term Role In Focus",
+  "link": "https://finance.yahoo.com/news/google-project-genie-puts-unity-201207643.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T20:12:07",
+  "providerPublishTime": 1770059527.0,
+  "text": "Google has launched Project Genie, an AI tool that builds interactive 3D worlds from text and images. The product targets game and content creators, an area where Unity Software (NYSE:U) has been a key platform. The announcement has coincided with concern about Unity’s competitive position and shifts in investor sentiment. Unity Software, trading at about $29.1 per share, has seen sharp moves recently, with a 32.3% decline over the past week and a 34.2% decline over the past month. Despite...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/0fe4d5d105492213ce106a92b49639d4",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "PUTS",
+    "NYSE",
+    "WEEK",
+    "FROM",
+    "AND",
+    "PAST",
+    "WHERE",
+    "MONTH",
+    "IN",
+    "ROLE"
+  ],
+  "relatedTickers": [
+    "PUTS",
+    "NYSE",
+    "WEEK",
+    "FROM",
+    "AND",
+    "PAST",
+    "WHERE",
+    "MONTH",
+    "IN",
+    "ROLE"
+  ]
+}

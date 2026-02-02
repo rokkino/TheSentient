@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Commodity Volatility, Earnings and Other Key Things to Watch",
+  "link": "https://finance.yahoo.com/news/commodity-volatility-earnings-other-key-180002165.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-01T18:00:02",
+  "providerPublishTime": 1769965202.0,
+  "text": "Markets enter February following a volatile final trading day of January that saw investors grappling with hotter-than-expected inflation data alongside news of a new Federal Reserve chair nominee.",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/a3f8b7b175c2147da9ed22b631b9dee3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "WATCH",
+    "ENTER",
+    "FINAL",
+    "SAW",
+    "THAN",
+    "OF",
+    "NEW",
+    "THAT",
+    "CHAIR"
+  ],
+  "relatedTickers": [
+    "A",
+    "WATCH",
+    "ENTER",
+    "FINAL",
+    "SAW",
+    "THAN",
+    "OF",
+    "NEW",
+    "THAT",
+    "CHAIR"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Billionaires Are Piling Into This Artificial Intelligence (AI) Stock. Here's Why.",
+  "link": "https://finance.yahoo.com/news/billionaires-piling-artificial-intelligence-ai-210000689.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T21:00:00",
+  "providerPublishTime": 1769976000.0,
+  "text": "Billionaires regularly pile more of their money into the biggest winners.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/bdf9af324084c4f3a5a80233541f99f9",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "NVDA",
+    "MONEY",
+    "STOCK",
+    "S",
+    "PILE",
+    "THEIR",
+    "AI",
+    "HERE",
+    "ARE"
+  ],
+  "relatedTickers": [
+    "THE",
+    "NVDA",
+    "MONEY",
+    "STOCK",
+    "S",
+    "PILE",
+    "THEIR",
+    "AI",
+    "HERE",
+    "ARE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Some Arbitrary Numbers to Watch Out For",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-02/some-arbitrary-numbers-to-watch-out-for",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T19:04:15",
+  "providerPublishTime": 1770055455.0,
+  "text": "Hello and welcome to the newsletter, a grab bag of daily content from the Odd Lots universe. Sometimes it's us, Joe Weisenthal and Tracy Alloway, bringing you our thoughts on the most recent developments in markets, finance and the economy. And sometimes it's contributions from our network of expert guests and sources. Whatever it is, we promise it will always be interesting.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ishoD4.vDJnA/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WATCH",
+    "OUT",
+    "FROM",
+    "YOU",
+    "FOR",
+    "MOST",
+    "AND",
+    "ON",
+    "BE",
+    "IN"
+  ],
+  "relatedTickers": [
+    "WATCH",
+    "OUT",
+    "FROM",
+    "YOU",
+    "FOR",
+    "MOST",
+    "AND",
+    "ON",
+    "BE",
+    "IN"
+  ]
+}

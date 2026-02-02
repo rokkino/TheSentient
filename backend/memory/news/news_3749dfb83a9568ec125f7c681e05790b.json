@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold Slump Eases as Traders Weigh Unwinding of ‘Crowded’ Bets",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-01/gold-silver-extend-declines-after-dramatic-reversal-of-rally",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-01T23:24:02",
+  "providerPublishTime": 1769984642.0,
+  "text": "Precious metals clawed back some losses after another heavy selloff in Asian trading hours, as traders took stock of the abrupt unwinding of a record-breaking rally.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ibcTM3N3ASeQ/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "AFTER",
+    "IN",
+    "ASIAN",
+    "RALLY",
+    "SOME",
+    "EASES",
+    "BACK",
+    "SLUMP",
+    "HOURS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "AFTER",
+    "IN",
+    "ASIAN",
+    "RALLY",
+    "SOME",
+    "EASES",
+    "BACK",
+    "SLUMP",
+    "HOURS"
+  ]
+}

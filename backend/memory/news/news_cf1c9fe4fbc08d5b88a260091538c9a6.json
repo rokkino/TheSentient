@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Strategy Stock Drops as Bitcoin Price Sinks. MSTR Is Doubling Down on Its Bet.",
+  "link": "https://www.barrons.com/articles/mstr-stock-price-strategy-bitcoin-microstrategy-633226b6?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T19:49:00",
+  "providerPublishTime": 1770058140.0,
+  "text": "Strategy  stock declined after the price of  Bitcoin  tanked over the weekend, souring its cryptocurrency bet.  Strategy revealed in a securities filing Monday that it had snapped up 855 tokens for roughly $87,974 each, or $75.3 million in total, in the preceding seven-day period.  Strategy is no stranger to criticism.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/017302f8c75675e92bd78cc9072b7dcc",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "MSTR",
+    "AS",
+    "SINKS",
+    "AFTER",
+    "TOTAL",
+    "FOR",
+    "DOWN",
+    "ON",
+    "UP",
+    "IN"
+  ],
+  "relatedTickers": [
+    "MSTR",
+    "AS",
+    "SINKS",
+    "AFTER",
+    "TOTAL",
+    "FOR",
+    "DOWN",
+    "ON",
+    "UP",
+    "IN"
+  ]
+}

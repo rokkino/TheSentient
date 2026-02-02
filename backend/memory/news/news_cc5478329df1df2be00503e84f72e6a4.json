@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Qualcomm’s Zenith Auto AI Push Redraws Growth Mix Beyond Smartphones",
+  "link": "https://finance.yahoo.com/news/qualcomm-zenith-auto-ai-push-190914737.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T19:09:14",
+  "providerPublishTime": 1770055754.0,
+  "text": "Qualcomm (NasdaqGS:QCOM) and ECARX Holdings unveiled the Zenith computing platform, powered by Snapdragon Elite, at CES 2026 for advanced smart vehicle functions. The Zenith platform is designed to support higher level autonomous driving features and richer in car experiences. Qualcomm is evaluating SOCAMM2 memory technology for its AI chips, aiming to strengthen its position alongside players such as Nvidia in AI hardware. These moves align with Qualcomm's focus on growth in automotive, on...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/d41c32d3c0fd3f81547cc0d2991903f5",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "AUTO",
+    "ELITE",
+    "FOR",
+    "AND",
+    "ON",
+    "CAR",
+    "IN",
+    "THESE",
+    "ALIGN"
+  ],
+  "relatedTickers": [
+    "AS",
+    "AUTO",
+    "ELITE",
+    "FOR",
+    "AND",
+    "ON",
+    "CAR",
+    "IN",
+    "THESE",
+    "ALIGN"
+  ]
+}

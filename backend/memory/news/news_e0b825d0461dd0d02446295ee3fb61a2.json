@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "One Hyde Park residents win legal battle over £35mn in building defects",
+  "link": "https://www.ft.com/content/2757b67e-7991-465f-8b5c-0aadc03ee1f0",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T13:43:27",
+  "providerPublishTime": 1770036207.0,
+  "text": "Claimants hail ‘a decisive victory’ over corrosion and other faults at exclusive development",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F2f5319ba-e78b-4b53-835a-5333e2185c5f.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "ONE",
+    "AT",
+    "HAIL",
+    "AND",
+    "PARK",
+    "OTHER",
+    "IN",
+    "OVER",
+    "WIN"
+  ],
+  "relatedTickers": [
+    "A",
+    "ONE",
+    "AT",
+    "HAIL",
+    "AND",
+    "PARK",
+    "OTHER",
+    "IN",
+    "OVER",
+    "WIN"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Dow Jones Futures: Market Rebounds; Palantir Jumps Late On Earnings, SpaceX-xAI Merger Seen",
+  "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-palantir-earnings-space-xai-merger/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-02T21:58:38",
+  "providerPublishTime": 1770065918.0,
+  "text": "The major indexes rebounded from or above key levels. Palantir jumped late on strong earnings. SpaceX and xAI reportedly will merge.",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/edcd9ac98ba432a2ef5333217033c666",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BTC-USD",
+    "KEY",
+    "LATE",
+    "FROM",
+    "MERGE",
+    "AND",
+    "MAJOR",
+    "ON",
+    "XAI",
+    "JONES"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "KEY",
+    "LATE",
+    "FROM",
+    "MERGE",
+    "AND",
+    "MAJOR",
+    "ON",
+    "XAI",
+    "JONES"
+  ]
+}

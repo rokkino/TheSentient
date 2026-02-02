@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Is CoreWeave a Buy After This Big News From Nvidia?",
+  "link": "https://finance.yahoo.com/news/coreweave-buy-big-news-nvidia-183000235.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T18:30:00",
+  "providerPublishTime": 1769967000.0,
+  "text": "Nvidia and CoreWeave have a close relationship.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/6b12acf093c7ae23bb358742a3045764",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BIG",
+    "IS",
+    "AND",
+    "NVDA",
+    "A",
+    "FROM",
+    "CLOSE",
+    "THIS",
+    "NEWS",
+    "BUY"
+  ],
+  "relatedTickers": [
+    "BIG",
+    "IS",
+    "AND",
+    "NVDA",
+    "A",
+    "FROM",
+    "CLOSE",
+    "THIS",
+    "NEWS",
+    "BUY"
+  ]
+}

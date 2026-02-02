@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US cuts tariffs on India to 18%, India agrees to end Russian oil purchases",
+  "link": "https://www.investing.com/news/world-news/trump-says-agreed-on-trade-deal-with-india-4479564",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:06:32",
+  "providerPublishTime": 1770062792.0,
+  "text": "US cuts tariffs on India to 18%, India agrees to end Russian oil purchases",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "CUTS",
+    "TO",
+    "END",
+    "ON",
+    "INDIA",
+    "US"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "CUTS",
+    "TO",
+    "END",
+    "ON",
+    "INDIA",
+    "US"
+  ]
+}

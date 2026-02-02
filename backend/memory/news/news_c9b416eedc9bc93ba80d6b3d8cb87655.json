@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Sector Update: Financial Stocks Advance Late Afternoon",
+  "link": "https://finance.yahoo.com/news/sector-financial-stocks-advance-afternoon-210127499.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T21:01:27",
+  "providerPublishTime": 1770062487.0,
+  "text": "Financial stocks rose in late Monday afternoon trading, with the NYSE Financial Index adding 0.7% an",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BTC-USD",
+    "WITH",
+    "AN",
+    "LATE",
+    "NYSE",
+    "INDEX",
+    "ROSE",
+    "IN",
+    "THE"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "WITH",
+    "AN",
+    "LATE",
+    "NYSE",
+    "INDEX",
+    "ROSE",
+    "IN",
+    "THE"
+  ]
+}

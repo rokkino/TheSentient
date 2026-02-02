@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Fabrinet earnings beat by $0.11, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/fabrinet-earnings-beat-by-011-revenue-topped-estimates-4480042",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:32",
+  "providerPublishTime": 1770063692.0,
+  "text": "Fabrinet earnings beat by $0.11, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BY",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "BY",
+    "BEAT"
+  ]
+}

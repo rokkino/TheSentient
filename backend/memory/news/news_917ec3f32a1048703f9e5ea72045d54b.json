@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Elon Musk warns 'insane' US debt is headed for a ‘day of reckoning.’ How to shockproof your nest egg now",
+  "link": "https://finance.yahoo.com/news/elon-musk-warns-insane-us-120100882.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T12:01:00",
+  "providerPublishTime": 1769943660.0,
+  "text": "Elon Musk warns 'insane' US debt is headed for a ‘day of reckoning.’ How to shockproof your nest egg now",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_ecomm_711/74605c3046d355802f27b323e59dade8",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DAY",
+    "NEST",
+    "WARNS",
+    "HOW",
+    "IS",
+    "ELON",
+    "FOR",
+    "YOUR",
+    "TO",
+    "EGG"
+  ],
+  "relatedTickers": [
+    "DAY",
+    "NEST",
+    "WARNS",
+    "HOW",
+    "IS",
+    "ELON",
+    "FOR",
+    "YOUR",
+    "TO",
+    "EGG"
+  ]
+}

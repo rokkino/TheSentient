@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Crypto Investment Products See Record Outflows Amid BTC, ETH Price Slump",
+  "link": "https://finance.yahoo.com/news/crypto-investment-products-see-record-141645894.html",
+  "publisher": "CCN",
+  "timestamp": "2026-02-02T14:16:45",
+  "providerPublishTime": 1770038205.0,
+  "text": "Crypto investment products recorded $1.73 billion in outflows, the largest weekly total since mid-November 2025. Bitcoin and Ethereum bore the brunt of the selling, while Solana ...",
+  "thumbnail": "https://media.zenfs.com/en/ccn_928/1e7cfb8cf1909238069051183c7dcf24",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "AMID",
+    "SLUMP",
+    "MID",
+    "BRUNT",
+    "TOTAL",
+    "AND",
+    "BTC",
+    "SEE",
+    "WHILE"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "AMID",
+    "SLUMP",
+    "MID",
+    "BRUNT",
+    "TOTAL",
+    "AND",
+    "BTC",
+    "SEE",
+    "WHILE"
+  ]
+}

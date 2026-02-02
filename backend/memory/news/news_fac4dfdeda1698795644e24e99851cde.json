@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The IRS is trying to make the best of a government shutdown. Here’s how to protect your refund.",
+  "link": "https://www.marketwatch.com/story/the-irs-is-trying-to-make-the-best-of-a-government-shutdown-heres-how-to-protect-your-refund-156c1294?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T16:43:00",
+  "providerPublishTime": 1770046980.0,
+  "text": "The federal tax collector is using Biden-era funding to continue normal operations through next week, as filing season continues.",
+  "thumbnail": "https://images.mktw.net/im-90763720",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "NEXT",
+    "WEEK",
+    "TAX",
+    "ERA",
+    "HERE",
+    "A",
+    "HOW",
+    "BIDEN",
+    "IS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "NEXT",
+    "WEEK",
+    "TAX",
+    "ERA",
+    "HERE",
+    "A",
+    "HOW",
+    "BIDEN",
+    "IS"
+  ]
+}

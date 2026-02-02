@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bernstein Reiterates a Buy on ServiceNow (NOW)",
+  "link": "https://finance.yahoo.com/news/bernstein-reiterates-buy-servicenow-now-132021235.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T13:20:21",
+  "providerPublishTime": 1769948421.0,
+  "text": "Bernstein Reiterates a Buy on ServiceNow (NOW)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/4a25e1c441831c55a553ed49bcb06b8e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "A",
+    "NOW",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "A",
+    "NOW",
+    "ON"
+  ]
+}

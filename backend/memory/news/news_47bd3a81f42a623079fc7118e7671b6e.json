@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia stock falls as OpenAI seeks AI chip rivals",
+  "link": "https://www.investing.com/news/stock-market-news/nvidia-stock-falls-as-openai-seeks-ai-chip-rivals-4480147",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:44:23",
+  "providerPublishTime": 1770065063.0,
+  "text": "Nvidia stock falls as OpenAI seeks AI chip rivals",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "CHIP",
+    "SEEKS",
+    "AS",
+    "FALLS",
+    "AI",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "CHIP",
+    "SEEKS",
+    "AS",
+    "FALLS",
+    "AI",
+    "STOCK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Tesla (TSLA) Seen as ‘Physical AI’ Leader as Mizuho Lifts Price Target",
+  "link": "https://finance.yahoo.com/news/tesla-tsla-seen-physical-ai-181856565.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T18:18:56",
+  "providerPublishTime": 1769966336.0,
+  "text": "Tesla, Inc. (NASDAQ:TSLA) is one of the 10 AI Stocks Making Waves on Wall Street. On January 29, Mizuho analyst Vijay Rakesh raised the price target on the stock to $540.00 (from $530.00) while maintaining an “Outperform” rating. The firm sees Tesla as a leader in physical AI despite near-term EV demand headwinds. Mizuho’s rating follows Tesla’s […]",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/11c7ac85f26fcb755f9782d181485984",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NVDA",
+    "FIRM",
+    "A",
+    "IN",
+    "S",
+    "WALL",
+    "AN",
+    "WAVES",
+    "AS",
+    "WHILE"
+  ],
+  "relatedTickers": [
+    "NVDA",
+    "FIRM",
+    "A",
+    "IN",
+    "S",
+    "WALL",
+    "AN",
+    "WAVES",
+    "AS",
+    "WHILE"
+  ]
+}

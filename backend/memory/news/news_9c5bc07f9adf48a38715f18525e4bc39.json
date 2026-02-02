@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The dollar’s rebound probably won’t last",
+  "link": "https://www.marketwatch.com/story/the-dollars-rebound-probably-wont-last-cfd9a7df?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T19:01:00",
+  "providerPublishTime": 1770055260.0,
+  "text": "The U.S. dollar was attempting to bounce back from its January slide.",
+  "thumbnail": "https://images.mktw.net/im-06038750",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "T",
+    "ITS",
+    "FROM",
+    "U",
+    "SLIDE",
+    "S",
+    "TO",
+    "WAS",
+    "BACK",
+    "THE"
+  ],
+  "relatedTickers": [
+    "T",
+    "ITS",
+    "FROM",
+    "U",
+    "SLIDE",
+    "S",
+    "TO",
+    "WAS",
+    "BACK",
+    "THE"
+  ]
+}

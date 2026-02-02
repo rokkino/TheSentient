@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Daktronics appoints Ramesh Jayaraman as CEO and board member, extends Kurtenbach consulting agreement",
+  "link": "https://www.investing.com/news/sec-filings/daktronics-appoints-ramesh-jayaraman-as-ceo-and-board-member-extends-kurtenbach-consulting-agreement-93CH-4480152",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:43:03",
+  "providerPublishTime": 1770064983.0,
+  "text": "Daktronics appoints Ramesh Jayaraman as CEO and board member, extends Kurtenbach consulting agreement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "CEO",
+    "AND",
+    "BOARD"
+  ],
+  "relatedTickers": [
+    "AS",
+    "CEO",
+    "AND",
+    "BOARD"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Home prices are so high that more than half of down-payment assistance programs are now open to buyers earning over $100K",
+  "link": "https://www.marketwatch.com/story/think-you-cant-afford-a-house-more-than-half-of-down-payment-assistance-programs-are-now-open-to-buyers-earning-over-100k-061ea673?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T16:41:00",
+  "providerPublishTime": 1770046860.0,
+  "text": "The number of down-payment assistance programs is on the rise, and a growing share are open to people of all income levels.",
+  "thumbnail": "https://images.mktw.net/im-00002858",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ALL",
+    "ARE",
+    "OPEN",
+    "AND",
+    "DOWN",
+    "ON",
+    "NOW",
+    "SO",
+    "SHARE",
+    "HALF"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "ARE",
+    "OPEN",
+    "AND",
+    "DOWN",
+    "ON",
+    "NOW",
+    "SO",
+    "SHARE",
+    "HALF"
+  ]
+}

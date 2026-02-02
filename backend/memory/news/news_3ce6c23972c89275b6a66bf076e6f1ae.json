@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "DHS chief says body cameras being deployed to every field officer in Minneapolis",
+  "link": "https://www.investing.com/news/world-news/dhs-chief-says-body-cameras-being-deployed-to-every-field-officer-in-minneapolis-4480157",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:48:39",
+  "providerPublishTime": 1770065319.0,
+  "text": "DHS chief says body cameras being deployed to every field officer in Minneapolis",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIELD",
+    "BODY",
+    "TO",
+    "CHIEF",
+    "SAYS",
+    "DHS",
+    "IN",
+    "EVERY",
+    "BEING"
+  ],
+  "relatedTickers": [
+    "FIELD",
+    "BODY",
+    "TO",
+    "CHIEF",
+    "SAYS",
+    "DHS",
+    "IN",
+    "EVERY",
+    "BEING"
+  ]
+}

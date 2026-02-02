@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Waymo Seeks $16 Billion Funding at Nearly $110 Billion Valuation",
+  "link": "https://finance.yahoo.com/news/waymo-seeks-16-billion-funding-195317048.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:53:17",
+  "providerPublishTime": 1770058397.0,
+  "text": "Alphabet plans $13B backing as Waymo targets February close with Sequoia, DST, Dragoneer, Mubadala",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "PLANS",
+    "WITH",
+    "SEEKS",
+    "AS",
+    "DST",
+    "WAYMO",
+    "CLOSE",
+    "AT"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "PLANS",
+    "WITH",
+    "SEEKS",
+    "AS",
+    "DST",
+    "WAYMO",
+    "CLOSE",
+    "AT"
+  ]
+}

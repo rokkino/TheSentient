@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here’s What Wall Street Thinks About ​Workday, Inc (WDAY)",
+  "link": "https://finance.yahoo.com/news/wall-street-thinks-workday-inc-132128547.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T13:21:28",
+  "providerPublishTime": 1769948488.0,
+  "text": "Here’s What Wall Street Thinks About ​Workday, Inc (WDAY)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/530e1ae634ed74c7657b55f46be04784",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WDAY",
+    "ABOUT",
+    "INC",
+    "WHAT",
+    "WALL",
+    "S",
+    "HERE"
+  ],
+  "relatedTickers": [
+    "WDAY",
+    "ABOUT",
+    "INC",
+    "WHAT",
+    "WALL",
+    "S",
+    "HERE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold now down nearly $1,000 from peak as silver struggles to recover from a record 31% slump",
+  "link": "https://www.marketwatch.com/story/gold-now-down-nearly-1-000-from-peak-as-silver-struggles-following-record-31-slump-56067f2a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T18:35:00",
+  "providerPublishTime": 1770053700.0,
+  "text": "Gold and silver were struggling to recover lost ground Monday after a selloff Friday in precious metals that saw gold fall significantly from record highs and silver post its biggest daily loss in 46 years.",
+  "thumbnail": "https://images.mktw.net/im-76775832",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "POST",
+    "AS",
+    "AFTER",
+    "LOSS",
+    "FROM",
+    "AND",
+    "LOST",
+    "DOWN",
+    "PEAK",
+    "IN"
+  ],
+  "relatedTickers": [
+    "POST",
+    "AS",
+    "AFTER",
+    "LOSS",
+    "FROM",
+    "AND",
+    "LOST",
+    "DOWN",
+    "PEAK",
+    "IN"
+  ]
+}

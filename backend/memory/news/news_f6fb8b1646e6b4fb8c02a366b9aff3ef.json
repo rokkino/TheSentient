@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Best mortgage lenders for low or no down payments of February 2026",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/best-low-and-no-down-payment-mortgage-lenders-170121918.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2024-12-30T17:01:21",
+  "providerPublishTime": 1735574481.0,
+  "text": "Best mortgage lenders for low or no down payments of February 2026",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-12/a7307af0-be53-11ef-afeb-074f9f264153",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LOW",
+    "FOR",
+    "NO",
+    "BEST",
+    "DOWN",
+    "OR",
+    "OF"
+  ],
+  "relatedTickers": [
+    "LOW",
+    "FOR",
+    "NO",
+    "BEST",
+    "DOWN",
+    "OR",
+    "OF"
+  ]
+}

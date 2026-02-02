@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wrap Technologies stock falls after $5 million private placement",
+  "link": "https://www.investing.com/news/stock-market-news/wrap-technologies-stock-falls-after-5-million-private-placement-93CH-4479809",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T20:22:52",
+  "providerPublishTime": 1770060172.0,
+  "text": "Wrap Technologies stock falls after $5 million private placement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AFTER",
+    "STOCK",
+    "WRAP",
+    "FALLS"
+  ],
+  "relatedTickers": [
+    "AFTER",
+    "STOCK",
+    "WRAP",
+    "FALLS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "This Artificial Intelligence (AI) Play Could Be the Steal of 2026",
+  "link": "https://finance.yahoo.com/news/artificial-intelligence-ai-play-could-195600606.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T19:56:00",
+  "providerPublishTime": 1770058560.0,
+  "text": "How can the largest company in the world be a steal at today's prices?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/7c8a7fdf83881443c83818b006e4f0ce",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HOW",
+    "STEAL",
+    "AT",
+    "TODAY",
+    "THIS",
+    "COULD",
+    "S",
+    "WORLD",
+    "NVDA",
+    "AI"
+  ],
+  "relatedTickers": [
+    "HOW",
+    "STEAL",
+    "AT",
+    "TODAY",
+    "THIS",
+    "COULD",
+    "S",
+    "WORLD",
+    "NVDA",
+    "AI"
+  ]
+}

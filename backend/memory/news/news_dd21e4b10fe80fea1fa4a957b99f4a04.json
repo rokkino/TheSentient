@@ -1,0 +1,31 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Klarna Joins Google's AI Shopping Push",
+  "link": "https://finance.yahoo.com/news/klarna-joins-googles-ai-shopping-192103754.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:21:03",
+  "providerPublishTime": 1770056463.0,
+  "text": "AI shopping standards move closer to reality",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "MOVE",
+    "JOINS",
+    "S",
+    "TO",
+    "AI",
+    "PUSH"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "MOVE",
+    "JOINS",
+    "S",
+    "TO",
+    "AI",
+    "PUSH"
+  ]
+}

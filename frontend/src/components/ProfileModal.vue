@@ -119,6 +119,7 @@
                <label>Platform</label>
                <select v-model="accountForm.platform" class="form-input form-select" :disabled="editingAccount">
                  <option value="Alpaca">Alpaca</option>
+                 <option value="InteractiveBrokers">Interactive Brokers</option>
              </select>
              </div>
 
@@ -143,6 +144,38 @@
                  <div class="checkbox-group">
                    <input type="checkbox" id="paper-trading" v-model="accountForm.credentials.paper_trading" />
                    <label for="paper-trading">Paper Trading</label>
+                </div>
+              </div>
+            </div>
+
+             <!-- Interactive Brokers Specific Fields -->
+             <div v-if="accountForm.platform === 'InteractiveBrokers'">
+               <p class="form-hint">Per usare Interactive Brokers, devi avere <strong>TWS</strong> (Trader Workstation) o <strong>IB Gateway</strong> in esecuzione. Assicurati di abilitare le connessioni API nelle impostazioni.</p>
+               <div class="form-group">
+                 <label>Host</label>
+                 <input v-model="accountForm.credentials.host" type="text" class="form-input" placeholder="127.0.0.1" />
+                 <p class="help-text">Indirizzo del computer dove è in esecuzione TWS/Gateway (default: 127.0.0.1)</p>
+               </div>
+               <div class="form-group">
+                 <label>Port</label>
+                 <input v-model="accountForm.credentials.port" type="number" class="form-input" placeholder="7497" />
+                 <p class="help-text">Porta TWS Paper: 7497, TWS Live: 7496, Gateway Paper: 4002, Gateway Live: 4001</p>
+               </div>
+               <div class="form-group">
+                 <label>Client ID</label>
+                 <input v-model="accountForm.credentials.client_id" type="number" class="form-input" placeholder="1" />
+                 <p class="help-text">ID client univoco per questa connessione (default: 1)</p>
+               </div>
+               <div class="form-group">
+                 <label>Account ID (Opzionale)</label>
+                 <input v-model="accountForm.credentials.account" type="text" class="form-input" placeholder="es. DU12345" />
+                 <p class="help-text">Necessario solo se hai più account IB collegati</p>
+               </div>
+               <div class="form-group">
+                 <label>Trading Mode</label>
+                 <div class="checkbox-group">
+                   <input type="checkbox" id="ib-paper-trading" v-model="accountForm.credentials.paper_trading" />
+                   <label for="ib-paper-trading">Paper Trading</label>
                  </div>
                </div>
              </div>
@@ -402,13 +435,19 @@ const accountForm = ref({
   platform: 'Alpaca',
   name: '',
   credentials: {
+    // Alpaca fields
     username: '',
     password: '',
     api_key: '',
     secret_key: '',
     account_type: 'DEMO',
     paper_trading: true,
-    login_method: 'STANDARD'
+    login_method: 'STANDARD',
+    // Interactive Brokers fields
+    host: '127.0.0.1',
+    port: 7497,
+    client_id: 1,
+    account: ''
   },
   is_active: true
 })
@@ -438,13 +477,19 @@ const openAddAccountForm = () => {
     platform: 'Alpaca',
     name: '',
     credentials: {
+      // Alpaca fields
       username: '',
       password: '',
       api_key: '',
       secret_key: '',
       account_type: 'DEMO',
       paper_trading: true,
-      login_method: 'STANDARD'
+      login_method: 'STANDARD',
+      // Interactive Brokers fields
+      host: '127.0.0.1',
+      port: 7497,
+      client_id: 1,
+      account: ''
     },
     is_active: true
   }
@@ -539,6 +584,12 @@ const testNewAccountConnection = async () => {
         config.alpaca_api_key = accountForm.value.credentials.api_key
         config.alpaca_api_secret = accountForm.value.credentials.secret_key
         config.alpaca_paper = accountForm.value.credentials.paper_trading
+     } else if (accountForm.value.platform === 'InteractiveBrokers') {
+        config.ib_host = accountForm.value.credentials.host || '127.0.0.1'
+        config.ib_port = accountForm.value.credentials.port || 7497
+        config.ib_client_id = accountForm.value.credentials.client_id || 1
+        config.ib_account = accountForm.value.credentials.account || ''
+        config.ib_paper = accountForm.value.credentials.paper_trading
      }
      
      const res = await api.testBotConnection({

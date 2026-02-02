@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Walt Disney stock rating reiterated at Overweight by Barclays",
+  "link": "https://www.investing.com/news/analyst-ratings/walt-disney-stock-rating-reiterated-at-overweight-by-barclays-93CH-4479650",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:01:17",
+  "providerPublishTime": 1770051677.0,
+  "text": "Walt Disney stock rating reiterated at Overweight by Barclays",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "WALT",
+    "AT",
+    "BY"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "WALT",
+    "AT",
+    "BY"
+  ]
+}

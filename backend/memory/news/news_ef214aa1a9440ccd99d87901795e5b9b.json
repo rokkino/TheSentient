@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bostic Sees Fed at Neutral in Maybe One or Two Rate Cuts",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/bostic-sees-fed-at-neutral-in-maybe-one-or-two-rate-cuts-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T18:52:52",
+  "providerPublishTime": 1770054772.0,
+  "text": "Federal Reserve Bank of Atlanta President Raphael Bostic offers his policy outlook, saying he didn’t have any rate cuts projected for the year ahead, and how close he sees the central bank to the neutral rate. He speaks with former Federal Reserve Bank of Atlanta President Dennis Lockhart Monday at an event hosted by the Rotary Club of Atlanta. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ipLKAy32EU0Y/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "YEAR",
+    "FOR",
+    "AND",
+    "TWO",
+    "AHEAD",
+    "DIDN",
+    "CLOSE",
+    "IN",
+    "HIS",
+    "CUTS"
+  ],
+  "relatedTickers": [
+    "YEAR",
+    "FOR",
+    "AND",
+    "TWO",
+    "AHEAD",
+    "DIDN",
+    "CLOSE",
+    "IN",
+    "HIS",
+    "CUTS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "He Maxes Out His 401(k), Roth IRA And HSA On A $100K Salary. His 7 Habits Show It's Possible In Almost Any Situation",
+  "link": "https://finance.yahoo.com/news/maxes-401-k-roth-ira-180112738.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-01T18:01:12",
+  "providerPublishTime": 1769965272.0,
+  "text": "A single man living in Minnesota says he's been maxing out his 401(k), Roth IRA and Health Savings Account for years, all on a $100,000 salary. And he didn't start at six figures either. Seven Habits That Made It Happen “I have been doing so for 4 years, and I have been maxing it out even when making $80k,” the original poster wrote on Reddit’s r/MiddleClassFinance recently. He estimated his take-home pay is about $3,800 per month after taxes and deductions. With careful budgeting, he spends aro",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/d425bfa9d183f6dba3b21490d3a4267c",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SO",
+    "AT",
+    "PAY",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "YEARS",
+    "START",
+    "I"
+  ],
+  "relatedTickers": [
+    "SO",
+    "AT",
+    "PAY",
+    "IN",
+    "A",
+    "IT",
+    "S",
+    "YEARS",
+    "START",
+    "I"
+  ]
+}

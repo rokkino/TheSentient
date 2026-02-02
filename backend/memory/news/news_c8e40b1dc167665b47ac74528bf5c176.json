@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Citizens Downgrades SAP SE (SAP) to Market Perform",
+  "link": "https://finance.yahoo.com/news/citizens-downgrades-sap-se-sap-132025574.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T13:20:25",
+  "providerPublishTime": 1769948425.0,
+  "text": "Citizens Downgrades SAP SE (SAP) to Market Perform",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/1b03d89b55cba3930c7a4b81faadaa9e",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SAP",
+    "TO",
+    "SE"
+  ],
+  "relatedTickers": [
+    "SAP",
+    "TO",
+    "SE"
+  ]
+}

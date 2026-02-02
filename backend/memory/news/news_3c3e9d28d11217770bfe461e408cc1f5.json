@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form S-3ASR Jacobs Engineering Group  For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-s3asr-jacobs-engineering-group--for-2-february-93CH-4480038",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:09",
+  "providerPublishTime": 1770063669.0,
+  "text": "Form S-3ASR Jacobs Engineering Group  For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FOR",
+    "FORM",
+    "GROUP",
+    "S"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "FORM",
+    "GROUP",
+    "S"
+  ]
+}

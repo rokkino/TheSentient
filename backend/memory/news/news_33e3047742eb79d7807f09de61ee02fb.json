@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "These software stocks could rise as much as 75%. But is now the time to buy?",
+  "link": "https://www.marketwatch.com/story/these-software-stocks-could-rise-as-much-as-75-but-is-now-the-time-to-buy-8ca0e3c8?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T20:58:00",
+  "providerPublishTime": 1770062280.0,
+  "text": "ServiceNow, Shopify and Twilio are stocks that appear to stand out in this beaten-down sector, but some believe it’s too soon to buy.",
+  "thumbnail": "https://images.mktw.net/im-701755",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MUCH",
+    "BUY",
+    "ARE",
+    "AS",
+    "OUT",
+    "AND",
+    "DOWN",
+    "IN",
+    "THESE",
+    "NOW"
+  ],
+  "relatedTickers": [
+    "MUCH",
+    "BUY",
+    "ARE",
+    "AS",
+    "OUT",
+    "AND",
+    "DOWN",
+    "IN",
+    "THESE",
+    "NOW"
+  ]
+}

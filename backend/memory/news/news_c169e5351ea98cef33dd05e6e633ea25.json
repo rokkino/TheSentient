@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin Traders Swing Bearish as BTC Price Languishes Below $80K",
+  "link": "https://finance.yahoo.com/news/bitcoin-traders-swing-bearish-btc-192044576.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-02T19:20:44",
+  "providerPublishTime": 1770056444.0,
+  "text": "Myriad users give Bitcoin a 68% chance of dropping to $69K after the asset fell to its lowest price since 2024 this weekend.",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/be1b7ab35e5ff40a79dbc62dd019dc4f",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "ASSET",
+    "PRICE",
+    "AS",
+    "FELL",
+    "BELOW",
+    "SWING",
+    "AFTER",
+    "ITS",
+    "GIVE"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "ASSET",
+    "PRICE",
+    "AS",
+    "FELL",
+    "BELOW",
+    "SWING",
+    "AFTER",
+    "ITS",
+    "GIVE"
+  ]
+}

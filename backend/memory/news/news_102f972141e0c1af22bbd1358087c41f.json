@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sallie Mae appoints Steve Turner as chief technology officer",
+  "link": "https://www.investing.com/news/company-news/sallie-mae-appoints-steve-turner-as-chief-technology-officer-93CH-4479732",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T19:04:51",
+  "providerPublishTime": 1770055491.0,
+  "text": "Sallie Mae appoints Steve Turner as chief technology officer",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STEVE",
+    "CHIEF",
+    "AS",
+    "MAE"
+  ],
+  "relatedTickers": [
+    "STEVE",
+    "CHIEF",
+    "AS",
+    "MAE"
+  ]
+}

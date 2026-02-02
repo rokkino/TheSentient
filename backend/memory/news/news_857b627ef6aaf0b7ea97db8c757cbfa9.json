@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Crypto Theft Hit Nearly $400 Million in January 2026",
+  "link": "https://finance.yahoo.com/news/crypto-theft-hit-nearly-400-180626234.html",
+  "publisher": "BeInCrypto",
+  "timestamp": "2026-02-01T18:06:26",
+  "providerPublishTime": 1769965586.0,
+  "text": "The crypto industry lost approximately $400 million to exploits in January, with a 71% of that total stemming from a single phishing attack.",
+  "thumbnail": "https://media.zenfs.com/en/beincrypto_us_662/5e8e2c89f7734944045f314d44f3aa65",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "TOTAL",
+    "WITH",
+    "IN",
+    "A",
+    "THAT",
+    "FROM",
+    "SOL-USD",
+    "OF",
+    "HIT"
+  ],
+  "relatedTickers": [
+    "THE",
+    "TOTAL",
+    "WITH",
+    "IN",
+    "A",
+    "THAT",
+    "FROM",
+    "SOL-USD",
+    "OF",
+    "HIT"
+  ]
+}

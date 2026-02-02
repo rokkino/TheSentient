@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Could there be risks to allowing AI chip sales to China?",
+  "link": "https://finance.yahoo.com/video/could-there-be-risks-to-allowing-ai-chip-sales-to-china-190000232.html",
+  "publisher": "Yahoo Finance Video",
+  "timestamp": "2026-02-01T19:00:00",
+  "providerPublishTime": 1769968800.0,
+  "text": "Christopher Miller, professor at Tufts University's Fletcher School, weighs in on whether the decision to allow Nvidia (NVDA) to sale H200 chips to China may be ultimately problematic.Miller is also the author of \"Chip War: The Fight for the World's Most Critical Technology.\"To watch more expert insights and analysis on the latest market action, check out more&nbsp;Market Domination.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-04/707e15c0-02a7-11ef-bbeb-861022b65f11",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NVDA",
+    "SALES",
+    "COULD",
+    "AT",
+    "IN",
+    "S",
+    "MOST",
+    "FIGHT",
+    "WATCH",
+    "OF"
+  ],
+  "relatedTickers": [
+    "NVDA",
+    "SALES",
+    "COULD",
+    "AT",
+    "IN",
+    "S",
+    "MOST",
+    "FIGHT",
+    "WATCH",
+    "OF"
+  ]
+}

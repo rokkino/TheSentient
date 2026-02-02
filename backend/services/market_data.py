@@ -272,12 +272,8 @@ class MarketDataService:
         return await loop.run_in_executor(None, fetch_data)
 
     def _get_cached_data(self, ticker: str, timeframe: str) -> Optional[Dict[str, Any]]:
-        """Get data from JSON cache"""
+        """Get data from JSON cache (all timeframes cached for faster repeat loads)"""
         try:
-            # Only cache 1y/1d timeframe for now as it's the most common for watchlist
-            if timeframe != "1y":
-                return None
-                
             file_path = os.path.join(self.cache_dir, f"{ticker}_{timeframe}.json")
             if os.path.exists(file_path):
                 with open(file_path, 'r') as f:
@@ -287,12 +283,8 @@ class MarketDataService:
         return None
 
     def _save_cached_data(self, ticker: str, timeframe: str, data: Dict[str, Any]):
-        """Save data to JSON cache"""
+        """Save data to JSON cache (all timeframes for faster repeat loads)"""
         try:
-            # Only cache 1y/1d timeframe
-            if timeframe != "1y":
-                return
-                
             file_path = os.path.join(self.cache_dir, f"{ticker}_{timeframe}.json")
             with open(file_path, 'w') as f:
                 json.dump(data, f)

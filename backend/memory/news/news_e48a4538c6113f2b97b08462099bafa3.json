@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Navitas Semiconductor Refocuses On High-Margin AI And EV Power Growth",
+  "link": "https://finance.yahoo.com/news/navitas-semiconductor-refocuses-high-margin-181204222.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T18:12:04",
+  "providerPublishTime": 1770052324.0,
+  "text": "Navitas Semiconductor has shifted its focus away from lower margin mobile and consumer segments toward higher margin markets such as data center infrastructure and industrial electrification. The company is partnering with Nvidia to supply power solutions for AI and data center applications. Navitas is also targeting customers in sectors such as electric vehicles and AI infrastructure, aiming to deepen its role in fast growing end markets. For investors watching NasdaqGM:NVTS, this pivot...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/ce85212c51bd88fd1fdcd0febb642a4a",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "PIVOT",
+    "FROM",
+    "FOR",
+    "AND",
+    "END",
+    "ON",
+    "IN",
+    "ROLE",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "PIVOT",
+    "FROM",
+    "FOR",
+    "AND",
+    "END",
+    "ON",
+    "IN",
+    "ROLE",
+    "THIS"
+  ]
+}

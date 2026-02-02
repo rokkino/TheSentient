@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "WAVE Life Sciences stock rating reiterated by Raymond James on regained drug rights",
+  "link": "https://www.investing.com/news/analyst-ratings/wave-life-sciences-stock-rating-reiterated-by-raymond-james-on-regained-drug-rights-93CH-4479731",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T19:03:07",
+  "providerPublishTime": 1770055387.0,
+  "text": "WAVE Life Sciences stock rating reiterated by Raymond James on regained drug rights",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WAVE",
+    "BY",
+    "JAMES",
+    "ON",
+    "STOCK",
+    "LIFE",
+    "DRUG"
+  ],
+  "relatedTickers": [
+    "WAVE",
+    "BY",
+    "JAMES",
+    "ON",
+    "STOCK",
+    "LIFE",
+    "DRUG"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wall Street can’t get a handle on Kevin Warsh. Expect a volatile market until it does.",
+  "link": "https://www.marketwatch.com/story/wall-street-cant-get-a-handle-on-kevin-warsh-expect-a-volatile-market-until-it-does-e3a80167?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T20:12:00",
+  "providerPublishTime": 1770059520.0,
+  "text": "It’s going to be a bumpy ride for investors. These stock-market sectors could provide a refuge.",
+  "thumbnail": "https://images.mktw.net/im-74757787",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WARSH",
+    "FOR",
+    "ON",
+    "BE",
+    "THESE",
+    "GET",
+    "DOES",
+    "BUMPY",
+    "A",
+    "IT"
+  ],
+  "relatedTickers": [
+    "WARSH",
+    "FOR",
+    "ON",
+    "BE",
+    "THESE",
+    "GET",
+    "DOES",
+    "BUMPY",
+    "A",
+    "IT"
+  ]
+}

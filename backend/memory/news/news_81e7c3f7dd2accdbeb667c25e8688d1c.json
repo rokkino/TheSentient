@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Popular open-source coding application targeted in Chinese-linked supply-chain attack",
+  "link": "https://www.investing.com/news/economy-news/popular-opensource-coding-application-targeted-in-chineselinked-supplychain-attack-4479841",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:43:02",
+  "providerPublishTime": 1770064982.0,
+  "text": "Popular open-source coding application targeted in Chinese-linked supply-chain attack",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OPEN",
+    "CHAIN",
+    "IN"
+  ],
+  "relatedTickers": [
+    "OPEN",
+    "CHAIN",
+    "IN"
+  ]
+}

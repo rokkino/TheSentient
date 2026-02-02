@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Top Midday Stories: Big Companies Join Trump Effort to Stockpile Rare Earths; Devon, Coterra Strike $58 Billion Merger Deal",
+  "link": "https://finance.yahoo.com/news/top-midday-stories-big-companies-165716179.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T16:57:16",
+  "providerPublishTime": 1770047836.0,
+  "text": "All three major US stock indexes were up in late-morning trading Monday to kick off a new month of t",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ALL",
+    "MAJOR",
+    "MONTH",
+    "UP",
+    "JOIN",
+    "IN",
+    "RARE",
+    "BIG",
+    "KICK",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "MAJOR",
+    "MONTH",
+    "UP",
+    "JOIN",
+    "IN",
+    "RARE",
+    "BIG",
+    "KICK",
+    "TOP"
+  ]
+}

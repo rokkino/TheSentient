@@ -1,0 +1,31 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Why Robinhood Markets Plunged on Monday",
+  "link": "https://finance.yahoo.com/news/why-robinhood-markets-plunged-monday-195100360.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T19:51:00",
+  "providerPublishTime": 1770058260.0,
+  "text": "The crypto and options-focused brokerage plunged in sympathy with cryptocurrencies.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/4618ed4f174500fdd1907c273dba75c1",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "WITH",
+    "AND",
+    "ON",
+    "THE",
+    "IN",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "WITH",
+    "AND",
+    "ON",
+    "THE",
+    "IN",
+    "WHY"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "The Best Stocks to Invest $500 in This February",
+  "link": "https://finance.yahoo.com/news/best-stocks-invest-500-february-193500576.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T19:35:00",
+  "providerPublishTime": 1769970900.0,
+  "text": "There are plenty of strong growth and value stocks available to buy right now.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/11cfb7e0a47b741799374c19f5aec2b4",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AND",
+    "THE",
+    "NVDA",
+    "THERE",
+    "BEST",
+    "IN",
+    "NOW",
+    "RIGHT",
+    "ARE",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "AND",
+    "THE",
+    "NVDA",
+    "THERE",
+    "BEST",
+    "IN",
+    "NOW",
+    "RIGHT",
+    "ARE",
+    "THIS"
+  ]
+}

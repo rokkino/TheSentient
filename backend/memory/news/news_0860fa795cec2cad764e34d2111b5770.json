@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "How Investors May Respond To WisdomTree (WT) Record 2025 Results And Tokenized Funds Expansion",
+  "link": "https://finance.yahoo.com/news/investors-may-respond-wisdomtree-wt-121308086.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-01-31T12:13:08",
+  "providerPublishTime": 1769857988.0,
+  "text": "In late January 2026, WisdomTree, Inc. reported higher full-year 2025 revenue of US$493.75 million and net income of US$109.13 million, while its board affirmed a quarterly cash dividend of US$0.03 per share payable on February 25, 2026. Alongside record assets under management and stronger margins, WisdomTree’s push into tokenized funds on blockchains such as Solana and its acquisition-driven expansion into U.S. farmland highlight a growing mix of traditional and digital asset...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/4470f143ba4f4c0e99553a639759c619",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "YEAR",
+    "BOARD",
+    "IN",
+    "A",
+    "ITS",
+    "UNDER",
+    "S",
+    "WHILE",
+    "AS",
+    "MIX"
+  ],
+  "relatedTickers": [
+    "YEAR",
+    "BOARD",
+    "IN",
+    "A",
+    "ITS",
+    "UNDER",
+    "S",
+    "WHILE",
+    "AS",
+    "MIX"
+  ]
+}

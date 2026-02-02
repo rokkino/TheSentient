@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dunkin' policy change cost this customer $260 worth of free coffee. How to protect your loyalty rewards",
+  "link": "https://finance.yahoo.com/news/dunkin-policy-change-cost-customer-124500469.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T12:45:00",
+  "providerPublishTime": 1769946300.0,
+  "text": "Dunkin' policy change cost this customer $260 worth of free coffee. How to protect your loyalty rewards",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/47c848f480057722c53378503a67c6d4",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HOW",
+    "THIS",
+    "YOUR",
+    "WORTH",
+    "COST",
+    "TO",
+    "FREE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "HOW",
+    "THIS",
+    "YOUR",
+    "WORTH",
+    "COST",
+    "TO",
+    "FREE",
+    "OF"
+  ]
+}

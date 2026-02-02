@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney signals its next CEO will take over a company with strong momentum",
+  "link": "https://www.cnbc.com/2026/02/02/disney-signals-next-ceo-strong-momentum.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T17:01:45",
+  "providerPublishTime": 1770048105.0,
+  "text": "Disney CEO Bob Iger touted the company's growth in its last three years as the company prepares to announce his successor.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "NEXT",
+    "IN",
+    "YEARS",
+    "WILL",
+    "CEO",
+    "HIS",
+    "THREE",
+    "A",
+    "LAST"
+  ],
+  "relatedTickers": [
+    "AS",
+    "NEXT",
+    "IN",
+    "YEARS",
+    "WILL",
+    "CEO",
+    "HIS",
+    "THREE",
+    "A",
+    "LAST"
+  ]
+}

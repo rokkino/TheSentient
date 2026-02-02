@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 LIGAND PHARMACEUTICALS INC For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-ligand-pharmaceuticals-inc-for-2-february-93CH-4480044",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:33",
+  "providerPublishTime": 1770063693.0,
+  "text": "Form 144 LIGAND PHARMACEUTICALS INC For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INC",
+    "FOR",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "INC",
+    "FOR",
+    "FORM"
+  ]
+}

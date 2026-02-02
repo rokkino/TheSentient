@@ -420,11 +420,17 @@
               <p>Add an asset from the search bar to begin.</p>
               <p class="welcome-screen-hint">Clicca qui o sulla barra di ricerca per aggiungere un titolo</p>
             </div>
-            <div v-else class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
-              @contextmenu.prevent="showChartContextMenu($event, tab.id)"
-              @click="handleChartClick($event, tab.id)"
-              @mousemove="handleChartMouseMove($event, tab.id)"
-            ></div>
+            <div v-else class="chart-wrapper-container">
+              <div v-if="tab.chartLoading" class="chart-loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Loading chart...</p>
+              </div>
+              <div class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
+                @contextmenu.prevent="showChartContextMenu($event, tab.id)"
+                @click="handleChartClick($event, tab.id)"
+                @mousemove="handleChartMouseMove($event, tab.id)"
+              ></div>
+            </div>
             
             <!-- Drawing Overlay -->
             <svg v-if="tab.selectedTicker && renderedDrawings[tab.id]" class="drawing-overlay">
@@ -766,6 +772,7 @@ const tabs = ref([
       changePercent: null,
       volume: null
     },
+    chartLoading: false,
     chart: null,
     candlestickSeries: null,
     lineSeries: null,
@@ -1038,6 +1045,7 @@ const handleCreateTab = (tabConfig) => {
   const newTab = {
     id: newId,
     ...tabConfig,
+    chartLoading: false,
     chart: null,
     candlestickSeries: null,
     lineSeries: null,
@@ -1119,7 +1127,8 @@ const removeTab = (tabId) => {
           change: null,
           changePercent: null,
           volume: null
-        }
+        },
+        chartLoading: false
       })
     }
   }
@@ -2321,6 +2330,8 @@ const loadChart = async (tabId, forceRefresh = false) => {
     return
   }
 
+  if (!forceRefresh) tab.chartLoading = true
+
   // Real-time refresh: update series data only (no chart teardown)
   if (forceRefresh && tab.chart && (tab.candlestickSeries || tab.lineSeries)) {
     try {
@@ -2375,10 +2386,12 @@ const loadChart = async (tabId, forceRefresh = false) => {
         }
       }
       await updateChartInfo(tabId)
+      if (!forceRefresh) tab.chartLoading = false
       return
     } catch (e) {
       console.error('Chart refresh error:', e)
     }
+    if (!forceRefresh) tab.chartLoading = false
     return
   }
 
@@ -2391,6 +2404,7 @@ const loadChart = async (tabId, forceRefresh = false) => {
     chartContainer = chartRefs.value[tabId]
     if (!chartContainer) {
       console.error('Chart container still not found after retry')
+      tab.chartLoading = false
       return
     }
   }
@@ -2831,6 +2845,9 @@ const loadChart = async (tabId, forceRefresh = false) => {
     // Update drawing coordinates after chart is fully loaded
     await nextTick()
     updateDrawingCoordinates(tabId)
+
+    // Preload chart data for other watchlist symbols so switching is instant
+    setTimeout(() => preloadWatchlistCharts(tab), 500)
   } catch (error) {
     console.error('Chart load error:', error)
     console.error('Error details:', {
@@ -2840,7 +2857,29 @@ const loadChart = async (tabId, forceRefresh = false) => {
       timeframe: tab.timeframe,
       chartType: tab.chartType
     })
+  } finally {
+    if (tab) tab.chartLoading = false
   }
+}
+
+/** Preload chart data for other watchlist symbols in background so switching tabs is instant */
+const preloadWatchlistCharts = (currentTab) => {
+  if (!currentTab?.selectedTicker || currentTab?.type !== 'stocks') return
+  const symbols = watchlist.value
+    .map(w => w.symbol)
+    .filter(s => s && s !== currentTab.selectedTicker)
+  const toPreload = symbols.slice(0, 2) // limit 2 to avoid hammering the API
+  const timeframe = currentTab.timeframe || '1y'
+  const chartType = (currentTab.chartType || 'Candle').toLowerCase()
+  toPreload.forEach(symbol => {
+    const cacheKey = `${symbol}_${timeframe}_${chartType}`
+    if (getCached('chart', cacheKey)) return // already cached
+    api.getChart({ ticker: symbol, timeframe, chart_type: chartType })
+      .then(res => {
+        if (res?.data?.data?.length) setCached('chart', res.data, cacheKey)
+      })
+      .catch(() => {})
+  })
 }
 
 const formatVolume = (volume) => {
@@ -2895,6 +2934,7 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-height: 100dvh;
   background: linear-gradient(180deg, #0d0d0f 0%, #08080a 100%);
   color: #e0e0e0;
   pointer-events: auto;
@@ -3856,6 +3896,30 @@ const handleAiDrawingAdded = (drawing) => {
   overflow: hidden;
 }
 
+.chart-wrapper-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.chart-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(30, 30, 30, 0.9);
+  z-index: 5;
+}
+
+.chart-loading-overlay p {
+  margin: 0;
+  color: #9e9e9e;
+  font-size: 14px;
+}
+
 .chart-wrapper {
   width: 100%;
   height: 100%;
@@ -4247,18 +4311,21 @@ const handleAiDrawingAdded = (drawing) => {
 /* Responsive Dashboard Styles */
 @media (max-width: 768px) {
   .dashboard {
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
   }
 
   /* Tab Bar */
   .tab-bar-container {
-    padding: 0;
+    padding: env(safe-area-inset-top) 0 0 0;
+    background: linear-gradient(180deg, rgba(15, 15, 18, 0.98) 0%, rgba(10, 10, 12, 0.9) 100%);
+    backdrop-filter: blur(16px);
   }
 
   .tab-bar {
-    padding: 0 12px 0 10px;
-    height: 52px;
+    padding: 0 14px 0 12px;
+    height: 56px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .tabs-section {
@@ -4266,14 +4333,18 @@ const handleAiDrawingAdded = (drawing) => {
     overflow-y: hidden;
     mask-image: linear-gradient(to right, black 85%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    padding-right: 20px;
+    padding-right: 24px;
+    gap: 6px;
   }
   
   .tab-btn {
-    padding: 0 12px;
+    padding: 0 14px;
     font-size: 12px;
     white-space: nowrap;
-    height: 100%;
+    height: 36px;
+    border-radius: 12px;
+    text-transform: none;
+    letter-spacing: 0.2px;
   }
 
   .add-tab-btn {
@@ -4295,11 +4366,15 @@ const handleAiDrawingAdded = (drawing) => {
     width: 85%; /* Drawer width */
     max-width: 320px;
     z-index: 100;
-    background-color: #0c0c0c;
+    background-color: rgba(12, 12, 12, 0.98);
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 4px 0 20px rgba(0,0,0,0.6);
-    border-right: 1px solid #222;
+    box-shadow: 12px 0 30px rgba(0,0,0,0.55);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    padding-top: env(safe-area-inset-top);
+    backdrop-filter: blur(18px);
   }
 
   .left-panel.active {
@@ -4308,19 +4383,20 @@ const handleAiDrawingAdded = (drawing) => {
   
   .mobile-close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #222;
-    border: none;
+    top: calc(env(safe-area-inset-top) + 10px);
+    right: 12px;
+    background: rgba(28, 28, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #fff;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
+    backdrop-filter: blur(10px);
   }
 
   .mobile-close-btn {
@@ -4329,14 +4405,17 @@ const handleAiDrawingAdded = (drawing) => {
 
   .mobile-watchlist-toggle {
     display: inline-flex;
-    padding: 6px 12px;
-    background: #333;
-    border: none;
+    padding: 6px 14px;
+    background: rgba(28, 28, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 4px;
     color: white;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     margin-left: 8px;
+    height: 32px;
+    border-radius: 999px;
+    letter-spacing: 0.2px;
   }
 
   /* Chart Container */
@@ -4347,8 +4426,8 @@ const handleAiDrawingAdded = (drawing) => {
 
   /* Chart Info Bar */
   .chart-info-bar {
-    padding: 10px 15px;
-    gap: 15px;
+    padding: 12px 16px;
+    gap: 14px;
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -4390,7 +4469,7 @@ const handleAiDrawingAdded = (drawing) => {
 
   /* Chart Toolbar */
   .chart-toolbar {
-    padding: 8px 10px;
+    padding: 10px 12px;
     gap: 10px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -4402,8 +4481,10 @@ const handleAiDrawingAdded = (drawing) => {
   }
   
   .indicator-btn, .timeframe-btn, .chart-type-btn {
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 11px;
+    min-height: 34px;
+    border-radius: 10px;
   }
   
   .ai-analysis-input {
@@ -4446,22 +4527,108 @@ const handleAiDrawingAdded = (drawing) => {
     min-width: 0;
     width: auto;
   }
+
+  .search-section {
+    margin-bottom: 12px;
+  }
+
+  .search-input {
+    font-size: 16px;
+    min-height: 44px;
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+
+  .search-input-glow {
+    border-radius: 12px;
+  }
+
+  .add-btn {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .search-results {
+    max-height: 38vh;
+    border-radius: 12px;
+  }
+
+  .search-result-item {
+    padding: 10px 12px;
+  }
+
+  .result-name {
+    font-size: 11px;
+  }
+
+  .watchlist-sections {
+    gap: 10px;
+  }
+
+  .panel-title {
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  .watchlist-item {
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    border-bottom: none;
+    background: #0f0f10;
+  }
+
+  .watchlist-item.active {
+    border-left: 2px solid #4299e1;
+    padding-left: 10px;
+    background: #151518;
+  }
+
+  .symbol {
+    font-size: 13px;
+  }
+
+  .name {
+    font-size: 10px;
+  }
+
+  .remove-btn {
+    min-height: 40px;
+    border-radius: 10px;
+    letter-spacing: 0.6px;
+  }
+
+  .welcome-screen h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .welcome-screen p {
+    font-size: 12px;
+  }
+
+  .tab-content {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
   .tab-bar-container {
-    padding: 6px 8px 0;
+    padding: calc(env(safe-area-inset-top) + 6px) 8px 0;
   }
 
   .tab-bar {
-    height: 44px;
-    padding: 0 8px;
+    height: 50px;
+    padding: 0 10px;
   }
 
   .tab-btn {
-    padding: 0 10px;
+    padding: 0 12px;
     font-size: 11px;
+    height: 32px;
   }
 
   .tab-drag-handle {
@@ -4475,7 +4642,7 @@ const handleAiDrawingAdded = (drawing) => {
   }
 
   .chart-info-bar {
-    padding: 8px 12px;
+    padding: 10px 12px;
     gap: 10px;
   }
 
@@ -4488,7 +4655,7 @@ const handleAiDrawingAdded = (drawing) => {
   }
 
   .chart-toolbar {
-    padding: 6px 8px;
+    padding: 8px 10px;
     gap: 8px;
     flex-wrap: wrap;
   }
@@ -4501,13 +4668,44 @@ const handleAiDrawingAdded = (drawing) => {
   .indicator-btn,
   .timeframe-btn,
   .chart-type-btn {
-    padding: 6px 8px;
+    padding: 8px 10px;
     font-size: 10px;
   }
 
   .mobile-watchlist-toggle {
-    font-size: 10px;
-    padding: 6px 10px;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .left-panel {
+    padding: 14px;
+  }
+
+  .search-input {
+    min-height: 42px;
+    font-size: 15px;
+  }
+
+  .add-btn {
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .search-results {
+    max-height: 34vh;
+  }
+
+  .watchlist-item {
+    padding: 9px 10px;
+    border-radius: 9px;
+  }
+
+  .panel-title {
+    font-size: 9px;
+  }
+
+  .welcome-screen {
+    padding: 24px 16px;
   }
 }
 

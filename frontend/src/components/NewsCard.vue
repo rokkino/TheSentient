@@ -431,11 +431,92 @@ const getSentimentLabel = (sentiment) => {
 }
 
 @media (max-width: 768px) {
+  .news-card {
+    border-radius: 16px;
+    margin-bottom: 18px;
+    background: rgba(18, 18, 20, 0.9);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .news-content {
+    padding: 14px 16px 16px;
+  }
+
+  .news-image-container {
+    height: 160px;
+  }
+
   .news-card.hero .news-image-container {
     height: 240px;
   }
+
+  .news-title {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
   .news-card.hero .news-title {
     font-size: 20px;
+  }
+
+  .news-summary {
+    font-size: 13px;
+    -webkit-line-clamp: 4;
+  }
+
+  .ticker-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .ask-ai-btn {
+    min-height: 34px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-card {
+    border-radius: 18px;
+    margin-bottom: 16px;
+  }
+
+  .news-content {
+    padding: 12px 14px 14px;
+  }
+
+  .news-image-container {
+    height: 150px;
+  }
+
+  .news-card.hero .news-image-container {
+    height: 210px;
+  }
+
+  .news-title {
+    font-size: 14px;
+  }
+
+  .news-summary {
+    font-size: 12.5px;
+    -webkit-line-clamp: 3;
+  }
+
+  .publisher-badge,
+  .time-badge {
+    font-size: 9px;
+  }
+
+  .sentiment-badge {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .ask-ai-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

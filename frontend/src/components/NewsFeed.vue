@@ -602,6 +602,27 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
     flex-direction: column;
     align-items: stretch;
   }
+
+  .news-controls {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .ticker-filter {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .update-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
   
   .search-input {
     width: 100%;
@@ -618,7 +639,40 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
   }
 
   .news-header-glass {
-    padding: 12px 16px;
+    padding: 14px 16px;
+  }
+
+  .header-content h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .news-controls {
+    gap: 8px;
+  }
+
+  .search-input,
+  .ticker-filter {
+    min-height: 44px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+
+  .ticker-filter {
+    padding: 10px 16px;
+  }
+
+  .scroll-container {
+    padding: 16px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .hero-section {
+    margin-bottom: 18px;
+  }
+
+  .masonry-grid {
+    column-gap: 16px;
   }
 
   .search-input {
@@ -877,6 +931,58 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 
 .ask-another-btn:hover {
   background: rgba(66, 153, 225, 0.1);
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: none;
+    max-height: 92vh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .submit-btn {
+    min-height: 42px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .modal-header h3 {
+    font-size: 16px;
+  }
+
+  .llama-input {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .quick-actions button,
+  .ask-another-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @keyframes slideUp {

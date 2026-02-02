@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Treasuries Fall After Manufacturing Surge Hits Rate-Cut Bets",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/treasuries-rise-as-investors-seek-havens-from-risk-asset-slide-ml57orb6",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T13:34:41",
+  "providerPublishTime": 1770035681.0,
+  "text": "Treasuries fell after US manufacturing activity unexpectedly jumped, prompting traders to pare bets on Federal Reserve interest-rate cuts this year.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ijE0ij2NIeYw/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FELL",
+    "RATE",
+    "CUTS",
+    "AFTER",
+    "YEAR",
+    "THIS",
+    "HITS",
+    "TO",
+    "ON",
+    "CUT"
+  ],
+  "relatedTickers": [
+    "FELL",
+    "RATE",
+    "CUTS",
+    "AFTER",
+    "YEAR",
+    "THIS",
+    "HITS",
+    "TO",
+    "ON",
+    "CUT"
+  ]
+}

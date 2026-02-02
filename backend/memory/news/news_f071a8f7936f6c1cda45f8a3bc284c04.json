@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mandelson leaked sensitive UK government tax plans to Epstein",
+  "link": "https://www.ft.com/content/fdf7afe9-9ad3-4325-8843-f590dcdd7e57",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T13:49:37",
+  "providerPublishTime": 1770036577.0,
+  "text": "Keir Starmer orders inquiry into former business secretary’s conduct during his time as minister",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F7bf98a13-1180-47a9-99a7-186634acfbd9.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "UK",
+    "PLANS",
+    "AS",
+    "INTO",
+    "TO",
+    "S",
+    "TAX",
+    "TIME",
+    "HIS",
+    "KEIR"
+  ],
+  "relatedTickers": [
+    "UK",
+    "PLANS",
+    "AS",
+    "INTO",
+    "TO",
+    "S",
+    "TAX",
+    "TIME",
+    "HIS",
+    "KEIR"
+  ]
+}

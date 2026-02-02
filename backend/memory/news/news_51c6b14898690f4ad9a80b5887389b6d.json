@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 Meta Platforms For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-meta-platforms-for-2-february-93CH-4480043",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T21:21:32",
+  "providerPublishTime": 1770063692.0,
+  "text": "Form 144 Meta Platforms For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "META",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "META",
+    "FORM"
+  ]
+}

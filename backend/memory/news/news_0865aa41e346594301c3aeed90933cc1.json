@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dow rises 1% as Wall Street kicks off February on a positive note",
+  "link": "https://www.investing.com/news/stock-market-news/wall-st-futures-dip-as-markets-brace-for-key-earnings-week-jobs-report-4477749",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T19:05:03",
+  "providerPublishTime": 1770055503.0,
+  "text": "Dow rises 1% as Wall Street kicks off February on a positive note",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RISES",
+    "AS",
+    "NOTE",
+    "OFF",
+    "WALL",
+    "KICKS",
+    "ON",
+    "A",
+    "DOW"
+  ],
+  "relatedTickers": [
+    "RISES",
+    "AS",
+    "NOTE",
+    "OFF",
+    "WALL",
+    "KICKS",
+    "ON",
+    "A",
+    "DOW"
+  ]
+}

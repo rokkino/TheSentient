@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "S&P 500 Companies' Quarterly Earnings Tracking Well Above Views, Oppenheimer Says",
+  "link": "https://finance.yahoo.com/news/p-500-companies-apos-quarterly-170106329.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T17:01:06",
+  "providerPublishTime": 1770048066.0,
+  "text": "S&P 500 companies' fourth-quarter earnings are so far tracking well above expectations, Oppenheimer",
+  "thumbnail": "https://media.zenfs.com/en/mt_newswires_premium_news_706/97f8529991dafd96c1cb04f4325c2221",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "ARE",
+    "SO",
+    "S",
+    "FAR",
+    "P",
+    "WELL",
+    "VIEWS",
+    "SAYS",
+    "ABOVE"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "ARE",
+    "SO",
+    "S",
+    "FAR",
+    "P",
+    "WELL",
+    "VIEWS",
+    "SAYS",
+    "ABOVE"
+  ]
+}

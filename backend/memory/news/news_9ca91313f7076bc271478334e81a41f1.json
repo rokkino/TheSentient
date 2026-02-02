@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Nvidia Stock Drops on Report of Paused $100 Billion OpenAI Deal",
+  "link": "https://finance.yahoo.com/news/nvidia-stock-drops-report-paused-192245724.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T19:22:45",
+  "providerPublishTime": 1770056565.0,
+  "text": "Nvidia Shares Ease After Report Flags Uncertainty Around OpenAI Deal.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "GOOGL",
+    "AFTER",
+    "DEAL",
+    "ON",
+    "FLAGS",
+    "EASE",
+    "DROPS",
+    "STOCK",
+    "OF"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "AFTER",
+    "DEAL",
+    "ON",
+    "FLAGS",
+    "EASE",
+    "DROPS",
+    "STOCK",
+    "OF"
+  ]
+}

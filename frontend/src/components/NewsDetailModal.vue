@@ -316,12 +316,65 @@ const handleImageError = (e) => {
 }
 
 @media (max-width: 768px) {
+  .modal-overlay {
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: none;
+    max-height: 94vh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
   .news-hero {
-    height: 200px;
+    height: 180px;
   }
   
   .news-title {
-    font-size: 22px;
+    font-size: 18px;
+  }
+
+  .news-actions {
+    gap: 10px;
+  }
+
+  .action-btn {
+    min-height: 42px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .modal-header {
+    padding: 12px 14px;
+  }
+
+  .news-title {
+    font-size: 16px;
+  }
+
+  .publisher-badge,
+  .date-badge {
+    font-size: 10px;
+  }
+
+  .news-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Global stock index regains ground, silver and oil extend losses",
+  "link": "https://www.investing.com/news/economy-news/shares-jittery-in-asia-as-metals-gyrate-earnings-loom-4477746",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:01:36",
+  "providerPublishTime": 1770051696.0,
+  "text": "Global stock index regains ground, silver and oil extend losses",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "INDEX",
+    "OIL",
+    "AND"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "INDEX",
+    "OIL",
+    "AND"
+  ]
+}

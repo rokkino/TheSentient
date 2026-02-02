@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘We’re not in a bubble yet’ because only 3 out of 4 conditions are met, top economist says. Cue the OpenAI IPO",
+  "link": "https://finance.yahoo.com/news/not-bubble-yet-because-only-131100813.html",
+  "publisher": "Fortune",
+  "timestamp": "2026-02-01T13:11:00",
+  "providerPublishTime": 1769947860.0,
+  "text": "‘We’re not in a bubble yet’ because only 3 out of 4 conditions are met, top economist says. Cue the OpenAI IPO",
+  "thumbnail": "https://media.zenfs.com/en/fortune_175/8bcf1e6c3b96063461bcb68d6286184a",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "MET",
+    "ONLY",
+    "IPO",
+    "YET",
+    "OUT",
+    "NOT",
+    "TOP",
+    "SAYS",
+    "RE"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "MET",
+    "ONLY",
+    "IPO",
+    "YET",
+    "OUT",
+    "NOT",
+    "TOP",
+    "SAYS",
+    "RE"
+  ]
+}

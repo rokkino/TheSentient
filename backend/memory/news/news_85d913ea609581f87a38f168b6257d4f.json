@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Beam Therapeutics Senior Vice President Sells 6,198 Shares for $216,933",
+  "link": "https://finance.yahoo.com/news/beam-therapeutics-senior-vice-president-090601926.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T09:06:01",
+  "providerPublishTime": 1769933161.0,
+  "text": "Beam Therapeutics Senior Vice President Sells 6,198 Shares for $216,933",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/3555dd81096d2e030a1eb53e86b6c0ba",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BEAM",
+    "SELLS",
+    "VICE",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "BEAM",
+    "SELLS",
+    "VICE",
+    "FOR"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "RBC Reiterates Brookfield Renewable Partners L.P.'s Outperform Rating",
+  "link": "https://finance.yahoo.com/news/rbc-reiterates-brookfield-renewable-partners-194257641.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-02T19:42:57",
+  "providerPublishTime": 1770057777.0,
+  "text": "RBC Capital Markets on Sunday reiterated its outperform rating on the shares of Brookfield Renewable",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "ITS",
+    "RBC",
+    "S",
+    "ON",
+    "P",
+    "THE",
+    "L",
+    "OF"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "ITS",
+    "RBC",
+    "S",
+    "ON",
+    "P",
+    "THE",
+    "L",
+    "OF"
+  ]
+}

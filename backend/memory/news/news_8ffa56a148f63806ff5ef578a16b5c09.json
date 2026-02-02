@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Why PlayStudios (MYPS) Shares Are Trading Lower Today",
+  "link": "https://finance.yahoo.com/news/why-playstudios-myps-shares-trading-202548536.html",
+  "publisher": "StockStory",
+  "timestamp": "2026-02-02T20:25:48",
+  "providerPublishTime": 1770060348.0,
+  "text": "Shares of digital casino game platform PlayStudios (NASDAQ:MYPS) fell 8.9% in the afternoon session after the gaming sector tumbled following Google's announcement of Project Genie, an AI tool capable of generating interactive 3D worlds in real-time.",
+  "thumbnail": "https://media.zenfs.com/en/stockstory_922/69afbb3758178aced807fcc86c14e05e",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "TODAY",
+    "AFTER",
+    "REAL",
+    "IN",
+    "WHY",
+    "FELL",
+    "LOWER",
+    "TIME",
+    "GOOGL"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "TODAY",
+    "AFTER",
+    "REAL",
+    "IN",
+    "WHY",
+    "FELL",
+    "LOWER",
+    "TIME",
+    "GOOGL"
+  ]
+}

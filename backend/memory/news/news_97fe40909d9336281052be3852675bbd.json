@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Barclays Says S&amp;P 500 Plunged 16% On Average Upon New Fed Chair",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/barclays-says-s-p-500-plunged-16-on-average-upon-new-fed-chair",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T20:06:48",
+  "providerPublishTime": 1770059208.0,
+  "text": "A changing of the guard at the Federal Reserve &mdash; with Kevin Warsh set to take over as chair in May &mdash; will likely inject some fresh turbulence into the US stock market, based on prior leadership transitions.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/inCKEJJK4vIk/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WARSH",
+    "CHAIR",
+    "US",
+    "AS",
+    "FRESH",
+    "AMP",
+    "MAY",
+    "INTO",
+    "ON",
+    "SAYS"
+  ],
+  "relatedTickers": [
+    "WARSH",
+    "CHAIR",
+    "US",
+    "AS",
+    "FRESH",
+    "AMP",
+    "MAY",
+    "INTO",
+    "ON",
+    "SAYS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Micron Deepens AI Memory Bet With Singapore Expansion And Enterprise Shift",
+  "link": "https://finance.yahoo.com/news/micron-deepens-ai-memory-bet-171127269.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-02T17:11:27",
+  "providerPublishTime": 1770048687.0,
+  "text": "Micron Technology (NasdaqGS:MU) is sharpening its focus on high-bandwidth memory for AI data centers. The company is exiting the consumer memory market to prioritize enterprise and AI infrastructure customers. Micron is expanding in Singapore with a planned US$24b advanced wafer fabrication facility. A new HBM packaging plant in Singapore is planned to support Nvidia and AMD AI processors. Micron has long been a major supplier of memory and storage products, and this pivot centers the...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/0785c424fa1e5e9879f6d16dc716a131",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "PLANT",
+    "PIVOT",
+    "FOR",
+    "AND",
+    "WAFER",
+    "MAJOR",
+    "SHIFT",
+    "ON",
+    "IN",
+    "AMD"
+  ],
+  "relatedTickers": [
+    "PLANT",
+    "PIVOT",
+    "FOR",
+    "AND",
+    "WAFER",
+    "MAJOR",
+    "SHIFT",
+    "ON",
+    "IN",
+    "AMD"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘Hell of a story, isn’t it?’: My brother stole $500K from my ailing father. Can we get justice?",
+  "link": "https://www.marketwatch.com/story/hell-of-a-story-isnt-it-my-brother-stole-500k-from-my-ailing-father-can-we-get-justice-e2848289?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T21:00:00",
+  "providerPublishTime": 1770062400.0,
+  "text": "“That money was intended for my children.”",
+  "thumbnail": "https://images.mktw.net/im-58990358",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOLE",
+    "ISN",
+    "MONEY",
+    "GET",
+    "FROM",
+    "IT",
+    "THAT",
+    "STORY",
+    "FOR",
+    "CAN"
+  ],
+  "relatedTickers": [
+    "STOLE",
+    "ISN",
+    "MONEY",
+    "GET",
+    "FROM",
+    "IT",
+    "THAT",
+    "STORY",
+    "FOR",
+    "CAN"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney stock falls as Needham questions company’s strategic focus",
+  "link": "https://www.investing.com/news/analyst-ratings/disney-stock-falls-as-needham-questions-companys-strategic-focus-93CH-4479651",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T18:01:27",
+  "providerPublishTime": 1770051687.0,
+  "text": "Disney stock falls as Needham questions company’s strategic focus",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "FALLS",
+    "S",
+    "FOCUS",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "AS",
+    "FALLS",
+    "S",
+    "FOCUS",
+    "STOCK"
+  ]
+}

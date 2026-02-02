@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "These Stocks Are Today’s Movers: Strategy, Robinhood, Oracle, Palantir, Nvidia, Disney, MP Materials, and More",
+  "link": "https://www.barrons.com/articles/stock-movers-7b4cf9f5?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T17:48:00",
+  "providerPublishTime": 1770050880.0,
+  "text": "Stocks were rising Monday after the U.S. manufacturing sector expanded for the first time in 12 months.  Fellow crypto-linked stocks  Coinbase Global  and  Robinhood Markets  were down 2.7% and 7.5%, respectively.  The slump made Robinhood the worst performer in the  on Monday.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/721961139c96351d99270ee6e1f0af1b",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARE",
+    "TODAY",
+    "AFTER",
+    "FOR",
+    "AND",
+    "MP",
+    "DOWN",
+    "FIRST",
+    "ON",
+    "IN"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "TODAY",
+    "AFTER",
+    "FOR",
+    "AND",
+    "MP",
+    "DOWN",
+    "FIRST",
+    "ON",
+    "IN"
+  ]
+}

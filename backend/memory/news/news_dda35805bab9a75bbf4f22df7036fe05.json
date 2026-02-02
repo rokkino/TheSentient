@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Test Your ETF Knowledge With Bloomberg ETF IQ Quiz",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/test-your-etf-knowledge-with-bloomberg-etf-iq-quiz-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T19:47:52",
+  "providerPublishTime": 1770058072.0,
+  "text": "Bloomberg’s Head of Games Joel Weber puts the Bloomberg ETF IQ team to the test, quizzing them on how well they really know the world of ETFs.\n\n (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1D337H3AhYw/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HEAD",
+    "PUTS",
+    "ON",
+    "WELL",
+    "WEBER",
+    "THEY",
+    "GAMES",
+    "WORLD",
+    "TEAM",
+    "QUIZ"
+  ],
+  "relatedTickers": [
+    "HEAD",
+    "PUTS",
+    "ON",
+    "WELL",
+    "WEBER",
+    "THEY",
+    "GAMES",
+    "WORLD",
+    "TEAM",
+    "QUIZ"
+  ]
+}

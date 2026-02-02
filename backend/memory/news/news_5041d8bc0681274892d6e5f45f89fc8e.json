@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China gloom: The 'Are you dead?' app is dead and a 'crying horse' plushie is selling out",
+  "link": "https://www.cnbc.com/2026/02/02/china-gloom-are-you-dead-crying-horse.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T17:36:57",
+  "providerPublishTime": 1770050217.0,
+  "text": "China shut down the \"Are you dead\" app, but the \"crying horse\" is selling out as the country grapples with a slowing economy and uncertainty.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WITH",
+    "ARE",
+    "CHINA",
+    "APP",
+    "AS",
+    "IS",
+    "YOU",
+    "OUT",
+    "SHUT",
+    "AND"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "ARE",
+    "CHINA",
+    "APP",
+    "AS",
+    "IS",
+    "YOU",
+    "OUT",
+    "SHUT",
+    "AND"
+  ]
+}

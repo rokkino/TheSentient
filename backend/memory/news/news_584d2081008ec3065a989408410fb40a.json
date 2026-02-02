@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Jim Cramer issues blunt warning, predicts next Bitcoin bottom",
+  "link": "https://finance.yahoo.com/news/jim-cramer-issues-blunt-warning-193735655.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-02T19:37:35",
+  "providerPublishTime": 1770057455.0,
+  "text": "Every time Jim Cramer writes something on the markets, I am curious to read it regardless of how much criticism he faces. A well-known figure on Wall Street, Cramer is a former hedge fund manager who now hosts \"Mad Money\" and \"Squawk on the Street\" on CNBC. No matter how much he is attacked for his ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/386b3432563189d74e0e21c73aea452a",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "MUCH",
+    "NEXT",
+    "FOR",
+    "AND",
+    "ON",
+    "WELL",
+    "FUND",
+    "NOW",
+    "I",
+    "HIS"
+  ],
+  "relatedTickers": [
+    "MUCH",
+    "NEXT",
+    "FOR",
+    "AND",
+    "ON",
+    "WELL",
+    "FUND",
+    "NOW",
+    "I",
+    "HIS"
+  ]
+}

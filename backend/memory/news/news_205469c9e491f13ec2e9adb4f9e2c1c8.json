@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Crypto market volatility triggers $2.5 billion in bitcoin liquidations",
+  "link": "https://finance.yahoo.com/news/crypto-market-volatility-triggers-2-202412904.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T20:24:12",
+  "providerPublishTime": 1770060252.0,
+  "text": "Bitcoin investors liquidated $2.56 billion in recent days, according to data provider CoinGlass, as cryptocurrencies slumped following a sell-off in other risk assets, including ​equities and precious metals.  The wipeouts in both short and long bitcoin positions are far ‌below the record $19 billion in crypto liquidations the market experienced after U.S. President Donald Trump announced new tariffs on China.  While bitcoin is notoriously volatile, cryptocurrencies have been weighed down by fresh concerns about the AI trade and a sell-off in precious metals sparked by Trump's announcement that he was picking Kevin Warsh as ⁠his Fed chair nominee.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/ec7862ae7e7839d7ea0da19b4f8b8306",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SELL",
+    "WARSH",
+    "ARE",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "FRESH",
+    "AND",
+    "SHORT",
+    "ON"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "WARSH",
+    "ARE",
+    "CHAIR",
+    "AS",
+    "AFTER",
+    "FRESH",
+    "AND",
+    "SHORT",
+    "ON"
+  ]
+}

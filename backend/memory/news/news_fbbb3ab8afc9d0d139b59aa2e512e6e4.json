@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Elon Musk's SpaceX acquiring AI startup xAI ahead of potential IPO",
+  "link": "https://www.cnbc.com/2026/02/02/elon-musk-spacex-xai-ipo.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T21:52:13",
+  "providerPublishTime": 1770065533.0,
+  "text": "Musk is combining rocket maker SpaceX with his AI startup, the largest tie-up in his expansive business portfolio.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WITH",
+    "IPO",
+    "TIE",
+    "IS",
+    "ELON",
+    "S",
+    "MAKER",
+    "HIS",
+    "AI",
+    "XAI"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "IPO",
+    "TIE",
+    "IS",
+    "ELON",
+    "S",
+    "MAKER",
+    "HIS",
+    "AI",
+    "XAI"
+  ]
+}

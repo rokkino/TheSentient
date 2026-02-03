@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Intel is moving into GPUs and has hired a chief architect, CEO Lip-Bu Tan says",
+  "link": "https://www.cnbc.com/2026/02/03/intel-gpu-chief-architect-ai-lip-bu-tan.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T20:14:50",
+  "providerPublishTime": 1770146090.0,
+  "text": "Nvidia and AMD are leaders in the GPUs, which power large language models and have skyrocketed in demand with the data center buildout.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TAN",
+    "POWER",
+    "HIRED",
+    "INTO",
+    "GPUS",
+    "DATA",
+    "HAS",
+    "INTEL",
+    "AMD",
+    "AND"
+  ],
+  "relatedTickers": [
+    "TAN",
+    "POWER",
+    "HIRED",
+    "INTO",
+    "GPUS",
+    "DATA",
+    "HAS",
+    "INTEL",
+    "AMD",
+    "AND"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia's Jensen Huang denies OpenAI deal rumors: 'There’s no drama'",
+  "link": "https://www.cnbc.com/2026/02/03/nvidias-jensen-huang-denies-openai-deal-rumors-theres-no-drama.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T19:30:45",
+  "providerPublishTime": 1770143445.0,
+  "text": "Nvidia CEO Jensen Huang said the chipmaker's plan to invest in OpenAI remains \"on track.\"",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAID",
+    "DEAL",
+    "THERE",
+    "DRAMA",
+    "THE",
+    "ON",
+    "TO",
+    "CEO",
+    "NO",
+    "S"
+  ],
+  "relatedTickers": [
+    "SAID",
+    "DEAL",
+    "THERE",
+    "DRAMA",
+    "THE",
+    "ON",
+    "TO",
+    "CEO",
+    "NO",
+    "S"
+  ]
+}

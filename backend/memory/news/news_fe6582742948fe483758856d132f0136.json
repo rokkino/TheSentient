@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oshkosh stock hits all-time high at 158.62 USD",
+  "link": "https://www.investing.com/news/company-news/oshkosh-stock-hits-alltime-high-at-15862-usd-93CH-4482906",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:51:21",
+  "providerPublishTime": 1770148281.0,
+  "text": "Oshkosh stock hits all-time high at 158.62 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "USD",
+    "AT",
+    "TIME",
+    "HIGH",
+    "HITS",
+    "ALL",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "USD",
+    "AT",
+    "TIME",
+    "HIGH",
+    "HITS",
+    "ALL",
+    "STOCK"
+  ]
+}

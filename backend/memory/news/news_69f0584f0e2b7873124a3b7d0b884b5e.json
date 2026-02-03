@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Arista Networks (ANET) Surged as Multiple Tailwinds Aligned",
+  "link": "https://finance.yahoo.com/news/arista-networks-anet-surged-multiple-121439198.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T12:14:39",
+  "providerPublishTime": 1770030879.0,
+  "text": "Arista Networks (ANET) Surged as Multiple Tailwinds Aligned",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/2a1ad13ed7596ef7d3b4579d212a8ccc",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "ANET"
+  ],
+  "relatedTickers": [
+    "AS",
+    "ANET"
+  ]
+}

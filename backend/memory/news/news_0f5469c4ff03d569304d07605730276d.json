@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K DEEP ISOLATION NUCLEAR For: 3 February",
+  "link": "https://www.investing.com/news/filings/form-8k-deep-isolation-nuclear-for-3-february-93CH-4482905",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:50:30",
+  "providerPublishTime": 1770148230.0,
+  "text": "Form 8K DEEP ISOLATION NUCLEAR For: 3 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DEEP",
+    "FOR",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "DEEP",
+    "FOR",
+    "FORM"
+  ]
+}

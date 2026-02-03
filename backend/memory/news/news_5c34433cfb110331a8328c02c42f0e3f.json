@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wintrust Financial Corporation stock hits all-time high at 156.0 USD",
+  "link": "https://www.investing.com/news/company-news/wintrust-financial-corporation-stock-hits-alltime-high-at-1560-usd-93CH-4482919",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:57:39",
+  "providerPublishTime": 1770148659.0,
+  "text": "Wintrust Financial Corporation stock hits all-time high at 156.0 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "USD",
+    "AT",
+    "TIME",
+    "HIGH",
+    "HITS",
+    "ALL",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "USD",
+    "AT",
+    "TIME",
+    "HIGH",
+    "HITS",
+    "ALL",
+    "STOCK"
+  ]
+}

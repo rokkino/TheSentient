@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Brookfield Near Deal to Sell London’s CityPoint Office Tower",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/brookfield-near-deal-to-sell-london-s-citypoint-office-tower",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T20:44:15",
+  "providerPublishTime": 1770147855.0,
+  "text": "Brookfield Corp. is in exclusive negotiations to sell London’s CityPoint office tower for roughly the value of the outstanding debt secured against it.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itLoGfWPucWQ/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NEAR",
+    "DEAL",
+    "VALUE",
+    "DEBT",
+    "SELL",
+    "TOWER",
+    "IT",
+    "IS",
+    "THE",
+    "TO"
+  ],
+  "relatedTickers": [
+    "NEAR",
+    "DEAL",
+    "VALUE",
+    "DEBT",
+    "SELL",
+    "TOWER",
+    "IT",
+    "IS",
+    "THE",
+    "TO"
+  ]
+}

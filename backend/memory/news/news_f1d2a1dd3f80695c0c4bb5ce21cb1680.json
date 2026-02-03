@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Should You Buy Nvidia Before Feb. 25? Here's What History Says.",
+  "link": "https://finance.yahoo.com/news/buy-nvidia-feb-25-heres-121000055.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T12:10:00",
+  "providerPublishTime": 1770030600.0,
+  "text": "Should You Buy Nvidia Before Feb. 25? Here's What History Says.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/083267ffe1460336abf9987c7498c749",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "S",
+    "FEB",
+    "HERE",
+    "YOU",
+    "WHAT",
+    "BUY"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "S",
+    "FEB",
+    "HERE",
+    "YOU",
+    "WHAT",
+    "BUY"
+  ]
+}

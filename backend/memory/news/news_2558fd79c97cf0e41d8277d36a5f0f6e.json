@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bye-bye, Bahama Breeze: Olive Garden parent gives up on restaurant chain after years of struggles",
+  "link": "https://www.marketwatch.com/story/bye-bye-bahama-breeze-olive-garden-parent-gives-up-on-restaurant-chain-after-years-of-struggles-8386861a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T20:08:00",
+  "providerPublishTime": 1770145680.0,
+  "text": "The Bahama Breeze restaurant chain is closing, with half of the restaurants being shuttered and the other half converting to parent company Darden’s other brands.",
+  "thumbnail": "https://images.mktw.net/im-72061656",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BYE",
+    "WITH",
+    "AFTER",
+    "ON",
+    "GIVES",
+    "CHAIN",
+    "BEING",
+    "S",
+    "UP",
+    "THE"
+  ],
+  "relatedTickers": [
+    "BYE",
+    "WITH",
+    "AFTER",
+    "ON",
+    "GIVES",
+    "CHAIN",
+    "BEING",
+    "S",
+    "UP",
+    "THE"
+  ]
+}

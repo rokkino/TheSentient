@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle shares gain as $50 billion raise eases data-center funding fears",
+  "link": "https://finance.yahoo.com/news/oracle-shares-fall-investors-assess-112240121.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T11:22:40",
+  "providerPublishTime": 1770027760.0,
+  "text": "Oracle shares gain as $50 billion raise eases data-center funding fears",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/9545272bca325b406806ac118a656190",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "DATA",
+    "EASES",
+    "GAIN",
+    "RAISE",
+    "FEARS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "DATA",
+    "EASES",
+    "GAIN",
+    "RAISE",
+    "FEARS"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13G Ascendis Pharma A/S For: 3 February",
+  "link": "https://www.investing.com/news/filings/form-13g-ascendis-pharma-as-for-3-february-93CH-4482854",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:16:05",
+  "providerPublishTime": 1770146165.0,
+  "text": "Form 13G Ascendis Pharma A/S For: 3 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "S",
+    "FORM",
+    "A"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "S",
+    "FORM",
+    "A"
+  ]
+}

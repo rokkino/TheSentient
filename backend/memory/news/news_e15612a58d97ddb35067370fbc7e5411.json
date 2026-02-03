@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Phil Mickelson-Touted Sable Probed by SEC on Insider Information",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/phil-mickelson-touted-sable-probed-by-sec-on-insider-information",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T15:14:22",
+  "providerPublishTime": 1770128062.0,
+  "text": "Federal investigators have subpoenaed Texas-based oil driller Sable Offshore Corp. following a report from Hunterbrook Media that the company selectively disclosed information to investors, including pro golfer Phil Mickelson.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irft_iaDFt1w/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MEDIA",
+    "SEC",
+    "THAT",
+    "BY",
+    "HAVE",
+    "PHIL",
+    "A",
+    "ON",
+    "FROM",
+    "BASED"
+  ],
+  "relatedTickers": [
+    "MEDIA",
+    "SEC",
+    "THAT",
+    "BY",
+    "HAVE",
+    "PHIL",
+    "A",
+    "ON",
+    "FROM",
+    "BASED"
+  ]
+}

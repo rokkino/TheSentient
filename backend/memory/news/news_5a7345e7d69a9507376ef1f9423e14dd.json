@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Terex stock hits 52-week high at 62.51 USD",
+  "link": "https://www.investing.com/news/company-news/terex-stock-hits-52week-high-at-6251-usd-93CH-4482883",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:36:24",
+  "providerPublishTime": 1770147384.0,
+  "text": "Terex stock hits 52-week high at 62.51 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HITS",
+    "USD",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "TEREX",
+    "HIGH"
+  ],
+  "relatedTickers": [
+    "HITS",
+    "USD",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "TEREX",
+    "HIGH"
+  ]
+}

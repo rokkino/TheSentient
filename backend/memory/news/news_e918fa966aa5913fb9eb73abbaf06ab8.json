@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Raymond James reiterates Market Perform on PayPal stock after earnings miss",
+  "link": "https://www.investing.com/news/analyst-ratings/raymond-james-reiterates-market-perform-on-paypal-stock-after-earnings-miss-93CH-4482787",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:21:05",
+  "providerPublishTime": 1770142865.0,
+  "text": "Raymond James reiterates Market Perform on PayPal stock after earnings miss",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AFTER",
+    "ON",
+    "JAMES",
+    "MISS",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "AFTER",
+    "ON",
+    "JAMES",
+    "MISS",
+    "STOCK"
+  ]
+}

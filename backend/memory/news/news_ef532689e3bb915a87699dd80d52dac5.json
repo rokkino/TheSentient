@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Yeehaw: Trump’s Truth Social Funds to Acquire God Bless America ETF (YALL)",
+  "link": "https://finance.yahoo.com/news/yeehaw-trump-truth-social-funds-111000565.html",
+  "publisher": "The Daily Upside",
+  "timestamp": "2026-02-02T11:10:00",
+  "providerPublishTime": 1770027000.0,
+  "text": "Yeehaw: Trump’s Truth Social Funds to Acquire God Bless America ETF (YALL)",
+  "thumbnail": "https://media.zenfs.com/en/the_daily_upside_435/1c0595a7575a9b2e16a09351022a5163",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TRUMP",
+    "S",
+    "YALL",
+    "BLESS",
+    "TO",
+    "ETF",
+    "FUNDS",
+    "GOD",
+    "TRUTH"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "S",
+    "YALL",
+    "BLESS",
+    "TO",
+    "ETF",
+    "FUNDS",
+    "GOD",
+    "TRUTH"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin Plummets to 15-Month Low as Crypto, Stock Prices Tumble",
+  "link": "https://finance.yahoo.com/news/bitcoin-plummets-15-month-low-193343176.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-03T19:33:43",
+  "providerPublishTime": 1770143623.0,
+  "text": "The price of Bitcoin nearly touched $73,000 on Tuesday for the first time since November 2024 as investors flee risk assets.",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/d47b3cb386575b0d23d2abbef9ca49f3",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "AS",
+    "MONTH",
+    "PRICE",
+    "ON",
+    "FIRST",
+    "THE",
+    "TO",
+    "FOR",
+    "TIME"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "AS",
+    "MONTH",
+    "PRICE",
+    "ON",
+    "FIRST",
+    "THE",
+    "TO",
+    "FOR",
+    "TIME"
+  ]
+}

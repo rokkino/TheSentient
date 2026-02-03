@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "It’s Been a Bad Week for Crypto Stocks So Far",
+  "link": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-03-2026/card/it-s-been-a-bad-week-for-crypto-stocks-so-far-xsJ8Ppoj8PfcejsrMH9t?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-03T18:45:17",
+  "providerPublishTime": 1770140717.0,
+  "text": "The price of bitcoin dropped again on Tuesday, and it’s taking these crypto stocks down with it. Shares of Coinbase and Robinhood each fell more than 4% in afternoon trading. Shares of Strategy, which function as a kind of leveraged bet on Bitcoin, are down close to 8%.",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/7b2c285183be07ca3c4e8242b25a59a8",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ON",
+    "IT",
+    "FELL",
+    "DOWN",
+    "FAR",
+    "SO",
+    "EACH",
+    "S",
+    "BTC-USD",
+    "BET"
+  ],
+  "relatedTickers": [
+    "ON",
+    "IT",
+    "FELL",
+    "DOWN",
+    "FAR",
+    "SO",
+    "EACH",
+    "S",
+    "BTC-USD",
+    "BET"
+  ]
+}

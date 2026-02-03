@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle to raise up to $50bn for cloud infrastructure buildout",
+  "link": "https://finance.yahoo.com/news/oracle-raise-50bn-cloud-infrastructure-102852791.html",
+  "publisher": "Verdict",
+  "timestamp": "2026-02-02T10:28:52",
+  "providerPublishTime": 1770024532.0,
+  "text": "Oracle to raise up to $50bn for cloud infrastructure buildout",
+  "thumbnail": "https://media.zenfs.com/en/verdict_626/46f90a0bc4675a5e6bba4ec9f5fc7848",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UP",
+    "RAISE",
+    "TO",
+    "FOR",
+    "CLOUD"
+  ],
+  "relatedTickers": [
+    "UP",
+    "RAISE",
+    "TO",
+    "FOR",
+    "CLOUD"
+  ]
+}

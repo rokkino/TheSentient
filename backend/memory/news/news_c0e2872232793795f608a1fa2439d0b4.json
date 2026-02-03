@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "House passes funding bill to end the government shutdown. Friday’s jobs report looks like the only big casualty.",
+  "link": "https://www.marketwatch.com/story/the-house-is-pushing-to-end-the-government-shutdown-today-with-prediction-markets-expecting-success-1d48eee0?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T19:11:00",
+  "providerPublishTime": 1770142260.0,
+  "text": "The U.S. House of Representatives passed a funding package to halt a partial government shutdown, meaning the latest closure only lasted for four days.",
+  "thumbnail": "https://images.mktw.net/im-70970403",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "A",
+    "FOR",
+    "BIG",
+    "U",
+    "DAYS",
+    "LOOKS",
+    "ONLY",
+    "HOUSE",
+    "THE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "A",
+    "FOR",
+    "BIG",
+    "U",
+    "DAYS",
+    "LOOKS",
+    "ONLY",
+    "HOUSE",
+    "THE",
+    "OF"
+  ]
+}

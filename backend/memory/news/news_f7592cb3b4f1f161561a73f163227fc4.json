@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk CEO on 2026 Forecast and GLP-1 Pricing",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-03/novo-nordisk-ceo-on-2026-forecast-and-glp-1-pricing-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T19:34:31",
+  "providerPublishTime": 1770143671.0,
+  "text": "Novo Nordisk CEO Mike Doustdar discusses the company's updated 2026 sales guidance, forecasting a decline of 5 to 13% at constant exchange rates. Doustdar highlights the strong uptake of Novo Nordisk's oral GLP-1 treatment Wegovy, which has reached over 170,000 patients within four weeks of launch. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iSb03rbsRw3M/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GLP",
+    "ON",
+    "ORAL",
+    "S",
+    "HAS",
+    "AND",
+    "OF",
+    "NOVO",
+    "A",
+    "FOUR"
+  ],
+  "relatedTickers": [
+    "GLP",
+    "ON",
+    "ORAL",
+    "S",
+    "HAS",
+    "AND",
+    "OF",
+    "NOVO",
+    "A",
+    "FOUR"
+  ]
+}

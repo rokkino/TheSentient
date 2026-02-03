@@ -812,9 +812,9 @@
         Rename
       </button>
       <button
-        v-if="tabs.length > 1"
         @click="removeTab(contextMenu.tab.id)"
         class="context-menu-item"
+        type="button"
       >
         Remove
       </button>
@@ -1579,10 +1579,17 @@ const cancelRenameTab = () => {
 }
 
 const removeTab = (tabId) => {
-  const index = tabs.value.findIndex(t => t.id === tabId)
-  if (index === -1) return
+  // Use loose equality to handle potential string/number mismatches
+  const index = tabs.value.findIndex(t => t.id == tabId)
+  if (index === -1) {
+    console.error('Tab not found for removal:', tabId)
+    closeContextMenu()
+    return
+  }
   
   const tab = tabs.value[index]
+  
+  closeContextMenu()
   
   // Confirm before removing
   if (!confirm(`Are you sure you want to remove the tab "${tab.name}"?`)) {

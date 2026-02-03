@@ -63,6 +63,36 @@
             <p>Manual credential entry has been deprecated. Please add an account in your Profile > Accounts tab and select it above.</p>
           </div>
         </div>
+
+        <div class="config-section">
+          <h3>Risk Management</h3>
+          <div class="form-group">
+            <label>
+              Daily Budget Allocation (%)
+              <span class="saved-badge" v-if="isFieldSaved('daily_budget_pct')">✓ Saved</span>
+            </label>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <input 
+                type="range" 
+                v-model.number="config.daily_budget_pct" 
+                min="1" 
+                max="100" 
+                step="1"
+                style="flex: 1;"
+              >
+              <span style="color: #e2e8f0; font-family: monospace; min-width: 40px;">{{ config.daily_budget_pct }}%</span>
+            </div>
+            <p class="field-help">Percentage of total account balance to use for daily trades.</p>
+          </div>
+
+          <div class="form-group">
+             <label style="flex-direction: row; cursor: pointer;">
+                <input type="checkbox" v-model="config.use_confidence_sizing">
+                <span>Use Confidence-Based Sizing</span>
+             </label>
+             <p class="field-help">If enabled, allocates more capital to trades with higher AI confidence scores.</p>
+          </div>
+        </div>
         
         <div class="config-section">
           <h3>Earnings Reports</h3>
@@ -178,7 +208,9 @@ watch(() => props.show, (newVal) => {
           ig_acc_type: existingConfig.ig_acc_type || 'DEMO',
           alpaca_api_key: existingConfig.alpaca_api_key || '',
           alpaca_api_secret: existingConfig.alpaca_api_secret || '',
-          alpaca_paper: existingConfig.alpaca_paper !== undefined ? existingConfig.alpaca_paper : true
+          alpaca_paper: existingConfig.alpaca_paper !== undefined ? existingConfig.alpaca_paper : true,
+          daily_budget_pct: existingConfig.daily_budget_pct || 50,
+          use_confidence_sizing: existingConfig.use_confidence_sizing !== undefined ? existingConfig.use_confidence_sizing : true
         }
       } catch (e) {
         console.error('Error parsing bot config:', e)
@@ -192,7 +224,9 @@ watch(() => props.show, (newVal) => {
           ig_acc_type: 'DEMO',
           alpaca_api_key: '',
           alpaca_api_secret: '',
-          alpaca_paper: true
+          alpaca_paper: true,
+          daily_budget_pct: 50,
+          use_confidence_sizing: true
         }
       }
     error.value = null
@@ -276,7 +310,9 @@ const saveConfig = async () => {
       ig_acc_type: config.value.ig_acc_type || 'DEMO',
       alpaca_api_key: config.value.alpaca_api_key || undefined,
       alpaca_api_secret: config.value.alpaca_api_secret || undefined,
-      alpaca_paper: config.value.alpaca_paper
+      alpaca_paper: config.value.alpaca_paper,
+      daily_budget_pct: config.value.daily_budget_pct,
+      use_confidence_sizing: config.value.use_confidence_sizing
     })
     
     success.value = true

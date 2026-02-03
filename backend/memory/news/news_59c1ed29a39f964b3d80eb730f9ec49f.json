@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Foundation Investment Partners acquires Paper Converters",
+  "link": "https://finance.yahoo.com/news/foundation-investment-partners-acquires-paper-113834446.html",
+  "publisher": "Packaging Gateway",
+  "timestamp": "2026-02-02T11:38:34",
+  "providerPublishTime": 1770028714.0,
+  "text": "Foundation Investment Partners acquires Paper Converters",
+  "thumbnail": "https://media.zenfs.com/en/packaging_gateway_559/e8964109a4f14d08b44bb1ff6ab77730",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PAPER"
+  ],
+  "relatedTickers": [
+    "PAPER"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Pfizer shares dip as vaccines continue to weigh on sales",
+  "link": "https://www.ft.com/content/6b558eed-1135-4e4d-a680-0b45c55c47a2",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T15:16:30",
+  "providerPublishTime": 1770128190.0,
+  "text": "Pharmaceutical company’s stock price move diverges from rival Merck as both groups bolster new treatment pipelines",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F7c1fffa7-fed6-4011-9dd7-ab3234a0c9cb.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NEW",
+    "PRICE",
+    "SALES",
+    "WEIGH",
+    "MERCK",
+    "ON",
+    "MOVE",
+    "DIP",
+    "RIVAL",
+    "S"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "PRICE",
+    "SALES",
+    "WEIGH",
+    "MERCK",
+    "ON",
+    "MOVE",
+    "DIP",
+    "RIVAL",
+    "S"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Prediction: Nvidia Stock Is Going to Soar After Feb. 25",
+  "link": "https://finance.yahoo.com/news/prediction-nvidia-stock-going-soar-200500656.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T20:05:00",
+  "providerPublishTime": 1770145500.0,
+  "text": "Nvidia's upcoming earnings report could be the biggest stock market event of 2026 so far.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/ba98c2d50c9f8d1794d3a74902235ee3",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BE",
+    "AFTER",
+    "OF",
+    "S",
+    "SO",
+    "THE",
+    "TO",
+    "NVDA",
+    "STOCK",
+    "GOING"
+  ],
+  "relatedTickers": [
+    "BE",
+    "AFTER",
+    "OF",
+    "S",
+    "SO",
+    "THE",
+    "TO",
+    "NVDA",
+    "STOCK",
+    "GOING"
+  ]
+}

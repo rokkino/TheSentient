@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Option Volatility And Earnings Report For February 2 - 6",
+  "link": "https://finance.yahoo.com/news/option-volatility-earnings-report-february-120002031.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-02T12:00:02",
+  "providerPublishTime": 1770030002.0,
+  "text": "Option Volatility And Earnings Report For February 2 - 6",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/038116342e851a8fadf49e89e4c519fc",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "AND"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "AND"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Will Google’s Genie 3 Shift Take-Two (TTWO) From AI Follower To Gaming Innovation Leader?",
+  "link": "https://finance.yahoo.com/news/google-genie-3-shift-two-200940224.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-03T20:09:40",
+  "providerPublishTime": 1770145780.0,
+  "text": "In recent days, concerns about AI-driven disruption in game development intensified after Google unveiled its Genie 3/Project Genie world-model technology, drawing direct comparisons to the tools used by established publishers like Take-Two Interactive Software ahead of its upcoming earnings release. This has turned generative AI from a distant concept into a practical competitive question for Take-Two, sharpening investor focus on how the company might incorporate or respond to such tools...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/f03d17bfb9bd39baa89c6655dcfb03d3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BY",
+    "USED",
+    "ON",
+    "SUCH",
+    "INTO",
+    "TTWO",
+    "OR",
+    "GENIE",
+    "DAYS",
+    "S"
+  ],
+  "relatedTickers": [
+    "BY",
+    "USED",
+    "ON",
+    "SUCH",
+    "INTO",
+    "TTWO",
+    "OR",
+    "GENIE",
+    "DAYS",
+    "S"
+  ]
+}

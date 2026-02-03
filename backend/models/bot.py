@@ -122,6 +122,7 @@ class Decision(Base):
     execution_time = Column(DateTime) # When to execute
     status = Column(String, default="PENDING") # PENDING, EXECUTED, CANCELLED, FAILED
     reasoning = Column(Text)
+    allocated_amount = Column(Float, nullable=True) # USD amount allocated for this trade
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     executed_at = Column(DateTime, nullable=True)
     
@@ -134,6 +135,7 @@ class Decision(Base):
             "execution_time": self.execution_time.isoformat() if self.execution_time else None,
             "status": self.status,
             "reasoning": self.reasoning,
+            "allocated_amount": self.allocated_amount,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "executed_at": self.executed_at.isoformat() if self.executed_at else None
         }

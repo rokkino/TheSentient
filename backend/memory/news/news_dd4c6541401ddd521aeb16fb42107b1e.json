@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia-backed UK AI firm Nscale hires banks for IPO, sources say",
+  "link": "https://finance.yahoo.com/news/nvidia-backed-uk-ai-firm-204547444.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-03T20:45:47",
+  "providerPublishTime": 1770147947.0,
+  "text": "Nvidia-backed British artificial intelligence group Nscale Global Holdings has hired Goldman Sachs and JPMorgan to ​prepare for an initial public offering, people familiar with the matter said.  Goldman Sachs, JPMorgan and Nscale declined to comment.  The move towards a public listing follows a period in which Nscale has expanded its data center capacity to meet soaring demand for AI computing from customers including Microsoft ⁠and OpenAI.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HIRES",
+    "BANKS",
+    "HIRED",
+    "ITS",
+    "DATA",
+    "HAS",
+    "FROM",
+    "FOR",
+    "AND",
+    "IN"
+  ],
+  "relatedTickers": [
+    "HIRES",
+    "BANKS",
+    "HIRED",
+    "ITS",
+    "DATA",
+    "HAS",
+    "FROM",
+    "FOR",
+    "AND",
+    "IN"
+  ]
+}

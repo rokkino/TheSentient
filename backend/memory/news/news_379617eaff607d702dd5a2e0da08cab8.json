@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Walmart Made it Into the Exclusive $1 Trillion Club. Here Are the Other Members",
+  "link": "https://finance.yahoo.com/news/walmart-made-exclusive-1-trillion-182214230.html",
+  "publisher": "Investopedia",
+  "timestamp": "2026-02-03T18:22:14",
+  "providerPublishTime": 1770139334.0,
+  "text": "Retail giant Walmart, which this week welcomed a new CEO, surpassed $1 trillion in market capitalization Tuesday as its shares surged.",
+  "thumbnail": "https://media.zenfs.com/en/investopedia_245/e97eab28d68eb8aa9cd82aa5c446d7ae",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ITS",
+    "GOOGL",
+    "CEO",
+    "IN",
+    "A",
+    "HERE",
+    "NEW",
+    "CLUB",
+    "THE",
+    "INTO"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "GOOGL",
+    "CEO",
+    "IN",
+    "A",
+    "HERE",
+    "NEW",
+    "CLUB",
+    "THE",
+    "INTO"
+  ]
+}

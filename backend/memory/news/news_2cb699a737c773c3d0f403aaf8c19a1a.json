@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "YC startups can now recieve investment in stablecoin",
+  "link": "https://finance.yahoo.com/news/yc-startups-now-recieve-investment-195412691.html",
+  "publisher": "TechCrunch",
+  "timestamp": "2026-02-03T19:54:12",
+  "providerPublishTime": 1770144852.0,
+  "text": "All startups accepted into YC will soon have the option to receive their seed checks via stablecoins.",
+  "thumbnail": "https://media.zenfs.com/en/techcrunch_finance_785/76f7faf26c3f1c7cee75780fd2ec03fe",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "VIA",
+    "ALL",
+    "HAVE",
+    "YC",
+    "SOON",
+    "CAN",
+    "THE",
+    "INTO",
+    "TO",
+    "IN"
+  ],
+  "relatedTickers": [
+    "VIA",
+    "ALL",
+    "HAVE",
+    "YC",
+    "SOON",
+    "CAN",
+    "THE",
+    "INTO",
+    "TO",
+    "IN"
+  ]
+}

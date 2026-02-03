@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Technology Sell-Off Pushes US Equity Indexes Lower",
+  "link": "https://finance.yahoo.com/news/technology-sell-off-pushes-us-205023395.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T20:50:23",
+  "providerPublishTime": 1770148223.0,
+  "text": "US equity indexes fell ahead of Tuesday's close amid a sell-off in technology, communication service",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "OFF",
+    "AHEAD",
+    "A",
+    "AMID",
+    "SELL",
+    "S",
+    "CLOSE",
+    "FELL",
+    "IN"
+  ],
+  "relatedTickers": [
+    "US",
+    "OFF",
+    "AHEAD",
+    "A",
+    "AMID",
+    "SELL",
+    "S",
+    "CLOSE",
+    "FELL",
+    "IN"
+  ]
+}

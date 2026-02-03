@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hyperliquid's HYPE emerges as crypto market haven",
+  "link": "https://finance.yahoo.com/news/hyperliquids-hype-emerges-crypto-market-121500608.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-02T12:15:00",
+  "providerPublishTime": 1770030900.0,
+  "text": "Hyperliquid's HYPE emerges as crypto market haven",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/2879bc04b95b3ef55dffdb981c30f7b7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HYPE",
+    "AS",
+    "S",
+    "HAVEN"
+  ],
+  "relatedTickers": [
+    "HYPE",
+    "AS",
+    "S",
+    "HAVEN"
+  ]
+}

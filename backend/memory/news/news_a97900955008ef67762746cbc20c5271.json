@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold and silver rally after a two-session drop: Why the memelike moves are so unusual",
+  "link": "https://www.marketwatch.com/story/gold-and-silver-rally-after-13-fall-over-two-sessions-for-yellow-metal-39b85097?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T19:13:00",
+  "providerPublishTime": 1770142380.0,
+  "text": "Gold and silver settled higher for the first time in two sessions on Tuesday after last week’s record-setting shakeout.",
+  "thumbnail": "https://images.mktw.net/im-05938691",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "FOR",
+    "WHY",
+    "IN",
+    "A",
+    "THE",
+    "AFTER",
+    "FIRST",
+    "GOLD",
+    "RALLY"
+  ],
+  "relatedTickers": [
+    "ON",
+    "FOR",
+    "WHY",
+    "IN",
+    "A",
+    "THE",
+    "AFTER",
+    "FIRST",
+    "GOLD",
+    "RALLY"
+  ]
+}

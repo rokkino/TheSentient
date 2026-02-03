@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Phillips 66 stock hits 52-week high at $147.99",
+  "link": "https://www.investing.com/news/company-news/phillips-66-stock-hits-52week-high-at-14799-93CH-4482881",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:35:30",
+  "providerPublishTime": 1770147330.0,
+  "text": "Phillips 66 stock hits 52-week high at $147.99",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HITS",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "HIGH"
+  ],
+  "relatedTickers": [
+    "HITS",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "HIGH"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OpenAI CEO Altman dismisses Moltbook as likely fad, backs the tech behind it",
+  "link": "https://www.investing.com/news/stock-market-news/openai-ceo-altman-dismisses-moltbook-as-likely-fad-backs-the-tech-behind-it-4482792",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:26:03",
+  "providerPublishTime": 1770143163.0,
+  "text": "OpenAI CEO Altman dismisses Moltbook as likely fad, backs the tech behind it",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FAD",
+    "BACKS",
+    "IT",
+    "THE",
+    "CEO",
+    "AS",
+    "TECH"
+  ],
+  "relatedTickers": [
+    "FAD",
+    "BACKS",
+    "IT",
+    "THE",
+    "CEO",
+    "AS",
+    "TECH"
+  ]
+}

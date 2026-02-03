@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "How & Why SpaceX is Moving the AI Data Center Race to Space",
+  "link": "https://finance.yahoo.com/news/why-spacex-moving-ai-data-184100765.html",
+  "publisher": "Zacks",
+  "timestamp": "2026-02-03T18:41:00",
+  "providerPublishTime": 1770140460.0,
+  "text": "Elon Musk's broad business empire is reaching a critical tipping point. The recently combined SpaceX/xAI entity will make the countless synergies that much more powerful.",
+  "thumbnail": "https://media.zenfs.com/en/zacks.com/5fc95e37867e2a80f869083d472f6292",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MUCH",
+    "ELON",
+    "POINT",
+    "S",
+    "DATA",
+    "GOOGL",
+    "XAI",
+    "SPACE",
+    "AI",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "MUCH",
+    "ELON",
+    "POINT",
+    "S",
+    "DATA",
+    "GOOGL",
+    "XAI",
+    "SPACE",
+    "AI",
+    "THAT"
+  ]
+}

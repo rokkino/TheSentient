@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Morning Bid: Metals meltdown",
+  "link": "https://finance.yahoo.com/news/morning-bid-metals-meltdown-114755991.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T11:47:55",
+  "providerPublishTime": 1770029275.0,
+  "text": "Morning Bid: Metals meltdown",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/0ca7db9a017e5d56bee7cd3c32548e3c",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BID"
+  ],
+  "relatedTickers": [
+    "BID"
+  ]
+}

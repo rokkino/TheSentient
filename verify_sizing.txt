@@ -1,0 +1,31 @@
+=== TEST POSITION SIZING ===
+Created bot TEST_SIZING_BOT with 10% daily budget
+[GEMINI] Warning: GOOGLE_GEMINI_API_KEY not set
+Running process_bot_earnings...
+[JOB] Processing earnings for bot 2...
+[JOB] Checking for stuck positions for bot TEST_SIZING_BOT...
+[JOB] Looking for earnings from 2026-02-03 to 2026-02-07
+[JOB] Got 2 total earnings from calendar
+[JOB] Found 2 earnings in next 5 days
+[JOB] Analyzing top 2 earnings events for bot TEST_SIZING_BOT
+[GEMINI] Migrating 'gemini-3-flash-preview' to 'gemini-2.5-pro' (better free-tier limits)
+[GEMINI] Initialized with model 'gemini-2.5-pro' using API v1
+[JOB] Opportunity: HIGH_CONF BUY conf=80
+[JOB] Opportunity: LOW_CONF BUY conf=40
+[JOB] Found 2 high-confidence opportunities
+[JOB] Service does not support get_account, using default $10,000 for sizing
+[JOB] Daily Budget: $1000.00 (10.0% of $10000.00)
+[JOB] Total Confidence Score: 120.0
+[JOB] Allocating $666.67 to HIGH_CONF (Conf: 80.0)
+[JOB] Allocating $333.33 to LOW_CONF (Conf: 40.0)
+[JOB] Created ENTRY: BUY HIGH_CONF @ 2026-02-05 21:59:00
+[JOB] Created EXIT: SELL HIGH_CONF @ 2026-02-06 09:35:00
+[JOB] Created ENTRY: BUY LOW_CONF @ 2026-02-05 21:59:00
+[JOB] Created EXIT: SELL LOW_CONF @ 2026-02-06 09:35:00
+[JOB] Successfully processed earnings for bot TEST_SIZING_BOT
+Decision HIGH_CONF: Allocated $666.67
+Decision LOW_CONF: Allocated $333.33
+Total Allocated: $1000.00
+SUCCESS: High confidence allocation correct
+SUCCESS: Low confidence allocation correct
+Cleanup complete

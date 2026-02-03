@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: Santander Q4 2025 sees record profits, stock dips",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-santander-q4-2025-sees-record-profits-stock-dips-93CH-4482879",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:33:51",
+  "providerPublishTime": 1770147231.0,
+  "text": "Earnings call transcript: Santander Q4 2025 sees record profits, stock dips",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DIPS",
+    "SEES",
+    "CALL",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "DIPS",
+    "SEES",
+    "CALL",
+    "STOCK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "ChatGPT Thinks Nvidia Stock Will Close At This Price In The Next 60 Days",
+  "link": "https://finance.yahoo.com/news/chatgpt-thinks-nvidia-stock-close-200109061.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-03T20:01:09",
+  "providerPublishTime": 1770145269.0,
+  "text": "Quick Summary ChatGPT thinks Nvidia stock could trade lower over the next 60 days, projecting an average price around $191 by mid-April. Investors looking to trade the stock can build exposure incrementally using commission-free fractional shares on SoFi, starting with...",
+  "thumbnail": "https://media.zenfs.com/en/benzinga_79/e79bd32ae0d8b4a750e1fa59e0454a79",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BY",
+    "ON",
+    "USING",
+    "STOCK",
+    "DAYS",
+    "BUILD",
+    "SOFI",
+    "CLOSE",
+    "CAN",
+    "IN"
+  ],
+  "relatedTickers": [
+    "BY",
+    "ON",
+    "USING",
+    "STOCK",
+    "DAYS",
+    "BUILD",
+    "SOFI",
+    "CLOSE",
+    "CAN",
+    "IN"
+  ]
+}

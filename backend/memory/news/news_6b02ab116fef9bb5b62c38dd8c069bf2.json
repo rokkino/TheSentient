@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin hits lowest level since 2024 and stocks stumble as AI and geopolitical nerves fray",
+  "link": "https://finance.yahoo.com/news/bitcoin-hits-lowest-level-since-200126116.html",
+  "publisher": "CNN Business",
+  "timestamp": "2026-02-03T20:01:26",
+  "providerPublishTime": 1770145286.0,
+  "text": "A nervous mood swept through markets Tuesday as stocks stumbled and bitcoin slumped to its lowest level since November 2024.",
+  "thumbnail": "https://media.zenfs.com/en/cnn_business_articles_218/5445038ce11acfdaf87f7b8f63c0fae8",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "AS",
+    "HITS",
+    "A",
+    "FRAY",
+    "LEVEL",
+    "MOOD",
+    "TO",
+    "AND",
+    "SWEPT"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "AS",
+    "HITS",
+    "A",
+    "FRAY",
+    "LEVEL",
+    "MOOD",
+    "TO",
+    "AND",
+    "SWEPT"
+  ]
+}

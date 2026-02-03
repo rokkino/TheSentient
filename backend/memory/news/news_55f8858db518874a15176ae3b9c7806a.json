@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "US states file appeal in Google search case, court filing shows",
+  "link": "https://finance.yahoo.com/news/us-states-file-appeal-google-205950974.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-03T20:59:50",
+  "providerPublishTime": 1770148790.0,
+  "text": "WASHINGTON, Feb 3 (Reuters) - A majority of U.S. states on Tuesday are appealing the outcome of a landmark antitrust case against Alphabet's Google, according to court papers.",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/33308bc2f2d02aeb04592d4ea2225c7f",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "FILE",
+    "FEB",
+    "SHOWS",
+    "ON",
+    "ARE",
+    "CASE",
+    "US",
+    "COURT",
+    "OF"
+  ],
+  "relatedTickers": [
+    "S",
+    "FILE",
+    "FEB",
+    "SHOWS",
+    "ON",
+    "ARE",
+    "CASE",
+    "US",
+    "COURT",
+    "OF"
+  ]
+}

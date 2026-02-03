@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Jeffrey Epstein Invested in Bitcoin Firm Blockstream, Invited Founder Adam Back to Island",
+  "link": "https://finance.yahoo.com/news/jeffrey-epstein-invested-bitcoin-firm-200734419.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-03T20:07:34",
+  "providerPublishTime": 1770145654.0,
+  "text": "Adam Back confirmed that convicted sex offender Jeffrey Epstein invested in Blockstream as newly released emails point to a planned island visit.",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/e24fd1625c08f4300604fd381babf5fa",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BTC-USD",
+    "AS",
+    "ADAM",
+    "THAT",
+    "A",
+    "SEX",
+    "VISIT",
+    "TO",
+    "IN",
+    "POINT"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "AS",
+    "ADAM",
+    "THAT",
+    "A",
+    "SEX",
+    "VISIT",
+    "TO",
+    "IN",
+    "POINT"
+  ]
+}

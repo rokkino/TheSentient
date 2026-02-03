@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I didn’t find out until after it was done’: Chase cut my credit-card limit due to low usage. Could this affect my credit?",
+  "link": "https://www.marketwatch.com/story/i-didnt-find-out-until-after-it-was-done-chase-cut-my-credit-card-limit-due-to-low-usage-could-this-affect-my-credit-717075bd?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T19:40:00",
+  "providerPublishTime": 1770144000.0,
+  "text": "“This is the first time I’ve ever had a credit limit lowered.”",
+  "thumbnail": "https://images.mktw.net/im-66546051",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IT",
+    "WAS",
+    "FIRST",
+    "UNTIL",
+    "LOW",
+    "DUE",
+    "DONE",
+    "CARD",
+    "CUT",
+    "T"
+  ],
+  "relatedTickers": [
+    "IT",
+    "WAS",
+    "FIRST",
+    "UNTIL",
+    "LOW",
+    "DUE",
+    "DONE",
+    "CARD",
+    "CUT",
+    "T"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Worthington Steel stock hits 52-week high at 44.01 USD",
+  "link": "https://www.investing.com/news/company-news/worthington-steel-stock-hits-52week-high-at-4401-usd-93CH-4482885",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:36:44",
+  "providerPublishTime": 1770147404.0,
+  "text": "Worthington Steel stock hits 52-week high at 44.01 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HITS",
+    "USD",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "STEEL",
+    "HIGH"
+  ],
+  "relatedTickers": [
+    "HITS",
+    "USD",
+    "AT",
+    "WEEK",
+    "STOCK",
+    "STEEL",
+    "HIGH"
+  ]
+}

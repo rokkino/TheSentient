@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk CEO Sees Strong Demand for Wegovy Pill",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-03/novo-nordisk-ceo-sees-strong-demand-for-wegovy-pill-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T19:23:43",
+  "providerPublishTime": 1770143023.0,
+  "text": "Novo Nordisk CEO Mike Doustdar addresses concerns about the duration of the current slump in the company's legacy business due to price reductions and volume uptake dynamics. He highlights the strong initial uptake of the Wegovy pill, with 170,000 patients in four weeks, marking it as one of the most successful pharmaceutical launches in recent history. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iPJ7y9ezz92c/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "CEO",
+    "FOR",
+    "FOUR",
+    "NOVO",
+    "MOST",
+    "IN",
+    "ABOUT",
+    "PILL",
+    "THE"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "CEO",
+    "FOR",
+    "FOUR",
+    "NOVO",
+    "MOST",
+    "IN",
+    "ABOUT",
+    "PILL",
+    "THE"
+  ]
+}

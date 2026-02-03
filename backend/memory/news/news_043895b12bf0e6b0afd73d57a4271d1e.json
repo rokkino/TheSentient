@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UTime stock soars after $50 million server supply agreement",
+  "link": "https://www.investing.com/news/stock-market-news/utime-stock-soars-after-50-million-server-supply-agreement-93CH-4482904",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:50:07",
+  "providerPublishTime": 1770148207.0,
+  "text": "UTime stock soars after $50 million server supply agreement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UTIME",
+    "SOARS",
+    "AFTER",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "UTIME",
+    "SOARS",
+    "AFTER",
+    "STOCK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Stock market today: Dow, Nasdaq, S&P 500 sink as tech falters amid flood of earnings",
+  "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-nasdaq-sp-500-sink-as-tech-falters-amid-flood-of-earnings-192429486.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-03T19:24:29",
+  "providerPublishTime": 1770143069.0,
+  "text": "Stocks are leaning higher following a strong start to February trade.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/21f94c00-0091-11f1-b24d-080e67b380f6",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "ARE",
+    "GOOGL",
+    "TODAY",
+    "FLOOD",
+    "TRADE",
+    "AS",
+    "OF",
+    "DOW",
+    "TO"
+  ],
+  "relatedTickers": [
+    "A",
+    "ARE",
+    "GOOGL",
+    "TODAY",
+    "FLOOD",
+    "TRADE",
+    "AS",
+    "OF",
+    "DOW",
+    "TO"
+  ]
+}

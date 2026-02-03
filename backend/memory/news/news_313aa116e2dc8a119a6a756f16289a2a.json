@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney shares slump as its theme parks see fewer international visitors",
+  "link": "https://finance.yahoo.com/news/disney-shares-slump-theme-parks-114239042.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T11:42:39",
+  "providerPublishTime": 1770028959.0,
+  "text": "Disney shares slump as its theme parks see fewer international visitors",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/6baad5f9899331b5c51150778c1b0fda",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SLUMP",
+    "AS",
+    "PARKS",
+    "THEME",
+    "FEWER",
+    "SEE",
+    "ITS"
+  ],
+  "relatedTickers": [
+    "SLUMP",
+    "AS",
+    "PARKS",
+    "THEME",
+    "FEWER",
+    "SEE",
+    "ITS"
+  ]
+}

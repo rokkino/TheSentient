@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Equities Fall Intraday as Tech Sector Slumps; Precious Metals Jump",
+  "link": "https://finance.yahoo.com/news/equities-fall-intraday-tech-sector-190048469.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T19:00:48",
+  "providerPublishTime": 1770141648.0,
+  "text": "US benchmark equity indexes were lower intraday amid a plunge in the technology sector, while gold a",
+  "thumbnail": "https://media.zenfs.com/en/mt_newswires_premium_news_706/0c887a492733aab96ac405a5871f559a",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "A",
+    "JUMP",
+    "WERE",
+    "NVDA",
+    "WHILE",
+    "IN",
+    "THE",
+    "GOLD",
+    "US",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "A",
+    "JUMP",
+    "WERE",
+    "NVDA",
+    "WHILE",
+    "IN",
+    "THE",
+    "GOLD",
+    "US",
+    "LOWER"
+  ]
+}

@@ -116,14 +116,7 @@
               <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
             </svg>
           </button>
-          <button
-            class="share-inline-btn"
-            @click="shareActiveTab"
-            :disabled="!canShareTabs"
-            title="Condividi la tab attiva"
-          >
-            Condividi tab attiva
-          </button>
+
           <label class="action-btn upload-btn" title="Upload Image" v-if="!isSearchMode">
             <input
               type="file"
@@ -1326,28 +1319,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.share-inline-btn {
-  margin-left: 6px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  background: rgba(37, 99, 235, 0.12);
-  color: #e2e8f0;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
 
-.share-inline-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.share-inline-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  background: rgba(37, 99, 235, 0.22);
-}
 
 .action-btn.search-btn.active {
   color: #2563eb;

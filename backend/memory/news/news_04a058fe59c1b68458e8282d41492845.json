@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Musk loses bid to dismiss SEC lawsuit over Twitter stake",
+  "link": "https://www.investing.com/news/stock-market-news/musk-loses-bid-to-dismiss-sec-lawsuit-over-twitter-stake-4482913",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:54:47",
+  "providerPublishTime": 1770148487.0,
+  "text": "Musk loses bid to dismiss SEC lawsuit over Twitter stake",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "MUSK",
+    "STAKE",
+    "LOSES",
+    "OVER",
+    "TO",
+    "SEC",
+    "BID"
+  ],
+  "relatedTickers": [
+    "MUSK",
+    "STAKE",
+    "LOSES",
+    "OVER",
+    "TO",
+    "SEC",
+    "BID"
+  ]
+}

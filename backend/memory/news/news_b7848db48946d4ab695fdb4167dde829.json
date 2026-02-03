@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analysis-Obesity market sales potential tightens as Novo and Lilly enter new era",
+  "link": "https://finance.yahoo.com/news/analysis-obesity-market-sales-potential-110742804.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T11:07:42",
+  "providerPublishTime": 1770026862.0,
+  "text": "Analysis-Obesity market sales potential tightens as Novo and Lilly enter new era",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/a6e293b9491d31650b4d2d68a0721002",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LILLY",
+    "AS",
+    "NOVO",
+    "ENTER",
+    "NEW",
+    "ERA",
+    "AND",
+    "SALES"
+  ],
+  "relatedTickers": [
+    "LILLY",
+    "AS",
+    "NOVO",
+    "ENTER",
+    "NEW",
+    "ERA",
+    "AND",
+    "SALES"
+  ]
+}

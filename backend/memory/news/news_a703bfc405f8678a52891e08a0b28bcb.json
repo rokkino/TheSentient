@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "William Blair reiterates Market Perform rating on PayPal stock",
+  "link": "https://www.investing.com/news/analyst-ratings/william-blair-reiterates-market-perform-rating-on-paypal-stock-93CH-4482914",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:54:59",
+  "providerPublishTime": 1770148499.0,
+  "text": "William Blair reiterates Market Perform rating on PayPal stock",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BLAIR",
+    "ON",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "BLAIR",
+    "ON",
+    "STOCK"
+  ]
+}

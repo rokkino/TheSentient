@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia will consider investing in OpenAI IPO, CEO Huang tells CNBC",
+  "link": "https://finance.yahoo.com/news/nvidia-consider-investing-openai-ipo-201105370.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-03T20:11:05",
+  "providerPublishTime": 1770145865.0,
+  "text": "Nvidia ​would ‌consider investing ‌in OpenAI's next fundraising ⁠round ‌and also in ‍the startup's eventual ​IPO, ‌CEO Jensen Huang told CNBC in ⁠an interview ​on ​Tuesday.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/6257bfff71c3fb49b933587130637cf0",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HUANG",
+    "WOULD",
+    "AN",
+    "CNBC",
+    "S",
+    "ALSO",
+    "ON",
+    "THE",
+    "TOLD",
+    "IPO"
+  ],
+  "relatedTickers": [
+    "HUANG",
+    "WOULD",
+    "AN",
+    "CNBC",
+    "S",
+    "ALSO",
+    "ON",
+    "THE",
+    "TOLD",
+    "IPO"
+  ]
+}

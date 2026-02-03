@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "These 2 charts show why buying a house is the hardest it’s been in decades",
+  "link": "https://www.marketwatch.com/story/these-2-charts-show-why-buying-a-house-is-the-hardest-its-been-in-decades-b291d44d?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T20:24:00",
+  "providerPublishTime": 1770146640.0,
+  "text": "Home buyers across America have had little relief from sky-high home prices over the last few years. Two charts explain why that’s not likely to change soon.",
+  "thumbnail": "https://images.mktw.net/im-40631064",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IT",
+    "FEW",
+    "S",
+    "SHOW",
+    "SOON",
+    "FROM",
+    "YEARS",
+    "IN",
+    "HIGH",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "IT",
+    "FEW",
+    "S",
+    "SHOW",
+    "SOON",
+    "FROM",
+    "YEARS",
+    "IN",
+    "HIGH",
+    "THAT"
+  ]
+}

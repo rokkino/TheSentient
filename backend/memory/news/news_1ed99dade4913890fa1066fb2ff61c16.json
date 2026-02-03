@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Apple adds agents from Anthropic and OpenAI to its coding tool",
+  "link": "https://www.cnbc.com/2026/02/03/apple-adds-agentic-coding-from-anthropic-and-openai-to-xcode.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T20:23:53",
+  "providerPublishTime": 1770146633.0,
+  "text": "Apple is introducing agentic coding to Xcode, jumping into one of the biggest trends in technology.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "XCODE",
+    "TOOL",
+    "IS",
+    "FROM",
+    "THE",
+    "TO",
+    "INTO",
+    "AND",
+    "IN",
+    "APPLE"
+  ],
+  "relatedTickers": [
+    "XCODE",
+    "TOOL",
+    "IS",
+    "FROM",
+    "THE",
+    "TO",
+    "INTO",
+    "AND",
+    "IN",
+    "APPLE"
+  ]
+}

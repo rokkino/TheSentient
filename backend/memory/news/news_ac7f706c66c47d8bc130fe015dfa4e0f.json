@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China to ban ’hidden’ car door handles to address safety fears",
+  "link": "https://www.investing.com/news/stock-market-news/china-to-ban-hidden-car-door-handles-to-address-safety-fears-4481249",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:24:43",
+  "providerPublishTime": 1770143083.0,
+  "text": "China to ban ’hidden’ car door handles to address safety fears",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CAR",
+    "DOOR",
+    "TO",
+    "BAN",
+    "CHINA",
+    "FEARS"
+  ],
+  "relatedTickers": [
+    "CAR",
+    "DOOR",
+    "TO",
+    "BAN",
+    "CHINA",
+    "FEARS"
+  ]
+}

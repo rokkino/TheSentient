@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold Rallies With Silver as Historic Rout Lures Back Dip Buyers",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/gold-claws-back-some-ground-after-dramatic-unwinding-of-rally",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T23:19:01",
+  "providerPublishTime": 1770070741.0,
+  "text": "Gold and silver rebounded after a historic collapse from all-time highs lured dip-buyers back to precious metals.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ix4vXDQmhGKo/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "A",
+    "ALL",
+    "WITH",
+    "AFTER",
+    "DIP",
+    "FROM",
+    "LURES",
+    "HIGHS",
+    "LURED"
+  ],
+  "relatedTickers": [
+    "AS",
+    "A",
+    "ALL",
+    "WITH",
+    "AFTER",
+    "DIP",
+    "FROM",
+    "LURES",
+    "HIGHS",
+    "LURED"
+  ]
+}

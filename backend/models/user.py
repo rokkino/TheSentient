@@ -157,6 +157,18 @@ def init_db():
                                     print(f"Added column {col_name} to news table")
                                 except Exception as e:
                                     print(f"Could not add column {col_name} to news table: {e}")
+
+                if 'decisions' in table_names:
+                    # Check for allocated_amount in decisions table
+                    existing_columns = [col['name'] for col in inspector.get_columns('decisions')]
+                    
+                    if 'allocated_amount' not in existing_columns:
+                        try:
+                            with engine.begin() as conn:
+                                conn.execute(text("ALTER TABLE decisions ADD COLUMN allocated_amount FLOAT"))
+                                print("Added column allocated_amount to decisions table")
+                        except Exception as e:
+                            print(f"Could not add column allocated_amount: {e}")
             except Exception as e:
                 print(f"Migration check failed: {e}, creating all tables...")
                 # Fallback: create all tables

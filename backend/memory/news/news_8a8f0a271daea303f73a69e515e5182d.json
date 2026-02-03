@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "The bitcoin play in Musk's $1T SpaceX-xAI merger",
+  "link": "https://finance.yahoo.com/video/bitcoin-play-musks-1t-spacex-204805115.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T20:48:05",
+  "providerPublishTime": 1770148085.0,
+  "text": "Elon Musk's merger between SpaceX and xAI is creating a trillion-dollar tech titan, and pulling a massive 8,300 Bitcoin treasury out of the shadows. What happens to SpaceX's $650 million BTC stash after the mega deal? CoinDesk's Jennifer Sanasie hosts \"CoinDesk Daily.\"",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/3daf8eebddc4c59fd637df1b18118e3b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ELON",
+    "TECH",
+    "MEGA",
+    "HOSTS",
+    "AND",
+    "XAI",
+    "OF",
+    "BTC",
+    "IN",
+    "TO"
+  ],
+  "relatedTickers": [
+    "ELON",
+    "TECH",
+    "MEGA",
+    "HOSTS",
+    "AND",
+    "XAI",
+    "OF",
+    "BTC",
+    "IN",
+    "TO"
+  ]
+}

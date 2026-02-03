@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Canadian dollar strengthens as oil prices rise",
+  "link": "https://www.investing.com/news/forex-news/canadian-dollar-strengthens-as-oil-prices-rise-93CH-4482790",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:23:30",
+  "providerPublishTime": 1770143010.0,
+  "text": "Canadian dollar strengthens as oil prices rise",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "RISE",
+    "OIL"
+  ],
+  "relatedTickers": [
+    "AS",
+    "RISE",
+    "OIL"
+  ]
+}

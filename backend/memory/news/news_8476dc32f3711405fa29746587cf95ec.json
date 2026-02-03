@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The IRS is cracking down on a type of income earned by millions of people. Here's how to prevent a letter from Uncle Sam",
+  "link": "https://finance.yahoo.com/news/irs-cracking-down-type-income-121500954.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-02T12:15:00",
+  "providerPublishTime": 1770030900.0,
+  "text": "The IRS is cracking down on a type of income earned by millions of people. Here's how to prevent a letter from Uncle Sam",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/bb7c8ffb89607155ae29b791ec2dfa44",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IRS",
+    "BY",
+    "HERE",
+    "A",
+    "HOW",
+    "SAM",
+    "ON",
+    "S",
+    "THE",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "IRS",
+    "BY",
+    "HERE",
+    "A",
+    "HOW",
+    "SAM",
+    "ON",
+    "S",
+    "THE",
+    "FROM"
+  ]
+}

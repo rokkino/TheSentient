@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "RENN fund president Stahl buys shares worth $3118",
+  "link": "https://www.investing.com/news/insider-trading-news/renn-fund-president-stahl-buys-shares-worth-3118-93CH-4482886",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:37:06",
+  "providerPublishTime": 1770147426.0,
+  "text": "RENN fund president Stahl buys shares worth $3118",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FUND",
+    "RENN",
+    "WORTH",
+    "BUYS",
+    "STAHL"
+  ],
+  "relatedTickers": [
+    "FUND",
+    "RENN",
+    "WORTH",
+    "BUYS",
+    "STAHL"
+  ]
+}

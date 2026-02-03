@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "White House meeting fails to resolve US crypto legislation stalemate",
+  "link": "https://www.investing.com/news/economy-news/white-house-meeting-fails-to-resolve-us-crypto-legislation-stalemate-4482335",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:25:47",
+  "providerPublishTime": 1770143147.0,
+  "text": "White House meeting fails to resolve US crypto legislation stalemate",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FAILS",
+    "WHITE",
+    "HOUSE",
+    "US",
+    "TO"
+  ],
+  "relatedTickers": [
+    "FAILS",
+    "WHITE",
+    "HOUSE",
+    "US",
+    "TO"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Palantir's Pop, Musk's Trillion Dollar Deal, Disney's Next Act | Open Interest 1/3/2026",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-03/open-interest-1-3-2026-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T19:08:38",
+  "providerPublishTime": 1770142118.0,
+  "text": "Get a jump start on the US trading day with Matt Miller and Dani Burger on \"Bloomberg Open Interest.\" Investors digest Palantir’s blockbuster results. Elon Musk seals a $1.25 trillion deal merging SpaceX and xAI. Disney Chairman James Gorman reveals Josh D’Amaro beat out more than 100 candidates to become the entertainment giant’s next CEO. Plus, Siemens Energy’s CEO Christian Bruch discusses plan to invest $1 billion in the US as power demand surges. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ishYa3pMEnqY/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DEAL",
+    "POP",
+    "ON",
+    "POWER",
+    "ELON",
+    "PLAN",
+    "DANI",
+    "SEALS",
+    "BRUCH",
+    "S"
+  ],
+  "relatedTickers": [
+    "DEAL",
+    "POP",
+    "ON",
+    "POWER",
+    "ELON",
+    "PLAN",
+    "DANI",
+    "SEALS",
+    "BRUCH",
+    "S"
+  ]
+}

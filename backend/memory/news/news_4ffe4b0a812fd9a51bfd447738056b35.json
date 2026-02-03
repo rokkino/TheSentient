@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FNB stock hits 52-week high, reaching 18.3 USD",
+  "link": "https://www.investing.com/news/company-news/fnb-stock-hits-52week-high-reaching-183-usd-93CH-4482909",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:53:30",
+  "providerPublishTime": 1770148410.0,
+  "text": "FNB stock hits 52-week high, reaching 18.3 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "USD",
+    "WEEK",
+    "FNB",
+    "HIGH",
+    "HITS",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "USD",
+    "WEEK",
+    "FNB",
+    "HIGH",
+    "HITS",
+    "STOCK"
+  ]
+}

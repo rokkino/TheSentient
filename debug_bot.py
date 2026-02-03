@@ -1,75 +1,42 @@
 
-import asyncio
-import os
 import sys
-import json
+import os
 from datetime import datetime
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-# Ensure backend imports work
+# Add backend to path
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
-from services.scheduler_jobs import process_bot_earnings
-from models.user import SessionLocal, User
-from models.bot import Bot
+from models.bot import Bot, Decision
 
-async def main():
-    db = SessionLocal()
-    try:
-        # 1. Ensure User Exists
-        user = db.query(User).filter(User.username == "debug_user").first()
-        if not user:
-            print("Creating debug user...")
-            # from services.auth_service import get_password_hash
-            # Hardcode hash to avoid dependencies
-            hashed_pw = "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn68n5.P.dD5x/p.X.1" 
-            user = User(
-                username="debug_user",
-                email="debug@example.com",
-                hashed_password=hashed_pw,
-                is_active=True,
-                gemini_api_key=os.getenv("GOOGLE_GEMINI_API_KEY"), # Use env var for test
-                gemini_model="gemini-2.5-pro"
-            )
-            db.add(user)
-            db.commit()
-            db.refresh(user)
-        
-        print(f"Using User ID: {user.id}")
+# Init DB
+engine = create_engine('sqlite:///backend/thesentient.db')
+Session = sessionmaker(bind=engine)
+session = Session()
 
-        # 2. Ensure Bot Exists
-        bot = db.query(Bot).filter(
-            Bot.user_id == user.id, 
-            Bot.bot_type == 'earnings_report_genius'
-        ).first()
-        
-        if not bot:
-            print("Creating Earnings Bot...")
-            bot = Bot(
-                user_id=user.id,
-                name="Debug Earnings Bot",
-                bot_type="earnings_report_genius",
-                description="Debug bot for testing",
-                status="active",
-                is_active=True,
-                config=json.dumps({"broker": "IG", "risk_level": "medium"})
-            )
-            db.add(bot)
-            db.commit()
-            db.refresh(bot)
-            
-        print(f"Using Bot ID: {bot.id} ({bot.name})")
-        
-        # 3. Process Earnings
-        print("Starting process_bot_earnings...")
-        await process_bot_earnings(bot.id)
-        print("Process completed.")
-        
-    except Exception as e:
-        print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
-    finally:
-        db.close()
+print("=== BOTS ===")
+bots = session.query(Bot).all()
+for bot in bots:
+    print(f"ID: {bot.id}, Name: {bot.name}, Type: {bot.bot_type}, Active: {bot.is_active}, Configured: {bot.is_configured()}")
+    
+    if bot.bot_type == 'earnings_report_genius':
+        print(f"--- Recent Decisions for Bot {bot.id} ---")
+        decisions = session.query(Decision).filter(Decision.bot_id == bot.id).order_by(Decision.created_at.desc()).limit(20).all()
+        for d in decisions:
+            exec_time = d.execution_time
+            now = datetime.now()
+            status_extra = ""
+            if d.status == 'PENDING' and exec_time and exec_time < now:
+                status_extra = " [LATE! Should have executed]"
+                
+            print(f"  [{d.id}] {d.symbol} {d.decision} - Status: {d.status}{status_extra}")
+            print(f"     Created: {d.created_at}, Exec Time: {d.execution_time}")
+            print(f"     Reasoning: {d.reasoning[:100]}...")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+print("\n=== PENDING DECISIONS (ALL BOTS) ===")
+pending = session.query(Decision).filter(Decision.status == 'PENDING').all()
+for p in pending:
+     print(f"  Bot {p.bot_id}: {p.symbol} {p.decision} @ {p.execution_time} (Now: {datetime.now()})")
+
+session.close()

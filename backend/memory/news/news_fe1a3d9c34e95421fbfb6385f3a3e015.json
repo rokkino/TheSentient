@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Assessing IREN (IREN) Valuation After Strong Earnings And Volatile Share Price Performance",
+  "link": "https://finance.yahoo.com/news/assessing-iren-iren-valuation-strong-201004048.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-03T20:10:04",
+  "providerPublishTime": 1770145804.0,
+  "text": "IREN (IREN) has drawn attention after reporting annual revenue of US$688.554 million and net income of US$523.255 million, with investors weighing these figures against recent share price swings over the month and the past 3 months. See our latest analysis for IREN. The share price has been volatile, with a 24.31% 1 month share price return and a 20.34% 3 month share price decline. However, the 1 year total shareholder return of 397% and 3 year total shareholder return above 20x highlight...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/0fe4d5d105492213ce106a92b49639d4",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SHARE",
+    "PAST",
+    "SEE",
+    "BTC-USD",
+    "US",
+    "MONTH",
+    "HAS",
+    "OUR",
+    "FOR",
+    "AND"
+  ],
+  "relatedTickers": [
+    "SHARE",
+    "PAST",
+    "SEE",
+    "BTC-USD",
+    "US",
+    "MONTH",
+    "HAS",
+    "OUR",
+    "FOR",
+    "AND"
+  ]
+}

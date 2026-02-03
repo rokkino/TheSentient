@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ask an Advisor: With a Shorter Timeline, How Do I Manage My Money Once I'm Retired?",
+  "link": "https://finance.yahoo.com/news/ask-advisor-shorter-timeline-manage-120000319.html",
+  "publisher": "SmartAsset",
+  "timestamp": "2026-02-02T12:00:00",
+  "providerPublishTime": 1770030000.0,
+  "text": "Ask an Advisor: With a Shorter Timeline, How Do I Manage My Money Once I'm Retired?",
+  "thumbnail": "https://media.zenfs.com/en/smartasset_475/9fe9b037c3eb547da267ab41406d1482",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "I",
+    "MY",
+    "HOW",
+    "A",
+    "WITH",
+    "AN",
+    "ASK",
+    "ONCE",
+    "DO",
+    "MONEY"
+  ],
+  "relatedTickers": [
+    "I",
+    "MY",
+    "HOW",
+    "A",
+    "WITH",
+    "AN",
+    "ASK",
+    "ONCE",
+    "DO",
+    "MONEY"
+  ]
+}

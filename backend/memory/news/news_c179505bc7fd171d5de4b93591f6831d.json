@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk warns sales could slide 13% as obesity competition mounts",
+  "link": "https://www.ft.com/content/d148ce25-fa76-468b-b9ac-95c62a994a55",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T19:21:32",
+  "providerPublishTime": 1770142892.0,
+  "text": "Danish drugmaker reports rise in revenues but flags pricing pressure as market becomes more crowded",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fbc3a214a-2cd7-4df2-98a0-69710627f01c.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SLIDE",
+    "FLAGS",
+    "MORE",
+    "COULD",
+    "SALES",
+    "WARNS",
+    "AS",
+    "NOVO",
+    "RISE",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "SLIDE",
+    "FLAGS",
+    "MORE",
+    "COULD",
+    "SALES",
+    "WARNS",
+    "AS",
+    "NOVO",
+    "RISE",
+    "BUT"
+  ]
+}

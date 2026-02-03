@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Top Cryptocurrencies Mixed; Bitcoin Drops Below $77,000 Level",
+  "link": "https://finance.yahoo.com/news/top-cryptocurrencies-mixed-bitcoin-drops-210013191.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T21:00:13",
+  "providerPublishTime": 1770148813.0,
+  "text": "Major digital assets were mixed on Tuesday, with Bitcoin (BTC-USD) dropping below the $77,000 level.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "USD",
+    "WERE",
+    "MAJOR",
+    "MIXED",
+    "THE",
+    "DROPS",
+    "WITH",
+    "TOP",
+    "BTC-USD",
+    "BELOW"
+  ],
+  "relatedTickers": [
+    "USD",
+    "WERE",
+    "MAJOR",
+    "MIXED",
+    "THE",
+    "DROPS",
+    "WITH",
+    "TOP",
+    "BTC-USD",
+    "BELOW"
+  ]
+}

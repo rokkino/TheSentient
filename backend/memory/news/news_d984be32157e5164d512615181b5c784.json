@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BNY Mellon High Yield Strategies Fund sub-adviser changes name",
+  "link": "https://www.investing.com/news/company-news/bny-mellon-high-yield-strategies-fund-subadviser-changes-name-93CH-4482878",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:32:56",
+  "providerPublishTime": 1770147176.0,
+  "text": "BNY Mellon High Yield Strategies Fund sub-adviser changes name",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FUND",
+    "YIELD",
+    "SUB",
+    "BNY",
+    "NAME",
+    "HIGH"
+  ],
+  "relatedTickers": [
+    "FUND",
+    "YIELD",
+    "SUB",
+    "BNY",
+    "NAME",
+    "HIGH"
+  ]
+}

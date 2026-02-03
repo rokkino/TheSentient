@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Revvity forecasts 2026 profit, revenue above estimates after blowout fourth quarter",
+  "link": "https://finance.yahoo.com/news/revvity-forecasts-2026-profit-revenue-121312416.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T12:16:46",
+  "providerPublishTime": 1770031006.0,
+  "text": "Revvity forecasts 2026 profit, revenue above estimates after blowout fourth quarter",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/a34922301908135a2e3f3c02c40be9ba",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ABOVE",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "ABOVE",
+    "AFTER"
+  ]
+}

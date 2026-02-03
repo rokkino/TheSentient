@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bankers Prepare €2.5 Billion Debt for ContiTech Unit Sale",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/bankers-prep-2-5-billion-debt-as-contitech-unit-sale-kicks-off",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T17:40:45",
+  "providerPublishTime": 1770136845.0,
+  "text": "Bankers are working on debt packages of around €2.5 billion ($2.9 billion) to back a potential acquisition of Continental AG’s industrial ContiTech unit, as a highly-anticipated sales process kicks off.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iw58_nkJ_heQ/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "DEBT",
+    "A",
+    "OFF",
+    "ON",
+    "S",
+    "SALE",
+    "FOR",
+    "TO",
+    "KICKS"
+  ],
+  "relatedTickers": [
+    "AS",
+    "DEBT",
+    "A",
+    "OFF",
+    "ON",
+    "S",
+    "SALE",
+    "FOR",
+    "TO",
+    "KICKS"
+  ]
+}

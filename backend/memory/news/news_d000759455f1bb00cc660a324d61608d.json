@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Are Wall Street Analysts Predicting EOG Resources Stock Will Climb or Sink?",
+  "link": "https://finance.yahoo.com/news/wall-street-analysts-predicting-eog-113923543.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-02T11:39:23",
+  "providerPublishTime": 1770028763.0,
+  "text": "Are Wall Street Analysts Predicting EOG Resources Stock Will Climb or Sink?",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/ffe96839fdd065f4112a83042558cf16",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLIMB",
+    "EOG",
+    "STOCK",
+    "OR",
+    "WILL",
+    "SINK",
+    "WALL",
+    "ARE"
+  ],
+  "relatedTickers": [
+    "CLIMB",
+    "EOG",
+    "STOCK",
+    "OR",
+    "WILL",
+    "SINK",
+    "WALL",
+    "ARE"
+  ]
+}

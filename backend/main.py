@@ -1963,10 +1963,11 @@ async def test_bot_connection(request: TestConnectionRequest, db: Session = Depe
                 creds = saved_account.get_credentials()
                 # Merge credentials into config (giving precedence to manual overrides if any, though usually hidden)
                 # We update config with saved credentials where missing
-                if saved_account.platform == 'Alpaca':
+                elif saved_account.platform == 'Alpaca':
                     if not config.get('alpaca_api_key'): config['alpaca_api_key'] = creds.get('api_key') or creds.get('api_key_id')
                     if not config.get('alpaca_api_secret'): config['alpaca_api_secret'] = creds.get('secret_key')
-                    if config.get('alpaca_paper') is None: config['alpaca_paper'] = creds.get('paper_trading', True)
+                    # FORCE saved account preference for paper/live (ignore frontend default)
+                    config['alpaca_paper'] = creds.get('paper_trading', True)
                 elif saved_account.platform == 'IG':
                     if not config.get('ig_username'): config['ig_username'] = creds.get('username')
                     if not config.get('ig_password'): config['ig_password'] = creds.get('password')
@@ -2014,10 +2015,17 @@ async def test_bot_connection(request: TestConnectionRequest, db: Session = Depe
                
             api_key = config.get('alpaca_api_key', '').strip()
             api_secret = config.get('alpaca_api_secret', '').strip()
+            
+            # 1. Start with provided preference
             paper = config.get('alpaca_paper', True)
             
-            # Auto-detect paper mode if key starts with PK (standard for Alpaca Paper)
-            if api_key.startswith('PK'):
+            # 2. Key format override (Safety Net):
+            # Live keys start with AK..., Paper keys start with PK...
+            if api_key.startswith('AK'):
+                print("[DEBUG] Detected Live API Key (AK...), forcing paper=False")
+                paper = False
+            elif api_key.startswith('PK'):
+                print("[DEBUG] Detected Paper API Key (PK...), forcing paper=True")
                 paper = True
             
             print(f"[DEBUG] Keys after lookup/strip - Key len: {len(api_key)}, Secret len: {len(api_secret)}, Paper: {paper}")

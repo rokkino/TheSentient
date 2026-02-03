@@ -10,7 +10,7 @@ import traceback
 
 # Reuse existing earnings service logic if possible, or reimplement lightweight version
 from services.earnings_service import earnings_service
-from services.ticker_database import ticker_database # Assuming this exists or similar
+
 
 class BacktestService:
     def __init__(self):

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Apollo’s Harris: Sports teams, digital infrastructure offer inflation protection",
+  "link": "https://www.investing.com/news/economy-news/apollos-harris-sports-teams-digital-infrastructure-offer-inflation-protection-93CH-4482882",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:36:14",
+  "providerPublishTime": 1770147374.0,
+  "text": "Apollo’s Harris: Sports teams, digital infrastructure offer inflation protection",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFFER",
+    "TEAMS",
+    "S"
+  ],
+  "relatedTickers": [
+    "OFFER",
+    "TEAMS",
+    "S"
+  ]
+}

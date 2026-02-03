@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UTime signs $50 million intent agreement for smart server supply",
+  "link": "https://www.investing.com/news/company-news/utime-signs-50-million-intent-agreement-for-smart-server-supply-93CH-4482908",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:53:13",
+  "providerPublishTime": 1770148393.0,
+  "text": "UTime signs $50 million intent agreement for smart server supply",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UTIME",
+    "SMART",
+    "FOR",
+    "SIGNS"
+  ],
+  "relatedTickers": [
+    "UTIME",
+    "SMART",
+    "FOR",
+    "SIGNS"
+  ]
+}

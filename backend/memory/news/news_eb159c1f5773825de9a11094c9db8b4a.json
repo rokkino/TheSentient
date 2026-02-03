@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13G AXALTA COATING SYSTEMS LTD. For: 3 February",
+  "link": "https://www.investing.com/news/filings/form-13g-axalta-coating-systems-ltd-for-3-february-93CH-4482856",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:16:15",
+  "providerPublishTime": 1770146175.0,
+  "text": "Form 13G AXALTA COATING SYSTEMS LTD. For: 3 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LTD",
+    "FORM",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "LTD",
+    "FORM",
+    "FOR"
+  ]
+}

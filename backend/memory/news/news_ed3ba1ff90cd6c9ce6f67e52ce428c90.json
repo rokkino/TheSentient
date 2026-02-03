@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Exclusive-KKR prepares OPI owner Wella Company for US IPO, sources say",
+  "link": "https://www.investing.com/news/stock-market-news/exclusivekkr-prepares-opi-owner-wella-company-for-us-ipo-sources-say-4482911",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:54:30",
+  "providerPublishTime": 1770148470.0,
+  "text": "Exclusive-KKR prepares OPI owner Wella Company for US IPO, sources say",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WELLA",
+    "SAY",
+    "IPO",
+    "FOR",
+    "US",
+    "OWNER",
+    "OPI",
+    "KKR"
+  ],
+  "relatedTickers": [
+    "WELLA",
+    "SAY",
+    "IPO",
+    "FOR",
+    "US",
+    "OWNER",
+    "OPI",
+    "KKR"
+  ]
+}

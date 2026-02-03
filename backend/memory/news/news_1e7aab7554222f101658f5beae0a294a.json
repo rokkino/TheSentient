@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AES stock price target raised to $16 from $13 at Jefferies on GIP-EQT bid rumors",
+  "link": "https://www.investing.com/news/analyst-ratings/aes-stock-price-target-raised-to-16-from-13-at-jefferies-on-gipeqt-bid-rumors-93CH-4482788",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:21:14",
+  "providerPublishTime": 1770142874.0,
+  "text": "AES stock price target raised to $16 from $13 at Jefferies on GIP-EQT bid rumors",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BID",
+    "PRICE",
+    "GIP",
+    "AT",
+    "ON",
+    "FROM",
+    "TO",
+    "EQT",
+    "AES",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "BID",
+    "PRICE",
+    "GIP",
+    "AT",
+    "ON",
+    "FROM",
+    "TO",
+    "EQT",
+    "AES",
+    "STOCK"
+  ]
+}

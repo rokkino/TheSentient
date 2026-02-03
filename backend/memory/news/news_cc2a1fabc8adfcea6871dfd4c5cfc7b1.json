@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nearly 1,000 Active ETFs Launched Last Year. Only About 150 Folded",
+  "link": "https://finance.yahoo.com/news/nearly-1-000-active-etfs-110500431.html",
+  "publisher": "The Daily Upside",
+  "timestamp": "2026-02-02T11:05:00",
+  "providerPublishTime": 1770026700.0,
+  "text": "Nearly 1,000 Active ETFs Launched Last Year. Only About 150 Folded",
+  "thumbnail": "https://media.zenfs.com/en/the_daily_upside_435/cc1b8891db72e30710d84b32d765a938",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LAST",
+    "ABOUT",
+    "ONLY",
+    "ETFS",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "LAST",
+    "ABOUT",
+    "ONLY",
+    "ETFS",
+    "YEAR"
+  ]
+}

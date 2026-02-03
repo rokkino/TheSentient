@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin nears weekend low of $74,600 as stock selloff adds to crypto's woes",
+  "link": "https://finance.yahoo.com/news/bitcoin-nears-weekend-low-74-175350418.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T17:53:50",
+  "providerPublishTime": 1770137630.0,
+  "text": "Major declines in artificial-intelligence-linked stocks, software names and private equity are leading U.S. indices lower.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/c81779620ad95b0063417b8231f05710",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "U",
+    "WOES",
+    "S",
+    "MAJOR",
+    "TO",
+    "NAMES",
+    "AND",
+    "SOL-USD",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "AS",
+    "U",
+    "WOES",
+    "S",
+    "MAJOR",
+    "TO",
+    "NAMES",
+    "AND",
+    "SOL-USD",
+    "STOCK"
+  ]
+}

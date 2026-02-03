@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Why Silver’s Monstrous Rally May Be a Head Fake",
+  "link": "https://www.barrons.com/articles/silver-monstrous-rally-may-be-head-fake-2c6099d8?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-03T18:33:00",
+  "providerPublishTime": 1770139980.0,
+  "text": "Silver is staging a spectacular recovery, leaving behind gold, stocks, Treasuries, and Bitcoin.  Silver futures were on course to close with a gain of 15% shortly after noon on Tuesday, while gold contracts were up 6.5%.  Silver’s standout performance comes after two hard days for the metal.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/b85187f61d874428a0b45e2226c4d24c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UP",
+    "HEAD",
+    "ON",
+    "IS",
+    "NOON",
+    "FOR",
+    "WHY",
+    "A",
+    "METAL",
+    "THE"
+  ],
+  "relatedTickers": [
+    "UP",
+    "HEAD",
+    "ON",
+    "IS",
+    "NOON",
+    "FOR",
+    "WHY",
+    "A",
+    "METAL",
+    "THE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Huge Port Washington data center financing is 'on schedule,' Oracle says",
+  "link": "https://finance.yahoo.com/news/huge-port-washington-data-center-204108364.html",
+  "publisher": "Milwaukee Journal Sentinel",
+  "timestamp": "2026-02-03T20:41:08",
+  "providerPublishTime": 1770147668.0,
+  "text": "As discussions between Nvidia and OpenAI strain, Oracle has assured its partners that financing for the Port Washington data center is \"on schedule.\"",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "THAT",
+    "DATA",
+    "ON",
+    "HAS",
+    "THE",
+    "FOR",
+    "NVDA",
+    "SAYS",
+    "AND"
+  ],
+  "relatedTickers": [
+    "AS",
+    "THAT",
+    "DATA",
+    "ON",
+    "HAS",
+    "THE",
+    "FOR",
+    "NVDA",
+    "SAYS",
+    "AND"
+  ]
+}

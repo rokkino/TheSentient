@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Chipotle is about to report earnings. Here's what to expect",
+  "link": "https://www.cnbc.com/2026/02/03/chipotle-cmg-q4-2025-earnings.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T20:30:01",
+  "providerPublishTime": 1770147001.0,
+  "text": "Chipotle stock has fallen about 33% over the last year, dragging the company's market value down to about $51 billion.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "VALUE",
+    "HERE",
+    "HAS",
+    "ABOUT",
+    "IS",
+    "WHAT",
+    "TO",
+    "OVER",
+    "THE",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "VALUE",
+    "HERE",
+    "HAS",
+    "ABOUT",
+    "IS",
+    "WHAT",
+    "TO",
+    "OVER",
+    "THE",
+    "YEAR"
+  ]
+}

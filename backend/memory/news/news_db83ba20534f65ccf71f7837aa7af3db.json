@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Galaxy Digital Stock Is Tumbling on an Earnings Miss. It’s a Tale of Two Businesses.",
+  "link": "https://www.barrons.com/articles/galaxy-digital-earnings-stock-price-05eccc6f?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-03T17:30:00",
+  "providerPublishTime": 1770136200.0,
+  "text": "The company posts heavier-than-expected losses in a down crypto market, while its data-center business makes progress.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/d491dab66f839227a3dae7022a05c00d",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ITS",
+    "POSTS",
+    "ON",
+    "IS",
+    "IN",
+    "A",
+    "DATA",
+    "MAKES",
+    "THE",
+    "DOWN"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "POSTS",
+    "ON",
+    "IS",
+    "IN",
+    "A",
+    "DATA",
+    "MAKES",
+    "THE",
+    "DOWN"
+  ]
+}

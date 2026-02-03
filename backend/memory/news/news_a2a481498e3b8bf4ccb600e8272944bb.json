@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Climate Impact Partners appoints chief growth officer",
+  "link": "https://finance.yahoo.com/news/climate-impact-partners-appoints-chief-120800159.html",
+  "publisher": "ESG Dive",
+  "timestamp": "2026-02-02T12:08:00",
+  "providerPublishTime": 1770030480.0,
+  "text": "Climate Impact Partners appoints chief growth officer",
+  "thumbnail": "https://media.zenfs.com/en/esg_dive_474/c032625001710842044bfce896b2930b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CHIEF"
+  ],
+  "relatedTickers": [
+    "CHIEF"
+  ]
+}

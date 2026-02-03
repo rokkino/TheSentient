@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NXP Semiconductors stock price target lowered to $255 at Truist Securities",
+  "link": "https://www.investing.com/news/analyst-ratings/nxp-semiconductors-stock-price-target-lowered-to-255-at-truist-securities-93CH-4482789",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:21:33",
+  "providerPublishTime": 1770142893.0,
+  "text": "NXP Semiconductors stock price target lowered to $255 at Truist Securities",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "NXP",
+    "AT",
+    "TO",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "NXP",
+    "AT",
+    "TO",
+    "STOCK"
+  ]
+}

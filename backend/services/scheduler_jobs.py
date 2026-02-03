@@ -60,7 +60,87 @@ async def process_bot_earnings(bot_id: int):
         user = db.query(User).filter(User.id == bot.user_id).first()
         if not user:
              return
-
+        
+        # --- SAFETY NET: LIQUIDATE STUCK POSITIONS ---
+        # Find executed entries that have no corresponding executed exit after 48 hours
+        try:
+            print(f"[JOB] Checking for stuck positions for bot {bot.name}...")
+            # Look back 30 days
+            cutoff_date = datetime.now(timezone.utc) - timedelta(days=30)
+            
+            # Get all EXECUTED BUY decisions
+            executed_entries = db.query(Decision).filter(
+                Decision.bot_id == bot.id,
+                Decision.status == 'EXECUTED',
+                Decision.decision == 'BUY',
+                Decision.created_at >= cutoff_date
+            ).all()
+            
+            stuck_count = 0
+            for entry in executed_entries:
+                # Check if this symbol has been sold/closed AFTER the entry
+                # We look for ANY executed SELL for this symbol that happened after the entry
+                entry_time = entry.executed_at or entry.created_at
+                
+                # Find matching close
+                closed = db.query(Decision).filter(
+                    Decision.bot_id == bot.id,
+                    Decision.symbol == entry.symbol,
+                    Decision.status == 'EXECUTED',
+                    Decision.decision == 'SELL',
+                    Decision.created_at > entry.created_at # Created after the buy
+                ).first()
+                
+                if not closed:
+                    # Position might be open. Is it old?
+                    # Ensure timezone awareness compatibility
+                    now = datetime.now(timezone.utc)
+                    if entry_time.tzinfo is None:
+                        # Assume UTC if naive, or convert both to naive
+                        entry_time = entry_time.replace(tzinfo=timezone.utc)
+                    
+                    age = now - entry_time
+                    
+                    # If older than 48 hours (earnings plays are usually 1 day), it's stuck
+                    if age > timedelta(hours=48):
+                        print(f"[JOB] Found STUCK position: {entry.symbol} (Age: {age}). Liquidating...")
+                        
+                        # Check if we already have a PENDING sell to avoid duplicates
+                        pending_sell = db.query(Decision).filter(
+                             Decision.bot_id == bot.id,
+                             Decision.symbol == entry.symbol,
+                             Decision.decision == 'SELL',
+                             Decision.status == 'PENDING'
+                        ).first()
+                        
+                        if pending_sell:
+                            print(f"[JOB] Pending sell already exists for {entry.symbol}, updating to IMMEDIATE.")
+                            pending_sell.execution_time = datetime.now(timezone.utc)
+                            pending_sell.reasoning = (pending_sell.reasoning or "") + " | FORCE LIQUIDATION (Stuck)"
+                        else:
+                            # Create new liquidation order
+                            liquidate = Decision(
+                                bot_id=bot.id,
+                                symbol=entry.symbol,
+                                decision='SELL',
+                                # grouping_id removed as it does not exist in model
+                                status='PENDING',
+                                execution_time=datetime.now(timezone.utc), # Execute NOW
+                                reasoning=f"FORCE LIQUIDATION: Position held for {age} without closure."
+                            )
+                            db.add(liquidate)
+                            stuck_count += 1
+            
+            if stuck_count > 0:
+                db.commit()
+                print(f"[JOB] Created {stuck_count} liquidation orders for stuck positions.")
+                
+        except Exception as e:
+            print(f"[JOB] Error in safety net: {e}")
+            import traceback
+            traceback.print_exc()
+            # Continue with normal processing
+        
         # Get earnings data
         from services.earnings_service import earnings_service
         
@@ -190,8 +270,88 @@ async def process_bot_earnings(bot_id: int):
         
         print(f"[JOB] Found {len(valid_opportunities)} high-confidence opportunities")
         
+        # --- DYNAMIC POSITION SIZING ---
+        # 1. Get Account Balance
+        try:
+            from services.bot_service import bot_service
+            service = bot_service._get_configured_service(db, bot)
+            
+            # Default fallback values
+            total_balance = 0.0
+            
+            if service:
+                try:
+                    # Generic get_account method expected on services
+                    if hasattr(service, 'get_account'):
+                        account_info = await service.get_account()
+                        # Use portfolio value or equity or cash
+                        total_balance = float(account_info.get('portfolio_value') or account_info.get('equity') or account_info.get('cash') or 0)
+                        print(f"[JOB] Account Balance for sizing: ${total_balance:.2f}")
+                    else:
+                        print("[JOB] Service does not support get_account, using default $10,000 for sizing")
+                        total_balance = 10000.0
+                except Exception as ex:
+                    print(f"[JOB] Failed to get account balance: {ex}, using default $10,000")
+                    total_balance = 10000.0
+            else:
+                print("[JOB] No service configured, using default $10,000 for sizing")
+                total_balance = 10000.0
+                
+            # 2. Calculate Daily Budget
+            config = bot.get_config()
+            daily_budget_pct = float(config.get('daily_budget_pct', 50))
+            if daily_budget_pct <= 0 or daily_budget_pct > 100:
+                daily_budget_pct = 50.0
+                
+            daily_budget = total_balance * (daily_budget_pct / 100.0)
+            print(f"[JOB] Daily Budget: ${daily_budget:.2f} ({daily_budget_pct}% of ${total_balance:.2f})")
+            
+            # 3. Allocation Logic
+            selected_opportunities = valid_opportunities[:5]
+            num_trades = len(selected_opportunities)
+            
+            if num_trades == 0:
+                print("[JOB] No trades to allocate budget to.")
+                return
+                
+            use_confidence_sizing = config.get('use_confidence_sizing', True)
+            
+            allocations = {} # symbol -> amount_usd
+            
+            if use_confidence_sizing:
+                total_confidence = sum([float(opp.get('confidence_score', 0)) for opp in selected_opportunities])
+                print(f"[JOB] Total Confidence Score: {total_confidence}")
+                
+                if total_confidence > 0:
+                    for opp in selected_opportunities:
+                        symbol = opp.get('symbol')
+                        conf = float(opp.get('confidence_score', 0))
+                        # Allocation = Budget * (Share of Confidence)
+                        amount = daily_budget * (conf / total_confidence)
+                        allocations[symbol] = amount
+                        print(f"[JOB] Allocating ${amount:.2f} to {symbol} (Conf: {conf})")
+                else:
+                    # Fallback to equal
+                    per_trade = daily_budget / num_trades
+                    for opp in selected_opportunities:
+                        allocations[opp.get('symbol')] = per_trade
+            else:
+                # Equal Weighting
+                per_trade = daily_budget / num_trades
+                for opp in selected_opportunities:
+                    allocations[opp.get('symbol')] = per_trade
+                print(f"[JOB] Allocating ${per_trade:.2f} to each of {num_trades} trades (Equal Weight)")
+                
+        except Exception as e:
+            print(f"[JOB] Error in sizing logic: {e}")
+            import traceback
+            traceback.print_exc()
+            # Fallback
+            selected_opportunities = valid_opportunities[:5]
+            allocations = {opp.get('symbol'): 1000.0 for opp in selected_opportunities}
+
         # Take top 5 most confident opportunities
-        for opp in valid_opportunities[:5]:
+        for opp in selected_opportunities:
             symbol = opp.get('symbol')
             decision_type = opp.get('decision')
             confidence_score = float(opp.get('confidence_score', 0) if opp.get('confidence_score') is not None else 0)
@@ -233,13 +393,15 @@ async def process_bot_earnings(bot_id: int):
             reasoning_text = f"[Confidence: {confidence_score:.0f}%] [Earnings: {earnings_date} {time_slot}] {reasoning_text}"
             
             # Create ENTRY decision
+            entry_amount = allocations.get(symbol, 1000.0)
             entry_decision = Decision(
                 bot_id=bot.id,
                 symbol=symbol,
                 decision=decision_type,  # BUY or SELL
-                reasoning=f"ENTRY: {reasoning_text}",
+                reasoning=f"ENTRY: {reasoning_text} | Allocated: ${entry_amount:.2f}",
                 execution_time=entry_time,
-                status='PENDING'
+                status='PENDING',
+                allocated_amount=entry_amount
             )
             db.add(entry_decision)
             print(f"[JOB] Created ENTRY: {decision_type} {symbol} @ {entry_time}")
@@ -250,9 +412,10 @@ async def process_bot_earnings(bot_id: int):
                 bot_id=bot.id,
                 symbol=symbol,
                 decision=exit_decision_type,
-                reasoning=f"EXIT (close position): Close {decision_type} position after earnings announcement",
+                reasoning=f"EXIT (close position): Close {decision_type} position after earnings announcement | Allocated: ${entry_amount:.2f}",
                 execution_time=exit_time,
-                status='PENDING'
+                status='PENDING',
+                allocated_amount=entry_amount
             )
             db.add(exit_decision)
             print(f"[JOB] Created EXIT: {exit_decision_type} {symbol} @ {exit_time}")
@@ -365,7 +528,9 @@ async def execute_orders_job():
                     print(f"[JOB] Executing {action} {symbol} for bot {bot.name}...")
                     
                     # Default order amount in USD
-                    ORDER_AMOUNT_USD = 1000.0 
+                    ORDER_AMOUNT_USD = decision.allocated_amount if decision.allocated_amount else 1000.0
+                    print(f"[JOB] Target Amount: ${ORDER_AMOUNT_USD}")
+                    
                     qty = 1.0
                     
                     # 1. Get current price to calculate quantity

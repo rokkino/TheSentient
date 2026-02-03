@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney's first quarter is powered by box-office hits 'Zootopia 2' and 'Avatar: Fire and Ash'",
+  "link": "https://finance.yahoo.com/news/disneys-first-quarter-powered-box-122342253.html",
+  "publisher": "Associated Press Finance",
+  "timestamp": "2026-02-02T12:23:42",
+  "providerPublishTime": 1770031422.0,
+  "text": "Disney's first quarter is powered by box-office hits 'Zootopia 2' and 'Avatar: Fire and Ash'",
+  "thumbnail": "https://media.zenfs.com/en/ap_finance_articles_694/155f235f922dac8be6454d2376ad2e41",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "FIRST",
+    "ASH",
+    "AND",
+    "BY",
+    "IS",
+    "BOX",
+    "HITS",
+    "FIRE"
+  ],
+  "relatedTickers": [
+    "S",
+    "FIRST",
+    "ASH",
+    "AND",
+    "BY",
+    "IS",
+    "BOX",
+    "HITS",
+    "FIRE"
+  ]
+}

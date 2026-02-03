@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "House Passes Government Funding Package to End Partial Shutdown",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-03/house-passes-funding-package-to-end-partial-shutdown-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T19:44:19",
+  "providerPublishTime": 1770144259.0,
+  "text": "The House of Representatives passed a government funding package that ends the partial shutdown by funding most federal agencies through the end of the fiscal year, September 30. The measure cleared a critical procedural vote despite opposition from ultraconservative Republicans, followed by the passage of the bill itself with support from nearly two dozen Democrats. Megan Scully reports. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iqfTS4D..Llk/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BILL",
+    "THAT",
+    "ENDS",
+    "BY",
+    "A",
+    "MOST",
+    "END",
+    "WITH",
+    "VOTE",
+    "MEGAN"
+  ],
+  "relatedTickers": [
+    "BILL",
+    "THAT",
+    "ENDS",
+    "BY",
+    "A",
+    "MOST",
+    "END",
+    "WITH",
+    "VOTE",
+    "MEGAN"
+  ]
+}

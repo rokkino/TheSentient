@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Ondo launches Ondo Global Listing to tokenize IPOs on public debut",
+  "link": "https://finance.yahoo.com/news/ondo-launches-ondo-global-listing-203000731.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T20:30:00",
+  "providerPublishTime": 1770147000.0,
+  "text": "Ondo Finance has launched a new service called Ondo Global Listing, the popular real-world asset (RWA) tokenization platform announced on Feb. 3. Tokenization is the process of digitally representing the ownership of RWAs like stocks, funds, etc., as digital tokens on a blockchain ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/f409f3d521b63a20586ba79b84fc4ddb",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ON",
+    "IPOS",
+    "ETC",
+    "RWAS",
+    "ASSET",
+    "NEW",
+    "RWA",
+    "HAS",
+    "DEBUT",
+    "WORLD"
+  ],
+  "relatedTickers": [
+    "ON",
+    "IPOS",
+    "ETC",
+    "RWAS",
+    "ASSET",
+    "NEW",
+    "RWA",
+    "HAS",
+    "DEBUT",
+    "WORLD"
+  ]
+}

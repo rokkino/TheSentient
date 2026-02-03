@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tyson Foods beats quarterly profit estimates on chicken demand",
+  "link": "https://finance.yahoo.com/news/tyson-foods-beats-quarterly-profit-120552448.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T12:05:52",
+  "providerPublishTime": 1770030352.0,
+  "text": "Tyson Foods beats quarterly profit estimates on chicken demand",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/6bcbefec28b743dd9c47d872a5559ffd",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEATS",
+    "TYSON",
+    "FOODS",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BEATS",
+    "TYSON",
+    "FOODS",
+    "ON"
+  ]
+}

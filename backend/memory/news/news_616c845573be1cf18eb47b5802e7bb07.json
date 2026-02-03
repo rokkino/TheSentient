@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PepsiCo cut prices on Doritos, Cheetos after customer complaints about affordability",
+  "link": "https://www.marketwatch.com/story/pepsico-snaps-streak-of-profit-declines-and-boosts-dividend-by-4-91eb160e?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T19:14:00",
+  "providerPublishTime": 1770142440.0,
+  "text": "PepsiCo’s stock rallied toward a 13-month high, after an earnings beat and dividend hike.",
+  "thumbnail": "https://images.mktw.net/im-77718469",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "HIGH",
+    "AND",
+    "ABOUT",
+    "MONTH",
+    "AFTER",
+    "ON",
+    "S",
+    "CUT",
+    "AN"
+  ],
+  "relatedTickers": [
+    "A",
+    "HIGH",
+    "AND",
+    "ABOUT",
+    "MONTH",
+    "AFTER",
+    "ON",
+    "S",
+    "CUT",
+    "AN"
+  ]
+}

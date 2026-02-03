@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Crypto Exodus Hits $1.7 Billion but Tokenized Metals Draw Investor Inflows",
+  "link": "https://finance.yahoo.com/news/crypto-exodus-hits-1-7-102852929.html",
+  "publisher": "BeInCrypto",
+  "timestamp": "2026-02-02T10:28:52",
+  "providerPublishTime": 1770024532.0,
+  "text": "Crypto Exodus Hits $1.7 Billion but Tokenized Metals Draw Investor Inflows",
+  "thumbnail": "https://media.zenfs.com/en/beincrypto_us_662/71624754ef10fd57e361b166d213baf3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DRAW",
+    "HITS",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "DRAW",
+    "HITS",
+    "BUT"
+  ]
+}

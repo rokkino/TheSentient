@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Sector Update: Financial Stocks Decline Late Afternoon",
+  "link": "https://finance.yahoo.com/news/sector-financial-stocks-decline-afternoon-205044757.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T20:50:44",
+  "providerPublishTime": 1770148244.0,
+  "text": "Financial stocks were decreasing in late Tuesday afternoon trading, with the NYSE Financial Index sh",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BTC-USD",
+    "WITH",
+    "SH",
+    "THE",
+    "NYSE",
+    "WERE",
+    "IN",
+    "LATE",
+    "INDEX"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "WITH",
+    "SH",
+    "THE",
+    "NYSE",
+    "WERE",
+    "IN",
+    "LATE",
+    "INDEX"
+  ]
+}

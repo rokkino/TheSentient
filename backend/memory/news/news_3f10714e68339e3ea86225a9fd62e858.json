@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 13G Stevanato Group S.p.A. For: 3 February",
+  "link": "https://www.investing.com/news/filings/form-13g-stevanato-group-spa-for-3-february-93CH-4482849",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:15:42",
+  "providerPublishTime": 1770146142.0,
+  "text": "Form 13G Stevanato Group S.p.A. For: 3 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "FOR",
+    "P",
+    "FORM",
+    "GROUP",
+    "S"
+  ],
+  "relatedTickers": [
+    "A",
+    "FOR",
+    "P",
+    "FORM",
+    "GROUP",
+    "S"
+  ]
+}

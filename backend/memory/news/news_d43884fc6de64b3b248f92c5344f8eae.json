@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Set to Open Lower as Risk Sentiment Weakens, U.S. Jobs Data and Earnings in Focus",
+  "link": "https://finance.yahoo.com/news/stocks-set-open-lower-risk-112954891.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-02T11:29:54",
+  "providerPublishTime": 1770028194.0,
+  "text": "Stocks Set to Open Lower as Risk Sentiment Weakens, U.S. Jobs Data and Earnings in Focus",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/4b47a41dc88e63cb86d3bf03257ec07c",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "DATA",
+    "U",
+    "JOBS",
+    "OPEN",
+    "TO",
+    "RISK",
+    "SET",
+    "AND",
+    "IN"
+  ],
+  "relatedTickers": [
+    "AS",
+    "DATA",
+    "U",
+    "JOBS",
+    "OPEN",
+    "TO",
+    "RISK",
+    "SET",
+    "AND",
+    "IN"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Pfizer weight-loss drug data raises questions about side effects, shares fall",
+  "link": "https://www.investing.com/news/stock-market-news/pfizer-beats-fourth-quarter-profit-estimates-on-robust-drug-demand-4481343",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T19:25:29",
+  "providerPublishTime": 1770143129.0,
+  "text": "Pfizer weight-loss drug data raises questions about side effects, shares fall",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DATA",
+    "ABOUT",
+    "SIDE",
+    "DRUG",
+    "LOSS",
+    "FALL"
+  ],
+  "relatedTickers": [
+    "DATA",
+    "ABOUT",
+    "SIDE",
+    "DRUG",
+    "LOSS",
+    "FALL"
+  ]
+}

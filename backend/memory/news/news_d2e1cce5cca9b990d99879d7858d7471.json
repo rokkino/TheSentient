@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle’s monster $25 billion debt financing points to anxieties around AI funding",
+  "link": "https://www.marketwatch.com/story/oracles-monster-25-billion-debt-financing-points-to-anxieties-around-ai-funding-b92c634b?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T20:12:00",
+  "providerPublishTime": 1770145920.0,
+  "text": "Oracle plans to raise up to another $25 billion this year but said the sales would be either equity or equity-linked issuances.",
+  "thumbnail": "https://images.mktw.net/im-37217183",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DEBT",
+    "PLANS",
+    "WOULD",
+    "BE",
+    "S",
+    "SAID",
+    "UP",
+    "BUT",
+    "TO",
+    "RAISE"
+  ],
+  "relatedTickers": [
+    "DEBT",
+    "PLANS",
+    "WOULD",
+    "BE",
+    "S",
+    "SAID",
+    "UP",
+    "BUT",
+    "TO",
+    "RAISE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "New Zealand’s Synlait Milk expects first-half loss on high costs, operational woes",
+  "link": "https://www.investing.com/news/stock-market-news/new-zealands-synlait-milk-expects-firsthalf-loss-on-high-costs-operational-woes-4482902",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T20:49:17",
+  "providerPublishTime": 1770148157.0,
+  "text": "New Zealand’s Synlait Milk expects first-half loss on high costs, operational woes",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "COSTS",
+    "FIRST",
+    "MILK",
+    "LOSS",
+    "WOES",
+    "HALF",
+    "HIGH",
+    "NEW",
+    "ON"
+  ],
+  "relatedTickers": [
+    "S",
+    "COSTS",
+    "FIRST",
+    "MILK",
+    "LOSS",
+    "WOES",
+    "HALF",
+    "HIGH",
+    "NEW",
+    "ON"
+  ]
+}

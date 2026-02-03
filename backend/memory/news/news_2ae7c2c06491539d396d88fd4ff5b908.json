@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "A Once-in-a-Decade Opportunity: This Chip Stock Is Set to Skyrocket",
+  "link": "https://finance.yahoo.com/news/once-decade-opportunity-chip-stock-192000562.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T19:20:00",
+  "providerPublishTime": 1770142800.0,
+  "text": "Taiwan Semiconductor Manufacturing is a top way to invest in AI.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/c35d1933f763f3184726fdce7eb2ebb1",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "NVDA",
+    "TOP",
+    "THIS",
+    "AI",
+    "SET",
+    "IS",
+    "TO",
+    "ONCE",
+    "WAY"
+  ],
+  "relatedTickers": [
+    "A",
+    "NVDA",
+    "TOP",
+    "THIS",
+    "AI",
+    "SET",
+    "IS",
+    "TO",
+    "ONCE",
+    "WAY"
+  ]
+}

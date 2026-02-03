@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Earnings live: Palantir stock surges after Q4 beat, PayPal plunges, PepsiCo turns higher",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-palantir-stock-surges-after-q4-beat-paypal-plunges-pepsico-turns-higher-125920365.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-03T12:59:20",
+  "providerPublishTime": 1770119960.0,
+  "text": "More Big Tech earnings are ahead from Amazon and Alphabet.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-11/8485f9a0-bff9-11f0-bfdc-60ad4833be21",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LIVE",
+    "BIG",
+    "GOOGL",
+    "BEAT",
+    "AHEAD",
+    "AFTER",
+    "TURNS",
+    "FROM",
+    "AND",
+    "TECH"
+  ],
+  "relatedTickers": [
+    "LIVE",
+    "BIG",
+    "GOOGL",
+    "BEAT",
+    "AHEAD",
+    "AFTER",
+    "TURNS",
+    "FROM",
+    "AND",
+    "TECH"
+  ]
+}

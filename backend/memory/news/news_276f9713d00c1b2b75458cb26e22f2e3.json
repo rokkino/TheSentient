@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analyst Report: Waste Management, Inc.",
+  "link": "https://finance.yahoo.com/research/reports/ARGUS_3529_AnalystReport_1770142181000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+  "publisher": "Argus Research",
+  "timestamp": "2026-02-03T18:09:41",
+  "providerPublishTime": 1770138581.0,
+  "text": "Analyst Report: Waste Management, Inc.",
+  "thumbnail": "https://s.yimg.com/uc/fin/img/non-sub-report-thumb.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INC",
+    "WASTE"
+  ],
+  "relatedTickers": [
+    "INC",
+    "WASTE"
+  ]
+}

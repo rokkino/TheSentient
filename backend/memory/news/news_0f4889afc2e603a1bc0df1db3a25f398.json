@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Anthropic AI Tool Sparks Selloff From Software to Broader Market",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/legal-software-stocks-plunge-as-anthropic-releases-new-ai-tool",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T11:09:48",
+  "providerPublishTime": 1770113388.0,
+  "text": "The stock market buckled Tuesday as investors dumped shares of software makers after a new AI automation tool from Anthropic PBC heightened concerns that their core businesses are at risk of being displaced.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBnB4_kMBljs/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "THEIR",
+    "RISK",
+    "A",
+    "CORE",
+    "NEW",
+    "AI",
+    "THE",
+    "AT",
+    "FROM",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "THEIR",
+    "RISK",
+    "A",
+    "CORE",
+    "NEW",
+    "AI",
+    "THE",
+    "AT",
+    "FROM",
+    "THAT"
+  ]
+}

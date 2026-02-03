@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Alphabet set to report Q4 earnings in test of stock's rally amid Google's AI wins",
+  "link": "https://finance.yahoo.com/news/alphabet-set-to-report-q4-earnings-in-test-of-stocks-rally-amid-googles-ai-wins-195254201.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-03T19:52:54",
+  "providerPublishTime": 1770144774.0,
+  "text": "Google parent Alphabet will report fourth quarter financial results after the bell on Wednesday.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/7f99e030-0123-11f1-bfbd-896187a08df6",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BELL",
+    "GOOGL",
+    "AMID",
+    "AFTER",
+    "ON",
+    "RALLY",
+    "THE",
+    "TO",
+    "SET",
+    "IN"
+  ],
+  "relatedTickers": [
+    "BELL",
+    "GOOGL",
+    "AMID",
+    "AFTER",
+    "ON",
+    "RALLY",
+    "THE",
+    "TO",
+    "SET",
+    "IN"
+  ]
+}

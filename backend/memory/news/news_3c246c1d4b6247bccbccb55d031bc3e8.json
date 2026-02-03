@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk shares tumble after company warns of sales hit this year",
+  "link": "https://www.cnbc.com/2026/02/03/novo-nordisk-2025-earnings-wegovy-ozempic.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T18:10:26",
+  "providerPublishTime": 1770138626.0,
+  "text": "The company is banking on its Wegovy pill and next-generation weight loss injectable CagriSema to recapture share of the key U.S. market.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SHARE",
+    "U",
+    "OF",
+    "YEAR",
+    "THIS",
+    "SALES",
+    "AFTER",
+    "NEXT",
+    "LOSS",
+    "NOVO"
+  ],
+  "relatedTickers": [
+    "SHARE",
+    "U",
+    "OF",
+    "YEAR",
+    "THIS",
+    "SALES",
+    "AFTER",
+    "NEXT",
+    "LOSS",
+    "NOVO"
+  ]
+}

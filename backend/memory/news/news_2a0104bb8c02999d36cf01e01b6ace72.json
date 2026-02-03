@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Gold prices, bitcoin slide lower: What's driving these sell-offs",
+  "link": "https://finance.yahoo.com/video/gold-prices-bitcoin-slide-lower-223000043.html",
+  "publisher": "Yahoo Finance Video",
+  "timestamp": "2026-02-02T22:30:00",
+  "providerPublishTime": 1770067800.0,
+  "text": "Both bitcoin (BTC-USD) and gold prices (GC=F) continue to slide from their record highs: bitcoin falling to a 10-month low and currently hovering above $78,000 per token, gold dips $4,700 per ounce as the metals sell-off extends. Bitwise Head of Research Ryan Rasmussen takes a look at the price dynamics fueling these price trends and driving these sell-offs for commodities and crypto assets. Bitwise operates several of its own bitcoin (BITB, BITC, BTOP) and crypto (BITQ, BITW) exchange-traded funds (ETFs). Also catch Ryan Rasmussen share his outlook on bitcoin as it navigates a bear market. To watch more expert insights and analysis on the latest market action, check out more&nbsp;Market Domination.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/5f4ab390-0079-11f1-badb-993fadc32bec",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SELL",
+    "HEAD",
+    "AS",
+    "WATCH",
+    "OUT",
+    "FROM",
+    "FOR",
+    "SLIDE",
+    "AND",
+    "BTC"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "HEAD",
+    "AS",
+    "WATCH",
+    "OUT",
+    "FROM",
+    "FOR",
+    "SLIDE",
+    "AND",
+    "BTC"
+  ]
+}

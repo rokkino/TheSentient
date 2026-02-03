@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Goldman Sachs leads $75 million funding round for Fieldguide, an AI-native accounting and audit platform",
+  "link": "https://finance.yahoo.com/news/goldman-sachs-leads-75-million-100000062.html",
+  "publisher": "Fortune",
+  "timestamp": "2026-02-02T10:00:00",
+  "providerPublishTime": 1770022800.0,
+  "text": "Goldman Sachs leads $75 million funding round for Fieldguide, an AI-native accounting and audit platform",
+  "thumbnail": "https://media.zenfs.com/en/fortune_175/b7de69a34312967f2743557f58d19b86",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AUDIT",
+    "FOR",
+    "ROUND",
+    "AND",
+    "LEADS",
+    "SACHS",
+    "AI",
+    "AN"
+  ],
+  "relatedTickers": [
+    "AUDIT",
+    "FOR",
+    "ROUND",
+    "AND",
+    "LEADS",
+    "SACHS",
+    "AI",
+    "AN"
+  ]
+}

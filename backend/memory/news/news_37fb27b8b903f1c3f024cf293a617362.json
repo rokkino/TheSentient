@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Microsoft’s $381 Billion Rout Exposes Dark Side of the AI Binge",
+  "link": "https://finance.yahoo.com/news/microsoft-381-billion-rout-exposes-140007699.html",
+  "publisher": "Bloomberg",
+  "timestamp": "2026-02-01T14:00:07",
+  "providerPublishTime": 1769950807.0,
+  "text": "Microsoft’s $381 Billion Rout Exposes Dark Side of the AI Binge",
+  "thumbnail": "https://media.zenfs.com/en/bloomberg_holding_pen_162/74257261415346fe51126441cc05487d",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ROUT",
+    "SIDE",
+    "BINGE",
+    "DARK",
+    "S",
+    "AI",
+    "THE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "ROUT",
+    "SIDE",
+    "BINGE",
+    "DARK",
+    "S",
+    "AI",
+    "THE",
+    "OF"
+  ]
+}

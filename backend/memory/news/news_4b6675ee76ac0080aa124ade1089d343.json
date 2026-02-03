@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "PayPal Shares Slide After Earnings Miss and CEO Change",
+  "link": "https://finance.yahoo.com/news/paypal-shares-slide-earnings-miss-172912528.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-03T17:29:12",
+  "providerPublishTime": 1770136152.0,
+  "text": "Board replaces CEO as growth slows and guidance disappoints",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AFTER",
+    "MISS",
+    "CEO",
+    "AND",
+    "BOARD",
+    "AS",
+    "SLOWS",
+    "SLIDE",
+    "GOOGL"
+  ],
+  "relatedTickers": [
+    "AFTER",
+    "MISS",
+    "CEO",
+    "AND",
+    "BOARD",
+    "AS",
+    "SLOWS",
+    "SLIDE",
+    "GOOGL"
+  ]
+}

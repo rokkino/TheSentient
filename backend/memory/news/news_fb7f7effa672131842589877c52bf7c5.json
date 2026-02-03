@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Podcaster Bobbi Althoff asked Mark Cuban for $5 million to buy a house. His response highlights housing affordability",
+  "link": "https://finance.yahoo.com/news/podcaster-bobbi-althoff-asked-mark-150000527.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-01T15:00:00",
+  "providerPublishTime": 1769954400.0,
+  "text": "Podcaster Bobbi Althoff asked Mark Cuban for $5 million to buy a house. His response highlights housing affordability",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_ecomm_711/703184ef270cdaefd3686d1d27a96341",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "BOBBI",
+    "MARK",
+    "HOUSE",
+    "ASKED",
+    "FOR",
+    "TO",
+    "CUBAN",
+    "A",
+    "HIS"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "BOBBI",
+    "MARK",
+    "HOUSE",
+    "ASKED",
+    "FOR",
+    "TO",
+    "CUBAN",
+    "A",
+    "HIS"
+  ]
+}

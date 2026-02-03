@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sen. Warner calls Gabbard to testify after Georgia election office raid, Trump FBI call",
+  "link": "https://www.cnbc.com/2026/02/03/gabbard-trump-georgia-election-fbi-warner.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T18:29:23",
+  "providerPublishTime": 1770139763.0,
+  "text": "President Donald Trump, in an interview with Dan Bongino, recently called on members of the Republican Party to \"take over the voting.\"",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TO",
+    "TRUMP",
+    "AFTER",
+    "IN",
+    "WITH",
+    "RAID",
+    "ON",
+    "THE",
+    "SEN",
+    "TAKE"
+  ],
+  "relatedTickers": [
+    "TO",
+    "TRUMP",
+    "AFTER",
+    "IN",
+    "WITH",
+    "RAID",
+    "ON",
+    "THE",
+    "SEN",
+    "TAKE"
+  ]
+}

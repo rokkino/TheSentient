@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Galaxy Digital’s Zac Prince questions Bitcoin treasury firms' model",
+  "link": "https://finance.yahoo.com/news/galaxy-digital-zac-prince-questions-172500806.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T17:25:00",
+  "providerPublishTime": 1770135900.0,
+  "text": "Bitcoin treasury companies have mushroomed over the years and no serious discussion on digital assets can escape the topic. During a recent conversation with TheStreet Roundtable and The Wolf of All Streets host Scott Melker, Galaxy Digital's retail trading venture Galaxy ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/8057e058a97ec7ad46e3e0cc99e122bc",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "ZAC",
+    "NO",
+    "OF",
+    "OVER",
+    "WOLF",
+    "HOST",
+    "YEARS",
+    "FIRMS",
+    "HAVE"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "ZAC",
+    "NO",
+    "OF",
+    "OVER",
+    "WOLF",
+    "HOST",
+    "YEARS",
+    "FIRMS",
+    "HAVE"
+  ]
+}

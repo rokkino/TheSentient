@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Former prince discussed with Jeffrey Epstein ways to get round investment rules",
+  "link": "https://www.ft.com/content/6b2fcd1b-45c5-4611-affd-186483602a26",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T18:22:34",
+  "providerPublishTime": 1770139354.0,
+  "text": "Andrew Mountbatten-Windsor shared official documents while serving as a UK trade envoy",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F73fa1601-98a1-469f-bed4-fa5def41c3c4.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "GET",
+    "WITH",
+    "A",
+    "TRADE",
+    "WAYS",
+    "UK",
+    "ROUND",
+    "AS",
+    "ENVOY"
+  ],
+  "relatedTickers": [
+    "TO",
+    "GET",
+    "WITH",
+    "A",
+    "TRADE",
+    "WAYS",
+    "UK",
+    "ROUND",
+    "AS",
+    "ENVOY"
+  ]
+}

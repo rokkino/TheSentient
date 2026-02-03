@@ -1,0 +1,33 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Prediction: Bitcoin Will Hit $100,000 in 2026",
+  "link": "https://finance.yahoo.com/news/prediction-bitcoin-hit-100-000-175200582.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T17:52:00",
+  "providerPublishTime": 1770137520.0,
+  "text": "Bitcoin is already down double digits this year.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0f9f405856c04ef636b04a350fec60c6",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "BTC-USD",
+    "DOWN",
+    "WILL",
+    "YEAR",
+    "IS",
+    "HIT",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "BTC-USD",
+    "DOWN",
+    "WILL",
+    "YEAR",
+    "IS",
+    "HIT",
+    "THIS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Climb to Start February as Gold and Silver Sell Off | Closing Bell",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/stocks-climb-to-start-february-closing-bell-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:38:13",
+  "providerPublishTime": 1770068293.0,
+  "text": "Comprehensive cross-platform coverage of the U.S. market close on Bloomberg Television, Bloomberg Radio, and YouTube with Romaine Bostick, Katie Greifeld, Carol Massar and Tim Stenovec. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iRIccGajFKN8/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELL",
+    "AS",
+    "AND",
+    "ON",
+    "CLOSE",
+    "KATIE",
+    "WITH",
+    "START",
+    "OFF",
+    "BELL"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "AS",
+    "AND",
+    "ON",
+    "CLOSE",
+    "KATIE",
+    "WITH",
+    "START",
+    "OFF",
+    "BELL"
+  ]
+}

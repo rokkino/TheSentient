@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Ondo unveils Ondo Perps for equity perpetual futures trading",
+  "link": "https://www.thestreet.com/crypto/innovation/ondo-unveils-ondo-perps-for-equity-perpetual-futures-trading",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T18:45:27",
+  "providerPublishTime": 1770140727.0,
+  "text": "Ondo Finance, the popular real-world asset (RWA) tokenization platform, announced on Feb. 3 that it is soon launching Ondo Perps to allow users outside the United States to trade perpetual futures on leading U.S. stocks 24/7. Tokenization is the process of digitally representing the ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/4121de9df45c7fcc2c5256465f4cdefa",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "U",
+    "OF",
+    "ASSET",
+    "FEB",
+    "USERS",
+    "ALLOW",
+    "REAL",
+    "TRADE",
+    "PERPS"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "U",
+    "OF",
+    "ASSET",
+    "FEB",
+    "USERS",
+    "ALLOW",
+    "REAL",
+    "TRADE",
+    "PERPS"
+  ]
+}

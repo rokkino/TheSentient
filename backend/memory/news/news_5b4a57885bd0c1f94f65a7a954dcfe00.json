@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Walmart’s market value hits $1tn",
+  "link": "https://www.ft.com/content/475805b1-d6d0-4fd7-bb6c-8fb70e081010",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T16:47:29",
+  "providerPublishTime": 1770133649.0,
+  "text": "US retail giant joins club dominated by tech groups",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F34f7c46e-7517-4497-9ee4-cd684f05de66.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "GIANT",
+    "VALUE",
+    "BY",
+    "CLUB",
+    "TECH",
+    "JOINS",
+    "HITS",
+    "US"
+  ],
+  "relatedTickers": [
+    "S",
+    "GIANT",
+    "VALUE",
+    "BY",
+    "CLUB",
+    "TECH",
+    "JOINS",
+    "HITS",
+    "US"
+  ]
+}

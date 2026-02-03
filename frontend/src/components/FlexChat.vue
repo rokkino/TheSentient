@@ -9,9 +9,15 @@
             <span class="online-count">{{ visibleOnlineCount }} online</span>
           </div>
         </div>
-        <button class="settings-btn" @click="showSettings = true" title="Chat Settings">
-          ⚙️
-        </button>
+        <div class="header-actions">
+          <button class="share-pill" :disabled="!canShareTabs" @click="openShareModal" title="Condividi una tab live">
+            <span class="share-dot"></span>
+            Condividi
+          </button>
+          <button class="settings-btn" @click="showSettings = true" title="Chat Settings">
+            ⚙️
+          </button>
+        </div>
       </div>
     </div>
 
@@ -51,6 +57,32 @@
               class="message-image"
               @click="openImageModal(message.image_data)"
             />
+            <div v-else-if="message.type === 'tab_share'" class="tab-share-card">
+              <div class="tab-share-header">
+                <span class="tab-share-badge">LIVE</span>
+                <span class="tab-share-title">Tab condivisa</span>
+              </div>
+              <div class="tab-share-body">
+                <div class="tab-share-name">{{ getTabSharePayload(message)?.tab_name || 'Tab condivisa' }}</div>
+                <div class="tab-share-meta">
+                  <span>{{ getTabSharePayload(message)?.tab_type || 'tab' }}</span>
+                  <span>•</span>
+                  <span>di {{ getTabSharePayload(message)?.owner_username || message.username }}</span>
+                </div>
+              </div>
+              <div class="tab-share-actions">
+                <button class="tab-share-btn primary" @click="openSharedTab(message)">
+                  Apri live
+                </button>
+                <button
+                  v-if="isShareOwner(message)"
+                  class="tab-share-btn ghost"
+                  @click="stopSharedShare(message)"
+                >
+                  Ferma
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -71,6 +103,27 @@
             </svg>
           </button>
           <div class="action-divider" v-if="!isSearchMode"></div>
+          <button
+            class="action-btn share-btn"
+            @click="openShareModal"
+            title="Condividi tab live"
+          >
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+          <button
+            class="share-inline-btn"
+            @click="shareActiveTab"
+            :disabled="!canShareTabs"
+            title="Condividi la tab attiva"
+          >
+            Condividi tab attiva
+          </button>
           <label class="action-btn upload-btn" title="Upload Image" v-if="!isSearchMode">
             <input
               type="file"
@@ -107,6 +160,14 @@
           class="chat-input"
           :disabled="sending"
         />
+        <button
+          class="share-cta-btn"
+          @click="shareActiveTab"
+          :disabled="!canShareTabs"
+          title="Condividi la tab attiva"
+        >
+          Condividi tab
+        </button>
         
         <button
           @click="sendMessage"
@@ -195,6 +256,41 @@
       </div>
     </div>
 
+    <!-- Share Tab Modal -->
+    <div v-if="showShareModal" class="modal-overlay" @click="closeShareModal">
+      <div class="modal-content share-modal" @click.stop>
+        <div class="modal-header">
+          <h3>Condividi una tab live</h3>
+          <button class="close-btn" @click="closeShareModal">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="share-hint">Seleziona una tab da condividere in chat. Le modifiche saranno live.</p>
+          <div v-if="!shareableTabs.length" class="share-empty">
+            Nessuna tab condivisibile disponibile.
+          </div>
+          <div v-else class="share-list">
+            <button
+              v-for="tab in shareableTabs"
+              :key="tab.id"
+              class="share-item"
+              :class="{ selected: selectedShareTabId === tab.id }"
+              @click="selectedShareTabId = tab.id"
+            >
+              <div class="share-item-title">{{ tab.name }}</div>
+              <div class="share-item-type">{{ tab.type }}</div>
+            </button>
+          </div>
+          <div v-if="shareError" class="share-error">{{ shareError }}</div>
+        </div>
+        <div class="modal-footer">
+          <button class="tab-share-btn ghost" @click="closeShareModal">Annulla</button>
+          <button class="tab-share-btn primary" :disabled="!selectedShareTabId || shareLoading" @click="shareSelectedTab">
+            {{ shareLoading ? '...' : 'Condividi' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Context Menu -->
     <div
       v-if="contextMenu.visible"
@@ -228,10 +324,22 @@ const props = defineProps({
       recipientId: null,
       inviteAi: false
     })
+  },
+  shareableTabs: {
+    type: Array,
+    default: () => []
+  },
+  getTabSnapshot: {
+    type: Function,
+    default: null
+  },
+  activeTabId: {
+    type: Number,
+    default: null
   }
 })
 
-const emit = defineEmits(['update-config'])
+const emit = defineEmits(['update-config', 'open-shared-tab', 'share-started'])
 
 const authStore = useAuthStore()
 
@@ -260,6 +368,10 @@ const isSearchMode = ref(false)
 const privateChatUsername = ref('')
 const privateChatError = ref('')
 const recipientUsernameOverride = ref(null)
+const showShareModal = ref(false)
+const selectedShareTabId = ref(null)
+const shareLoading = ref(false)
+const shareError = ref('')
 
 const currentUserId = computed(() => authStore.user?.id)
 
@@ -277,6 +389,14 @@ const visibleOnlineCount = computed(() => {
 
 const availableUsers = computed(() => {
   return visibleOnlineUsers.value
+})
+
+const shareableTabs = computed(() => {
+  return Array.isArray(props.shareableTabs) ? props.shareableTabs : []
+})
+
+const canShareTabs = computed(() => {
+  return shareableTabs.value.length > 0
 })
 
 const chatTitle = computed(() => {
@@ -379,6 +499,125 @@ const handleDocumentSelect = (event) => {
 const clearAttachments = () => {
   selectedImage.value = null
   selectedDocument.value = null
+}
+
+const openShareModal = () => {
+  shareError.value = ''
+  selectedShareTabId.value = null
+  showShareModal.value = true
+}
+
+const shareActiveTab = async () => {
+  if (!props.activeTabId) {
+    shareError.value = 'Nessuna tab attiva.'
+    return
+  }
+  selectedShareTabId.value = props.activeTabId
+  await shareSelectedTab()
+}
+
+const closeShareModal = () => {
+  showShareModal.value = false
+  shareError.value = ''
+}
+
+const getTabSharePayload = (message) => {
+  if (!message?.message) return null
+  try {
+    return JSON.parse(message.message)
+  } catch (e) {
+    return null
+  }
+}
+
+const isShareOwner = (message) => {
+  const payload = getTabSharePayload(message)
+  return payload?.owner_id && payload.owner_id === currentUserId.value
+}
+
+const openSharedTab = (message) => {
+  const payload = getTabSharePayload(message)
+  if (!payload?.share_id) {
+    alert('Shared tab data not available.')
+    return
+  }
+  emit('open-shared-tab', payload)
+}
+
+const stopSharedShare = async (message) => {
+  const payload = getTabSharePayload(message)
+  if (!payload?.share_id) return
+  try {
+    await api.stopSharedTab(payload.share_id)
+  } catch (error) {
+    if (error.response?.status === 404) {
+      // Already stopped on server, just ignore or log
+      console.log('Shared tab already stopped on server')
+    } else {
+      console.error('Error stopping shared tab:', error)
+      alert('Failed to stop sharing: ' + (error.response?.data?.detail || error.message))
+    }
+  }
+}
+
+const shareSelectedTab = async () => {
+  if (!selectedShareTabId.value) return
+  if (!props.getTabSnapshot) {
+    shareError.value = 'Snapshot non disponibile.'
+    return
+  }
+  if (!authStore.isAuthenticated) {
+    shareError.value = 'Accedi per condividere una tab.'
+    return
+  }
+  shareLoading.value = true
+  shareError.value = ''
+  try {
+    const snapshot = props.getTabSnapshot(selectedShareTabId.value)
+    if (!snapshot?.tab_type || !snapshot?.tab_name) {
+      shareError.value = 'Impossibile condividere questa tab.'
+      shareLoading.value = false
+      return
+    }
+    const { data } = await api.createSharedTab({
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      tab_state: snapshot.tab_state || {}
+    })
+    const shared = data?.shared_tab
+    const sharePayload = {
+      share_id: data?.share_id,
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      owner_id: currentUserId.value,
+      owner_username: authStore.user?.username,
+      created_at: shared?.created_at
+    }
+    const messageData = {
+      message: JSON.stringify(sharePayload),
+      type: 'tab_share',
+      recipient_id: config.value.recipientId
+    }
+    const response = await api.sendChatMessage(messageData)
+    const sentMsg = response?.data?.message
+    if (sentMsg && !messages.value.some(m => m.id === sentMsg.id)) {
+      messages.value.push(sentMsg)
+      scrollToBottom()
+    }
+    emit('share-started', {
+      share_id: sharePayload.share_id,
+      tab_id: snapshot.tab_id,
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      tab_state: snapshot.tab_state || {}
+    })
+    showShareModal.value = false
+  } catch (error) {
+    console.error('Error sharing tab:', error)
+    shareError.value = error.response?.data?.detail || error.message
+  } finally {
+    shareLoading.value = false
+  }
 }
 
 const onRecipientSelectChange = () => {
@@ -675,6 +914,45 @@ onUnmounted(() => {
   gap: 12px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(37, 99, 235, 0.15);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border 0.2s;
+}
+
+.share-pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.share-pill:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(37, 99, 235, 0.25);
+}
+
+.share-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
 .chat-header h2 {
   font-size: 17px;
   font-weight: 600;
@@ -951,6 +1229,28 @@ onUnmounted(() => {
   justify-content: center;
 }
 
+.share-cta-btn {
+  background: rgba(37, 99, 235, 0.16);
+  color: #e2e8f0;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.share-cta-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.share-cta-btn:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
+}
+
 .send-btn:hover:not(:disabled) {
   background: #1d4ed8;
   transform: none;
@@ -1024,6 +1324,29 @@ onUnmounted(() => {
 
 .action-btn:active {
   background: rgba(255, 255, 255, 0.08);
+}
+
+.share-inline-btn {
+  margin-left: 6px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(37, 99, 235, 0.12);
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.share-inline-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.share-inline-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(37, 99, 235, 0.22);
 }
 
 .action-btn.search-btn.active {
@@ -1321,6 +1644,152 @@ onUnmounted(() => {
   background: rgba(248, 113, 113, 0.1);
 }
 
+.tab-share-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.25), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 12px;
+  padding: 12px;
+  color: #e2e8f0;
+}
+
+.tab-share-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-share-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f172a;
+  background: #38bdf8;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.tab-share-title {
+  font-weight: 600;
+}
+
+.tab-share-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab-share-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.tab-share-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.tab-share-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-share-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.tab-share-btn.primary {
+  background: #2563eb;
+  color: #f8fafc;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+}
+
+.tab-share-btn.primary:hover {
+  transform: translateY(-1px);
+}
+
+.tab-share-btn.ghost {
+  background: rgba(148, 163, 184, 0.15);
+  color: #e2e8f0;
+}
+
+.share-modal {
+  width: min(520px, 90vw);
+}
+
+.share-hint {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.share-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.share-item {
+  text-align: left;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.6);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: border 0.2s, transform 0.2s;
+}
+
+.share-item.selected {
+  border-color: rgba(59, 130, 246, 0.8);
+  transform: translateY(-1px);
+}
+
+.share-item-title {
+  font-weight: 600;
+}
+
+.share-item-type {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.share-empty {
+  color: #64748b;
+  font-size: 13px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed rgba(148, 163, 184, 0.2);
+}
+
+.share-error {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px 20px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .flex-chat {
@@ -1431,17 +1900,6 @@ onUnmounted(() => {
 
   .chat-input-container {
     padding: 10px 12px;
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
-  }
-
-  .input-wrapper {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .send-btn {
-    flex: 1 1 100%;
-    justify-content: center;
   }
 }
 </style>

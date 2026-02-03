@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Santander Weighs Deal to Buy US-Based Webster Financial",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/santander-weighs-deal-to-buy-us-based-webster-financial",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T18:11:36",
+  "providerPublishTime": 1770138696.0,
+  "text": "Banco Santander SA has agreed to acquire Webster Financial Corp. in a deal valuing the US-based bank at $12.2 billion.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKAfZSNvD6E0/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "IN",
+    "DEAL",
+    "BANCO",
+    "A",
+    "SA",
+    "AT",
+    "BUY",
+    "HAS",
+    "BANK"
+  ],
+  "relatedTickers": [
+    "TO",
+    "IN",
+    "DEAL",
+    "BANCO",
+    "A",
+    "SA",
+    "AT",
+    "BUY",
+    "HAS",
+    "BANK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lennar shares jump on report it’s working on a ‘Trump Homes’ plan",
+  "link": "https://www.cnbc.com/2026/02/03/lennar-shares-jump-on-report-its-working-on-a-trump-homes-plan.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T17:20:11",
+  "providerPublishTime": 1770135611.0,
+  "text": "Shares of Lennar and Taylor Morrison Home both jumped 4% on Tuesday.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TRUMP",
+    "JUMP",
+    "A",
+    "ON",
+    "HOME",
+    "AND",
+    "HOMES",
+    "BOTH",
+    "OF",
+    "PLAN"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "JUMP",
+    "A",
+    "ON",
+    "HOME",
+    "AND",
+    "HOMES",
+    "BOTH",
+    "OF",
+    "PLAN"
+  ]
+}

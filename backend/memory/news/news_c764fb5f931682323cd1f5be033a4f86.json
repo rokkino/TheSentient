@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Metals, crude oil dive in broad commodities market tumble",
+  "link": "https://www.investing.com/news/commodities-news/metals-crude-oil-dive-in-broad-commodities-market-tumble-4480399",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:49:05",
+  "providerPublishTime": 1770068945.0,
+  "text": "Metals, crude oil dive in broad commodities market tumble",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OIL",
+    "CRUDE",
+    "BROAD",
+    "IN",
+    "DIVE"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "CRUDE",
+    "BROAD",
+    "IN",
+    "DIVE"
+  ]
+}

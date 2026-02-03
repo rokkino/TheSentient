@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NYC Real Estate Binge Piles Pressure on Germany's BVK",
+  "link": "https://www.bloomberg.com/news/features/2026-02-02/michael-shvo-s-luxury-property-push-leaves-german-backer-bvk-with-hangover",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:00:28",
+  "providerPublishTime": 1770066028.0,
+  "text": "<p>A Bavarian pension fund backed New York developer Michael Shvo.&nbsp;Now the relationship is under strain.</p>",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ibwQoeYM49Po/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NBSP",
+    "BINGE",
+    "NYC",
+    "NEW",
+    "UNDER",
+    "IS",
+    "NOW",
+    "YORK",
+    "S",
+    "PILES"
+  ],
+  "relatedTickers": [
+    "NBSP",
+    "BINGE",
+    "NYC",
+    "NEW",
+    "UNDER",
+    "IS",
+    "NOW",
+    "YORK",
+    "S",
+    "PILES"
+  ]
+}

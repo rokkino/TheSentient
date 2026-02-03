@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wall Street Warns About a Possible Private Credit Collapse. Should Investors Worry About These Ultra-High-Yield Stocks?",
+  "link": "https://finance.yahoo.com/news/wall-street-warns-possible-private-100200119.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T10:02:00",
+  "providerPublishTime": 1770022920.0,
+  "text": "Wall Street Warns About a Possible Private Credit Collapse. Should Investors Worry About These Ultra-High-Yield Stocks?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/b66713bd6270e2efaac64493d4aa66cd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ABOUT",
+    "A",
+    "HIGH",
+    "WALL",
+    "WORRY",
+    "WARNS",
+    "YIELD",
+    "ULTRA",
+    "THESE"
+  ],
+  "relatedTickers": [
+    "ABOUT",
+    "A",
+    "HIGH",
+    "WALL",
+    "WORRY",
+    "WARNS",
+    "YIELD",
+    "ULTRA",
+    "THESE"
+  ]
+}

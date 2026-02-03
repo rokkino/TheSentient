@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Oracle to Raise Up to $50 Billion. What It Means for the Stock.",
+  "link": "https://www.barrons.com/articles/oracle-stock-price-ai-debt-cds-7d1e97ab?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T21:35:00",
+  "providerPublishTime": 1770064500.0,
+  "text": "Oracle plans to raise between $45 billion and $50 billion this year as it looks to fund its huge bet on cloud computing.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/d07305172a78f10cec69b03cda999966",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RAISE",
+    "AS",
+    "LOOKS",
+    "YEAR",
+    "FOR",
+    "AND",
+    "ON",
+    "UP",
+    "FUND",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "RAISE",
+    "AS",
+    "LOOKS",
+    "YEAR",
+    "FOR",
+    "AND",
+    "ON",
+    "UP",
+    "FUND",
+    "THIS"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analysts Recognize HubSpot (HUBS) Strength As Software Valuations Reset",
+  "link": "https://finance.yahoo.com/news/analysts-recognize-hubspot-hubs-strength-140852308.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T14:08:52",
+  "providerPublishTime": 1769951332.0,
+  "text": "Analysts Recognize HubSpot (HUBS) Strength As Software Valuations Reset",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/67061c823c967cfcb6e547938bca9010",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HUBS",
+    "RESET",
+    "AS"
+  ],
+  "relatedTickers": [
+    "HUBS",
+    "RESET",
+    "AS"
+  ]
+}

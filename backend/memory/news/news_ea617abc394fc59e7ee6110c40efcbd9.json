@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "ING Germany Opens the Door to Bitcoin, ETH, and Solana ETPs",
+  "link": "https://finance.yahoo.com/news/ing-germany-opens-door-bitcoin-101617500.html",
+  "publisher": "99bitcoins",
+  "timestamp": "2026-02-03T10:16:17",
+  "providerPublishTime": 1770110177.0,
+  "text": "Early Bitcoin, Ethereum, or even XRP investors, including VCs and angels, are already rich. Bitcoin rose by more than 1 million percent in the last decade, while Ethereum, per some projections, may reach $10,000 before 2030. Solana, XRP, and other top 10 cryptos are already up several multiples from their ...",
+  "thumbnail": "https://media.zenfs.com/en/99bitcoins_us_315/4c37da6bc3e828fa87bd22fc407b2918",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EVEN",
+    "LAST",
+    "FROM",
+    "EARLY",
+    "OPENS",
+    "ETH",
+    "RICH",
+    "ARE",
+    "ING",
+    "OTHER"
+  ],
+  "relatedTickers": [
+    "EVEN",
+    "LAST",
+    "FROM",
+    "EARLY",
+    "OPENS",
+    "ETH",
+    "RICH",
+    "ARE",
+    "ING",
+    "OTHER"
+  ]
+}

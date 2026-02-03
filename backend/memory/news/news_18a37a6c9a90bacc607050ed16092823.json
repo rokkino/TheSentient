@@ -1,0 +1,35 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Dow Hits Record, Nasdaq Sinks as Tech Stocks Retreat",
+  "link": "https://finance.yahoo.com/news/dow-hits-record-nasdaq-sinks-173009749.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-03T17:30:09",
+  "providerPublishTime": 1770136209.0,
+  "text": "Nvidia and Microsoft Slide, Palantir Surges on Strong Q4 Earnings",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "DOW",
+    "AS",
+    "AND",
+    "SINKS",
+    "TECH",
+    "NVDA",
+    "SLIDE",
+    "HITS"
+  ],
+  "relatedTickers": [
+    "ON",
+    "DOW",
+    "AS",
+    "AND",
+    "SINKS",
+    "TECH",
+    "NVDA",
+    "SLIDE",
+    "HITS"
+  ]
+}

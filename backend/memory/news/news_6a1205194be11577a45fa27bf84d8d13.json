@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk’s stock tumbles as drugmaker lays out case for declining sales in 2026",
+  "link": "https://www.marketwatch.com/story/novo-nordisks-stock-tumbles-as-drugmaker-lays-out-case-for-declining-sales-in-2026-e3410fff?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T18:43:00",
+  "providerPublishTime": 1770140580.0,
+  "text": "The maker of Ozempic and Wegovy blamed pricing pressures and competition for its downbeat outlook.",
+  "thumbnail": "https://images.mktw.net/im-54628327",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "LAYS",
+    "ITS",
+    "FOR",
+    "AS",
+    "OUT",
+    "STOCK",
+    "AND",
+    "NOVO",
+    "MAKER"
+  ],
+  "relatedTickers": [
+    "IN",
+    "LAYS",
+    "ITS",
+    "FOR",
+    "AS",
+    "OUT",
+    "STOCK",
+    "AND",
+    "NOVO",
+    "MAKER"
+  ]
+}

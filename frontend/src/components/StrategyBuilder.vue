@@ -22,8 +22,9 @@
             v-model="prompt" 
             placeholder="e.g., Buy when RSI is below 30 and sell when RSI is above 70..."
             @keydown.enter.prevent="sendMessage"
+            :readonly="readOnly"
           ></textarea>
-          <button @click="sendMessage" :disabled="!prompt.trim() || isGenerating">
+          <button @click="sendMessage" :disabled="readOnly || !prompt.trim() || isGenerating">
             <span v-if="!isGenerating">Generate</span>
             <span v-else>...</span>
           </button>
@@ -34,13 +35,13 @@
       <div class="editor-panel">
         <div class="panel-header">
           <div class="header-left">
-            <input v-model="strategy.name" class="strategy-name-input" placeholder="Strategy Name" />
+            <input v-model="strategy.name" class="strategy-name-input" placeholder="Strategy Name" :readonly="readOnly" />
           </div>
           <div class="header-actions">
-            <button class="action-btn" @click="saveStrategy" :disabled="isSaving">
+            <button class="action-btn" @click="saveStrategy" :disabled="readOnly || isSaving">
               {{ isSaving ? 'Saving...' : 'Save' }}
             </button>
-            <button class="action-btn secondary" @click="simulateStrategy">
+            <button class="action-btn secondary" @click="simulateStrategy" :disabled="readOnly">
               Simulate
             </button>
           </div>
@@ -52,6 +53,7 @@
             class="json-editor" 
             spellcheck="false"
             @input="updateStrategyFromJson"
+            :readonly="readOnly"
           ></textarea>
         </div>
         
@@ -92,10 +94,18 @@ const props = defineProps({
   initialStrategy: {
     type: Object,
     default: null
+  },
+  sharedState: {
+    type: Object,
+    default: null
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 })
 
-const emit = defineEmits(['save'])
+const emit = defineEmits(['save', 'state-change'])
 
 const prompt = ref('')
 const isGenerating = ref(false)
@@ -118,15 +128,48 @@ const strategy = reactive({
 })
 
 const strategyJsonString = ref(JSON.stringify(strategy, null, 2))
+const applyingSharedState = ref(false)
+let stateEmitTimer = null
+
+const queueStateChange = () => {
+  if (applyingSharedState.value) return
+  if (stateEmitTimer) clearTimeout(stateEmitTimer)
+  stateEmitTimer = setTimeout(() => {
+    let parsed = null
+    try {
+      parsed = JSON.parse(strategyJsonString.value)
+    } catch {
+      parsed = { ...strategy }
+    }
+    emit('state-change', { strategy: parsed })
+  }, 150)
+}
+
+const applySharedState = (state) => {
+  if (!state?.strategy) return
+  applyingSharedState.value = true
+  Object.assign(strategy, state.strategy)
+  strategyJsonString.value = JSON.stringify(strategy, null, 2)
+  nextTick(() => {
+    applyingSharedState.value = false
+  })
+}
 
 onMounted(() => {
+  if (props.sharedState?.strategy) {
+    applySharedState(props.sharedState)
+    queueStateChange()
+    return
+  }
   if (props.initialStrategy) {
     Object.assign(strategy, props.initialStrategy)
     strategyJsonString.value = JSON.stringify(strategy, null, 2)
   }
+  queueStateChange()
 })
 
 const sendMessage = async () => {
+  if (props.readOnly) return
   if (!prompt.value.trim() || isGenerating.value) return
   
   const userMsg = prompt.value
@@ -149,6 +192,7 @@ const sendMessage = async () => {
       
       // Update JSON view
       strategyJsonString.value = JSON.stringify(strategy, null, 2)
+      queueStateChange()
       
       messages.value.push({ 
         role: 'assistant', 
@@ -169,12 +213,14 @@ const updateStrategyFromJson = () => {
   try {
     const parsed = JSON.parse(strategyJsonString.value)
     Object.assign(strategy, parsed)
+    queueStateChange()
   } catch (e) {
     // Invalid JSON, ignore update
   }
 }
 
 const saveStrategy = async () => {
+  if (props.readOnly) return
   isSaving.value = true
   try {
     const strategyData = {
@@ -194,8 +240,19 @@ const saveStrategy = async () => {
 }
 
 const simulateStrategy = () => {
+  if (props.readOnly) return
   alert('Simulation feature coming soon!')
 }
+
+watch(() => props.sharedState, (newState) => {
+  if (newState?.strategy) {
+    applySharedState(newState)
+  }
+}, { deep: true })
+
+watch(() => strategy.name, () => {
+  queueStateChange()
+})
 
 const scrollToBottom = () => {
   nextTick(() => {
@@ -478,92 +535,5 @@ const scrollToBottom = () => {
 @keyframes bounce {
   0%, 80%, 100% { transform: scale(0); }
   40% { transform: scale(1); }
-}
-
-@media (max-width: 900px) {
-  .builder-split {
-    flex-direction: column;
-  }
-
-  .chat-panel {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #333;
-    min-height: 38vh;
-  }
-
-  .editor-panel {
-    min-height: 0;
-  }
-
-  .panel-header {
-    padding: 14px 16px;
-  }
-
-  .chat-messages {
-    padding: 16px;
-  }
-
-  .chat-input {
-    padding: 12px 16px;
-  }
-
-  .chat-input textarea {
-    font-size: 16px;
-    height: 72px;
-  }
-
-  .strategy-name-input {
-    width: 100%;
-  }
-
-  .header-actions {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .action-btn {
-    min-height: 38px;
-  }
-
-  .json-editor {
-    padding: 16px;
-  }
-
-  .visual-preview {
-    padding: 16px;
-  }
-
-  .rules-list {
-    flex-direction: column;
-    gap: 16px;
-  }
-}
-
-@media (max-width: 600px) {
-  .panel-header h3 {
-    font-size: 15px;
-  }
-
-  .panel-header p {
-    font-size: 11px;
-  }
-
-  .action-btn {
-    width: 100%;
-  }
-
-  .chat-input {
-    flex-direction: column;
-  }
-
-  .chat-input button {
-    width: 100%;
-    min-height: 40px;
-  }
-
-  .strategy-name-input {
-    font-size: 16px;
-  }
 }
 </style>

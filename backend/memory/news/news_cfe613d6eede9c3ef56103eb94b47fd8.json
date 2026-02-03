@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "How Nvidia Stock Finally Paid Off for Long-Time Shareholders",
+  "link": "https://finance.yahoo.com/news/nvidia-stock-finally-paid-off-172300096.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T17:23:00",
+  "providerPublishTime": 1770135780.0,
+  "text": "It wasn't always an easy ride for investors.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/6d2c79dace069c80081745b764c77b00",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WASN",
+    "IT",
+    "RIDE",
+    "LONG",
+    "HOW",
+    "AN",
+    "EASY",
+    "FOR",
+    "STOCK",
+    "T"
+  ],
+  "relatedTickers": [
+    "WASN",
+    "IT",
+    "RIDE",
+    "LONG",
+    "HOW",
+    "AN",
+    "EASY",
+    "FOR",
+    "STOCK",
+    "T"
+  ]
+}

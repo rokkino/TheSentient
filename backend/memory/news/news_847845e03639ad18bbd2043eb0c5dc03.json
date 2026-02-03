@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Web3 CEOs Clash Over Who Caused Crypto’s 10/10 Black Friday Crash",
+  "link": "https://finance.yahoo.com/news/web3-ceos-clash-over-caused-095539707.html",
+  "publisher": "CoinGape",
+  "timestamp": "2026-02-02T09:55:39",
+  "providerPublishTime": 1770022539.0,
+  "text": "Web3 CEOs Clash Over Who Caused Crypto’s 10/10 Black Friday Crash",
+  "thumbnail": "https://media.zenfs.com/en/coingape_360/dc6a1b3a3a49d0e1fcefa0b8c1f1f655",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WHO",
+    "CLASH",
+    "BLACK",
+    "OVER",
+    "CRASH",
+    "CEOS",
+    "S"
+  ],
+  "relatedTickers": [
+    "WHO",
+    "CLASH",
+    "BLACK",
+    "OVER",
+    "CRASH",
+    "CEOS",
+    "S"
+  ]
+}

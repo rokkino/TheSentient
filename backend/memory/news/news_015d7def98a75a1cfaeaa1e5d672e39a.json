@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Adams diversified equity gen. counsel buys $7458 in ADX stock",
+  "link": "https://www.investing.com/news/insider-trading-news/adams-diversified-equity-gen-counsel-buys-7458-in-adx-stock-93CH-4480403",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:52:16",
+  "providerPublishTime": 1770069136.0,
+  "text": "Adams diversified equity gen. counsel buys $7458 in ADX stock",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ADAMS",
+    "BUYS",
+    "ADX",
+    "GEN",
+    "IN",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "ADAMS",
+    "BUYS",
+    "ADX",
+    "GEN",
+    "IN",
+    "STOCK"
+  ]
+}

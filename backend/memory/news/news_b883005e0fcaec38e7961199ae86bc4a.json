@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump says Mexico will stop sending oil to energy-starved Cuba",
+  "link": "https://www.investing.com/news/commodities-news/trump-says-mexico-will-stop-sending-oil-to-energystarved-cuba-4480412",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T23:01:08",
+  "providerPublishTime": 1770069668.0,
+  "text": "Trump says Mexico will stop sending oil to energy-starved Cuba",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "TRUMP",
+    "TO",
+    "SAYS",
+    "CUBA",
+    "STOP",
+    "WILL"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "TRUMP",
+    "TO",
+    "SAYS",
+    "CUBA",
+    "STOP",
+    "WILL"
+  ]
+}

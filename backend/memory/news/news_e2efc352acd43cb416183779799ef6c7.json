@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Solana to reach $2,000 by 2030 despite recent plunge to $100, says Standard Chartered",
+  "link": "https://finance.yahoo.com/news/solana-reach-2-000-2030-155908194.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T15:59:08",
+  "providerPublishTime": 1770130748.0,
+  "text": "Analyst Geoffrey Kendrick trimmed his 2026 SOL forecast to $250 from $310, but says stablecoin micropayments could drive a longer-term surge as Solana moves beyond memecoins.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/cce0f7ed378502d541440d8b87d2b0c5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "SOL",
+    "COULD",
+    "DRIVE",
+    "TERM",
+    "A",
+    "MOVES",
+    "BY",
+    "AS",
+    "SURGE"
+  ],
+  "relatedTickers": [
+    "TO",
+    "SOL",
+    "COULD",
+    "DRIVE",
+    "TERM",
+    "A",
+    "MOVES",
+    "BY",
+    "AS",
+    "SURGE"
+  ]
+}

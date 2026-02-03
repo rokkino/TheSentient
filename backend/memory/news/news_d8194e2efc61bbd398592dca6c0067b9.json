@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Kimmeridge supports Coterra-Devon merger, awaits further details",
+  "link": "https://www.investing.com/news/company-news/kimmeridge-supports-coterradevon-merger-awaits-further-details-93CH-4480387",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:40:54",
+  "providerPublishTime": 1770068454.0,
+  "text": "Kimmeridge supports Coterra-Devon merger, awaits further details",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DEVON"
+  ],
+  "relatedTickers": [
+    "DEVON"
+  ]
+}

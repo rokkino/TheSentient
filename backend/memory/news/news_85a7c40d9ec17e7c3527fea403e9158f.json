@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "U.S. military shoots down Iranian drone that 'aggressively approached' aircraft carrier",
+  "link": "https://www.cnbc.com/2026/02/03/us-military-shoots-down-iranian-drone-that-aggressively-approached-aircraft-carrier.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T18:58:53",
+  "providerPublishTime": 1770141533.0,
+  "text": "The U.S. Central Command said the drone approached the USS Abraham Lincoln with \"unclear intent.\"",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WITH",
+    "THAT",
+    "USS",
+    "DOWN",
+    "U",
+    "DRONE",
+    "SAID",
+    "THE",
+    "S"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "THAT",
+    "USS",
+    "DOWN",
+    "U",
+    "DRONE",
+    "SAID",
+    "THE",
+    "S"
+  ]
+}

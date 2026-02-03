@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil Gains as Iranian Drone Shooting Revives Some Risk Premium",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/latest-oil-market-news-and-analysis-for-february-3",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T23:18:58",
+  "providerPublishTime": 1770070738.0,
+  "text": "Oil edged up after the US Navy shot down an Iranian drone, as traders weighed the likelihood of an escalation in tensions between the two countries.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTqkdhTJNJko/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "IN",
+    "AFTER",
+    "GAINS",
+    "US",
+    "SHOT",
+    "NAVY",
+    "DOWN",
+    "AS",
+    "TWO"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "IN",
+    "AFTER",
+    "GAINS",
+    "US",
+    "SHOT",
+    "NAVY",
+    "DOWN",
+    "AS",
+    "TWO"
+  ]
+}

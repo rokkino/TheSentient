@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump and Warsh aren’t holding a joint press conference. It could signal a new era of less Fed talk.",
+  "link": "https://www.marketwatch.com/story/trump-and-warsh-arent-holding-a-joint-press-conference-it-could-signal-a-new-era-of-less-fed-talk-e8b47a42?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T18:32:00",
+  "providerPublishTime": 1770139920.0,
+  "text": "Economists have expressed surprise and disappointment about the absence of any public remarks, which had been a routine part of the Fed nomination process going back almost 30 years.",
+  "thumbnail": "https://images.mktw.net/im-09757193",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FED",
+    "HAD",
+    "T",
+    "OF",
+    "TALK",
+    "TRUMP",
+    "NEW",
+    "AREN",
+    "PART",
+    "BACK"
+  ],
+  "relatedTickers": [
+    "FED",
+    "HAD",
+    "T",
+    "OF",
+    "TALK",
+    "TRUMP",
+    "NEW",
+    "AREN",
+    "PART",
+    "BACK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Tether Launches Open‑Source MiningOS to Challenge Bitcoin Mining Giants",
+  "link": "https://finance.yahoo.com/news/tether-launches-open-source-miningos-181551274.html",
+  "publisher": "Cryptonews",
+  "timestamp": "2026-02-03T18:15:51",
+  "providerPublishTime": 1770138951.0,
+  "text": "Stablecoin issuer Tether has launched an open-source Bitcoin mining operating system, a move that places it directly into the mining infrastructure layer traditionally dominated by large, vertically integrated firms.The software is called Mining OS, or MOS, and was announced on Feb. 2 during the Plan 9 Forum in San Salvador ...",
+  "thumbnail": "https://media.zenfs.com/en/cryptonews_us_711/1dcc320051de5df9a3fb7b64b24202e4",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OS",
+    "HAS",
+    "FORUM",
+    "FEB",
+    "LAYER",
+    "MOS",
+    "LARGE",
+    "AN",
+    "INTO",
+    "FIRMS"
+  ],
+  "relatedTickers": [
+    "OS",
+    "HAS",
+    "FORUM",
+    "FEB",
+    "LAYER",
+    "MOS",
+    "LARGE",
+    "AN",
+    "INTO",
+    "FIRMS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump Thinks Deal to End Shutdown Is 'Pretty Close'",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/trump-thinks-deal-to-end-shutdown-is-pretty-close-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:27:24",
+  "providerPublishTime": 1770067644.0,
+  "text": "President Donald Trump says he thinks a deal to end the partial government shutdown is \"pretty close.\" He speaks in the Oval Office. (Source: Bloomberg)",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TRUMP",
+    "IS",
+    "DEAL",
+    "HE",
+    "TO",
+    "END",
+    "SAYS",
+    "CLOSE",
+    "IN",
+    "OVAL"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "IS",
+    "DEAL",
+    "HE",
+    "TO",
+    "END",
+    "SAYS",
+    "CLOSE",
+    "IN",
+    "OVAL"
+  ]
+}

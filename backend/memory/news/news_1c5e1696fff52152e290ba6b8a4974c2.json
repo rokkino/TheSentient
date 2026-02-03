@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle's credit default swaps are plummeting as financing plan boosts investor confidence",
+  "link": "https://www.cnbc.com/2026/02/02/oracles-credit-default-swaps-are-plummeting-after-financing-plans.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T22:14:54",
+  "providerPublishTime": 1770066894.0,
+  "text": "Oracle's 5-year credit default swaps are tumbling after the company announced a $50 billion debt and equity financing plan.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "AS",
+    "AFTER",
+    "YEAR",
+    "AND",
+    "S",
+    "SWAPS",
+    "PLAN",
+    "DEBT",
+    "THE"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "AS",
+    "AFTER",
+    "YEAR",
+    "AND",
+    "S",
+    "SWAPS",
+    "PLAN",
+    "DEBT",
+    "THE"
+  ]
+}

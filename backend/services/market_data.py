@@ -27,23 +27,70 @@ class MarketDataService:
             "6m": {"period": "6mo", "interval": "1d"},
             "1y": {"period": "1y", "interval": "1d"},
             "5y": {"period": "5y", "interval": "1wk"},
+            "MAX": {"period": "max", "interval": "1wk"},
         }
         
         # Ensure cache directory exists
         self.cache_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "memory", "graph")
         os.makedirs(self.cache_dir, exist_ok=True)
     
-    async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True) -> Dict[str, Any]:
-        """Get chart data for a ticker"""
+    async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True, start_date: str = None, end_date: str = None, extend_history: bool = False) -> Dict[str, Any]:
+        """Get chart data for a ticker
+        
+        Args:
+            ticker: Stock ticker symbol
+            timeframe: Preset timeframe (1d, 5d, 1m, 3m, 6m, 1y, 5y)
+            chart_type: candle or line
+            include_earnings: Include earnings dates
+            start_date: Custom start date (YYYY-MM-DD) - overrides timeframe
+            end_date: Custom end date (YYYY-MM-DD)
+            extend_history: If True, fetch maximum available history
+        """
         loop = asyncio.get_event_loop()
         
         params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
         
         def fetch_data():
-            # Try to get from cache first if timeframe is 1y (default for watchlist sparklines)
-            # or if it's a standard timeframe that we want to cache
-            use_cache = True
+            tk = yf.Ticker(ticker)
             
+            # Handle custom date range requests (for dynamic loading on zoom)
+            if start_date or extend_history:
+                custom_params = {"interval": params.get("interval", "1d")}
+                
+                if extend_history:
+                    # Fetch maximum available history (max period)
+                    custom_params["period"] = "max"
+                elif start_date:
+                    custom_params["start"] = start_date
+                    if end_date:
+                        custom_params["end"] = end_date
+                
+                try:
+                    data = tk.history(**custom_params)
+                    if data.empty:
+                        raise ValueError(f"No data available for {ticker} with custom range")
+                    
+                    # Clean and process data
+                    if custom_params.get("interval", "1d").endswith(("m", "h")):
+                        try:
+                            data.index = data.index.tz_convert(None)
+                        except (TypeError, AttributeError):
+                            pass
+                    
+                    for col in ['Open', 'High', 'Low', 'Close', 'Volume']:
+                        if col in data.columns:
+                            data[col] = pd.to_numeric(data[col], errors='coerce')
+                    
+                    data = data.dropna()
+                    chart_data = self._process_data_to_list(data, custom_params)
+                    
+                    # Return without caching for dynamic requests
+                    return {"data": chart_data, "earnings_dates": []}
+                except Exception as e:
+                    print(f"Error fetching custom range data: {e}, falling back to standard fetch")
+            
+            # Standard fetch with caching
+            use_cache = True
             cached_data = None
             last_timestamp = None
             
@@ -54,23 +101,19 @@ class MarketDataService:
                     try:
                         last_item = cached_data["data"][-1]
                         last_timestamp = last_item["time"] / 1000 # Convert back to seconds
-                        # print(f"Found cached data for {ticker}, last timestamp: {datetime.fromtimestamp(last_timestamp)}")
                     except:
                         pass
 
-            tk = yf.Ticker(ticker)
-            
             # If we have cached data, only fetch new data
             if last_timestamp:
                 # Add a small buffer (1 day) to ensure overlap/continuity
-                start_date = datetime.fromtimestamp(last_timestamp).strftime('%Y-%m-%d')
-                # print(f"Fetching new data for {ticker} starting from {start_date}")
+                cache_start_date = datetime.fromtimestamp(last_timestamp).strftime('%Y-%m-%d')
                 
                 # Adjust params to use start date instead of period
                 fetch_params = params.copy()
                 if "period" in fetch_params:
                     del fetch_params["period"]
-                fetch_params["start"] = start_date
+                fetch_params["start"] = cache_start_date
                 
                 try:
                     new_data = tk.history(**fetch_params)
@@ -537,6 +580,21 @@ class MarketDataService:
                 except (ValueError, TypeError):
                     return None
 
+            # Get after-hours / pre-market data
+            post_market_price = clean_float(info.get("postMarketPrice"))
+            post_market_change = clean_float(info.get("postMarketChange"))
+            post_market_change_percent = clean_float(info.get("postMarketChangePercent"))
+            pre_market_price = clean_float(info.get("preMarketPrice"))
+            pre_market_change = clean_float(info.get("preMarketChange"))
+            pre_market_change_percent = clean_float(info.get("preMarketChangePercent"))
+            
+            # Regular market data
+            regular_market_price = clean_float(info.get("regularMarketPrice"))
+            regular_market_open = clean_float(info.get("regularMarketOpen"))
+            regular_market_high = clean_float(info.get("regularMarketDayHigh"))
+            regular_market_low = clean_float(info.get("regularMarketDayLow"))
+            regular_market_previous_close = clean_float(info.get("regularMarketPreviousClose"))
+            
             return {
                 "symbol": ticker,
                 "name": info.get("longName", info.get("shortName", ticker)),
@@ -545,7 +603,21 @@ class MarketDataService:
                 "changePercent": clean_float(change_percent),
                 "volume": clean_float(info.get("regularMarketVolume", 0)),
                 "marketCap": clean_float(info.get("marketCap")),
-                "currency": info.get("currency", "USD")
+                "currency": info.get("currency", "USD"),
+                # OHLC data
+                "open": regular_market_open,
+                "high": regular_market_high,
+                "low": regular_market_low,
+                "previousClose": regular_market_previous_close,
+                # Extended hours data
+                "postMarketPrice": post_market_price,
+                "postMarketChange": post_market_change,
+                "postMarketChangePercent": post_market_change_percent,
+                "preMarketPrice": pre_market_price,
+                "preMarketChange": pre_market_change,
+                "preMarketChangePercent": pre_market_change_percent,
+                # Market state
+                "marketState": info.get("marketState", "CLOSED")
             }
         
         return await loop.run_in_executor(None, fetch_quote)

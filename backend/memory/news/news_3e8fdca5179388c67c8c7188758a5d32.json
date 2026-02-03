@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Alphabet’s stock is the hottest in Big Tech, raising the bar for earnings",
+  "link": "https://www.marketwatch.com/story/alphabets-stock-is-the-hottest-in-big-tech-raising-the-bar-for-earnings-725d9353?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T17:10:00",
+  "providerPublishTime": 1770135000.0,
+  "text": "Alphabet’s stock has rallied 80% in the last six months on AI enthusiasm. Here’s how the Google parent can keep the momentum going.",
+  "thumbnail": "https://images.mktw.net/im-77263618",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "LAST",
+    "HAS",
+    "STOCK",
+    "HERE",
+    "AI",
+    "KEEP",
+    "TECH",
+    "GOING",
+    "CAN"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "LAST",
+    "HAS",
+    "STOCK",
+    "HERE",
+    "AI",
+    "KEEP",
+    "TECH",
+    "GOING",
+    "CAN"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "USDA to release flies near US-Mexico border to fight screwworm pest",
+  "link": "https://www.investing.com/news/stock-market-news/usda-to-release-flies-near-usmexico-border-to-fight-screwworm-pest-4480370",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:30:45",
+  "providerPublishTime": 1770067845.0,
+  "text": "USDA to release flies near US-Mexico border to fight screwworm pest",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "USDA",
+    "PEST",
+    "NEAR",
+    "FLIES",
+    "TO",
+    "FIGHT",
+    "US"
+  ],
+  "relatedTickers": [
+    "USDA",
+    "PEST",
+    "NEAR",
+    "FLIES",
+    "TO",
+    "FIGHT",
+    "US"
+  ]
+}

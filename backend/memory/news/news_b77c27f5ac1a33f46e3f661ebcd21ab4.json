@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Disney’s new CEO Josh D’Amaro faces a tough road ahead. Here’s what to expect.",
+  "link": "https://www.marketwatch.com/story/who-is-josh-damaro-walt-disneys-new-chief-executive-11703c30?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T17:33:00",
+  "providerPublishTime": 1770136380.0,
+  "text": "Josh D’Amaro will become the ninth person to serve as Disney’s CEO in its 102-year history.",
+  "thumbnail": "https://images.mktw.net/im-01774173",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AHEAD",
+    "HERE",
+    "TOUGH",
+    "NEW",
+    "ROAD",
+    "CEO",
+    "AMARO",
+    "FACES",
+    "WHAT",
+    "SERVE"
+  ],
+  "relatedTickers": [
+    "AHEAD",
+    "HERE",
+    "TOUGH",
+    "NEW",
+    "ROAD",
+    "CEO",
+    "AMARO",
+    "FACES",
+    "WHAT",
+    "SERVE"
+  ]
+}

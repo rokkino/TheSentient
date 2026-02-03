@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mortgage and refinance interest rates today, February 2, 2026: Bubbling under 6%",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-rates-today-monday-february-2-2026-110039176.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-02T11:00:39",
+  "providerPublishTime": 1770026439.0,
+  "text": "Mortgage and refinance interest rates today, February 2, 2026: Bubbling under 6%",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-04/480de4d0-03ec-11ef-bfff-fe31b82eccd6",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AND",
+    "RATES",
+    "TODAY",
+    "UNDER"
+  ],
+  "relatedTickers": [
+    "AND",
+    "RATES",
+    "TODAY",
+    "UNDER"
+  ]
+}

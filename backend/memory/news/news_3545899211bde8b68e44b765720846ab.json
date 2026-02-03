@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia stock falls as OpenAI seeks AI chip rivals",
+  "link": "https://finance.yahoo.com/news/nvidia-stock-falls-openai-seeks-221504080.html",
+  "publisher": "Investing.com",
+  "timestamp": "2026-02-02T22:15:04",
+  "providerPublishTime": 1770066904.0,
+  "text": "Investing.com -- Nvidia (NASDAQ:NVDA) stock fell 0.7% in after-hours trading Monday, following a 2.9% decline during the regular session, after Reuters reported that OpenAI is dissatisfied with some of Nvidia’s latest AI chips and has been seeking alternatives.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SEEKS",
+    "AS",
+    "AFTER",
+    "AND",
+    "IN",
+    "CHIP",
+    "FELL",
+    "SOME",
+    "FALLS",
+    "COM"
+  ],
+  "relatedTickers": [
+    "SEEKS",
+    "AS",
+    "AFTER",
+    "AND",
+    "IN",
+    "CHIP",
+    "FELL",
+    "SOME",
+    "FALLS",
+    "COM"
+  ]
+}

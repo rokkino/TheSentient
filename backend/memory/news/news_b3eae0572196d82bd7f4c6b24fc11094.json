@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Foreign Buyers Scoop Up US Credit at Fastest Pace in Three Years",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/foreign-buyers-scoop-up-us-credit-at-fastest-pace-in-three-years",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T21:55:26",
+  "providerPublishTime": 1770065726.0,
+  "text": "Foreign investors bought American corporate bonds at the fastest monthly pace in nearly three years in January, as stable yields and lower hedging costs boosted the appeal of US credit, JPMorgan Chase &amp; Co. data show.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0q9myF8bl7I/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BONDS",
+    "US",
+    "AS",
+    "AMP",
+    "AND",
+    "UP",
+    "IN",
+    "YEARS",
+    "CO",
+    "THREE"
+  ],
+  "relatedTickers": [
+    "BONDS",
+    "US",
+    "AS",
+    "AMP",
+    "AND",
+    "UP",
+    "IN",
+    "YEARS",
+    "CO",
+    "THREE"
+  ]
+}

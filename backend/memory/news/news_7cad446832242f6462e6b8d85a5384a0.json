@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Copper Rebounds as China Industry Group Calls for Stockpiling",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/copper-rebounds-from-two-day-slump-as-metals-selloff-eases",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T02:28:15",
+  "providerPublishTime": 1770082095.0,
+  "text": "Copper rebounded as a metals selloff led by silver and gold eased and a state-backed industry group called for China to boost its strategic reserves of the crucial industrial metal.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i_lm5C58XClA/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "LED",
+    "CHINA",
+    "A",
+    "GOLD",
+    "ITS",
+    "THE",
+    "GROUP",
+    "BY",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "TO",
+    "LED",
+    "CHINA",
+    "A",
+    "GOLD",
+    "ITS",
+    "THE",
+    "GROUP",
+    "BY",
+    "FOR"
+  ]
+}

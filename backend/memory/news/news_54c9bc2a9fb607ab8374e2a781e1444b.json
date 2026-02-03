@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Worried About an AI Bubble? This Stock Gives You Exposure Without the Risk.",
+  "link": "https://finance.yahoo.com/news/worried-ai-bubble-stock-gives-142500417.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T14:25:00",
+  "providerPublishTime": 1769952300.0,
+  "text": "Worried About an AI Bubble? This Stock Gives You Exposure Without the Risk.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0a075cbb38032af8e248e930d946ae1c",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AN",
+    "GIVES",
+    "ABOUT",
+    "YOU",
+    "THIS",
+    "AI",
+    "THE",
+    "RISK",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "AN",
+    "GIVES",
+    "ABOUT",
+    "YOU",
+    "THIS",
+    "AI",
+    "THE",
+    "RISK",
+    "STOCK"
+  ]
+}

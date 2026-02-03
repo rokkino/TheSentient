@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: NVE Corp Q3 2026 sees 23% revenue rise, stock climbs",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-nve-corp-q3-2026-sees-23-revenue-rise-stock-climbs-93CH-4482754",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:58:55",
+  "providerPublishTime": 1770141535.0,
+  "text": "Earnings call transcript: NVE Corp Q3 2026 sees 23% revenue rise, stock climbs",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CORP",
+    "STOCK",
+    "NVE",
+    "CALL",
+    "RISE",
+    "SEES"
+  ],
+  "relatedTickers": [
+    "CORP",
+    "STOCK",
+    "NVE",
+    "CALL",
+    "RISE",
+    "SEES"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China Economy’s Weak Start Bolsters Case for Early Easing",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/china-s-factory-activity-gauge-expands-for-export-oriented-firms",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T01:46:28",
+  "providerPublishTime": 1769993188.0,
+  "text": "China’s economy stumbled into the new year, bolstering the case for Beijing to ramp up policy support in coming weeks as strong exports failed to offset weak domestic demand.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1GrnLEGpOto/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WEEKS",
+    "EARLY",
+    "CHINA",
+    "NEW",
+    "AS",
+    "YEAR",
+    "START",
+    "FOR",
+    "INTO",
+    "RAMP"
+  ],
+  "relatedTickers": [
+    "WEEKS",
+    "EARLY",
+    "CHINA",
+    "NEW",
+    "AS",
+    "YEAR",
+    "START",
+    "FOR",
+    "INTO",
+    "RAMP"
+  ]
+}

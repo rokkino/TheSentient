@@ -1,0 +1,31 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Sector Update: Financial Stocks Retreat Tuesday Afternoon",
+  "link": "https://finance.yahoo.com/news/sector-financial-stocks-retreat-tuesday-184331390.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T18:43:31",
+  "providerPublishTime": 1770140611.0,
+  "text": "Financial stocks were decreasing in Tuesday afternoon trading, with the NYSE Financial Index sheddin",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "BTC-USD",
+    "WITH",
+    "NYSE",
+    "INDEX",
+    "WERE",
+    "THE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "BTC-USD",
+    "WITH",
+    "NYSE",
+    "INDEX",
+    "WERE",
+    "THE"
+  ]
+}

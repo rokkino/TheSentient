@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘Get Me Out’: Traders Dump Software Stocks as AI Fears Erupt",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/-get-me-out-traders-dump-software-stocks-as-ai-fears-take-hold",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T11:55:02",
+  "providerPublishTime": 1770116102.0,
+  "text": "Wall Street has been skeptical about software stocks for a while, but sentiment has gone from bearish to doomsday lately with traders dumping shares of companies across the industry as fears about the destruction to be wrought by artificial intelligence pile up.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i8P5ulOxsi4E/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "FOR",
+    "WALL",
+    "HAS",
+    "FROM",
+    "OF",
+    "AI",
+    "DUMP",
+    "GET",
+    "ERUPT"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "FOR",
+    "WALL",
+    "HAS",
+    "FROM",
+    "OF",
+    "AI",
+    "DUMP",
+    "GET",
+    "ERUPT"
+  ]
+}

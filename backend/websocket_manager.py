@@ -83,6 +83,21 @@ class WebSocketManager:
         for ws in disconnected:
             self.disconnect(ws)
 
+    async def broadcast_to_users(self, message: dict, user_ids):
+        """Broadcast message to a specific list/set of user IDs."""
+        if not user_ids:
+            return
+        allowed_ids = set(user_ids)
+        disconnected = []
+        for connection in self.active_connections:
+            if connection.get("user_id") in allowed_ids:
+                try:
+                    await connection["ws"].send_text(json.dumps(message))
+                except:
+                    disconnected.append(connection["ws"])
+        for ws in disconnected:
+            self.disconnect(ws)
+
     def get_online_users(self):
         """Get list of online users"""
         users = {}

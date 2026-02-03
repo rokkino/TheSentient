@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "SpaceX acquires xAI as Musk looks to unify AI and space ambitions",
+  "link": "https://finance.yahoo.com/news/musks-spacex-merge-xai-combined-212210116.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T21:22:10",
+  "providerPublishTime": 1770063730.0,
+  "text": "Elon Musk said on Monday that SpaceX has acquired his artificial-intelligence startup xAI, combining the rocket-and-satellite company with the maker of ​the Grok chatbot in a move aimed at unifying Musk's AI and space ambitions.  \"This marks ‌not just the next chapter, but the next book in SpaceX and xAI's mission: scaling to make a sentient sun to ‌understand the Universe and extend the light of consciousness to the stars!\" Musk said.  The deal, first reported by Reuters last Thursday, represents one of the most ambitious tie-ups in the technology sector yet, combining a space-and-defense contractor with a fast-growing AI developer whose costs are largely driven by chips, data centers and energy.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/c605d798ba44d6c78edd4a5472e7cb46",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "JUST",
+    "AS",
+    "LOOKS",
+    "NEXT",
+    "BOOK",
+    "MOST",
+    "AND",
+    "ON",
+    "FIRST"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "JUST",
+    "AS",
+    "LOOKS",
+    "NEXT",
+    "BOOK",
+    "MOST",
+    "AND",
+    "ON",
+    "FIRST"
+  ]
+}

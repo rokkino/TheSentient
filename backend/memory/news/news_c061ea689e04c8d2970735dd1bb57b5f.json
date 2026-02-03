@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SpaceX officially acquires xAI. Here’s how Elon Musk justifies the move.",
+  "link": "https://www.marketwatch.com/story/spacex-officially-acquires-xai-heres-how-elon-musk-justifies-the-move-f38d999f?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T22:49:00",
+  "providerPublishTime": 1770068940.0,
+  "text": "Musk says the newest merger of companies he owns is necessary to create “a sentient sun to understand the universe.”",
+  "thumbnail": "https://images.mktw.net/im-47635856",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MOVE",
+    "HOW",
+    "IS",
+    "ELON",
+    "HE",
+    "S",
+    "TO",
+    "SUN",
+    "XAI",
+    "THE"
+  ],
+  "relatedTickers": [
+    "MOVE",
+    "HOW",
+    "IS",
+    "ELON",
+    "HE",
+    "S",
+    "TO",
+    "SUN",
+    "XAI",
+    "THE"
+  ]
+}

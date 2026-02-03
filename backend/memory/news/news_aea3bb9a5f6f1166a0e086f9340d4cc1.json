@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 INTEL CORPORATION For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-intel-corporation-for-2-february-93CH-4480397",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:48:15",
+  "providerPublishTime": 1770068895.0,
+  "text": "Form 144 INTEL CORPORATION For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "INTEL",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "INTEL",
+    "FORM"
+  ]
+}

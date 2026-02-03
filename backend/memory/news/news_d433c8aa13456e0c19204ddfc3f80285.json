@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Stock Market Today, Feb. 2: Robinhood Markets Falls on Bitcoin Weakness and Lower Crypto Trading Volumes",
+  "link": "https://finance.yahoo.com/news/stock-market-today-feb-2-221924611.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T22:19:24",
+  "providerPublishTime": 1770067164.0,
+  "text": "Crypto jitters are testing this trading app’s reliance on digital-asset activity and retail risk appetite, today, Feb. 2, 2026.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/ece2644f62c999828edb4a744e8a56b7",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BTC-USD",
+    "ARE",
+    "ASSET",
+    "FEB",
+    "APP",
+    "TODAY",
+    "FALLS",
+    "THIS",
+    "AND",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "BTC-USD",
+    "ARE",
+    "ASSET",
+    "FEB",
+    "APP",
+    "TODAY",
+    "FALLS",
+    "THIS",
+    "AND",
+    "LOWER"
+  ]
+}

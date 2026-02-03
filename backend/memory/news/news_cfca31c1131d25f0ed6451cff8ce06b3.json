@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mandelson faces full criminal investigation over Epstein files",
+  "link": "https://www.ft.com/content/d6438f3b-e37f-442e-bb3d-03c5272aa616",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T18:44:50",
+  "providerPublishTime": 1770140690.0,
+  "text": "Peer gave sex offender access to UK government decision-making while serving as cabinet minister",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F3029f299-b1ea-4d46-a318-2fc50495134e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "FACES",
+    "SEX",
+    "PEER",
+    "AS",
+    "WHILE",
+    "FULL",
+    "OVER",
+    "FILES",
+    "UK"
+  ],
+  "relatedTickers": [
+    "TO",
+    "FACES",
+    "SEX",
+    "PEER",
+    "AS",
+    "WHILE",
+    "FULL",
+    "OVER",
+    "FILES",
+    "UK"
+  ]
+}

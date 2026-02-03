@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bank of America Joins Borrowing Spree With $7 Billion of Bonds",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/bank-of-america-joins-us-banks-borrowing-spree-with-bond-sale",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T16:55:31",
+  "providerPublishTime": 1770134131.0,
+  "text": "Bank of America Corp. has launched a $7 billion sale of investment-grade bonds, adding to a flurry of offerings by major Wall Street banks.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i1suzlmtXqsQ/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BONDS",
+    "SALE",
+    "TO",
+    "WITH",
+    "GRADE",
+    "A",
+    "SPREE",
+    "BY",
+    "MAJOR",
+    "WALL"
+  ],
+  "relatedTickers": [
+    "BONDS",
+    "SALE",
+    "TO",
+    "WITH",
+    "GRADE",
+    "A",
+    "SPREE",
+    "BY",
+    "MAJOR",
+    "WALL"
+  ]
+}

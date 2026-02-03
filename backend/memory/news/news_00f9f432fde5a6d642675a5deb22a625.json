@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is Altria Becoming More Than an Income Stock?",
+  "link": "https://finance.yahoo.com/news/altria-becoming-more-income-stock-142200953.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-01T14:22:00",
+  "providerPublishTime": 1769952120.0,
+  "text": "Is Altria Becoming More Than an Income Stock?",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/9f021b43f8b99493a70614015ebe07ea",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AN",
+    "MORE",
+    "IS",
+    "STOCK",
+    "THAN"
+  ],
+  "relatedTickers": [
+    "AN",
+    "MORE",
+    "IS",
+    "STOCK",
+    "THAN"
+  ]
+}

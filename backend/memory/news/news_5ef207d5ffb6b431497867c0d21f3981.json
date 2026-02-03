@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Bank of America's blunt 3-word note on Alphabet stock before earnings",
+  "link": "https://finance.yahoo.com/news/bank-americas-blunt-3-word-173300143.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T17:33:00",
+  "providerPublishTime": 1770136380.0,
+  "text": "Shares of Alphabet (GOOGL), the Google parent company, are up 9.9% year to date as of Feb. 2, far outpacing the S&P 500 Index's 1.9% gain. Waymo, Alphabet's autonomous driving technology subsidiary, revealed it had raised $16 billion in its latest fundraising round, now valuing the company at ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/bad8245f04f0c16e680c5e170715ad6f",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GAIN",
+    "HAD",
+    "P",
+    "STOCK",
+    "OF",
+    "NOW",
+    "WAYMO",
+    "FEB",
+    "ARE",
+    "ROUND"
+  ],
+  "relatedTickers": [
+    "GAIN",
+    "HAD",
+    "P",
+    "STOCK",
+    "OF",
+    "NOW",
+    "WAYMO",
+    "FEB",
+    "ARE",
+    "ROUND"
+  ]
+}

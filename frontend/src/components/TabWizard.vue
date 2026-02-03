@@ -9,17 +9,22 @@
       <div class="modal-body">
         <div class="wizard-step">
           <h3>Choose Tab Type</h3>
-          <div class="presets-grid">
-            <div
-              v-for="preset in tabPresets"
-              :key="preset.type"
-              class="preset-card"
-              :class="{ selected: selectedPreset?.type === preset.type }"
-              @click="selectPreset(preset)"
-            >
-              <div class="preset-icon">{{ preset.icon }}</div>
-              <div class="preset-name">{{ preset.name }}</div>
-              <div class="preset-description">{{ preset.description }}</div>
+          
+          <div v-for="category in categories" :key="category" class="preset-category">
+            <h4 class="category-title">{{ category }}</h4>
+            <div class="presets-grid">
+              <div
+                v-for="preset in tabPresets.filter(p => p.category === category)"
+                :key="preset.type"
+                class="preset-card"
+                :class="{ selected: selectedPreset?.type === preset.type, coming: ['portfolio', 'screener', 'alerts', 'heatmap', 'calendar'].includes(preset.type) }"
+                @click="selectPreset(preset)"
+              >
+                <div class="preset-icon">{{ preset.icon }}</div>
+                <div class="preset-name">{{ preset.name }}</div>
+                <div class="preset-description">{{ preset.description }}</div>
+                <div v-if="['portfolio', 'screener', 'alerts', 'heatmap', 'calendar'].includes(preset.type)" class="coming-soon-badge">Coming Soon</div>
+              </div>
             </div>
           </div>
         </div>
@@ -65,54 +70,103 @@ const emit = defineEmits(['close', 'create'])
 const tabPresets = [
   {
     type: 'stocks',
-    name: 'Stocks',
-    description: 'Stock charts and watchlist',
+    name: 'Charts',
+    description: 'Stock charts with full technical analysis',
     icon: '📈',
-    defaultName: 'Stocks'
+    defaultName: 'Charts',
+    category: 'Analysis'
   },
   {
     type: 'earnings',
     name: 'Earnings',
-    description: 'Earnings calendar',
+    description: 'Earnings calendar and reports',
     icon: '💰',
-    defaultName: 'Earnings'
+    defaultName: 'Earnings',
+    category: 'Analysis'
   },
   {
     type: 'news',
     name: 'News',
-    description: 'Financial news feed',
+    description: 'Real-time financial news feed',
     icon: '📰',
-    defaultName: 'News'
+    defaultName: 'News',
+    category: 'Information'
   },
   {
     type: 'bot',
-    name: 'Bot',
-    description: 'Trading bots',
+    name: 'Trading Bot',
+    description: 'Automated trading bots',
     icon: '🤖',
-    defaultName: 'Bot'
+    defaultName: 'Bot',
+    category: 'Trading'
   },
   {
     type: 'chat',
-    name: 'Chat',
-    description: 'Chat with users and AI',
+    name: 'AI Chat',
+    description: 'Chat with AI assistant',
     icon: '💬',
-    defaultName: 'Chat'
+    defaultName: 'Chat',
+    category: 'Tools'
   },
   {
     type: 'strategy',
-    name: 'Strategy',
-    description: 'Build trading strategies',
+    name: 'Strategy Builder',
+    description: 'Create and backtest strategies',
     icon: '♟️',
-    defaultName: 'Strategy'
+    defaultName: 'Strategy',
+    category: 'Trading'
   },
   {
     type: 'backtesting',
     name: 'Backtesting',
-    description: 'Historical simulation (Earning Report Genius)',
+    description: 'Historical simulation engine',
     icon: '📊',
-    defaultName: 'Backtesting'
+    defaultName: 'Backtesting',
+    category: 'Trading'
+  },
+  {
+    type: 'portfolio',
+    name: 'Portfolio',
+    description: 'Track your investments',
+    icon: '💼',
+    defaultName: 'Portfolio',
+    category: 'Trading'
+  },
+  {
+    type: 'screener',
+    name: 'Screener',
+    description: 'Find stocks with filters',
+    icon: '🔍',
+    defaultName: 'Screener',
+    category: 'Analysis'
+  },
+  {
+    type: 'alerts',
+    name: 'Price Alerts',
+    description: 'Set and manage price alerts',
+    icon: '🔔',
+    defaultName: 'Alerts',
+    category: 'Tools'
+  },
+  {
+    type: 'heatmap',
+    name: 'Market Heatmap',
+    description: 'Visual market overview',
+    icon: '🗺️',
+    defaultName: 'Heatmap',
+    category: 'Analysis'
+  },
+  {
+    type: 'calendar',
+    name: 'Economic Calendar',
+    description: 'Economic events and releases',
+    icon: '📅',
+    defaultName: 'Calendar',
+    category: 'Information'
   }
 ]
+
+const categories = ['Analysis', 'Trading', 'Information', 'Tools']
 
 const selectedPreset = ref(null)
 const tabName = ref('')
@@ -265,50 +319,100 @@ const close = () => {
   color: #666;
 }
 
+.preset-category {
+  margin-bottom: 24px;
+}
+
+.preset-category:last-child {
+  margin-bottom: 0;
+}
+
+.category-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #4299e1;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #222;
+}
+
 .presets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
 }
 
 .preset-card {
-  padding: 20px;
+  padding: 16px;
   background-color: #111;
-  border: 2px solid #333;
-  border-radius: 4px;
+  border: 2px solid #222;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .preset-card:hover {
   background-color: #1a1a1a;
-  border-color: #555;
+  border-color: #444;
+  transform: translateY(-2px);
 }
 
 .preset-card.selected {
   background-color: #1a1a1a;
   border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15), 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.preset-card.coming {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.preset-card.coming:hover {
+  transform: none;
+  border-color: #333;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 8px;
+  right: -24px;
+  background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+  color: #000;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 28px;
+  transform: rotate(45deg);
 }
 
 .preset-icon {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 28px;
+  margin-bottom: 8px;
+  transition: transform 0.2s;
+}
+
+.preset-card:hover .preset-icon {
+  transform: scale(1.1);
 }
 
 .preset-name {
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
 }
 
 .preset-description {
   color: #666;
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.4;
 }
 

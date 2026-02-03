@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Northrop Grumman director Welsh sells $65,029 in stock",
+  "link": "https://www.investing.com/news/insider-trading-news/northrop-grumman-director-welsh-sells-65029-in-stock-93CH-4482751",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:55:44",
+  "providerPublishTime": 1770141344.0,
+  "text": "Northrop Grumman director Welsh sells $65,029 in stock",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELLS",
+    "IN",
+    "STOCK",
+    "WELSH"
+  ],
+  "relatedTickers": [
+    "SELLS",
+    "IN",
+    "STOCK",
+    "WELSH"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Group 1 Automotive’s record 2025 revenues driven by Fixed Ops, F&I",
+  "link": "https://finance.yahoo.com/news/group-1-automotive-record-2025-095849742.html",
+  "publisher": "Wards Auto",
+  "timestamp": "2026-02-02T09:58:49",
+  "providerPublishTime": 1770022729.0,
+  "text": "Group 1 Automotive’s record 2025 revenues driven by Fixed Ops, F&I",
+  "thumbnail": "https://media.zenfs.com/en/wards_auto_520/013df050bcbd08440eb73f04d75475d1",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "F",
+    "GROUP",
+    "BY",
+    "OPS",
+    "I",
+    "FIXED",
+    "S"
+  ],
+  "relatedTickers": [
+    "F",
+    "GROUP",
+    "BY",
+    "OPS",
+    "I",
+    "FIXED",
+    "S"
+  ]
+}

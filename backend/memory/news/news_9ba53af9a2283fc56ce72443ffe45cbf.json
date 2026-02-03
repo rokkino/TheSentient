@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Do Wall Street Analysts Like Alphabet Stock?",
+  "link": "https://finance.yahoo.com/news/wall-street-analysts-alphabet-stock-095148272.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-02T09:51:48",
+  "providerPublishTime": 1770022308.0,
+  "text": "Do Wall Street Analysts Like Alphabet Stock?",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/92ef183c42026825f0de825fd26975b4",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "LIKE",
+    "DO",
+    "WALL"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "LIKE",
+    "DO",
+    "WALL"
+  ]
+}

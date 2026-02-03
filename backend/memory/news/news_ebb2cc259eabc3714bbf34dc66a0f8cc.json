@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Asian Stocks Set to Climb After US Data Lifts Mood: Markets Wrap",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/asian-stocks-set-to-climb-after-us-data-lifts-mood-markets-wrap",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:23:09",
+  "providerPublishTime": 1770067389.0,
+  "text": "Asian stocks were headed for gains Tuesday after solid US factory data helped lift sentiment, supporting shares and Bitcoin while curbing losses in precious metals.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i_6luUgvzKs8/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOLID",
+    "LIFT",
+    "AFTER",
+    "WRAP",
+    "WERE",
+    "DATA",
+    "FOR",
+    "TO",
+    "LIFTS",
+    "AND"
+  ],
+  "relatedTickers": [
+    "SOLID",
+    "LIFT",
+    "AFTER",
+    "WRAP",
+    "WERE",
+    "DATA",
+    "FOR",
+    "TO",
+    "LIFTS",
+    "AND"
+  ]
+}

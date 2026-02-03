@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Returning to the Moon",
+  "link": "https://www.bloomberg.com/news/videos/2026-01-27/returning-to-the-moon-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-01-27T22:02:18",
+  "providerPublishTime": 1769547738.0,
+  "text": "NASA is sending astronauts back to the lunar neighborhood for the first time in over 50 years. The Artemis II crew will test a spacecraft that’s to play a key role in America’s return to the moon. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iwM93bGBMtDk/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PLAY",
+    "FOR",
+    "II",
+    "OVER",
+    "BACK",
+    "YEARS",
+    "LUNAR",
+    "WILL",
+    "IS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "PLAY",
+    "FOR",
+    "II",
+    "OVER",
+    "BACK",
+    "YEARS",
+    "LUNAR",
+    "WILL",
+    "IS",
+    "THE"
+  ]
+}

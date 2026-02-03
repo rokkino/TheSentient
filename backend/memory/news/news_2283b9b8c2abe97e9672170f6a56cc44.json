@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NXP Semiconductors forecasts upbeat quarter, signaling industrial market bottom",
+  "link": "https://www.investing.com/news/stock-market-news/nxp-semiconductors-forecasts-upbeat-quarter-signaling-industrial-market-bottom-4480398",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:48:34",
+  "providerPublishTime": 1770068914.0,
+  "text": "NXP Semiconductors forecasts upbeat quarter, signaling industrial market bottom",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "NXP"
+  ],
+  "relatedTickers": [
+    "NXP"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Why Standard Chartered lowered Solana price target for 2026 but raised it to $2,000 by 2030",
+  "link": "https://www.dlnews.com/articles/markets/solana-price-target-dropped-in-2025-but-raised-for-2030-standard-chartered/",
+  "publisher": "DLNews",
+  "timestamp": "2026-02-03T17:23:56",
+  "providerPublishTime": 1770135836.0,
+  "text": "Standard Chartered cut its Solana price prediction for 2026 to $250. The UK-based bank is projecting a $2,000 price tag by 2030. Solana's ultra-low transaction costs enable micropayments that weren't previously economically viable, the bank said.",
+  "thumbnail": "https://media.zenfs.com/en/dlnews_702/dfa3e618e5eba2172626afc2d2560679",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CUT",
+    "WHY",
+    "ULTRA",
+    "FOR",
+    "T",
+    "BASED",
+    "PRICE",
+    "WEREN",
+    "TAG",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "CUT",
+    "WHY",
+    "ULTRA",
+    "FOR",
+    "T",
+    "BASED",
+    "PRICE",
+    "WEREN",
+    "TAG",
+    "BUT"
+  ]
+}

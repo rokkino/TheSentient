@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Epstein rot goes deep",
+  "link": "https://www.ft.com/content/3f8277cd-2b47-49ff-b264-fd7ce89c924f",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T12:30:06",
+  "providerPublishTime": 1770118206.0,
+  "text": "America must now ask itself if it can restore a culture of shame",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F83bbee7c-e883-481b-82fa-bfbe641049ab.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NOW",
+    "ROT",
+    "GOES",
+    "A",
+    "SHAME",
+    "CAN",
+    "DEEP",
+    "OF",
+    "ASK",
+    "THE"
+  ],
+  "relatedTickers": [
+    "NOW",
+    "ROT",
+    "GOES",
+    "A",
+    "SHAME",
+    "CAN",
+    "DEEP",
+    "OF",
+    "ASK",
+    "THE"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin Crash Hits Strategy and Spot ETFs, Saylor Signals More Buys",
+  "link": "https://finance.yahoo.com/news/bitcoin-crash-hits-strategy-spot-095539816.html",
+  "publisher": "Coinspeaker",
+  "timestamp": "2026-02-02T09:55:39",
+  "providerPublishTime": 1770022539.0,
+  "text": "Bitcoin Crash Hits Strategy and Spot ETFs, Saylor Signals More Buys",
+  "thumbnail": "https://media.zenfs.com/en/coinspeaker_us_106/a51df021e3d78643dc1bbd87289f2346",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ETFS",
+    "AND",
+    "MORE",
+    "CRASH",
+    "HITS",
+    "BUYS",
+    "SPOT"
+  ],
+  "relatedTickers": [
+    "ETFS",
+    "AND",
+    "MORE",
+    "CRASH",
+    "HITS",
+    "BUYS",
+    "SPOT"
+  ]
+}

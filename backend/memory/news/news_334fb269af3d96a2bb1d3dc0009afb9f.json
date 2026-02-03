@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is It Time to Buy This Historically Cheap E-Commerce Stock? (Hint: It's Not Amazon)",
+  "link": "https://finance.yahoo.com/news/time-buy-historically-cheap-e-135500212.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T13:55:00",
+  "providerPublishTime": 1769950500.0,
+  "text": "Is It Time to Buy This Historically Cheap E-Commerce Stock? (Hint: It's Not Amazon)",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/e6e846eb7054ad91da7a679330b84071",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "IS",
+    "IT",
+    "THIS",
+    "E",
+    "HINT",
+    "TO",
+    "S",
+    "CHEAP",
+    "TIME"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "IS",
+    "IT",
+    "THIS",
+    "E",
+    "HINT",
+    "TO",
+    "S",
+    "CHEAP",
+    "TIME"
+  ]
+}

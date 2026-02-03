@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wall St selloff deepens led by software, cloud firms",
+  "link": "https://www.investing.com/news/stock-market-news/sp-500-nasdaq-poised-for-higher-open-as-earnings-deluge-takes-center-stage-4481898",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:55:08",
+  "providerPublishTime": 1770141308.0,
+  "text": "Wall St selloff deepens led by software, cloud firms",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LED",
+    "CLOUD",
+    "BY",
+    "FIRMS",
+    "WALL",
+    "ST"
+  ],
+  "relatedTickers": [
+    "LED",
+    "CLOUD",
+    "BY",
+    "FIRMS",
+    "WALL",
+    "ST"
+  ]
+}

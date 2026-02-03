@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Waymo solidifies autonomous lead with massive capital injection",
+  "link": "https://finance.yahoo.com/news/waymo-solidifies-autonomous-lead-massive-225637586.html",
+  "publisher": "Investing.com",
+  "timestamp": "2026-02-02T22:56:37",
+  "providerPublishTime": 1770069397.0,
+  "text": "Investing.com -- Waymo has secured a landmark $16 billion investment, valuing the Alphabet Inc Class A (NASDAQ:GOOGL) subsidiary at $126 billion post-money. This significant funding round was spearheaded by prominent venture firms including Sequoia Capital, DST Global, and Dragoneer Investment Group. The company is transitioning from a research-heavy enterprise into a dominant commercial entity within the global transportation sector. \"This capital underscores that the age of autonomous mobility",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "POST",
+    "LEAD",
+    "FROM",
+    "INTO",
+    "AND",
+    "AGE",
+    "DST",
+    "THIS",
+    "GROUP",
+    "COM"
+  ],
+  "relatedTickers": [
+    "POST",
+    "LEAD",
+    "FROM",
+    "INTO",
+    "AND",
+    "AGE",
+    "DST",
+    "THIS",
+    "GROUP",
+    "COM"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Popular Inc stock hits 52-week high at 140.54 USD",
+  "link": "https://www.investing.com/news/company-news/popular-inc-stock-hits-52week-high-at-14054-usd-93CH-4482752",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:57:53",
+  "providerPublishTime": 1770141473.0,
+  "text": "Popular Inc stock hits 52-week high at 140.54 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HIGH",
+    "INC",
+    "USD",
+    "AT",
+    "STOCK",
+    "WEEK",
+    "HITS"
+  ],
+  "relatedTickers": [
+    "HIGH",
+    "INC",
+    "USD",
+    "AT",
+    "STOCK",
+    "WEEK",
+    "HITS"
+  ]
+}

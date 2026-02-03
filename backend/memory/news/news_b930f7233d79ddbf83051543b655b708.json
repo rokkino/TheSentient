@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Netskope Inc (ntsk) Is A Mission Critical Cybersecurity Provider Trading At A Discount",
+  "link": "https://finance.yahoo.com/news/netskope-inc-ntsk-mission-critical-140859554.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-01T14:08:59",
+  "providerPublishTime": 1769951339.0,
+  "text": "Netskope Inc (ntsk) Is A Mission Critical Cybersecurity Provider Trading At A Discount",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/1980ade4b2f045043a8337fb87634210",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IS",
+    "INC",
+    "NTSK",
+    "A",
+    "AT"
+  ],
+  "relatedTickers": [
+    "IS",
+    "INC",
+    "NTSK",
+    "A",
+    "AT"
+  ]
+}

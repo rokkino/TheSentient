@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Moscow Exchange to add SOL, XRP, and TRX futures contracts to crypto derivatives lineup",
+  "link": "https://finance.yahoo.com/news/moscow-exchange-add-sol-xrp-112857858.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T11:28:57",
+  "providerPublishTime": 1770114537.0,
+  "text": "The new contracts will be based on indices for each token, settled in rubles, and accessible only to qualified investors.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/e9cf73c19c69be9df20d3e9e436059b0",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "NEW",
+    "SOL",
+    "EACH",
+    "IN",
+    "ON",
+    "FOR",
+    "AND",
+    "TRX",
+    "WILL"
+  ],
+  "relatedTickers": [
+    "TO",
+    "NEW",
+    "SOL",
+    "EACH",
+    "IN",
+    "ON",
+    "FOR",
+    "AND",
+    "TRX",
+    "WILL"
+  ]
+}

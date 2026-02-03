@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Dollar Can’t Shake Risks",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-02/us-dollar-can-t-shake-risks-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T19:32:15",
+  "providerPublishTime": 1770057135.0,
+  "text": "Currency traders recently unleashed a selloff that drove the dollar into its deepest slide since the US trade war began. Despite some ups and downs, the downward trend seems likely to continue. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iSCo_HTKtdR0/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TREND",
+    "UPS",
+    "WAR",
+    "T",
+    "SLIDE",
+    "DROVE",
+    "BEGAN",
+    "SHAKE",
+    "INTO",
+    "TRADE"
+  ],
+  "relatedTickers": [
+    "TREND",
+    "UPS",
+    "WAR",
+    "T",
+    "SLIDE",
+    "DROVE",
+    "BEGAN",
+    "SHAKE",
+    "INTO",
+    "TRADE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Major crypto firm doubles down on Bitcoin mining",
+  "link": "https://finance.yahoo.com/news/major-crypto-firm-doubles-down-173104048.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T17:31:04",
+  "providerPublishTime": 1770136264.0,
+  "text": "When it comes to Bitcoin mining, many in the industry are split about continuing in the business. Last year, we saw several high-profile miners shut down facilities, pivot business models, or exit the sector altogether in search of more predictable returns in sectors like AI. But one ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/fdb89516ba6b3d131700826fc2096ad1",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OR",
+    "LAST",
+    "OF",
+    "AI",
+    "PIVOT",
+    "WHEN",
+    "SHUT",
+    "DOWN",
+    "ARE",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "OR",
+    "LAST",
+    "OF",
+    "AI",
+    "PIVOT",
+    "WHEN",
+    "SHUT",
+    "DOWN",
+    "ARE",
+    "BUT"
+  ]
+}

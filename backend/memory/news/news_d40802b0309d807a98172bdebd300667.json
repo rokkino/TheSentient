@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin ETFs See $6 Billion Exit as Institutional Demand Cools",
+  "link": "https://finance.yahoo.com/news/bitcoin-etfs-see-6-billion-144855237.html",
+  "publisher": "BeInCrypto",
+  "timestamp": "2026-02-01T14:48:55",
+  "providerPublishTime": 1769953735.0,
+  "text": "Bitcoin ETFs See $6 Billion Exit as Institutional Demand Cools",
+  "thumbnail": "https://media.zenfs.com/en/beincrypto_us_662/2fbd15a05601e4a8138935c7ef3b328d",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ETFS",
+    "AS",
+    "COOLS",
+    "SEE",
+    "EXIT"
+  ],
+  "relatedTickers": [
+    "ETFS",
+    "AS",
+    "COOLS",
+    "SEE",
+    "EXIT"
+  ]
+}

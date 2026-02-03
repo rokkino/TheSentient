@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Musk’s SpaceX Combines With xAI at $1.25 Trillion Valuation",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-03/musk-s-spacex-combines-with-xai-at-1-25-trillion-valuation",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T18:28:06",
+  "providerPublishTime": 1770139686.0,
+  "text": "Elon Musk is combining SpaceX and xAI in a deal that values the enlarged entity at $1.25 trillion, as the world’s richest man looks to fuel his increasingly costly ambitions in artificial intelligence and space exploration. Ed Ludlow explains  (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihZYiWmsW8ho/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "DEAL",
+    "MAN",
+    "XAI",
+    "HIS",
+    "LOOKS",
+    "MUSK",
+    "FUEL",
+    "ED",
+    "AT"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "DEAL",
+    "MAN",
+    "XAI",
+    "HIS",
+    "LOOKS",
+    "MUSK",
+    "FUEL",
+    "ED",
+    "AT"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia's CEO Says There's No AI Bubble: Here's What the Numbers Say",
+  "link": "https://finance.yahoo.com/news/nvidias-ceo-says-theres-no-183200553.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T18:32:00",
+  "providerPublishTime": 1770139920.0,
+  "text": "The AI revolution has broken a 60-year-old rule.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/fdab93d23f4bdefb8aa64ab6026eea48",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "NO",
+    "CEO",
+    "AI",
+    "WHAT",
+    "OLD",
+    "HERE",
+    "HAS",
+    "RULE",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "A",
+    "NO",
+    "CEO",
+    "AI",
+    "WHAT",
+    "OLD",
+    "HERE",
+    "HAS",
+    "RULE",
+    "YEAR"
+  ]
+}

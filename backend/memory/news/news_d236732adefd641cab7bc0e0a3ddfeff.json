@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin hovers near $78,000 with 'broader downtrend intact'",
+  "link": "https://finance.yahoo.com/news/bitcoin-hovers-near-78000-with-broader-downtrend-intact-192103785.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-02T19:23:53",
+  "providerPublishTime": 1770056633.0,
+  "text": "Bitcoin steadied on Monday after a sharp drop over the weekend.  Strategists warn it's too early to call a bottom on the token's latest rout.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2021-04/5af69a20-a8e5-11eb-bf7f-5f2e9fe992ce",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DROP",
+    "WITH",
+    "OVER",
+    "SHARP",
+    "EARLY",
+    "TOO",
+    "CALL",
+    "NEAR",
+    "AFTER",
+    "WARN"
+  ],
+  "relatedTickers": [
+    "DROP",
+    "WITH",
+    "OVER",
+    "SHARP",
+    "EARLY",
+    "TOO",
+    "CALL",
+    "NEAR",
+    "AFTER",
+    "WARN"
+  ]
+}

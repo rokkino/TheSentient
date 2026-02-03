@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BlackRock, Pimco See Inflation Risks the Wider Market Doubts",
+  "link": "https://finance.yahoo.com/news/blackrock-pimco-see-inflation-risks-100318847.html",
+  "publisher": "Bloomberg",
+  "timestamp": "2026-02-02T10:03:18",
+  "providerPublishTime": 1770022998.0,
+  "text": "BlackRock, Pimco See Inflation Risks the Wider Market Doubts",
+  "thumbnail": "https://media.zenfs.com/en/bloomberg_holding_pen_162/c33e05b80b7bca3956904c7be866c4b2",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "RISKS",
+    "THE",
+    "SEE",
+    "PIMCO",
+    "WIDER"
+  ],
+  "relatedTickers": [
+    "RISKS",
+    "THE",
+    "SEE",
+    "PIMCO",
+    "WIDER"
+  ]
+}

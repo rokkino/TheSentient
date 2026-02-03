@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Measles cases prompt quarantine, other steps at ICE facility in Texas, DHS says",
+  "link": "https://www.investing.com/news/stock-market-news/measles-cases-prompt-quarantine-other-steps-at-ice-facility-in-texas-report-says-4479305",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:54:52",
+  "providerPublishTime": 1770069292.0,
+  "text": "Measles cases prompt quarantine, other steps at ICE facility in Texas, DHS says",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ICE",
+    "CASES",
+    "STEPS",
+    "TEXAS",
+    "DHS",
+    "SAYS",
+    "OTHER",
+    "IN",
+    "AT"
+  ],
+  "relatedTickers": [
+    "ICE",
+    "CASES",
+    "STEPS",
+    "TEXAS",
+    "DHS",
+    "SAYS",
+    "OTHER",
+    "IN",
+    "AT"
+  ]
+}

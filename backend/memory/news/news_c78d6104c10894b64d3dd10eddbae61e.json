@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HELOC and home equity loan rates Monday, February 2, 2026: Beat these rates and you've got a deal",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-home-equity-loan-rates-today-monday-february-2-2026-110047174.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-02T11:00:47",
+  "providerPublishTime": 1770026447.0,
+  "text": "HELOC and home equity loan rates Monday, February 2, 2026: Beat these rates and you've got a deal",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-06/006c3000-3feb-11f0-b84f-0d1aa528bfe7",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOAN",
+    "BEAT",
+    "HELOC",
+    "GOT",
+    "VE",
+    "DEAL",
+    "RATES",
+    "YOU",
+    "AND",
+    "A"
+  ],
+  "relatedTickers": [
+    "LOAN",
+    "BEAT",
+    "HELOC",
+    "GOT",
+    "VE",
+    "DEAL",
+    "RATES",
+    "YOU",
+    "AND",
+    "A"
+  ]
+}

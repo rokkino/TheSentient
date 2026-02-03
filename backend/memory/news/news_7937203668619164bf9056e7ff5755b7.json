@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AMD’s stock rises ahead of earnings. Why investors are feeling upbeat.",
+  "link": "https://www.marketwatch.com/story/amds-stock-rises-ahead-of-earnings-why-investors-are-feeling-upbeat-e027e473?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-02T23:01:00",
+  "providerPublishTime": 1770069660.0,
+  "text": "AMD could do a better job than Intel at capitalizing on the AI-fueled boom in traditional server chips.",
+  "thumbnail": "https://images.mktw.net/im-94001450",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JOB",
+    "ARE",
+    "BOOM",
+    "ON",
+    "AHEAD",
+    "IN",
+    "WHY",
+    "RISES",
+    "INTEL",
+    "AMD"
+  ],
+  "relatedTickers": [
+    "JOB",
+    "ARE",
+    "BOOM",
+    "ON",
+    "AHEAD",
+    "IN",
+    "WHY",
+    "RISES",
+    "INTEL",
+    "AMD"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PepsiCo to cut prices of Doritos and Lay’s as consumers rein in snacking",
+  "link": "https://www.ft.com/content/6aea157a-4f6a-4dac-8b0e-9035e77485b7",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T16:23:35",
+  "providerPublishTime": 1770132215.0,
+  "text": "Packaged food group lowers snack prices by up to 15% to tempt inflation-weary shoppers",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fcdf6f728-bbc4-4cd6-acad-f9b0a66d432d.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "CUT",
+    "IN",
+    "SNACK",
+    "GROUP",
+    "BY",
+    "TEMPT",
+    "AND",
+    "AS",
+    "WEARY"
+  ],
+  "relatedTickers": [
+    "TO",
+    "CUT",
+    "IN",
+    "SNACK",
+    "GROUP",
+    "BY",
+    "TEMPT",
+    "AND",
+    "AS",
+    "WEARY"
+  ]
+}

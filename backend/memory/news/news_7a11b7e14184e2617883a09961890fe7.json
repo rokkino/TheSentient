@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SPX Technologies announces retirement of executive J. Randall Data",
+  "link": "https://www.investing.com/news/sec-filings/spx-technologies-announces-retirement-of-executive-j-randall-data-93CH-4480416",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T23:04:26",
+  "providerPublishTime": 1770069866.0,
+  "text": "SPX Technologies announces retirement of executive J. Randall Data",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "J",
+    "SPX",
+    "DATA",
+    "OF"
+  ],
+  "relatedTickers": [
+    "J",
+    "SPX",
+    "DATA",
+    "OF"
+  ]
+}

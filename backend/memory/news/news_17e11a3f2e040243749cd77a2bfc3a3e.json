@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "TD’s Bharadwaj Sees Dollar Erasing 2026 Loss With February Bump",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/td-s-bharadwaj-sees-dollar-erasing-2026-loss-with-february-bump",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:16:50",
+  "providerPublishTime": 1770067010.0,
+  "text": "The dollar is likely to extend its rebound this month in what is typically a strong part of the year for US economic data, according to Jayati Bharadwaj, a currency strategist at TD Securities.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikG5FB0biWik/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "US",
+    "LOSS",
+    "YEAR",
+    "FOR",
+    "MONTH",
+    "IN",
+    "THIS",
+    "DATA",
+    "WHAT",
+    "A"
+  ],
+  "relatedTickers": [
+    "US",
+    "LOSS",
+    "YEAR",
+    "FOR",
+    "MONTH",
+    "IN",
+    "THIS",
+    "DATA",
+    "WHAT",
+    "A"
+  ]
+}

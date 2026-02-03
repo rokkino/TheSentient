@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Analysts reset Amazon stock price target before earnings",
+  "link": "https://www.thestreet.com/investing/stocks/analysts-reset-amazon-stock-price-target-before-earnings",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-03T18:17:00",
+  "providerPublishTime": 1770139020.0,
+  "text": "The past year has shown that the Magnificent 7, as the best stock bets to own, was overhyped. Case in point: Amazon (AMZN). Its stock has gained about 2% over the past year, at the time of writing, Tuesday morning, Feb. 3, according to Yahoo Finance. Meanwhile, the SPDR S&P 500 index (SPY) is ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/98e2b0d366988a2ac6d25dcc29f0d57e",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AMZN",
+    "HAS",
+    "STOCK",
+    "SHOWN",
+    "P",
+    "OF",
+    "PRICE",
+    "OVER",
+    "FEB",
+    "OWN"
+  ],
+  "relatedTickers": [
+    "AMZN",
+    "HAS",
+    "STOCK",
+    "SHOWN",
+    "P",
+    "OF",
+    "PRICE",
+    "OVER",
+    "FEB",
+    "OWN"
+  ]
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "timestamp": "2026-02-03T19:25:10.326315",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "[Errno 22] Invalid argument"
+  },
+  {
+    "timestamp": "2026-02-03T19:25:17.814629",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "[Errno 22] Invalid argument"
+  },
+  {
+    "timestamp": "2026-02-03T19:26:10.278016",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "[Errno 22] Invalid argument"
+  },
+  {
+    "timestamp": "2026-02-03T19:26:17.791332",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "[Errno 22] Invalid argument"
+  },
+  {
+    "timestamp": "2026-02-03T20:02:32.204830",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL PLTR (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-03T20:02:32.357074",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL NXPI (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-03T20:02:32.521616",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL RMBS (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-03T20:02:32.714841",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed TER: Failed to place order: {\"code\":42210000,\"message\":\"asset \\\"TER\\\" cannot be sold short\"}"
+  }
+]

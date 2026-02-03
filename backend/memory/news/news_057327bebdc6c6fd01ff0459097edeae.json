@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Veteran analyst delivers surprise verdict on Tesla, Nvidia",
+  "link": "https://finance.yahoo.com/news/veteran-analyst-delivers-surprise-verdict-220300327.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-02T22:03:00",
+  "providerPublishTime": 1770066180.0,
+  "text": "Wall Street has effectively spent the past three years obsessing over chatbots, prompts, and large language models. However, veteran tech analyst Dan Ives is making the case that investors are looking in the wrong place. Ives feels the real money from AI will eventually come from machines ...",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/6d7f4059f9432e3d0f8f1a4c509fb0a1",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARE",
+    "TECH",
+    "SPENT",
+    "FROM",
+    "PAST",
+    "AND",
+    "ON",
+    "REAL",
+    "IN",
+    "YEARS"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "TECH",
+    "SPENT",
+    "FROM",
+    "PAST",
+    "AND",
+    "ON",
+    "REAL",
+    "IN",
+    "YEARS"
+  ]
+}

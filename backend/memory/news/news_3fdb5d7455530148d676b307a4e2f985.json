@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Intel CEO says company will make GPUs, popularized by Nvidia",
+  "link": "https://finance.yahoo.com/news/intel-ceo-says-company-gpus-181723616.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-03T18:17:23",
+  "providerPublishTime": 1770139043.0,
+  "text": "Intel CEO Lip-Bu Tan on Tuesday said the company ​plans to build graphics processing units (GPUs), the category ‌of chip popularized by Nvidia.  Qualcomm executive Eric Demmers last month went to Intel, a move ⁠first reported by industry ‌publication CRN and later confirmed by Demmers on LinkedIn.  In an interview with Reuters on ‍the sidelines of the Cisco AI Summit, Tan said the GPU effort is being overseen by Intel's data center chip chief ​Kevork Kechichian.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/e7a8f2dce8256a05b2c616a96080b689",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "INTEL",
+    "LAST",
+    "BUILD",
+    "UNITS",
+    "NVDA",
+    "CHIP",
+    "OF",
+    "SAYS",
+    "LIP"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "INTEL",
+    "LAST",
+    "BUILD",
+    "UNITS",
+    "NVDA",
+    "CHIP",
+    "OF",
+    "SAYS",
+    "LIP"
+  ]
+}

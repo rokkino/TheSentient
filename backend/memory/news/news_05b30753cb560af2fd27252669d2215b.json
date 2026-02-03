@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: Avanza Q4 2025 sees strong growth, stock rises",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-avanza-q4-2025-sees-strong-growth-stock-rises-93CH-4482753",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:58:51",
+  "providerPublishTime": 1770141531.0,
+  "text": "Earnings call transcript: Avanza Q4 2025 sees strong growth, stock rises",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "CALL",
+    "SEES",
+    "RISES"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "CALL",
+    "SEES",
+    "RISES"
+  ]
+}

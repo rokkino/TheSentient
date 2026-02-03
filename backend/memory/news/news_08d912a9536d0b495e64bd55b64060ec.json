@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 Axsome Therapeutics For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-axsome-therapeutics-for-2-february-93CH-4480401",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:51:19",
+  "providerPublishTime": 1770069079.0,
+  "text": "Form 144 Axsome Therapeutics For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "FORM"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Saudi Regulator Says Foreign Ownership Limits Under Review",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/saudi-regulator-says-foreign-stock-ownership-limits-under-review",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T15:51:54",
+  "providerPublishTime": 1770043914.0,
+  "text": "Saudi Arabia’s Capital Market Authority said a review of rules that limit foreign ownership in local stocks is underway as the kingdom looks to open further to overseas investors.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itzg.1gQ5rdI/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OPEN",
+    "UNDER",
+    "AS",
+    "RULES",
+    "IS",
+    "LOOKS",
+    "SAUDI",
+    "S",
+    "LIMIT",
+    "TO"
+  ],
+  "relatedTickers": [
+    "OPEN",
+    "UNDER",
+    "AS",
+    "RULES",
+    "IS",
+    "LOOKS",
+    "SAUDI",
+    "S",
+    "LIMIT",
+    "TO"
+  ]
+}

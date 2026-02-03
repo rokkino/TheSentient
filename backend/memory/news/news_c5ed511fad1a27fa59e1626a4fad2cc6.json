@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Private Credit Grows in Singapore as Australia’s IFM Joins List",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/private-credit-grows-in-singapore-as-australia-s-ifm-joins-list",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:00:00",
+  "providerPublishTime": 1770066000.0,
+  "text": "Singapore has attracted another international asset manager to set up shop, adding to a growing list as the city-state seeks to strengthen its presence in the burgeoning $1.7 trillion private credit market.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iusIxDeTR6AE/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "SEEKS",
+    "UP",
+    "IN",
+    "STATE",
+    "SHOP",
+    "A",
+    "ITS",
+    "JOINS",
+    "IFM"
+  ],
+  "relatedTickers": [
+    "AS",
+    "SEEKS",
+    "UP",
+    "IN",
+    "STATE",
+    "SHOP",
+    "A",
+    "ITS",
+    "JOINS",
+    "IFM"
+  ]
+}

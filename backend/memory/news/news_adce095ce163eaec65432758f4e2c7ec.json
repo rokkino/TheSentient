@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tens of billions wiped off media and financial data groups after Anthropic AI launch",
+  "link": "https://www.ft.com/content/48ec5657-c2e7-4111-a236-24a96a8d49e7",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T17:53:58",
+  "providerPublishTime": 1770137638.0,
+  "text": "Shares in LexisNexis owner Relx fall 15% after new tools for Claude Cowork unveiled",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F71f785c0-5123-4146-a72d-d467384ba134.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "AFTER",
+    "NEW",
+    "OWNER",
+    "WIPED",
+    "FALL",
+    "AI",
+    "FOR",
+    "MEDIA",
+    "RELX"
+  ],
+  "relatedTickers": [
+    "IN",
+    "AFTER",
+    "NEW",
+    "OWNER",
+    "WIPED",
+    "FALL",
+    "AI",
+    "FOR",
+    "MEDIA",
+    "RELX"
+  ]
+}

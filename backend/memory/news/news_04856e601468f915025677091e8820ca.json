@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Cathie Wood's Ark Invest Doubles Down on BitMine, Coinbase Stocks Amid Bitcoin Plunge",
+  "link": "https://finance.yahoo.com/news/cathie-woods-ark-invest-doubles-181951087.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-03T18:19:51",
+  "providerPublishTime": 1770139191.0,
+  "text": "Cathie Wood's investment firm, Ark Invest, added exposure to crypto-related equities despite a continuing slide in crypto prices.",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/6f08ca15fc902e7d73057e0e98a73f1f",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TO",
+    "IN",
+    "BTC-USD",
+    "ON",
+    "A",
+    "FIRM",
+    "DOWN",
+    "WOOD",
+    "AMID",
+    "ARK"
+  ],
+  "relatedTickers": [
+    "TO",
+    "IN",
+    "BTC-USD",
+    "ON",
+    "A",
+    "FIRM",
+    "DOWN",
+    "WOOD",
+    "AMID",
+    "ARK"
+  ]
+}

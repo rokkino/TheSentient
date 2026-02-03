@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Is Nvidia Your Ticket to Becoming a Millionaire?",
+  "link": "https://finance.yahoo.com/news/nvidia-ticket-becoming-millionaire-222000193.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T22:20:00",
+  "providerPublishTime": 1770067200.0,
+  "text": "Nvidia's growth should outperform the market over the next few years.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/c66ec98ba8a5a7cc06b3b58c1ca0d3e5",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IS",
+    "NEXT",
+    "FEW",
+    "YOUR",
+    "YEARS",
+    "TO",
+    "S",
+    "NVDA",
+    "OVER",
+    "THE"
+  ],
+  "relatedTickers": [
+    "IS",
+    "NEXT",
+    "FEW",
+    "YOUR",
+    "YEARS",
+    "TO",
+    "S",
+    "NVDA",
+    "OVER",
+    "THE"
+  ]
+}

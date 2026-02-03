@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Apple’s AI Deals And India Shift Reframe Growth And Supply Chain",
+  "link": "https://finance.yahoo.com/news/apple-ai-deals-india-shift-181349464.html",
+  "publisher": "Simply Wall St.",
+  "timestamp": "2026-02-03T18:13:49",
+  "providerPublishTime": 1770138829.0,
+  "text": "Apple (NasdaqGS:AAPL) is acquiring AI audio startup Q.ai in a US$2b deal, expanding its capabilities in voice and sound-focused artificial intelligence. The company has agreed a new multi year partnership with Google to bring Gemini AI into Siri and its Foundation models. India has introduced a policy allowing Apple to supply manufacturing equipment tax free to local partners, supporting its production build out in the country. For investors following Apple (NasdaqGS:AAPL), these moves...",
+  "thumbnail": "https://media.zenfs.com/en/simply_wall_st__316/69084628647944e382f8e555f97913e8",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DEAL",
+    "WITH",
+    "SOUND",
+    "SIRI",
+    "SHIFT",
+    "FOR",
+    "HAS",
+    "INDIA",
+    "BUILD",
+    "APPLE"
+  ],
+  "relatedTickers": [
+    "DEAL",
+    "WITH",
+    "SOUND",
+    "SIRI",
+    "SHIFT",
+    "FOR",
+    "HAS",
+    "INDIA",
+    "BUILD",
+    "APPLE"
+  ]
+}

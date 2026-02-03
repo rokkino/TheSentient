@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Could This Beaten-Down AI Stock Stage the Comeback of 2026?",
+  "link": "https://finance.yahoo.com/news/could-beaten-down-ai-stock-142000332.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T14:20:00",
+  "providerPublishTime": 1769952000.0,
+  "text": "Could This Beaten-Down AI Stock Stage the Comeback of 2026?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0d421b625178d32e7fa8cad41ee491a9",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STAGE",
+    "THIS",
+    "COULD",
+    "DOWN",
+    "AI",
+    "THE",
+    "STOCK",
+    "OF"
+  ],
+  "relatedTickers": [
+    "STAGE",
+    "THIS",
+    "COULD",
+    "DOWN",
+    "AI",
+    "THE",
+    "STOCK",
+    "OF"
+  ]
+}

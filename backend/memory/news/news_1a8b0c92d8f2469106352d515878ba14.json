@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 FIRST HORIZON CORP For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-144-first-horizon-corp-for-2-february-93CH-4480386",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:39:19",
+  "providerPublishTime": 1770068359.0,
+  "text": "Form 144 FIRST HORIZON CORP For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "FIRST",
+    "CORP",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "FIRST",
+    "CORP",
+    "FORM"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Pfizer’s stock falls after mixed response to weight-loss data for drug set to compete with Lilly’s Zepbound",
+  "link": "https://www.marketwatch.com/story/pfizer-says-once-a-month-weight-loss-drug-works-as-it-forecasts-profit-decline-5c16ffa4?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T17:43:00",
+  "providerPublishTime": 1770136980.0,
+  "text": "Pfizer on Tuesday hailed a study of a weight-loss-drug candidate while forecasting a profit decline due to the impact of the Trump administration’s policies on pricing and tariffs.",
+  "thumbnail": "https://images.mktw.net/im-51413532",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WITH",
+    "FOR",
+    "STOCK",
+    "OF",
+    "TRUMP",
+    "FALLS",
+    "DUE",
+    "SET",
+    "MIXED",
+    "WHILE"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "FOR",
+    "STOCK",
+    "OF",
+    "TRUMP",
+    "FALLS",
+    "DUE",
+    "SET",
+    "MIXED",
+    "WHILE"
+  ]
+}

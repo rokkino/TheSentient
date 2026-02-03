@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Shuttle Pharmaceuticals extends consulting agreement with interim CEO",
+  "link": "https://www.investing.com/news/sec-filings/shuttle-pharmaceuticals-extends-consulting-agreement-with-interim-ceo-93CH-4480400",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:49:23",
+  "providerPublishTime": 1770068963.0,
+  "text": "Shuttle Pharmaceuticals extends consulting agreement with interim CEO",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "CEO"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "CEO"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SpaceX buys xAI uniting crucial parts of Musk’s empire",
+  "link": "https://www.ft.com/content/8ee76f65-74d9-4679-a2b0-cd8fc3721a8d",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-02T22:21:43",
+  "providerPublishTime": 1770067303.0,
+  "text": "Rocket company and AI model builder to combine as billionaire envisions data centres in space",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ffa138fd9-11b7-4b0f-8e52-a3b70802dd1a.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUYS",
+    "AS",
+    "SPACE",
+    "DATA",
+    "AND",
+    "S",
+    "TO",
+    "PARTS",
+    "XAI",
+    "AI"
+  ],
+  "relatedTickers": [
+    "BUYS",
+    "AS",
+    "SPACE",
+    "DATA",
+    "AND",
+    "S",
+    "TO",
+    "PARTS",
+    "XAI",
+    "AI"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Standard Chartered Cuts Near-Term Solana Forecast, Sees $2,000 by Decade's End",
+  "link": "https://finance.yahoo.com/news/standard-chartered-cuts-near-term-151021962.html",
+  "publisher": "decrypt",
+  "timestamp": "2026-02-03T15:10:21",
+  "providerPublishTime": 1770127821.0,
+  "text": "Standard Chartered analyst says Solana's \"ultra-low-cost\" model will dominate micropayments, but scaling may take several more years.",
+  "thumbnail": "https://media.zenfs.com/en/decrypt_157/874254b77b708f47a00a7ba96b10773f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ULTRA",
+    "END",
+    "SAYS",
+    "SEES",
+    "BUT",
+    "NEAR",
+    "TERM",
+    "YEARS",
+    "WILL",
+    "MORE"
+  ],
+  "relatedTickers": [
+    "ULTRA",
+    "END",
+    "SAYS",
+    "SEES",
+    "BUT",
+    "NEAR",
+    "TERM",
+    "YEARS",
+    "WILL",
+    "MORE"
+  ]
+}

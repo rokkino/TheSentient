@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk warns on profits and sales amid Trump drug price crackdown",
+  "link": "https://www.investing.com/news/stock-market-news/novo-nordisk-warns-of-hit-to-profits-and-sales-amid-trump-drug-price-crackdown-4482674",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:54:54",
+  "providerPublishTime": 1770141294.0,
+  "text": "Novo Nordisk warns on profits and sales amid Trump drug price crackdown",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TRUMP",
+    "ON",
+    "DRUG",
+    "WARNS",
+    "AND",
+    "NOVO",
+    "AMID",
+    "PRICE",
+    "SALES"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "ON",
+    "DRUG",
+    "WARNS",
+    "AND",
+    "NOVO",
+    "AMID",
+    "PRICE",
+    "SALES"
+  ]
+}

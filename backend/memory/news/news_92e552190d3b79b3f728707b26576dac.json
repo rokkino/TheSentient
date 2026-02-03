@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Why You Still Feel Broke When You’re Doing ‘Everything Right’ With Money",
+  "link": "https://finance.yahoo.com/news/why-still-feel-broke-doing-140005107.html",
+  "publisher": "GOBankingRates",
+  "timestamp": "2026-02-01T14:00:05",
+  "providerPublishTime": 1769950805.0,
+  "text": "Why You Still Feel Broke When You’re Doing ‘Everything Right’ With Money",
+  "thumbnail": "https://media.zenfs.com/en/gobankingrates_644/0984c26940ae6dc27ccdb0bfe2beb3cd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "RIGHT",
+    "WHEN",
+    "MONEY",
+    "YOU",
+    "DOING",
+    "BROKE",
+    "FEEL",
+    "RE",
+    "STILL"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "RIGHT",
+    "WHEN",
+    "MONEY",
+    "YOU",
+    "DOING",
+    "BROKE",
+    "FEEL",
+    "RE",
+    "STILL"
+  ]
+}

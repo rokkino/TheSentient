@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "If You'd Put $100 into McDonald's 1965 IPO, Here's What It Would Be Worth Today",
+  "link": "https://finance.yahoo.com/news/youd-put-100-mcdonalds-1965-141300550.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T14:13:00",
+  "providerPublishTime": 1769951580.0,
+  "text": "If You'd Put $100 into McDonald's 1965 IPO, Here's What It Would Be Worth Today",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/d7c59f0c3326b803cafe1d24f4b6ccf2",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PUT",
+    "IPO",
+    "TODAY",
+    "YOU",
+    "IT",
+    "INTO",
+    "WHAT",
+    "S",
+    "WORTH",
+    "D"
+  ],
+  "relatedTickers": [
+    "PUT",
+    "IPO",
+    "TODAY",
+    "YOU",
+    "IT",
+    "INTO",
+    "WHAT",
+    "S",
+    "WORTH",
+    "D"
+  ]
+}

@@ -64,6 +64,7 @@ from services.gemini_service import GeminiService
 from services.scheduler_service import scheduler_service
 from services.scheduler_jobs import execute_orders_job, analyze_earnings_job, refresh_earnings_cache_job
 from services.earnings_service import earnings_service
+from services.backtest_service import backtest_service
 from websocket_manager import WebSocketManager
 from models.user import init_db, get_db, User, SessionLocal
 from models.bot import Bot, Decision
@@ -174,6 +175,12 @@ ai_service = AIService()
 # Initialize Alpaca service only if available (optional - we use IG Markets now)
 alpaca_service = AlpacaService() if ALPACA_AVAILABLE and AlpacaService else None
 ws_manager = WebSocketManager()
+shared_tabs: Dict[str, Dict[str, Any]] = {}
+
+def _serialize_shared_tab(tab: Dict[str, Any]) -> Dict[str, Any]:
+    data = dict(tab)
+    data["participants"] = list(tab.get("participants", set()))
+    return data
 
 # Pydantic models
 class WatchlistItem(BaseModel):
@@ -194,6 +201,9 @@ class ChartRequest(BaseModel):
     ticker: str
     timeframe: str
     chart_type: str = "candle"
+    start_date: Optional[str] = None  # ISO format: YYYY-MM-DD
+    end_date: Optional[str] = None    # ISO format: YYYY-MM-DD
+    extend_history: bool = False      # If true, fetch maximum history
 
 class SearchRequest(BaseModel):
     query: str
@@ -261,6 +271,11 @@ class ChatMessage(BaseModel):
     invite_llama: bool = False
     invite_gemini: bool = False
     is_search: bool = False
+
+class SharedTabCreate(BaseModel):
+    tab_type: str
+    tab_name: str
+    tab_state: Dict[str, Any]
     
 class ChatHistoryClear(BaseModel):
     recipient_id: Optional[int] = None
@@ -385,6 +400,14 @@ class DecisionUpdate(BaseModel):
     reasoning: Optional[str] = None
     status: Optional[str] = None  # PENDING, EXECUTED, CANCELLED, FAILED
 
+class BacktestRunRequest(BaseModel):
+    universe: str = "S&P 500"
+    start_year: int
+    end_year: int
+    capital: float = 1000.0
+    min_confidence: int = 30
+    limit: Optional[int] = None
+
 # API Routes
 @app.get("/")
 async def root():
@@ -441,7 +464,7 @@ async def streamlit_start():
 
     try:
         subprocess.Popen(
-            [sys.executable, "-m", "streamlit", "run", "app.py", "--server.port", "8501"],
+            [sys.executable, "-m", "streamlit", "run", "app.py", "--server.port", "8501", "--server.headless", "true"],
             cwd=streamlit_dir,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -700,7 +723,10 @@ async def get_chart(request: ChartRequest):
         data = await market_data_service.get_chart_data(
             request.ticker,
             request.timeframe,
-            request.chart_type
+            request.chart_type,
+            start_date=request.start_date,
+            end_date=request.end_date,
+            extend_history=request.extend_history
         )
         return data
     except Exception as e:
@@ -795,6 +821,33 @@ async def search_alpaca_assets(query: str, db: Session = Depends(get_db), curren
         print(f"Error searching Alpaca assets: {e}")
         # Fallback to local mapper on error
         return {"results": symbol_mapper.search(query)}
+
+# Backtest Endpoints
+@app.post("/api/backtest/run")
+async def run_backtest(req: BacktestRunRequest):
+    """Start a new backtest job"""
+    job_id = await backtest_service.start_backtest(
+        universe=req.universe,
+        start_year=req.start_year,
+        end_year=req.end_year,
+        capital=req.capital,
+        min_confidence=req.min_confidence,
+        tickers_limit=req.limit
+    )
+    return {"job_id": job_id, "status": "STARTING"}
+
+@app.get("/api/backtest/active")
+async def get_active_backtests():
+    """Get list of active backtest jobs"""
+    return {"active_jobs": backtest_service.get_active_jobs()}
+
+@app.get("/api/backtest/status/{job_id}")
+async def get_backtest_status(job_id: str):
+    """Get status of a specific backtest job"""
+    status = backtest_service.get_job_status(job_id)
+    if not status:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return status
 
 
 # Watchlist Endpoints
@@ -1339,6 +1392,55 @@ async def delete_chat_message(message_id: str, current_user: User = Depends(get_
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+# Shared Tabs (Live Collaboration)
+@app.post("/api/shared-tabs")
+async def create_shared_tab(payload: SharedTabCreate, current_user: User = Depends(get_current_user)):
+    """Create a live shared tab session."""
+    share_id = str(uuid.uuid4())
+    now_iso = datetime.now(timezone.utc).isoformat()
+    shared_tabs[share_id] = {
+        "id": share_id,
+        "owner_id": current_user.id,
+        "owner_username": current_user.username,
+        "tab_type": payload.tab_type,
+        "tab_name": payload.tab_name,
+        "tab_state": payload.tab_state or {},
+        "created_at": now_iso,
+        "updated_at": now_iso,
+        "active": True,
+        "participants": {current_user.id},
+    }
+    return {"share_id": share_id, "shared_tab": _serialize_shared_tab(shared_tabs[share_id])}
+
+@app.get("/api/shared-tabs/{share_id}")
+async def get_shared_tab(share_id: str, current_user: User = Depends(get_current_user)):
+    """Fetch a shared tab session."""
+    tab = shared_tabs.get(share_id)
+    if not tab or not tab.get("active"):
+        raise HTTPException(status_code=404, detail="Shared tab not found")
+    return {"shared_tab": _serialize_shared_tab(tab)}
+
+@app.post("/api/shared-tabs/{share_id}/stop")
+async def stop_shared_tab(share_id: str, current_user: User = Depends(get_current_user)):
+    """Stop a shared tab session (owner only)."""
+    tab = shared_tabs.get(share_id)
+    if not tab or not tab.get("active"):
+        raise HTTPException(status_code=404, detail="Shared tab not found")
+    if tab.get("owner_id") != current_user.id:
+        raise HTTPException(status_code=403, detail="Not authorized to stop this share")
+    tab["active"] = False
+    tab["updated_at"] = datetime.now(timezone.utc).isoformat()
+    participants = list(tab.get("participants", set()))
+    if participants:
+        await ws_manager.broadcast_to_users({
+            "type": "tab_stopped",
+            "share_id": share_id,
+            "owner_id": tab.get("owner_id"),
+            "owner_username": tab.get("owner_username"),
+        }, participants)
+    shared_tabs.pop(share_id, None)
+    return {"message": "Shared tab stopped"}
+
 # Strategy Endpoints
 @app.get("/api/strategies")
 async def get_strategies(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -1540,122 +1642,6 @@ async def get_alpaca_portfolio_history(
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-# Interactive Brokers API endpoints
-# Note: IB requires TWS/Gateway running locally for connection
-@app.get("/api/ib/account")
-async def get_ib_account(
-    host: str = "127.0.0.1",
-    port: int = 7497,
-    client_id: int = 1,
-    current_user: User = Depends(get_current_user)
-):
-    """Get Interactive Brokers account information"""
-    try:
-        from services.interactive_brokers_service import InteractiveBrokersService
-        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
-        
-        if not ib_service.is_configured():
-            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
-        
-        account_info = await ib_service.get_account()
-        await ib_service.disconnect()
-        return account_info
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/ib/positions")
-async def get_ib_positions(
-    host: str = "127.0.0.1",
-    port: int = 7497,
-    client_id: int = 1,
-    current_user: User = Depends(get_current_user)
-):
-    """Get all Interactive Brokers positions"""
-    try:
-        from services.interactive_brokers_service import InteractiveBrokersService
-        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
-        
-        if not ib_service.is_configured():
-            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
-        
-        positions = await ib_service.get_positions()
-        await ib_service.disconnect()
-        return positions
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/ib/orders")
-async def get_ib_orders(
-    host: str = "127.0.0.1",
-    port: int = 7497,
-    client_id: int = 1,
-    status: Optional[str] = None,
-    limit: int = 50,
-    current_user: User = Depends(get_current_user)
-):
-    """Get Interactive Brokers orders"""
-    try:
-        from services.interactive_brokers_service import InteractiveBrokersService
-        ib_service = InteractiveBrokersService(host=host, port=port, client_id=client_id)
-        
-        if not ib_service.is_configured():
-            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
-        
-        orders = await ib_service.get_orders(status=status, limit=limit)
-        await ib_service.disconnect()
-        return orders
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-class IBOrderRequest(BaseModel):
-    symbol: str
-    qty: float
-    side: str  # buy or sell
-    order_type: str = "market"  # market or limit
-    limit_price: Optional[float] = None
-    host: str = "127.0.0.1"
-    port: int = 7497
-    client_id: int = 1
-
-@app.post("/api/ib/orders")
-async def place_ib_order(
-    order_data: IBOrderRequest,
-    current_user: User = Depends(get_current_user)
-):
-    """Place an Interactive Brokers order"""
-    try:
-        from services.interactive_brokers_service import InteractiveBrokersService
-        ib_service = InteractiveBrokersService(
-            host=order_data.host,
-            port=order_data.port,
-            client_id=order_data.client_id
-        )
-        
-        if not ib_service.is_configured():
-            raise HTTPException(status_code=503, detail=f"IB service not configured: {ib_service.init_error or 'ib_insync not installed'}")
-        
-        result = await ib_service.place_order(
-            symbol=order_data.symbol,
-            qty=order_data.qty,
-            side=order_data.side,
-            order_type=order_data.order_type,
-            limit_price=order_data.limit_price
-        )
-        await ib_service.disconnect()
-        return result
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
 
 # Bot Endpoints
 @app.post("/api/bots")
@@ -2075,65 +2061,6 @@ async def test_bot_connection(request: TestConnectionRequest, db: Session = Depe
                 import traceback
                 traceback.print_exc()
                 return {"success": False, "message": f"Alpaca connection failed: {str(e)}"}
-        
-        elif broker == 'InteractiveBrokers':
-            from services.interactive_brokers_service import InteractiveBrokersService
-            
-            print(f"[DEBUG] Test IB Connection. Config: {config}")
-            
-            host = config.get('ib_host', '127.0.0.1')
-            port = int(config.get('ib_port', 7497))
-            client_id = int(config.get('ib_client_id', 1))
-            account = config.get('ib_account', '')
-            paper = config.get('ib_paper', True)
-            
-            # Check if ib_insync is available
-            try:
-                from ib_insync import IB
-                IB_AVAILABLE = True
-            except ImportError:
-                IB_AVAILABLE = False
-            
-            if not IB_AVAILABLE:
-                return {
-                    "success": False,
-                    "message": "Libreria ib_insync non installata. Installa con: pip install ib_insync"
-                }
-            
-            try:
-                ib_service = InteractiveBrokersService(
-                    host=host,
-                    port=port,
-                    client_id=client_id,
-                    account=account,
-                    paper=paper
-                )
-                
-                if not ib_service.is_configured():
-                    return {
-                        "success": False,
-                        "message": f"Configurazione IB non valida: {ib_service.init_error or 'Errore sconosciuto'}"
-                    }
-                
-                # Try to connect and get account info
-                account_info = await ib_service.get_account()
-                
-                # Disconnect after test
-                await ib_service.disconnect()
-                
-                return {
-                    "success": True,
-                    "message": f"Connesso a Interactive Brokers! Account: {account_info.get('account_number', 'N/A')}, Saldo: ${account_info.get('portfolio_value', 0):,.2f}"
-                }
-                
-            except Exception as e:
-                err = str(e)
-                if "not connected" in err.lower() or "connection" in err.lower():
-                    return {
-                        "success": False,
-                        "message": f"Impossibile connettersi a TWS/Gateway su {host}:{port}. Assicurati che TWS o IB Gateway sia in esecuzione e che le connessioni API siano abilitate."
-                    }
-                return {"success": False, "message": f"Errore connessione IB: {err}"}
                 
         else:
             # For other brokers (placeholders)
@@ -2463,6 +2390,76 @@ async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
                 )
             elif message.get("type") == "chat_message":
                 pass
+            elif message.get("type") == "tab_join":
+                share_id = message.get("share_id")
+                tab = shared_tabs.get(share_id)
+                if not tab or not tab.get("active"):
+                    await ws_manager.send_personal_message(
+                        {"type": "tab_error", "share_id": share_id, "error": "not_found"},
+                        websocket
+                    )
+                    continue
+                if user_id:
+                    tab["participants"].add(user_id)
+                await ws_manager.broadcast_to_users({
+                    "type": "tab_joined",
+                    "share_id": share_id,
+                    "user_id": user_id,
+                    "username": username,
+                    "participants": list(tab.get("participants", set())),
+                }, tab.get("participants", set()))
+            elif message.get("type") == "tab_leave":
+                share_id = message.get("share_id")
+                tab = shared_tabs.get(share_id)
+                if not tab or not user_id:
+                    continue
+                if user_id in tab.get("participants", set()):
+                    tab["participants"].remove(user_id)
+                await ws_manager.broadcast_to_users({
+                    "type": "tab_left",
+                    "share_id": share_id,
+                    "user_id": user_id,
+                    "username": username,
+                    "participants": list(tab.get("participants", set())),
+                }, tab.get("participants", set()))
+            elif message.get("type") == "tab_update":
+                share_id = message.get("share_id")
+                patch = message.get("patch") or {}
+                tab = shared_tabs.get(share_id)
+                if not tab or not tab.get("active") or not user_id:
+                    continue
+                participants = tab.get("participants", set())
+                if user_id not in participants and user_id != tab.get("owner_id"):
+                    continue
+                if isinstance(patch, dict):
+                    tab_state = tab.get("tab_state", {})
+                    tab_state.update(patch)
+                    tab["tab_state"] = tab_state
+                    tab["updated_at"] = datetime.now(timezone.utc).isoformat()
+                await ws_manager.broadcast_to_users({
+                    "type": "tab_update",
+                    "share_id": share_id,
+                    "patch": patch,
+                    "sender_id": user_id,
+                }, participants)
+            elif message.get("type") == "tab_stop":
+                share_id = message.get("share_id")
+                tab = shared_tabs.get(share_id)
+                if not tab or not tab.get("active") or not user_id:
+                    continue
+                if tab.get("owner_id") != user_id:
+                    continue
+                tab["active"] = False
+                tab["updated_at"] = datetime.now(timezone.utc).isoformat()
+                participants = list(tab.get("participants", set()))
+                if participants:
+                    await ws_manager.broadcast_to_users({
+                        "type": "tab_stopped",
+                        "share_id": share_id,
+                        "owner_id": tab.get("owner_id"),
+                        "owner_username": tab.get("owner_username"),
+                    }, participants)
+                shared_tabs.pop(share_id, None)
     except WebSocketDisconnect:
         await ws_manager.disconnect_and_broadcast(websocket)
 
@@ -2837,59 +2834,34 @@ async def test_account_connection(
         
     creds = account.get_credentials()
     
+    # Reuse the existing test logic from bot_service or a new service
+    # For now, we'll manually call the test logic here or import it
+    
     try:
+        from services.bot_service import bot_service
+        # Reuse existing test_connection logic but adapt the input
+        # Note: bot_service.test_connection expects {'broker': ..., 'config': ...}
+        
+        # Map credentials to what bot_service expects
+        test_config = {}
         if account.platform == 'Alpaca':
-            from services.alpaca_service import AlpacaService
-            api_key = creds.get('api_key', '').strip()
-            api_secret = creds.get('secret_key', '').strip()
-            paper = creds.get('paper_trading', True)
-            
-            if not api_key or not api_secret:
-                return {"success": False, "message": "API Key e Secret Key sono obbligatorie"}
-            
-            try:
-                service = AlpacaService(api_key=api_key, api_secret=api_secret, paper=paper)
-                if not service.is_configured():
-                    return {"success": False, "message": f"Alpaca non configurato: {service.init_error or 'Errore sconosciuto'}"}
-                account_info = await service.get_account()
-                return {"success": True, "message": f"Connesso ad Alpaca! Account: {account_info.get('account_number', 'N/A')}"}
-            except Exception as e:
-                return {"success": False, "message": f"Errore Alpaca: {str(e)}"}
-                
-        elif account.platform == 'InteractiveBrokers':
-            from services.interactive_brokers_service import InteractiveBrokersService
-            
-            host = creds.get('host', '127.0.0.1')
-            port = int(creds.get('port', 7497))
-            client_id = int(creds.get('client_id', 1))
-            ib_account = creds.get('account', '')
-            paper = creds.get('paper_trading', True)
-            
-            try:
-                service = InteractiveBrokersService(
-                    host=host,
-                    port=port,
-                    client_id=client_id,
-                    account=ib_account,
-                    paper=paper
-                )
-                
-                if not service.is_configured():
-                    return {"success": False, "message": f"IB non configurato: {service.init_error or 'ib_insync non installato'}"}
-                
-                account_info = await service.get_account()
-                await service.disconnect()
-                return {"success": True, "message": f"Connesso a IB! Account: {account_info.get('account_number', 'N/A')}, Saldo: ${account_info.get('portfolio_value', 0):,.2f}"}
-            except Exception as e:
-                err = str(e)
-                if "not connected" in err.lower() or "connection" in err.lower():
-                    return {"success": False, "message": f"Impossibile connettersi a TWS/Gateway su {host}:{port}. Verifica che TWS sia in esecuzione."}
-                return {"success": False, "message": f"Errore IB: {err}"}
-                
+            test_config = {
+                'alpaca_api_key': creds.get('api_key'),
+                'alpaca_api_secret': creds.get('secret_key'),
+                'alpaca_paper': creds.get('paper_trading', True)
+            }
         elif account.platform in ('IG', 'eToro'):
-            return {"success": False, "message": "Platform no longer supported. Use Alpaca or Interactive Brokers."}
-        else:
-            return {"success": False, "message": f"Platform {account.platform} non supportata"}
+            return {"success": False, "message": "Platform no longer supported. Use Alpaca."}
+
+        # Call existing service
+        # We might need to expose a helper in bot_service or just replicate logic
+        # For simplicity, let's just use the existing behavior if possible
+        
+        # Since bot_service.test_connection is an instance method, we can try using it if we have an instance
+        # It's instantiated as bot_service in this file
+        
+        result = await bot_service.test_connection(account.platform, test_config)
+        return result
         
     except Exception as e:
         return {"success": False, "message": str(e)}

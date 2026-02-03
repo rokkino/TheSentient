@@ -13,7 +13,7 @@ REM Start frontend
 start "Frontend Server" cmd /k "cd frontend && npm run dev"
 
 REM Start Streamlit Backtesting (porta 8501)
-start "Backtesting (Streamlit)" cmd /k "cd streamlit_app && python -m streamlit run app.py --server.port 8501"
+start "Backtesting (Streamlit)" cmd /k "cd streamlit_app && python -m streamlit run app.py --server.port 8501 --server.headless true"
 
 echo.
 echo Backend: http://localhost:8001

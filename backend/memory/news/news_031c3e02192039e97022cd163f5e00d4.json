@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: Hubbell’s Q4 2025 earnings beat expectations, stock drops",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-hubbells-q4-2025-earnings-beat-expectations-stock-drops-93CH-4482747",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:54:12",
+  "providerPublishTime": 1770141252.0,
+  "text": "Earnings call transcript: Hubbell’s Q4 2025 earnings beat expectations, stock drops",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "DROPS",
+    "CALL",
+    "BEAT",
+    "S"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "DROPS",
+    "CALL",
+    "BEAT",
+    "S"
+  ]
+}

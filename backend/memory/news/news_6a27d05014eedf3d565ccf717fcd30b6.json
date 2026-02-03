@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Viasat (VSAT) Hits 52-Week High Following Strong 2025",
+  "link": "https://finance.yahoo.com/news/viasat-vsat-hits-52-week-091705466.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T09:17:05",
+  "providerPublishTime": 1770020225.0,
+  "text": "Viasat (VSAT) Hits 52-Week High Following Strong 2025",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/9afa5a667fd081e11c1ccee9c84ee24c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "VSAT",
+    "HIGH",
+    "WEEK",
+    "HITS"
+  ],
+  "relatedTickers": [
+    "VSAT",
+    "HIGH",
+    "WEEK",
+    "HITS"
+  ]
+}

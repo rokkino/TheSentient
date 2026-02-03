@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Steven Romick's Strategic Moves: A Closer Look at Becton Dickinson & Co",
+  "link": "https://finance.yahoo.com/news/steven-romicks-strategic-moves-closer-230031394.html",
+  "publisher": "GuruFocus.com",
+  "timestamp": "2026-02-02T23:00:31",
+  "providerPublishTime": 1770069631.0,
+  "text": "Exploring the Latest Portfolio Adjustments by the FPA Crescent Fund",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOGL",
+    "FUND",
+    "FPA",
+    "BY",
+    "LOOK",
+    "S",
+    "THE",
+    "A",
+    "CO",
+    "AT"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "FUND",
+    "FPA",
+    "BY",
+    "LOOK",
+    "S",
+    "THE",
+    "A",
+    "CO",
+    "AT"
+  ]
+}

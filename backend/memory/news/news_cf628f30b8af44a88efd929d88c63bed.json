@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Waymo valued at $126 billion in latest financing as robotaxis gather steam",
+  "link": "https://www.investing.com/news/stock-market-news/waymo-valued-at-126-billion-in-latest-financing-4480286",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T23:06:32",
+  "providerPublishTime": 1770069992.0,
+  "text": "Waymo valued at $126 billion in latest financing as robotaxis gather steam",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "WAYMO",
+    "IN",
+    "STEAM",
+    "AT"
+  ],
+  "relatedTickers": [
+    "AS",
+    "WAYMO",
+    "IN",
+    "STEAM",
+    "AT"
+  ]
+}

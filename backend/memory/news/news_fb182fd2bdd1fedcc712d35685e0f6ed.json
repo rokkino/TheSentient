@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Peter Mandelson’s lobbying firm tells clients his stake is nearly divested",
+  "link": "https://www.ft.com/content/888924ac-a73d-4163-9f4d-b193c1dd6247",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T14:09:34",
+  "providerPublishTime": 1770124174.0,
+  "text": "Peer has been the subject of revelations that he passed on confidential government information to Jeffrey Epstein",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F4c599a01-c0e7-46e2-aad7-1a2b510ef4f7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TELLS",
+    "TO",
+    "THAT",
+    "ON",
+    "FIRM",
+    "IS",
+    "HAS",
+    "HE",
+    "BEEN",
+    "PETER"
+  ],
+  "relatedTickers": [
+    "TELLS",
+    "TO",
+    "THAT",
+    "ON",
+    "FIRM",
+    "IS",
+    "HAS",
+    "HE",
+    "BEEN",
+    "PETER"
+  ]
+}

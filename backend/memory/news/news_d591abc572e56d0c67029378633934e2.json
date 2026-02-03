@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump says US lawmakers are close to resolution on government funding",
+  "link": "https://www.investing.com/news/economy-news/trump-says-us-lawmakers-are-close-to-resolution-on-government-funding-4480288",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:42:26",
+  "providerPublishTime": 1770068546.0,
+  "text": "Trump says US lawmakers are close to resolution on government funding",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "TRUMP",
+    "TO",
+    "ON",
+    "SAYS",
+    "CLOSE",
+    "US"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "TRUMP",
+    "TO",
+    "ON",
+    "SAYS",
+    "CLOSE",
+    "US"
+  ]
+}

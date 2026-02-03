@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Franklin Templeton’s Latest ETF Taps ‘Booming’ Emerging Markets Debt",
+  "link": "https://finance.yahoo.com/news/franklin-templeton-latest-etf-taps-110000812.html",
+  "publisher": "The Daily Upside",
+  "timestamp": "2026-02-02T11:00:00",
+  "providerPublishTime": 1770026400.0,
+  "text": "Franklin Templeton’s Latest ETF Taps ‘Booming’ Emerging Markets Debt",
+  "thumbnail": "https://media.zenfs.com/en/the_daily_upside_435/81367877263c2fafa2bce891b08ac058",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TAPS",
+    "ETF",
+    "DEBT",
+    "S"
+  ],
+  "relatedTickers": [
+    "TAPS",
+    "ETF",
+    "DEBT",
+    "S"
+  ]
+}

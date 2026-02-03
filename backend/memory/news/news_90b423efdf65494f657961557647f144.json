@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin Drops to Lowest Price Since Trump’s Election Victory",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-03/bitcoin-drops-to-lowest-price-since-trump-s-election-victory",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-03T18:23:19",
+  "providerPublishTime": 1770139399.0,
+  "text": "Bitcoin dropped to its lowest price level since Donald Trump retook the White House a little more than a year ago, erasing the gains registered by the bellwether digital asset since the election victory of the crypto-friendly US president.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i_GjbLO0DfWo/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHITE",
+    "OF",
+    "PRICE",
+    "ASSET",
+    "TRUMP",
+    "AGO",
+    "THAN",
+    "GAINS",
+    "HOUSE",
+    "MORE"
+  ],
+  "relatedTickers": [
+    "WHITE",
+    "OF",
+    "PRICE",
+    "ASSET",
+    "TRUMP",
+    "AGO",
+    "THAN",
+    "GAINS",
+    "HOUSE",
+    "MORE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Our Amphenol Pick Just Hit a Rough Patch. Stick With It.",
+  "link": "https://www.barrons.com/articles/amphenol-stock-hits-rough-patch-stick-with-it-79274685?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T21:57:00",
+  "providerPublishTime": 1770065820.0,
+  "text": "After a strong run,  Amphenol  suffered a setback when it reported earnings last week.  Investors should hold on to the stock.  As companies from  Alphabet  to  Oracle  build out data centers to power AI programs, demand for connectors increases, to the direct benefit of suppliers like Amphenol.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/21524ca905917a224f3c3f69b9aa3756",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JUST",
+    "PATCH",
+    "AS",
+    "LIKE",
+    "AFTER",
+    "WEEK",
+    "FROM",
+    "OUT",
+    "FOR",
+    "ON"
+  ],
+  "relatedTickers": [
+    "JUST",
+    "PATCH",
+    "AS",
+    "LIKE",
+    "AFTER",
+    "WEEK",
+    "FROM",
+    "OUT",
+    "FOR",
+    "ON"
+  ]
+}

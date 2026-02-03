@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nancy Pelosi Just Sold Disney Stock. Should You?",
+  "link": "https://finance.yahoo.com/news/nancy-pelosi-just-sold-disney-150002334.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-01T15:00:02",
+  "providerPublishTime": 1769954402.0,
+  "text": "Nancy Pelosi Just Sold Disney Stock. Should You?",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/743c292a48395c0a1ec79e0a2defcee9",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JUST",
+    "SOLD",
+    "YOU",
+    "STOCK",
+    "NANCY"
+  ],
+  "relatedTickers": [
+    "JUST",
+    "SOLD",
+    "YOU",
+    "STOCK",
+    "NANCY"
+  ]
+}

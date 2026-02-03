@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Roth Capital Upgrades Energy Fuels (UUUU) to ‘Neutral’; Raises PT to $15.00",
+  "link": "https://finance.yahoo.com/news/roth-capital-upgrades-energy-fuels-091650867.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T09:16:50",
+  "providerPublishTime": 1770020210.0,
+  "text": "Roth Capital Upgrades Energy Fuels (UUUU) to ‘Neutral’; Raises PT to $15.00",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/7d3c640f8d7538ac0560d3a309a29d6f",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "UUUU",
+    "FUELS",
+    "ROTH",
+    "PT"
+  ],
+  "relatedTickers": [
+    "TO",
+    "UUUU",
+    "FUELS",
+    "ROTH",
+    "PT"
+  ]
+}

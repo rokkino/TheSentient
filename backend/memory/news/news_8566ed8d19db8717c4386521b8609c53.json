@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "More Russian Bitcoin miners risk exit as BitRiver crisis deepens",
+  "link": "https://www.dlnews.com/articles/markets/russian-bitcoin-miners-in-peril-as-bitriver-crisis-deepens/",
+  "publisher": "DLNews",
+  "timestamp": "2026-02-03T17:21:42",
+  "providerPublishTime": 1770135702.0,
+  "text": "BitRiver CEO Igor Runets arrested on tax evasion charges. Staff say they haven’t been paid for over three months. Expert says smaller mining firms could follow as BitRiver crisis deepens.",
+  "thumbnail": "https://media.zenfs.com/en/dlnews_702/a4bd0889263057e0bab94a52529e974d",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "THREE",
+    "FOR",
+    "T",
+    "OVER",
+    "SAYS",
+    "HAVEN",
+    "CEO",
+    "RISK",
+    "SAY",
+    "COULD"
+  ],
+  "relatedTickers": [
+    "THREE",
+    "FOR",
+    "T",
+    "OVER",
+    "SAYS",
+    "HAVEN",
+    "CEO",
+    "RISK",
+    "SAY",
+    "COULD"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "BTC-USD",
+  "title": "Bitcoin may be in bear market, but there's 'brighter times ahead'",
+  "link": "https://finance.yahoo.com/video/bitcoin-may-bear-market-theres-203810640.html",
+  "publisher": "Yahoo Finance Video",
+  "timestamp": "2026-02-02T20:38:10",
+  "providerPublishTime": 1770061090.0,
+  "text": "Bitcoin prices (BTC-USD) have slumped to a 10-month low, currently hovering above $78,000 per token on Monday as the crypto asset slides further from its record high reached in October 2025. Bitwise Head of Research Ryan Rasmussen comes on the program to talk more about bitcoin's headwinds and where he sees the cryptocurrency climbing to over the next decade. Bitwise operates several of its own bitcoin (BITB, BITC, BTOP) and crypto (BITQ, BITW) exchange-traded funds (ETFs). To watch more expert insights and analysis on the latest market action, check out more&nbsp;Market Domination.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/bfd188f0-0075-11f1-9bdd-2c5be4ad54ef",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HEAD",
+    "AS",
+    "TALK",
+    "NEXT",
+    "WATCH",
+    "FROM",
+    "OUT",
+    "MAY",
+    "AND",
+    "BTC"
+  ],
+  "relatedTickers": [
+    "HEAD",
+    "AS",
+    "TALK",
+    "NEXT",
+    "WATCH",
+    "FROM",
+    "OUT",
+    "MAY",
+    "AND",
+    "BTC"
+  ]
+}

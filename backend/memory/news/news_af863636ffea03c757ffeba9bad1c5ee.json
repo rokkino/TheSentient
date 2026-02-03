@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Eldorado Gold to Buy Foran for $2.8 Billion in Latest Mine Deal Amid Metals Frenzy",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/eldorado-gold-to-buy-copper-miner-foran-for-2-8-billion-after-metals-rally",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T15:04:56",
+  "providerPublishTime": 1770041096.0,
+  "text": "Eldorado Gold Corp. agreed to buy copper-focused Foran Mining Corp. for C$3.8 billion ($2.8 billion), the latest industry tie-up as miners seek to ramp up metals production after a massive price rally over the past year.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i90NC.qeYl9E/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "AS",
+    "AFTER",
+    "YEAR",
+    "FOR",
+    "PAST",
+    "UP",
+    "C",
+    "IN",
+    "RALLY"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "AS",
+    "AFTER",
+    "YEAR",
+    "FOR",
+    "PAST",
+    "UP",
+    "C",
+    "IN",
+    "RALLY"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Bitcoin, ether and major tokens stage relief rally after weekend bloodbath",
+  "link": "https://finance.yahoo.com/news/bitcoin-ether-major-tokens-stage-044131155.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T04:41:31",
+  "providerPublishTime": 1770090091.0,
+  "text": "Bitcoin rebounded toward $79,000 after dipping below $75,000 over the weekend, as traders weighed heavy liquidation-driven selling against macro tailwinds and a potential inflection point for crypto markets.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/b09601aecba2a9a632f87c080469c20b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AFTER",
+    "BELOW",
+    "STAGE",
+    "HEAVY",
+    "A",
+    "RALLY",
+    "MAJOR",
+    "MACRO",
+    "FOR",
+    "ETHER"
+  ],
+  "relatedTickers": [
+    "AFTER",
+    "BELOW",
+    "STAGE",
+    "HEAVY",
+    "A",
+    "RALLY",
+    "MAJOR",
+    "MACRO",
+    "FOR",
+    "ETHER"
+  ]
+}

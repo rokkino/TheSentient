@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BlackRock’s GIP Teams Up With EQT in Bid to Acquire Power Firm AES",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-02/gip-is-said-to-team-up-with-eqt-in-bid-to-acquire-power-firm-aes",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-02T22:57:15",
+  "providerPublishTime": 1770069435.0,
+  "text": "BlackRock Inc.’s Global Infrastructure Partners has teamed up with EQT AB in its bid to acquire power company AES Corp., according to people familiar with the matter.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iPCi2rPIhiyQ/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WITH",
+    "EQT",
+    "ITS",
+    "CORP",
+    "HAS",
+    "FIRM",
+    "AB",
+    "GIP",
+    "INC",
+    "S"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "EQT",
+    "ITS",
+    "CORP",
+    "HAS",
+    "FIRM",
+    "AB",
+    "GIP",
+    "INC",
+    "S"
+  ]
+}

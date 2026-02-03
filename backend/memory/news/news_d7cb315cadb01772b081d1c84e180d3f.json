@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "JM Group Ltd trading halt continues as SEC and NYSE inquiries progress",
+  "link": "https://www.investing.com/news/sec-filings/jm-group-ltd-trading-halt-continues-as-sec-and-nyse-inquiries-progress-93CH-4480388",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:41:01",
+  "providerPublishTime": 1770068461.0,
+  "text": "JM Group Ltd trading halt continues as SEC and NYSE inquiries progress",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LTD",
+    "AS",
+    "NYSE",
+    "GROUP",
+    "AND",
+    "JM",
+    "SEC",
+    "HALT"
+  ],
+  "relatedTickers": [
+    "LTD",
+    "AS",
+    "NYSE",
+    "GROUP",
+    "AND",
+    "JM",
+    "SEC",
+    "HALT"
+  ]
+}

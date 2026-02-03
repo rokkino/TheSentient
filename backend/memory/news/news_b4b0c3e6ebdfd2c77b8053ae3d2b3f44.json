@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Waymo valued at $126 billion in latest financing",
+  "link": "https://finance.yahoo.com/news/waymo-valued-126-billion-latest-221100561.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T22:11:00",
+  "providerPublishTime": 1770066660.0,
+  "text": "Alphabet ‌unit Waymo ‌has raised $16 ⁠billion ‌in its ‍latest fundraising round, ​valuing ‌the self-driving car startup ⁠at $126 ​billion. (Reporting ​by Ateev Bhandari ‍in ⁠Bengaluru; Editing ⁠by ‌Vijay ‌Kishore)",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/2442cb06d8b7ed220ab9e9c2bc10f9f1",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "ATEEV",
+    "ITS",
+    "HAS",
+    "WAYMO",
+    "BY",
+    "UNIT",
+    "SELF",
+    "ROUND",
+    "CAR"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "ATEEV",
+    "ITS",
+    "HAS",
+    "WAYMO",
+    "BY",
+    "UNIT",
+    "SELF",
+    "ROUND",
+    "CAR"
+  ]
+}

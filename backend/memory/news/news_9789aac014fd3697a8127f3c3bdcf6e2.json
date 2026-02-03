@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The era of ‘suitcase money’ is over: Why your offshore crypto is no longer safe from the taxman",
+  "link": "https://finance.yahoo.com/news/era-suitcase-money-over-why-140000078.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-01T14:00:00",
+  "providerPublishTime": 1769950800.0,
+  "text": "The era of ‘suitcase money’ is over: Why your offshore crypto is no longer safe from the taxman",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/c4a6ad4fff1949bcfd60926e7878d57a",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ERA",
+    "MONEY",
+    "IS",
+    "SAFE",
+    "FROM",
+    "YOUR",
+    "NO",
+    "OVER",
+    "THE",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "ERA",
+    "MONEY",
+    "IS",
+    "SAFE",
+    "FROM",
+    "YOUR",
+    "NO",
+    "OVER",
+    "THE",
+    "WHY"
+  ]
+}

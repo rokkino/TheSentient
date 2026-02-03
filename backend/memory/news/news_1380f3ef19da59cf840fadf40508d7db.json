@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US soon to issue general license for oil production in Venezuela, sources say",
+  "link": "https://www.investing.com/news/commodities-news/us-soon-to-issue-general-license-for-oil-production-in-venezuela-sources-say-4482750",
+  "publisher": "All News",
+  "timestamp": "2026-02-03T18:55:29",
+  "providerPublishTime": 1770141329.0,
+  "text": "US soon to issue general license for oil production in Venezuela, sources say",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "OIL",
+    "IN",
+    "FOR",
+    "SOON",
+    "ISSUE",
+    "SAY",
+    "US"
+  ],
+  "relatedTickers": [
+    "TO",
+    "OIL",
+    "IN",
+    "FOR",
+    "SOON",
+    "ISSUE",
+    "SAY",
+    "US"
+  ]
+}

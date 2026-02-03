@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Nvidia Stock Drops. Why Its $100 Billion OpenAI Investment Is in Question.",
+  "link": "https://www.barrons.com/articles/nvidia-stock-price-openai-investment-5af4b646?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-02T21:38:00",
+  "providerPublishTime": 1770064680.0,
+  "text": "Nvidia  stock fell on Monday amid questions about the chip maker’s commitment for a major investment in OpenAI, the developer of ChatGPT.  Nvidia shares ended Monday down 2.9% to $185.61.  The focus is on Nvidia’s relationship with OpenAI.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/be00bb99d7efcf60ce12acbbe3b3af0e",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FOR",
+    "MAJOR",
+    "ON",
+    "DOWN",
+    "IN",
+    "WHY",
+    "CHIP",
+    "FELL",
+    "AMID",
+    "FOCUS"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "MAJOR",
+    "ON",
+    "DOWN",
+    "IN",
+    "WHY",
+    "CHIP",
+    "FELL",
+    "AMID",
+    "FOCUS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Germans can now buy bitcoin, ether, solana products directly from their ING accounts",
+  "link": "https://finance.yahoo.com/news/germans-now-buy-bitcoin-ether-061034060.html",
+  "publisher": "CoinDesk",
+  "timestamp": "2026-02-03T06:10:34",
+  "providerPublishTime": 1770095434.0,
+  "text": "These crypto products receive the same German tax treatment as directly held bitcoin.",
+  "thumbnail": "https://media.zenfs.com/en/coindesk_75/af4067f9d6a5c70593e3e587b82adf61",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NOW",
+    "HELD",
+    "ETHER",
+    "THEIR",
+    "ING",
+    "CAN",
+    "BUY",
+    "FROM",
+    "THESE",
+    "SAME"
+  ],
+  "relatedTickers": [
+    "NOW",
+    "HELD",
+    "ETHER",
+    "THEIR",
+    "ING",
+    "CAN",
+    "BUY",
+    "FROM",
+    "THESE",
+    "SAME"
+  ]
+}

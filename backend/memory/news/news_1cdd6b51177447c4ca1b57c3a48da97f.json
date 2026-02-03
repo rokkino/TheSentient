@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I’m spooked’: Do gold and silver belong in my retirement portfolio after their dramatic fall in value?",
+  "link": "https://www.marketwatch.com/story/im-spooked-do-gold-and-silver-belong-in-my-retirement-portfolio-after-their-dramatic-fall-in-value-a5bc4b3e?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T18:51:00",
+  "providerPublishTime": 1770141060.0,
+  "text": "“Before you ask, there is nothing extreme about 5% of my ‘alternative’ assets.”",
+  "thumbnail": "https://images.mktw.net/im-24072054",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "AFTER",
+    "ABOUT",
+    "GOLD",
+    "M",
+    "VALUE",
+    "FALL",
+    "YOU",
+    "IS",
+    "THEIR"
+  ],
+  "relatedTickers": [
+    "IN",
+    "AFTER",
+    "ABOUT",
+    "GOLD",
+    "M",
+    "VALUE",
+    "FALL",
+    "YOU",
+    "IS",
+    "THEIR"
+  ]
+}

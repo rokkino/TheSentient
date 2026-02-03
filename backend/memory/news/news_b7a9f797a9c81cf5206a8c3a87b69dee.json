@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "ACADIA Pharmaceuticals stock falls after negative EU regulatory vote on Rett drug",
+  "link": "https://www.investing.com/news/stock-market-news/acadia-pharmaceuticals-stock-falls-after-negative-eu-regulatory-vote-on-rett-drug-93CH-4480389",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:41:27",
+  "providerPublishTime": 1770068487.0,
+  "text": "ACADIA Pharmaceuticals stock falls after negative EU regulatory vote on Rett drug",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "VOTE",
+    "AFTER",
+    "FALLS",
+    "EU",
+    "RETT",
+    "ON",
+    "STOCK",
+    "DRUG"
+  ],
+  "relatedTickers": [
+    "VOTE",
+    "AFTER",
+    "FALLS",
+    "EU",
+    "RETT",
+    "ON",
+    "STOCK",
+    "DRUG"
+  ]
+}

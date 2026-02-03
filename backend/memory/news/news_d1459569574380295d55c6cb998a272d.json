@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Waymo announces $16 billion funding round",
+  "link": "https://www.cnbc.com/2026/02/02/waymo-announced-16-billion-fundraising-round.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-02T22:34:18",
+  "providerPublishTime": 1770068058.0,
+  "text": "The Alphabet-owned company said it is now valued at $126 billion.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OWNED",
+    "IS",
+    "AT",
+    "IT",
+    "WAYMO",
+    "ROUND",
+    "THE",
+    "NOW",
+    "SAID"
+  ],
+  "relatedTickers": [
+    "OWNED",
+    "IS",
+    "AT",
+    "IT",
+    "WAYMO",
+    "ROUND",
+    "THE",
+    "NOW",
+    "SAID"
+  ]
+}

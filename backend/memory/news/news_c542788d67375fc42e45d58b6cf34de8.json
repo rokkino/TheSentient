@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Dalrada Technology Group For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-8k-dalrada-technology-group-for-2-february-93CH-4480365",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:30:35",
+  "providerPublishTime": 1770067835.0,
+  "text": "Form 8K Dalrada Technology Group For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FOR",
+    "FORM",
+    "GROUP"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "FORM",
+    "GROUP"
+  ]
+}

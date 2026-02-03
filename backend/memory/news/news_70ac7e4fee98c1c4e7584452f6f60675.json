@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "MetaMask Partners Ondo Finance to Integrate Tokenized US Stocks, ETFs, Commodities",
+  "link": "https://finance.yahoo.com/news/metamask-partners-ondo-finance-integrate-180830639.html",
+  "publisher": "Coinspeaker",
+  "timestamp": "2026-02-03T18:08:30",
+  "providerPublishTime": 1770138510.0,
+  "text": "MetaMask and Ondo Finance have announced an integration bringing tokenized US stocks, ETFs, and commodities directly into MetaMask wallet via Ondo Global Markets. The integration gives non-US MetaMask Wallet app users access to more than 200 tokenized US securities on the Ethereum mainnet including US stocks such as Apple, Amazon, ...",
+  "thumbnail": "https://media.zenfs.com/en/coinspeaker_us_106/054f9e2b7fcadf52032eb99be4adf2c6",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NON",
+    "NVDA",
+    "APPLE",
+    "ETFS",
+    "USERS",
+    "THAN",
+    "AN",
+    "INTO",
+    "GIVES",
+    "VIA"
+  ],
+  "relatedTickers": [
+    "NON",
+    "NVDA",
+    "APPLE",
+    "ETFS",
+    "USERS",
+    "THAN",
+    "AN",
+    "INTO",
+    "GIVES",
+    "VIA"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US shoots down Iranian drone as Middle East tensions escalate",
+  "link": "https://www.ft.com/content/81c72320-dab7-4429-8859-c2bd551ec5a1",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T18:39:58",
+  "providerPublishTime": 1770140398.0,
+  "text": "Iranian gunboats also challenged US-flagged tanker in Strait of Hormuz days before planned negotiations",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F77438627-664b-401f-b1a8-96858f267927.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "EAST",
+    "ALSO",
+    "DOWN",
+    "AS",
+    "DRONE",
+    "OF",
+    "DAYS",
+    "US"
+  ],
+  "relatedTickers": [
+    "IN",
+    "EAST",
+    "ALSO",
+    "DOWN",
+    "AS",
+    "DRONE",
+    "OF",
+    "DAYS",
+    "US"
+  ]
+}

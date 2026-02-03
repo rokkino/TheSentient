@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SM Energy upgraded to ’BB’ by S&P following Civitas merger",
+  "link": "https://www.investing.com/news/stock-market-news/sm-energy-upgraded-to-bb-by-sp-following-civitas-merger-93CH-4480402",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:52:01",
+  "providerPublishTime": 1770069121.0,
+  "text": "SM Energy upgraded to ’BB’ by S&P following Civitas merger",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BY",
+    "S",
+    "TO",
+    "SM",
+    "P",
+    "BB"
+  ],
+  "relatedTickers": [
+    "BY",
+    "S",
+    "TO",
+    "SM",
+    "P",
+    "BB"
+  ]
+}

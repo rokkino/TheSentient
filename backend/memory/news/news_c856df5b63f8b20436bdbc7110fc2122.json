@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The new rules of finance, courtesy of Elon Musk",
+  "link": "https://www.ft.com/content/8a012108-3560-4cf4-8716-740cfb992ba6",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T18:45:58",
+  "providerPublishTime": 1770140758.0,
+  "text": "Merger of SpaceX and xAI epitomises the way Big Tech has turned the corporate world on its head",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F0721c149-b320-4f51-824f-6ea817cfd6dd.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NEW",
+    "ITS",
+    "ON",
+    "WAY",
+    "XAI",
+    "AND",
+    "HAS",
+    "WORLD",
+    "BIG",
+    "RULES"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "ITS",
+    "ON",
+    "WAY",
+    "XAI",
+    "AND",
+    "HAS",
+    "WORLD",
+    "BIG",
+    "RULES"
+  ]
+}

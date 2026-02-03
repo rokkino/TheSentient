@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "Investment Firm Maytree Bought Over $11 Million in AXTI. Is the Stock a Buy?",
+  "link": "https://finance.yahoo.com/news/investment-firm-maytree-bought-over-174232850.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-03T17:42:32",
+  "providerPublishTime": 1770136952.0,
+  "text": "AXT, Inc. develops advanced semiconductor substrates used in data centers, 5G, fiber optics, and solar applications worldwide.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/7ec075fe9536bea318d2f65004dd291d",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "USED",
+    "IN",
+    "SOLAR",
+    "A",
+    "FIRM",
+    "IS",
+    "INC",
+    "FIBER",
+    "AND",
+    "BUY"
+  ],
+  "relatedTickers": [
+    "USED",
+    "IN",
+    "SOLAR",
+    "A",
+    "FIRM",
+    "IS",
+    "INC",
+    "FIBER",
+    "AND",
+    "BUY"
+  ]
+}

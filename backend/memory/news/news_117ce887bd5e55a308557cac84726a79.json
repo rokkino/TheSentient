@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ray Dalio warns the world is ‘on the brink’ of a capital war",
+  "link": "https://www.cnbc.com/2026/02/03/ray-dalio-warns-capital-war-gold-hedge.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T16:37:07",
+  "providerPublishTime": 1770133027.0,
+  "text": "The billionaire Bridgewater founder also weighed in on investing in gold after the metal was gripped by a sharp sell-off.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WAR",
+    "SELL",
+    "METAL",
+    "OF",
+    "SHARP",
+    "BRINK",
+    "ALSO",
+    "AFTER",
+    "DALIO",
+    "WORLD"
+  ],
+  "relatedTickers": [
+    "WAR",
+    "SELL",
+    "METAL",
+    "OF",
+    "SHARP",
+    "BRINK",
+    "ALSO",
+    "AFTER",
+    "DALIO",
+    "WORLD"
+  ]
+}

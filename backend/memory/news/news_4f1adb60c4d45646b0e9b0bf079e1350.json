@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "NVDA",
+  "title": "US Equity Indexes Slump as Investors Rotate Out of Technology",
+  "link": "https://finance.yahoo.com/news/us-equity-indexes-slump-investors-185333053.html",
+  "publisher": "MT Newswires",
+  "timestamp": "2026-02-03T18:53:33",
+  "providerPublishTime": 1770141213.0,
+  "text": "US equity indexes fell in midday trading on Tuesday as a sell-off in technology coincided with a mov",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "SLUMP",
+    "WITH",
+    "ON",
+    "A",
+    "AS",
+    "OUT",
+    "SELL",
+    "MOV",
+    "NVDA"
+  ],
+  "relatedTickers": [
+    "IN",
+    "SLUMP",
+    "WITH",
+    "ON",
+    "A",
+    "AS",
+    "OUT",
+    "SELL",
+    "MOV",
+    "NVDA"
+  ]
+}

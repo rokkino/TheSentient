@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Alphabet vs. Amazon: Which One Will Make You Richer?",
+  "link": "https://finance.yahoo.com/news/alphabet-vs-amazon-one-richer-143800342.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-01T14:38:00",
+  "providerPublishTime": 1769953080.0,
+  "text": "Alphabet vs. Amazon: Which One Will Make You Richer?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/aa1a4dbd78b74b44684a625e612b9546",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ONE",
+    "YOU",
+    "WHICH",
+    "MAKE",
+    "WILL",
+    "VS"
+  ],
+  "relatedTickers": [
+    "ONE",
+    "YOU",
+    "WHICH",
+    "MAKE",
+    "WILL",
+    "VS"
+  ]
+}

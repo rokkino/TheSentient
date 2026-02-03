@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 6K TIAN RUIXIANG HOLDINGS LTD For: 2 February",
+  "link": "https://www.investing.com/news/filings/form-6k-tian-ruixiang-holdings-ltd-for-2-february-93CH-4480361",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:30:32",
+  "providerPublishTime": 1770067832.0,
+  "text": "Form 6K TIAN RUIXIANG HOLDINGS LTD For: 2 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LTD",
+    "FOR",
+    "FORM",
+    "TIAN"
+  ],
+  "relatedTickers": [
+    "LTD",
+    "FOR",
+    "FORM",
+    "TIAN"
+  ]
+}

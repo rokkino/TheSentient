@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AI will supercharge sports team valuations, says Arctos Partners’ Charles",
+  "link": "https://www.cnbc.com/2026/02/03/arctos-ian-charles-ai-sports-team-valuations.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-03T16:58:04",
+  "providerPublishTime": 1770134284.0,
+  "text": "Arctos is the only private equity firm approved to own equity in teams across all five major North American professional leagues: the NFL, NBA, MLB, NHL and MLS.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TEAMS",
+    "MLS",
+    "ONLY",
+    "SAYS",
+    "AI",
+    "TEAM",
+    "OWN",
+    "NHL",
+    "NORTH",
+    "MLB"
+  ],
+  "relatedTickers": [
+    "TEAMS",
+    "MLS",
+    "ONLY",
+    "SAYS",
+    "AI",
+    "TEAM",
+    "OWN",
+    "NHL",
+    "NORTH",
+    "MLB"
+  ]
+}

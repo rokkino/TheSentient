@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Waymo to defend self-driving safety record, warn on China competition",
+  "link": "https://finance.yahoo.com/news/waymo-defend-self-driving-safety-174507548.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-03T17:45:07",
+  "providerPublishTime": 1770137107.0,
+  "text": "Self-driving company Waymo on Wednesday will defend its ​safety record before the U.S. ‌Senate Commerce Committee after federal agencies opened investigations into ‌a vehicle striking a child near an elementary school and incidents involving robotaxis driving past were loading or unloading ⁠parked school buses.",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/f593e3a1daf2eff25d5bc0f9149fc84e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "U",
+    "CHILD",
+    "WERE",
+    "WAYMO",
+    "SELF",
+    "PAST",
+    "NEAR",
+    "AN",
+    "AFTER",
+    "CHINA"
+  ],
+  "relatedTickers": [
+    "U",
+    "CHILD",
+    "WERE",
+    "WAYMO",
+    "SELF",
+    "PAST",
+    "NEAR",
+    "AN",
+    "AFTER",
+    "CHINA"
+  ]
+}

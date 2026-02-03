@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "Moscow Exchange Plans Solana, Ripple and Tron Futures as Crypto Index Suite Expands",
+  "link": "https://finance.yahoo.com/news/moscow-exchange-plans-solana-ripple-133821039.html",
+  "publisher": "Cryptonews",
+  "timestamp": "2026-02-03T13:38:21",
+  "providerPublishTime": 1770122301.0,
+  "text": "The Moscow Exchange (MOEX) is preparing to broaden its suite of cryptocurrency products in 2026 by launching new futures contracts tied to major digital assets, including Solana (SOL), Ripple (XRP), and Tron (TRX), according to an executive interview with RBC.The exchange, which already calculates and trades futures on its Bitcoin ...",
+  "thumbnail": "https://media.zenfs.com/en/cryptonews_us_711/0aa3b4737cb7f2b6ec779f55e93be603",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "OF",
+    "SUITE",
+    "PLANS",
+    "NEW",
+    "MOEX",
+    "TRX",
+    "RBC",
+    "WHICH",
+    "XRP"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "OF",
+    "SUITE",
+    "PLANS",
+    "NEW",
+    "MOEX",
+    "TRX",
+    "RBC",
+    "WHICH",
+    "XRP"
+  ]
+}

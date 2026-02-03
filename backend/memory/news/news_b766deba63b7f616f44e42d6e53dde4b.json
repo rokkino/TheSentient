@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mister Car Wash outlook raised to positive by Moody’s",
+  "link": "https://www.investing.com/news/stock-market-news/mister-car-wash-outlook-raised-to-positive-by-moodys-93CH-4480413",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T23:02:38",
+  "providerPublishTime": 1770069758.0,
+  "text": "Mister Car Wash outlook raised to positive by Moody’s",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BY",
+    "TO",
+    "WASH",
+    "S",
+    "MOODY",
+    "CAR"
+  ],
+  "relatedTickers": [
+    "BY",
+    "TO",
+    "WASH",
+    "S",
+    "MOODY",
+    "CAR"
+  ]
+}

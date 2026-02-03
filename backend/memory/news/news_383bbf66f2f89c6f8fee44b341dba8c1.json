@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: DaVita beats Q4 2025 earnings expectations",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-davita-beats-q4-2025-earnings-expectations-93CH-4480415",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T23:04:07",
+  "providerPublishTime": 1770069847.0,
+  "text": "Earnings call transcript: DaVita beats Q4 2025 earnings expectations",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEATS",
+    "CALL"
+  ],
+  "relatedTickers": [
+    "BEATS",
+    "CALL"
+  ]
+}

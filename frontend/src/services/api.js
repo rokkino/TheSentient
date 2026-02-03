@@ -48,6 +48,18 @@ export default {
   getChart(data) {
     return api.post('/chart', data)
   },
+  
+  // Extended chart data for dynamic loading on zoom
+  getExtendedChart(ticker, startDate = null, endDate = null, extendHistory = false, interval = '1d') {
+    return api.post('/chart', {
+      ticker,
+      timeframe: '1y', // Default, will be overridden by start_date/extend_history
+      chart_type: 'candle',
+      start_date: startDate,
+      end_date: endDate,
+      extend_history: extendHistory
+    })
+  },
 
   analyzeChart(data) {
     return api.post('/chart/analyze', data)
@@ -246,6 +258,19 @@ export default {
     const params = {}
     if (recipientId) params.recipient_id = recipientId
     return api.delete('/chat/history', { params })
+  },
+
+  // Shared tabs (live collaboration)
+  createSharedTab(payload) {
+    return api.post('/shared-tabs', payload)
+  },
+
+  getSharedTab(shareId) {
+    return api.get(`/shared-tabs/${shareId}`)
+  },
+
+  stopSharedTab(shareId) {
+    return api.post(`/shared-tabs/${shareId}/stop`)
   },
 
   getUserByUsername(username) {

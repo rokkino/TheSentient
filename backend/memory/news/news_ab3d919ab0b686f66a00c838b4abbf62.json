@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "GOOGL",
+  "title": "Stock Market Today, Feb. 2: Apple Stock Jumps After Record Q1 Revenue Boosts Investor Confidence",
+  "link": "https://finance.yahoo.com/news/stock-market-today-feb-2-225055170.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-02T22:50:55",
+  "providerPublishTime": 1770069055.0,
+  "text": "On Feb. 2, 2026, record holiday iPhone sales, surging services, and fresh AI moves put Apple's growth story under the microscope.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/a284df625b13ef17e67ab71a8f664d5c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOOGL",
+    "PUT",
+    "FEB",
+    "UNDER",
+    "APPLE",
+    "TODAY",
+    "AFTER",
+    "FRESH",
+    "SALES",
+    "STORY"
+  ],
+  "relatedTickers": [
+    "GOOGL",
+    "PUT",
+    "FEB",
+    "UNDER",
+    "APPLE",
+    "TODAY",
+    "AFTER",
+    "FRESH",
+    "SALES",
+    "STORY"
+  ]
+}

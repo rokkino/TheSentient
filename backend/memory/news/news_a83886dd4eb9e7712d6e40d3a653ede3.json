@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Venezuela says interim president met with U.S. envoy",
+  "link": "https://www.investing.com/news/world-news/venezuela-says-interim-president-met-with-us-envoy-4480404",
+  "publisher": "All News",
+  "timestamp": "2026-02-02T22:55:13",
+  "providerPublishTime": 1770069313.0,
+  "text": "Venezuela says interim president met with U.S. envoy",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "MET",
+    "U",
+    "S",
+    "SAYS",
+    "ENVOY"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "MET",
+    "U",
+    "S",
+    "SAYS",
+    "ENVOY"
+  ]
+}

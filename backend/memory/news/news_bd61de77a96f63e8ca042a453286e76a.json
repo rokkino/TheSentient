@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US firm Aura to buy Australia's Qoria in $675 million deal, relist on ASX",
+  "link": "https://finance.yahoo.com/news/australias-qoria-merge-us-based-091940094.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-02T09:19:40",
+  "providerPublishTime": 1770020380.0,
+  "text": "US firm Aura to buy Australia's Qoria in $675 million deal, relist on ASX",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/12ed92dfa4bfee49503a9d18e38043f4",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "IN",
+    "S",
+    "DEAL",
+    "ON",
+    "ASX",
+    "FIRM",
+    "BUY",
+    "AURA",
+    "QORIA"
+  ],
+  "relatedTickers": [
+    "TO",
+    "IN",
+    "S",
+    "DEAL",
+    "ON",
+    "ASX",
+    "FIRM",
+    "BUY",
+    "AURA",
+    "QORIA"
+  ]
+}

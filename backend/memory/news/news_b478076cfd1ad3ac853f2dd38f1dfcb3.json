@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OpenAI’s ChatGPT push triggers senior staff exits",
+  "link": "https://www.ft.com/content/e581b7a4-455c-48e6-a87c-c39bb9c62a12",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-03T05:00:17",
+  "providerPublishTime": 1770091217.0,
+  "text": "Resources at $500bn company are being redirected from long-term research towards improving the flagship chatbot",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F0ea35a3c-810f-410b-955b-9b59a1367915.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BEING",
+    "LONG",
+    "TERM",
+    "AT",
+    "STAFF",
+    "ARE",
+    "FROM",
+    "PUSH",
+    "THE",
+    "S"
+  ],
+  "relatedTickers": [
+    "BEING",
+    "LONG",
+    "TERM",
+    "AT",
+    "STAFF",
+    "ARE",
+    "FROM",
+    "PUSH",
+    "THE",
+    "S"
+  ]
+}

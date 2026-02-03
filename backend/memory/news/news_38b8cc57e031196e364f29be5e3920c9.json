@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "D-Wave Quantum (QBTS) Hits Defense Milestone With 10x Faster Quantum Solutions, Announces Enterprise and Academic Deals",
+  "link": "https://finance.yahoo.com/news/d-wave-quantum-qbts-hits-091703548.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-02T09:17:03",
+  "providerPublishTime": 1770020223.0,
+  "text": "D-Wave Quantum (QBTS) Hits Defense Milestone With 10x Faster Quantum Solutions, Announces Enterprise and Academic Deals",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/92117fa1d108b38753837414b78b94f3",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "D",
+    "WITH",
+    "WAVE",
+    "QBTS",
+    "AND",
+    "HITS",
+    "DEALS"
+  ],
+  "relatedTickers": [
+    "D",
+    "WITH",
+    "WAVE",
+    "QBTS",
+    "AND",
+    "HITS",
+    "DEALS"
+  ]
+}

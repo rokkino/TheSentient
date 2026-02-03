@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "This powerful economic indicator is sending a clear message about stocks for 2026",
+  "link": "https://www.marketwatch.com/story/this-powerful-economic-indicator-is-sending-a-clear-message-about-stocks-for-2026-202532f1?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-03T18:39:00",
+  "providerPublishTime": 1770140340.0,
+  "text": "When consumers are in a buying mood, their shopping list includes the stock market.",
+  "thumbnail": "https://images.mktw.net/im-14561712",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "ABOUT",
+    "CLEAR",
+    "A",
+    "WHEN",
+    "FOR",
+    "ARE",
+    "THEIR",
+    "MOOD",
+    "LIST"
+  ],
+  "relatedTickers": [
+    "IN",
+    "ABOUT",
+    "CLEAR",
+    "A",
+    "WHEN",
+    "FOR",
+    "ARE",
+    "THEIR",
+    "MOOD",
+    "LIST"
+  ]
+}

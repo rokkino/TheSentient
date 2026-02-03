@@ -29,7 +29,10 @@
             @click="setActiveTab(tab.id)"
             @dblclick="startRenameTab(tab)"
           >
-            <span v-if="!editingTab || editingTab.id !== tab.id">{{ tab.name }}</span>
+            <template v-if="!editingTab || editingTab.id !== tab.id">
+              <span>{{ tab.name }}</span>
+              <span v-if="tab.sharedSession?.active" class="tab-live-pill">LIVE</span>
+            </template>
             <input
               v-else
               v-model="editingTabName"
@@ -118,7 +121,12 @@
       >
         <FlexChat 
           :tab-id="tab.id" 
-          :initial-config="tab.chatConfig" 
+          :initial-config="tab.chatConfig"
+          :shareable-tabs="shareableTabs"
+          :get-tab-snapshot="getTabSnapshot"
+          :active-tab-id="activeTab"
+          @open-shared-tab="handleOpenSharedTab"
+          @share-started="handleShareStarted"
           @update-config="(config) => updateTabConfig(tab.id, config)" 
         />
       </div>
@@ -130,7 +138,21 @@
         v-show="activeTab === tab.id && tab.type === 'strategy'"
         class="tab-panel strategy-panel"
       >
+        <div v-if="tab.sharedSession" class="shared-tab-banner">
+          <div class="shared-tab-info">
+            <span class="shared-tab-dot"></span>
+            <span class="shared-tab-title">Live: {{ tab.sharedSession.tab_name || tab.name }}</span>
+            <span class="shared-tab-count">{{ getSharedParticipantsCount(tab.sharedSession.share_id) }} online</span>
+          </div>
+          <div class="shared-tab-actions">
+            <button v-if="tab.sharedSession.isOwner" class="shared-tab-stop" @click="stopSharingTab(tab.id)">Ferma</button>
+            <span v-else class="shared-tab-guest">Collaborazione live</span>
+          </div>
+        </div>
         <StrategyBuilder 
+          :shared-state="tab.strategyState"
+          :read-only="false"
+          @state-change="(state) => handleStrategyStateChange(tab.id, state)"
           @save="saveUserTabs"
         />
       </div>
@@ -152,7 +174,22 @@
         v-show="activeTab === tab.id && tab.type === 'backtesting'"
         class="tab-panel backtesting-panel"
       >
-        <BacktestingPanel />
+        <div v-if="tab.sharedSession" class="shared-tab-banner">
+          <div class="shared-tab-info">
+            <span class="shared-tab-dot"></span>
+            <span class="shared-tab-title">Live: {{ tab.sharedSession.tab_name || tab.name }}</span>
+            <span class="shared-tab-count">{{ getSharedParticipantsCount(tab.sharedSession.share_id) }} online</span>
+          </div>
+          <div class="shared-tab-actions">
+            <button v-if="tab.sharedSession.isOwner" class="shared-tab-stop" @click="stopSharingTab(tab.id)">Ferma</button>
+            <span v-else class="shared-tab-guest">Collaborazione live</span>
+          </div>
+        </div>
+        <BacktestingPanel
+          :shared-state="tab.backtestingState"
+          :read-only="false"
+          @state-change="(state) => handleBacktestingStateChange(tab.id, state)"
+        />
       </div>
 
       <!-- Stocks Tab -->
@@ -162,34 +199,85 @@
         v-show="activeTab === tab.id && tab && tab.type === 'stocks'"
         class="tab-panel"
       >
+        <div v-if="tab.sharedSession" class="shared-tab-banner">
+          <div class="shared-tab-info">
+            <span class="shared-tab-dot"></span>
+            <span class="shared-tab-title">Live: {{ tab.sharedSession.tab_name || tab.name }}</span>
+            <span class="shared-tab-count">{{ getSharedParticipantsCount(tab.sharedSession.share_id) }} online</span>
+          </div>
+          <div class="shared-tab-actions">
+            <button v-if="tab.sharedSession.isOwner" class="shared-tab-stop" @click="stopSharingTab(tab.id)">Ferma</button>
+            <span v-else class="shared-tab-guest">Collaborazione live</span>
+          </div>
+        </div>
         <!-- Chart Info Bar -->
         <div v-if="tab && tab.chartInfo" class="chart-info-bar">
-          <div class="info-item">
-            <label>Symbol:</label>
-            <span class="info-value">{{ tab.chartInfo.symbol || '--' }}</span>
+          <!-- Ticker Identity -->
+          <div class="info-ticker">
+            <span class="ticker-symbol">{{ tab.chartInfo.symbol || '--' }}</span>
+            <span class="ticker-name">{{ tab.chartInfo.name || '--' }}</span>
           </div>
-          <div class="info-item">
-            <label>Name:</label>
-            <span class="info-value">{{ tab.chartInfo.name || '--' }}</span>
-          </div>
-          <div class="info-item">
-            <label>Change:</label>
-            <span :class="['info-value', { positive: tab.chartInfo.change > 0, negative: tab.chartInfo.change < 0 }]">
-              {{ tab.chartInfo.change ? (tab.chartInfo.change > 0 ? '+' : '') + tab.chartInfo.change.toFixed(2) : '--' }}
+
+          <!-- Main Price Display -->
+          <div class="info-price-main">
+            <span :class="['main-price', { positive: tab.chartInfo.changePercent > 0, negative: tab.chartInfo.changePercent < 0 }]">
+              {{ tab.chartInfo.price ? tab.chartInfo.price.toFixed(2) : '--' }}
+            </span>
+            <div class="price-change">
+              <span :class="['change-value', { positive: tab.chartInfo.change > 0, negative: tab.chartInfo.change < 0 }]">
+                {{ tab.chartInfo.change ? (tab.chartInfo.change > 0 ? '+' : '') + tab.chartInfo.change.toFixed(2) : '--' }}
+              </span>
+              <span :class="['change-percent', { positive: tab.chartInfo.changePercent > 0, negative: tab.chartInfo.changePercent < 0 }]">
+                ({{ tab.chartInfo.changePercent ? (tab.chartInfo.changePercent > 0 ? '+' : '') + tab.chartInfo.changePercent.toFixed(2) + '%' : '--' }})
+              </span>
+            </div>
+            <span :class="['market-badge', tab.chartInfo.marketState?.toLowerCase() || 'closed']">
+              {{ tab.chartInfo.marketState === 'REGULAR' ? 'LIVE' : tab.chartInfo.marketState === 'POST' ? 'AFTER HRS' : tab.chartInfo.marketState === 'PRE' ? 'PRE-MKT' : 'CLOSED' }}
             </span>
           </div>
-          <div class="info-item">
-            <label>Change %:</label>
-            <span :class="['info-value', { positive: tab.chartInfo.changePercent > 0, negative: tab.chartInfo.changePercent < 0 }]">
-              {{ tab.chartInfo.changePercent ? (tab.chartInfo.changePercent > 0 ? '+' : '') + tab.chartInfo.changePercent.toFixed(2) + '%' : '--' }}
-            </span>
+
+          <!-- Extended Hours Price (After Hours / Pre-Market) -->
+          <div v-if="tab.chartInfo.postMarketPrice || tab.chartInfo.preMarketPrice" class="info-extended-hours">
+            <template v-if="tab.chartInfo.postMarketPrice">
+              <span class="extended-label">AH</span>
+              <span :class="['extended-price', { positive: tab.chartInfo.postMarketChange > 0, negative: tab.chartInfo.postMarketChange < 0 }]">
+                {{ tab.chartInfo.postMarketPrice?.toFixed(2) }}
+              </span>
+              <span :class="['extended-change', { positive: tab.chartInfo.postMarketChange > 0, negative: tab.chartInfo.postMarketChange < 0 }]">
+                {{ tab.chartInfo.postMarketChange > 0 ? '+' : '' }}{{ tab.chartInfo.postMarketChange?.toFixed(2) }}
+                ({{ tab.chartInfo.postMarketChangePercent > 0 ? '+' : '' }}{{ tab.chartInfo.postMarketChangePercent?.toFixed(2) }}%)
+              </span>
+            </template>
+            <template v-else-if="tab.chartInfo.preMarketPrice">
+              <span class="extended-label">PM</span>
+              <span :class="['extended-price', { positive: tab.chartInfo.preMarketChange > 0, negative: tab.chartInfo.preMarketChange < 0 }]">
+                {{ tab.chartInfo.preMarketPrice?.toFixed(2) }}
+              </span>
+              <span :class="['extended-change', { positive: tab.chartInfo.preMarketChange > 0, negative: tab.chartInfo.preMarketChange < 0 }]">
+                {{ tab.chartInfo.preMarketChange > 0 ? '+' : '' }}{{ tab.chartInfo.preMarketChange?.toFixed(2) }}
+                ({{ tab.chartInfo.preMarketChangePercent > 0 ? '+' : '' }}{{ tab.chartInfo.preMarketChangePercent?.toFixed(2) }}%)
+              </span>
+            </template>
           </div>
-          <div class="info-item">
-            <label>Volume:</label>
-            <span class="info-value">{{ formatVolume(tab.chartInfo.volume) }}</span>
-          </div>
-          <div class="info-item price-item">
-            <span class="price-value">{{ tab.chartInfo.price ? tab.chartInfo.price.toFixed(2) : '--' }}</span>
+
+          <!-- OHLC Data -->
+          <div class="info-ohlc">
+            <div class="ohlc-item">
+              <span class="ohlc-label">O</span>
+              <span class="ohlc-value">{{ tab.chartInfo.open?.toFixed(2) || '--' }}</span>
+            </div>
+            <div class="ohlc-item">
+              <span class="ohlc-label">H</span>
+              <span class="ohlc-value high">{{ tab.chartInfo.high?.toFixed(2) || '--' }}</span>
+            </div>
+            <div class="ohlc-item">
+              <span class="ohlc-label">L</span>
+              <span class="ohlc-value low">{{ tab.chartInfo.low?.toFixed(2) || '--' }}</span>
+            </div>
+            <div class="ohlc-item">
+              <span class="ohlc-label">V</span>
+              <span class="ohlc-value">{{ formatVolume(tab.chartInfo.volume) }}</span>
+            </div>
           </div>
         </div>
 
@@ -420,17 +508,11 @@
               <p>Add an asset from the search bar to begin.</p>
               <p class="welcome-screen-hint">Clicca qui o sulla barra di ricerca per aggiungere un titolo</p>
             </div>
-            <div v-else class="chart-wrapper-container">
-              <div v-if="tab.chartLoading" class="chart-loading-overlay">
-                <div class="loading-spinner"></div>
-                <p>Loading chart...</p>
-              </div>
-              <div class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
-                @contextmenu.prevent="showChartContextMenu($event, tab.id)"
-                @click="handleChartClick($event, tab.id)"
-                @mousemove="handleChartMouseMove($event, tab.id)"
-              ></div>
-            </div>
+            <div v-else class="chart-wrapper" :ref="el => setChartRef(tab.id, el)"
+              @contextmenu.prevent="showChartContextMenu($event, tab.id)"
+              @click="handleChartClick($event, tab.id)"
+              @mousemove="handleChartMouseMove($event, tab.id)"
+            ></div>
             
             <!-- Drawing Overlay -->
             <svg v-if="tab.selectedTicker && renderedDrawings[tab.id]" class="drawing-overlay">
@@ -676,6 +758,41 @@
       @close="showTabWizard = false"
       @create="handleCreateTab"
     />
+
+    <!-- Share Live Modal -->
+    <div v-if="showShareModal" class="modal-overlay" @click="closeShareModal">
+      <div class="modal-content share-modal" @click.stop>
+        <div class="modal-header">
+          <h3>Condividi una tab live</h3>
+          <button class="close-btn" @click="closeShareModal">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="share-hint">Seleziona la tab da condividere. La condivisione appare in chat pubblica.</p>
+          <div v-if="!shareableTabs.length" class="share-empty">
+            Nessuna tab condivisibile disponibile.
+          </div>
+          <div v-else class="share-list">
+            <button
+              v-for="tab in shareableTabs"
+              :key="tab.id"
+              class="share-item"
+              :class="{ selected: selectedShareTabId === tab.id }"
+              @click="selectedShareTabId = tab.id"
+            >
+              <div class="share-item-title">{{ tab.name }}</div>
+              <div class="share-item-type">{{ tab.type }}</div>
+            </button>
+          </div>
+          <div v-if="shareError" class="share-error">{{ shareError }}</div>
+        </div>
+        <div class="modal-footer">
+          <button class="tab-share-btn ghost" @click="closeShareModal">Annulla</button>
+          <button class="tab-share-btn primary" :disabled="!selectedShareTabId || shareLoading" @click="shareSelectedTab">
+            {{ shareLoading ? '...' : 'Condividi' }}
+          </button>
+        </div>
+      </div>
+    </div>
     
     <!-- Backdrop per chiudere i menu contestuali cliccando fuori -->
     <div
@@ -745,12 +862,13 @@ import AiDrawModal from '../components/AiDrawModal.vue'
 import FloatingToolPalette from '../components/FloatingToolPalette.vue'
 import api from '../services/api'
 import { getCached, setCached, saveIndicatorSettings, loadIndicatorSettings } from '../utils/cache'
+import { getWsBase } from '@/utils/env'
 
 const watchlistStore = useWatchlistStore()
 const newsStore = useNewsStore()
 const authStore = useAuthStore()
 
-const timeframes = ['1d', '5d', '1m', '3m', '6m', '1y', '5y']
+const timeframes = ['1d', '5d', '1m', '3m', '6m', '1y', '5y', 'MAX']
 const chartTypes = ['Candle', 'Line']
 
 // Non inizializzare activeTab da localStorage subito - verrà impostato dopo il caricamento dei tab
@@ -772,7 +890,6 @@ const tabs = ref([
       changePercent: null,
       volume: null
     },
-    chartLoading: false,
     chart: null,
     candlestickSeries: null,
     lineSeries: null,
@@ -814,7 +931,18 @@ const editingTab = ref(null)
 const editingTabName = ref('')
 const contextMenu = ref({ show: false, x: 0, y: 0, tab: null })
 const chartContextMenu = ref({ show: false, x: 0, y: 0, tabId: null, drawingId: null })
+const sharedWs = ref(null)
+const sharedWsConnected = ref(false)
+let sharedWsRetryTimer = null
+const sharedSessions = ref({})
+const sharedUpdateLocks = new Set()
+const showShareModal = ref(false)
+const selectedShareTabId = ref(null)
+const shareLoading = ref(false)
+const shareError = ref('')
 const showWatchlist = ref(false) // New state for mobile watchlist drawer
+const leftPanelCollapsed = ref(false) // Collapsed state for desktop left panel
+const loadingMoreData = ref({}) // Track which tabs are loading more historical data
 const drawingMode = ref(null) // null, 'line', 'square', 'circle', 'arrow', 'hline', 'vline', 'text', 'triangle', 'polygon', 'freehand'
 const drawingStart = ref(null) // { time, price }
 const tempDrawing = ref(null) // { type, points: [], color, text }
@@ -835,6 +963,11 @@ const selectedResultIndex = ref(null)
 const searchInputRef = ref(null)
 const currentUser = computed(() => authStore.user)
 const isLoggedIn = computed(() => authStore.isAuthenticated)
+const shareableTabs = computed(() => {
+  return tabs.value
+    .filter(t => t && ['stocks', 'strategy', 'backtesting'].includes(t.type))
+    .map(t => ({ id: t.id, name: t.name, type: t.type }))
+})
 const botOrderSymbols = ref([])
 const includeBotTickers = ref(true)
 let botOrdersInterval = null
@@ -906,6 +1039,10 @@ onUnmounted(() => {
   stopChartRefresh()
   document.removeEventListener('click', closeContextMenu)
   document.removeEventListener('keydown', handleKeyDown)
+  if (sharedWs.value) {
+    sharedWs.value.close()
+    sharedWs.value = null
+  }
 })
 
 watch(isLoggedIn, (val) => {
@@ -919,6 +1056,11 @@ watch(isLoggedIn, (val) => {
       botOrdersInterval = null
     }
     botOrderSymbols.value = []
+    if (sharedWs.value) {
+      sharedWs.value.close()
+      sharedWs.value = null
+    }
+    sharedWsConnected.value = false
   }
 })
 
@@ -964,6 +1106,360 @@ const setActiveTab = (tabId) => {
   showWatchlist.value = false // Close watchlist on mobile when switching tabs
 }
 
+const getSharedParticipantsCount = (shareId) => {
+  return sharedSessions.value?.[shareId]?.participants?.length || 1
+}
+
+const openShareModal = () => {
+  shareError.value = ''
+  selectedShareTabId.value = null
+  showShareModal.value = true
+}
+
+const closeShareModal = () => {
+  showShareModal.value = false
+  shareError.value = ''
+}
+
+const shareSelectedTab = async () => {
+  if (!selectedShareTabId.value) return
+  if (!authStore.isAuthenticated) {
+    shareError.value = 'Accedi per condividere una tab.'
+    return
+  }
+  shareLoading.value = true
+  shareError.value = ''
+  try {
+    const snapshot = getTabSnapshot(selectedShareTabId.value)
+    if (!snapshot?.tab_type || !snapshot?.tab_name) {
+      shareError.value = 'Impossibile condividere questa tab.'
+      shareLoading.value = false
+      return
+    }
+    const { data } = await api.createSharedTab({
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      tab_state: snapshot.tab_state || {}
+    })
+    const shared = data?.shared_tab
+    const sharePayload = {
+      share_id: data?.share_id,
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      owner_id: currentUser.value?.id,
+      owner_username: currentUser.value?.username,
+      created_at: shared?.created_at
+    }
+    await api.sendChatMessage({
+      message: JSON.stringify(sharePayload),
+      type: 'tab_share',
+      recipient_id: null
+    })
+    handleShareStarted({
+      share_id: sharePayload.share_id,
+      tab_id: snapshot.tab_id,
+      tab_type: snapshot.tab_type,
+      tab_name: snapshot.tab_name,
+      tab_state: snapshot.tab_state || {}
+    })
+    showShareModal.value = false
+
+    const chatTab = tabs.value.find(t => t.type === 'chat' || t.type === 'flex')
+    if (chatTab) {
+      activeTab.value = chatTab.id
+    }
+  } catch (error) {
+    console.error('Error sharing tab:', error)
+    shareError.value = error.response?.data?.detail || error.message
+  } finally {
+    shareLoading.value = false
+  }
+}
+
+const connectSharedWebSocket = () => {
+  if (sharedWs.value && (sharedWs.value.readyState === WebSocket.CONNECTING || sharedWs.value.readyState === WebSocket.OPEN)) {
+    return
+  }
+  const wsUrl = `${getWsBase()}?token=${authStore.token || ''}`
+  sharedWs.value = new WebSocket(wsUrl)
+
+  sharedWs.value.onopen = () => {
+    sharedWsConnected.value = true
+  }
+
+  sharedWs.value.onmessage = async (event) => {
+    try {
+      const message = JSON.parse(event.data)
+      if (message.type === 'tab_update') {
+        await applySharedTabPatch(message.share_id, message.patch, message.sender_id)
+      } else if (message.type === 'tab_stopped') {
+        handleSharedTabStopped(message.share_id)
+      } else if (message.type === 'tab_joined' || message.type === 'tab_left') {
+        const shareId = message.share_id
+        if (!shareId) return
+        if (!sharedSessions.value[shareId]) return
+        sharedSessions.value[shareId].participants = message.participants || []
+      }
+    } catch (e) {
+      console.error('Shared WS error:', e)
+    }
+  }
+
+  sharedWs.value.onerror = (err) => {
+    console.warn('Shared WebSocket error:', err)
+    sharedWsConnected.value = false
+  }
+
+  sharedWs.value.onclose = () => {
+    sharedWsConnected.value = false
+    if (sharedWsRetryTimer) return
+    sharedWsRetryTimer = setTimeout(() => {
+      sharedWsRetryTimer = null
+      connectSharedWebSocket()
+    }, 3000)
+  }
+}
+
+const sendSharedWs = (payload) => {
+  if (!payload) return
+  if (!sharedWs.value || sharedWs.value.readyState !== WebSocket.OPEN) {
+    connectSharedWebSocket()
+    setTimeout(() => {
+      if (sharedWs.value && sharedWs.value.readyState === WebSocket.OPEN) {
+        sharedWs.value.send(JSON.stringify(payload))
+      }
+    }, 300)
+    return
+  }
+  sharedWs.value.send(JSON.stringify(payload))
+}
+
+const withSharedUpdateLock = async (tabId, fn) => {
+  sharedUpdateLocks.add(tabId)
+  try {
+    await fn()
+  } finally {
+    sharedUpdateLocks.delete(tabId)
+  }
+}
+
+const isSharedLocked = (tabId) => sharedUpdateLocks.has(tabId)
+
+const broadcastSharedPatch = (tabId, patch) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab?.sharedSession?.share_id) return
+  if (isSharedLocked(tabId)) return
+  sendSharedWs({
+    type: 'tab_update',
+    share_id: tab.sharedSession.share_id,
+    patch: patch || {}
+  })
+}
+
+const handleSharedTabStopped = (shareId) => {
+  const session = sharedSessions.value[shareId]
+  if (!session) return
+  const tab = tabs.value.find(t => t && t.id === session.tabId)
+  if (tab) {
+    tab.sharedSession = null
+  }
+  delete sharedSessions.value[shareId]
+}
+
+const applySharedTabPatch = async (shareId, patch, senderId) => {
+  if (!shareId || !patch) return
+  if (senderId && senderId === currentUser.value?.id) return
+  const session = sharedSessions.value[shareId]
+  if (!session) return
+  const tab = tabs.value.find(t => t && t.id === session.tabId)
+  if (!tab) return
+  await withSharedUpdateLock(tab.id, async () => {
+    if (tab.type === 'stocks') {
+      if (patch.selectedTicker) {
+        await selectTicker(tab.id, patch.selectedTicker)
+      }
+      if (patch.timeframe && patch.timeframe !== tab.timeframe) {
+        tab.timeframe = patch.timeframe
+        await loadChart(tab.id)
+      }
+      if (patch.chartType && patch.chartType !== tab.chartType) {
+        tab.chartType = patch.chartType
+        await loadChart(tab.id)
+      }
+      if (patch.indicators) {
+        tab.indicators = patch.indicators
+        if (tab.selectedTicker) {
+          saveIndicatorSettings(tab.selectedTicker, tab.indicators)
+          await loadChart(tab.id)
+        }
+      }
+      if (patch.drawings) {
+        tab.drawings = patch.drawings
+        updateDrawingCoordinates(tab.id)
+      }
+    } else if (tab.type === 'strategy' && patch.strategyState) {
+      tab.strategyState = patch.strategyState
+    } else if (tab.type === 'backtesting' && patch.backtestingState) {
+      tab.backtestingState = patch.backtestingState
+    }
+  })
+}
+
+const getTabSnapshot = (tabId) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab) return null
+  if (tab.type === 'stocks') {
+    return {
+      tab_id: tab.id,
+      tab_type: tab.type,
+      tab_name: tab.name,
+      tab_state: {
+        selectedTicker: tab.selectedTicker,
+        timeframe: tab.timeframe,
+        chartType: tab.chartType,
+        indicators: tab.indicators || null,
+        drawings: tab.drawings || []
+      }
+    }
+  }
+  if (tab.type === 'strategy') {
+    return {
+      tab_id: tab.id,
+      tab_type: tab.type,
+      tab_name: tab.name,
+      tab_state: {
+        strategyState: tab.strategyState || null
+      }
+    }
+  }
+  if (tab.type === 'backtesting') {
+    return {
+      tab_id: tab.id,
+      tab_type: tab.type,
+      tab_name: tab.name,
+      tab_state: {
+        backtestingState: tab.backtestingState || null
+      }
+    }
+  }
+  return null
+}
+
+const handleShareStarted = (payload) => {
+  const tab = tabs.value.find(t => t && t.id === payload.tab_id)
+  if (!tab || !payload.share_id) return
+  tab.sharedSession = {
+    share_id: payload.share_id,
+    isOwner: true,
+    tab_name: payload.tab_name,
+    active: true
+  }
+  sharedSessions.value[payload.share_id] = {
+    tabId: tab.id,
+    participants: [currentUser.value?.id].filter(Boolean),
+    ownerId: currentUser.value?.id,
+    ownerUsername: currentUser.value?.username,
+    active: true
+  }
+  connectSharedWebSocket()
+  sendSharedWs({ type: 'tab_join', share_id: payload.share_id })
+}
+
+const handleOpenSharedTab = async (payload) => {
+  const shareId = payload?.share_id
+  if (!shareId) return
+  const existing = tabs.value.find(t => t?.sharedSession?.share_id === shareId)
+  if (existing) {
+    activeTab.value = existing.id
+    return
+  }
+  try {
+    const { data } = await api.getSharedTab(shareId)
+    const shared = data?.shared_tab
+    if (!shared) return
+    const newId = tabs.value.length > 0 ? Math.max(...tabs.value.map(t => t.id)) + 1 : 1
+    const tabState = shared.tab_state || {}
+    const newTab = {
+      id: newId,
+      name: shared.tab_name || 'Shared Tab',
+      type: shared.tab_type,
+      chart: null,
+      candlestickSeries: null,
+      lineSeries: null,
+      earningsLines: [],
+      drawings: tabState.drawings || [],
+      selectedTicker: tabState.selectedTicker || null,
+      timeframe: tabState.timeframe || '1y',
+      chartType: tabState.chartType || 'Candle',
+      indicators: tabState.indicators || null,
+      chartInfo: {
+        symbol: tabState.selectedTicker || '',
+        name: '',
+        price: null,
+        change: null,
+        changePercent: null,
+        volume: null
+      },
+      strategyState: tabState.strategyState || null,
+      backtestingState: tabState.backtestingState || null,
+      sharedSession: {
+        share_id: shareId,
+        isOwner: shared.owner_id === currentUser.value?.id,
+        tab_name: shared.tab_name,
+        active: true
+      }
+    }
+    tabs.value.push(newTab)
+    activeTab.value = newId
+    sharedSessions.value[shareId] = {
+      tabId: newId,
+      participants: shared.participants || [],
+      ownerId: shared.owner_id,
+      ownerUsername: shared.owner_username,
+      active: true
+    }
+    connectSharedWebSocket()
+    sendSharedWs({ type: 'tab_join', share_id: shareId })
+    if (newTab.type === 'stocks' && newTab.selectedTicker) {
+      await nextTick()
+      await withSharedUpdateLock(newId, async () => {
+        await selectTicker(newId, newTab.selectedTicker)
+      })
+    }
+  } catch (error) {
+    console.error('Error opening shared tab:', error)
+    alert('Impossibile aprire la tab condivisa.')
+  }
+}
+
+const stopSharingTab = async (tabId) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  const shareId = tab?.sharedSession?.share_id
+  if (!shareId) return
+  try {
+    await api.stopSharedTab(shareId)
+  } catch (error) {
+    console.error('Error stopping share:', error)
+  } finally {
+    tab.sharedSession = null
+    delete sharedSessions.value[shareId]
+  }
+}
+
+const handleStrategyStateChange = (tabId, state) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab) return
+  tab.strategyState = state
+  broadcastSharedPatch(tabId, { strategyState: state })
+}
+
+const handleBacktestingStateChange = (tabId, state) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab) return
+  tab.backtestingState = state
+  broadcastSharedPatch(tabId, { backtestingState: state })
+}
+
 const loadUserTabs = async () => {
   try {
     const response = await api.getUserTabs()
@@ -979,7 +1475,10 @@ const loadUserTabs = async () => {
         candlestickSeries: null,
         lineSeries: null,
         earningsLines: tab.earningsLines || [],
-        drawings: tab.drawings || []
+        drawings: tab.drawings || [],
+        sharedSession: null,
+        strategyState: tab.strategyState || null,
+        backtestingState: tab.backtestingState || null
       }))
       
       // Sostituisci l'array in un colpo solo per evitare re-render intermedi
@@ -1031,7 +1530,7 @@ const saveUserTabs = async () => {
   try {
     // Remove chart references before saving
     const tabsToSave = tabs.value.map(tab => {
-      const { chart, candlestickSeries, lineSeries, resizeObserver, ...tabData } = tab
+      const { chart, candlestickSeries, lineSeries, resizeObserver, sharedSession, ...tabData } = tab
       return tabData
     })
     await api.saveUserTabs(tabsToSave)
@@ -1045,12 +1544,14 @@ const handleCreateTab = (tabConfig) => {
   const newTab = {
     id: newId,
     ...tabConfig,
-    chartLoading: false,
     chart: null,
     candlestickSeries: null,
     lineSeries: null,
     earningsLines: [],
-    drawings: []
+    drawings: [],
+    sharedSession: null,
+    strategyState: null,
+    backtestingState: null
   }
   tabs.value.push(newTab)
   activeTab.value = newId
@@ -1086,6 +1587,15 @@ const removeTab = (tabId) => {
   // Confirm before removing
   if (!confirm(`Are you sure you want to remove the tab "${tab.name}"?`)) {
     return
+  }
+
+  if (tab.sharedSession?.share_id) {
+    if (tab.sharedSession.isOwner) {
+      stopSharingTab(tabId)
+    } else {
+      sendSharedWs({ type: 'tab_leave', share_id: tab.sharedSession.share_id })
+      delete sharedSessions.value[tab.sharedSession.share_id]
+    }
   }
   
   // Clean up chart if it exists
@@ -1127,8 +1637,7 @@ const removeTab = (tabId) => {
           change: null,
           changePercent: null,
           volume: null
-        },
-        chartLoading: false
+        }
       })
     }
   }
@@ -1194,6 +1703,7 @@ const undoLastDrawing = (tabId) => {
     tab.drawings.pop()
     saveUserTabs()
     updateDrawingCoordinates(tabId)
+    broadcastSharedPatch(tabId, { drawings: tab.drawings })
   }
   closeChartContextMenu()
 }
@@ -1205,6 +1715,7 @@ const clearAllDrawings = (tabId) => {
       tab.drawings = []
       saveUserTabs()
       updateDrawingCoordinates(tabId)
+      broadcastSharedPatch(tabId, { drawings: tab.drawings })
     }
   }
   closeChartContextMenu()
@@ -1233,6 +1744,7 @@ const updateSelectedDrawing = (updates) => {
   saveUserTabs()
   if (selectedDrawing.value.tabId) {
     updateDrawingCoordinates(selectedDrawing.value.tabId)
+    broadcastSharedPatch(selectedDrawing.value.tabId, { drawings: tabs.value.find(t => t.id === selectedDrawing.value.tabId)?.drawings || [] })
   }
 }
 
@@ -1269,6 +1781,7 @@ const removeDrawing = (tabId, drawingId) => {
       tab.drawings.splice(index, 1)
       saveUserTabs()
       updateDrawingCoordinates(tabId)
+      broadcastSharedPatch(tabId, { drawings: tab.drawings })
       if (selectedDrawing.value.tabId === tabId && selectedDrawing.value.drawingId === drawingId) {
         deselectDrawing()
       }
@@ -1322,6 +1835,7 @@ const handleChartClick = (event, tabId) => {
     tempDrawing.value = null
     saveUserTabs()
     updateDrawingCoordinates(tabId)
+    broadcastSharedPatch(tabId, { drawings: tab.drawings })
     return
   }
 
@@ -1343,6 +1857,7 @@ const handleChartClick = (event, tabId) => {
       tempDrawing.value = null
       saveUserTabs()
       updateDrawingCoordinates(tabId)
+      broadcastSharedPatch(tabId, { drawings: tab.drawings })
     }
     return
   }
@@ -1398,6 +1913,7 @@ const handleChartClick = (event, tabId) => {
     
     saveUserTabs()
     updateDrawingCoordinates(tabId)
+    broadcastSharedPatch(tabId, { drawings: tab.drawings })
   }
 }
 
@@ -1686,6 +2202,7 @@ const setTimeframe = async (tabId, tf) => {
       }
       await loadChart(tabId)
     }
+    broadcastSharedPatch(tabId, { timeframe: tab.timeframe })
   }
 }
 
@@ -1704,6 +2221,7 @@ const setChartType = (tabId, type) => {
     if (tab.selectedTicker) {
       loadChart(tabId)
     }
+    broadcastSharedPatch(tabId, { chartType: tab.chartType })
   }
 }
 
@@ -1726,6 +2244,7 @@ const toggleIndicator = (tabId, indicator) => {
       saveIndicatorSettings(tab.selectedTicker, tab.indicators)
       loadChart(tabId)
     }
+    broadcastSharedPatch(tabId, { indicators: tab.indicators })
   }
 }
 
@@ -1969,11 +2488,18 @@ const updateChartInfo = async (tabId) => {
     tab.chartInfo.change = quote.change
     tab.chartInfo.changePercent = quote.changePercent
     tab.chartInfo.volume = quote.volume
-
-    // If symbol changed and matches a ticker, load chart
-    if (tab.chartInfo.symbol && tab.chartInfo.symbol === tab.selectedTicker) {
-      selectTicker(tabId, tab.chartInfo.symbol)
-    }
+    tab.chartInfo.open = quote.open
+    tab.chartInfo.high = quote.high
+    tab.chartInfo.low = quote.low
+    tab.chartInfo.previousClose = quote.previousClose
+    // Extended hours data
+    tab.chartInfo.postMarketPrice = quote.postMarketPrice
+    tab.chartInfo.postMarketChange = quote.postMarketChange
+    tab.chartInfo.postMarketChangePercent = quote.postMarketChangePercent
+    tab.chartInfo.preMarketPrice = quote.preMarketPrice
+    tab.chartInfo.preMarketChange = quote.preMarketChange
+    tab.chartInfo.preMarketChangePercent = quote.preMarketChangePercent
+    tab.chartInfo.marketState = quote.marketState
   } catch (error) {
     console.error('Failed to update chart info:', error)
   }
@@ -2320,6 +2846,13 @@ const selectTicker = async (tabId, symbol) => {
   console.log('Loading chart for tab:', tabId)
   await loadChart(tabId)
   if (activeTab.value === tabId) startChartRefresh(tabId)
+  broadcastSharedPatch(tabId, {
+    selectedTicker: symbol,
+    timeframe: tab.timeframe,
+    chartType: tab.chartType,
+    indicators: tab.indicators || null,
+    drawings: tab.drawings || []
+  })
 }
 
 const loadChart = async (tabId, forceRefresh = false) => {
@@ -2329,8 +2862,6 @@ const loadChart = async (tabId, forceRefresh = false) => {
     console.error('Tab or ticker not found:', { tab: !!tab, ticker: tab?.selectedTicker })
     return
   }
-
-  if (!forceRefresh) tab.chartLoading = true
 
   // Real-time refresh: update series data only (no chart teardown)
   if (forceRefresh && tab.chart && (tab.candlestickSeries || tab.lineSeries)) {
@@ -2386,12 +2917,10 @@ const loadChart = async (tabId, forceRefresh = false) => {
         }
       }
       await updateChartInfo(tabId)
-      if (!forceRefresh) tab.chartLoading = false
       return
     } catch (e) {
       console.error('Chart refresh error:', e)
     }
-    if (!forceRefresh) tab.chartLoading = false
     return
   }
 
@@ -2404,7 +2933,6 @@ const loadChart = async (tabId, forceRefresh = false) => {
     chartContainer = chartRefs.value[tabId]
     if (!chartContainer) {
       console.error('Chart container still not found after retry')
-      tab.chartLoading = false
       return
     }
   }
@@ -2503,6 +3031,14 @@ const loadChart = async (tabId, forceRefresh = false) => {
     // Subscribe to visible time range changes to update drawings
     tab.chart.timeScale().subscribeVisibleTimeRangeChange(() => {
       updateDrawingCoordinates(tabId)
+    })
+    
+    // Subscribe to visible logical range changes for dynamic data loading
+    tab.chart.timeScale().subscribeVisibleLogicalRangeChange((logicalRange) => {
+      if (logicalRange && logicalRange.from < 20) {
+        // User is near the start of data, try to load more
+        checkAndLoadMoreData(tabId)
+      }
     })
     
     // Also update on resize
@@ -2845,9 +3381,6 @@ const loadChart = async (tabId, forceRefresh = false) => {
     // Update drawing coordinates after chart is fully loaded
     await nextTick()
     updateDrawingCoordinates(tabId)
-
-    // Preload chart data for other watchlist symbols so switching is instant
-    setTimeout(() => preloadWatchlistCharts(tab), 500)
   } catch (error) {
     console.error('Chart load error:', error)
     console.error('Error details:', {
@@ -2857,29 +3390,101 @@ const loadChart = async (tabId, forceRefresh = false) => {
       timeframe: tab.timeframe,
       chartType: tab.chartType
     })
-  } finally {
-    if (tab) tab.chartLoading = false
   }
 }
 
-/** Preload chart data for other watchlist symbols in background so switching tabs is instant */
-const preloadWatchlistCharts = (currentTab) => {
-  if (!currentTab?.selectedTicker || currentTab?.type !== 'stocks') return
-  const symbols = watchlist.value
-    .map(w => w.symbol)
-    .filter(s => s && s !== currentTab.selectedTicker)
-  const toPreload = symbols.slice(0, 2) // limit 2 to avoid hammering the API
-  const timeframe = currentTab.timeframe || '1y'
-  const chartType = (currentTab.chartType || 'Candle').toLowerCase()
-  toPreload.forEach(symbol => {
-    const cacheKey = `${symbol}_${timeframe}_${chartType}`
-    if (getCached('chart', cacheKey)) return // already cached
-    api.getChart({ ticker: symbol, timeframe, chart_type: chartType })
-      .then(res => {
-        if (res?.data?.data?.length) setCached('chart', res.data, cacheKey)
-      })
-      .catch(() => {})
-  })
+// Dynamic loading of more historical data when zooming out
+const loadMoreHistoricalData = async (tabId) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab || !tab.selectedTicker || !tab.chart || !tab.chartData) return
+  
+  // Prevent multiple concurrent loads
+  if (loadingMoreData.value[tabId]) return
+  
+  loadingMoreData.value[tabId] = true
+  
+  try {
+    // Fetch extended history (max available)
+    console.log('Loading more historical data for', tab.selectedTicker)
+    
+    const response = await api.getChart({
+      ticker: tab.selectedTicker,
+      timeframe: tab.timeframe,
+      chart_type: tab.chartType.toLowerCase(),
+      extend_history: true
+    })
+    
+    const extendedData = response.data
+    if (!extendedData?.data?.length) {
+      console.log('No additional data available')
+      return
+    }
+    
+    // Get existing timestamps
+    const existingTimes = new Set(tab.chartData.map(d => d.time))
+    
+    // Filter new data (only prepend older data)
+    const newData = extendedData.data.filter(d => !existingTimes.has(d.time))
+    
+    if (newData.length === 0) {
+      console.log('No new historical data to add')
+      tab.historyFullyLoaded = true
+      return
+    }
+    
+    console.log(`Adding ${newData.length} new historical data points`)
+    
+    // Merge data (new data first, then existing)
+    const mergedData = [...newData, ...tab.chartData].sort((a, b) => a.time - b.time)
+    tab.chartData = mergedData
+    
+    // Update the chart series
+    if (tab.chartType === 'Candle' && tab.candlestickSeries) {
+      tab.candlestickSeries.setData(mergedData.map(d => ({
+        time: d.time / 1000,
+        open: d.open,
+        high: d.high,
+        low: d.low,
+        close: d.close,
+      })))
+    } else if (tab.lineSeries) {
+      const lineData = mergedData.map(d => ({ time: d.time / 1000, value: d.close })).filter(d => !isNaN(d.value))
+      if (lineData.length > 0) tab.lineSeries.setData(lineData)
+    }
+    
+    // Update drawings
+    updateDrawingCoordinates(tabId)
+    
+    // Mark as fully loaded if we received all historical data
+    if (newData.length < 100) {
+      tab.historyFullyLoaded = true
+    }
+  } catch (error) {
+    console.error('Failed to load more historical data:', error)
+  } finally {
+    loadingMoreData.value[tabId] = false
+  }
+}
+
+// Check if we need to load more data based on visible range
+const checkAndLoadMoreData = (tabId) => {
+  const tab = tabs.value.find(t => t && t.id === tabId)
+  if (!tab || !tab.chart || !tab.chartData || tab.chartData.length === 0) return
+  if (tab.historyFullyLoaded) return // Already loaded all history
+  
+  const timeScale = tab.chart.timeScale()
+  const visibleRange = timeScale.getVisibleLogicalRange()
+  
+  if (!visibleRange) return
+  
+  // Get the first bar index in data
+  const firstDataTime = tab.chartData[0].time / 1000
+  const visibleStartTime = timeScale.coordinateToTime(0)
+  
+  // If visible range extends before our data, load more
+  if (visibleRange.from < 10) { // Near the start of data
+    loadMoreHistoricalData(tabId)
+  }
 }
 
 const formatVolume = (volume) => {
@@ -2926,6 +3531,7 @@ const handleAiDrawingAdded = (drawing) => {
   tab.drawings.push(drawing)
   updateDrawingCoordinates(tabId)
   saveUserTabs()
+  broadcastSharedPatch(tabId, { drawings: tab.drawings })
 }
 </script>
 
@@ -2934,7 +3540,6 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  min-height: 100dvh;
   background: linear-gradient(180deg, #0d0d0f 0%, #08080a 100%);
   color: #e0e0e0;
   pointer-events: auto;
@@ -3057,26 +3662,237 @@ const handleAiDrawingAdded = (drawing) => {
   padding: 0 18px;
   height: 38px;
   background-color: transparent;
-  border: none;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border-radius: 10px;
   color: #9ca3af;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.2s, background-color 0.2s;
   letter-spacing: 0.6px;
 }
 
 .tab-btn:hover {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.06);
+  border: none !important;
+}
+
+.tab-btn:focus,
+.tab-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .tab-btn.active {
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: none !important;
+}
+
+.tab-live-pill {
+  margin-left: 8px;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  letter-spacing: 0.06em;
+}
+
+.shared-tab-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.shared-tab-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e2e8f0;
+  font-size: 13px;
+}
+
+.shared-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+}
+
+.shared-tab-title {
+  font-weight: 600;
+}
+
+.shared-tab-count {
+  color: #94a3b8;
+}
+
+.shared-tab-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shared-tab-stop {
+  background: rgba(248, 113, 113, 0.2);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  color: #fecaca;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.shared-tab-guest {
+  font-size: 12px;
+  color: #cbd5f5;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  color: #e2e8f0;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.modal-body {
+  padding: 16px 20px;
+}
+
+.close-btn {
+  background: rgba(148, 163, 184, 0.12);
+  border: none;
+  color: #e2e8f0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.share-modal {
+  width: min(520px, 90vw);
+}
+
+.share-hint {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.share-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.share-item {
+  text-align: left;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.6);
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: border 0.2s, transform 0.2s;
+}
+
+.share-item.selected {
+  border-color: rgba(59, 130, 246, 0.8);
+  transform: translateY(-1px);
+}
+
+.share-item-title {
+  font-weight: 600;
+}
+
+.share-item-type {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.share-empty {
+  color: #64748b;
+  font-size: 13px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed rgba(148, 163, 184, 0.2);
+}
+
+.share-error {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.tab-share-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.tab-share-btn.primary {
+  background: #2563eb;
+  color: #f8fafc;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+}
+
+.tab-share-btn.primary:hover {
+  transform: translateY(-1px);
+}
+
+.tab-share-btn.ghost {
+  background: rgba(148, 163, 184, 0.15);
+  color: #e2e8f0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px 20px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .tab-rename-input {
@@ -3182,49 +3998,221 @@ const handleAiDrawingAdded = (drawing) => {
 .chart-info-bar {
   display: flex;
   align-items: center;
-  gap: 30px;
-  padding: 15px 30px;
-  background-color: #050505;
-  border-bottom: 1px solid #222;
-  flex-wrap: wrap;
+  gap: 24px;
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
-.info-item {
+.chart-info-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ticker Identity */
+.info-ticker {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: baseline;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-.info-item label {
-  font-size: 10px;
-  color: #666;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.info-value {
-  font-size: 14px;
+.info-ticker .ticker-symbol {
+  font-size: 20px;
+  font-weight: 700;
   color: #fff;
-  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.info-ticker .ticker-name {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Main Price Display */
+.info-price-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.info-price-main .main-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
   font-family: 'Roboto Mono', monospace;
 }
 
-.info-value.positive {
-  color: #4caf50;
+.info-price-main .main-price.positive {
+  color: #26a69a;
 }
 
-.info-value.negative {
-  color: #f44336;
+.info-price-main .main-price.negative {
+  color: #ef5350;
 }
 
-.price-item {
+.info-price-main .price-change {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.info-price-main .change-value {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Roboto Mono', monospace;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.info-price-main .change-value.positive {
+  color: #26a69a;
+}
+
+.info-price-main .change-value.negative {
+  color: #ef5350;
+}
+
+.info-price-main .change-percent {
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.info-price-main .change-percent.positive {
+  color: rgba(38, 166, 154, 0.7);
+}
+
+.info-price-main .change-percent.negative {
+  color: rgba(239, 83, 80, 0.7);
+}
+
+.market-badge {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.market-badge.regular {
+  background: rgba(38, 166, 154, 0.2);
+  color: #26a69a;
+  animation: pulse-live 2s infinite;
+}
+
+.market-badge.post {
+  background: rgba(156, 39, 176, 0.2);
+  color: #ce93d8;
+}
+
+.market-badge.pre {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ffb74d;
+}
+
+.market-badge.closed,
+.market-badge.postpost,
+.market-badge.prepre {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Extended Hours */
+.info-extended-hours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(156, 39, 176, 0.1);
+  border: 1px solid rgba(156, 39, 176, 0.2);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.info-extended-hours .extended-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: #ce93d8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-extended-hours .extended-price {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Roboto Mono', monospace;
+  color: #fff;
+}
+
+.info-extended-hours .extended-price.positive {
+  color: #26a69a;
+}
+
+.info-extended-hours .extended-price.negative {
+  color: #ef5350;
+}
+
+.info-extended-hours .extended-change {
+  font-size: 11px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.info-extended-hours .extended-change.positive {
+  color: rgba(38, 166, 154, 0.8);
+}
+
+.info-extended-hours .extended-change.negative {
+  color: rgba(239, 83, 80, 0.8);
+}
+
+/* OHLC Data */
+.info-ohlc {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-left: auto;
-  align-items: flex-end;
-  justify-content: center;
-  padding-left: 20px;
-  border-left: 1px solid #222;
-  height: 100%;
+  flex-shrink: 0;
+}
+
+.ohlc-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ohlc-item .ohlc-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.ohlc-item .ohlc-value {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Roboto Mono', monospace;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ohlc-item .ohlc-value.high {
+  color: #26a69a;
+}
+
+.ohlc-item .ohlc-value.low {
+  color: #ef5350;
 }
 
 .price-value {
@@ -3259,13 +4247,13 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .timeframe-btn, .chart-type-btn {
-  padding: 6px 12px;
+  padding: 4px 10px;
   background-color: transparent;
   border: none;
   border-radius: 2px;
-  color: #888;
+  color: #777;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   transition: all 0.2s;
 }
@@ -3282,18 +4270,18 @@ const handleAiDrawingAdded = (drawing) => {
 
 .indicators-buttons {
   display: flex;
-  gap: 8px;
-  margin-left: 20px;
+  gap: 4px;
+  margin-left: 12px;
 }
 
 .indicator-btn {
-  padding: 6px 12px;
-  background-color: #151515;
-  border: 1px solid #333;
+  padding: 4px 8px;
+  background-color: #121212;
+  border: 1px solid #2a2a2a;
   border-radius: 2px;
-  color: #888;
+  color: #777;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   transition: all 0.2s;
   text-transform: uppercase;
@@ -3312,7 +4300,7 @@ const handleAiDrawingAdded = (drawing) => {
 
 .toolbar-actions {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   margin-left: auto;
 }
 
@@ -3896,30 +4884,6 @@ const handleAiDrawingAdded = (drawing) => {
   overflow: hidden;
 }
 
-.chart-wrapper-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.chart-loading-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: rgba(30, 30, 30, 0.9);
-  z-index: 5;
-}
-
-.chart-loading-overlay p {
-  margin: 0;
-  color: #9e9e9e;
-  font-size: 14px;
-}
-
 .chart-wrapper {
   width: 100%;
   height: 100%;
@@ -4311,21 +5275,18 @@ const handleAiDrawingAdded = (drawing) => {
 /* Responsive Dashboard Styles */
 @media (max-width: 768px) {
   .dashboard {
-    height: 100dvh;
+    height: 100vh;
     overflow: hidden;
   }
 
   /* Tab Bar */
   .tab-bar-container {
-    padding: env(safe-area-inset-top) 0 0 0;
-    background: linear-gradient(180deg, rgba(15, 15, 18, 0.98) 0%, rgba(10, 10, 12, 0.9) 100%);
-    backdrop-filter: blur(16px);
+    padding: 0;
   }
 
   .tab-bar {
-    padding: 0 14px 0 12px;
-    height: 56px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0 12px 0 10px;
+    height: 52px;
   }
 
   .tabs-section {
@@ -4333,18 +5294,14 @@ const handleAiDrawingAdded = (drawing) => {
     overflow-y: hidden;
     mask-image: linear-gradient(to right, black 85%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    padding-right: 24px;
-    gap: 6px;
+    padding-right: 20px;
   }
   
   .tab-btn {
-    padding: 0 14px;
+    padding: 0 12px;
     font-size: 12px;
     white-space: nowrap;
-    height: 36px;
-    border-radius: 12px;
-    text-transform: none;
-    letter-spacing: 0.2px;
+    height: 100%;
   }
 
   .add-tab-btn {
@@ -4366,15 +5323,11 @@ const handleAiDrawingAdded = (drawing) => {
     width: 85%; /* Drawer width */
     max-width: 320px;
     z-index: 100;
-    background-color: rgba(12, 12, 12, 0.98);
+    background-color: #0c0c0c;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 12px 0 30px rgba(0,0,0,0.55);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    border-top-right-radius: 18px;
-    border-bottom-right-radius: 18px;
-    padding-top: env(safe-area-inset-top);
-    backdrop-filter: blur(18px);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.6);
+    border-right: 1px solid #222;
   }
 
   .left-panel.active {
@@ -4383,20 +5336,19 @@ const handleAiDrawingAdded = (drawing) => {
   
   .mobile-close-btn {
     position: absolute;
-    top: calc(env(safe-area-inset-top) + 10px);
-    right: 12px;
-    background: rgba(28, 28, 30, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    top: 10px;
+    right: 10px;
+    background: #222;
+    border: none;
     color: #fff;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
-    backdrop-filter: blur(10px);
   }
 
   .mobile-close-btn {
@@ -4405,17 +5357,14 @@ const handleAiDrawingAdded = (drawing) => {
 
   .mobile-watchlist-toggle {
     display: inline-flex;
-    padding: 6px 14px;
-    background: rgba(28, 28, 30, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 6px 12px;
+    background: #333;
+    border: none;
     border-radius: 4px;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     margin-left: 8px;
-    height: 32px;
-    border-radius: 999px;
-    letter-spacing: 0.2px;
   }
 
   /* Chart Container */
@@ -4426,8 +5375,8 @@ const handleAiDrawingAdded = (drawing) => {
 
   /* Chart Info Bar */
   .chart-info-bar {
-    padding: 12px 16px;
-    gap: 14px;
+    padding: 10px 15px;
+    gap: 15px;
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -4469,7 +5418,7 @@ const handleAiDrawingAdded = (drawing) => {
 
   /* Chart Toolbar */
   .chart-toolbar {
-    padding: 10px 12px;
+    padding: 8px 10px;
     gap: 10px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -4481,10 +5430,8 @@ const handleAiDrawingAdded = (drawing) => {
   }
   
   .indicator-btn, .timeframe-btn, .chart-type-btn {
-    padding: 8px 12px;
+    padding: 6px 10px;
     font-size: 11px;
-    min-height: 34px;
-    border-radius: 10px;
   }
   
   .ai-analysis-input {
@@ -4527,108 +5474,22 @@ const handleAiDrawingAdded = (drawing) => {
     min-width: 0;
     width: auto;
   }
-
-  .search-section {
-    margin-bottom: 12px;
-  }
-
-  .search-input {
-    font-size: 16px;
-    min-height: 44px;
-    border-radius: 12px;
-    padding: 12px 14px;
-  }
-
-  .search-input-glow {
-    border-radius: 12px;
-  }
-
-  .add-btn {
-    min-width: 44px;
-    height: 44px;
-    border-radius: 12px;
-  }
-
-  .search-results {
-    max-height: 38vh;
-    border-radius: 12px;
-  }
-
-  .search-result-item {
-    padding: 10px 12px;
-  }
-
-  .result-name {
-    font-size: 11px;
-  }
-
-  .watchlist-sections {
-    gap: 10px;
-  }
-
-  .panel-title {
-    font-size: 10px;
-    letter-spacing: 0.8px;
-    margin-bottom: 10px;
-  }
-
-  .watchlist-item {
-    padding: 10px 12px;
-    border-radius: 10px;
-    margin-bottom: 6px;
-    border-bottom: none;
-    background: #0f0f10;
-  }
-
-  .watchlist-item.active {
-    border-left: 2px solid #4299e1;
-    padding-left: 10px;
-    background: #151518;
-  }
-
-  .symbol {
-    font-size: 13px;
-  }
-
-  .name {
-    font-size: 10px;
-  }
-
-  .remove-btn {
-    min-height: 40px;
-    border-radius: 10px;
-    letter-spacing: 0.6px;
-  }
-
-  .welcome-screen h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
-  }
-
-  .welcome-screen p {
-    font-size: 12px;
-  }
-
-  .tab-content {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
   .tab-bar-container {
-    padding: calc(env(safe-area-inset-top) + 6px) 8px 0;
+    padding: 6px 8px 0;
   }
 
   .tab-bar {
-    height: 50px;
-    padding: 0 10px;
+    height: 44px;
+    padding: 0 8px;
   }
 
   .tab-btn {
-    padding: 0 12px;
+    padding: 0 10px;
     font-size: 11px;
-    height: 32px;
   }
 
   .tab-drag-handle {
@@ -4642,7 +5503,7 @@ const handleAiDrawingAdded = (drawing) => {
   }
 
   .chart-info-bar {
-    padding: 10px 12px;
+    padding: 8px 12px;
     gap: 10px;
   }
 
@@ -4655,7 +5516,7 @@ const handleAiDrawingAdded = (drawing) => {
   }
 
   .chart-toolbar {
-    padding: 8px 10px;
+    padding: 6px 8px;
     gap: 8px;
     flex-wrap: wrap;
   }
@@ -4668,44 +5529,13 @@ const handleAiDrawingAdded = (drawing) => {
   .indicator-btn,
   .timeframe-btn,
   .chart-type-btn {
-    padding: 8px 10px;
+    padding: 6px 8px;
     font-size: 10px;
   }
 
   .mobile-watchlist-toggle {
-    font-size: 11px;
-    padding: 6px 12px;
-  }
-
-  .left-panel {
-    padding: 14px;
-  }
-
-  .search-input {
-    min-height: 42px;
-    font-size: 15px;
-  }
-
-  .add-btn {
-    min-width: 40px;
-    height: 40px;
-  }
-
-  .search-results {
-    max-height: 34vh;
-  }
-
-  .watchlist-item {
-    padding: 9px 10px;
-    border-radius: 9px;
-  }
-
-  .panel-title {
-    font-size: 9px;
-  }
-
-  .welcome-screen {
-    padding: 24px 16px;
+    font-size: 10px;
+    padding: 6px 10px;
   }
 }
 

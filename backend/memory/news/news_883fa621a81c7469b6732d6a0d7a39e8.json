@@ -1,0 +1,37 @@
+{
+  "source": "Yahoo Finance",
+  "ticker": "SOL-USD",
+  "title": "German Bank ING Deutschland Opens Retail Access to Crypto-Linked ETNs",
+  "link": "https://finance.yahoo.com/news/german-bank-ing-deutschland-opens-063532945.html",
+  "publisher": "Cryptonews",
+  "timestamp": "2026-02-03T06:35:32",
+  "providerPublishTime": 1770096932.0,
+  "text": "ING Deutschland has opened retail access to cryptocurrency-linked exchange-traded notes (ETNs), allowing customers to gain exposure to Bitcoin, Ethereum and Solana through its securities platform. Key Takeaways: ING Deutschland now offers retail investors bank-integrated ETNs for Bitcoin, Ethereum and Solana. The products remove the need for wallets or private keys ...",
+  "thumbnail": "https://media.zenfs.com/en/cryptonews_us_711/573b0d9b08b8a9237747f582a5b1d0dd",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "ETNS",
+    "OPENS",
+    "NOW",
+    "ITS",
+    "KEY",
+    "GAIN",
+    "KEYS",
+    "FOR",
+    "ING"
+  ],
+  "relatedTickers": [
+    "TO",
+    "ETNS",
+    "OPENS",
+    "NOW",
+    "ITS",
+    "KEY",
+    "GAIN",
+    "KEYS",
+    "FOR",
+    "ING"
+  ]
+}

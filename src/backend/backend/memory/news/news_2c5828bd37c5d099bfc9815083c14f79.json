@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil hovers near seven-month highs ahead of US-Iran talks",
+  "link": "https://www.investing.com/news/commodities-news/oil-prices-hover-near-sevenmonth-highs-ahead-of-usiran-talks-4523146",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:54:23",
+  "providerPublishTime": 1772002463.0,
+  "text": "Oil hovers near seven-month highs ahead of US-Iran talks",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OIL",
+    "IRAN",
+    "TALKS",
+    "HIGHS",
+    "US",
+    "AHEAD",
+    "SEVEN",
+    "MONTH",
+    "OF",
+    "NEAR"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "IRAN",
+    "TALKS",
+    "HIGHS",
+    "US",
+    "AHEAD",
+    "SEVEN",
+    "MONTH",
+    "OF",
+    "NEAR"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The death of the Trump trade",
+  "link": "https://www.ft.com/content/cfdc8ea7-57ed-4843-82b6-7cc427b3e32f",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:25",
+  "providerPublishTime": 1771992025.0,
+  "text": "Investor backlash against US markets appears to be real",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fcda2d627-0acb-437d-99ee-a0e5ef38eaf7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DEATH",
+    "TO",
+    "BE",
+    "TRUMP",
+    "US",
+    "REAL",
+    "TRADE",
+    "THE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "DEATH",
+    "TO",
+    "BE",
+    "TRUMP",
+    "US",
+    "REAL",
+    "TRADE",
+    "THE",
+    "OF"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here is Why Boston Scientific Corporation (BSX) is Highly Favored by Hedge Funds",
+  "link": "https://finance.yahoo.com/news/why-boston-scientific-corporation-bsx-203522267.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T20:35:22",
+  "providerPublishTime": 1771875322.0,
+  "text": "Here is Why Boston Scientific Corporation (BSX) is Highly Favored by Hedge Funds",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/504c9d1063e7754917ea5ebe9cb731e5",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BSX",
+    "HERE",
+    "BY",
+    "IS",
+    "WHY",
+    "FUNDS",
+    "HEDGE"
+  ],
+  "relatedTickers": [
+    "BSX",
+    "HERE",
+    "BY",
+    "IS",
+    "WHY",
+    "FUNDS",
+    "HEDGE"
+  ]
+}

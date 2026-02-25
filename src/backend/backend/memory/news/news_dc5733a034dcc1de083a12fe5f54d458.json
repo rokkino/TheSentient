@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "British energy bills to fall as price cap cut by 7%",
+  "link": "https://www.ft.com/content/8c404379-b06f-47a4-b4cd-fc8bf3fbe0ce",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T07:34:34",
+  "providerPublishTime": 1772001274.0,
+  "text": "Typical households will pay £1,641 per year, down from £1,758 after energy-efficiency scheme scrapped",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F06d7a701-9596-4e7a-b230-c3e12c89617b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "PRICE",
+    "AFTER",
+    "CUT",
+    "DOWN",
+    "CAP",
+    "AS",
+    "YEAR",
+    "WILL",
+    "BY",
+    "FALL"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "AFTER",
+    "CUT",
+    "DOWN",
+    "CAP",
+    "AS",
+    "YEAR",
+    "WILL",
+    "BY",
+    "FALL"
+  ]
+}

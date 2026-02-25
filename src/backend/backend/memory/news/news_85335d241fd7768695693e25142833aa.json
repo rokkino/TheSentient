@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oerlikon Q4 orders beat expectations as Barmag sale boosts earnings",
+  "link": "https://www.investing.com/news/stock-market-news/oerlikon-q4-orders-beat-expectations-as-barmag-sale-boosts-earnings-93CH-4520559",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:10:02",
+  "providerPublishTime": 1771913402.0,
+  "text": "Oerlikon Q4 orders beat expectations as Barmag sale boosts earnings",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SALE",
+    "AS",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "SALE",
+    "AS",
+    "BEAT"
+  ]
+}

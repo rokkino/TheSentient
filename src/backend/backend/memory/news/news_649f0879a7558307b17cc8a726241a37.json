@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Premarket Movers: AMD, Blue Owl, BWX, Keysight, Kratos, Vir",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/us-stock-futures-today-amd-blue-owl-bwx-keysight-kratos-vir",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:45:05",
+  "providerPublishTime": 1771933505.0,
+  "text": "S&amp;P 500 Index futures are little changed as of 7:45 a.m. in New York after Monday’s selloff on AI fears.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/izKGFCGEcOtc/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AI",
+    "ARE",
+    "BWX",
+    "OF",
+    "NEW",
+    "BLUE",
+    "AS",
+    "YORK",
+    "OWL",
+    "ON"
+  ],
+  "relatedTickers": [
+    "AI",
+    "ARE",
+    "BWX",
+    "OF",
+    "NEW",
+    "BLUE",
+    "AS",
+    "YORK",
+    "OWL",
+    "ON"
+  ]
+}

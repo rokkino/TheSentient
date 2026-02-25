@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump demands Netflix fire Susan Rice as DOJ probes Warner deal",
+  "link": "https://www.cnbc.com/2026/02/22/trump-demands-netflix-fire-susan-rice-as-doj-probes-warner-deal.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-22T17:46:31",
+  "providerPublishTime": 1771778791.0,
+  "text": "Rice argued during a podcast last week that \"it is not going to end well\" for corporations, news organizations, and law firms that \"bent the knee\" to Trump.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LAST",
+    "A",
+    "FOR",
+    "NEWS",
+    "KNEE",
+    "LAW",
+    "DEAL",
+    "AS",
+    "AND",
+    "WEEK"
+  ],
+  "relatedTickers": [
+    "LAST",
+    "A",
+    "FOR",
+    "NEWS",
+    "KNEE",
+    "LAW",
+    "DEAL",
+    "AS",
+    "AND",
+    "WEEK"
+  ]
+}

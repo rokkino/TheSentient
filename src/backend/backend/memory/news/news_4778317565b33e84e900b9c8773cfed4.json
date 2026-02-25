@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Big Tech’s ‘Lag 7’ is putting the S&P 500 — and your index fund — at risk",
+  "link": "https://www.marketwatch.com/story/the-magnificent-seven-is-now-the-lag-7-how-big-techs-slump-is-dragging-down-the-s-p-500-8d6c62e9?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T23:18:00",
+  "providerPublishTime": 1771885080.0,
+  "text": "A breakdown of the “Magnificent Seven” and AI hyperscalers raises concern for the stock market and the economy",
+  "thumbnail": "https://images.mktw.net/im-25179459",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STOCK",
+    "LAG",
+    "YOUR",
+    "INDEX",
+    "IS",
+    "AI",
+    "OF",
+    "P",
+    "AND",
+    "SEVEN"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "LAG",
+    "YOUR",
+    "INDEX",
+    "IS",
+    "AI",
+    "OF",
+    "P",
+    "AND",
+    "SEVEN"
+  ]
+}

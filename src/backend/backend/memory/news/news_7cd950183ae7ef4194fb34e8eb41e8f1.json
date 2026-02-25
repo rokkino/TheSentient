@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wheat Falls on Monday",
+  "link": "https://finance.yahoo.com/news/wheat-falls-monday-231734249.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-23T23:17:34",
+  "providerPublishTime": 1771885054.0,
+  "text": "Wheat Falls on Monday",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/2bacb29d86b136f180cd45b76d02944d",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FALLS",
+    "WHEAT",
+    "ON"
+  ],
+  "relatedTickers": [
+    "FALLS",
+    "WHEAT",
+    "ON"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Integer Stock Down 38%, but One Fund Just Bet $40 Million on a Turnaround",
+  "link": "https://finance.yahoo.com/news/integer-stock-down-38-one-205624194.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-22T20:56:24",
+  "providerPublishTime": 1771790184.0,
+  "text": "Integer Stock Down 38%, but One Fund Just Bet $40 Million on a Turnaround",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/55916c6de45811c79dd776522bf246b8",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "A",
+    "DOWN",
+    "JUST",
+    "FUND",
+    "BUT",
+    "ON",
+    "STOCK",
+    "BET",
+    "ONE"
+  ],
+  "relatedTickers": [
+    "A",
+    "DOWN",
+    "JUST",
+    "FUND",
+    "BUT",
+    "ON",
+    "STOCK",
+    "BET",
+    "ONE"
+  ]
+}

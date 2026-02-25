@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin Holders Sitting on Losses Are Selling Into Every Bounce",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-25/bitcoin-holders-sitting-on-losses-are-selling-into-every-bounce",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:15:37",
+  "providerPublishTime": 1772014537.0,
+  "text": "<p>About 45% of all of Bitcoin in circulation are currently valued at below what the owner paid.</p>",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/imi9iUPDjtKQ/v0/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OWNER",
+    "ALL",
+    "AT",
+    "PAID",
+    "ARE",
+    "THE",
+    "BELOW",
+    "P",
+    "INTO",
+    "ABOUT"
+  ],
+  "relatedTickers": [
+    "OWNER",
+    "ALL",
+    "AT",
+    "PAID",
+    "ARE",
+    "THE",
+    "BELOW",
+    "P",
+    "INTO",
+    "ABOUT"
+  ]
+}

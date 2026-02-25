@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FedEx sues for refund of Trump tariffs, days after Supreme Court ruling",
+  "link": "https://www.cnbc.com/2026/02/23/fedex-trump-trade-tariffs-refunds-supreme-court-lawsuit.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T02:06:11",
+  "providerPublishTime": 1771895171.0,
+  "text": "The Trump administration has warned that it could take years for refunds to be paid out for tariffs that the Supreme Court ruled are illegal.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ARE",
+    "BE",
+    "COULD",
+    "THAT",
+    "COURT",
+    "OUT",
+    "AFTER",
+    "TRUMP",
+    "YEARS",
+    "SUES"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "BE",
+    "COULD",
+    "THAT",
+    "COURT",
+    "OUT",
+    "AFTER",
+    "TRUMP",
+    "YEARS",
+    "SUES"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "As Wall Street punishes software stocks over AI concerns, Canva gets more acquisitive",
+  "link": "https://www.cnbc.com/2026/02/23/canva-acquires-cavalry-for-motion-graphics-and-mangoai-for-video-ads.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T03:01:01",
+  "providerPublishTime": 1771898461.0,
+  "text": "Cavalry offers motion graphics tools for designers, while MangoAI could help Canva provide tools for making new video ads.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "GETS",
+    "ADS",
+    "NEW",
+    "WALL",
+    "TOOLS",
+    "OVER",
+    "COULD",
+    "HELP",
+    "FOR",
+    "AS"
+  ],
+  "relatedTickers": [
+    "GETS",
+    "ADS",
+    "NEW",
+    "WALL",
+    "TOOLS",
+    "OVER",
+    "COULD",
+    "HELP",
+    "FOR",
+    "AS"
+  ]
+}

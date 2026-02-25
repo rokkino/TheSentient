@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Enviri Stock Up 120% as $43 Million Buy Makes It a Top Holding in This Portfolio",
+  "link": "https://finance.yahoo.com/news/enviri-stock-120-43-million-210643084.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-22T21:06:43",
+  "providerPublishTime": 1771790803.0,
+  "text": "Enviri Stock Up 120% as $43 Million Buy Makes It a Top Holding in This Portfolio",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/3fa528e68d30f5fa3b5648d68a49b954",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "A",
+    "THIS",
+    "IN",
+    "AS",
+    "STOCK",
+    "TOP",
+    "MAKES",
+    "UP",
+    "IT"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "A",
+    "THIS",
+    "IN",
+    "AS",
+    "STOCK",
+    "TOP",
+    "MAKES",
+    "UP",
+    "IT"
+  ]
+}

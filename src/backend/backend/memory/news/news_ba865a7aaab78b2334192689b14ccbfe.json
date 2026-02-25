@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "B. Riley Maintains Buy Rating for Bitmine Immersion (BMNR) with Revised $30 PT",
+  "link": "https://finance.yahoo.com/news/b-riley-maintains-buy-rating-111837818.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T11:18:37",
+  "providerPublishTime": 1772014717.0,
+  "text": "B. Riley Maintains Buy Rating for Bitmine Immersion (BMNR) with Revised $30 PT",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/8d9aa06881d356f39364b05b0516c803",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BMNR",
+    "PT",
+    "B",
+    "WITH",
+    "FOR",
+    "BUY",
+    "RILEY"
+  ],
+  "relatedTickers": [
+    "BMNR",
+    "PT",
+    "B",
+    "WITH",
+    "FOR",
+    "BUY",
+    "RILEY"
+  ]
+}

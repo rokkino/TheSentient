@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wealthy UAE to Exit JPMorgan’s Emerging-Market Bond Indexes",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/jpmorgan-to-remove-uae-from-emerging-market-bond-indexes-by-june",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T10:01:59",
+  "providerPublishTime": 1771923719.0,
+  "text": "JPMorgan Chase &amp; Co. said it will remove the United Arab Emirates from its emerging-market bond indexes by June after the Middle Eastern nation exceeded the bank’s measures of wealth for three successive years.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihedMfAAyb6U/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JUNE",
+    "OF",
+    "BY",
+    "UAE",
+    "CHASE",
+    "IT",
+    "THREE",
+    "THE",
+    "BOND",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "JUNE",
+    "OF",
+    "BY",
+    "UAE",
+    "CHASE",
+    "IT",
+    "THREE",
+    "THE",
+    "BOND",
+    "FOR"
+  ]
+}

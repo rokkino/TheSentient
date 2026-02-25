@@ -7,9 +7,9 @@ from unittest.mock import MagicMock, patch
 # Add backend to path
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
-from services.news_service import NewsService
-from models.news import News
-from models.user import Base
+from src.backend.services.news_service import NewsService
+from src.backend.models.news import News
+from src.backend.models.user import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 

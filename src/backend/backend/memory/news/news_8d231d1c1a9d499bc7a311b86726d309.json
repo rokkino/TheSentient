@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European Banks Tell ECB That They’re Set to Benefit From AI",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/european-banks-tell-ecb-that-they-re-set-to-benefit-from-ai",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:36:15",
+  "providerPublishTime": 1771929375.0,
+  "text": "A top European Central Bank official said lenders from the region expect to benefit as artificial intelligence shakes up their business models.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihiAh_OoM2DI/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SAID",
+    "THEIR",
+    "A",
+    "BANKS",
+    "SET",
+    "TO",
+    "BANK",
+    "THE",
+    "ECB",
+    "THEY"
+  ],
+  "relatedTickers": [
+    "SAID",
+    "THEIR",
+    "A",
+    "BANKS",
+    "SET",
+    "TO",
+    "BANK",
+    "THE",
+    "ECB",
+    "THEY"
+  ]
+}

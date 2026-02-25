@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Groupe SEB soars 11% after 2025 profitability tops forecasts",
+  "link": "https://www.investing.com/news/earnings/groupe-seb-soars-11-after-2025-profitability-tops-forecasts-4523422",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:20:58",
+  "providerPublishTime": 1772007658.0,
+  "text": "Groupe SEB soars 11% after 2025 profitability tops forecasts",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOARS",
+    "SEB",
+    "TOPS",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "SOARS",
+    "SEB",
+    "TOPS",
+    "AFTER"
+  ]
+}

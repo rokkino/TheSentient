@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Europe hits back at 'pure tariff chaos' from the U.S., warning trade deals are at risk",
+  "link": "https://www.cnbc.com/2026/02/23/trump-15percent-global-tariff-europe-eu-uk-reaction.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T11:30:25",
+  "providerPublishTime": 1771842625.0,
+  "text": "European officials have reacted with disbelief to President Donald Trump's latest tariff policy, warning that trade deals could be at risk.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AT",
+    "CHAOS",
+    "RISK",
+    "HAVE",
+    "U",
+    "HITS",
+    "BE",
+    "PURE",
+    "COULD",
+    "TRUMP"
+  ],
+  "relatedTickers": [
+    "AT",
+    "CHAOS",
+    "RISK",
+    "HAVE",
+    "U",
+    "HITS",
+    "BE",
+    "PURE",
+    "COULD",
+    "TRUMP"
+  ]
+}

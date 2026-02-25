@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Diageo cuts forecast again, slashes dividend as US and China demand weakens",
+  "link": "https://www.investing.com/news/stock-market-news/diageo-cuts-forecast-again-slashes-dividend-as-us-and-china-demand-weakens-4523330",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:42:25",
+  "providerPublishTime": 1772001745.0,
+  "text": "Diageo cuts forecast again, slashes dividend as US and China demand weakens",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CUTS",
+    "AGAIN",
+    "US",
+    "AS",
+    "CHINA",
+    "AND"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "AGAIN",
+    "US",
+    "AS",
+    "CHINA",
+    "AND"
+  ]
+}

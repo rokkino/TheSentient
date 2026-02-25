@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil analysts say there is a supply glut — why that hasn't translated to lower prices this year",
+  "link": "https://finance.yahoo.com/news/oil-analysts-say-there-is-a-supply-glut--why-that-hasnt-translated-to-lower-prices-this-year-150108444.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-21T15:01:08",
+  "providerPublishTime": 1771682468.0,
+  "text": "Oil analysts say there is a supply glut — why that hasn't translated to lower prices this year",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/135fa730-0dba-11f1-abe6-fd2507c80f22",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "LOWER",
+    "OIL",
+    "SAY",
+    "TO",
+    "IS",
+    "GLUT",
+    "WHY",
+    "HASN",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "A",
+    "LOWER",
+    "OIL",
+    "SAY",
+    "TO",
+    "IS",
+    "GLUT",
+    "WHY",
+    "HASN",
+    "YEAR"
+  ]
+}

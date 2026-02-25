@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "New Diageo boss cuts dividend as Guinness maker’s sales slide",
+  "link": "https://www.ft.com/content/039e7b2a-8b5d-4a23-8c99-dc28a01f9be5",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T07:20:45",
+  "providerPublishTime": 1772000445.0,
+  "text": "Dave Lewis moves to reduce shareholder payouts to build ‘financial flexibility’",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F92c63fed-1736-4ee0-b28b-5f36b9d408b7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DAVE",
+    "CUTS",
+    "LEWIS",
+    "TO",
+    "MOVES",
+    "BOSS",
+    "SLIDE",
+    "MAKER",
+    "AS",
+    "S"
+  ],
+  "relatedTickers": [
+    "DAVE",
+    "CUTS",
+    "LEWIS",
+    "TO",
+    "MOVES",
+    "BOSS",
+    "SLIDE",
+    "MAKER",
+    "AS",
+    "S"
+  ]
+}

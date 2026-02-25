@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 # Add the current directory to sys.path to allow imports from backend
 sys.path.append(os.getcwd())
 
-from backend.services.ig_service import IGMarketsService
+from src.backend.services.ig_service import IGMarketsService
 import config
 
 async def verify_ig():

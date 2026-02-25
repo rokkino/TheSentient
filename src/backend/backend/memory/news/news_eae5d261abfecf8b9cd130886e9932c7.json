@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "If You'd Invested $1,000 in The Metals Company 3 Years Ago, Here's How Much You'd Have Today",
+  "link": "https://finance.yahoo.com/news/youd-invested-1-000-metals-205900602.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T20:59:00",
+  "providerPublishTime": 1771876740.0,
+  "text": "If You'd Invested $1,000 in The Metals Company 3 Years Ago, Here's How Much You'd Have Today",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/1aa0fbe0af22fca8c5dea90b5c4c3257",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "YOU",
+    "THE",
+    "HOW",
+    "IN",
+    "AGO",
+    "HERE",
+    "S",
+    "IF",
+    "MUCH",
+    "HAVE"
+  ],
+  "relatedTickers": [
+    "YOU",
+    "THE",
+    "HOW",
+    "IN",
+    "AGO",
+    "HERE",
+    "S",
+    "IF",
+    "MUCH",
+    "HAVE"
+  ]
+}

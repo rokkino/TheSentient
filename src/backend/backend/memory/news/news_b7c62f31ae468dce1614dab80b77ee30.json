@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk sinks 15% after weight loss drug fails to match Eli Lilly's in trial",
+  "link": "https://www.cnbc.com/2026/02/23/novo-nordisk-stock-cagrisema-trial-fails-weight-loss.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T11:01:03",
+  "providerPublishTime": 1771840863.0,
+  "text": "Novo Nordisk stock fell 15% Monday after it said its next-generation weight loss drug didn't meet its primary target.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LILLY",
+    "MATCH",
+    "DIDN",
+    "SINKS",
+    "ITS",
+    "T",
+    "TRIAL",
+    "FAILS",
+    "IN",
+    "SAID"
+  ],
+  "relatedTickers": [
+    "LILLY",
+    "MATCH",
+    "DIDN",
+    "SINKS",
+    "ITS",
+    "T",
+    "TRIAL",
+    "FAILS",
+    "IN",
+    "SAID"
+  ]
+}

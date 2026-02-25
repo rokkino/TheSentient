@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Dow Drops 800 Points. AI Fears Come for the Financial Sector.",
+  "link": "https://www.barrons.com/livecoverage/stock-market-news-today-022326/card/the-dow-drops-800-points-ai-fears-come-for-the-financial-sector--5GFMkOco6z0Qu0y3dlvi?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-23T21:02:54",
+  "providerPublishTime": 1771876974.0,
+  "text": "The Dow Drops 800 Points. AI Fears Come for the Financial Sector.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/12ea0f43d8f8307249a68d1cb2e0587e",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "THE",
+    "FEARS",
+    "COME",
+    "DROPS",
+    "FOR",
+    "DOW",
+    "AI"
+  ],
+  "relatedTickers": [
+    "THE",
+    "FEARS",
+    "COME",
+    "DROPS",
+    "FOR",
+    "DOW",
+    "AI"
+  ]
+}

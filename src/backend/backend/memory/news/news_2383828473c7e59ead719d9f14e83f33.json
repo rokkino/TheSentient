@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hiscox reports earnings beat, announces $300m buyback",
+  "link": "https://www.investing.com/news/earnings/hiscox-reports-earnings-beat-announces-300m-buyback-4523378",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:00:08",
+  "providerPublishTime": 1772002808.0,
+  "text": "Hiscox reports earnings beat, announces $300m buyback",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "BEAT"
+  ]
+}

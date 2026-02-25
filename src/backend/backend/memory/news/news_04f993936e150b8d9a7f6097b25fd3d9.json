@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "JP Morgan sees year-end 2026 gold price at $6,300 per ounce",
+  "link": "https://www.investing.com/news/commodities-news/jp-morgan-sees-yearend-2026-gold-price-at-6300-per-ounce-4523320",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:18:40",
+  "providerPublishTime": 1772007520.0,
+  "text": "JP Morgan sees year-end 2026 gold price at $6,300 per ounce",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOLD",
+    "OUNCE",
+    "YEAR",
+    "PER",
+    "END",
+    "SEES",
+    "JP",
+    "AT",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "GOLD",
+    "OUNCE",
+    "YEAR",
+    "PER",
+    "END",
+    "SEES",
+    "JP",
+    "AT",
+    "PRICE"
+  ]
+}

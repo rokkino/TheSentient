@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Goldman Sachs cuts Rio Tinto to “neutral” after 60% Rally",
+  "link": "https://www.investing.com/news/stock-market-news/goldman-sachs-cuts-rio-tinto-to-neutral-after-60-rally-4518235",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T11:46:10",
+  "providerPublishTime": 1771843570.0,
+  "text": "Goldman Sachs cuts Rio Tinto to “neutral” after 60% Rally",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TINTO",
+    "TO",
+    "RALLY",
+    "RIO",
+    "AFTER",
+    "CUTS",
+    "SACHS"
+  ],
+  "relatedTickers": [
+    "TINTO",
+    "TO",
+    "RALLY",
+    "RIO",
+    "AFTER",
+    "CUTS",
+    "SACHS"
+  ]
+}

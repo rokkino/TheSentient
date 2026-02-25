@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Panera Bread releases first-ever value menu with 'Mix & Match' deals",
+  "link": "https://www.cnbc.com/2026/02/25/panera-bread-releases-first-ever-value-menu-with-mix-match-deals.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T11:00:01",
+  "providerPublishTime": 1772013601.0,
+  "text": "Panera Bread is in the early stages of a turnaround, and affordability is a key part of CEO Paul Carbone's strategy for Panera.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIRST",
+    "EARLY",
+    "THE",
+    "DEALS",
+    "VALUE",
+    "MENU",
+    "BREAD",
+    "WITH",
+    "IS",
+    "KEY"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "EARLY",
+    "THE",
+    "DEALS",
+    "VALUE",
+    "MENU",
+    "BREAD",
+    "WITH",
+    "IS",
+    "KEY"
+  ]
+}

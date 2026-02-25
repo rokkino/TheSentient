@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "L.A. Olympics chair Casey Wasserman cuts price of $30 million Kubrick-inspired mansion",
+  "link": "https://www.marketwatch.com/story/l-a-olympics-chair-casey-wasserman-cuts-price-of-30-million-kubrick-inspired-mansion-31414975?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T09:58:00",
+  "providerPublishTime": 1771837080.0,
+  "text": "The home, inspired by Kubrick’s 2001 movie “Space Odyssey” is located in a highly sought-after neighborhood of Hollywood Hills, but has been on the market since September.",
+  "thumbnail": "https://images.mktw.net/im-09256470",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "HILLS",
+    "CASEY",
+    "HAS",
+    "BUT",
+    "SPACE",
+    "BY",
+    "OF",
+    "ON",
+    "BEEN"
+  ],
+  "relatedTickers": [
+    "A",
+    "HILLS",
+    "CASEY",
+    "HAS",
+    "BUT",
+    "SPACE",
+    "BY",
+    "OF",
+    "ON",
+    "BEEN"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Japanese Defense Stocks Slide After China Announces Export Controls",
+  "link": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-24-2026/card/japanese-defense-stocks-slide-after-china-announces-export-controls-KdFE9X94o5NJjSPh3DQj?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-24T11:30:03",
+  "providerPublishTime": 1771929003.0,
+  "text": "Japanese Defense Stocks Slide After China Announces Export Controls",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/7b2c285183be07ca3c4e8242b25a59a8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHINA",
+    "AFTER",
+    "SLIDE"
+  ],
+  "relatedTickers": [
+    "CHINA",
+    "AFTER",
+    "SLIDE"
+  ]
+}

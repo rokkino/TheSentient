@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mandelson released after arrest on suspicion of misconduct in public office",
+  "link": "https://www.ft.com/content/778e5ae1-c4cd-4544-b483-e42b763d83f6",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T07:20:42",
+  "providerPublishTime": 1771914042.0,
+  "text": "UK peer under investigation after relationship with Jeffrey Epstein revealed in US justice department documents",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F211498b5-4489-4f0f-8bdd-5cf769d5a35b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "US",
+    "ON",
+    "PEER",
+    "UNDER",
+    "WITH",
+    "AFTER",
+    "UK",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IN",
+    "US",
+    "ON",
+    "PEER",
+    "UNDER",
+    "WITH",
+    "AFTER",
+    "UK",
+    "OF"
+  ]
+}

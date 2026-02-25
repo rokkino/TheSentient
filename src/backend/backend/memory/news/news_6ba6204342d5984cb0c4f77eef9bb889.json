@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Xenia Hotels beats estimates on earnings and revenue",
+  "link": "https://www.investing.com/news/earnings/xenia-hotels-beats-estimates-on-earnings-and-revenue-93CH-4521006",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:53:41",
+  "providerPublishTime": 1771930421.0,
+  "text": "Xenia Hotels beats estimates on earnings and revenue",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AND",
+    "XENIA",
+    "ON",
+    "BEATS"
+  ],
+  "relatedTickers": [
+    "AND",
+    "XENIA",
+    "ON",
+    "BEATS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The odds of Trump's $2,000 tariff dividend checks are 'now effectively zero,' expert says",
+  "link": "https://www.cnbc.com/2026/02/23/trumps-2000-tariff-dividend-checks-are-less-likely-experts-say.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T21:11:09",
+  "providerPublishTime": 1771877469.0,
+  "text": "President Trump previously suggested issuing \"tariff dividend\" checks. After the Supreme Court struck down his tariffs policy, that's unlikely, experts say.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ZERO",
+    "HIS",
+    "SAYS",
+    "S",
+    "SAY",
+    "ARE",
+    "NOW",
+    "COURT",
+    "THE",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "ZERO",
+    "HIS",
+    "SAYS",
+    "S",
+    "SAY",
+    "ARE",
+    "NOW",
+    "COURT",
+    "THE",
+    "AFTER"
+  ]
+}

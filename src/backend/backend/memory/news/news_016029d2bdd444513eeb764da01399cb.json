@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ultra Clean (UCTT) Earnings Call Transcript",
+  "link": "https://finance.yahoo.com/news/ultra-clean-uctt-earnings-call-230949677.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:09:49",
+  "providerPublishTime": 1771884589.0,
+  "text": "Ultra Clean (UCTT) Earnings Call Transcript",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/e48e86dda35543079ee2080fd9208b73",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CALL",
+    "ULTRA",
+    "CLEAN",
+    "UCTT"
+  ],
+  "relatedTickers": [
+    "CALL",
+    "ULTRA",
+    "CLEAN",
+    "UCTT"
+  ]
+}

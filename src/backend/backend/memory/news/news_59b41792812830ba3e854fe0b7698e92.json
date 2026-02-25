@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Europe’s ‘tech sovereignty’ ambitions carry security risks, military warns",
+  "link": "https://www.ft.com/content/0f7f7aa7-af4e-4ea6-82da-5f8c719982fe",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T05:00:10",
+  "providerPublishTime": 1771905610.0,
+  "text": "European top brass sceptical about politicians’ push to decouple from US tech companies",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F6e0df769-4f45-4133-983f-dd4e76f7cd84.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ABOUT",
+    "RISKS",
+    "US",
+    "S",
+    "TO",
+    "WARNS",
+    "PUSH",
+    "FROM",
+    "CARRY",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "ABOUT",
+    "RISKS",
+    "US",
+    "S",
+    "TO",
+    "WARNS",
+    "PUSH",
+    "FROM",
+    "CARRY",
+    "TOP"
+  ]
+}

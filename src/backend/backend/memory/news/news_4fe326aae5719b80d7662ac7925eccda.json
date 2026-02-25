@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Arla Foods Makes Record Investment With $350 Million Cheese Bet",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/arla-foods-makes-record-investment-with-350-million-cheese-bet",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:46:53",
+  "providerPublishTime": 1772005613.0,
+  "text": "Arla Foods Amba, Northern Europe’s largest dairy company, will make its biggest investment ever, spending about €300 million ($350 million) to expand cheese production.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/idPWcpJCu_LQ/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARLA",
+    "DAIRY",
+    "WITH",
+    "ITS",
+    "MAKE",
+    "WILL",
+    "FOODS",
+    "S",
+    "BET",
+    "EVER"
+  ],
+  "relatedTickers": [
+    "ARLA",
+    "DAIRY",
+    "WITH",
+    "ITS",
+    "MAKE",
+    "WILL",
+    "FOODS",
+    "S",
+    "BET",
+    "EVER"
+  ]
+}

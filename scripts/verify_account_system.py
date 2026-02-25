@@ -9,11 +9,11 @@ sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models.user import User, Base
-from models.account import Account
-from models.bot import Bot
-from services.bot_service import bot_service
-from services.ig_service import IGMarketsService
+from src.backend.models.user import User, Base
+from src.backend.models.account import Account
+from src.backend.models.bot import Bot
+from src.backend.services.bot_service import bot_service
+from src.backend.services.ig_service import IGMarketsService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

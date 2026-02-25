@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Westlake Chemical earnings missed by $2.82, revenue fell short of estimates",
+  "link": "https://www.investing.com/news/earnings/westlake-chemical-earnings-missed-by-282-revenue-fell-short-of-estimates-4520987",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:44:51",
+  "providerPublishTime": 1771929891.0,
+  "text": "Westlake Chemical earnings missed by $2.82, revenue fell short of estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "FELL",
+    "BY",
+    "SHORT"
+  ],
+  "relatedTickers": [
+    "OF",
+    "FELL",
+    "BY",
+    "SHORT"
+  ]
+}

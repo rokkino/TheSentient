@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Viral Doomsday Report Lays Bare Wall Street’s Deep Anxiety About AI Future",
+  "link": "https://www.wsj.com/finance/stocks/global-stocks-markets-dow-news-02-23-2026-06a32080?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-23T23:00:00",
+  "providerPublishTime": 1771884000.0,
+  "text": "Viral Doomsday Report Lays Bare Wall Street’s Deep Anxiety About AI Future",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/a4ce0873ecd60e5d66c41da1b5a7909f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WALL",
+    "BARE",
+    "LAYS",
+    "DEEP",
+    "S",
+    "AI",
+    "VIRAL",
+    "ABOUT"
+  ],
+  "relatedTickers": [
+    "WALL",
+    "BARE",
+    "LAYS",
+    "DEEP",
+    "S",
+    "AI",
+    "VIRAL",
+    "ABOUT"
+  ]
+}

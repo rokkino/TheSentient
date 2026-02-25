@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Target Hospitality expands data center community to 1,050 beds",
+  "link": "https://www.investing.com/news/company-news/target-hospitality-expands-data-center-community-to-1050-beds-93CH-4521005",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:53:16",
+  "providerPublishTime": 1771930396.0,
+  "text": "Target Hospitality expands data center community to 1,050 beds",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "DATA",
+    "BEDS"
+  ],
+  "relatedTickers": [
+    "TO",
+    "DATA",
+    "BEDS"
+  ]
+}

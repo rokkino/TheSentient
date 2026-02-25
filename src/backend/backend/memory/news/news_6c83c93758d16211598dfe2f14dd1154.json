@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Citrini fuss exposes a market looking for an excuse to fall",
+  "link": "https://www.ft.com/content/8a09cc13-78c9-4fc1-8ec3-be855d4741ca",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T06:30:06",
+  "providerPublishTime": 1771911006.0,
+  "text": "Fear > insight",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fd7239cc1-e643-42fe-a09e-e9918a4d2234.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "A",
+    "TO",
+    "THE",
+    "FEAR",
+    "AN",
+    "FUSS",
+    "FALL",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "A",
+    "TO",
+    "THE",
+    "FEAR",
+    "AN",
+    "FUSS",
+    "FALL",
+    "FOR"
+  ]
+}

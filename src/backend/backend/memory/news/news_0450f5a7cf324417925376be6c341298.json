@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Meta strikes AI chip deal with AMD days after committing to deploy millions of Nvidia GPUs",
+  "link": "https://www.cnbc.com/2026/02/24/meta-to-use-6gw-of-amd-gpus-days-after-expanded-nvidia-ai-chip-deal.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T12:00:01",
+  "providerPublishTime": 1771930801.0,
+  "text": "AMD has secured Meta as a customer for its Helios rack-scale system, as Nvidia's Blackwell faces heightened competition.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GPUS",
+    "AI",
+    "META",
+    "OF",
+    "FACES",
+    "AS",
+    "DEAL",
+    "DAYS",
+    "FOR",
+    "SCALE"
+  ],
+  "relatedTickers": [
+    "GPUS",
+    "AI",
+    "META",
+    "OF",
+    "FACES",
+    "AS",
+    "DEAL",
+    "DAYS",
+    "FOR",
+    "SCALE"
+  ]
+}

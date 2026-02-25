@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Donald Trump’s state of mind is a global risk",
+  "link": "https://www.ft.com/content/8802f7de-8458-4c86-90d3-8080df928ec1",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T12:21:22",
+  "providerPublishTime": 1771932082.0,
+  "text": "A cabinet of sycophants makes an already erratic US president a greater threat",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F4838f373-c893-49ba-971d-8bf5a1f63b5a.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IS",
+    "RISK",
+    "TRUMP",
+    "US",
+    "MAKES",
+    "MIND",
+    "S",
+    "AN",
+    "A",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IS",
+    "RISK",
+    "TRUMP",
+    "US",
+    "MAKES",
+    "MIND",
+    "S",
+    "AN",
+    "A",
+    "OF"
+  ]
+}

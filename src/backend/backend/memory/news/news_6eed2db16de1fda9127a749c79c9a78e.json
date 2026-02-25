@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AstraZeneca announces board changes as Nazneen Rahman to retire in April",
+  "link": "https://www.investing.com/news/sec-filings/astrazeneca-announces-board-changes-as-nazneen-rahman-to-retire-in-april-93CH-4521000",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:52:25",
+  "providerPublishTime": 1771930345.0,
+  "text": "AstraZeneca announces board changes as Nazneen Rahman to retire in April",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOARD",
+    "TO",
+    "AS",
+    "IN",
+    "APRIL"
+  ],
+  "relatedTickers": [
+    "BOARD",
+    "TO",
+    "AS",
+    "IN",
+    "APRIL"
+  ]
+}

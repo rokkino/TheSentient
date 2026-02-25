@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Da Vinci 5 Sparks Optimism Around Intuitive Surgical, Inc. (ISRG)",
+  "link": "https://finance.yahoo.com/news/da-vinci-5-sparks-optimism-203711642.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T20:37:11",
+  "providerPublishTime": 1771875431.0,
+  "text": "Da Vinci 5 Sparks Optimism Around Intuitive Surgical, Inc. (ISRG)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/1c79a8e08d8f99579cf1f77d9b2ba965",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DA",
+    "ISRG",
+    "VINCI",
+    "INC"
+  ],
+  "relatedTickers": [
+    "DA",
+    "ISRG",
+    "VINCI",
+    "INC"
+  ]
+}

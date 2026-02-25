@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Philippines May Draw $3 Billion If Added to JPMorgan Bond Index",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/philippines-may-draw-3-billion-if-added-to-jpmorgan-bond-index",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:28:18",
+  "providerPublishTime": 1771914498.0,
+  "text": "The Philippines may see inflows of about $3 billion if the nation’s government bonds are added to JPMorgan Chase &amp; Co.’s benchmark emerging-market index this year, according to National Treasurer Sharon Almanza.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iQnSRBguXzNI/v1/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ADDED",
+    "ARE",
+    "IF",
+    "BONDS",
+    "INDEX",
+    "AMP",
+    "THIS",
+    "OF",
+    "ABOUT",
+    "CHASE"
+  ],
+  "relatedTickers": [
+    "ADDED",
+    "ARE",
+    "IF",
+    "BONDS",
+    "INDEX",
+    "AMP",
+    "THIS",
+    "OF",
+    "ABOUT",
+    "CHASE"
+  ]
+}

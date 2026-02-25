@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "CECO Environmental Nears $2.2 Billion Deal for Thermon",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/ceco-environmental-nears-2-2-billion-deal-for-thermon",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T10:30:46",
+  "providerPublishTime": 1771925446.0,
+  "text": "CECO Environmental Corp. has agreed to acquire Thermon Group Holdings Inc., as the filtration company looks to enter the thermal solutions market amid booming demand from data centers.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iy01VzDlY8VA/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CECO",
+    "HAS",
+    "TO",
+    "NEARS",
+    "AMID",
+    "LOOKS",
+    "CORP",
+    "FROM",
+    "DATA",
+    "GROUP"
+  ],
+  "relatedTickers": [
+    "CECO",
+    "HAS",
+    "TO",
+    "NEARS",
+    "AMID",
+    "LOOKS",
+    "CORP",
+    "FROM",
+    "DATA",
+    "GROUP"
+  ]
+}

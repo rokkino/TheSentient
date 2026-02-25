@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Buyer snaps up a $4.8 million home next to Bill Gates’ Xanadu 2.0 estate",
+  "link": "https://www.marketwatch.com/story/buyer-snaps-up-a-4-8-million-home-next-to-bill-gates-xanadu-2-0-estate-d8b803e1?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T10:04:00",
+  "providerPublishTime": 1771923840.0,
+  "text": "Microsoft billionaire Bill Gates has found a buyer for the charming home next to his sprawling Xanadu 2.0 dwelling—just six days after listing the property for $4.8 million.",
+  "thumbnail": "https://images.mktw.net/im-55909091",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUYER",
+    "A",
+    "BILL",
+    "TO",
+    "GATES",
+    "HOME",
+    "FOUND",
+    "THE",
+    "JUST",
+    "SIX"
+  ],
+  "relatedTickers": [
+    "BUYER",
+    "A",
+    "BILL",
+    "TO",
+    "GATES",
+    "HOME",
+    "FOUND",
+    "THE",
+    "JUST",
+    "SIX"
+  ]
+}

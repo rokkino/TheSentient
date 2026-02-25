@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US banks enjoyed record profits of $300bn in 2025",
+  "link": "https://www.ft.com/content/8fc14314-7300-41f1-acb6-bc525bf2157a",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:13",
+  "providerPublishTime": 1771819213.0,
+  "text": "Lenders have prospered under Trump as they pay lower rates of interest to savers and write more loans",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5d587719-ecf7-429b-a647-ee4d1d65d1aa.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "TO",
+    "BANKS",
+    "PAY",
+    "UNDER",
+    "TRUMP",
+    "US",
+    "LOWER",
+    "RATES",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IN",
+    "TO",
+    "BANKS",
+    "PAY",
+    "UNDER",
+    "TRUMP",
+    "US",
+    "LOWER",
+    "RATES",
+    "OF"
+  ]
+}

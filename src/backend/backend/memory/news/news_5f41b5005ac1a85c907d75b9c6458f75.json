@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "America’s Ube Obsession Is Straining Supplies",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-24/america-s-ube-obsession-is-straining-supplies",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:00:04",
+  "providerPublishTime": 1771927204.0,
+  "text": "Ube has officially gone viral. Purple lattes, cheesecakes and pancakes are increasingly cropping up on dessert menus, but as a result, supplies are tightening. Ilena Peng has more. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iQGK.Kgwuj1w/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "MORE",
+    "PENG",
+    "AND",
+    "BUT",
+    "ON",
+    "GONE",
+    "ARE",
+    "HAS",
+    "S"
+  ],
+  "relatedTickers": [
+    "A",
+    "MORE",
+    "PENG",
+    "AND",
+    "BUT",
+    "ON",
+    "GONE",
+    "ARE",
+    "HAS",
+    "S"
+  ]
+}

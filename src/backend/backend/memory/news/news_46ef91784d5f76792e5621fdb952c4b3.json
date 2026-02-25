@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BioMarin Pharmaceutical Q4 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/biomarin-pharmaceutical-q4-earnings-call-231820996.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-23T23:18:20",
+  "providerPublishTime": 1771885100.0,
+  "text": "BioMarin Pharmaceutical Q4 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/de1d1e96eec97ca453a0a9a0e0e4a934",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CALL"
+  ],
+  "relatedTickers": [
+    "CALL"
+  ]
+}

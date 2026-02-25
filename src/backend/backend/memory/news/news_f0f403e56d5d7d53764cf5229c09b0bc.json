@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Klarna Hits $1 Billion Revenue — But IPO Story Now Faces Legal Test",
+  "link": "https://finance.yahoo.com/news/klarna-hits-1-billion-revenue-114602264.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-24T11:46:02",
+  "providerPublishTime": 1771929962.0,
+  "text": "Klarna Hits $1 Billion Revenue — But IPO Story Now Faces Legal Test",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/d33473cfd5c5867724c13c988b407ab6",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STORY",
+    "BUT",
+    "TEST",
+    "NOW",
+    "FACES",
+    "IPO",
+    "LEGAL",
+    "HITS"
+  ],
+  "relatedTickers": [
+    "STORY",
+    "BUT",
+    "TEST",
+    "NOW",
+    "FACES",
+    "IPO",
+    "LEGAL",
+    "HITS"
+  ]
+}

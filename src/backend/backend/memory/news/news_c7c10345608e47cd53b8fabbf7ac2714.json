@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Daily ETF Flows: QQQ Takes No.1 Spot",
+  "link": "https://finance.yahoo.com/news/daily-etf-flows-qqq-takes-230022471.html",
+  "publisher": "etf.com",
+  "timestamp": "2026-02-23T23:00:22",
+  "providerPublishTime": 1771884022.0,
+  "text": "Daily ETF Flows: QQQ Takes No.1 Spot",
+  "thumbnail": "https://media.zenfs.com/en/indexuniverse.com/1d45f9488d95ad21b16acbe33a9dfed0",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "QQQ",
+    "FLOWS",
+    "SPOT",
+    "ETF",
+    "TAKES",
+    "DAILY",
+    "NO"
+  ],
+  "relatedTickers": [
+    "QQQ",
+    "FLOWS",
+    "SPOT",
+    "ETF",
+    "TAKES",
+    "DAILY",
+    "NO"
+  ]
+}

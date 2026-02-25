@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Kenya Pipeline’s Initial Offer Oversubscribed, Adviser Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/kenya-pipeline-s-initial-offer-oversubscribed-adviser-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:36:21",
+  "providerPublishTime": 1772001381.0,
+  "text": "Kenya has reached its target 106.3 billion shillings ($824.1 million) from the initial public offering of its state-run pipeline company, the first such sale for the East African nation in more than a decade.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itu0Fy.nhsSg/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RUN",
+    "SALE",
+    "MORE",
+    "OF",
+    "STATE",
+    "OFFER",
+    "THE",
+    "FOR",
+    "EAST",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "RUN",
+    "SALE",
+    "MORE",
+    "OF",
+    "STATE",
+    "OFFER",
+    "THE",
+    "FOR",
+    "EAST",
+    "FROM"
+  ]
+}

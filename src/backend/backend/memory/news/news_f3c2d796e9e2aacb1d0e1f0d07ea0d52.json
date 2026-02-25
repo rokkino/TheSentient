@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jim Cramer says AI fears have made the stock market fragile",
+  "link": "https://www.cnbc.com/2026/02/23/jim-cramer-says-ai-fears-have-made-the-stock-market-fragile.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T23:43:10",
+  "providerPublishTime": 1771886590.0,
+  "text": "New research explains how the AI boom could hurt the economy and cause a 10% unemployment rate.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FEARS",
+    "A",
+    "CAUSE",
+    "NEW",
+    "COULD",
+    "THE",
+    "BOOM",
+    "AND",
+    "HURT",
+    "RATE"
+  ],
+  "relatedTickers": [
+    "FEARS",
+    "A",
+    "CAUSE",
+    "NEW",
+    "COULD",
+    "THE",
+    "BOOM",
+    "AND",
+    "HURT",
+    "RATE"
+  ]
+}

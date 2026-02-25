@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Fire, Power Outage Disrupt Operations at Cape Town Airport",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/fire-power-outage-disrupt-operations-at-cape-town-airport",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:16:13",
+  "providerPublishTime": 1771928173.0,
+  "text": "A fire and a power outage disrupted operations at Cape Town International Airport on Tuesday, leading to delays at the gateway to South Africa’s main tourism hub.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/icChRWuWPJfc/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CAPE",
+    "A",
+    "TO",
+    "SOUTH",
+    "HUB",
+    "THE",
+    "AND",
+    "FIRE",
+    "ON",
+    "S"
+  ],
+  "relatedTickers": [
+    "CAPE",
+    "A",
+    "TO",
+    "SOUTH",
+    "HUB",
+    "THE",
+    "AND",
+    "FIRE",
+    "ON",
+    "S"
+  ]
+}

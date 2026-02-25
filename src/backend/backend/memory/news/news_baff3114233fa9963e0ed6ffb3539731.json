@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "ConvaTec Group H2 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/convatec-group-h2-earnings-call-124842263.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-24T12:48:42",
+  "providerPublishTime": 1771933722.0,
+  "text": "ConvaTec Group H2 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/cea9d920ebb92424a0e917d156905bc2",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GROUP",
+    "CALL"
+  ],
+  "relatedTickers": [
+    "GROUP",
+    "CALL"
+  ]
+}

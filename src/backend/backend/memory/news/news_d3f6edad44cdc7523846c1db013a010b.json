@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Four years into the Ukraine war, is Europe ready for its own army?",
+  "link": "https://www.cnbc.com/2026/02/24/ukraine-war-anniversay-europe-own-army.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T07:32:21",
+  "providerPublishTime": 1771914741.0,
+  "text": "Is it time for Europe to take security matters into its own hands?",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OWN",
+    "ARMY",
+    "WAR",
+    "TIME",
+    "IS",
+    "TO",
+    "READY",
+    "HANDS",
+    "THE",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "OWN",
+    "ARMY",
+    "WAR",
+    "TIME",
+    "IS",
+    "TO",
+    "READY",
+    "HANDS",
+    "THE",
+    "FOR"
+  ]
+}

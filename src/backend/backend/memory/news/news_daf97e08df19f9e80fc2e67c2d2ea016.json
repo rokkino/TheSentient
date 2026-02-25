@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What could save the markets from AI Armageddon? Populist backlash — and it’s already started.",
+  "link": "https://www.marketwatch.com/story/what-could-save-the-markets-from-ai-armageddon-populist-backlash-and-its-already-started-9b2aa52d?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T12:42:00",
+  "providerPublishTime": 1771933320.0,
+  "text": "Jefferies strategists are talking about a revolution, against AI that is, to help boost stock markets.",
+  "thumbnail": "https://images.mktw.net/im-32786861",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THAT",
+    "AND",
+    "TO",
+    "ARE",
+    "IS",
+    "COULD",
+    "STOCK",
+    "FROM",
+    "ABOUT",
+    "HELP"
+  ],
+  "relatedTickers": [
+    "THAT",
+    "AND",
+    "TO",
+    "ARE",
+    "IS",
+    "COULD",
+    "STOCK",
+    "FROM",
+    "ABOUT",
+    "HELP"
+  ]
+}

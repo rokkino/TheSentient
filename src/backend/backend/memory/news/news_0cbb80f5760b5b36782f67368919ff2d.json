@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "This couple cut the cost of their home build in half by making it a DIY. How to balance the risks and rewards",
+  "link": "https://finance.yahoo.com/news/couple-cut-cost-home-build-120000421.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-23T12:00:00",
+  "providerPublishTime": 1771844400.0,
+  "text": "This couple cut the cost of their home build in half by making it a DIY. How to balance the risks and rewards",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/7a0f16f67b28a2dd118b4d20aeb2532e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THIS",
+    "IN",
+    "TO",
+    "THEIR",
+    "HOME",
+    "THE",
+    "HOW",
+    "CUT",
+    "BY",
+    "DIY"
+  ],
+  "relatedTickers": [
+    "THIS",
+    "IN",
+    "TO",
+    "THEIR",
+    "HOME",
+    "THE",
+    "HOW",
+    "CUT",
+    "BY",
+    "DIY"
+  ]
+}

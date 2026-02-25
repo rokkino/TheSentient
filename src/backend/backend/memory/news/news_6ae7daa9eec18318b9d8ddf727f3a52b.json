@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Georgia Capital launches $50m share buyback program",
+  "link": "https://www.investing.com/news/company-news/georgia-capital-launches-50m-share-buyback-program-93CH-4520560",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:15:04",
+  "providerPublishTime": 1771913704.0,
+  "text": "Georgia Capital launches $50m share buyback program",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SHARE"
+  ],
+  "relatedTickers": [
+    "SHARE"
+  ]
+}

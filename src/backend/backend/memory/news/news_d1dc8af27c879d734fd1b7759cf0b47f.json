@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Guggenheim cuts Claritev stock price target to $38 on margin pressure",
+  "link": "https://www.investing.com/news/analyst-ratings/guggenheim-cuts-claritev-stock-price-target-to-38-on-margin-pressure-93CH-4521253",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:46:59",
+  "providerPublishTime": 1771933619.0,
+  "text": "Guggenheim cuts Claritev stock price target to $38 on margin pressure",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CUTS",
+    "TO",
+    "PRICE",
+    "STOCK",
+    "ON"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "TO",
+    "PRICE",
+    "STOCK",
+    "ON"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Software companies face higher borrowing costs, tougher scrutiny as AI threatens businesses",
+  "link": "https://finance.yahoo.com/news/software-companies-face-higher-borrowing-110348553.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T11:03:48",
+  "providerPublishTime": 1771841028.0,
+  "text": "Software companies face higher borrowing costs, tougher scrutiny as AI threatens businesses",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/eb001abc92cacd4ddd1e0aca6e980610",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "COSTS",
+    "AI",
+    "FACE",
+    "AS"
+  ],
+  "relatedTickers": [
+    "COSTS",
+    "AI",
+    "FACE",
+    "AS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Streetwise — Lloyd Blankfein’s memoir of his turbulent time at Goldman Sachs",
+  "link": "https://www.ft.com/content/2324be9f-e753-4168-b1cc-93781b62e530",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:06",
+  "providerPublishTime": 1771992006.0,
+  "text": "The former chief delivers a sharp insider’s guide to the boom and bust era of financial services that took the shine off the investment bank",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fa9142a4b-4ae4-4daa-803e-967a702d6a0f.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "BOOM",
+    "CHIEF",
+    "AT",
+    "A",
+    "HIS",
+    "AND",
+    "TOOK",
+    "OFF",
+    "TIME"
+  ],
+  "relatedTickers": [
+    "THE",
+    "BOOM",
+    "CHIEF",
+    "AT",
+    "A",
+    "HIS",
+    "AND",
+    "TOOK",
+    "OFF",
+    "TIME"
+  ]
+}

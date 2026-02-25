@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Meta agrees multibillion-dollar chip deal with AMD",
+  "link": "https://www.ft.com/content/76b40c38-cece-4df7-a0f8-3783eacd7b97",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T12:00:09",
+  "providerPublishTime": 1771930809.0,
+  "text": "Social media group’s arrangement includes potential stake purchase as Big Tech seeks to diversify away from Nvidia",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8f10392d-1ee0-46e6-b79d-1e4b67cf58a6.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TECH",
+    "AWAY",
+    "MEDIA",
+    "META",
+    "TO",
+    "SEEKS",
+    "CHIP",
+    "FROM",
+    "WITH",
+    "STAKE"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "AWAY",
+    "MEDIA",
+    "META",
+    "TO",
+    "SEEKS",
+    "CHIP",
+    "FROM",
+    "WITH",
+    "STAKE"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Treasury Yields Fall Amid Rising Uncertainty",
+  "link": "https://www.wsj.com/finance/eurozone-government-bond-yields-edge-lower-german-ifo-data-eyed-f6df2ce9?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-23T20:49:00",
+  "providerPublishTime": 1771876140.0,
+  "text": "Treasury Yields Fall Amid Rising Uncertainty",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/7b2c285183be07ca3c4e8242b25a59a8",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FALL",
+    "AMID"
+  ],
+  "relatedTickers": [
+    "FALL",
+    "AMID"
+  ]
+}

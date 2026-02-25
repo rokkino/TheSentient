@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Singapore Banks Draw $61 Billion in New Wealth From Asia’s Rich",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/singapore-banks-draw-61-billion-in-new-wealth-from-asia-s-rich",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:59:39",
+  "providerPublishTime": 1772006379.0,
+  "text": "Singapore’s three biggest banks pulled in a combined S$77 billion ($61 billion) in net new wealth money last year as geopolitical tensions and trade uncertainty pushed Asia’s rich to move more assets to the city-state.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ilKFvW004DvI/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MONEY",
+    "BANKS",
+    "FROM",
+    "AS",
+    "S",
+    "NET",
+    "MORE",
+    "YEAR",
+    "RICH",
+    "ASIA"
+  ],
+  "relatedTickers": [
+    "MONEY",
+    "BANKS",
+    "FROM",
+    "AS",
+    "S",
+    "NET",
+    "MORE",
+    "YEAR",
+    "RICH",
+    "ASIA"
+  ]
+}

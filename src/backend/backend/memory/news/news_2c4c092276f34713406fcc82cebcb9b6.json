@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OGDCL receives eighth interest payment from circular debt plan",
+  "link": "https://www.investing.com/news/company-news/ogdcl-receives-eighth-interest-payment-from-circular-debt-plan-93CH-4523352",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:47:20",
+  "providerPublishTime": 1772002040.0,
+  "text": "OGDCL receives eighth interest payment from circular debt plan",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DEBT",
+    "PLAN",
+    "OGDCL",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "DEBT",
+    "PLAN",
+    "OGDCL",
+    "FROM"
+  ]
+}

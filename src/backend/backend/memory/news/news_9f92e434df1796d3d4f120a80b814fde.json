@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Valterra Platinum surges on dividend beat, cost savings",
+  "link": "https://www.investing.com/news/earnings/valterra-platinum-surges-on-dividend-beat-cost-savings-4523392",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:20:42",
+  "providerPublishTime": 1772004042.0,
+  "text": "Valterra Platinum surges on dividend beat, cost savings",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEAT",
+    "ON",
+    "COST"
+  ],
+  "relatedTickers": [
+    "BEAT",
+    "ON",
+    "COST"
+  ]
+}

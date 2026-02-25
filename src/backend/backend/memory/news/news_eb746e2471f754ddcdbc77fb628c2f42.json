@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Convatec FY25 shares jump 8% on growth target raise despite $72 mln writedown",
+  "link": "https://www.investing.com/news/earnings/convatec-fy25-shares-jump-8-on-growth-target-raise-despite-72-mln-writedown-4520617",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:20:28",
+  "providerPublishTime": 1771917628.0,
+  "text": "Convatec FY25 shares jump 8% on growth target raise despite $72 mln writedown",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JUMP",
+    "RAISE",
+    "ON",
+    "MLN"
+  ],
+  "relatedTickers": [
+    "JUMP",
+    "RAISE",
+    "ON",
+    "MLN"
+  ]
+}

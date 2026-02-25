@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jim Ratcliffe’s Ineos explores asset sales as chemical sector struggles",
+  "link": "https://www.ft.com/content/d1e7b279-2558-41cc-b69b-9ffff9ed1747",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:06",
+  "providerPublishTime": 1771992006.0,
+  "text": "Group searches for ways to raise cash, cut costs and reduce its leverage",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F0d8b1152-1195-4ca1-b986-d853ea13fee4.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "WAYS",
+    "RAISE",
+    "INEOS",
+    "ITS",
+    "GROUP",
+    "COSTS",
+    "S",
+    "JIM",
+    "AS"
+  ],
+  "relatedTickers": [
+    "TO",
+    "WAYS",
+    "RAISE",
+    "INEOS",
+    "ITS",
+    "GROUP",
+    "COSTS",
+    "S",
+    "JIM",
+    "AS"
+  ]
+}

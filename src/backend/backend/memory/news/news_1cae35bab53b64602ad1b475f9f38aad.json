@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Best CD rates today, February 24, 2026: Lock in up to 4% APY today",
+  "link": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-february-24-2026-lock-in-up-to-4-apy-today-110013035.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-24T11:00:13",
+  "providerPublishTime": 1771927213.0,
+  "text": "Best CD rates today, February 24, 2026: Lock in up to 4% APY today",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-07/c47b17e0-4f64-11ef-bfe0-fc9ef2fc2991",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UP",
+    "CD",
+    "TO",
+    "LOCK",
+    "TODAY",
+    "IN",
+    "APY",
+    "RATES",
+    "BEST"
+  ],
+  "relatedTickers": [
+    "UP",
+    "CD",
+    "TO",
+    "LOCK",
+    "TODAY",
+    "IN",
+    "APY",
+    "RATES",
+    "BEST"
+  ]
+}

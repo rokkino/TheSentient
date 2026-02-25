@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cybersecurity stocks drop for a second day as new Anthropic tool fuels AI disruption fears",
+  "link": "https://www.cnbc.com/2026/02/23/cybersecurity-stocks-anthropic-ai-crowdstrike.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T21:07:10",
+  "providerPublishTime": 1771877230.0,
+  "text": "Cybersecurity stocks are the latest to see sell-off pressure as AI threatens to upend software companies.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "TOOL",
+    "SELL",
+    "OFF",
+    "FEARS",
+    "ARE",
+    "TO",
+    "NEW",
+    "THE",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "A",
+    "TOOL",
+    "SELL",
+    "OFF",
+    "FEARS",
+    "ARE",
+    "TO",
+    "NEW",
+    "THE",
+    "FOR"
+  ]
+}

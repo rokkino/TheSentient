@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk Trial Flop Ripples Through Denmark’s Stock Market",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/novo-nordisk-trial-flop-ripples-through-denmark-s-stock-market",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T11:00:56",
+  "providerPublishTime": 1771840856.0,
+  "text": "Disappointing data from Novo Nordisk A/S is sending shockwaves across equities in Denmark, dragging the wider market down and underscoring how tightly the country’s fortunes are tied to the obesity-drug maker.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iim38uFyWAS4/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FLOP",
+    "TIED",
+    "A",
+    "HOW",
+    "TRIAL",
+    "WIDER",
+    "IN",
+    "NOVO",
+    "ARE",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "FLOP",
+    "TIED",
+    "A",
+    "HOW",
+    "TRIAL",
+    "WIDER",
+    "IN",
+    "NOVO",
+    "ARE",
+    "STOCK"
+  ]
+}

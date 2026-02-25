@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Circle's fourth-quarter revenue rises on strong stablecoin circulation",
+  "link": "https://finance.yahoo.com/news/circles-fourth-quarter-revenue-rises-112921598.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-25T11:29:21",
+  "providerPublishTime": 1772015361.0,
+  "text": "Circle's fourth-quarter revenue rises on strong stablecoin circulation",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/d028ba3011aa4024aa05058f34d96f27",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "RISES",
+    "ON"
+  ],
+  "relatedTickers": [
+    "S",
+    "RISES",
+    "ON"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "My grandpa retired happy at 70 with $750K, and he’s doing just fine. I know where most Americans go wrong.",
+  "link": "https://www.marketwatch.com/story/my-grandpa-retired-happy-at-70-with-750k-and-hes-doing-just-fine-i-know-where-most-americans-go-wrong-c5774943?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T10:15:00",
+  "providerPublishTime": 1771924500.0,
+  "text": "“You could even retire at 55 with $500,000 and be perfectly fine. Am I right?”",
+  "thumbnail": "https://images.mktw.net/im-16911650",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AM",
+    "WITH",
+    "JUST",
+    "AND",
+    "FINE",
+    "DOING",
+    "S",
+    "WRONG",
+    "MY",
+    "HAPPY"
+  ],
+  "relatedTickers": [
+    "AM",
+    "WITH",
+    "JUST",
+    "AND",
+    "FINE",
+    "DOING",
+    "S",
+    "WRONG",
+    "MY",
+    "HAPPY"
+  ]
+}

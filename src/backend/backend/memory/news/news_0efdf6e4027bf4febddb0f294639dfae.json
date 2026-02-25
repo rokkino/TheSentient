@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jane Street Accused of Insider Trading That Helped Collapse Terraform",
+  "link": "https://www.wsj.com/finance/currencies/jane-street-accused-of-insider-trading-that-helped-collapse-terraform-659e6993?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-23T23:28:00",
+  "providerPublishTime": 1771885680.0,
+  "text": "Jane Street Accused of Insider Trading That Helped Collapse Terraform",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/489b77acac533ca72d24b10f3d2e3c68",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JANE",
+    "OF",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "JANE",
+    "OF",
+    "THAT"
+  ]
+}

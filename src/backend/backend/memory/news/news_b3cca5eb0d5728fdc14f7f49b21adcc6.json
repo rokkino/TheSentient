@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jamie Dimon says AI is already reshaping JPMorgan Chase's workforce as bank plans 'huge redeployment’",
+  "link": "https://www.cnbc.com/2026/02/24/jpm-ceo-jamie-dimon-ai-reshaping-workforce-redeployment.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T21:33:36",
+  "providerPublishTime": 1771965216.0,
+  "text": "JPMorgan, the world's biggest bank by market cap, has the industry's largest annual tech budget at nearly $20 billion, and it has outlined an ambitious AI plan.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TECH",
+    "AI",
+    "BANK",
+    "BY",
+    "WORLD",
+    "HUGE",
+    "CHASE",
+    "IT",
+    "AS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "AI",
+    "BANK",
+    "BY",
+    "WORLD",
+    "HUGE",
+    "CHASE",
+    "IT",
+    "AS",
+    "THE"
+  ]
+}

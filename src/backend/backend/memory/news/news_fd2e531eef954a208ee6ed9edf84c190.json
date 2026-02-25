@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UK Seeks to Cut Oil Refinery Carbon Costs After Closures",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/uk-seeks-to-cut-carbon-costs-for-oil-refineries-after-closures",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T00:01:00",
+  "providerPublishTime": 1771801260.0,
+  "text": "The UK government is drawing up a strategy to protect its remaining oil refineries from rising carbon prices after two site closures in the past year.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iRZGpu1qn9ZU/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "TO",
+    "UK",
+    "UP",
+    "TWO",
+    "THE",
+    "SITE",
+    "YEAR",
+    "CUT",
+    "SEEKS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "TO",
+    "UK",
+    "UP",
+    "TWO",
+    "THE",
+    "SITE",
+    "YEAR",
+    "CUT",
+    "SEEKS"
+  ]
+}

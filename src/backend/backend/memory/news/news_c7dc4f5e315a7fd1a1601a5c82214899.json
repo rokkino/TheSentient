@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Representative Al Green says he confronted Trump over Obama video",
+  "link": "https://www.investing.com/news/politics-news/us-rep-al-green-escorted-from-house-chamber-during-trump-speech-4523157",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:06:41",
+  "providerPublishTime": 1772006801.0,
+  "text": "US Representative Al Green says he confronted Trump over Obama video",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "GREEN",
+    "TRUMP",
+    "OVER",
+    "VIDEO",
+    "US",
+    "HE",
+    "OBAMA",
+    "AL"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "GREEN",
+    "TRUMP",
+    "OVER",
+    "VIDEO",
+    "US",
+    "HE",
+    "OBAMA",
+    "AL"
+  ]
+}

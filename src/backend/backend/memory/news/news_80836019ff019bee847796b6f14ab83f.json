@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Supreme Court ruling throws Trump administration's tariff strategy into flux. What it means for global trade, U.S. economy",
+  "link": "https://www.cnbc.com/2026/02/23/what-supreme-court-tariff-ruling-means-for-global-trade-us-economy.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T00:03:54",
+  "providerPublishTime": 1771887834.0,
+  "text": "President Trump's new tariffs could further strain global trade relations, pushing businesses to operate more cautiously and hurting the U.S. economy.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WHAT",
+    "FLUX",
+    "TRUMP",
+    "NEW",
+    "COULD",
+    "TO",
+    "INTO",
+    "THE",
+    "AND",
+    "U"
+  ],
+  "relatedTickers": [
+    "WHAT",
+    "FLUX",
+    "TRUMP",
+    "NEW",
+    "COULD",
+    "TO",
+    "INTO",
+    "THE",
+    "AND",
+    "U"
+  ]
+}

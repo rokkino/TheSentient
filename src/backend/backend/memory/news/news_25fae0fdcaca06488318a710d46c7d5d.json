@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cipher Mining (CIFR) Pivot Toward Hyperscale Infrastructure Follows $734M Q4 Net Loss",
+  "link": "https://finance.yahoo.com/news/cipher-mining-cifr-pivot-toward-111900240.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T11:19:00",
+  "providerPublishTime": 1772014740.0,
+  "text": "Cipher Mining (CIFR) Pivot Toward Hyperscale Infrastructure Follows $734M Q4 Net Loss",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/193e3566d2a806c69f228d573c0ecfb3",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LOSS",
+    "PIVOT",
+    "NET",
+    "CIFR"
+  ],
+  "relatedTickers": [
+    "LOSS",
+    "PIVOT",
+    "NET",
+    "CIFR"
+  ]
+}

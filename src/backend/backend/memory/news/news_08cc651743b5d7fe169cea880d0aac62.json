@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European leaders gather in Kyiv as US hangs back",
+  "link": "https://www.ft.com/content/a654e36c-19b7-4932-bdf8-f22e9c10a643",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T10:14:31",
+  "providerPublishTime": 1771924471.0,
+  "text": "Trump administration sends no senior officials to fourth anniversary of Russia’s full-scale invasion",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fe9f535cc-f21a-4201-b272-18381647ea5a.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "NO",
+    "US",
+    "HANGS",
+    "TRUMP",
+    "TO",
+    "SCALE",
+    "KYIV",
+    "IN",
+    "SENDS"
+  ],
+  "relatedTickers": [
+    "OF",
+    "NO",
+    "US",
+    "HANGS",
+    "TRUMP",
+    "TO",
+    "SCALE",
+    "KYIV",
+    "IN",
+    "SENDS"
+  ]
+}

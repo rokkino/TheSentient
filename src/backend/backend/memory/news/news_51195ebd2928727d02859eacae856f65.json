@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil pulls back as U.S.–Iran talks set to resume: Here’s where negotiations stand",
+  "link": "https://www.cnbc.com/2026/02/23/iran-us-talks-oil-falls-nuclear-negotiations.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T11:48:11",
+  "providerPublishTime": 1771843691.0,
+  "text": "Tensions have remained on high alert throughout the Middle East for weeks after U.S. President Donald Trump indicated a strike on Iran could be imminent.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "HAVE",
+    "IRAN",
+    "FOR",
+    "U",
+    "BE",
+    "ON",
+    "AS",
+    "OIL",
+    "COULD"
+  ],
+  "relatedTickers": [
+    "A",
+    "HAVE",
+    "IRAN",
+    "FOR",
+    "U",
+    "BE",
+    "ON",
+    "AS",
+    "OIL",
+    "COULD"
+  ]
+}

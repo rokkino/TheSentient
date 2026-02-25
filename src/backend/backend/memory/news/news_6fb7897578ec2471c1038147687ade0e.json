@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Santander Vows €20 Billion in 2028 Profit After Webster Deal",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/santander-pledges-over-20-billion-in-profit-after-webster-deal",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:11:03",
+  "providerPublishTime": 1771999863.0,
+  "text": "Banco Santander SA vowed to grow net income to more than €20 billion ($23.6 billion) in 2028, ratcheting up its financial goals shortly after announcing the acquisition of US lender Webster Financial Corp.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iiMyj1cxFPcg/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BANCO",
+    "UP",
+    "MORE",
+    "OF",
+    "SA",
+    "VOWS",
+    "DEAL",
+    "THE",
+    "GROW",
+    "GOALS"
+  ],
+  "relatedTickers": [
+    "BANCO",
+    "UP",
+    "MORE",
+    "OF",
+    "SA",
+    "VOWS",
+    "DEAL",
+    "THE",
+    "GROW",
+    "GOALS"
+  ]
+}

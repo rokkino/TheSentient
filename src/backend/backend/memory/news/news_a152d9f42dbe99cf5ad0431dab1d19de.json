@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How a Decade of American LNG Has Redrawn the Global Gas Landscape",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-24/american-lng-has-rewired-global-gas-trade-over-the-last-decade",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:11:01",
+  "providerPublishTime": 1771931461.0,
+  "text": "The US dominates liquefied natural gas trade in terms of volumes and flexibility.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iasnXniEgitw/v9/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HAS",
+    "TERMS",
+    "LNG",
+    "US",
+    "IN",
+    "TRADE",
+    "THE",
+    "HOW",
+    "A",
+    "OF"
+  ],
+  "relatedTickers": [
+    "HAS",
+    "TERMS",
+    "LNG",
+    "US",
+    "IN",
+    "TRADE",
+    "THE",
+    "HOW",
+    "A",
+    "OF"
+  ]
+}

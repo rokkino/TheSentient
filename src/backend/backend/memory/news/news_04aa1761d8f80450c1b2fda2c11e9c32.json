@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bangladesh Bank Chief Quits Abruptly After Government Change",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/bangladesh-bank-chief-quits-abruptly-after-change-in-government",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T09:55:36",
+  "providerPublishTime": 1772009736.0,
+  "text": "The head of Bangladesh’s central bank stepped down in a surprise departure that comes just over a week after the inauguration of the country’s new democratically elected government.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i9ts8ml7fZtU/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OVER",
+    "AFTER",
+    "DOWN",
+    "THE",
+    "THAT",
+    "JUST",
+    "IN",
+    "WEEK",
+    "S",
+    "A"
+  ],
+  "relatedTickers": [
+    "OVER",
+    "AFTER",
+    "DOWN",
+    "THE",
+    "THAT",
+    "JUST",
+    "IN",
+    "WEEK",
+    "S",
+    "A"
+  ]
+}

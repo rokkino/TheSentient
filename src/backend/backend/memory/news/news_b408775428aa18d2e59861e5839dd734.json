@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Major crypto platform shuts down after $26M hack",
+  "link": "https://finance.yahoo.com/news/major-crypto-platform-shuts-down-231449380.html",
+  "publisher": "TheStreet",
+  "timestamp": "2026-02-23T23:14:49",
+  "providerPublishTime": 1771884889.0,
+  "text": "Major crypto platform shuts down after $26M hack",
+  "thumbnail": "https://media.zenfs.com/en/thestreet_881/bcba2f3b1e614df3718a12280637ea97",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "MAJOR",
+    "DOWN",
+    "HACK",
+    "SHUTS",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "MAJOR",
+    "DOWN",
+    "HACK",
+    "SHUTS",
+    "AFTER"
+  ]
+}

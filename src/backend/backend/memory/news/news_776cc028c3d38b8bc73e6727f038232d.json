@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "ECB Mustn’t Be Complacent Despite Inflation Victory, Vujcic Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/ecb-mustn-t-be-complacent-despite-inflation-victory-vujcic-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:29:20",
+  "providerPublishTime": 1772015360.0,
+  "text": "The European Central Bank must remain alert to dangers despite officials having wrested back control over prices, according to Governing Council member Boris Vujcic.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iUA6Qo9n3ttg/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OVER",
+    "T",
+    "BORIS",
+    "THE",
+    "BACK",
+    "SAYS",
+    "BE",
+    "TO",
+    "MUST",
+    "BANK"
+  ],
+  "relatedTickers": [
+    "OVER",
+    "T",
+    "BORIS",
+    "THE",
+    "BACK",
+    "SAYS",
+    "BE",
+    "TO",
+    "MUST",
+    "BANK"
+  ]
+}

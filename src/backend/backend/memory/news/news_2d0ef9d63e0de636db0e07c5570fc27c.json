@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Home Depot’s stock set to surge as sales growth provides signs of a turnaround",
+  "link": "https://www.marketwatch.com/story/home-depots-stock-set-to-surge-as-sales-growth-provides-signs-of-a-turnaround-dd4fe20e?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T11:46:00",
+  "providerPublishTime": 1771929960.0,
+  "text": "Home Depot’s stock was set to surge after quarterly comparable sales snapped a streak of misses, and profit beat by the widest margin in years.",
+  "thumbnail": "https://images.mktw.net/im-19889926",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SET",
+    "HOME",
+    "AND",
+    "S",
+    "BY",
+    "SALES",
+    "WAS",
+    "OF",
+    "A",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "SET",
+    "HOME",
+    "AND",
+    "S",
+    "BY",
+    "SALES",
+    "WAS",
+    "OF",
+    "A",
+    "BEAT"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is the sale of Schroders really so bad for the City?",
+  "link": "https://www.ft.com/content/f9e21b0d-fbe5-41c3-96d8-b3e10658bb9c",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:21",
+  "providerPublishTime": 1771819221.0,
+  "text": "iShares’ sale to BlackRock holds lessons for the UK",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fddd38bf5-b703-457f-8d93-936af41733cb.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SALE",
+    "CITY",
+    "TO",
+    "UK",
+    "THE",
+    "OF",
+    "FOR",
+    "HOLDS",
+    "SO",
+    "BAD"
+  ],
+  "relatedTickers": [
+    "SALE",
+    "CITY",
+    "TO",
+    "UK",
+    "THE",
+    "OF",
+    "FOR",
+    "HOLDS",
+    "SO",
+    "BAD"
+  ]
+}

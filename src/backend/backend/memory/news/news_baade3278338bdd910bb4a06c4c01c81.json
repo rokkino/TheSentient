@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ondas Inc. (ONDS): Airobotics Bags New Multi-million-dollar Order for Iron Drone Raider™ Counter-UAS System",
+  "link": "https://finance.yahoo.com/news/ondas-inc-onds-airobotics-bags-205342079.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T20:53:42",
+  "providerPublishTime": 1771876422.0,
+  "text": "Ondas Inc. (ONDS): Airobotics Bags New Multi-million-dollar Order for Iron Drone Raider™ Counter-UAS System",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/a5b2f46cd425b05ab4bb567bd2f649bd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IRON",
+    "INC",
+    "ONDAS",
+    "ORDER",
+    "UAS",
+    "ONDS",
+    "NEW",
+    "BAGS",
+    "MULTI",
+    "DRONE"
+  ],
+  "relatedTickers": [
+    "IRON",
+    "INC",
+    "ONDAS",
+    "ORDER",
+    "UAS",
+    "ONDS",
+    "NEW",
+    "BAGS",
+    "MULTI",
+    "DRONE"
+  ]
+}

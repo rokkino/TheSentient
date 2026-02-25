@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OpenAI’s ban of Canada school shooter’s account raises scrutiny of other online activity",
+  "link": "https://www.investing.com/news/world-news/openais-ban-of-canada-school-shooters-account-raises-scrutiny-of-other-online-activity-4523691",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:13:35",
+  "providerPublishTime": 1772014415.0,
+  "text": "OpenAI’s ban of Canada school shooter’s account raises scrutiny of other online activity",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "OF",
+    "BAN",
+    "OTHER"
+  ],
+  "relatedTickers": [
+    "S",
+    "OF",
+    "BAN",
+    "OTHER"
+  ]
+}

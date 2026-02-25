@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "JPMorgan initiates Aura Minerals stock at Overweight on growth path",
+  "link": "https://www.investing.com/news/analyst-ratings/jpmorgan-initiates-aura-minerals-stock-at-overweight-on-growth-path-93CH-4523410",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:53:13",
+  "providerPublishTime": 1772005993.0,
+  "text": "JPMorgan initiates Aura Minerals stock at Overweight on growth path",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AT",
+    "AURA",
+    "STOCK",
+    "PATH",
+    "ON"
+  ],
+  "relatedTickers": [
+    "AT",
+    "AURA",
+    "STOCK",
+    "PATH",
+    "ON"
+  ]
+}

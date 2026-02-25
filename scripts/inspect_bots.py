@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 # Database path
-DB_PATH = os.path.join("backend", "thesentient.db")
+DB_PATH = os.path.join("backend", "../data/databases/thesentient.db")
 OUTPUT_FILE = "bot_info.txt"
 
 def list_bots():

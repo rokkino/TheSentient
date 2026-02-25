@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Should higher earners still make 401(k) catch‑up contributions?",
+  "link": "https://finance.yahoo.com/news/higher-earners-still-401-k-233836730.html",
+  "publisher": "Associated Press Finance",
+  "timestamp": "2026-02-23T23:38:36",
+  "providerPublishTime": 1771886316.0,
+  "text": "Should higher earners still make 401(k) catch‑up contributions?",
+  "thumbnail": "https://media.zenfs.com/en/ap_finance_articles_694/06e00741325f401cf6fcec126c51090e",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MAKE",
+    "K",
+    "CATCH",
+    "UP",
+    "STILL"
+  ],
+  "relatedTickers": [
+    "MAKE",
+    "K",
+    "CATCH",
+    "UP",
+    "STILL"
+  ]
+}

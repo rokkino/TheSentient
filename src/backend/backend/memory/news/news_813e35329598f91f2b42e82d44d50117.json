@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nat-Gas Prices Erase Early Gains as US Weather Forecasts Warm",
+  "link": "https://finance.yahoo.com/news/nat-gas-prices-erase-early-202156043.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-23T20:21:56",
+  "providerPublishTime": 1771874516.0,
+  "text": "Nat-Gas Prices Erase Early Gains as US Weather Forecasts Warm",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/f225b06e5cc93c3d7503cc730530de29",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "US",
+    "ERASE",
+    "WARM",
+    "NAT",
+    "AS",
+    "EARLY",
+    "GAINS",
+    "GAS"
+  ],
+  "relatedTickers": [
+    "US",
+    "ERASE",
+    "WARM",
+    "NAT",
+    "AS",
+    "EARLY",
+    "GAINS",
+    "GAS"
+  ]
+}

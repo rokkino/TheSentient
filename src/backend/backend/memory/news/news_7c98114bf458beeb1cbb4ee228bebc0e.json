@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BlackRock Sees Europe Credit Spreads Steady in Face of AI Angst",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/blackrock-sees-europe-credit-spreads-steady-in-face-of-ai-angst",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:30:00",
+  "providerPublishTime": 1771914600.0,
+  "text": "BlackRock Inc. sees European credit spreads staying range-bound this year as attractive fixed-income yields are likely to offset worries around the potential disruption from artificial intelligence.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ihoQk26MEI6s/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "SEES",
+    "RANGE",
+    "ARE",
+    "AI",
+    "ANGST",
+    "TO",
+    "FACE",
+    "THE",
+    "BOUND"
+  ],
+  "relatedTickers": [
+    "IN",
+    "SEES",
+    "RANGE",
+    "ARE",
+    "AI",
+    "ANGST",
+    "TO",
+    "FACE",
+    "THE",
+    "BOUND"
+  ]
+}

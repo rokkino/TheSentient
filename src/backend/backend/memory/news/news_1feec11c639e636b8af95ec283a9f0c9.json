@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bain, Lone Star Are Said to Eye Mitsubishi Electric’s Auto Unit",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/bain-lone-star-are-said-to-eye-mitsubishi-electric-s-auto-unit",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:50:00",
+  "providerPublishTime": 1771915800.0,
+  "text": "Bain Capital and Lone Star Funds have advanced to a second round of bidding for Mitsubishi Electric Corp.’s automotive equipment business, according to people familiar with the matter.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ivPwqnFinNzw/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "AND",
+    "S",
+    "ROUND",
+    "AUTO",
+    "LONE",
+    "EYE",
+    "BAIN",
+    "OF",
+    "A"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "AND",
+    "S",
+    "ROUND",
+    "AUTO",
+    "LONE",
+    "EYE",
+    "BAIN",
+    "OF",
+    "A"
+  ]
+}

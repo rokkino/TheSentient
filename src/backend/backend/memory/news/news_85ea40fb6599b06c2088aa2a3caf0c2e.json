@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Best Stocks to Invest $50,000 in Right Now",
+  "link": "https://finance.yahoo.com/news/best-stocks-invest-50-000-205000558.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-22T20:50:00",
+  "providerPublishTime": 1771789800.0,
+  "text": "The Best Stocks to Invest $50,000 in Right Now",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/ae910d60e7f9fb13d127b01b8e27c216",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "THE",
+    "NOW",
+    "IN",
+    "RIGHT",
+    "BEST"
+  ],
+  "relatedTickers": [
+    "TO",
+    "THE",
+    "NOW",
+    "IN",
+    "RIGHT",
+    "BEST"
+  ]
+}

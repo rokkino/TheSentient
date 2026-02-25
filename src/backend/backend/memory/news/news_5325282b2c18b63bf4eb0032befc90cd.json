@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What to expect from the next round of U.S.-Iran talks as Trump threatens Tehran",
+  "link": "https://www.cnbc.com/2026/02/25/us-iran-talks-nuclear-trump-oil-prices-war-conflict.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T10:23:07",
+  "providerPublishTime": 1772011387.0,
+  "text": "The upcoming talks come as the U.S. continues to build up military forces in the region and as Trump warns of \"bad things\" if Iran doesn't agree to a deal.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "BAD",
+    "IRAN",
+    "DOESN",
+    "UP",
+    "COME",
+    "AS",
+    "TALKS",
+    "DEAL",
+    "IN"
+  ],
+  "relatedTickers": [
+    "THE",
+    "BAD",
+    "IRAN",
+    "DOESN",
+    "UP",
+    "COME",
+    "AS",
+    "TALKS",
+    "DEAL",
+    "IN"
+  ]
+}

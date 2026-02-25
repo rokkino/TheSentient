@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bitcoin Heads for Worst Month Since Crypto Collapse of June 2022",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/bitcoin-btc-heads-for-worst-month-since-june-2022-crypto-winter",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T05:08:31",
+  "providerPublishTime": 1771906111.0,
+  "text": "Bitcoin extended its decline on Tuesday, putting the token on course for its steepest monthly drop since the industry suffered a slew of corporate collapses in 2022.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic364AAYz7tA/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "A",
+    "JUNE",
+    "SINCE",
+    "DROP",
+    "SLEW",
+    "MONTH",
+    "THE",
+    "ON",
+    "IN"
+  ],
+  "relatedTickers": [
+    "OF",
+    "A",
+    "JUNE",
+    "SINCE",
+    "DROP",
+    "SLEW",
+    "MONTH",
+    "THE",
+    "ON",
+    "IN"
+  ]
+}

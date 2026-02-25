@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "INPACT Global boosts global reach with four new member companies",
+  "link": "https://finance.yahoo.com/news/inpact-global-boosts-global-reach-114532106.html",
+  "publisher": "International Accounting Bulletin",
+  "timestamp": "2026-02-24T11:45:32",
+  "providerPublishTime": 1771929932.0,
+  "text": "INPACT Global boosts global reach with four new member companies",
+  "thumbnail": "https://media.zenfs.com/en/international_accounting_bulletin_542/bd2279bf19a722022241670320b81b85",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "REACH",
+    "NEW",
+    "FOUR",
+    "WITH"
+  ],
+  "relatedTickers": [
+    "REACH",
+    "NEW",
+    "FOUR",
+    "WITH"
+  ]
+}

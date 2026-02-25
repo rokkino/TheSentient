@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Paramount pushes ahead in Warner Bros. takeover fight with increased bid of $31 per share",
+  "link": "https://www.marketwatch.com/story/paramount-pushes-ahead-in-warner-bros-takeover-with-increased-bid-of-31-per-share-87989593?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T23:26:00",
+  "providerPublishTime": 1771971960.0,
+  "text": "The dramatic deal to acquire Warner Bros. Discovery looks like it may have a cliff-hanger ending after all.",
+  "thumbnail": "https://images.mktw.net/im-99587618",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BID",
+    "FIGHT",
+    "OF",
+    "BROS",
+    "AHEAD",
+    "IT",
+    "LIKE",
+    "THE",
+    "DEAL",
+    "MAY"
+  ],
+  "relatedTickers": [
+    "BID",
+    "FIGHT",
+    "OF",
+    "BROS",
+    "AHEAD",
+    "IT",
+    "LIKE",
+    "THE",
+    "DEAL",
+    "MAY"
+  ]
+}

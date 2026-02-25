@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings live: Hims & Hers stock slides, Domino's rises as investors await crucial update from Nvidia",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-hims--hers-stock-slides-dominos-rises-as-investors-await-crucial-update-from-nvidia-215905220.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-23T21:59:05",
+  "providerPublishTime": 1771880345.0,
+  "text": "Earnings live: Hims & Hers stock slides, Domino's rises as investors await crucial update from Nvidia",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/cf48af50-1102-11f1-a7ff-c4a44d98e1b6",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HERS",
+    "HIMS",
+    "AWAIT",
+    "S",
+    "AS",
+    "STOCK",
+    "RISES",
+    "LIVE",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "HERS",
+    "HIMS",
+    "AWAIT",
+    "S",
+    "AS",
+    "STOCK",
+    "RISES",
+    "LIVE",
+    "FROM"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mexico’s annual inflation speeds more than expected in early February",
+  "link": "https://www.investing.com/news/economy-news/mexicos-annual-inflation-speeds-more-than-expected-in-early-february-4521269",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:48:29",
+  "providerPublishTime": 1771933709.0,
+  "text": "Mexico’s annual inflation speeds more than expected in early February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THAN",
+    "IN",
+    "MORE",
+    "S",
+    "EARLY"
+  ],
+  "relatedTickers": [
+    "THAN",
+    "IN",
+    "MORE",
+    "S",
+    "EARLY"
+  ]
+}

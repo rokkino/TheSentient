@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Michael Burry Says He 'Slept' on Bitcoin After Early 2013 Buying Opportunity",
+  "link": "https://finance.yahoo.com/news/michael-burry-says-slept-bitcoin-205027452.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-22T20:50:27",
+  "providerPublishTime": 1771789827.0,
+  "text": "Michael Burry Says He 'Slept' on Bitcoin After Early 2013 Buying Opportunity",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/e163d689c21ed953b62bdf5afb31c2e0",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "SLEPT",
+    "ON",
+    "EARLY",
+    "AFTER",
+    "BURRY",
+    "HE"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "SLEPT",
+    "ON",
+    "EARLY",
+    "AFTER",
+    "BURRY",
+    "HE"
+  ]
+}

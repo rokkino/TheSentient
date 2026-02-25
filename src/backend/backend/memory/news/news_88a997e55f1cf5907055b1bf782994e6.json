@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnz secures £4.7m in new energy efficiency contracts",
+  "link": "https://www.investing.com/news/company-news/earnz-secures-47m-in-new-energy-efficiency-contracts-93CH-4523331",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:42:38",
+  "providerPublishTime": 1772001758.0,
+  "text": "Earnz secures £4.7m in new energy efficiency contracts",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "EARNZ",
+    "NEW"
+  ],
+  "relatedTickers": [
+    "IN",
+    "EARNZ",
+    "NEW"
+  ]
+}

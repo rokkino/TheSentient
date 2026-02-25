@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AscendTMS makes its first acquisition of another TMS provider",
+  "link": "https://finance.yahoo.com/news/ascendtms-makes-first-acquisition-another-112255030.html",
+  "publisher": "FreightWaves",
+  "timestamp": "2026-02-24T11:22:55",
+  "providerPublishTime": 1771928575.0,
+  "text": "AscendTMS makes its first acquisition of another TMS provider",
+  "thumbnail": "https://media.zenfs.com/en/freightwaves_373/bfda78cad7cdfb244364863974c4c789",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "MAKES",
+    "ITS",
+    "TMS",
+    "FIRST"
+  ],
+  "relatedTickers": [
+    "OF",
+    "MAKES",
+    "ITS",
+    "TMS",
+    "FIRST"
+  ]
+}

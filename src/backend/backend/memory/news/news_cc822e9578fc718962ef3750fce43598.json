@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tariffs have peaked after Supreme Court ruling, says Morgan Stanley expert",
+  "link": "https://www.marketwatch.com/story/tariffs-have-peaked-after-supreme-court-ruling-says-morgan-stanley-expert-87f6677b?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T10:32:00",
+  "providerPublishTime": 1771925520.0,
+  "text": "The current tariffs imposed by the White House expire in July, close enough to mid-term elections that they may not be renewed if deemed politically unpopular",
+  "thumbnail": "https://images.mktw.net/im-45163061",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MID",
+    "COURT",
+    "IF",
+    "BY",
+    "JULY",
+    "MAY",
+    "THEY",
+    "CLOSE",
+    "WHITE",
+    "NOT"
+  ],
+  "relatedTickers": [
+    "MID",
+    "COURT",
+    "IF",
+    "BY",
+    "JULY",
+    "MAY",
+    "THEY",
+    "CLOSE",
+    "WHITE",
+    "NOT"
+  ]
+}

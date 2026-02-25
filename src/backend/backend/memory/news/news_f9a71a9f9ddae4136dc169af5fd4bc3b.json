@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hims & Hers Health Fourth-Quarter Sales Rise, Gives Soft First-Quarter Guidance",
+  "link": "https://www.wsj.com/business/earnings/hims-hers-health-fourth-quarter-profit-falls-despite-higher-revenue-0d559ae4?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-23T23:49:00",
+  "providerPublishTime": 1771886940.0,
+  "text": "Hims & Hers Health Fourth-Quarter Sales Rise, Gives Soft First-Quarter Guidance",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/343896f59579e122e495dcdfc865faa3",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FIRST",
+    "SALES",
+    "GIVES",
+    "HERS",
+    "HIMS",
+    "RISE",
+    "SOFT"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "SALES",
+    "GIVES",
+    "HERS",
+    "HIMS",
+    "RISE",
+    "SOFT"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tata Defers Vote on Chairman’s New Term, Signaling Power Tussle",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/tata-defers-vote-on-chairman-s-new-term-signaling-power-tussle",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:00:30",
+  "providerPublishTime": 1771927230.0,
+  "text": "The board of Tata Sons Pvt. deferred a decision on granting a third term to Chairman Natarajan Chandrasekaran, people familiar said, in the latest sign that another leadership tussle could be brewing at India’s oldest conglomerate.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i_H8gQjoWOW8/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INDIA",
+    "TATA",
+    "PVT",
+    "S",
+    "POWER",
+    "SIGN",
+    "ON",
+    "SONS",
+    "BOARD",
+    "THIRD"
+  ],
+  "relatedTickers": [
+    "INDIA",
+    "TATA",
+    "PVT",
+    "S",
+    "POWER",
+    "SIGN",
+    "ON",
+    "SONS",
+    "BOARD",
+    "THIRD"
+  ]
+}

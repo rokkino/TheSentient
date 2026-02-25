@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European and UK Stocks Hit Records Powered by Banks and Miners",
+  "link": "https://www.bloomberg.com/news/live-blog/2026-02-25/ftse-100-live-trump-tariffs-pound-gilts-hsbc-diageo-what-s-moving-uk-markets-right-now-markets-today",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T06:45:25",
+  "providerPublishTime": 1771998325.0,
+  "text": "European and UK Stocks Hit Records Powered by Banks and Miners",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irNWm1plY3y0/v0/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HIT",
+    "BANKS",
+    "BY",
+    "AND",
+    "UK"
+  ],
+  "relatedTickers": [
+    "HIT",
+    "BANKS",
+    "BY",
+    "AND",
+    "UK"
+  ]
+}

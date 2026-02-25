@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Marcus by Goldman Sachs review (2026): High-yield savings and CD accounts with no monthly fees",
+  "link": "https://finance.yahoo.com/personal-finance/banking/review/marcus-by-goldman-sachs-review-185632289.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2024-07-05T19:56:32",
+  "providerPublishTime": 1720202192.0,
+  "text": "Marcus by Goldman Sachs review (2026): High-yield savings and CD accounts with no monthly fees",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-05/3d23a8d1-31ee-11f0-ae77-c314d86ea54c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CD",
+    "FEES",
+    "HIGH",
+    "NO",
+    "WITH",
+    "BY",
+    "AND",
+    "SACHS",
+    "YIELD"
+  ],
+  "relatedTickers": [
+    "CD",
+    "FEES",
+    "HIGH",
+    "NO",
+    "WITH",
+    "BY",
+    "AND",
+    "SACHS",
+    "YIELD"
+  ]
+}

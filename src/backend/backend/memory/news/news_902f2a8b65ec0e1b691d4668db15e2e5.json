@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HP blames memory-price surge as it forecasts earnings at low end of guidance",
+  "link": "https://www.marketwatch.com/story/hp-blames-memory-price-surge-as-it-forecasts-earnings-at-low-end-of-guidance-dd12410a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T10:58:00",
+  "providerPublishTime": 1772013480.0,
+  "text": "Computer maker HP blamed the surge in memory chip prices as it forecast earnings for the year to come in at the low end of previously issued guidance.",
+  "thumbnail": "https://images.mktw.net/im-19812307",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOW",
+    "PRICE",
+    "AT",
+    "HP",
+    "CHIP",
+    "MAKER",
+    "AS",
+    "THE",
+    "IT",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "LOW",
+    "PRICE",
+    "AT",
+    "HP",
+    "CHIP",
+    "MAKER",
+    "AS",
+    "THE",
+    "IT",
+    "FOR"
+  ]
+}

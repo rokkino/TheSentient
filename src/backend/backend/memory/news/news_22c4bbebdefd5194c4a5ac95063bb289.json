@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Americans trust vaccines, school mandates, rejecting Trump agenda, Reuters/Ipsos poll finds",
+  "link": "https://www.investing.com/news/world-news/americans-trust-vaccines-school-mandates-rejecting-trump-agenda-reutersipsos-poll-finds-4523689",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:13:02",
+  "providerPublishTime": 1772014382.0,
+  "text": "Americans trust vaccines, school mandates, rejecting Trump agenda, Reuters/Ipsos poll finds",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "POLL",
+    "TRUMP",
+    "TRUST",
+    "FINDS",
+    "IPSOS"
+  ],
+  "relatedTickers": [
+    "POLL",
+    "TRUMP",
+    "TRUST",
+    "FINDS",
+    "IPSOS"
+  ]
+}

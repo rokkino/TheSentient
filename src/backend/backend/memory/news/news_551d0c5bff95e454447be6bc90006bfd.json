@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Allison Transmission (ALSN) Earnings Transcript",
+  "link": "https://finance.yahoo.com/news/allison-transmission-alsn-earnings-transcript-234121129.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:41:21",
+  "providerPublishTime": 1771886481.0,
+  "text": "Allison Transmission (ALSN) Earnings Transcript",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/e48e86dda35543079ee2080fd9208b73",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ALSN"
+  ],
+  "relatedTickers": [
+    "ALSN"
+  ]
+}

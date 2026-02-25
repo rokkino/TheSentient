@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is CoreWeave Stock a Buy Now?",
+  "link": "https://finance.yahoo.com/news/coreweave-stock-buy-now-123500007.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-24T12:35:00",
+  "providerPublishTime": 1771932900.0,
+  "text": "Is CoreWeave Stock a Buy Now?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/34db082c2d3765f1b4b78cd8acdbc64f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUY",
+    "IS",
+    "STOCK",
+    "NOW",
+    "A"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "IS",
+    "STOCK",
+    "NOW",
+    "A"
+  ]
+}

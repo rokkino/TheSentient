@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I’m shocked that people are shocked,’ says JPMorgan executive about private-credit meltdown",
+  "link": "https://www.marketwatch.com/story/jpmorgan-gets-peppered-with-ai-questions-as-it-details-software-exposure-84d757ae?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T10:04:00",
+  "providerPublishTime": 1771923840.0,
+  "text": "The surest sign of market dislocation is when banks start quantifying their exposure to a given issue.",
+  "thumbnail": "https://images.mktw.net/im-98172019",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "SIGN",
+    "IS",
+    "WHEN",
+    "BANKS",
+    "THEIR",
+    "START",
+    "ABOUT",
+    "TO",
+    "A"
+  ],
+  "relatedTickers": [
+    "OF",
+    "SIGN",
+    "IS",
+    "WHEN",
+    "BANKS",
+    "THEIR",
+    "START",
+    "ABOUT",
+    "TO",
+    "A"
+  ]
+}

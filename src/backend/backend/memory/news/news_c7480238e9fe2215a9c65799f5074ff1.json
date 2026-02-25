@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "World Gym Corp Posts 16% Surge in 2025 Profit, Declares Dividend",
+  "link": "https://finance.yahoo.com/news/world-gym-corp-posts-16-123530379.html",
+  "publisher": "Exec Edge",
+  "timestamp": "2026-02-24T12:35:30",
+  "providerPublishTime": 1771932930.0,
+  "text": "World Gym Corp Posts 16% Surge in 2025 Profit, Declares Dividend",
+  "thumbnail": "https://media.zenfs.com/en/exec_edge_220/5fd9a5d1dac6e8afafef33be14fd040f",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GYM",
+    "WORLD",
+    "CORP",
+    "POSTS",
+    "IN",
+    "SURGE"
+  ],
+  "relatedTickers": [
+    "GYM",
+    "WORLD",
+    "CORP",
+    "POSTS",
+    "IN",
+    "SURGE"
+  ]
+}

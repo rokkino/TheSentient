@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump accounts have 'more unanswered questions than answered,' expert says. What's still unknown",
+  "link": "https://www.cnbc.com/2026/02/21/trump-accounts.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-21T21:36:49",
+  "providerPublishTime": 1771706209.0,
+  "text": "Trump accounts offer free money for some families. But other details have yet to be resolved, experts say. Here's what to expect.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "THAN",
+    "SOME",
+    "MONEY",
+    "YET",
+    "HAVE",
+    "FOR",
+    "BUT",
+    "OFFER",
+    "BE"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "THAN",
+    "SOME",
+    "MONEY",
+    "YET",
+    "HAVE",
+    "FOR",
+    "BUT",
+    "OFFER",
+    "BE"
+  ]
+}

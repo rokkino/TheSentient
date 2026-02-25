@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil steadies near 7-month highs; U.S.-Iran talks loom, tariffs cloud outlook",
+  "link": "https://www.investing.com/news/commodities-news/oil-holds-near-7mth-highs-as-usiran-talks-loom-tariffs-cloud-outlook-4520441",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:55:16",
+  "providerPublishTime": 1771930516.0,
+  "text": "Oil steadies near 7-month highs; U.S.-Iran talks loom, tariffs cloud outlook",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOOM",
+    "OIL",
+    "NEAR",
+    "MONTH",
+    "CLOUD",
+    "TALKS",
+    "HIGHS",
+    "S",
+    "U",
+    "IRAN"
+  ],
+  "relatedTickers": [
+    "LOOM",
+    "OIL",
+    "NEAR",
+    "MONTH",
+    "CLOUD",
+    "TALKS",
+    "HIGHS",
+    "S",
+    "U",
+    "IRAN"
+  ]
+}

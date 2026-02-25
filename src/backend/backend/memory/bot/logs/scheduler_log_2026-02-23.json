@@ -1,0 +1,524 @@
+[
+  {
+    "timestamp": "2026-02-23T10:51:47.923848",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL AMD (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-23T10:51:48.072814",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL LITE (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-23T14:21:15.991471",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:21:15.967674')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:22:15.962910",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:22:15.960460')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:23:15.964237",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:23:15.962016')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:24:15.965003",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:24:15.963870')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:25:15.962190",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:25:15.960111')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:26:15.968967",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:26:15.967199')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:27:15.976751",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:27:15.975223')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:28:15.969101",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:28:15.966448')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:29:15.972727",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:29:15.970422')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:30:15.967581",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:30:15.965943')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:31:15.975605",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:31:15.972252')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:32:15.963770",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:32:15.962762')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:33:15.967436",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:33:15.966425')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:34:15.963606",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:34:15.961086')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T14:35:15.964190",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "(sqlite3.OperationalError) no such column: decisions.stop_loss\n[SQL: SELECT decisions.id AS decisions_id, decisions.bot_id AS decisions_bot_id, decisions.symbol AS decisions_symbol, decisions.decision AS decisions_decision, decisions.execution_time AS decisions_execution_time, decisions.status AS decisions_status, decisions.reasoning AS decisions_reasoning, decisions.allocated_amount AS decisions_allocated_amount, decisions.stop_loss AS decisions_stop_loss, decisions.take_profit AS decisions_take_profit, decisions.created_at AS decisions_created_at, decisions.executed_at AS decisions_executed_at \nFROM decisions \nWHERE decisions.status = ? AND decisions.execution_time <= ?]\n[parameters: ('PENDING', '2026-02-23 14:35:15.962129')]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "timestamp": "2026-02-23T15:37:20.570941",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.2952, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T15:37:21.399557",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T15:37:22.370836",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0651, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T15:37:23.331421",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.5124, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:22:13.744460",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3766, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:22:14.520958",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:22:15.299707",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0383, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:22:16.154118",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4589, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:52:12.573114",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.4053, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:52:13.247907",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:52:13.930325",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0894, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T16:52:14.464978",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4952, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:22:12.521700",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.4215, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:22:13.130390",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:22:13.712017",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0918, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:22:14.278208",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4763, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:52:12.736589",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.4175, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:52:13.256391",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:52:13.785479",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T17:52:14.396471",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4838, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:22:12.796975",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.4091, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:22:13.390181",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:22:14.014027",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0953, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:22:14.593284",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4859, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:52:12.579862",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.414, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:52:13.094345",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:52:13.598560",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1223, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T18:52:14.127808",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4911, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:22:12.556701",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3867, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:22:13.060848",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:22:13.627613",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0905, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:22:14.210369",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.49, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:52:12.663485",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3875, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:52:13.656518",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:52:14.383437",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1169, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T19:52:14.900484",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.5158, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:22:12.749936",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3996, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:22:13.341899",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:22:13.884259",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1114, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:22:14.452920",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4967, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:52:12.654669",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3909, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:52:13.195302",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:52:13.940985",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1297, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T20:52:14.610087",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4993, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:22:12.660543",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3857, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:22:13.328611",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:22:13.923059",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1351, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:22:14.540932",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.5027, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:52:12.581217",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3459, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:52:13.171786",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:52:13.701632",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.1057, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:52:14.243320",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.4745, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T21:59:23.888160",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY BWXT (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-23T21:59:35.810868",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY ADEA (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-23T22:22:12.511089",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:22:13.042186",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:22:13.654637",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:22:14.339576",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:52:12.509635",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:52:13.001425",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:52:13.600146",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T22:52:14.108268",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:22:12.539224",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:22:13.030938",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:22:13.565956",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:22:14.090624",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:52:12.659453",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:52:13.175257",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:52:13.759997",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-23T23:52:14.323291",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  }
+]

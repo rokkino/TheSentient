@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Diamyd Medical completes database for phase 3 diabetes trial",
+  "link": "https://www.investing.com/news/company-news/diamyd-medical-completes-database-for-phase-3-diabetes-trial-93CH-4520610",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:08:52",
+  "providerPublishTime": 1771916932.0,
+  "text": "Diamyd Medical completes database for phase 3 diabetes trial",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PHASE",
+    "TRIAL",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "PHASE",
+    "TRIAL",
+    "FOR"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Citigroup's hedge fund clients sold the dollar around Supreme Court tariff ruling",
+  "link": "https://finance.yahoo.com/news/citigroups-hedge-fund-clients-sold-120352555.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-24T12:03:52",
+  "providerPublishTime": 1771931032.0,
+  "text": "Citigroup's hedge fund clients sold the dollar around Supreme Court tariff ruling",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/4f30af4fa0d7595866a2e8dc3e605767",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOLD",
+    "HEDGE",
+    "S",
+    "THE",
+    "COURT",
+    "FUND"
+  ],
+  "relatedTickers": [
+    "SOLD",
+    "HEDGE",
+    "S",
+    "THE",
+    "COURT",
+    "FUND"
+  ]
+}

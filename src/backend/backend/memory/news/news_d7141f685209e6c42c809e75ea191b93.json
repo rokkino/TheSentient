@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "United Therapeutics stock falls nearly 5% on revenue miss despite earnings beat",
+  "link": "https://www.investing.com/news/earnings/united-therapeutics-stock-falls-nearly-5-on-revenue-miss-despite-earnings-beat-93CH-4523771",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:37:09",
+  "providerPublishTime": 1772015829.0,
+  "text": "United Therapeutics stock falls nearly 5% on revenue miss despite earnings beat",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BEAT",
+    "STOCK",
+    "MISS",
+    "FALLS",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BEAT",
+    "STOCK",
+    "MISS",
+    "FALLS",
+    "ON"
+  ]
+}

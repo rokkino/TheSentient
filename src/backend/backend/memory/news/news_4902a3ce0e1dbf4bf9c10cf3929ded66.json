@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "DMC Global (BOOM) Q4 2025 Earnings Call Transcript",
+  "link": "https://finance.yahoo.com/news/dmc-global-boom-q4-2025-233822859.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:38:22",
+  "providerPublishTime": 1771886302.0,
+  "text": "DMC Global (BOOM) Q4 2025 Earnings Call Transcript",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/e48e86dda35543079ee2080fd9208b73",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CALL",
+    "BOOM",
+    "DMC"
+  ],
+  "relatedTickers": [
+    "CALL",
+    "BOOM",
+    "DMC"
+  ]
+}

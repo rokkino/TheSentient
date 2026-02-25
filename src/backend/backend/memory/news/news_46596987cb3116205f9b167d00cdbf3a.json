@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Artisan Mid Cap Fund Maintains Its Confidence in Argenx’s (ARGX) VYVGART",
+  "link": "https://finance.yahoo.com/news/artisan-mid-cap-fund-maintains-123336654.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T12:33:36",
+  "providerPublishTime": 1771932816.0,
+  "text": "Artisan Mid Cap Fund Maintains Its Confidence in Argenx’s (ARGX) VYVGART",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/5058430d0581cc2eecf09dc6586066c0",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CAP",
+    "MID",
+    "ARGX",
+    "ITS",
+    "IN",
+    "S",
+    "FUND"
+  ],
+  "relatedTickers": [
+    "CAP",
+    "MID",
+    "ARGX",
+    "ITS",
+    "IN",
+    "S",
+    "FUND"
+  ]
+}

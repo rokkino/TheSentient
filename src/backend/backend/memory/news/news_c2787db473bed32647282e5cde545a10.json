@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Co-author of viral post on AI impact says he was shorting those stocks",
+  "link": "https://www.marketwatch.com/story/co-author-of-viral-post-on-ai-impact-says-he-was-shorting-those-stocks-b7235f1b?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T10:57:00",
+  "providerPublishTime": 1771927020.0,
+  "text": "The co-author of a report musing about artificial intelligence disrupting a host of businesses says he was betting those companies would go down in value.",
+  "thumbnail": "https://images.mktw.net/im-75925365",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DOWN",
+    "THOSE",
+    "HOST",
+    "ABOUT",
+    "ON",
+    "GO",
+    "HE",
+    "WAS",
+    "OF",
+    "POST"
+  ],
+  "relatedTickers": [
+    "DOWN",
+    "THOSE",
+    "HOST",
+    "ABOUT",
+    "ON",
+    "GO",
+    "HE",
+    "WAS",
+    "OF",
+    "POST"
+  ]
+}

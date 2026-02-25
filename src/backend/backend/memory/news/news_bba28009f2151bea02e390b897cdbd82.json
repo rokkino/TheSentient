@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gabon Risks Default Amid IMF Program Uncertainty, Fitch Warns",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/gabon-risks-default-amid-imf-program-uncertainty-fitch-warns",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:26:50",
+  "providerPublishTime": 1771932410.0,
+  "text": "Fitch Ratings sees an “inherent risk” of default by Gabon as uncertainty persists over whether the oil-producing nation will formally ask the International Monetary Fund for a program.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTs5RPl4vKgQ/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "ASK",
+    "RISKS",
+    "SEES",
+    "FITCH",
+    "BY",
+    "WARNS",
+    "AS",
+    "THE",
+    "AMID"
+  ],
+  "relatedTickers": [
+    "OF",
+    "ASK",
+    "RISKS",
+    "SEES",
+    "FITCH",
+    "BY",
+    "WARNS",
+    "AS",
+    "THE",
+    "AMID"
+  ]
+}

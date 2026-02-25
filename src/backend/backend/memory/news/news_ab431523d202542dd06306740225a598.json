@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Teetering US tech trade puts anchor on market as Nvidia test looms",
+  "link": "https://finance.yahoo.com/news/teetering-us-tech-trade-puts-110201090.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-25T11:02:01",
+  "providerPublishTime": 1772013721.0,
+  "text": "Teetering US tech trade puts anchor on market as Nvidia test looms",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/5f206b340a9b18476934ecd21852b723",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TECH",
+    "US",
+    "LOOMS",
+    "AS",
+    "TRADE",
+    "TEST",
+    "PUTS",
+    "ON"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "US",
+    "LOOMS",
+    "AS",
+    "TRADE",
+    "TEST",
+    "PUTS",
+    "ON"
+  ]
+}

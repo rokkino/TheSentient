@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil Edges Higher as Traders Assess Outlook for Iran Nuclear Deal",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/latest-oil-market-news-and-analysis-for-feb-24",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T23:33:09",
+  "providerPublishTime": 1771885989.0,
+  "text": "Oil climbed as investors weighed the odds of an Iranian nuclear deal, after US President Donald Trump said he preferred a diplomatic solution but warning of consequences if an agreement wasn’t reached.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iJKxGGueUX0A/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IRAN",
+    "BUT",
+    "EDGES",
+    "IF",
+    "AFTER",
+    "TRUMP",
+    "AN",
+    "OF",
+    "OIL",
+    "DEAL"
+  ],
+  "relatedTickers": [
+    "IRAN",
+    "BUT",
+    "EDGES",
+    "IF",
+    "AFTER",
+    "TRUMP",
+    "AN",
+    "OF",
+    "OIL",
+    "DEAL"
+  ]
+}

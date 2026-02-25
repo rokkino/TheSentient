@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Etihad Airways profits soars nearly 50% as fleet, network expansion support strong demand",
+  "link": "https://www.investing.com/news/stock-market-news/etihad-airways-profits-soars-nearly-50-as-fleet-networkexpansion-support-strong-demand-4520608",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:06:27",
+  "providerPublishTime": 1771916787.0,
+  "text": "Etihad Airways profits soars nearly 50% as fleet, network expansion support strong demand",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FLEET",
+    "AS",
+    "SOARS"
+  ],
+  "relatedTickers": [
+    "FLEET",
+    "AS",
+    "SOARS"
+  ]
+}

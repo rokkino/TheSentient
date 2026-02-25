@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lowe’s beats quarterly sales estimates",
+  "link": "https://www.investing.com/news/stock-market-news/lowes-beats-quarterly-sales-estimates-4523692",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:13:52",
+  "providerPublishTime": 1772014432.0,
+  "text": "Lowe’s beats quarterly sales estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "SALES",
+    "BEATS",
+    "LOWE"
+  ],
+  "relatedTickers": [
+    "S",
+    "SALES",
+    "BEATS",
+    "LOWE"
+  ]
+}

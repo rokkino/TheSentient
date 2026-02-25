@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dollar Weakens and Gold Surges on US Trade Uncertainty",
+  "link": "https://finance.yahoo.com/news/dollar-weakens-gold-surges-us-203449106.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-23T20:34:49",
+  "providerPublishTime": 1771875289.0,
+  "text": "Dollar Weakens and Gold Surges on US Trade Uncertainty",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/07f414d757ccacea52e753d0b99b6994",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GOLD",
+    "US",
+    "TRADE",
+    "AND",
+    "ON"
+  ],
+  "relatedTickers": [
+    "GOLD",
+    "US",
+    "TRADE",
+    "AND",
+    "ON"
+  ]
+}

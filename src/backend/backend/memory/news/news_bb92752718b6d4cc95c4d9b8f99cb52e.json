@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "United Airlines CFO: Q1 Results Tracking High End of Guidance on Strong Demand, Loyalty Gains at Barclays Conf.",
+  "link": "https://finance.yahoo.com/news/united-airlines-cfo-q1-results-110631315.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-25T11:06:31",
+  "providerPublishTime": 1772013991.0,
+  "text": "United Airlines CFO: Q1 Results Tracking High End of Guidance on Strong Demand, Loyalty Gains at Barclays Conf.",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/d851702bb42860ebef204b24471b1278",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AT",
+    "END",
+    "GAINS",
+    "CONF",
+    "HIGH",
+    "CFO",
+    "OF",
+    "ON"
+  ],
+  "relatedTickers": [
+    "AT",
+    "END",
+    "GAINS",
+    "CONF",
+    "HIGH",
+    "CFO",
+    "OF",
+    "ON"
+  ]
+}

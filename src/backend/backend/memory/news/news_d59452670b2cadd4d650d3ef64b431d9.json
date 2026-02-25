@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here are the five companies that $9 trillion of funds agree on right now",
+  "link": "https://www.marketwatch.com/story/here-are-the-five-companies-that-9-trillion-of-funds-agree-on-right-now-4ac77fc3?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T10:53:00",
+  "providerPublishTime": 1771840380.0,
+  "text": "Vertiv has been a top holding among hedge and mutual funds in the first quarter of this year so far, and a lucrative one.",
+  "thumbnail": "https://images.mktw.net/im-53367444",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THIS",
+    "FUNDS",
+    "HEDGE",
+    "ONE",
+    "A",
+    "YEAR",
+    "RIGHT",
+    "HAS",
+    "TOP",
+    "OF"
+  ],
+  "relatedTickers": [
+    "THIS",
+    "FUNDS",
+    "HEDGE",
+    "ONE",
+    "A",
+    "YEAR",
+    "RIGHT",
+    "HAS",
+    "TOP",
+    "OF"
+  ]
+}

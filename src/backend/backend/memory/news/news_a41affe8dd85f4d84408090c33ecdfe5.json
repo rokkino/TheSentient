@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HELOC and home equity loan rates today, February 25, 2026: Down to 7.23%",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-home-equity-loan-interest-rates-today-wednesday-february-25-2025-110006519.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-25T11:00:06",
+  "providerPublishTime": 1772013606.0,
+  "text": "HELOC and home equity loan rates today, February 25, 2026: Down to 7.23%",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-06/92704b90-40d5-11f0-bbfd-0abdc0412cbb",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HELOC",
+    "RATES",
+    "DOWN",
+    "AND",
+    "TODAY",
+    "TO",
+    "HOME",
+    "LOAN"
+  ],
+  "relatedTickers": [
+    "HELOC",
+    "RATES",
+    "DOWN",
+    "AND",
+    "TODAY",
+    "TO",
+    "HOME",
+    "LOAN"
+  ]
+}

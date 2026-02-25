@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BMW in talks with EU on tariff exemption for 'Made in China' Minis, Handelsblatt reports",
+  "link": "https://finance.yahoo.com/news/bmw-talks-eu-tariff-exemption-111850163.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-25T11:18:50",
+  "providerPublishTime": 1772014730.0,
+  "text": "BMW in talks with EU on tariff exemption for 'Made in China' Minis, Handelsblatt reports",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/cff1e93531528fd66bf5d79d181ce5d7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "EU",
+    "MADE",
+    "WITH",
+    "MINIS",
+    "FOR",
+    "TALKS",
+    "IN",
+    "BMW",
+    "CHINA",
+    "ON"
+  ],
+  "relatedTickers": [
+    "EU",
+    "MADE",
+    "WITH",
+    "MINIS",
+    "FOR",
+    "TALKS",
+    "IN",
+    "BMW",
+    "CHINA",
+    "ON"
+  ]
+}

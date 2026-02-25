@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Myriad Genetics Q4 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/myriad-genetics-q4-earnings-call-231821655.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-23T23:18:21",
+  "providerPublishTime": 1771885101.0,
+  "text": "Myriad Genetics Q4 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/3a1e959b3d53d8a48634ead5ea83792c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CALL"
+  ],
+  "relatedTickers": [
+    "CALL"
+  ]
+}

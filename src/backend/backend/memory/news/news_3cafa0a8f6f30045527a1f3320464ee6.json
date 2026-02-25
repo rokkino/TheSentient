@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Indian IT Stock Selloff Deepens on AI Scare After Citrini Report",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/indian-it-stock-selloff-deepens-on-ai-scare-after-citrini-report",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T04:58:07",
+  "providerPublishTime": 1771905487.0,
+  "text": "A rout in Indian software services stocks deepened after a report from Citrini Research amplified worries about businesses that are vulnerable to the growing influence of artificial intelligence.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itYWuGbu3sSo/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "IT",
+    "IN",
+    "SCARE",
+    "THAT",
+    "ARE",
+    "ON",
+    "TO",
+    "OF",
+    "THE"
+  ],
+  "relatedTickers": [
+    "A",
+    "IT",
+    "IN",
+    "SCARE",
+    "THAT",
+    "ARE",
+    "ON",
+    "TO",
+    "OF",
+    "THE"
+  ]
+}

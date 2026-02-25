@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mortgage and refinance interest rates today, February 25, 2026: A fraction higher (now 5.77%)",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-interest-rates-today-wednesday-february-25-2026-110029406.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-25T11:00:29",
+  "providerPublishTime": 1772013629.0,
+  "text": "Mortgage and refinance interest rates today, February 25, 2026: A fraction higher (now 5.77%)",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-04/58d84be0-fc1f-11ee-bffb-9ac8a2f8fca0",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RATES",
+    "TODAY",
+    "A",
+    "NOW",
+    "AND"
+  ],
+  "relatedTickers": [
+    "RATES",
+    "TODAY",
+    "A",
+    "NOW",
+    "AND"
+  ]
+}

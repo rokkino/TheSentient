@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings live: Home Depot stock climbs after earnings beat, Hims & Hers slides, Constellation Energy rises",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-home-depot-stock-climbs-after-earnings-beat-hims--hers-slides-constellation-energy-rises-125550299.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-24T12:55:50",
+  "providerPublishTime": 1771934150.0,
+  "text": "Earnings live: Home Depot stock climbs after earnings beat, Hims & Hers slides, Constellation Energy rises",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/18c425b0-1180-11f1-adf1-f8015341405b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RISES",
+    "STOCK",
+    "DEPOT",
+    "AFTER",
+    "LIVE",
+    "HIMS",
+    "HOME",
+    "BEAT",
+    "HERS"
+  ],
+  "relatedTickers": [
+    "RISES",
+    "STOCK",
+    "DEPOT",
+    "AFTER",
+    "LIVE",
+    "HIMS",
+    "HOME",
+    "BEAT",
+    "HERS"
+  ]
+}

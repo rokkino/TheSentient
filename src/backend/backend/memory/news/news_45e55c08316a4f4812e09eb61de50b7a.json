@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BofA downgrades General Mills stock rating on slower recovery",
+  "link": "https://www.investing.com/news/analyst-ratings/bofa-downgrades-general-mills-stock-rating-on-slower-recovery-93CH-4518310",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:01:39",
+  "providerPublishTime": 1771844499.0,
+  "text": "BofA downgrades General Mills stock rating on slower recovery",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "BOFA",
+    "STOCK",
+    "ON",
+    "MILLS"
+  ],
+  "relatedTickers": [
+    "BOFA",
+    "STOCK",
+    "ON",
+    "MILLS"
+  ]
+}

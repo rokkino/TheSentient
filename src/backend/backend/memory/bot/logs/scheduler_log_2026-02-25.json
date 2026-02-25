@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2026-02-25T09:35:09.846206",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AXON: Failed to place order: {\"available\":\"116.7687\",\"code\":40310000,\"existing_qty\":\"233.955\",\"held_for_orders\":\"117.1863\",\"message\":\"insufficient qty available for order (requested: 117.1863, available: 116.7687)\",\"related_orders\":[\"511fd045-0cda-4b71-baf3-f866c2333047\"],\"symbol\":\"AXON\"}"
+  },
+  {
+    "timestamp": "2026-02-25T09:35:10.491474",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed FSLR: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"3d1667f6-2a31-484b-b313-da95712122b7\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-25T09:35:19.494164",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL AXON (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-25T09:35:20.172825",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed FSLR: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"3d1667f6-2a31-484b-b313-da95712122b7\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-25T09:39:52.519552",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  },
+  {
+    "timestamp": "2026-02-25T09:40:10.285292",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  },
+  {
+    "timestamp": "2026-02-25T09:41:05.496911",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  },
+  {
+    "timestamp": "2026-02-25T09:46:36.080019",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  },
+  {
+    "timestamp": "2026-02-25T10:48:02.481219",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  },
+  {
+    "timestamp": "2026-02-25T10:57:40.115576",
+    "job_name": "update_bot_performance",
+    "status": "SUCCESS",
+    "message": "Updated 1 bots"
+  }
+]

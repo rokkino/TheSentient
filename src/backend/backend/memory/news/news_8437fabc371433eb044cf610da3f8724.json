@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ignitis reports adjusted EBITDA of €546.1M, adds 0.7 GW capacity",
+  "link": "https://www.investing.com/news/company-news/ignitis-reports-adjusted-ebitda-of-5461m-adds-07-gw-capacity-93CH-4523377",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:56:54",
+  "providerPublishTime": 1772002614.0,
+  "text": "Ignitis reports adjusted EBITDA of €546.1M, adds 0.7 GW capacity",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GW",
+    "OF",
+    "ADDS"
+  ],
+  "relatedTickers": [
+    "GW",
+    "OF",
+    "ADDS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dimon seeks to sell JPMorgan investors on $2bn-a-week costs bill",
+  "link": "https://www.ft.com/content/05527e62-1ba3-486d-a4c7-66dd0ccdccad",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:04",
+  "providerPublishTime": 1771819204.0,
+  "text": "Longtime bank chief executive will present spending plans at slimmed-down investor presentation on Monday",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F05045173-1956-4d15-9d42-38a370e73ee1.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TO",
+    "CHIEF",
+    "AT",
+    "PLANS",
+    "DIMON",
+    "SEEKS",
+    "BILL",
+    "BANK",
+    "COSTS",
+    "ON"
+  ],
+  "relatedTickers": [
+    "TO",
+    "CHIEF",
+    "AT",
+    "PLANS",
+    "DIMON",
+    "SEEKS",
+    "BILL",
+    "BANK",
+    "COSTS",
+    "ON"
+  ]
+}

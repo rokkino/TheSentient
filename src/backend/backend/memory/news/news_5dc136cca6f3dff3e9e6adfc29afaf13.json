@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FCA CEO Nikhil Rathi signals shift towards fewer new rules",
+  "link": "https://finance.yahoo.com/news/fca-ceo-nikhil-rathi-signals-120040248.html",
+  "publisher": "The Accountant",
+  "timestamp": "2026-02-23T12:00:40",
+  "providerPublishTime": 1771844440.0,
+  "text": "FCA CEO Nikhil Rathi signals shift towards fewer new rules",
+  "thumbnail": "https://media.zenfs.com/en/the_accountant_923/ea9c8639b3af22daede5560a9d8b1510",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FEWER",
+    "FCA",
+    "CEO",
+    "NEW",
+    "RATHI",
+    "RULES",
+    "SHIFT"
+  ],
+  "relatedTickers": [
+    "FEWER",
+    "FCA",
+    "CEO",
+    "NEW",
+    "RATHI",
+    "RULES",
+    "SHIFT"
+  ]
+}

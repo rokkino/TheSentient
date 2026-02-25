@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Enel to acquire US wind and solar portfolio totalling 830MW of capacity",
+  "link": "https://finance.yahoo.com/news/enel-acquire-us-wind-solar-115222801.html",
+  "publisher": "Power Technology",
+  "timestamp": "2026-02-23T11:52:22",
+  "providerPublishTime": 1771843942.0,
+  "text": "Enel to acquire US wind and solar portfolio totalling 830MW of capacity",
+  "thumbnail": "https://media.zenfs.com/en/power_technology_866/2baf2aa5513d9c476e5cdbb2814de77b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "ENEL",
+    "US",
+    "OF",
+    "SOLAR",
+    "AND",
+    "WIND"
+  ],
+  "relatedTickers": [
+    "TO",
+    "ENEL",
+    "US",
+    "OF",
+    "SOLAR",
+    "AND",
+    "WIND"
+  ]
+}

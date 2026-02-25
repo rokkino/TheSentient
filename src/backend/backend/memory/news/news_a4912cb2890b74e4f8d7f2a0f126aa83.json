@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Augmentum Fintech receives £185.7 million takeover offer",
+  "link": "https://www.investing.com/news/stock-market-news/augmentum-fintech-receives-1857-million-takeover-offer-93CH-4523374",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T07:54:28",
+  "providerPublishTime": 1772002468.0,
+  "text": "Augmentum Fintech receives £185.7 million takeover offer",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFFER"
+  ],
+  "relatedTickers": [
+    "OFFER"
+  ]
+}

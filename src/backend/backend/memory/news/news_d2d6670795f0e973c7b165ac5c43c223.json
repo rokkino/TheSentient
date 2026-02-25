@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Panama cancels China-linked port deal, hands canal terminals to Maersk, MSC",
+  "link": "https://www.cnbc.com/2026/02/24/panama-officially-voids-annuls-ck-hutchison-contracts-interim-control-maersk-msc-canal-dispute.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T09:34:26",
+  "providerPublishTime": 1771922066.0,
+  "text": "The simmering dispute has become a geopolitical flashpoint between Washington and Beijing, with Panama caught in the crossfire.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PORT",
+    "A",
+    "CANAL",
+    "TO",
+    "MSC",
+    "WITH",
+    "THE",
+    "HANDS",
+    "CHINA",
+    "AND"
+  ],
+  "relatedTickers": [
+    "PORT",
+    "A",
+    "CANAL",
+    "TO",
+    "MSC",
+    "WITH",
+    "THE",
+    "HANDS",
+    "CHINA",
+    "AND"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "$1,000 in NVIDIA Ten Years Ago Beat the S&P 500 by Roughly 70x",
+  "link": "https://finance.yahoo.com/news/1-000-nvidia-ten-years-203317765.html",
+  "publisher": "24/7 Wall St.",
+  "timestamp": "2026-02-23T20:33:17",
+  "providerPublishTime": 1771875197.0,
+  "text": "$1,000 in NVIDIA Ten Years Ago Beat the S&P 500 by Roughly 70x",
+  "thumbnail": "https://media.zenfs.com/en/24_7_wall_st__718/5c5a9ed632aa9208d355ade87dfa2c64",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BY",
+    "IN",
+    "YEARS",
+    "AGO",
+    "TEN",
+    "S",
+    "THE",
+    "P",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "BY",
+    "IN",
+    "YEARS",
+    "AGO",
+    "TEN",
+    "S",
+    "THE",
+    "P",
+    "BEAT"
+  ]
+}

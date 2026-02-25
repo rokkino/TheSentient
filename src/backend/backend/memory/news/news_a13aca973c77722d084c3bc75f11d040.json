@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russia and Iran Slashing Prices to China as Oil Piles Up at Sea",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/russia-and-iran-slashing-prices-to-china-as-oil-piles-up-at-sea",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:31:28",
+  "providerPublishTime": 1772004688.0,
+  "text": "Russian and Iranian oil producers are offering deepening discounts as they compete for the same limited group of Chinese buyers after India retreated from purchases.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ipMZxYaPY5.4/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SAME",
+    "SEA",
+    "FROM",
+    "PILES",
+    "TO",
+    "INDIA",
+    "OF",
+    "GROUP",
+    "AND",
+    "CHINA"
+  ],
+  "relatedTickers": [
+    "SAME",
+    "SEA",
+    "FROM",
+    "PILES",
+    "TO",
+    "INDIA",
+    "OF",
+    "GROUP",
+    "AND",
+    "CHINA"
+  ]
+}

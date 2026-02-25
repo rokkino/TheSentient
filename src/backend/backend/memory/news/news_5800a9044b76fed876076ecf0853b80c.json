@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump condemns Iran’s ‘sinister’ nuclear ambitions in State of the Union speech",
+  "link": "https://www.ft.com/content/9194e1f5-d191-414a-ab9f-e271a32b8b78",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:30:41",
+  "providerPublishTime": 1771993841.0,
+  "text": "President warns Islamic republic is rebuilding nuclear weapons programme amid huge US military build-up",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F72d6dcfd-3032-456f-8baa-2bcb0311e02a.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "AMID",
+    "TRUMP",
+    "UNION",
+    "HUGE",
+    "US",
+    "UP",
+    "IN",
+    "S",
+    "THE"
+  ],
+  "relatedTickers": [
+    "IS",
+    "AMID",
+    "TRUMP",
+    "UNION",
+    "HUGE",
+    "US",
+    "UP",
+    "IN",
+    "S",
+    "THE"
+  ]
+}

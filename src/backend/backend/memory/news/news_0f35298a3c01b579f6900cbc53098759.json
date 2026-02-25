@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "After 46 years working, I’m not retiring — instead, I take a vacation every month. Is that a good life in your 70s?",
+  "link": "https://www.marketwatch.com/story/after-46-years-working-im-not-retiring-instead-i-take-a-vacation-every-month-is-that-a-good-life-in-your-70s-447f7c75?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T11:15:00",
+  "providerPublishTime": 1772014500.0,
+  "text": "“I’ve owned my own company for the last 15 years. It’s worth $8.5 million.”",
+  "thumbnail": "https://images.mktw.net/im-85231732",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "M",
+    "IT",
+    "YOUR",
+    "EVERY",
+    "YEARS",
+    "IS",
+    "MONTH",
+    "LIFE",
+    "IN"
+  ],
+  "relatedTickers": [
+    "THE",
+    "M",
+    "IT",
+    "YOUR",
+    "EVERY",
+    "YEARS",
+    "IS",
+    "MONTH",
+    "LIFE",
+    "IN"
+  ]
+}

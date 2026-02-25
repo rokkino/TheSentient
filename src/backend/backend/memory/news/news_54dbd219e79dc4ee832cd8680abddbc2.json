@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Anthropic Kicks Off Share Sale for Staffers of Up to $6 Billion",
+  "link": "https://finance.yahoo.com/news/anthropic-kicks-off-share-sale-235828135.html",
+  "publisher": "Bloomberg",
+  "timestamp": "2026-02-23T23:58:28",
+  "providerPublishTime": 1771887508.0,
+  "text": "Anthropic Kicks Off Share Sale for Staffers of Up to $6 Billion",
+  "thumbnail": "https://media.zenfs.com/en/bloomberg_holding_pen_162/57ff6b782890be21bfc09a01582ef585",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FOR",
+    "OFF",
+    "TO",
+    "SHARE",
+    "UP",
+    "KICKS",
+    "OF",
+    "SALE"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "OFF",
+    "TO",
+    "SHARE",
+    "UP",
+    "KICKS",
+    "OF",
+    "SALE"
+  ]
+}

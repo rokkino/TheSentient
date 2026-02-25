@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stripe Hits $159 Billion Valuation as Payment Volume Soars",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/stripe-hits-159-billion-valuation-as-payment-volume-soars",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T13:00:00",
+  "providerPublishTime": 1771934400.0,
+  "text": "Stripe Inc., which helps businesses accept payments online, has reached a $159 billion valuation in an employee tender offer, co-founder and president John Collison said in an interview.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iMARFoam9G8A/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CO",
+    "HAS",
+    "JOHN",
+    "AN",
+    "OFFER",
+    "SOARS",
+    "IN",
+    "SAID",
+    "AS",
+    "HITS"
+  ],
+  "relatedTickers": [
+    "CO",
+    "HAS",
+    "JOHN",
+    "AN",
+    "OFFER",
+    "SOARS",
+    "IN",
+    "SAID",
+    "AS",
+    "HITS"
+  ]
+}

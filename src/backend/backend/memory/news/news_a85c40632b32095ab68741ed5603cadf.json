@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Korea Passes France in Stock Ranks After $2.2 Trillion Rally",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/korea-s-2-2-trillion-rally-takes-market-value-above-france-s",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T01:40:24",
+  "providerPublishTime": 1771980024.0,
+  "text": "South Korea’s equity market has surged past France to become the ninth-largest in the world, propelled by gains in technology shares riding the global boom in artificial intelligence.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0LkIg8DeBGo/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "THE",
+    "AFTER",
+    "BY",
+    "S",
+    "NINTH",
+    "SOUTH",
+    "GAINS",
+    "BOOM",
+    "PAST"
+  ],
+  "relatedTickers": [
+    "TO",
+    "THE",
+    "AFTER",
+    "BY",
+    "S",
+    "NINTH",
+    "SOUTH",
+    "GAINS",
+    "BOOM",
+    "PAST"
+  ]
+}

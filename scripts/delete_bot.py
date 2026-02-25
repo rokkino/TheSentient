@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 # Database path
-DB_PATH = os.path.join("backend", "thesentient.db")
+DB_PATH = os.path.join("backend", "../data/databases/thesentient.db")
 
 def delete_bot(bot_id):
     if not os.path.exists(DB_PATH):

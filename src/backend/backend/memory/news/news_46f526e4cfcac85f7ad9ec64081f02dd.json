@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hong Kong Suddenly Flush With Cash as Budget Returns to Surplus",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/hong-kong-budget-set-to-narrow-deficit-with-tech-bets-in-focus",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T00:30:13",
+  "providerPublishTime": 1771975813.0,
+  "text": "Hong Kong started to take its first steps away from austerity after public finances ended their longest stretch of deficits in two decades, pledging billions in technology spending and some tax relief to more than 2 million people.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/igbGupcsh_hg/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "MORE",
+    "TO",
+    "THEIR",
+    "IN",
+    "FLUSH",
+    "AND",
+    "KONG",
+    "ENDED",
+    "WITH"
+  ],
+  "relatedTickers": [
+    "AS",
+    "MORE",
+    "TO",
+    "THEIR",
+    "IN",
+    "FLUSH",
+    "AND",
+    "KONG",
+    "ENDED",
+    "WITH"
+  ]
+}

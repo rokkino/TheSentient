@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Supreme Court to hear Exxon bid for compensation from Cuba",
+  "link": "https://finance.yahoo.com/news/us-supreme-court-hear-exxon-110210173.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T11:02:10",
+  "providerPublishTime": 1771840930.0,
+  "text": "US Supreme Court to hear Exxon bid for compensation from Cuba",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/44810b5938dae87f6217943554d3ca5a",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "BID",
+    "US",
+    "EXXON",
+    "HEAR",
+    "FROM",
+    "FOR",
+    "COURT",
+    "CUBA"
+  ],
+  "relatedTickers": [
+    "TO",
+    "BID",
+    "US",
+    "EXXON",
+    "HEAR",
+    "FROM",
+    "FOR",
+    "COURT",
+    "CUBA"
+  ]
+}

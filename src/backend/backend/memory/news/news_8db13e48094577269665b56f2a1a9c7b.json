@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "9 of the stock market’s 10 most-watched valuation indicators are now in ‘sell’ territory",
+  "link": "https://www.marketwatch.com/story/9-of-the-stock-markets-10-most-watched-valuation-indicators-are-now-in-sell-territory-ebdb9d99?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T12:55:00",
+  "providerPublishTime": 1771934100.0,
+  "text": "Indicators are at extremes — stretched valuations are bearish for stocks.",
+  "thumbnail": "https://images.mktw.net/im-61457698",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SELL",
+    "MOST",
+    "ARE",
+    "STOCK",
+    "IN",
+    "S",
+    "THE",
+    "NOW",
+    "OF",
+    "AT"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "MOST",
+    "ARE",
+    "STOCK",
+    "IN",
+    "S",
+    "THE",
+    "NOW",
+    "OF",
+    "AT"
+  ]
+}

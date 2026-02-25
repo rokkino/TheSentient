@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here is Why Edwards Lifesciences Corporation (EW) Looks Attractive",
+  "link": "https://finance.yahoo.com/news/why-edwards-lifesciences-corporation-ew-204503028.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T20:45:03",
+  "providerPublishTime": 1771875903.0,
+  "text": "Here is Why Edwards Lifesciences Corporation (EW) Looks Attractive",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/407b7cca27758c7b5529e266b02e7b93",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHY",
+    "HERE",
+    "LOOKS",
+    "EW",
+    "IS"
+  ],
+  "relatedTickers": [
+    "WHY",
+    "HERE",
+    "LOOKS",
+    "EW",
+    "IS"
+  ]
+}

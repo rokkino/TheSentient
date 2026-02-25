@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Artisan Mid Cap Fund Bets on MongoDB’s (MDB) Atlas cloud platform",
+  "link": "https://finance.yahoo.com/news/artisan-mid-cap-fund-bets-121747220.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T12:17:47",
+  "providerPublishTime": 1771931867.0,
+  "text": "Artisan Mid Cap Fund Bets on MongoDB’s (MDB) Atlas cloud platform",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/79c003e404eabe68b4ea79665ccd1d2e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CAP",
+    "MID",
+    "CLOUD",
+    "ATLAS",
+    "BETS",
+    "MDB",
+    "S",
+    "FUND",
+    "ON"
+  ],
+  "relatedTickers": [
+    "CAP",
+    "MID",
+    "CLOUD",
+    "ATLAS",
+    "BETS",
+    "MDB",
+    "S",
+    "FUND",
+    "ON"
+  ]
+}

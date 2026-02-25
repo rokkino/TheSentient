@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "MercadoLibre shares fall as investments weigh on quarterly profit",
+  "link": "https://www.investing.com/news/earnings/mercadolibre-shares-rise-as-revenue-beats-estimates-4522712",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:52:55",
+  "providerPublishTime": 1772009575.0,
+  "text": "MercadoLibre shares fall as investments weigh on quarterly profit",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "ON",
+    "FALL",
+    "WEIGH"
+  ],
+  "relatedTickers": [
+    "AS",
+    "ON",
+    "FALL",
+    "WEIGH"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nykode Therapeutics shares rise on new VB-C-03 trial data",
+  "link": "https://www.investing.com/news/stock-market-news/nykode-therapeutics-shares-rise-on-new-vbc03-trial-data-93CH-4520981",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:42:30",
+  "providerPublishTime": 1771929750.0,
+  "text": "Nykode Therapeutics shares rise on new VB-C-03 trial data",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DATA",
+    "NEW",
+    "VB",
+    "ON",
+    "TRIAL",
+    "RISE",
+    "C"
+  ],
+  "relatedTickers": [
+    "DATA",
+    "NEW",
+    "VB",
+    "ON",
+    "TRIAL",
+    "RISE",
+    "C"
+  ]
+}

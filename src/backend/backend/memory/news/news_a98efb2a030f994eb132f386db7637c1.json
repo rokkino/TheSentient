@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk shares drop after poor trial results for new obesity drug",
+  "link": "https://www.ft.com/content/979a4c4b-47f9-4b9f-894a-8ed7385c0b6a",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T10:07:13",
+  "providerPublishTime": 1771837633.0,
+  "text": "Once-a-week injection achieved weight loss of 23%, which is lower than some existing treatments",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F944ac3bb-f0d4-4c1d-b84a-1c0caa98aeda.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TRIAL",
+    "THAN",
+    "SOME",
+    "WHICH",
+    "NOVO",
+    "LOWER",
+    "POOR",
+    "LOSS",
+    "WEEK",
+    "DRUG"
+  ],
+  "relatedTickers": [
+    "TRIAL",
+    "THAN",
+    "SOME",
+    "WHICH",
+    "NOVO",
+    "LOWER",
+    "POOR",
+    "LOSS",
+    "WEEK",
+    "DRUG"
+  ]
+}

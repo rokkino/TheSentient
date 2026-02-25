@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Inside Ukraine’s ‘kill zone’",
+  "link": "https://ig.ft.com/ukraine-kill-zone/",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:13",
+  "providerPublishTime": 1771819213.0,
+  "text": "Drones are reshaping the frontline with Russia — and the future of warfare",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F2498d3f8-93c4-4fec-a1ad-f9d2e3070f7f.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ZONE",
+    "THE",
+    "KILL",
+    "ARE",
+    "OF",
+    "WITH",
+    "S",
+    "AND"
+  ],
+  "relatedTickers": [
+    "ZONE",
+    "THE",
+    "KILL",
+    "ARE",
+    "OF",
+    "WITH",
+    "S",
+    "AND"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Last week’s slump in asset-manager stocks was driven by private-credit fears. Here’s what’s worrying investors.",
+  "link": "https://finance.yahoo.com/news/week-slump-asset-manager-stocks-133000629.html",
+  "publisher": "MarketWatch",
+  "timestamp": "2026-02-22T20:33:00",
+  "providerPublishTime": 1771788780.0,
+  "text": "Last week’s slump in asset-manager stocks was driven by private-credit fears. Here’s what’s worrying investors.",
+  "thumbnail": "https://media.zenfs.com/en/marketwatch_hosted_869/54d95509e1a8c39ee731026046f60a9d",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "S",
+    "HERE",
+    "FEARS",
+    "LAST",
+    "ASSET",
+    "WAS",
+    "BY",
+    "SLUMP",
+    "WHAT"
+  ],
+  "relatedTickers": [
+    "IN",
+    "S",
+    "HERE",
+    "FEARS",
+    "LAST",
+    "ASSET",
+    "WAS",
+    "BY",
+    "SLUMP",
+    "WHAT"
+  ]
+}

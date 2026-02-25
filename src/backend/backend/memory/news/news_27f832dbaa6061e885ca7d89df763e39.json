@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The maker of Taser stun guns says it’s becoming an AI company as bookings surge",
+  "link": "https://www.marketwatch.com/story/the-maker-of-taser-stun-guns-says-its-becoming-an-ai-company-as-bookings-surge-6f364373?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T10:19:00",
+  "providerPublishTime": 1772011140.0,
+  "text": "Axon Enterprises stock jumped on Wednesday, as the maker of Taser stun guns said its efforts at providing artificial intelligence-driven services to law enforcement clients have led to bookings.",
+  "thumbnail": "https://images.mktw.net/im-317235",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "STOCK",
+    "LED",
+    "IT",
+    "TASER",
+    "AN",
+    "SAYS",
+    "GUNS",
+    "SURGE",
+    "AT"
+  ],
+  "relatedTickers": [
+    "THE",
+    "STOCK",
+    "LED",
+    "IT",
+    "TASER",
+    "AN",
+    "SAYS",
+    "GUNS",
+    "SURGE",
+    "AT"
+  ]
+}

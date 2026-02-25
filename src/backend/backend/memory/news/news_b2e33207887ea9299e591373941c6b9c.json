@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Blue Owl’s Woes Cloud the Outlook for Private Credit",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-23/blue-owl-s-woes-cloud-the-outlook-for-private-credit",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T11:40:37",
+  "providerPublishTime": 1771843237.0,
+  "text": "<p>Opaque assets become a tougher sell when investors can’t pull their cash out.</p>",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/imi9iUPDjtKQ/v0/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLOUD",
+    "CAN",
+    "THEIR",
+    "FOR",
+    "THE",
+    "PULL",
+    "OUT",
+    "WOES",
+    "CASH",
+    "BLUE"
+  ],
+  "relatedTickers": [
+    "CLOUD",
+    "CAN",
+    "THEIR",
+    "FOR",
+    "THE",
+    "PULL",
+    "OUT",
+    "WOES",
+    "CASH",
+    "BLUE"
+  ]
+}

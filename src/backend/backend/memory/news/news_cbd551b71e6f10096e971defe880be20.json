@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dollar slip lower ahead of Nvidia’s earnings; euro edges higher",
+  "link": "https://www.investing.com/news/forex-news/dollar-slip-lower-ahead-of-nvidias-earnings-euro-edges-higher-4523405",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:49:25",
+  "providerPublishTime": 1772005765.0,
+  "text": "Dollar slip lower ahead of Nvidia’s earnings; euro edges higher",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOWER",
+    "SLIP",
+    "EDGES",
+    "S",
+    "EURO",
+    "AHEAD",
+    "OF"
+  ],
+  "relatedTickers": [
+    "LOWER",
+    "SLIP",
+    "EDGES",
+    "S",
+    "EURO",
+    "AHEAD",
+    "OF"
+  ]
+}

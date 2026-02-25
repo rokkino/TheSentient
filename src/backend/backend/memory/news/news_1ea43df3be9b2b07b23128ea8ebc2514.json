@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Baird downgrades First Solar stock rating on outlook uncertainty",
+  "link": "https://www.investing.com/news/analyst-ratings/baird-downgrades-first-solar-stock-rating-on-outlook-uncertainty-93CH-4523408",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:47:50",
+  "providerPublishTime": 1772005670.0,
+  "text": "Baird downgrades First Solar stock rating on outlook uncertainty",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SOLAR",
+    "STOCK",
+    "FIRST",
+    "BAIRD",
+    "ON"
+  ],
+  "relatedTickers": [
+    "SOLAR",
+    "STOCK",
+    "FIRST",
+    "BAIRD",
+    "ON"
+  ]
+}

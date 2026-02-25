@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘Crisis of his own making’: Trump weighs another war with Iran",
+  "link": "https://www.ft.com/content/0408deca-ecca-49ab-bff6-985ef83897ce",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T05:00:29",
+  "providerPublishTime": 1771905629.0,
+  "text": "The US military build-up was designed to coerce Tehran — but has failed",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fc005432e-e859-46d5-b2be-30345cdada89.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUT",
+    "HIS",
+    "US",
+    "OWN",
+    "WAR",
+    "TO",
+    "UP",
+    "WAS",
+    "WITH",
+    "HAS"
+  ],
+  "relatedTickers": [
+    "BUT",
+    "HIS",
+    "US",
+    "OWN",
+    "WAR",
+    "TO",
+    "UP",
+    "WAS",
+    "WITH",
+    "HAS"
+  ]
+}

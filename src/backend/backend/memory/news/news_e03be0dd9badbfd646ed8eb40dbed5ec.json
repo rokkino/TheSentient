@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russian ‘illicit oil traders’ exposed by email blunder placed under UK sanctions",
+  "link": "https://www.ft.com/content/4ef6e06d-b877-4444-b58a-427513c58516",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T12:25:56",
+  "providerPublishTime": 1771932356.0,
+  "text": "Apparent network of energy companies’ vast reach revealed by FT",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5be15e58-d11e-4d47-99d8-51206ec43db7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "BY",
+    "REACH",
+    "UK",
+    "FT",
+    "VAST",
+    "EMAIL",
+    "OF",
+    "UNDER"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "BY",
+    "REACH",
+    "UK",
+    "FT",
+    "VAST",
+    "EMAIL",
+    "OF",
+    "UNDER"
+  ]
+}

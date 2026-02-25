@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wall Street regulator allows intraday trading of tokenized WisdomTree money market fund",
+  "link": "https://finance.yahoo.com/news/wall-street-regulator-allows-intraday-223406853.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T22:34:06",
+  "providerPublishTime": 1771882446.0,
+  "text": "Wall Street regulator allows intraday trading of tokenized WisdomTree money market fund",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/12e40ebe2262ce895dc46fc8ccc51d57",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WALL",
+    "MONEY",
+    "FUND",
+    "OF"
+  ],
+  "relatedTickers": [
+    "WALL",
+    "MONEY",
+    "FUND",
+    "OF"
+  ]
+}

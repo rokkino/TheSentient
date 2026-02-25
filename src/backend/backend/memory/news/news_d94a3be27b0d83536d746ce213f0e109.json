@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I am fearful’: My ailing relative is being forced into assisted living. What can I do?",
+  "link": "https://www.marketwatch.com/story/i-am-fearful-my-ailing-relative-is-being-forced-into-assisted-living-what-can-i-do-7ce8b42a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T12:00:00",
+  "providerPublishTime": 1771930800.0,
+  "text": "“My relative also has no idea what they are being charged for these services.”",
+  "thumbnail": "https://images.mktw.net/im-81735081",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THEY",
+    "HAS",
+    "ARE",
+    "IDEA",
+    "IS",
+    "ALSO",
+    "CAN",
+    "DO",
+    "NO",
+    "MY"
+  ],
+  "relatedTickers": [
+    "THEY",
+    "HAS",
+    "ARE",
+    "IDEA",
+    "IS",
+    "ALSO",
+    "CAN",
+    "DO",
+    "NO",
+    "MY"
+  ]
+}

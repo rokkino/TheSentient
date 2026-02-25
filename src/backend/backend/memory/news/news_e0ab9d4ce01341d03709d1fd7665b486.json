@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Workday shares slide amid underwhelming subscription revenue forecast",
+  "link": "https://www.investing.com/news/earnings/workday-forecasts-up-to-13-subscription-revenue-growth-shares-fall-6-4522699",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:34:12",
+  "providerPublishTime": 1772008452.0,
+  "text": "Workday shares slide amid underwhelming subscription revenue forecast",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SLIDE",
+    "AMID"
+  ],
+  "relatedTickers": [
+    "SLIDE",
+    "AMID"
+  ]
+}

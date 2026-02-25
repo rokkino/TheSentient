@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Fed moves to drop reputation risk in bank reviews",
+  "link": "https://finance.yahoo.com/news/us-fed-moves-drop-reputation-113539818.html",
+  "publisher": "Retail Banker International",
+  "timestamp": "2026-02-25T11:35:39",
+  "providerPublishTime": 1772015739.0,
+  "text": "US Fed moves to drop reputation risk in bank reviews",
+  "thumbnail": "https://media.zenfs.com/en/retail_banker_international_407/c51144cc979b540d54884533b73c396b",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "US",
+    "DROP",
+    "FED",
+    "RISK",
+    "IN",
+    "TO",
+    "BANK",
+    "MOVES"
+  ],
+  "relatedTickers": [
+    "US",
+    "DROP",
+    "FED",
+    "RISK",
+    "IN",
+    "TO",
+    "BANK",
+    "MOVES"
+  ]
+}

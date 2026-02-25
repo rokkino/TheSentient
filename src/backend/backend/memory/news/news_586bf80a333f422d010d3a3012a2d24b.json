@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil rises to near seven-month highs on US-Iran tensions",
+  "link": "https://www.investing.com/news/commodities-news/oil-hovers-below-sevenmonth-high-as-traders-eye-usiran-talks-trade-policy-4520389",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:30:30",
+  "providerPublishTime": 1771914630.0,
+  "text": "Oil rises to near seven-month highs on US-Iran tensions",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "US",
+    "OIL",
+    "TO",
+    "NEAR",
+    "ON",
+    "HIGHS",
+    "SEVEN",
+    "RISES",
+    "IRAN",
+    "MONTH"
+  ],
+  "relatedTickers": [
+    "US",
+    "OIL",
+    "TO",
+    "NEAR",
+    "ON",
+    "HIGHS",
+    "SEVEN",
+    "RISES",
+    "IRAN",
+    "MONTH"
+  ]
+}

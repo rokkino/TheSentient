@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Renault takes full ownership of electric LCV JV Flexis",
+  "link": "https://finance.yahoo.com/news/renault-takes-full-ownership-electric-114418045.html",
+  "publisher": "Just Auto",
+  "timestamp": "2026-02-24T11:44:18",
+  "providerPublishTime": 1771929858.0,
+  "text": "Renault takes full ownership of electric LCV JV Flexis",
+  "thumbnail": "https://media.zenfs.com/en/just_auto_187/29df15c451536aa06230a4c2b9a5ccde",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JV",
+    "OF",
+    "TAKES",
+    "FULL",
+    "LCV"
+  ],
+  "relatedTickers": [
+    "JV",
+    "OF",
+    "TAKES",
+    "FULL",
+    "LCV"
+  ]
+}

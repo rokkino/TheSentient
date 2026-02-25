@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FTSE 100 today: Stocks open lower as AI disruption fears linger; StanChart reports",
+  "link": "https://www.investing.com/news/stock-market-news/ftse-100-today-stocks-open-lower-as-ai-disruption-fears-linger-stanchart-reports-4520618",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:22:08",
+  "providerPublishTime": 1771917728.0,
+  "text": "FTSE 100 today: Stocks open lower as AI disruption fears linger; StanChart reports",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FEARS",
+    "OPEN",
+    "FTSE",
+    "TODAY",
+    "AS",
+    "AI",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "FEARS",
+    "OPEN",
+    "FTSE",
+    "TODAY",
+    "AS",
+    "AI",
+    "LOWER"
+  ]
+}

@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 # Add backend to path
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
-from services.gemini_service import GeminiService
-from services.llama_service import llama_service
+from src.backend.services.gemini_service import GeminiService
+from src.backend.services.llama_service import llama_service
 
 async def test_ai_draw():
     print("Testing AI Draw Feature...")

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Fed's Goolsbee calls for a hold on cuts as current rate of inflation is 'not good enough'",
+  "link": "https://www.cnbc.com/2026/02/24/feds-goolsbee-calls-for-a-hold-on-cuts-as-current-rate-of-inflation-is-not-good-enough.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T13:00:59",
+  "providerPublishTime": 1771934459.0,
+  "text": "The Chicago Fed president said Tuesday that cuts aren't appropriate until there's more evidence that inflation is on its way down.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WAY",
+    "MORE",
+    "FED",
+    "OF",
+    "THAT",
+    "NOT",
+    "CALLS",
+    "AS",
+    "THE",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "WAY",
+    "MORE",
+    "FED",
+    "OF",
+    "THAT",
+    "NOT",
+    "CALLS",
+    "AS",
+    "THE",
+    "FOR"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oxford Biomedica reports 30% revenue growth, turns EBITDA positive",
+  "link": "https://www.investing.com/news/company-news/oxford-biomedica-reports-30-revenue-growth-turns-ebitda-positive-93CH-4520562",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:20:48",
+  "providerPublishTime": 1771914048.0,
+  "text": "Oxford Biomedica reports 30% revenue growth, turns EBITDA positive",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TURNS"
+  ],
+  "relatedTickers": [
+    "TURNS"
+  ]
+}

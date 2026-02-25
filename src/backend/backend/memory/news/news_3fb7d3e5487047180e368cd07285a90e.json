@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here’s Artisan Mid Cap Fund’s Updates on iRhythm (IRTC)",
+  "link": "https://finance.yahoo.com/news/artisan-mid-cap-fund-updates-124809190.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T12:48:09",
+  "providerPublishTime": 1771933689.0,
+  "text": "Here’s Artisan Mid Cap Fund’s Updates on iRhythm (IRTC)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/4b76b78cb8ac89abc56a94d4eea42d01",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HERE",
+    "CAP",
+    "MID",
+    "S",
+    "IRTC",
+    "FUND",
+    "ON"
+  ],
+  "relatedTickers": [
+    "HERE",
+    "CAP",
+    "MID",
+    "S",
+    "IRTC",
+    "FUND",
+    "ON"
+  ]
+}

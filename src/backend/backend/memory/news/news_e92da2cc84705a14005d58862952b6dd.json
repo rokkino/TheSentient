@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Dole plc For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-8k-dole-plc-for-25-february-93CH-4523683",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:11:15",
+  "providerPublishTime": 1772014275.0,
+  "text": "Form 8K Dole plc For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FORM",
+    "FOR",
+    "DOLE",
+    "PLC"
+  ],
+  "relatedTickers": [
+    "FORM",
+    "FOR",
+    "DOLE",
+    "PLC"
+  ]
+}

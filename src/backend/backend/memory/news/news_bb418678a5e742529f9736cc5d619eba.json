@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European shares hit record as HSBC raises lending target, AI disruption fears ease",
+  "link": "https://www.investing.com/news/stock-market-news/european-shares-at-record-peak-as-hsbc-raises-lending-target-ai-disruption-fears-ease-4523403",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:49:11",
+  "providerPublishTime": 1772009351.0,
+  "text": "European shares hit record as HSBC raises lending target, AI disruption fears ease",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HIT",
+    "EASE",
+    "AS",
+    "HSBC",
+    "AI",
+    "FEARS"
+  ],
+  "relatedTickers": [
+    "HIT",
+    "EASE",
+    "AS",
+    "HSBC",
+    "AI",
+    "FEARS"
+  ]
+}

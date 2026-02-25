@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "MTU Aero Engines beats forecasts in Q4, 2026 outlook in line",
+  "link": "https://www.investing.com/news/earnings/mtu-aero-engines-beats-forecasts-in-q4-2026-outlook-in-line-4520602",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:57:25",
+  "providerPublishTime": 1771916245.0,
+  "text": "MTU Aero Engines beats forecasts in Q4, 2026 outlook in line",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AERO",
+    "MTU",
+    "BEATS",
+    "IN",
+    "LINE"
+  ],
+  "relatedTickers": [
+    "AERO",
+    "MTU",
+    "BEATS",
+    "IN",
+    "LINE"
+  ]
+}

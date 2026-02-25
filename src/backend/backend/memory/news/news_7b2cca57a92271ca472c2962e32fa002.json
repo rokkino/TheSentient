@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China Is More Attractive as Inflows Rise, Deutsche Bank CIO Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/deutsche-bank-cio-says-china-is-more-attractive-as-inflows-rise",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:43:23",
+  "providerPublishTime": 1771929803.0,
+  "text": "China’s tech prowess is making the country an increasingly attractive investment destination, according to Christian Nolting, Deutsche Bank AG’s global chief investment officer for private banking.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i562QNw6VJeA/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CHINA",
+    "AN",
+    "CIO",
+    "BANK",
+    "AS",
+    "SAYS",
+    "TO",
+    "TECH",
+    "S",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "CHINA",
+    "AN",
+    "CIO",
+    "BANK",
+    "AS",
+    "SAYS",
+    "TO",
+    "TECH",
+    "S",
+    "FOR"
+  ]
+}

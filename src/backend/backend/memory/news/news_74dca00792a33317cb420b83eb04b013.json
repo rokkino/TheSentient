@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "SpaceX’s Mega IPO Redraws 2026 Road Map for Listing Hopefuls",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/spacex-s-mega-ipo-redraws-2026-road-map-for-listing-hopefuls",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T08:00:00",
+  "providerPublishTime": 1771916400.0,
+  "text": "Billionaire Elon Musk planning the largest initial public offering of all time for SpaceX is great news for existing backers and banks that would reap astronomical fees.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKsjnBssN4KY/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AND",
+    "S",
+    "BANKS",
+    "FEES",
+    "ALL",
+    "NEWS",
+    "OF",
+    "GREAT",
+    "MAP",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "AND",
+    "S",
+    "BANKS",
+    "FEES",
+    "ALL",
+    "NEWS",
+    "OF",
+    "GREAT",
+    "MAP",
+    "THAT"
+  ]
+}

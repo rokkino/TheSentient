@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Life Time beats Q4 estimates, shares edge up on guidance",
+  "link": "https://www.investing.com/news/earnings/life-time-beats-q4-estimates-shares-edge-up-on-guidance-93CH-4521010",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:55:12",
+  "providerPublishTime": 1771930512.0,
+  "text": "Life Time beats Q4 estimates, shares edge up on guidance",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EDGE",
+    "UP",
+    "TIME",
+    "ON",
+    "LIFE",
+    "BEATS"
+  ],
+  "relatedTickers": [
+    "EDGE",
+    "UP",
+    "TIME",
+    "ON",
+    "LIFE",
+    "BEATS"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 6K ERICSSON LM TELEPHONE CO For: 24 February",
+  "link": "https://www.investing.com/news/filings/form-6k-ericsson-lm-telephone-co-for-24-february-93CH-4521171",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:30:36",
+  "providerPublishTime": 1771932636.0,
+  "text": "Form 6K ERICSSON LM TELEPHONE CO For: 24 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CO",
+    "FOR",
+    "LM",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "CO",
+    "FOR",
+    "LM",
+    "FORM"
+  ]
+}

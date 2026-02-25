@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 6K BANCO BILBAO VIZCAYA ARGENTARIA For: 23 February",
+  "link": "https://www.investing.com/news/filings/form-6k-banco-bilbao-vizcaya-argentaria-for-23-february-93CH-4518296",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:00:40",
+  "providerPublishTime": 1771844440.0,
+  "text": "Form 6K BANCO BILBAO VIZCAYA ARGENTARIA For: 23 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "BANCO",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "BANCO",
+    "FORM"
+  ]
+}

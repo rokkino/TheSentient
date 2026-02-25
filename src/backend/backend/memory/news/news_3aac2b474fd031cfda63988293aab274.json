@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Temenos Jumps as Software Firm Lifts Targets and Plays Down AI Fear",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/temenos-jumps-as-software-firm-lifts-targets-plays-down-ai-fear",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:07:25",
+  "providerPublishTime": 1772014045.0,
+  "text": "Temenos shares gained after the software company lifted its mid-term guidance, pushing back on worries over the impact of artificial intelligence on the sector.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iM1.pWzaWgDc/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OVER",
+    "PLAYS",
+    "AFTER",
+    "LIFTS",
+    "DOWN",
+    "THE",
+    "AS",
+    "MID",
+    "BACK",
+    "ITS"
+  ],
+  "relatedTickers": [
+    "OVER",
+    "PLAYS",
+    "AFTER",
+    "LIFTS",
+    "DOWN",
+    "THE",
+    "AS",
+    "MID",
+    "BACK",
+    "ITS"
+  ]
+}

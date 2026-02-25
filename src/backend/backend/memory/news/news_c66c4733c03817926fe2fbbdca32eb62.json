@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Municipality Finance removes €120 million notes from Nasdaq Helsinki",
+  "link": "https://www.investing.com/news/company-news/municipality-finance-removes-120-million-notes-from-nasdaq-helsinki-93CH-4520611",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:11:18",
+  "providerPublishTime": 1771917078.0,
+  "text": "Municipality Finance removes €120 million notes from Nasdaq Helsinki",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NOTES",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "NOTES",
+    "FROM"
+  ]
+}

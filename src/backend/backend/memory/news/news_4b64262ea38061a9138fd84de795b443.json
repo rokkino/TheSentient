@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AMD’s stock rockets as Meta deal serves as major validation point for investors",
+  "link": "https://www.marketwatch.com/story/amds-stock-rockets-as-meta-deal-serves-as-major-validation-point-for-investors-fa247785?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T12:53:00",
+  "providerPublishTime": 1771933980.0,
+  "text": "As Meta looks to diversify beyond Nvidia, it’s making a big bet on AMD chips and obtaining a chance to invest in the company.",
+  "thumbnail": "https://images.mktw.net/im-65777227",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "META",
+    "POINT",
+    "BIG",
+    "CHIPS",
+    "STOCK",
+    "IT",
+    "AS",
+    "DEAL",
+    "THE",
+    "BET"
+  ],
+  "relatedTickers": [
+    "META",
+    "POINT",
+    "BIG",
+    "CHIPS",
+    "STOCK",
+    "IT",
+    "AS",
+    "DEAL",
+    "THE",
+    "BET"
+  ]
+}

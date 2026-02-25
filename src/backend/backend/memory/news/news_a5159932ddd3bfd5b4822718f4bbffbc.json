@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OPmobility climbs after margin beat offsets soft sales",
+  "link": "https://www.investing.com/news/earnings/opmobility-climbs-after-margin-beat-offsets-soft-sales-4523411",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:53:47",
+  "providerPublishTime": 1772006027.0,
+  "text": "OPmobility climbs after margin beat offsets soft sales",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOFT",
+    "BEAT",
+    "SALES",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "SOFT",
+    "BEAT",
+    "SALES",
+    "AFTER"
+  ]
+}

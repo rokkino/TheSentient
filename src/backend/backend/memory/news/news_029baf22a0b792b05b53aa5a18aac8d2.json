@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Yen Extends Decline After Report on Takaichi’s Rate Hike View",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/yen-extends-decline-after-report-on-takaichi-s-rate-hike-view",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:26:29",
+  "providerPublishTime": 1771914389.0,
+  "text": "The yen extended declines on Tuesday after local media reported that Japanese Prime Minister Sanae Takaichi voiced apprehension over more rate hikes in a meeting with Bank of Japan Governor Kazuo Ueda last week.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ib.uqWEsZ5I0/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "KAZUO",
+    "BANK",
+    "JAPAN",
+    "YEN",
+    "THAT",
+    "RATE",
+    "UEDA",
+    "OVER",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "IN",
+    "KAZUO",
+    "BANK",
+    "JAPAN",
+    "YEN",
+    "THAT",
+    "RATE",
+    "UEDA",
+    "OVER",
+    "AFTER"
+  ]
+}

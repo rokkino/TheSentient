@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "U.S. importers still paying Trump's illegal tariffs even after Supreme Court ruling",
+  "link": "https://www.cnbc.com/2026/02/22/trump-tariffs-ieepa-supreme-court.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T07:37:19",
+  "providerPublishTime": 1771828639.0,
+  "text": "Billions in U.S. cargo are still being slapped with Trump's \"reciprocal\" tariffs even after being struck down by the Supreme Court ruling.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "CARGO",
+    "THE",
+    "TRUMP",
+    "BY",
+    "ARE",
+    "BEING",
+    "AFTER",
+    "STILL",
+    "WITH"
+  ],
+  "relatedTickers": [
+    "IN",
+    "CARGO",
+    "THE",
+    "TRUMP",
+    "BY",
+    "ARE",
+    "BEING",
+    "AFTER",
+    "STILL",
+    "WITH"
+  ]
+}

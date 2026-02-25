@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Telefónica posts Q4 loss on €2.8 bln charges as revenue edges higher",
+  "link": "https://www.investing.com/news/earnings/telefonica-posts-q4-loss-on-28-bln-charges-as-revenue-edges-higher-4520563",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:23:41",
+  "providerPublishTime": 1771914221.0,
+  "text": "Telefónica posts Q4 loss on €2.8 bln charges as revenue edges higher",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "EDGES",
+    "BLN",
+    "ON",
+    "LOSS",
+    "POSTS",
+    "AS"
+  ],
+  "relatedTickers": [
+    "EDGES",
+    "BLN",
+    "ON",
+    "LOSS",
+    "POSTS",
+    "AS"
+  ]
+}

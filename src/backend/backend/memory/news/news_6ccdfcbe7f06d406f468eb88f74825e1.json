@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nokia (NOK), AWS Partner to Launch AI-Powered 5G-Advanced Network Slicing Solution",
+  "link": "https://finance.yahoo.com/news/nokia-nok-aws-partner-launch-111933741.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T11:19:33",
+  "providerPublishTime": 1772014773.0,
+  "text": "Nokia (NOK), AWS Partner to Launch AI-Powered 5G-Advanced Network Slicing Solution",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/dbf7d1dd39cdf514910c22f66ce6e1bf",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AWS",
+    "TO",
+    "AI",
+    "NOK",
+    "NOKIA"
+  ],
+  "relatedTickers": [
+    "AWS",
+    "TO",
+    "AI",
+    "NOK",
+    "NOKIA"
+  ]
+}

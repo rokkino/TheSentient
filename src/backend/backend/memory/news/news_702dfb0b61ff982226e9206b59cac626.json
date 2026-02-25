@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Samsung, SK Hynix Drive Korea Benchmark’s Breakthrough Past 6000",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/memory-boom-drives-korean-stocks-breakthrough-past-6-000-level",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T00:06:53",
+  "providerPublishTime": 1771974413.0,
+  "text": "South Korea’s equity benchmark has crossed a new milestone just a month after surpassing the once-unthinkable 5,000 mark, as surging global memory demand powers the country’s biggest chipmakers.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iLiQQqxDmcaI/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SK",
+    "DRIVE",
+    "PAST",
+    "HAS",
+    "NEW",
+    "SOUTH",
+    "KOREA",
+    "S",
+    "MONTH",
+    "JUST"
+  ],
+  "relatedTickers": [
+    "SK",
+    "DRIVE",
+    "PAST",
+    "HAS",
+    "NEW",
+    "SOUTH",
+    "KOREA",
+    "S",
+    "MONTH",
+    "JUST"
+  ]
+}

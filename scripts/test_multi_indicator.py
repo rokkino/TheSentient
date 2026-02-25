@@ -5,7 +5,7 @@ import os
 # Add backend to path
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
-from services.market_data import MarketDataService
+from src.backend.services.market_data import MarketDataService
 
 async def test_multi_indicator():
     service = MarketDataService()

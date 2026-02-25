@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "St. James’s Place beats forecasts, lifts shareholder returns",
+  "link": "https://www.investing.com/news/earnings/st-jamess-place-beats-forecasts-lifts-shareholder-returns-4523391",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:16:11",
+  "providerPublishTime": 1772003771.0,
+  "text": "St. James’s Place beats forecasts, lifts shareholder returns",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JAMES",
+    "BEATS",
+    "PLACE",
+    "ST",
+    "LIFTS",
+    "S"
+  ],
+  "relatedTickers": [
+    "JAMES",
+    "BEATS",
+    "PLACE",
+    "ST",
+    "LIFTS",
+    "S"
+  ]
+}

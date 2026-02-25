@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lion Finance soars 7% on strong profit beat, dividend hike",
+  "link": "https://www.investing.com/news/earnings/lion-finance-soars-7-on-strong-profit-beat-dividend-hike-4523444",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:52:09",
+  "providerPublishTime": 1772009529.0,
+  "text": "Lion Finance soars 7% on strong profit beat, dividend hike",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LION",
+    "BEAT",
+    "SOARS",
+    "HIKE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "LION",
+    "BEAT",
+    "SOARS",
+    "HIKE",
+    "ON"
+  ]
+}

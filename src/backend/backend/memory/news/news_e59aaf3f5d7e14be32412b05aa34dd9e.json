@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Romania Taps Foreign Debt Market After Approving Budget Reforms",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/romania-taps-foreign-debt-market-after-approving-budget-reforms",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:30:43",
+  "providerPublishTime": 1772015443.0,
+  "text": "Romania is selling bonds on international markets for the first time this year to capitalize on improved sentiment after the government pushed through reforms needed to reduce the budget deficit.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDPw9OHnsajE/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIRST",
+    "AFTER",
+    "IS",
+    "TIME",
+    "FOR",
+    "THE",
+    "DEBT",
+    "YEAR",
+    "TO",
+    "BONDS"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "AFTER",
+    "IS",
+    "TIME",
+    "FOR",
+    "THE",
+    "DEBT",
+    "YEAR",
+    "TO",
+    "BONDS"
+  ]
+}

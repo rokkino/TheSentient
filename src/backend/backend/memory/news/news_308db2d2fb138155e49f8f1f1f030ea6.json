@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Home Depot beats Wall Street’s expectations, even as sales decline",
+  "link": "https://www.cnbc.com/2026/02/24/home-depot-hd-q4-2025-earnings-.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T11:38:32",
+  "providerPublishTime": 1771929512.0,
+  "text": "Home Depot beat fourth-quarter earnings expectations after missing estimates the prior three quarters.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "PRIOR",
+    "BEAT",
+    "THREE",
+    "HOME",
+    "EVEN",
+    "THE",
+    "BEATS",
+    "WALL",
+    "S",
+    "AS"
+  ],
+  "relatedTickers": [
+    "PRIOR",
+    "BEAT",
+    "THREE",
+    "HOME",
+    "EVEN",
+    "THE",
+    "BEATS",
+    "WALL",
+    "S",
+    "AS"
+  ]
+}

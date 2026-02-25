@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "These Are the Winners and Losers From Hong Kong’s 2026 Budget",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/these-are-the-winners-and-losers-from-hong-kong-s-2026-budget",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:27:01",
+  "providerPublishTime": 1772000821.0,
+  "text": "Hong Kong’s technology and financial companies are poised to benefit from the city’s spending plan as the government accelerates artificial intelligence adoption across sectors.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ipr1NPX5e6yc/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "ARE",
+    "FROM",
+    "HONG",
+    "PLAN",
+    "S",
+    "AS",
+    "THE",
+    "THESE",
+    "KONG"
+  ],
+  "relatedTickers": [
+    "TO",
+    "ARE",
+    "FROM",
+    "HONG",
+    "PLAN",
+    "S",
+    "AS",
+    "THE",
+    "THESE",
+    "KONG"
+  ]
+}

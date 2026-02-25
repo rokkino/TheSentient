@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Microsoft hunts for new London HQ on Elizabeth Line",
+  "link": "https://www.ft.com/content/9c493391-9ce0-4d6d-927b-9c2fc45a2c1f",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:16",
+  "providerPublishTime": 1771992016.0,
+  "text": "Sites from Paddington to Canary Wharf under consideration amid dearth of top-quality office space in UK capital",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F1139a86c-75c0-4cd1-b019-6b604b80e686.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SPACE",
+    "SITES",
+    "HQ",
+    "TO",
+    "OF",
+    "HUNTS",
+    "UK",
+    "FROM",
+    "IN",
+    "TOP"
+  ],
+  "relatedTickers": [
+    "SPACE",
+    "SITES",
+    "HQ",
+    "TO",
+    "OF",
+    "HUNTS",
+    "UK",
+    "FROM",
+    "IN",
+    "TOP"
+  ]
+}

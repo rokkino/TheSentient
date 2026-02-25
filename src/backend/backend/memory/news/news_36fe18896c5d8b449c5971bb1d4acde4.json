@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PayPal pops nearly 7% on report fintech startup Stripe is weighing an acquisition",
+  "link": "https://www.cnbc.com/2026/02/24/paypal-stock-stripe-acquisition-report.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T22:10:28",
+  "providerPublishTime": 1771967428.0,
+  "text": "PayPal's stock lost nearly a third of its value last year due to slowing growth and competition concerns.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "LOST",
+    "POPS",
+    "IS",
+    "LAST",
+    "STOCK",
+    "VALUE",
+    "ITS",
+    "YEAR",
+    "THIRD"
+  ],
+  "relatedTickers": [
+    "TO",
+    "LOST",
+    "POPS",
+    "IS",
+    "LAST",
+    "STOCK",
+    "VALUE",
+    "ITS",
+    "YEAR",
+    "THIRD"
+  ]
+}

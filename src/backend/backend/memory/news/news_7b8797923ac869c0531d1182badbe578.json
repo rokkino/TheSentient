@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Landsbankinn launches share repurchase program through March 13",
+  "link": "https://www.investing.com/news/company-news/landsbankinn-launches-share-repurchase-program-through-march-13-93CH-4523424",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:31:36",
+  "providerPublishTime": 1772008296.0,
+  "text": "Landsbankinn launches share repurchase program through March 13",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SHARE",
+    "MARCH"
+  ],
+  "relatedTickers": [
+    "SHARE",
+    "MARCH"
+  ]
+}

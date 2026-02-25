@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Evercore ISI cuts Workday stock rating on CEO transition, AI investments",
+  "link": "https://www.investing.com/news/analyst-ratings/evercore-isi-cuts-workday-stock-rating-on-ceo-transition-ai-investments-93CH-4523417",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:13:05",
+  "providerPublishTime": 1772007185.0,
+  "text": "Evercore ISI cuts Workday stock rating on CEO transition, AI investments",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ISI",
+    "CEO",
+    "CUTS",
+    "AI",
+    "ON",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "ISI",
+    "CEO",
+    "CUTS",
+    "AI",
+    "ON",
+    "STOCK"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "These 4 charts show the scale of Novo Nordisk's woes",
+  "link": "https://www.cnbc.com/2026/02/25/novo-nordisk-stock-nvo-lly-eli-lilly-ozempic-weight-loss-obesity.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T10:32:42",
+  "providerPublishTime": 1772011962.0,
+  "text": "Despite being first to launch a GLP-1 drug for weight loss, Novo's market share has eroded, and the company now only captures about 40% of the market.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FIRST",
+    "WOES",
+    "THE",
+    "THESE",
+    "A",
+    "NOW",
+    "SHARE",
+    "AND",
+    "GLP",
+    "HAS"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "WOES",
+    "THE",
+    "THESE",
+    "A",
+    "NOW",
+    "SHARE",
+    "AND",
+    "GLP",
+    "HAS"
+  ]
+}

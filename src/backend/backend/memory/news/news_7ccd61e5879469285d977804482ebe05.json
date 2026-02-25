@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PayPal's 'bad code' leads to unauthorized payments",
+  "link": "https://finance.yahoo.com/news/paypals-bad-code-leads-unauthorized-203912426.html",
+  "publisher": "American Banker",
+  "timestamp": "2026-02-23T20:39:12",
+  "providerPublishTime": 1771875552.0,
+  "text": "PayPal's 'bad code' leads to unauthorized payments",
+  "thumbnail": "https://media.zenfs.com/en/american_banker_655/79da813dd02aff121988927d7192a617",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "BAD",
+    "S",
+    "LEADS",
+    "CODE"
+  ],
+  "relatedTickers": [
+    "TO",
+    "BAD",
+    "S",
+    "LEADS",
+    "CODE"
+  ]
+}

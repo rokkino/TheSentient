@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Planet Fitness Inc earnings beat by $0.05, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/planet-fitness-inc-earnings-beat-by-005-revenue-topped-estimates-4521007",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:53:50",
+  "providerPublishTime": 1771930430.0,
+  "text": "Planet Fitness Inc earnings beat by $0.05, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "INC",
+    "BEAT",
+    "BY"
+  ],
+  "relatedTickers": [
+    "INC",
+    "BEAT",
+    "BY"
+  ]
+}

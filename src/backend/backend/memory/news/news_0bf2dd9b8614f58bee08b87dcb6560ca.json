@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Heidelberg Materials shares down 2% after weak 2026 profit forecast",
+  "link": "https://www.investing.com/news/earnings/heidelberg-materials-shares-down-2-after-weak-2026-profit-forecast-4523390",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:13:37",
+  "providerPublishTime": 1772003617.0,
+  "text": "Heidelberg Materials shares down 2% after weak 2026 profit forecast",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WEAK",
+    "AFTER",
+    "DOWN"
+  ],
+  "relatedTickers": [
+    "WEAK",
+    "AFTER",
+    "DOWN"
+  ]
+}

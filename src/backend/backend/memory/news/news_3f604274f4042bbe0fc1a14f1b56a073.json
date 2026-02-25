@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Home Depot tops expectations in the fourth quarter, but customers pull back on spending",
+  "link": "https://finance.yahoo.com/news/home-depot-tops-expectations-fourth-111222849.html",
+  "publisher": "Associated Press Finance",
+  "timestamp": "2026-02-24T11:12:22",
+  "providerPublishTime": 1771927942.0,
+  "text": "Home Depot tops expectations in the fourth quarter, but customers pull back on spending",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/373f1bb0-1173-11f1-bffd-d5f2d8de79d0",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HOME",
+    "THE",
+    "BUT",
+    "ON",
+    "IN",
+    "DEPOT",
+    "TOPS",
+    "BACK",
+    "PULL"
+  ],
+  "relatedTickers": [
+    "HOME",
+    "THE",
+    "BUT",
+    "ON",
+    "IN",
+    "DEPOT",
+    "TOPS",
+    "BACK",
+    "PULL"
+  ]
+}

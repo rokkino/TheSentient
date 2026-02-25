@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump to deliver State of the Union address as voters sour on his economy",
+  "link": "https://www.cnbc.com/2026/02/24/sotu-trump-to-deliver-address-as-voters-sour-on-his-economy.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T12:30:01",
+  "providerPublishTime": 1771932601.0,
+  "text": "Dem Gov. Abigail Spanberger of Virginia will deliver the official rebuttal for Democrats after romping to victory in 2025 on an affordability-focused agenda.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "AN",
+    "SOUR",
+    "TRUMP",
+    "UNION",
+    "HIS",
+    "IN",
+    "DEM",
+    "AS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "TO",
+    "AN",
+    "SOUR",
+    "TRUMP",
+    "UNION",
+    "HIS",
+    "IN",
+    "DEM",
+    "AS",
+    "THE"
+  ]
+}

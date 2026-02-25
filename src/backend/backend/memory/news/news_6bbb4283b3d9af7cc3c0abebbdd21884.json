@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "India Sees More Options on US Trade Deal After Tariff Ruling",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/india-gains-leverage-in-us-trade-talks-after-court-verdict",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T09:35:26",
+  "providerPublishTime": 1771835726.0,
+  "text": "The US Supreme Court decision to strike down President Donald Trump’s emergency tariffs gives India more scope in negotiations over a trade deal, people familiar with the matter said.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iFI4dK35LPP8/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OVER",
+    "A",
+    "GIVES",
+    "US",
+    "DEAL",
+    "ON",
+    "SCOPE",
+    "MORE",
+    "IN",
+    "SAID"
+  ],
+  "relatedTickers": [
+    "OVER",
+    "A",
+    "GIVES",
+    "US",
+    "DEAL",
+    "ON",
+    "SCOPE",
+    "MORE",
+    "IN",
+    "SAID"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Skittish investors spooked as dystopian AI outlooks go viral",
+  "link": "https://finance.yahoo.com/news/skittish-investors-spooked-dystopian-ai-121916284.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-24T12:19:16",
+  "providerPublishTime": 1771931956.0,
+  "text": "Skittish investors spooked as dystopian AI outlooks go viral",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/659760879bc00fddfaf200417bef8ce7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GO",
+    "VIRAL",
+    "AS",
+    "AI"
+  ],
+  "relatedTickers": [
+    "GO",
+    "VIRAL",
+    "AS",
+    "AI"
+  ]
+}

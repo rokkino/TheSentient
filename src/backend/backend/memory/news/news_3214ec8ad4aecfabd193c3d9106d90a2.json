@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Muni Returns to Improve as Market Steadies, BlackRock Head Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/muni-returns-to-improve-as-market-steadies-blackrock-head-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:30:00",
+  "providerPublishTime": 1771914600.0,
+  "text": "Municipal bonds are poised for a solid year after lagging US Treasuries in 2025 as market conditions stabilize, according to Pat Haskell, head of the municipal bond group at BlackRock Inc.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/igTOkZSvs0sQ/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "ARE",
+    "SAYS",
+    "BONDS",
+    "HEAD",
+    "AFTER",
+    "GROUP",
+    "OF",
+    "INC",
+    "SOLID"
+  ],
+  "relatedTickers": [
+    "IN",
+    "ARE",
+    "SAYS",
+    "BONDS",
+    "HEAD",
+    "AFTER",
+    "GROUP",
+    "OF",
+    "INC",
+    "SOLID"
+  ]
+}

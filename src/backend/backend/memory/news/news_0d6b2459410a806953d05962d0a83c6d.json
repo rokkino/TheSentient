@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I have a legal and a moral question’: My dad left when I was 9, reconnected with me in my 50s and now needs money. What do I owe him?",
+  "link": "https://www.marketwatch.com/story/i-have-a-legal-and-a-moral-question-my-dad-left-when-i-was-9-reconnected-with-me-in-my-50s-and-now-needs-money-what-do-i-owe-him-ca780520?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T10:30:00",
+  "providerPublishTime": 1772011800.0,
+  "text": "“After the divorce was finalized, he and his partner moved out of state to a place where there would be no child-support enforcement.”",
+  "thumbnail": "https://images.mktw.net/im-18709514",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MOVED",
+    "OUT",
+    "THE",
+    "THERE",
+    "WHERE",
+    "MONEY",
+    "HIM",
+    "WITH",
+    "WOULD",
+    "DO"
+  ],
+  "relatedTickers": [
+    "MOVED",
+    "OUT",
+    "THE",
+    "THERE",
+    "WHERE",
+    "MONEY",
+    "HIM",
+    "WITH",
+    "WOULD",
+    "DO"
+  ]
+}

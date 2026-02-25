@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Westlake Chemical Partners beats Q4 earnings expectations",
+  "link": "https://www.investing.com/news/earnings/westlake-chemical-partners-beats-q4-earnings-expectations-93CH-4520986",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:44:20",
+  "providerPublishTime": 1771929860.0,
+  "text": "Westlake Chemical Partners beats Q4 earnings expectations",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEATS"
+  ],
+  "relatedTickers": [
+    "BEATS"
+  ]
+}

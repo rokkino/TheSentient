@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Software Earnings Arrive. It’s a Crucial Time for the Industry.",
+  "link": "https://www.barrons.com/articles/software-earnings-crucial-time-for-industry-f3ac5e60?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-23T20:18:00",
+  "providerPublishTime": 1771874280.0,
+  "text": "Software Earnings Arrive. It’s a Crucial Time for the Industry.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/66a7fa138354c6f5417b0f88906de0be",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IT",
+    "S",
+    "THE",
+    "A",
+    "FOR",
+    "TIME"
+  ],
+  "relatedTickers": [
+    "IT",
+    "S",
+    "THE",
+    "A",
+    "FOR",
+    "TIME"
+  ]
+}

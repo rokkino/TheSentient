@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Did a blog post just cause software stocks to lose more than $200 billion in market cap?",
+  "link": "https://www.marketwatch.com/story/why-software-stocks-lost-more-than-200-billion-in-market-cap-today-3f146cc3?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T22:47:00",
+  "providerPublishTime": 1771883220.0,
+  "text": "For investors to wade back into the software sector, they “want and need to see the stocks stop trading down on new AI headlines,” one analyst says.",
+  "thumbnail": "https://images.mktw.net/im-21037838",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "JUST",
+    "BACK",
+    "POST",
+    "NEED",
+    "SAYS",
+    "WANT",
+    "NEW",
+    "MORE",
+    "INTO"
+  ],
+  "relatedTickers": [
+    "IN",
+    "JUST",
+    "BACK",
+    "POST",
+    "NEED",
+    "SAYS",
+    "WANT",
+    "NEW",
+    "MORE",
+    "INTO"
+  ]
+}

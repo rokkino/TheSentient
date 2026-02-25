@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FTSE 100 Live: Banks lead fallers amidst AI fears, Blue Owl spillover, US tariffs begin",
+  "link": "https://finance.yahoo.com/news/ftse-100-live-flat-start-071800032.html",
+  "publisher": "Proactive",
+  "timestamp": "2026-02-24T11:33:00",
+  "providerPublishTime": 1771929180.0,
+  "text": "FTSE 100 Live: Banks lead fallers amidst AI fears, Blue Owl spillover, US tariffs begin",
+  "thumbnail": "https://media.zenfs.com/en/proactive_us_504/bfba77e6d09961c365d668bcb292fbe1",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FEARS",
+    "OWL",
+    "BEGIN",
+    "BLUE",
+    "BANKS",
+    "US",
+    "FTSE",
+    "LEAD",
+    "AI",
+    "LIVE"
+  ],
+  "relatedTickers": [
+    "FEARS",
+    "OWL",
+    "BEGIN",
+    "BLUE",
+    "BANKS",
+    "US",
+    "FTSE",
+    "LEAD",
+    "AI",
+    "LIVE"
+  ]
+}

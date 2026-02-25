@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "South African Stocks’ Heady Rally Faces GDP Growth Hurdle",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/south-african-stocks-heady-rally-faces-economic-growth-hurdle",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T05:00:00",
+  "providerPublishTime": 1771992000.0,
+  "text": "South African markets are riding a wave of optimism that hasn’t been seen in years. Whether that lasts depends on one thing: economic growth.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNHfVQfGm09w/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HEADY",
+    "GDP",
+    "ON",
+    "ONE",
+    "SEEN",
+    "BEEN",
+    "LASTS",
+    "SOUTH",
+    "OF",
+    "HASN"
+  ],
+  "relatedTickers": [
+    "HEADY",
+    "GDP",
+    "ON",
+    "ONE",
+    "SEEN",
+    "BEEN",
+    "LASTS",
+    "SOUTH",
+    "OF",
+    "HASN"
+  ]
+}

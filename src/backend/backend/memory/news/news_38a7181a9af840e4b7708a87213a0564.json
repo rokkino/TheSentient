@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Thermon shares jump 15.5% on $2.2 billion Ceco Environmental merger",
+  "link": "https://www.investing.com/news/stock-market-news/thermon-shares-jump-155-on-22-billion-ceco-environmental-merger-93CH-4520983",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:43:37",
+  "providerPublishTime": 1771929817.0,
+  "text": "Thermon shares jump 15.5% on $2.2 billion Ceco Environmental merger",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "JUMP",
+    "CECO",
+    "ON"
+  ],
+  "relatedTickers": [
+    "JUMP",
+    "CECO",
+    "ON"
+  ]
+}

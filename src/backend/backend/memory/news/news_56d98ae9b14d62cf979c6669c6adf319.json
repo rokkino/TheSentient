@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "DoorDash closes Deliveroo operations in Qatar and Singapore",
+  "link": "https://www.investing.com/news/company-news/doordash-closes-deliveroo-operations-in-qatar-and-singapore-93CH-4523399",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:31:46",
+  "providerPublishTime": 1772004706.0,
+  "text": "DoorDash closes Deliveroo operations in Qatar and Singapore",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "QATAR",
+    "AND"
+  ],
+  "relatedTickers": [
+    "IN",
+    "QATAR",
+    "AND"
+  ]
+}

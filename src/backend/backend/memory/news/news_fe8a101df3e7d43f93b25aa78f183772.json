@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mexico Inflation Picked Up More Than Expected in Early February",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/mexico-inflation-picked-up-more-than-expected-in-early-february",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:22:53",
+  "providerPublishTime": 1771932173.0,
+  "text": "Mexico inflation sped up more than expected in early February as new taxes and tariffs that went into effect at the start of the year take hold.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/inOaeiTKCrkE/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WENT",
+    "UP",
+    "YEAR",
+    "MORE",
+    "OF",
+    "THAT",
+    "NEW",
+    "TAKE",
+    "AS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "WENT",
+    "UP",
+    "YEAR",
+    "MORE",
+    "OF",
+    "THAT",
+    "NEW",
+    "TAKE",
+    "AS",
+    "THE"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HSBC annual pre-tax profit drops over 7%, revenue jumps as bank's results top estimates",
+  "link": "https://www.cnbc.com/2026/02/25/hsbc-2025-full-year-earnings-results.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T05:31:51",
+  "providerPublishTime": 1771993911.0,
+  "text": "Europe's largest lender HSBC on Wednesday reported annual pre-tax profit of $29.91 billion, beating the bank's estimates.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BANK",
+    "DROPS",
+    "OVER",
+    "AS",
+    "S",
+    "TAX",
+    "THE",
+    "TOP",
+    "JUMPS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "BANK",
+    "DROPS",
+    "OVER",
+    "AS",
+    "S",
+    "TAX",
+    "THE",
+    "TOP",
+    "JUMPS",
+    "OF"
+  ]
+}

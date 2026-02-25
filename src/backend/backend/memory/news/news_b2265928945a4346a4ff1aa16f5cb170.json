@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Anthropic faces Friday deadline in Defense AI clash with Hegseth",
+  "link": "https://www.cnbc.com/2026/02/24/anthropic-ai-hegseth-spying-defense.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T21:18:14",
+  "providerPublishTime": 1771964294.0,
+  "text": "Until this week, Anthropic was the only AI company cleared to deploy its models on classified networks. Elon Musk's xAI is now the second.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "ELON",
+    "FACES",
+    "CLASH",
+    "XAI",
+    "THIS",
+    "WITH",
+    "IS",
+    "IN",
+    "NOW"
+  ],
+  "relatedTickers": [
+    "THE",
+    "ELON",
+    "FACES",
+    "CLASH",
+    "XAI",
+    "THIS",
+    "WITH",
+    "IS",
+    "IN",
+    "NOW"
+  ]
+}

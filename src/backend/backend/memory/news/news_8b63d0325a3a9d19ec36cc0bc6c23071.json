@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UBS cuts Galenica to “sell,” warns Swiss OTC drug rule change threatens growth",
+  "link": "https://www.investing.com/news/stock-market-news/ubs-cuts-galenica-to-sell-warns-swiss-otc-drug-rule-change-threatens-growth-4520980",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:41:13",
+  "providerPublishTime": 1771929673.0,
+  "text": "UBS cuts Galenica to “sell,” warns Swiss OTC drug rule change threatens growth",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "CUTS",
+    "WARNS",
+    "RULE",
+    "SELL",
+    "DRUG",
+    "SWISS",
+    "UBS",
+    "OTC"
+  ],
+  "relatedTickers": [
+    "TO",
+    "CUTS",
+    "WARNS",
+    "RULE",
+    "SELL",
+    "DRUG",
+    "SWISS",
+    "UBS",
+    "OTC"
+  ]
+}

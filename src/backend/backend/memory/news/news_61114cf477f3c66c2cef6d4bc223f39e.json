@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cava says diners are doing better this year — and may be getting tired of chasing meal deals",
+  "link": "https://www.marketwatch.com/story/cava-says-diners-are-doing-better-this-year-and-could-be-getting-tired-of-chasing-meal-deals-25d062fe?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T01:26:00",
+  "providerPublishTime": 1771979160.0,
+  "text": "Cava issued an upbeat sales forecast for this year, as cautious customers shook off the effects of snowstorms and last year’s government shutdown to return to the Mediterranean fast-casual chain for bowls and salads.",
+  "thumbnail": "https://images.mktw.net/im-70779036",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ARE",
+    "LAST",
+    "YEAR",
+    "BOWLS",
+    "OFF",
+    "OF",
+    "FAST",
+    "MEAL",
+    "CAVA",
+    "DEALS"
+  ],
+  "relatedTickers": [
+    "ARE",
+    "LAST",
+    "YEAR",
+    "BOWLS",
+    "OFF",
+    "OF",
+    "FAST",
+    "MEAL",
+    "CAVA",
+    "DEALS"
+  ]
+}

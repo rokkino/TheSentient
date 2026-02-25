@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "TSX futures drop amid U.S. tariff uncertainty",
+  "link": "https://www.investing.com/news/stock-market-news/tsx-futures-drop-amid-us-tariff-uncertainty-4518251",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T11:48:16",
+  "providerPublishTime": 1771843696.0,
+  "text": "TSX futures drop amid U.S. tariff uncertainty",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AMID",
+    "TSX",
+    "DROP",
+    "S",
+    "U"
+  ],
+  "relatedTickers": [
+    "AMID",
+    "TSX",
+    "DROP",
+    "S",
+    "U"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Valterra Dividend Beats Estimates After Platinum Prices Surge",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/valterra-dividend-beats-estimates-after-platinum-prices-surge",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:24:44",
+  "providerPublishTime": 1772000684.0,
+  "text": "Valterra Platinum Ltd. declared a dividend that smashed analyst expectations as earnings soared last year after a rally in the metals it produces.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i8_AwGZAiSeQ/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LAST",
+    "RALLY",
+    "YEAR",
+    "IN",
+    "SURGE",
+    "BEATS",
+    "AS",
+    "IT",
+    "AFTER",
+    "THE"
+  ],
+  "relatedTickers": [
+    "LAST",
+    "RALLY",
+    "YEAR",
+    "IN",
+    "SURGE",
+    "BEATS",
+    "AS",
+    "IT",
+    "AFTER",
+    "THE"
+  ]
+}

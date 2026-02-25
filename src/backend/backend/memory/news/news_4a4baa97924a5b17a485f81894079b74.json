@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Santander targets over 20 billion euro profit in 2028 after US, UK deals",
+  "link": "https://www.investing.com/news/stock-market-news/santander-targets-over-20-billion-euro-profit-in-2028-after-us-uk-deals-4523425",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:42:32",
+  "providerPublishTime": 1772008952.0,
+  "text": "Santander targets over 20 billion euro profit in 2028 after US, UK deals",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OVER",
+    "DEALS",
+    "US",
+    "IN",
+    "EURO",
+    "AFTER",
+    "UK"
+  ],
+  "relatedTickers": [
+    "OVER",
+    "DEALS",
+    "US",
+    "IN",
+    "EURO",
+    "AFTER",
+    "UK"
+  ]
+}

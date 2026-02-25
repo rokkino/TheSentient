@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Endesa unveils €10.6 billion investment plan; 2025 results exceed targets",
+  "link": "https://www.investing.com/news/earnings/endesa-unveils-106-billion-investment-plan-2025-results-exceed-targets-4520612",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:14:51",
+  "providerPublishTime": 1771917291.0,
+  "text": "Endesa unveils €10.6 billion investment plan; 2025 results exceed targets",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "PLAN"
+  ],
+  "relatedTickers": [
+    "PLAN"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Forward Air says strategic review nearing conclusion",
+  "link": "https://finance.yahoo.com/news/forward-air-says-strategic-review-231102388.html",
+  "publisher": "FreightWaves",
+  "timestamp": "2026-02-23T23:11:02",
+  "providerPublishTime": 1771884662.0,
+  "text": "Forward Air says strategic review nearing conclusion",
+  "thumbnail": "https://media.zenfs.com/en/freightwaves_373/46a3cc790b247e75a95b04190dea91c5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "AIR"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "AIR"
+  ]
+}

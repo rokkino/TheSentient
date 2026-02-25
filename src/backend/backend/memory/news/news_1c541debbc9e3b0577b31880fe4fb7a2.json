@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "U.S. Treasury Yields Edge Higher, Underperform European Bonds",
+  "link": "https://www.wsj.com/finance/jgbs-rise-tracking-gains-in-u-s-treasury-market-ca6e7a8f?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-24T11:33:00",
+  "providerPublishTime": 1771929180.0,
+  "text": "U.S. Treasury Yields Edge Higher, Underperform European Bonds",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/7b2c285183be07ca3c4e8242b25a59a8",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EDGE",
+    "S",
+    "U",
+    "BONDS"
+  ],
+  "relatedTickers": [
+    "EDGE",
+    "S",
+    "U",
+    "BONDS"
+  ]
+}

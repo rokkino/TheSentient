@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "More Small Employers Are Offering 401(k) Plans",
+  "link": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-tariffs-02-23-2026/card/more-small-employers-are-offering-401-k-plans-3mTkpcZQiIGSCnSkLM3P?siteid=yhoof2&yptr=yahoo",
+  "publisher": "The Wall Street Journal",
+  "timestamp": "2026-02-23T20:20:16",
+  "providerPublishTime": 1771874416.0,
+  "text": "More Small Employers Are Offering 401(k) Plans",
+  "thumbnail": "https://media.zenfs.com/en/wsj.com/7b2c285183be07ca3c4e8242b25a59a8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "K",
+    "SMALL",
+    "ARE",
+    "MORE",
+    "PLANS"
+  ],
+  "relatedTickers": [
+    "K",
+    "SMALL",
+    "ARE",
+    "MORE",
+    "PLANS"
+  ]
+}

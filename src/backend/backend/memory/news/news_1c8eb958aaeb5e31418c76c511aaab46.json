@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "$955 saved for retirement? Millions are in that boat.",
+  "link": "https://finance.yahoo.com/news/955-saved-for-retirement-millions-are-in-that-boat-150003868.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-22T15:00:03",
+  "providerPublishTime": 1771768803.0,
+  "text": "$955 saved for retirement? Millions are in that boat.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/90ee6ab0-0de2-11f1-b9af-467c2a3c4a13",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "SAVED",
+    "ARE",
+    "BOAT",
+    "FOR",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "IN",
+    "SAVED",
+    "ARE",
+    "BOAT",
+    "FOR",
+    "THAT"
+  ]
+}

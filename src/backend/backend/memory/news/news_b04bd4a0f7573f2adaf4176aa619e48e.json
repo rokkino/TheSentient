@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Drones dominate Ukraine battlefield four years into fighting",
+  "link": "https://www.investing.com/news/world-news/drones-dominate-ukraine-battlefield-four-years-into-fighting-4520564",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:24:40",
+  "providerPublishTime": 1771914280.0,
+  "text": "Drones dominate Ukraine battlefield four years into fighting",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INTO",
+    "FOUR",
+    "YEARS"
+  ],
+  "relatedTickers": [
+    "INTO",
+    "FOUR",
+    "YEARS"
+  ]
+}

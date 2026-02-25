@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I spend $7,500 a month’: I’m 47, earn $260K, and have $3 million. Can I retire at 50?",
+  "link": "https://www.marketwatch.com/story/i-spend-7-500-a-month-im-47-earn-260k-and-have-3-million-can-i-retire-at-50-05afc0b5?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T10:30:00",
+  "providerPublishTime": 1771839000.0,
+  "text": "“I own a home worth $520,000 and do not have a mortgage on it.”",
+  "thumbnail": "https://images.mktw.net/im-03286812",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CAN",
+    "HOME",
+    "AT",
+    "IT",
+    "EARN",
+    "NOT",
+    "DO",
+    "SPEND",
+    "OWN",
+    "WORTH"
+  ],
+  "relatedTickers": [
+    "CAN",
+    "HOME",
+    "AT",
+    "IT",
+    "EARN",
+    "NOT",
+    "DO",
+    "SPEND",
+    "OWN",
+    "WORTH"
+  ]
+}

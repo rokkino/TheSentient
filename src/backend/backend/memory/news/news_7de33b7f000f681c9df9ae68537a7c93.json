@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "LNG Supply Wave to Hit Prices But Demand Firm, Woodside Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/lng-glut-may-pressure-prices-but-demand-is-strong-woodside-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T05:38:56",
+  "providerPublishTime": 1771907936.0,
+  "text": "A forecast global glut of liquefied natural gas may weigh on prices, but demand growth is strong and supply additions aren’t certain, according to Australia’s biggest LNG producer.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iOrNeXLJwnbI/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LNG",
+    "WEIGH",
+    "GAS",
+    "FIRM",
+    "AREN",
+    "GLUT",
+    "BUT",
+    "SAYS",
+    "IS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "LNG",
+    "WEIGH",
+    "GAS",
+    "FIRM",
+    "AREN",
+    "GLUT",
+    "BUT",
+    "SAYS",
+    "IS",
+    "OF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Bond Traders Are Betting on Fed Rate Cuts Spilling Into 2027",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/bond-traders-are-betting-on-fed-rate-cuts-spilling-into-2027",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T21:30:19",
+  "providerPublishTime": 1771965019.0,
+  "text": "Traders in US futures and options markets are piling on bets that the Federal Reserve will continue cutting rates into next year instead of raising them.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iW1EYB5iVJuE/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOND",
+    "BETS",
+    "THE",
+    "WILL",
+    "THEM",
+    "RATE",
+    "RATES",
+    "YEAR",
+    "IN",
+    "AND"
+  ],
+  "relatedTickers": [
+    "BOND",
+    "BETS",
+    "THE",
+    "WILL",
+    "THEM",
+    "RATE",
+    "RATES",
+    "YEAR",
+    "IN",
+    "AND"
+  ]
+}

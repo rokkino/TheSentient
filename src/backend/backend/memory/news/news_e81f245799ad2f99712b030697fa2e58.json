@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Emerging Stocks Hit New High as Asian Tech Rally Powers On",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/emerging-stocks-hit-new-high-as-asian-tech-rally-powers-on",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:44:22",
+  "providerPublishTime": 1771933462.0,
+  "text": "Emerging-market stocks scaled another record high Tuesday, as fresh gains in Asian tech allowed the sector to shrug off the AI concerns that have weighed on Wall Street, while on currencies, China’s yuan firmed as mainland trading resumed after the Lunar New Year break.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iFYLcwW025_E/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TECH",
+    "WALL",
+    "YEAR",
+    "OFF",
+    "HIT",
+    "CHINA",
+    "THAT",
+    "ASIAN",
+    "NEW",
+    "BREAK"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "WALL",
+    "YEAR",
+    "OFF",
+    "HIT",
+    "CHINA",
+    "THAT",
+    "ASIAN",
+    "NEW",
+    "BREAK"
+  ]
+}

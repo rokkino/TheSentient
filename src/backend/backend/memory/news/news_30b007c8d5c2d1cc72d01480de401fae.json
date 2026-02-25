@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.62%",
+  "link": "https://www.investing.com/news/stock-market-news/indonesia-stocks-higher-at-close-of-trade-idx-composite-index-up-062-4523395",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:30:04",
+  "providerPublishTime": 1772004604.0,
+  "text": "Indonesia stocks higher at close of trade; IDX Composite Index up 0.62%",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "CLOSE",
+    "UP",
+    "INDEX",
+    "IDX",
+    "AT",
+    "TRADE"
+  ],
+  "relatedTickers": [
+    "OF",
+    "CLOSE",
+    "UP",
+    "INDEX",
+    "IDX",
+    "AT",
+    "TRADE"
+  ]
+}

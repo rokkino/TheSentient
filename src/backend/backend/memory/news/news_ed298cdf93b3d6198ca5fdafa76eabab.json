@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analysis-Indonesia’s fix for market turmoil is turning off investors",
+  "link": "https://www.investing.com/news/economy-news/analysisindonesias-fix-for-market-turmoil-is-turning-off-investors-4520615",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:18:57",
+  "providerPublishTime": 1771917537.0,
+  "text": "Analysis-Indonesia’s fix for market turmoil is turning off investors",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFF",
+    "S",
+    "FIX",
+    "IS",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "OFF",
+    "S",
+    "FIX",
+    "IS",
+    "FOR"
+  ]
+}

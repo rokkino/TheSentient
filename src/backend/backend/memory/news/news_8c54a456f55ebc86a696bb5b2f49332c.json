@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Vietnam Holding posts 4.9% NAV gain in January 2026",
+  "link": "https://www.investing.com/news/company-news/vietnam-holding-posts-49-nav-gain-in-january-2026-93CH-4520565",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:25:44",
+  "providerPublishTime": 1771914344.0,
+  "text": "Vietnam Holding posts 4.9% NAV gain in January 2026",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GAIN",
+    "IN",
+    "NAV",
+    "POSTS"
+  ],
+  "relatedTickers": [
+    "GAIN",
+    "IN",
+    "NAV",
+    "POSTS"
+  ]
+}

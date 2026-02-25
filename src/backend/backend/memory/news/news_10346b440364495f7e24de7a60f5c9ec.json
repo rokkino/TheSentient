@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk pitted a new weight-loss drug against Eli Lilly’s — and lost",
+  "link": "https://www.marketwatch.com/story/novo-nordisk-pitted-a-new-weight-loss-drug-against-eli-lilly-and-lost-5652d079?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T11:01:00",
+  "providerPublishTime": 1771840860.0,
+  "text": "Novo Nordisk shares were under pressure on Monday as the struggling Danish pharmaceutical said a head-to-head study found a drug in development didn’t cut as much weight as an Eli Lilly product.",
+  "thumbnail": "https://images.mktw.net/im-02438494",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LILLY",
+    "DIDN",
+    "NEW",
+    "A",
+    "T",
+    "ON",
+    "AS",
+    "AND",
+    "HEAD",
+    "IN"
+  ],
+  "relatedTickers": [
+    "LILLY",
+    "DIDN",
+    "NEW",
+    "A",
+    "T",
+    "ON",
+    "AS",
+    "AND",
+    "HEAD",
+    "IN"
+  ]
+}

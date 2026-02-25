@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Founder of China’s JD.com launches yacht brand",
+  "link": "https://www.investing.com/news/stock-market-news/founder-of-chinas-jdcom-launches-yacht-brand-4523415",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:12:35",
+  "providerPublishTime": 1772007155.0,
+  "text": "Founder of China’s JD.com launches yacht brand",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BRAND",
+    "CHINA",
+    "JD",
+    "OF",
+    "S",
+    "COM",
+    "YACHT"
+  ],
+  "relatedTickers": [
+    "BRAND",
+    "CHINA",
+    "JD",
+    "OF",
+    "S",
+    "COM",
+    "YACHT"
+  ]
+}

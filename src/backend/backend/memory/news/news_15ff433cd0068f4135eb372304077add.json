@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Can Sell More T-Bills to Offset Lost Tariff Revenue, BNY Says",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/us-can-sell-more-t-bills-to-offset-lost-tariff-revenue-bny-says",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:21:28",
+  "providerPublishTime": 1771928488.0,
+  "text": "The US is likely to issue more short-dated notes to make up for lost revenues after the Supreme Court overturned President Donald Trump’s tariffs, according to a BNY strategist.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iZH363tOfE0o/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LOST",
+    "TRUMP",
+    "COURT",
+    "SELL",
+    "S",
+    "NOTES",
+    "MORE",
+    "US",
+    "ISSUE",
+    "BILLS"
+  ],
+  "relatedTickers": [
+    "LOST",
+    "TRUMP",
+    "COURT",
+    "SELL",
+    "S",
+    "NOTES",
+    "MORE",
+    "US",
+    "ISSUE",
+    "BILLS"
+  ]
+}

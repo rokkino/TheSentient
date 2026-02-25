@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Can Six Flags Entertainment Stock Beat the Market?",
+  "link": "https://finance.yahoo.com/news/six-flags-entertainment-stock-beat-232500255.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:25:00",
+  "providerPublishTime": 1771885500.0,
+  "text": "Can Six Flags Entertainment Stock Beat the Market?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/787395f4e9403d1ca1642cbf21a96d4f",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FLAGS",
+    "CAN",
+    "THE",
+    "SIX",
+    "BEAT",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "FLAGS",
+    "CAN",
+    "THE",
+    "SIX",
+    "BEAT",
+    "STOCK"
+  ]
+}

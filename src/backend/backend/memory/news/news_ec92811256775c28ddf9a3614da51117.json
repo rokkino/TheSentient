@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analyst Report: HF Sinclair Corporation",
+  "link": "https://finance.yahoo.com/research/reports/ARGUS_3051_AnalystReport_1771956836000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei",
+  "publisher": "Argus Research",
+  "timestamp": "2026-02-24T18:13:56",
+  "providerPublishTime": 1771953236.0,
+  "text": "Analyst Report: HF Sinclair Corporation",
+  "thumbnail": "https://s.yimg.com/uc/fin/img/non-sub-report-thumb.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HF"
+  ],
+  "relatedTickers": [
+    "HF"
+  ]
+}

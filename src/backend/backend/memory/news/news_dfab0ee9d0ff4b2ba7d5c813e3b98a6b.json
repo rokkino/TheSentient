@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Finland's IQM to become one of Europe's first listed quantum companies at $1.8 billion valuation",
+  "link": "https://www.cnbc.com/2026/02/23/finlands-iqm-listing-quantum-computing.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T12:07:23",
+  "providerPublishTime": 1771844843.0,
+  "text": "The transaction will see the company hit a $1.8 billion valuation.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIRST",
+    "TO",
+    "AT",
+    "THE",
+    "IQM",
+    "HIT",
+    "ONE",
+    "OF",
+    "A",
+    "S"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "TO",
+    "AT",
+    "THE",
+    "IQM",
+    "HIT",
+    "ONE",
+    "OF",
+    "A",
+    "S"
+  ]
+}

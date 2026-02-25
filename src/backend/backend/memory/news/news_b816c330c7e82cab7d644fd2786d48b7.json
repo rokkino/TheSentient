@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Democrats counter Trump's proposal to limit institutional housing investors",
+  "link": "https://www.cnbc.com/2026/02/24/warren-trump-housing-investment-ban-affordability.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T09:30:02",
+  "providerPublishTime": 1771921802.0,
+  "text": "A new bill from Sen. Elizabeth Warren targets investors who own 50-plus single-family homes, and breaks with a White House proposal.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "WHITE",
+    "BILL",
+    "TO",
+    "TRUMP",
+    "NEW",
+    "WITH",
+    "HOMES",
+    "AND",
+    "WHO"
+  ],
+  "relatedTickers": [
+    "A",
+    "WHITE",
+    "BILL",
+    "TO",
+    "TRUMP",
+    "NEW",
+    "WITH",
+    "HOMES",
+    "AND",
+    "WHO"
+  ]
+}

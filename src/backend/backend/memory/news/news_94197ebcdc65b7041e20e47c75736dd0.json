@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Uber’s latest effort to become a super app is all about parking",
+  "link": "https://www.marketwatch.com/story/ubers-latest-effort-to-become-a-super-app-is-all-about-parking-7d05bfba?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T23:03:00",
+  "providerPublishTime": 1771884180.0,
+  "text": "Uber on Monday said it had agreed to buy the parking-reservations app SpotHero, a move that will allow people to book parking reservations on the Uber app.",
+  "thumbnail": "https://images.mktw.net/im-523395",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MOVE",
+    "BOOK",
+    "THAT",
+    "HAD",
+    "UBER",
+    "IS",
+    "BUY",
+    "ALLOW",
+    "ABOUT",
+    "WILL"
+  ],
+  "relatedTickers": [
+    "MOVE",
+    "BOOK",
+    "THAT",
+    "HAD",
+    "UBER",
+    "IS",
+    "BUY",
+    "ALLOW",
+    "ABOUT",
+    "WILL"
+  ]
+}

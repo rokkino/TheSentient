@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nuclear Stock Flashes Buy Signal On Earnings Beat As Cathie Wood Sells",
+  "link": "https://www.investors.com/news/nuclear-stock-bwx-technologies-flashes-buy-signal-on-earnings-beat-as-cathie-wood-sells/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-24T12:50:01",
+  "providerPublishTime": 1771933801.0,
+  "text": "Nuclear Stock Flashes Buy Signal On Earnings Beat As Cathie Wood Sells",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/bc10e516805caf8a9879633291c36f98",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "STOCK",
+    "SELLS",
+    "WOOD",
+    "AS",
+    "ON",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "STOCK",
+    "SELLS",
+    "WOOD",
+    "AS",
+    "ON",
+    "BEAT"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here's Walmart's $1 trillion secret",
+  "link": "https://finance.yahoo.com/news/heres-walmarts-1-trillion-secret-133058210.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-22T13:30:58",
+  "providerPublishTime": 1771763458.0,
+  "text": "Here's Walmart's $1 trillion secret",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/8f0cc230-0d0d-11f1-bfbb-25d85e278cb7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "HERE"
+  ],
+  "relatedTickers": [
+    "S",
+    "HERE"
+  ]
+}

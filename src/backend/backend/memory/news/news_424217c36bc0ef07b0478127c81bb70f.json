@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UBS lists European winners and losers of latest US tariffs ruling",
+  "link": "https://www.investing.com/news/stock-market-news/ubs-lists-european-winners-and-losers-of-latest-us-tariffs-ruling-4523772",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:38:04",
+  "providerPublishTime": 1772015884.0,
+  "text": "UBS lists European winners and losers of latest US tariffs ruling",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "UBS",
+    "AND",
+    "LISTS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "US",
+    "UBS",
+    "AND",
+    "LISTS",
+    "OF"
+  ]
+}

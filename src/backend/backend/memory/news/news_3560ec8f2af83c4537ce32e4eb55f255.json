@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Arini’s Lemssouguer Says AI Fear Risks Software Defaults",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/arini-s-lemssouguer-says-ai-fear-alone-risks-software-defaults",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T09:09:52",
+  "providerPublishTime": 1771920592.0,
+  "text": "Fear of AI’s potential for disruption is enough to push up borrowing costs for software companies, causing problems for a sector that has a lot of debt, according to Arini Capital Management’s founder Hamza Lemssouguer.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iXU2FFw2ngl0/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "COSTS",
+    "S",
+    "HAMZA",
+    "RISKS",
+    "UP",
+    "OF",
+    "LOT",
+    "A",
+    "DEBT",
+    "ARINI"
+  ],
+  "relatedTickers": [
+    "COSTS",
+    "S",
+    "HAMZA",
+    "RISKS",
+    "UP",
+    "OF",
+    "LOT",
+    "A",
+    "DEBT",
+    "ARINI"
+  ]
+}

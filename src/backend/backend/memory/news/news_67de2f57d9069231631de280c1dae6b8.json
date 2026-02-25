@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Korea Passes Another Reform Bill in Push for Shareholder Value",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/korea-passes-another-reform-bill-in-push-for-shareholder-value",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:06:57",
+  "providerPublishTime": 1772003217.0,
+  "text": "South Korea’s parliament approved a long-debated legal revision requiring companies to cancel treasury shares, a key step in the government’s drive to improve corporate governance and boost stock market valuations.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBLF38fvuPZs/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LONG",
+    "BOOST",
+    "KEY",
+    "STOCK",
+    "STEP",
+    "LEGAL",
+    "THE",
+    "BILL",
+    "FOR",
+    "VALUE"
+  ],
+  "relatedTickers": [
+    "LONG",
+    "BOOST",
+    "KEY",
+    "STOCK",
+    "STEP",
+    "LEGAL",
+    "THE",
+    "BILL",
+    "FOR",
+    "VALUE"
+  ]
+}

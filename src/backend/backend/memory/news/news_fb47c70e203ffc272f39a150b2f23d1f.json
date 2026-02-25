@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold price today, Tuesday, February 24: Gold opens above $5,200 on economic, geopolitical uncertainty",
+  "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-tuesday-february-24-gold-opens-above-5200-on-economic-geopolitical-uncertainty-124058315.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T12:40:58",
+  "providerPublishTime": 1771846858.0,
+  "text": "Gold price today, Tuesday, February 24: Gold opens above $5,200 on economic, geopolitical uncertainty",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-10/95b97660-b113-11f0-b3d3-57670e048682",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "GOLD",
+    "TODAY",
+    "OPENS",
+    "ABOVE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "GOLD",
+    "TODAY",
+    "OPENS",
+    "ABOVE",
+    "ON"
+  ]
+}

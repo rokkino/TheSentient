@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Alkami Stock Down 50%, But This New $49 Million Stake Signals Conviction in a Turnaround",
+  "link": "https://finance.yahoo.com/news/alkami-stock-down-50-49-201552477.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T20:15:52",
+  "providerPublishTime": 1771874152.0,
+  "text": "Alkami Stock Down 50%, But This New $49 Million Stake Signals Conviction in a Turnaround",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/4fca09be06e91fc5e2cb8f5a231f5022",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "THIS",
+    "STOCK",
+    "IN",
+    "STAKE",
+    "A",
+    "DOWN",
+    "NEW",
+    "BUT"
+  ],
+  "relatedTickers": [
+    "THIS",
+    "STOCK",
+    "IN",
+    "STAKE",
+    "A",
+    "DOWN",
+    "NEW",
+    "BUT"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is bitcoin's price slump an investing opportunity? Here's how to buy bitcoin.",
+  "link": "https://finance.yahoo.com/personal-finance/investing/article/how-to-buy-bitcoin-222211772.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-19T22:22:11",
+  "providerPublishTime": 1771536131.0,
+  "text": "Is bitcoin's price slump an investing opportunity? Here's how to buy bitcoin.",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/0a856b20-0ddf-11f1-bfcb-1a49076d0c61",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HOW",
+    "BUY",
+    "PRICE",
+    "S",
+    "HERE",
+    "AN",
+    "SLUMP",
+    "TO",
+    "IS"
+  ],
+  "relatedTickers": [
+    "HOW",
+    "BUY",
+    "PRICE",
+    "S",
+    "HERE",
+    "AN",
+    "SLUMP",
+    "TO",
+    "IS"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European markets set for broadly positive open as traders assess tariff landscape",
+  "link": "https://www.cnbc.com/2026/02/24/european-markets-stoxx-600-ftse-dax-cac-trump-tariffs-latest.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T06:59:10",
+  "providerPublishTime": 1771912750.0,
+  "text": "European stocks are expected to open flat to higher on Tuesday as investors assess the new global trading landscape after President Donald Trump's tariffs move.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "ARE",
+    "TO",
+    "FLAT",
+    "ON",
+    "NEW",
+    "OPEN",
+    "SET",
+    "THE",
+    "MOVE"
+  ],
+  "relatedTickers": [
+    "S",
+    "ARE",
+    "TO",
+    "FLAT",
+    "ON",
+    "NEW",
+    "OPEN",
+    "SET",
+    "THE",
+    "MOVE"
+  ]
+}

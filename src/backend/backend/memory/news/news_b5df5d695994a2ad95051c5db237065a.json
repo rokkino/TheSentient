@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Carvana Profit Roars Higher, But Its Stock Price Is Sputtering",
+  "link": "https://www.investors.com/news/ibd-rating-upgrades-carvana-cl-a-shows-improved-relative-price-strength/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-23T23:00:06",
+  "providerPublishTime": 1771884006.0,
+  "text": "Carvana Profit Roars Higher, But Its Stock Price Is Sputtering",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/937138d24d3fcdf596187dff02965d8a",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ITS",
+    "PRICE",
+    "BUT",
+    "ROARS",
+    "STOCK",
+    "IS"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "PRICE",
+    "BUT",
+    "ROARS",
+    "STOCK",
+    "IS"
+  ]
+}

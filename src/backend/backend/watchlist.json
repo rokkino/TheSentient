@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "GOOGL",
+    "name": "Alphabet Inc."
+  },
+  {
+    "symbol": "NVDA",
+    "name": "NVIDIA Corporation"
+  },
+  {
+    "symbol": "SOL-USD",
+    "name": "Solana USD"
+  },
+  {
+    "symbol": "BTC-USD",
+    "name": "Bitcoin USD"
+  },
+  {
+    "symbol": "XAU",
+    "name": "Gold Futures"
+  },
+  {
+    "symbol": "GC=F",
+    "name": "Gold Futures"
+  }
+]

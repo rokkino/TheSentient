@@ -1,0 +1,734 @@
+[
+  {
+    "timestamp": "2026-02-24T00:22:12.549144",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:22:13.128137",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:22:13.619249",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:22:14.105563",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:52:12.519302",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:52:13.075326",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:52:13.575844",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T00:52:14.080740",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:22:12.715859",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:22:13.350059",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:22:14.032807",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:22:14.734399",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:52:12.499988",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:52:13.009727",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:52:13.511195",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T01:52:14.008361",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:22:14.980284",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:22:15.485220",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:22:15.998805",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:22:16.497009",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:52:12.549736",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:52:13.040122",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:52:13.537764",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T02:52:14.041969",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:22:12.546836",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:22:13.063837",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:22:13.556689",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:22:14.117837",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:52:12.503646",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:52:13.005435",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:52:13.510891",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T03:52:14.041905",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:22:12.571744",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:22:13.068103",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:22:13.573897",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:22:14.072969",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:52:12.534994",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:52:13.034848",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:52:13.538428",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T04:52:14.139012",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:22:12.546608",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:22:13.066967",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:22:13.570534",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:22:14.167649",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:52:12.609693",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:52:13.116387",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:52:13.611644",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T05:52:14.222026",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:22:12.558635",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:22:13.133106",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:22:13.629027",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:22:14.128304",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:52:12.536428",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:52:13.147877",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:52:13.651515",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T06:52:14.145477",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:22:12.506209",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:22:13.022657",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:22:13.542036",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:22:14.054142",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:52:12.530030",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:52:13.101843",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:52:13.613394",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T07:52:14.108653",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T08:22:12.618275",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T08:22:13.201049",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T08:22:13.699852",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T08:22:14.282570",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:35:52.531533",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed BWXT: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"8304aa48-76a1-4e16-93c2-debf6317b736\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:35:53.301197",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed ADEA: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"f6fc019c-9341-49df-a91e-c2de29248e19\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:37:51.705076",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:37:52.367299",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:37:53.097804",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T09:37:53.815680",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:07:51.630497",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:07:52.227037",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:07:52.781352",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:07:53.353780",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:37:51.634212",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:37:52.578013",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:37:53.136999",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T10:37:53.774705",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T11:07:52.016158",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: Failed to place order: {\"available\":\"2\",\"code\":40310000,\"existing_qty\":\"2\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 4.3245, available: 2)\",\"symbol\":\"NXPI\"}"
+  },
+  {
+    "timestamp": "2026-02-24T11:07:52.909754",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-24T11:07:53.577163",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 5.0867, available: 1)\",\"symbol\":\"AMD\"}"
+  },
+  {
+    "timestamp": "2026-02-24T11:07:54.220314",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: Failed to place order: {\"available\":\"1\",\"code\":40310000,\"existing_qty\":\"1\",\"held_for_orders\":\"0\",\"message\":\"insufficient qty available for order (requested: 1.482, available: 1)\",\"symbol\":\"LITE\"}"
+  },
+  {
+    "timestamp": "2026-02-24T12:55:04.063530",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Order SELL NXPI did not fill (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T12:55:06.854335",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Order SELL APTV did not fill (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T12:55:09.679117",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Order SELL AMD did not fill (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T12:55:12.484475",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Order SELL LITE did not fill (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:50.293026",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:51.140656",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:51.200634",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:52.111596",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:52.474340",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:52.974690",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:53.247314",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:03:53.827943",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:33:01.917498",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:33:02.675008",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:33:03.397774",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T13:33:04.120084",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:03:03.751640",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:03:04.763123",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:03:05.429132",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:03:06.083087",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:32:53.219600",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:32:53.939531",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:32:54.678369",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T14:32:55.479872",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T15:02:51.662708",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NXPI: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T15:02:52.366761",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed APTV: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T15:02:57.055813",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed AMD: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T15:02:58.087924",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed LITE: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-24T15:32:52.072197",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL NXPI (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T15:32:52.626779",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL APTV (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T15:32:53.328069",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL AMD (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T15:32:53.922564",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL LITE (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T22:00:00.510266",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY AXON (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T22:00:01.921651",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY AXON (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T22:00:12.041017",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY FSLR (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-24T22:00:13.876213",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed BUY FSLR (Bot Earnings Report Genius)"
+  }
+]

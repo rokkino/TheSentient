@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Diageo shares fall 6% after dividend cut, outlook slashed on U.S. spirits rout",
+  "link": "https://www.investing.com/news/earnings/diageo-plc-shares-tumble-after-dividend-cut-and-us-sales-slump-deepens-4523398",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:31:18",
+  "providerPublishTime": 1772004678.0,
+  "text": "Diageo shares fall 6% after dividend cut, outlook slashed on U.S. spirits rout",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "U",
+    "AFTER",
+    "FALL",
+    "CUT",
+    "ON",
+    "S",
+    "ROUT"
+  ],
+  "relatedTickers": [
+    "U",
+    "AFTER",
+    "FALL",
+    "CUT",
+    "ON",
+    "S",
+    "ROUT"
+  ]
+}

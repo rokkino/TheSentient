@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BofA upgrades J.M. Smucker stock rating on Hostess deal progress",
+  "link": "https://www.investing.com/news/analyst-ratings/bofa-upgrades-jm-smucker-stock-rating-on-hostess-deal-progress-93CH-4518308",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:01:33",
+  "providerPublishTime": 1771844493.0,
+  "text": "BofA upgrades J.M. Smucker stock rating on Hostess deal progress",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "J",
+    "DEAL",
+    "STOCK",
+    "ON",
+    "M",
+    "BOFA"
+  ],
+  "relatedTickers": [
+    "J",
+    "DEAL",
+    "STOCK",
+    "ON",
+    "M",
+    "BOFA"
+  ]
+}

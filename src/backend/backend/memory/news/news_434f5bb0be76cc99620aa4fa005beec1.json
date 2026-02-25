@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Volodymyr Zelenskyy says war in Ukraine at ‘beginning of the end’",
+  "link": "https://www.ft.com/content/1831225f-0db6-4ecc-8409-f520f74e4129",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T21:00:01",
+  "providerPublishTime": 1771876801.0,
+  "text": "In an FT interview, Ukrainian president urges Trump to see through Russia’s ‘games’",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ffa8584c0-f4b1-4e5b-86da-d04400c147e9.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "URGES",
+    "IN",
+    "GAMES",
+    "SAYS",
+    "END",
+    "S",
+    "WAR",
+    "TO",
+    "AT",
+    "THE"
+  ],
+  "relatedTickers": [
+    "URGES",
+    "IN",
+    "GAMES",
+    "SAYS",
+    "END",
+    "S",
+    "WAR",
+    "TO",
+    "AT",
+    "THE"
+  ]
+}

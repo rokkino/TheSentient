@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Blue Owl and private credit’s structural problem",
+  "link": "https://www.ft.com/content/5ba631de-e609-4dc4-afd2-09bb71b7dd02",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T06:30:02",
+  "providerPublishTime": 1771824602.0,
+  "text": "Troubles at New York-based asset manager are making investors nervous about the wider industry",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F0911bba1-a6b7-454d-8343-1049ae25d421.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AT",
+    "THE",
+    "ABOUT",
+    "ARE",
+    "BLUE",
+    "YORK",
+    "BASED",
+    "NEW",
+    "S",
+    "AND"
+  ],
+  "relatedTickers": [
+    "AT",
+    "THE",
+    "ABOUT",
+    "ARE",
+    "BLUE",
+    "YORK",
+    "BASED",
+    "NEW",
+    "S",
+    "AND"
+  ]
+}

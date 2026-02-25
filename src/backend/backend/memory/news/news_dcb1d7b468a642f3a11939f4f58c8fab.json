@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "RBA’s Bullock Says Tough to Make Judgments on Economy at Moment",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/rba-s-bullock-says-tough-to-make-judgments-on-economy-at-moment",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T10:50:00",
+  "providerPublishTime": 1772013000.0,
+  "text": "Australia’s central bank Governor Michele Bullock said judging the economy is “a little bit more difficult” now than in previous periods when it was raising interest rates, reinforcing her cautious policy stance.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iY.K0aNXrsTA/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RBA",
+    "THE",
+    "IT",
+    "SAYS",
+    "MAKE",
+    "AT",
+    "TOUGH",
+    "IS",
+    "RATES",
+    "IN"
+  ],
+  "relatedTickers": [
+    "RBA",
+    "THE",
+    "IT",
+    "SAYS",
+    "MAKE",
+    "AT",
+    "TOUGH",
+    "IS",
+    "RATES",
+    "IN"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "JPM’s Bob Michele Sees Bonds as ‘Perfectly Priced Market’",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-24/jpm-s-bob-michele-bonds-are-perfectly-priced-market-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T12:53:51",
+  "providerPublishTime": 1771934031.0,
+  "text": "Bob Michele, global head of fixed income at JPMorgan Asset Management, explains the factors he sees creating “nice” tailwinds for the bond market. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iI8skC8m3_wM/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIXED",
+    "HEAD",
+    "BONDS",
+    "ASSET",
+    "BOND",
+    "NICE",
+    "AT",
+    "S",
+    "AS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "FIXED",
+    "HEAD",
+    "BONDS",
+    "ASSET",
+    "BOND",
+    "NICE",
+    "AT",
+    "S",
+    "AS",
+    "THE"
+  ]
+}

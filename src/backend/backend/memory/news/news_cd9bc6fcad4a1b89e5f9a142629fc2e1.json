@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Paramount raises bid for Warner Bros in attempt to block Netflix takeover",
+  "link": "https://finance.yahoo.com/news/paramount-raises-bid-warner-bros-232220629.html",
+  "publisher": "The Telegraph",
+  "timestamp": "2026-02-23T23:22:20",
+  "providerPublishTime": 1771885340.0,
+  "text": "Paramount raises bid for Warner Bros in attempt to block Netflix takeover",
+  "thumbnail": "https://media.zenfs.com/en/the_telegraph_258/4bf546c7891101904d1789f4168bc079",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TO",
+    "FOR",
+    "BID",
+    "BROS",
+    "BLOCK",
+    "IN"
+  ],
+  "relatedTickers": [
+    "TO",
+    "FOR",
+    "BID",
+    "BROS",
+    "BLOCK",
+    "IN"
+  ]
+}

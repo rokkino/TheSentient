@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings live: Workday stock plunges amid AI disruption concerns, Lucid falls on mixed quarter, HP tumbles",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-workday-stock-plunges-amid-ai-disruption-concerns-lucid-falls-on-mixed-quarter-hp-tumbles-214114501.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-24T21:41:14",
+  "providerPublishTime": 1771965674.0,
+  "text": "Earnings live: Workday stock plunges amid AI disruption concerns, Lucid falls on mixed quarter, HP tumbles",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/7ab09e90-11c9-11f1-bb6b-fa9844116df2",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HP",
+    "LIVE",
+    "AMID",
+    "STOCK",
+    "MIXED",
+    "FALLS",
+    "LUCID",
+    "AI",
+    "ON"
+  ],
+  "relatedTickers": [
+    "HP",
+    "LIVE",
+    "AMID",
+    "STOCK",
+    "MIXED",
+    "FALLS",
+    "LUCID",
+    "AI",
+    "ON"
+  ]
+}

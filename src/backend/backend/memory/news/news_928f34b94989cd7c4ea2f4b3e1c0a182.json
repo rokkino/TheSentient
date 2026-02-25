@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Botswana’s Central Bank Sees Inflation Slowing This Year",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/botswana-s-central-bank-sees-inflation-slowing-this-year",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T09:28:29",
+  "providerPublishTime": 1772008109.0,
+  "text": "Botswana’s inflation will peak at just over 5% this year, down from a December forecast of 6.2%, due to “stabilizing exchange-rate dynamics”, Bank of Botswana Governor Lesego Moseki said.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNg_Tvxfq978/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "RATE",
+    "SAID",
+    "DOWN",
+    "TO",
+    "OVER",
+    "WILL",
+    "S",
+    "THIS",
+    "YEAR",
+    "DUE"
+  ],
+  "relatedTickers": [
+    "RATE",
+    "SAID",
+    "DOWN",
+    "TO",
+    "OVER",
+    "WILL",
+    "S",
+    "THIS",
+    "YEAR",
+    "DUE"
+  ]
+}

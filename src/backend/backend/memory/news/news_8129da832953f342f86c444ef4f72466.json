@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Congress must enact Trump’s tariffs now to steer the U.S. from a massive revenue cliff",
+  "link": "https://www.marketwatch.com/story/congress-must-enact-trumps-tariffs-now-to-steer-the-u-s-away-from-a-massive-revenue-cliff-c147c999?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T00:42:00",
+  "providerPublishTime": 1771890120.0,
+  "text": "Tariffs need to become law or the federal budget will take a hit. Lawmakers have less than 150 days to decide.",
+  "thumbnail": "https://images.mktw.net/im-00373931",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OR",
+    "LESS",
+    "ENACT",
+    "NEED",
+    "TRUMP",
+    "MUST",
+    "WILL",
+    "NOW",
+    "FROM",
+    "CLIFF"
+  ],
+  "relatedTickers": [
+    "OR",
+    "LESS",
+    "ENACT",
+    "NEED",
+    "TRUMP",
+    "MUST",
+    "WILL",
+    "NOW",
+    "FROM",
+    "CLIFF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Analyst says he’s thrown in the towel on Novo Nordisk after latest setback",
+  "link": "https://www.marketwatch.com/story/analyst-says-hes-thrown-in-the-towel-on-novo-nordisk-after-latest-setback-41f46541?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-24T09:12:00",
+  "providerPublishTime": 1771920720.0,
+  "text": "Novo Nordisk’s study showing a new drug wasn’t as good as a rival’s led one sell-side analyst to downgrade the stock for the first time in five years.",
+  "thumbnail": "https://images.mktw.net/im-02438494",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STUDY",
+    "SELL",
+    "SIDE",
+    "S",
+    "RIVAL",
+    "LED",
+    "ON",
+    "HE",
+    "DRUG",
+    "ONE"
+  ],
+  "relatedTickers": [
+    "STUDY",
+    "SELL",
+    "SIDE",
+    "S",
+    "RIVAL",
+    "LED",
+    "ON",
+    "HE",
+    "DRUG",
+    "ONE"
+  ]
+}

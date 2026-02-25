@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "To raise low birth rates, we must help mothers",
+  "link": "https://www.ft.com/content/7391479c-a60e-42d1-b293-8ce848cf4f56",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:25",
+  "providerPublishTime": 1771992025.0,
+  "text": "Easing the child penalty in the labour market could also increase fertility",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F131906e2-2159-4a21-8982-93d81ea09484.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "LOW",
+    "RATES",
+    "ALSO",
+    "COULD",
+    "RAISE",
+    "BIRTH",
+    "HELP",
+    "MUST",
+    "IN"
+  ],
+  "relatedTickers": [
+    "TO",
+    "LOW",
+    "RATES",
+    "ALSO",
+    "COULD",
+    "RAISE",
+    "BIRTH",
+    "HELP",
+    "MUST",
+    "IN"
+  ]
+}

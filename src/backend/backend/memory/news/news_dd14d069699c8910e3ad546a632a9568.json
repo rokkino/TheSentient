@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "TD Cowen Lifts PT on PepsiCo (PEP) to $165 From $162 – Here’s Why",
+  "link": "https://finance.yahoo.com/news/td-cowen-lifts-pt-pepsico-202613293.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-22T20:26:13",
+  "providerPublishTime": 1771788373.0,
+  "text": "TD Cowen Lifts PT on PepsiCo (PEP) to $165 From $162 – Here’s Why",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/8451096dfcd15059279ec3e48cc7bc38",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LIFTS",
+    "TD",
+    "HERE",
+    "S",
+    "TO",
+    "ON",
+    "COWEN",
+    "PEP",
+    "WHY",
+    "PT"
+  ],
+  "relatedTickers": [
+    "LIFTS",
+    "TD",
+    "HERE",
+    "S",
+    "TO",
+    "ON",
+    "COWEN",
+    "PEP",
+    "WHY",
+    "PT"
+  ]
+}

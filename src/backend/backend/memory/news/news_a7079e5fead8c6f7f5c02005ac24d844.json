@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Berkshire’s New CEO Delivers His First Shareholder Letter Soon. Wall Street Is Watching.",
+  "link": "https://www.barrons.com/articles/berkshire-ceo-abel-warren-buffett-055d5469?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-23T20:43:00",
+  "providerPublishTime": 1771875780.0,
+  "text": "Berkshire’s New CEO Delivers His First Shareholder Letter Soon. Wall Street Is Watching.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/1a7c7fbfdcc4befe02312d52a8b4cbac",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HIS",
+    "NEW",
+    "WALL",
+    "SOON",
+    "FIRST",
+    "IS",
+    "CEO",
+    "S"
+  ],
+  "relatedTickers": [
+    "HIS",
+    "NEW",
+    "WALL",
+    "SOON",
+    "FIRST",
+    "IS",
+    "CEO",
+    "S"
+  ]
+}

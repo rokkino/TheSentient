@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump’s global tariff takes effect at 10%",
+  "link": "https://www.ft.com/content/61c2e6d6-5e82-471d-b189-3d57d53407ae",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T03:53:26",
+  "providerPublishTime": 1771901606.0,
+  "text": "US president had said he would raise the levy to 15%",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F224f4bf8-2b36-4fbf-9b28-956a6208a3f4.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "S",
+    "TO",
+    "WOULD",
+    "AT",
+    "SAID",
+    "THE",
+    "TAKES",
+    "TRUMP",
+    "LEVY"
+  ],
+  "relatedTickers": [
+    "US",
+    "S",
+    "TO",
+    "WOULD",
+    "AT",
+    "SAID",
+    "THE",
+    "TAKES",
+    "TRUMP",
+    "LEVY"
+  ]
+}

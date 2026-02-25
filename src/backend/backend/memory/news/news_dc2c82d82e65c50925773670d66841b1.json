@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AMD clinches second mega chip supply deal, this time with Meta",
+  "link": "https://finance.yahoo.com/news/amd-clinches-second-mega-chip-120122612.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-24T12:01:22",
+  "providerPublishTime": 1771930882.0,
+  "text": "AMD clinches second mega chip supply deal, this time with Meta",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/a8858671771b2b1ca4acd4abb8d43bf0",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THIS",
+    "META",
+    "CHIP",
+    "MEGA",
+    "WITH",
+    "DEAL",
+    "TIME",
+    "AMD"
+  ],
+  "relatedTickers": [
+    "THIS",
+    "META",
+    "CHIP",
+    "MEGA",
+    "WITH",
+    "DEAL",
+    "TIME",
+    "AMD"
+  ]
+}

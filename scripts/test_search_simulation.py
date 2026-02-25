@@ -5,7 +5,7 @@ import os
 # Add backend directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../backend')))
 
-from services.symbol_mapper import symbol_mapper
+from src.backend.services.symbol_mapper import symbol_mapper
 
 async def test_search_simulation():
     # Simulate main.py logic where alpaca_service EXISTS but is not configured

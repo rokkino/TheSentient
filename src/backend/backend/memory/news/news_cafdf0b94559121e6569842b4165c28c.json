@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Reliance Q4 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/reliance-q4-earnings-call-highlights-202044756.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-23T20:20:44",
+  "providerPublishTime": 1771874444.0,
+  "text": "Reliance Q4 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/9ac71cf5a90f76654b3d7f2b5a199bd5",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CALL"
+  ],
+  "relatedTickers": [
+    "CALL"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "European stocks slip lower amid uncertain trade landscape; earnings still in focus",
+  "link": "https://www.investing.com/news/stock-market-news/european-stocks-slip-lower-amid-uncertain-trade-landscape-earnings-still-in-focus-4520590",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:05:50",
+  "providerPublishTime": 1771916750.0,
+  "text": "European stocks slip lower amid uncertain trade landscape; earnings still in focus",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "FOCUS",
+    "AMID",
+    "TRADE",
+    "STILL",
+    "SLIP",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "IN",
+    "FOCUS",
+    "AMID",
+    "TRADE",
+    "STILL",
+    "SLIP",
+    "LOWER"
+  ]
+}

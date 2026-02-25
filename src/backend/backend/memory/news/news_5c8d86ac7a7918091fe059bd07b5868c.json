@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Horizons Middle East & Africa 2/25/2026",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/horizons-middle-east-africa-2-25-2026-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:24:35",
+  "providerPublishTime": 1772000675.0,
+  "text": "Horizons Middle East & Africa is your daily spotlight on one of the world's fastest-growing regions. Live from Dubai, we bring you the latest global markets and analysis, plus news-making interviews, with a special focus on MEA. All that and more, as you head to the office in the Gulf, pause for lunch in Hong Kong, or start your day in London or Johannesburg.  (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iBdww8X0RPTU/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ONE",
+    "YOUR",
+    "MORE",
+    "GULF",
+    "LIVE",
+    "DAILY",
+    "OF",
+    "THAT",
+    "PAUSE",
+    "WORLD"
+  ],
+  "relatedTickers": [
+    "ONE",
+    "YOUR",
+    "MORE",
+    "GULF",
+    "LIVE",
+    "DAILY",
+    "OF",
+    "THAT",
+    "PAUSE",
+    "WORLD"
+  ]
+}

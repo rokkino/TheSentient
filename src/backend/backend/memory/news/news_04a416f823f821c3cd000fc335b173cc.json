@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How Deutsche Bank rolled out the red carpet for Jeffrey Epstein",
+  "link": "https://www.ft.com/content/b1d9e8c4-1874-4c82-941d-9a2e1512bc4c",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:06",
+  "providerPublishTime": 1771992006.0,
+  "text": "German lender waved through convicted sex offender’s millions despite compliance concerns",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F804255da-e1cf-453b-84e9-7257b968d65e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OUT",
+    "SEX",
+    "WAVED",
+    "S",
+    "THE",
+    "HOW",
+    "RED",
+    "FOR",
+    "BANK"
+  ],
+  "relatedTickers": [
+    "OUT",
+    "SEX",
+    "WAVED",
+    "S",
+    "THE",
+    "HOW",
+    "RED",
+    "FOR",
+    "BANK"
+  ]
+}

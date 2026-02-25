@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "EU Set to Freeze US Trade Deal Approval Over Trump Tariff Risk",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-23/eu-set-to-freeze-us-trade-deal-approval-over-tariff-risk-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T11:09:57",
+  "providerPublishTime": 1771841397.0,
+  "text": "The European Union is poised to halt the ratification process of its trade deal with the US as it awaits more details on the new tariff program from President Donald Trump’s administration. Kasia Klimasinska reports on Bloomberg Television. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irhH1TY7cYKQ/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "EU",
+    "HALT",
+    "OVER",
+    "RISK",
+    "ITS",
+    "NEW",
+    "US",
+    "DEAL",
+    "OF",
+    "ON"
+  ],
+  "relatedTickers": [
+    "EU",
+    "HALT",
+    "OVER",
+    "RISK",
+    "ITS",
+    "NEW",
+    "US",
+    "DEAL",
+    "OF",
+    "ON"
+  ]
+}

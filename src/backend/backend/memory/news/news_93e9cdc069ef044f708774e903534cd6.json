@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "France cuts off government access to US ambassador after snub",
+  "link": "https://www.ft.com/content/6a71acd2-7146-4c4b-a172-f070b907cf96",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T11:13:14",
+  "providerPublishTime": 1771927994.0,
+  "text": "Charles Kushner ignored summons to appear at foreign ministry",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F88e740a9-19be-4617-b830-80f42c5efbb2.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "SNUB",
+    "TO",
+    "CUTS",
+    "OFF",
+    "AFTER",
+    "AT"
+  ],
+  "relatedTickers": [
+    "US",
+    "SNUB",
+    "TO",
+    "CUTS",
+    "OFF",
+    "AFTER",
+    "AT"
+  ]
+}

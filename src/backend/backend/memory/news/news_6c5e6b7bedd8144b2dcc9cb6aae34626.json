@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia earnings report collides with Wall Street skepticism over AI spending",
+  "link": "https://www.cnbc.com/2026/02/24/nvidia-earnings-collide-with-wall-street-skepticism-over-ai-spending.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T13:00:02",
+  "providerPublishTime": 1771934402.0,
+  "text": "Nvidia is the only megacap tech stock to notch gains this year as investors have turned cautious on the hefty amounts of spending on AI infrastructure.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TECH",
+    "WALL",
+    "HEFTY",
+    "YEAR",
+    "OF",
+    "STOCK",
+    "AS",
+    "THE",
+    "ON",
+    "NOTCH"
+  ],
+  "relatedTickers": [
+    "TECH",
+    "WALL",
+    "HEFTY",
+    "YEAR",
+    "OF",
+    "STOCK",
+    "AS",
+    "THE",
+    "ON",
+    "NOTCH"
+  ]
+}

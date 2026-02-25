@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "PwC clashes with boutique consultancy founded by former executive",
+  "link": "https://www.ft.com/content/6d305fb0-76cb-4b4a-94d5-c8bdc141b916",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T05:00:10",
+  "providerPublishTime": 1771905610.0,
+  "text": "Big Four firm moves to protect itself with legal ‘threats’ against senior figures at Unity Advisory as relationship sours",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F4a5f285f-33b4-47a1-857b-a6bf4ebdf72b.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SOURS",
+    "UNITY",
+    "TO",
+    "AT",
+    "WITH",
+    "BY",
+    "FIRM",
+    "PWC",
+    "LEGAL",
+    "AS"
+  ],
+  "relatedTickers": [
+    "SOURS",
+    "UNITY",
+    "TO",
+    "AT",
+    "WITH",
+    "BY",
+    "FIRM",
+    "PWC",
+    "LEGAL",
+    "AS"
+  ]
+}

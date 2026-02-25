@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "German Rebound Driven by Domestic Demand as Trade Weighs",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/german-rebound-driven-by-domestic-demand-as-trade-damps-growth",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:09:19",
+  "providerPublishTime": 1771999759.0,
+  "text": "Spending by German consumers, businesses and the government sparked an economic recovery at the end of last year that’s expected to strengthen as the country invests heavily into infrastructure and defense.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ikDcQqkJVmVE/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AT",
+    "THE",
+    "LAST",
+    "AS",
+    "END",
+    "BY",
+    "AN",
+    "THAT",
+    "AND",
+    "S"
+  ],
+  "relatedTickers": [
+    "AT",
+    "THE",
+    "LAST",
+    "AS",
+    "END",
+    "BY",
+    "AN",
+    "THAT",
+    "AND",
+    "S"
+  ]
+}

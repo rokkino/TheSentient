@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Zelenskiy says Ukraine has defended its independence on fourth anniversary of war",
+  "link": "https://www.investing.com/news/world-news/zelenskiy-says-ukraine-has-defended-its-independence-on-fourth-anniversary-of-war-4520566",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T07:30:44",
+  "providerPublishTime": 1771914644.0,
+  "text": "Zelenskiy says Ukraine has defended its independence on fourth anniversary of war",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SAYS",
+    "WAR",
+    "ON",
+    "HAS",
+    "ITS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "SAYS",
+    "WAR",
+    "ON",
+    "HAS",
+    "ITS",
+    "OF"
+  ]
+}

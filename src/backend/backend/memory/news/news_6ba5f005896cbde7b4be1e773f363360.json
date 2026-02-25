@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lucid widely misses earnings expectations, forecasts continued EV growth in 2026",
+  "link": "https://www.cnbc.com/2026/02/24/lucid-lcid-q4-2025-results-.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T23:43:35",
+  "providerPublishTime": 1771973015.0,
+  "text": "For 2026, Lucid announced a vehicle production target of between 25,000 and 27,000 units, which would be a roughly 40% to 51% increase compared with last year.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WHICH",
+    "UNITS",
+    "WITH",
+    "WOULD",
+    "FOR",
+    "AND",
+    "LAST",
+    "YEAR",
+    "IN",
+    "A"
+  ],
+  "relatedTickers": [
+    "WHICH",
+    "UNITS",
+    "WITH",
+    "WOULD",
+    "FOR",
+    "AND",
+    "LAST",
+    "YEAR",
+    "IN",
+    "A"
+  ]
+}

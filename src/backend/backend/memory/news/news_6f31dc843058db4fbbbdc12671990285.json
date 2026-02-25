@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russia's war on Ukraine puts women off having children — and that could spell economic disaster",
+  "link": "https://www.cnbc.com/2026/02/24/russia-ukraine-birth-rate-fertility-rate-war-women-children-demographics-economy.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T07:12:47",
+  "providerPublishTime": 1771913567.0,
+  "text": "Four years of war have discouraged Ukrainian and Russian women from having children, and that could impact their economies in the future.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "OFF",
+    "S",
+    "AND",
+    "WAR",
+    "THAT",
+    "ON",
+    "THEIR",
+    "THE",
+    "HAVE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "OFF",
+    "S",
+    "AND",
+    "WAR",
+    "THAT",
+    "ON",
+    "THEIR",
+    "THE",
+    "HAVE"
+  ]
+}

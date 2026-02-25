@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Goldman Sachs Initiates Coverage of Credo Technology Group Holding Ltd (CRDO) Stock",
+  "link": "https://finance.yahoo.com/news/goldman-sachs-initiates-coverage-credo-210511850.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T21:05:11",
+  "providerPublishTime": 1771877111.0,
+  "text": "Goldman Sachs Initiates Coverage of Credo Technology Group Holding Ltd (CRDO) Stock",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/704231fc1efa4e63b56f2a2052e39032",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CREDO",
+    "LTD",
+    "GROUP",
+    "CRDO",
+    "STOCK",
+    "SACHS",
+    "OF"
+  ],
+  "relatedTickers": [
+    "CREDO",
+    "LTD",
+    "GROUP",
+    "CRDO",
+    "STOCK",
+    "SACHS",
+    "OF"
+  ]
+}

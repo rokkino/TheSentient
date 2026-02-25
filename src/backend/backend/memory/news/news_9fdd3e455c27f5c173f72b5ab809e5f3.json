@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nuveen: Equities Strongly Bid But With Increased Hedging",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/nuveen-equities-strongly-bid-but-with-increased-hedging-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T09:01:23",
+  "providerPublishTime": 1772006483.0,
+  "text": "Nuveen's global investment strategist and macro credit head Laura Cooper discusses markets positioning in light of recent global trade and policy uncertainty. \"People don't want to take on that dollar exposure,\" Cooper tells Bloomberg Television. She also adds that Treasuries can still \"showcase their safe haven dynamics in acute risk-off episodes.\" (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ir9r_QfeU0Fg/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HAVEN",
+    "SAFE",
+    "DON",
+    "S",
+    "ACUTE",
+    "ON",
+    "OF",
+    "CAN",
+    "SHE",
+    "OFF"
+  ],
+  "relatedTickers": [
+    "HAVEN",
+    "SAFE",
+    "DON",
+    "S",
+    "ACUTE",
+    "ON",
+    "OF",
+    "CAN",
+    "SHE",
+    "OFF"
+  ]
+}

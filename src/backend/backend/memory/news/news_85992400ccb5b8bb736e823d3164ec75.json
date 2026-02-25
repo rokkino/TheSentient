@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Fall on Trade Jitters as Dollar Halts Slide: Markets Wrap",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-22/dollar-trades-within-range-amid-tariff-uncertainty-markets-wrap",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-22T21:03:47",
+  "providerPublishTime": 1771790627.0,
+  "text": "US stock futures fell as uncertainty over American trade policy clouded sentiment. The dollar recouped losses while precious metals advanced.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i6erE6Xa1RzY/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WHILE",
+    "SLIDE",
+    "THE",
+    "OVER",
+    "FALL",
+    "US",
+    "WRAP",
+    "HALTS",
+    "FELL",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "WHILE",
+    "SLIDE",
+    "THE",
+    "OVER",
+    "FALL",
+    "US",
+    "WRAP",
+    "HALTS",
+    "FELL",
+    "STOCK"
+  ]
+}

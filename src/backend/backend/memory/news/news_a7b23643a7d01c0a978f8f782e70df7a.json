@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Making it rain: Why more and more countries are turning to cloud seeding",
+  "link": "https://www.cnbc.com/2026/02/24/cloud-seeding-climate-water-demand-rain-snow.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T06:10:37",
+  "providerPublishTime": 1771909837.0,
+  "text": "Cloud seeding programs are now taking place in more than 50 countries across the globe, according to the World Meteorological Organization.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RAIN",
+    "IN",
+    "AND",
+    "ARE",
+    "TO",
+    "GLOBE",
+    "NOW",
+    "THAN",
+    "PLACE",
+    "WORLD"
+  ],
+  "relatedTickers": [
+    "RAIN",
+    "IN",
+    "AND",
+    "ARE",
+    "TO",
+    "GLOBE",
+    "NOW",
+    "THAN",
+    "PLACE",
+    "WORLD"
+  ]
+}

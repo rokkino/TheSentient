@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Green deals are being postponed, so Honeywell just shaved $500 million off a chemicals acquisition",
+  "link": "https://www.marketwatch.com/story/green-deals-are-being-postponed-so-honeywell-just-shaved-500-million-off-a-chemicals-acquisition-93965abb?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T09:55:00",
+  "providerPublishTime": 1771836900.0,
+  "text": "Honeywell International on Monday received a 26% discount on its deal to acquire a business tied to the struggling chemicals industry.",
+  "thumbnail": "https://images.mktw.net/im-91385221",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "TIED",
+    "THE",
+    "GREEN",
+    "DEAL",
+    "ARE",
+    "BEING",
+    "DEALS",
+    "JUST",
+    "A"
+  ],
+  "relatedTickers": [
+    "TO",
+    "TIED",
+    "THE",
+    "GREEN",
+    "DEAL",
+    "ARE",
+    "BEING",
+    "DEALS",
+    "JUST",
+    "A"
+  ]
+}

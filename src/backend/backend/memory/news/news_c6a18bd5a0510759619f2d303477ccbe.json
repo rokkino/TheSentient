@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Crypto.com gets conditional US approval for national trust bank charter",
+  "link": "https://finance.yahoo.com/news/crypto-com-gets-conditional-us-203614159.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T20:36:14",
+  "providerPublishTime": 1771875374.0,
+  "text": "Crypto.com gets conditional US approval for national trust bank charter",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/7ccfab8b2bafba48c4ec52ee12a6cbe8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "GETS",
+    "TRUST",
+    "COM",
+    "FOR",
+    "BANK"
+  ],
+  "relatedTickers": [
+    "US",
+    "GETS",
+    "TRUST",
+    "COM",
+    "FOR",
+    "BANK"
+  ]
+}

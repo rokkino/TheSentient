@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Fresenius SE shares drop 3% as 2026 profit outlook misses estimates",
+  "link": "https://www.investing.com/news/earnings/fresenius-se-shares-drop-3-as-2026-profit-outlook-misses-estimates-4523419",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:14:03",
+  "providerPublishTime": 1772007243.0,
+  "text": "Fresenius SE shares drop 3% as 2026 profit outlook misses estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DROP",
+    "AS",
+    "SE"
+  ],
+  "relatedTickers": [
+    "DROP",
+    "AS",
+    "SE"
+  ]
+}

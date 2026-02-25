@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HELOC and home equity loan rates Monday, February 23, 2026: Unlocking the cash in your home at the lowest rates in years",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-home-equity-loan-rates-today-monday-february-23-2026-110010534.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T11:00:10",
+  "providerPublishTime": 1771840810.0,
+  "text": "HELOC and home equity loan rates Monday, February 23, 2026: Unlocking the cash in your home at the lowest rates in years",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-06/006c3000-3feb-11f0-b84f-0d1aa528bfe7",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "HOME",
+    "AT",
+    "HELOC",
+    "THE",
+    "YEARS",
+    "RATES",
+    "CASH",
+    "YOUR",
+    "LOAN"
+  ],
+  "relatedTickers": [
+    "IN",
+    "HOME",
+    "AT",
+    "HELOC",
+    "THE",
+    "YEARS",
+    "RATES",
+    "CASH",
+    "YOUR",
+    "LOAN"
+  ]
+}

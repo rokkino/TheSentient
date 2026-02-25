@@ -5,7 +5,7 @@ import os
 # Add backend directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../backend')))
 
-from services.alpaca_service import alpaca_service
+from src.backend.services.alpaca_service import alpaca_service
 
 async def test_search():
     print("START_TEST")

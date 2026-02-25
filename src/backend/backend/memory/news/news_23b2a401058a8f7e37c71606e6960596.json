@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nippon Steel Plans $3.5 Billion Bond Sale for US Steel Loans",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/nippon-steel-to-sell-3-5-billion-worth-of-convertible-bonds",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T07:12:00",
+  "providerPublishTime": 1771913520.0,
+  "text": "Nippon Steel Corp. intends to sell 550 billion yen ($3.5 billion) of convertible bonds in overseas markets, to help repay loans taken out for its acquisition of United States Steel Corp.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itJiNXvDs5wc/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "YEN",
+    "SELL",
+    "TAKEN",
+    "REPAY",
+    "BONDS",
+    "CORP",
+    "OUT",
+    "SALE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IN",
+    "YEN",
+    "SELL",
+    "TAKEN",
+    "REPAY",
+    "BONDS",
+    "CORP",
+    "OUT",
+    "SALE",
+    "OF"
+  ]
+}

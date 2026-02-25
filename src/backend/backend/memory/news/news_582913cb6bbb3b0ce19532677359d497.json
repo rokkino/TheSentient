@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BMW to recall nearly 59,000 vehicles in US over damaged wiring harness, NHTSA says",
+  "link": "https://www.investing.com/news/stock-market-news/bmw-to-recall-nearly-59000-vehicles-in-us-over-damaged-wiring-harness-nhtsa-says-4523401",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:36:50",
+  "providerPublishTime": 1772005010.0,
+  "text": "BMW to recall nearly 59,000 vehicles in US over damaged wiring harness, NHTSA says",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NHTSA",
+    "BMW",
+    "OVER",
+    "SAYS",
+    "IN",
+    "US",
+    "TO"
+  ],
+  "relatedTickers": [
+    "NHTSA",
+    "BMW",
+    "OVER",
+    "SAYS",
+    "IN",
+    "US",
+    "TO"
+  ]
+}

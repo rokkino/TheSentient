@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sterling today: Pound edges lower as BoE rate setters testify",
+  "link": "https://www.investing.com/news/forex-news/sterling-today-pound-edges-lower-as-boe-rate-setters-testify-4520985",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:44:08",
+  "providerPublishTime": 1771929848.0,
+  "text": "Sterling today: Pound edges lower as BoE rate setters testify",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOE",
+    "POUND",
+    "TODAY",
+    "RATE",
+    "AS",
+    "EDGES",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "BOE",
+    "POUND",
+    "TODAY",
+    "RATE",
+    "AS",
+    "EDGES",
+    "LOWER"
+  ]
+}

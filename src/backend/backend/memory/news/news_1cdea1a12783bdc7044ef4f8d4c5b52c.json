@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Urban Outfitters CCO Sells 18,666 Shares for $1.3 Million",
+  "link": "https://finance.yahoo.com/news/urban-outfitters-cco-sells-18-210247915.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-22T21:02:47",
+  "providerPublishTime": 1771790567.0,
+  "text": "Urban Outfitters CCO Sells 18,666 Shares for $1.3 Million",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0c3987c68c537109d8c296d8c5bba4aa",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CCO",
+    "SELLS",
+    "FOR",
+    "URBAN"
+  ],
+  "relatedTickers": [
+    "CCO",
+    "SELLS",
+    "FOR",
+    "URBAN"
+  ]
+}

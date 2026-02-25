@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Guggenheim cuts StubHub stock price target on regulatory concerns",
+  "link": "https://www.investing.com/news/analyst-ratings/guggenheim-cuts-stubhub-stock-price-target-on-regulatory-concerns-93CH-4521254",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:46:59",
+  "providerPublishTime": 1771933619.0,
+  "text": "Guggenheim cuts StubHub stock price target on regulatory concerns",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "CUTS",
+    "STOCK",
+    "ON",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "STOCK",
+    "ON",
+    "PRICE"
+  ]
+}

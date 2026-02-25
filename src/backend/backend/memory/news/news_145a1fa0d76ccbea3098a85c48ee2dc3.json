@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AMC Was Once a Hot Meme Stock. Things Are Cooler These Days.",
+  "link": "https://www.barrons.com/articles/amc-earnings-stock-price-cb4f1c8a?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-23T21:00:00",
+  "providerPublishTime": 1771876800.0,
+  "text": "AMC Was Once a Hot Meme Stock. Things Are Cooler These Days.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/1d61e3c5bfca81fa790d2271d5a23198",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THESE",
+    "ONCE",
+    "HOT",
+    "DAYS",
+    "STOCK",
+    "ARE",
+    "MEME",
+    "AMC",
+    "WAS",
+    "A"
+  ],
+  "relatedTickers": [
+    "THESE",
+    "ONCE",
+    "HOT",
+    "DAYS",
+    "STOCK",
+    "ARE",
+    "MEME",
+    "AMC",
+    "WAS",
+    "A"
+  ]
+}

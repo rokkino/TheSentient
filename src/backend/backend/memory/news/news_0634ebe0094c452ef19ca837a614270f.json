@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Amer Sports Drops as Tepid Outlook Raises Cost Concerns",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/amer-sports-drops-as-tepid-outlook-raises-cost-concerns",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:40:11",
+  "providerPublishTime": 1771929611.0,
+  "text": "Amer Sports Inc. shares fell after the company issued a first-quarter outlook that trailed expectations, raising concerns on higher costs to promote its Salomon footwear and Arc’teryx apparel brands.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i9A1o4LRJ6oE/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ARC",
+    "COSTS",
+    "AND",
+    "ITS",
+    "FELL",
+    "TERYX",
+    "AMER",
+    "ON",
+    "A",
+    "TEPID"
+  ],
+  "relatedTickers": [
+    "ARC",
+    "COSTS",
+    "AND",
+    "ITS",
+    "FELL",
+    "TERYX",
+    "AMER",
+    "ON",
+    "A",
+    "TEPID"
+  ]
+}

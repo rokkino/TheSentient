@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "James Cameron Warns Netflix–WBD Deal Would Be A 'Sinking Ship' Moment For Theatrical Film Business",
+  "link": "https://finance.yahoo.com/news/james-cameron-warns-netflix-wbd-233029257.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-23T23:30:29",
+  "providerPublishTime": 1771885829.0,
+  "text": "James Cameron Warns Netflix–WBD Deal Would Be A 'Sinking Ship' Moment For Theatrical Film Business",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/6d0a1859704f166de654c6664a232394",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "WBD",
+    "FOR",
+    "DEAL",
+    "WOULD",
+    "WARNS",
+    "A",
+    "FILM",
+    "SHIP",
+    "JAMES",
+    "BE"
+  ],
+  "relatedTickers": [
+    "WBD",
+    "FOR",
+    "DEAL",
+    "WOULD",
+    "WARNS",
+    "A",
+    "FILM",
+    "SHIP",
+    "JAMES",
+    "BE"
+  ]
+}

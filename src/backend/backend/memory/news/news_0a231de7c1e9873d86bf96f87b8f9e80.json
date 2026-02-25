@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Iberdrola sells 757MW French onshore renewables portfolio to Technique Solaire",
+  "link": "https://finance.yahoo.com/news/iberdrola-sells-757mw-french-onshore-112320147.html",
+  "publisher": "Power Technology",
+  "timestamp": "2026-02-25T11:23:20",
+  "providerPublishTime": 1772015000.0,
+  "text": "Iberdrola sells 757MW French onshore renewables portfolio to Technique Solaire",
+  "thumbnail": "https://media.zenfs.com/en/power_technology_866/346fd6075a51b3f0126ea80d45f14dba",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "SELLS"
+  ],
+  "relatedTickers": [
+    "TO",
+    "SELLS"
+  ]
+}

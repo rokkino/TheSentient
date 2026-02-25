@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Thai Baht Gains Among Drivers of Surprise Rate Cut, Analysts Say",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/thai-baht-gains-among-drivers-of-surprise-rate-cut-analysts-say",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:41:26",
+  "providerPublishTime": 1772005286.0,
+  "text": "The Thai Baht’s strength is likely among factors underpinning the Bank of Thailand’s unexpected decision to lower interest rates, according to analysts.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ibQ1fSwOPr9g/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "IS",
+    "THAI",
+    "LOWER",
+    "CUT",
+    "SAY",
+    "RATE",
+    "BANK",
+    "S",
+    "RATES"
+  ],
+  "relatedTickers": [
+    "THE",
+    "IS",
+    "THAI",
+    "LOWER",
+    "CUT",
+    "SAY",
+    "RATE",
+    "BANK",
+    "S",
+    "RATES"
+  ]
+}

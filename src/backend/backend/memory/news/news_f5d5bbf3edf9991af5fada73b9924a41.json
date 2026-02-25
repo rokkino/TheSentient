@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HSBC Bonus Pool Rises With Focus on Rewarding Top Performers",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/hsbc-bonus-pool-rises-to-highest-in-at-least-a-decade",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T05:40:03",
+  "providerPublishTime": 1771994403.0,
+  "text": "HSBC Holdings Plc’s overall bonus pool rose 10% to $3.93 billion, the highest in at least a decade after the bank delivered full year results that beat estimates.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/icarvXRUV4BQ/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HSBC",
+    "AFTER",
+    "FULL",
+    "AT",
+    "FOCUS",
+    "S",
+    "PLC",
+    "A",
+    "IN",
+    "BEAT"
+  ],
+  "relatedTickers": [
+    "HSBC",
+    "AFTER",
+    "FULL",
+    "AT",
+    "FOCUS",
+    "S",
+    "PLC",
+    "A",
+    "IN",
+    "BEAT"
+  ]
+}

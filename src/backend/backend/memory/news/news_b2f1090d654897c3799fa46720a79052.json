@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "This Was the Most Important Update in Opendoor's Earnings Report",
+  "link": "https://finance.yahoo.com/news/most-important-opendoors-earnings-report-234500807.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:45:00",
+  "providerPublishTime": 1771886700.0,
+  "text": "This Was the Most Important Update in Opendoor's Earnings Report",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/edbf4192ec617f5d02a7d66da78fcf9b",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "THIS",
+    "MOST",
+    "IN",
+    "WAS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "S",
+    "THIS",
+    "MOST",
+    "IN",
+    "WAS",
+    "THE"
+  ]
+}

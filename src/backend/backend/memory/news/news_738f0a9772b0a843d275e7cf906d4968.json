@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Australia’s top central banker says policy judgments more difficult now, urges patience",
+  "link": "https://www.investing.com/news/economy-news/australias-top-central-banker-says-policy-judgments-more-difficult-now-urges-patience-4523428",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:48:31",
+  "providerPublishTime": 1772009311.0,
+  "text": "Australia’s top central banker says policy judgments more difficult now, urges patience",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "URGES",
+    "TOP",
+    "SAYS",
+    "MORE",
+    "NOW",
+    "S"
+  ],
+  "relatedTickers": [
+    "URGES",
+    "TOP",
+    "SAYS",
+    "MORE",
+    "NOW",
+    "S"
+  ]
+}

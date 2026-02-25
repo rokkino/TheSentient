@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Vaalco Energy secures operatorship in Cote d’Ivoire’s Kossipo field",
+  "link": "https://finance.yahoo.com/news/vaalco-energy-secures-operatorship-cote-110709268.html",
+  "publisher": "Offshore Technology",
+  "timestamp": "2026-02-25T11:07:09",
+  "providerPublishTime": 1772014029.0,
+  "text": "Vaalco Energy secures operatorship in Cote d’Ivoire’s Kossipo field",
+  "thumbnail": "https://media.zenfs.com/en/offshore_technology_431/70426b46bf5599a823f3b789ecf70e9e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "D",
+    "S",
+    "COTE",
+    "FIELD"
+  ],
+  "relatedTickers": [
+    "IN",
+    "D",
+    "S",
+    "COTE",
+    "FIELD"
+  ]
+}

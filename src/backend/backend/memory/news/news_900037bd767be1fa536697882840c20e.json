@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Qatar Lender Readies AT1 Deal as Sales Boom in Middle East",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/commercial-bank-of-qatar-readies-first-at1-bond-in-five-years",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T10:17:29",
+  "providerPublishTime": 1771838249.0,
+  "text": "Qatar’s oldest private lender plans to sell its first Additional Tier 1 bond since 2021 as it joins a spate of issuers offering the risky bank debt in the region.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iU49GpckMKxU/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "JOINS",
+    "ITS",
+    "RISKY",
+    "A",
+    "SELL",
+    "DEBT",
+    "DEAL",
+    "BOOM",
+    "BANK",
+    "OF"
+  ],
+  "relatedTickers": [
+    "JOINS",
+    "ITS",
+    "RISKY",
+    "A",
+    "SELL",
+    "DEBT",
+    "DEAL",
+    "BOOM",
+    "BANK",
+    "OF"
+  ]
+}

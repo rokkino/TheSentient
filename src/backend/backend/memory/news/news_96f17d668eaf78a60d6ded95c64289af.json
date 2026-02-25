@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The ACA health coverage subsidy lapse hit 22 million people. Here are some of their stories",
+  "link": "https://www.cnbc.com/2026/02/24/aca-enhanced-subsidy-expiration-effects.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T12:00:01",
+  "providerPublishTime": 1771930801.0,
+  "text": "The lapse of enhanced subsidies for Affordable Care Act marketplace insurance has forced families to make difficult financial choices.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HERE",
+    "MAKE",
+    "ACA",
+    "ARE",
+    "ACT",
+    "CARE",
+    "HAS",
+    "TO",
+    "THEIR",
+    "SOME"
+  ],
+  "relatedTickers": [
+    "HERE",
+    "MAKE",
+    "ACA",
+    "ARE",
+    "ACT",
+    "CARE",
+    "HAS",
+    "TO",
+    "THEIR",
+    "SOME"
+  ]
+}

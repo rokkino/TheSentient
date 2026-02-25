@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How the AI debt binge shattered hyperscalers’ ‘unspoken contract’ with investors",
+  "link": "https://www.cnbc.com/2026/02/23/big-techs-ai-bond-binge-shatters-unspoken-contract-with-investors.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-23T06:06:22",
+  "providerPublishTime": 1771823182.0,
+  "text": "Hyperscalers' AI capex spending is approaching \"unheard of levels\"",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BINGE",
+    "THE",
+    "DEBT",
+    "CAPEX",
+    "OF",
+    "WITH",
+    "HOW",
+    "AI",
+    "IS"
+  ],
+  "relatedTickers": [
+    "BINGE",
+    "THE",
+    "DEBT",
+    "CAPEX",
+    "OF",
+    "WITH",
+    "HOW",
+    "AI",
+    "IS"
+  ]
+}

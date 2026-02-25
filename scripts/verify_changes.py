@@ -14,7 +14,7 @@ async def verify():
     # 1. Verify Gemini
     print("\n--- Testing Gemini Service ---")
     try:
-        from services.gemini_service import GeminiService
+        from src.backend.services.gemini_service import GeminiService
         gemini = GeminiService()
         if gemini.available:
             print(f"Gemini initialized successfully. Model: {gemini.model.model_name}")
@@ -34,7 +34,7 @@ async def verify():
     # 2. Verify Llama
     print("\n--- Testing Llama Service ---")
     try:
-        from services.llama_service import llama_service
+        from src.backend.services.llama_service import llama_service
         print(f"Llama Service initialized. Model: {llama_service.model_name}")
         # We won't actually call Ollama here to avoid hanging if it's slow, 
         # but we verified the code change.

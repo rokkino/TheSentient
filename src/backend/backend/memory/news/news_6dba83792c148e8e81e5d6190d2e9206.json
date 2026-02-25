@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trade Wars Are Flaring Again. What It Means for Investors",
+  "link": "https://finance.yahoo.com/news/trade-wars-flaring-again-means-202959572.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T20:29:59",
+  "providerPublishTime": 1771874999.0,
+  "text": "Trade Wars Are Flaring Again. What It Means for Investors",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/510cf69fbfce2b3945ea0a70cc679d73",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AGAIN",
+    "ARE",
+    "MEANS",
+    "TRADE",
+    "IT",
+    "WHAT",
+    "WARS",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "AGAIN",
+    "ARE",
+    "MEANS",
+    "TRADE",
+    "IT",
+    "WHAT",
+    "WARS",
+    "FOR"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia, Microsoft back self-driving firm Wayve as it hits $8.6 billion valuation",
+  "link": "https://www.cnbc.com/2026/02/24/wayve-fundraise-nvidia-microsoft.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T01:36:30",
+  "providerPublishTime": 1771979790.0,
+  "text": "The $1.2 billion Series D round was led by Eclipse, Balderton and SoftBank Vision Fund 2",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BY",
+    "WAYVE",
+    "FUND",
+    "D",
+    "WAS",
+    "ROUND",
+    "IT",
+    "AS",
+    "HITS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "BY",
+    "WAYVE",
+    "FUND",
+    "D",
+    "WAS",
+    "ROUND",
+    "IT",
+    "AS",
+    "HITS",
+    "THE"
+  ]
+}

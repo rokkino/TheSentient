@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Safe Bulkers Q4 Earnings Call Highlights",
+  "link": "https://finance.yahoo.com/news/safe-bulkers-q4-earnings-call-202046559.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-23T20:20:46",
+  "providerPublishTime": 1771874446.0,
+  "text": "Safe Bulkers Q4 Earnings Call Highlights",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/40d2a67de04f32f6608482ba9bade94a",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "CALL",
+    "SAFE"
+  ],
+  "relatedTickers": [
+    "CALL",
+    "SAFE"
+  ]
+}

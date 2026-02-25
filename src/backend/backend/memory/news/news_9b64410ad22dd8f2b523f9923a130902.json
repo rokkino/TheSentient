@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jamie Dimon says 'watch out’ as lofty asset prices add to economic risks: ‘My anxiety is high’",
+  "link": "https://www.cnbc.com/2026/02/23/jamie-dimon-says-watch-out-as-high-asset-prices-add-to-economic-risks-my-anxiety-is-high.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T02:25:45",
+  "providerPublishTime": 1771896345.0,
+  "text": "JPMorgan Chase CEO Jamie Dimon is anxious as high asset levels collide with increased competition among lenders and jitters over loans to the software industry.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "WATCH",
+    "JAMIE",
+    "AND",
+    "RISKS",
+    "MY",
+    "DIMON",
+    "ASSET",
+    "LOFTY",
+    "OVER"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "WATCH",
+    "JAMIE",
+    "AND",
+    "RISKS",
+    "MY",
+    "DIMON",
+    "ASSET",
+    "LOFTY",
+    "OVER"
+  ]
+}

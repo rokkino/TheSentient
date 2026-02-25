@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China’s $112 Billion Cargo Gap Shows Record US Tariff Evasion",
+  "link": "https://www.bloomberg.com/news/features/2026-02-24/china-s-112-billion-cargo-gap-shows-record-us-tariff-evasion",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T22:40:58",
+  "providerPublishTime": 1771969258.0,
+  "text": "<p>Phantom importers, sky high tariffs and suspiciously cheap shipping offers are fueling a surge in trade fraud, leaving law-abiding American businesses to foot the bill.</p>",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iPrKjRbdCCEA/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FOOT",
+    "ARE",
+    "GAP",
+    "FRAUD",
+    "CHINA",
+    "SKY",
+    "SURGE",
+    "TRADE",
+    "CHEAP",
+    "THE"
+  ],
+  "relatedTickers": [
+    "FOOT",
+    "ARE",
+    "GAP",
+    "FRAUD",
+    "CHINA",
+    "SKY",
+    "SURGE",
+    "TRADE",
+    "CHEAP",
+    "THE"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Thai central bank unexpectedly cuts policy rate amid tariff uncertainty",
+  "link": "https://www.investing.com/news/economy-news/thai-central-bank-unexpectedly-cuts-policy-rate-amid-tariff-uncertainty-4523384",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:06:28",
+  "providerPublishTime": 1772003188.0,
+  "text": "Thai central bank unexpectedly cuts policy rate amid tariff uncertainty",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CUTS",
+    "RATE",
+    "THAI",
+    "AMID",
+    "BANK"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "RATE",
+    "THAI",
+    "AMID",
+    "BANK"
+  ]
+}

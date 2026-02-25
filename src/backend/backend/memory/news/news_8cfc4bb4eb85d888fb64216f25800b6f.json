@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UK PR executive left role after US embassy raised concerns over online posts",
+  "link": "https://www.ft.com/content/f413947b-e06b-4adf-b88e-de4c04049a16",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T05:00:19",
+  "providerPublishTime": 1771905619.0,
+  "text": "Gavin Megaw’s exit from Hanover followed complaint by embassy to American Pharmaceutical Group",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F37c87f6e-389a-41d2-a5fe-b0bbdbedade5.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LEFT",
+    "US",
+    "GAVIN",
+    "MEGAW",
+    "S",
+    "TO",
+    "ROLE",
+    "BY",
+    "POSTS",
+    "OVER"
+  ],
+  "relatedTickers": [
+    "LEFT",
+    "US",
+    "GAVIN",
+    "MEGAW",
+    "S",
+    "TO",
+    "ROLE",
+    "BY",
+    "POSTS",
+    "OVER"
+  ]
+}

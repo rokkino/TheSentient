@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HELOC and home equity loan rates today, February 24, 2026: Existing customers may earn discounts",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/heloc-home-equity-loan-rates-today-tuesday-february-24-2026-110055242.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-24T11:00:55",
+  "providerPublishTime": 1771927255.0,
+  "text": "HELOC and home equity loan rates today, February 24, 2026: Existing customers may earn discounts",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-06/c4b61900-3fee-11f0-b7db-9b92c1c08f42",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HOME",
+    "AND",
+    "HELOC",
+    "TODAY",
+    "EARN",
+    "LOAN",
+    "RATES",
+    "MAY"
+  ],
+  "relatedTickers": [
+    "HOME",
+    "AND",
+    "HELOC",
+    "TODAY",
+    "EARN",
+    "LOAN",
+    "RATES",
+    "MAY"
+  ]
+}

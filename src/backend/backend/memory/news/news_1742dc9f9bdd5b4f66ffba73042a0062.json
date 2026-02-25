@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tycoon Richard Li’s Bolttech Is Said in Talks to Buy MoneyHero",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/tycoon-richard-li-s-bolttech-is-said-in-talks-to-buy-moneyhero",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:28:18",
+  "providerPublishTime": 1772004498.0,
+  "text": "Bolttech Holdings Ltd. is in talks to buy Nasdaq-listed MoneyHero Ltd., people familiar with the matter said, a move that would combine two financial technology firms backed by billionaire Richard Li.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i94OVQuOHkK0/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "LI",
+    "SAID",
+    "MOVE",
+    "THE",
+    "WITH",
+    "LTD",
+    "TALKS",
+    "WOULD",
+    "FIRMS",
+    "IN"
+  ],
+  "relatedTickers": [
+    "LI",
+    "SAID",
+    "MOVE",
+    "THE",
+    "WITH",
+    "LTD",
+    "TALKS",
+    "WOULD",
+    "FIRMS",
+    "IN"
+  ]
+}

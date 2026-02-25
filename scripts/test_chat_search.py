@@ -6,9 +6,9 @@ from unittest.mock import MagicMock, patch
 # Add backend directory to path
 sys.path.append(os.path.join(os.getcwd(), "backend"))
 
-from services.chat_service import ChatService
-from models.user import User
-from models.bot import Bot
+from src.backend.services.chat_service import ChatService
+from src.backend.models.user import User
+from src.backend.models.bot import Bot
 
 async def test_chat_search():
     print("Testing Chat Search Functionality...")

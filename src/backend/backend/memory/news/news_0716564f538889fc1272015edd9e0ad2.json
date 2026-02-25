@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "NHS in England to be set targets on getting people back to work",
+  "link": "https://www.ft.com/content/69430d69-78e2-4b3b-a0dd-f71678129eed",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T05:00:25",
+  "providerPublishTime": 1771992025.0,
+  "text": "Ministers also planning to link patient data to benefit claims and employment statistics",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ff391479a-9164-4820-a873-3bb0a73a59ae.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NHS",
+    "TO",
+    "ALSO",
+    "BE",
+    "LINK",
+    "WORK",
+    "IN",
+    "DATA",
+    "BACK",
+    "AND"
+  ],
+  "relatedTickers": [
+    "NHS",
+    "TO",
+    "ALSO",
+    "BE",
+    "LINK",
+    "WORK",
+    "IN",
+    "DATA",
+    "BACK",
+    "AND"
+  ]
+}

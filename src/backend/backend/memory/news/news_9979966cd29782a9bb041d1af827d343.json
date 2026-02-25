@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Chase reboots its 'mortgage rate sale,' this time on purchases and refinances",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/chase-mortgage-rate-sale-purchases-and-refinances-140015474.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T14:00:15",
+  "providerPublishTime": 1771851615.0,
+  "text": "Chase reboots its 'mortgage rate sale,' this time on purchases and refinances",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-01/fe357590-f894-11f0-b733-bac5ce7ce8f8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ITS",
+    "RATE",
+    "TIME",
+    "THIS",
+    "SALE",
+    "AND",
+    "CHASE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "RATE",
+    "TIME",
+    "THIS",
+    "SALE",
+    "AND",
+    "CHASE",
+    "ON"
+  ]
+}

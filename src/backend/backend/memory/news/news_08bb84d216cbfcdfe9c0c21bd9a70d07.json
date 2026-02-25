@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Indonesia Offers Euro, Yuan Bonds as Fiscal Concerns Grow",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/indonesia-offers-offshore-yuan-bond-as-fiscal-concerns-grow",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T02:49:46",
+  "providerPublishTime": 1771984186.0,
+  "text": "Indonesia began marketing its second offshore yuan bond in four months in addition to euro-denominated notes Wednesday, testing global investor confidence amid concerns over fiscal woes in Southeast Asia’s largest economy.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuYyR_33arLo/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AS",
+    "ITS",
+    "TO",
+    "BEGAN",
+    "OVER",
+    "ASIA",
+    "FOUR",
+    "WOES",
+    "NOTES",
+    "YUAN"
+  ],
+  "relatedTickers": [
+    "AS",
+    "ITS",
+    "TO",
+    "BEGAN",
+    "OVER",
+    "ASIA",
+    "FOUR",
+    "WOES",
+    "NOTES",
+    "YUAN"
+  ]
+}

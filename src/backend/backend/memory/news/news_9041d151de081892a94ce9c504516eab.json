@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hungary vows to block EU sanctions on Russia on eve of Ukraine war anniversary",
+  "link": "https://www.investing.com/news/commodities-news/hungary-vows-to-block-eu-sanctions-on-russia-on-eve-of-ukraine-war-anniversary-4518273",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:00:47",
+  "providerPublishTime": 1771844447.0,
+  "text": "Hungary vows to block EU sanctions on Russia on eve of Ukraine war anniversary",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "EU",
+    "EVE",
+    "OF",
+    "ON",
+    "BLOCK",
+    "WAR",
+    "VOWS"
+  ],
+  "relatedTickers": [
+    "TO",
+    "EU",
+    "EVE",
+    "OF",
+    "ON",
+    "BLOCK",
+    "WAR",
+    "VOWS"
+  ]
+}

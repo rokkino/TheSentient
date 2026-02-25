@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Edge Higher as Traders Await Nvidia Results: Markets Wrap",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/stock-market-today-dow-s-p-live-updates-",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T22:33:40",
+  "providerPublishTime": 1771968820.0,
+  "text": "Stocks posted modest gains after days of swings as traders await Nvidia Corp.’s earnings to see whether the chipmaker can regain its place as the artificial-intelligence trade’s main driver.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuBb4OKzLkd8/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "PLACE",
+    "THE",
+    "ITS",
+    "CAN",
+    "MAIN",
+    "WRAP",
+    "CORP",
+    "DAYS",
+    "AS",
+    "S"
+  ],
+  "relatedTickers": [
+    "PLACE",
+    "THE",
+    "ITS",
+    "CAN",
+    "MAIN",
+    "WRAP",
+    "CORP",
+    "DAYS",
+    "AS",
+    "S"
+  ]
+}

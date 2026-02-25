@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Paramount submits higher offer for Warner Bros Discovery in bid to block Netflix, source says (February 23)",
+  "link": "https://finance.yahoo.com/news/paramount-submits-higher-offer-warner-215448838.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T21:54:48",
+  "providerPublishTime": 1771880088.0,
+  "text": "Paramount submits higher offer for Warner Bros Discovery in bid to block Netflix, source says (February 23)",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/05c5c8115268534f61377a9a6955e9f3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFFER",
+    "BLOCK",
+    "FOR",
+    "BID",
+    "IN",
+    "SAYS",
+    "TO",
+    "BROS"
+  ],
+  "relatedTickers": [
+    "OFFER",
+    "BLOCK",
+    "FOR",
+    "BID",
+    "IN",
+    "SAYS",
+    "TO",
+    "BROS"
+  ]
+}

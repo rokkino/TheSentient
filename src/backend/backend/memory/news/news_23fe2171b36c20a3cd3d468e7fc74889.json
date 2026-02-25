@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Rapid UK coastal erosion throws spotlight on £40bn nuclear plant",
+  "link": "https://www.ft.com/content/7f093296-41cd-498c-ba81-f3707204eca9",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T05:00:19",
+  "providerPublishTime": 1771905619.0,
+  "text": "More than 27 metres of cliff lost over a year in area just 2km from Sizewell C",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F6bc5598e-222a-4791-bafc-16df25252575.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "IN",
+    "PLANT",
+    "ON",
+    "THAN",
+    "JUST",
+    "RAPID",
+    "AREA",
+    "OVER",
+    "C"
+  ],
+  "relatedTickers": [
+    "A",
+    "IN",
+    "PLANT",
+    "ON",
+    "THAN",
+    "JUST",
+    "RAPID",
+    "AREA",
+    "OVER",
+    "C"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Morgan Stanley IM Is Hunting for AI-Proof Assets",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/morgan-stanley-im-adds-emerging-market-assets-without-ai-risks",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T07:00:00",
+  "providerPublishTime": 1771826400.0,
+  "text": "Morgan Stanley Investment Management is adding to emerging-market bets that are insulated from the artificial intelligence boom as it positions for a potential pullback in the crowded tech trade, according to Deputy Chief Investment Officer Jitania Kandhari.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iKkCEPlYiv9s/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "A",
+    "FOR",
+    "IM",
+    "BOOM",
+    "BETS",
+    "AS",
+    "AI",
+    "IN",
+    "ARE",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "A",
+    "FOR",
+    "IM",
+    "BOOM",
+    "BETS",
+    "AS",
+    "AI",
+    "IN",
+    "ARE",
+    "THAT"
+  ]
+}

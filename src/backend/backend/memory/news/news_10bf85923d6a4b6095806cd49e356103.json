@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "German Chancellor Merz heads to China seeking openings as global pressure builds",
+  "link": "https://www.investing.com/news/stock-market-news/german-chancellor-merz-heads-to-china-seeking-openings-as-global-pressure-builds-4521273",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:49:11",
+  "providerPublishTime": 1771933751.0,
+  "text": "German Chancellor Merz heads to China seeking openings as global pressure builds",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "AS",
+    "HEADS",
+    "CHINA",
+    "MERZ"
+  ],
+  "relatedTickers": [
+    "TO",
+    "AS",
+    "HEADS",
+    "CHINA",
+    "MERZ"
+  ]
+}

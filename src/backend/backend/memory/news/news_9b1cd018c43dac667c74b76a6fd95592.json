@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Software is already eating AI, HSBC says",
+  "link": "https://www.investing.com/news/stock-market-news/software-is-already-eating-ai-hsbc-says-4520982",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:43:30",
+  "providerPublishTime": 1771929810.0,
+  "text": "Software is already eating AI, HSBC says",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AI",
+    "SAYS",
+    "IS",
+    "HSBC"
+  ],
+  "relatedTickers": [
+    "AI",
+    "SAYS",
+    "IS",
+    "HSBC"
+  ]
+}

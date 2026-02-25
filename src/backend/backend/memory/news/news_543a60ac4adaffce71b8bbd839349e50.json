@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Millennium Exit Spawns Two New Hedge Funds Seeking $1.4 Billion",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/millennium-exit-spawns-two-new-hedge-funds-seeking-1-4-billion",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T11:00:00",
+  "providerPublishTime": 1771840800.0,
+  "text": "Two new commodities hedge funds are seeking to raise a collective $1.4 billion in assets after Millennium Management pulled the plug on the founders’ previous fund last year.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3ZOV6GE9_IY/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "TO",
+    "TWO",
+    "FUNDS",
+    "HEDGE",
+    "THE",
+    "PLUG",
+    "YEAR",
+    "LAST",
+    "ARE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "TO",
+    "TWO",
+    "FUNDS",
+    "HEDGE",
+    "THE",
+    "PLUG",
+    "YEAR",
+    "LAST",
+    "ARE"
+  ]
+}

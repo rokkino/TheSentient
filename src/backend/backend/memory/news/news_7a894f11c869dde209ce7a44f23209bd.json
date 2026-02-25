@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Saudi Tanker Giant Bahri Snaps Up Ships as Rates Near $200,000 a Day",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/saudi-tanker-giant-bahri-snaps-up-ships-as-rates-near-200-000-a-day",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T09:41:06",
+  "providerPublishTime": 1772008866.0,
+  "text": "Saudi Arabia’s biggest oil shipper provisionally hired at least five supertankers, adding to demand for the giant ships at a time when their booking costs are soaring.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iP.8y47v2rRY/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "SHIPS",
+    "THE",
+    "UP",
+    "RATES",
+    "OIL",
+    "AT",
+    "AS",
+    "HIRED",
+    "DAY",
+    "SAUDI"
+  ],
+  "relatedTickers": [
+    "SHIPS",
+    "THE",
+    "UP",
+    "RATES",
+    "OIL",
+    "AT",
+    "AS",
+    "HIRED",
+    "DAY",
+    "SAUDI"
+  ]
+}

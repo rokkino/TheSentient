@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jobs and CPI reports are not being politically manipulated, government’s statistics chief says",
+  "link": "https://www.marketwatch.com/story/jobs-and-cpi-reports-are-not-being-politically-manipulated-governments-statistics-chief-says-f9bc93a0?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T22:52:00",
+  "providerPublishTime": 1771883520.0,
+  "text": "The temporary chief of the U.S. agency that produces critical economic reports on jobs, unemployment and inflation says the data is not being manipulated or influenced by politicians.",
+  "thumbnail": "https://images.mktw.net/im-85515995",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OR",
+    "NOT",
+    "S",
+    "SAYS",
+    "AND",
+    "ARE",
+    "CHIEF",
+    "ON",
+    "IS",
+    "BY"
+  ],
+  "relatedTickers": [
+    "OR",
+    "NOT",
+    "S",
+    "SAYS",
+    "AND",
+    "ARE",
+    "CHIEF",
+    "ON",
+    "IS",
+    "BY"
+  ]
+}

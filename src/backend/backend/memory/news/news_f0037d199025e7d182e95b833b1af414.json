@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russia targets Telegram as rift with founder Pavel Durov deepens",
+  "link": "https://www.ft.com/content/10181abc-ddd2-416f-8b8c-fd30a8447b82",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-24T09:35:01",
+  "providerPublishTime": 1771922101.0,
+  "text": "Kremlin steps up curbs against messaging app and promotes a state-backed rival",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fafefb8bd-c0bb-43e0-9913-7454f3a1e9e0.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "A",
+    "STATE",
+    "WITH",
+    "AND",
+    "DUROV",
+    "RIFT",
+    "STEPS",
+    "CURBS",
+    "AS",
+    "PAVEL"
+  ],
+  "relatedTickers": [
+    "A",
+    "STATE",
+    "WITH",
+    "AND",
+    "DUROV",
+    "RIFT",
+    "STEPS",
+    "CURBS",
+    "AS",
+    "PAVEL"
+  ]
+}

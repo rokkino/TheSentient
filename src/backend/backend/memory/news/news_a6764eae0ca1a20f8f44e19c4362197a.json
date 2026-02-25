@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "There’s another AI-doom post doing the rounds. This time, the S&P 500 dives nearly 40%.",
+  "link": "https://www.marketwatch.com/story/theres-another-ai-doom-post-doing-the-rounds-this-time-the-s-p-500-dives-nearly-40-13162b42?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T11:45:00",
+  "providerPublishTime": 1771843500.0,
+  "text": "A booming AI economy may be very bad for the broader economy, according to Citrini Research",
+  "thumbnail": "https://images.mktw.net/im-30266893",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DOOM",
+    "THIS",
+    "DOING",
+    "TO",
+    "VERY",
+    "FOR",
+    "THE",
+    "TIME",
+    "DIVES",
+    "MAY"
+  ],
+  "relatedTickers": [
+    "DOOM",
+    "THIS",
+    "DOING",
+    "TO",
+    "VERY",
+    "FOR",
+    "THE",
+    "TIME",
+    "DIVES",
+    "MAY"
+  ]
+}

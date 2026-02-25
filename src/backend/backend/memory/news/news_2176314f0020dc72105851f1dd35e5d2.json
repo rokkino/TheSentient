@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hong Kong to Tap Peg Defense Fund for First Time in 40 Years",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/hong-kong-to-tap-peg-defense-fund-for-first-time-in-40-years",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T08:20:44",
+  "providerPublishTime": 1772004044.0,
+  "text": "Hong Kong is planning for the first time in 40 years to tap the fund that ensures the stability of its currency peg, in part to help finance the development of a technology hub on the border with China.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/idyEDFzUrsLs/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "WITH",
+    "FOR",
+    "A",
+    "TO",
+    "THAT",
+    "OF",
+    "FUND",
+    "YEARS",
+    "TIME"
+  ],
+  "relatedTickers": [
+    "THE",
+    "WITH",
+    "FOR",
+    "A",
+    "TO",
+    "THAT",
+    "OF",
+    "FUND",
+    "YEARS",
+    "TIME"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold enters the storybook stage",
+  "link": "https://www.ft.com/content/fadd45c6-e13e-4cbd-9fd8-e967cf113366",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:13",
+  "providerPublishTime": 1771819213.0,
+  "text": "Its price is now far above levels suggested by fundamental forces, but it’s hard to see what might stop its ascent",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F86938387-1d67-4511-9203-a109686752fb.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HARD",
+    "ITS",
+    "ABOVE",
+    "BUT",
+    "STAGE",
+    "BY",
+    "SEE",
+    "WHAT",
+    "PRICE",
+    "NOW"
+  ],
+  "relatedTickers": [
+    "HARD",
+    "ITS",
+    "ABOVE",
+    "BUT",
+    "STAGE",
+    "BY",
+    "SEE",
+    "WHAT",
+    "PRICE",
+    "NOW"
+  ]
+}

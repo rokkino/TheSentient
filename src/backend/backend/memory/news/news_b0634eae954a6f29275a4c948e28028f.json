@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The AI boom is helping Samsung and coming for Apple",
+  "link": "https://finance.yahoo.com/news/the-ai-boom-is-helping-samsung-and-coming-for-apple-110057196.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-23T11:00:57",
+  "providerPublishTime": 1771840857.0,
+  "text": "The AI boom is helping Samsung and coming for Apple",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/0ee991a0-0cb8-11f1-b5ea-8ae5019bf492",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "THE",
+    "BOOM",
+    "APPLE",
+    "FOR",
+    "AND",
+    "AI",
+    "IS"
+  ],
+  "relatedTickers": [
+    "THE",
+    "BOOM",
+    "APPLE",
+    "FOR",
+    "AND",
+    "AI",
+    "IS"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Why Visa Stock Got Clocked Today",
+  "link": "https://finance.yahoo.com/news/why-visa-stock-got-clocked-231430776.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-23T23:14:30",
+  "providerPublishTime": 1771884870.0,
+  "text": "Why Visa Stock Got Clocked Today",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/d57e1dc98fb0f119d9ce67b162b70ba1",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "VISA",
+    "GOT",
+    "WHY",
+    "STOCK",
+    "TODAY"
+  ],
+  "relatedTickers": [
+    "VISA",
+    "GOT",
+    "WHY",
+    "STOCK",
+    "TODAY"
+  ]
+}

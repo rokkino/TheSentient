@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mortgage and refinance interest rates today, February 23, 2026: Looking for a rate below 6%? (How is 5.86%?)",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-rates-today-monday-february-23-2026-110028639.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T11:00:28",
+  "providerPublishTime": 1771840828.0,
+  "text": "Mortgage and refinance interest rates today, February 23, 2026: Looking for a rate below 6%? (How is 5.86%?)",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-04/480de4d0-03ec-11ef-bfff-fe31b82eccd6",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RATE",
+    "TODAY",
+    "RATES",
+    "BELOW",
+    "A",
+    "HOW",
+    "FOR",
+    "AND",
+    "IS"
+  ],
+  "relatedTickers": [
+    "RATE",
+    "TODAY",
+    "RATES",
+    "BELOW",
+    "A",
+    "HOW",
+    "FOR",
+    "AND",
+    "IS"
+  ]
+}

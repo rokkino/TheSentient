@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Aluminium maker Alcoa seeks to sell 10 sites to data centres",
+  "link": "https://www.investing.com/news/stock-market-news/aluminium-maker-alcoa-seeks-to-sell-10-sites-to-data-centres-4522295",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:30:33",
+  "providerPublishTime": 1772008233.0,
+  "text": "Aluminium maker Alcoa seeks to sell 10 sites to data centres",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SELL",
+    "TO",
+    "SITES",
+    "MAKER",
+    "ALCOA",
+    "SEEKS",
+    "DATA"
+  ],
+  "relatedTickers": [
+    "SELL",
+    "TO",
+    "SITES",
+    "MAKER",
+    "ALCOA",
+    "SEEKS",
+    "DATA"
+  ]
+}

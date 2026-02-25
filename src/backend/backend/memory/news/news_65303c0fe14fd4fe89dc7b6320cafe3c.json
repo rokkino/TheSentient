@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Raymond James upgrades Vir Biotechnology stock rating on drug data",
+  "link": "https://www.investing.com/news/analyst-ratings/raymond-james-upgrades-vir-biotechnology-stock-rating-on-drug-data-93CH-4521003",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:52:55",
+  "providerPublishTime": 1771930375.0,
+  "text": "Raymond James upgrades Vir Biotechnology stock rating on drug data",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "DRUG",
+    "DATA",
+    "JAMES",
+    "ON",
+    "STOCK",
+    "VIR"
+  ],
+  "relatedTickers": [
+    "DRUG",
+    "DATA",
+    "JAMES",
+    "ON",
+    "STOCK",
+    "VIR"
+  ]
+}

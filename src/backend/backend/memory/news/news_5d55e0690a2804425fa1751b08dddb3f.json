@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Exclusive-Ex-BOJ chief Kuroda calls for rate hikes, tighter fiscal policy",
+  "link": "https://www.investing.com/news/economy-news/exclusiveexboj-chief-kuroda-calls-for-rate-hikes-tighter-fiscal-policy-4523245",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:06:46",
+  "providerPublishTime": 1772003206.0,
+  "text": "Exclusive-Ex-BOJ chief Kuroda calls for rate hikes, tighter fiscal policy",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CHIEF",
+    "CALLS",
+    "RATE",
+    "BOJ",
+    "HIKES",
+    "FOR",
+    "EX"
+  ],
+  "relatedTickers": [
+    "CHIEF",
+    "CALLS",
+    "RATE",
+    "BOJ",
+    "HIKES",
+    "FOR",
+    "EX"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Diageo Cuts Outlook in Early Challenge for New CEO Lewis",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/diageo-cuts-outlook-in-early-challenge-for-new-ceo-dave-lewis",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T07:07:29",
+  "providerPublishTime": 1771999649.0,
+  "text": "Diageo Plc cut its guidance for the second time this fiscal year as the British distiller struggles to revive demand in the US and China, in an early challenge for new Chief Executive Officer Dave Lewis.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i9UT3C6cQsG4/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PLC",
+    "YEAR",
+    "CHINA",
+    "NEW",
+    "CEO",
+    "AS",
+    "THE",
+    "FOR",
+    "CUT",
+    "CHIEF"
+  ],
+  "relatedTickers": [
+    "PLC",
+    "YEAR",
+    "CHINA",
+    "NEW",
+    "CEO",
+    "AS",
+    "THE",
+    "FOR",
+    "CUT",
+    "CHIEF"
+  ]
+}

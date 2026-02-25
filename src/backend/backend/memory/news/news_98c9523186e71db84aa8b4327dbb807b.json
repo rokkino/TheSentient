@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Barclays initiates H2O America stock with overweight on growth outlook",
+  "link": "https://www.investing.com/news/analyst-ratings/barclays-initiates-h2o-america-stock-with-overweight-on-growth-outlook-93CH-4518309",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:01:37",
+  "providerPublishTime": 1771844497.0,
+  "text": "Barclays initiates H2O America stock with overweight on growth outlook",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "WITH",
+    "ON"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "WITH",
+    "ON"
+  ]
+}

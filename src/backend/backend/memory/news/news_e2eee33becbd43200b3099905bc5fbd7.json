@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Royalty-Backed Abu Dhabi Health Firm Sounds Out Credit Funds",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/abu-dhabi-royalty-backed-health-firm-sounds-out-credit-investors",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T13:04:29",
+  "providerPublishTime": 1771934669.0,
+  "text": "A Middle East healthcare provider backed by Abu Dhabi royalty is looking to raise cash from international fixed-income investors for the first time.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i3dvXNBt3H88/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "EAST",
+    "BY",
+    "FIXED",
+    "TO",
+    "OUT",
+    "IS",
+    "FUNDS",
+    "ABU",
+    "RAISE",
+    "CASH"
+  ],
+  "relatedTickers": [
+    "EAST",
+    "BY",
+    "FIXED",
+    "TO",
+    "OUT",
+    "IS",
+    "FUNDS",
+    "ABU",
+    "RAISE",
+    "CASH"
+  ]
+}

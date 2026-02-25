@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold rises and stocks fall as global trade faces new Trump tariff threat",
+  "link": "https://www.ft.com/content/46199805-8572-4cc2-84c2-8db7f6621769",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T11:39:08",
+  "providerPublishTime": 1771843148.0,
+  "text": "Dollar also dips after US president imposes 15% duty following Supreme Court decision to strike down previous policy",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F9b59354f-2a8e-406e-964a-267f5640cc39.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DIPS",
+    "TO",
+    "FACES",
+    "GOLD",
+    "TRUMP",
+    "FALL",
+    "US",
+    "DUTY",
+    "AFTER",
+    "NEW"
+  ],
+  "relatedTickers": [
+    "DIPS",
+    "TO",
+    "FACES",
+    "GOLD",
+    "TRUMP",
+    "FALL",
+    "US",
+    "DUTY",
+    "AFTER",
+    "NEW"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk to slash US list prices of Ozempic and Wegovy, WSJ reports",
+  "link": "https://www.investing.com/news/stock-market-news/novo-nordisk-to-slash-us-list-prices-of-ozempic-and-wegovy-wsj-reports-4521270",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:48:51",
+  "providerPublishTime": 1771933731.0,
+  "text": "Novo Nordisk to slash US list prices of Ozempic and Wegovy, WSJ reports",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SLASH",
+    "TO",
+    "LIST",
+    "US",
+    "NOVO",
+    "WSJ",
+    "OF",
+    "AND"
+  ],
+  "relatedTickers": [
+    "SLASH",
+    "TO",
+    "LIST",
+    "US",
+    "NOVO",
+    "WSJ",
+    "OF",
+    "AND"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HP’s conservative guidance sends stock down in premarket trading",
+  "link": "https://www.investing.com/news/earnings/hps-conservative-guidance-sends-stock-down-after-hours-4522555",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:18:18",
+  "providerPublishTime": 1772007498.0,
+  "text": "HP’s conservative guidance sends stock down in premarket trading",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "HP",
+    "DOWN",
+    "S",
+    "SENDS",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "IN",
+    "HP",
+    "DOWN",
+    "S",
+    "SENDS",
+    "STOCK"
+  ]
+}

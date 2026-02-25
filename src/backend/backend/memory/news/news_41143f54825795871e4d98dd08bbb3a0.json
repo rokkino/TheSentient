@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mortgage and refinance interest rates today, February 24, 2026: Another new low (5.76% 30-year fixed)",
+  "link": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-rates-today-tuesday-february-24-2026-110020458.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-24T11:00:20",
+  "providerPublishTime": 1771927220.0,
+  "text": "Mortgage and refinance interest rates today, February 24, 2026: Another new low (5.76% 30-year fixed)",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-04/700e25a0-fb43-11ee-be6b-a40c5cf2631a",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NEW",
+    "LOW",
+    "AND",
+    "TODAY",
+    "FIXED",
+    "RATES",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "NEW",
+    "LOW",
+    "AND",
+    "TODAY",
+    "FIXED",
+    "RATES",
+    "YEAR"
+  ]
+}

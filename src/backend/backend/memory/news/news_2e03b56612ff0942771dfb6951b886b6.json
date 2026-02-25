@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Aston Martin cuts jobs by 20% as US tariffs hit",
+  "link": "https://www.investing.com/news/stock-market-news/aston-martin-cuts-jobs-by-20-as-us-tariffs-hit-4523429",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:48:51",
+  "providerPublishTime": 1772009331.0,
+  "text": "Aston Martin cuts jobs by 20% as US tariffs hit",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HIT",
+    "US",
+    "AS",
+    "CUTS",
+    "ASTON",
+    "BY",
+    "JOBS"
+  ],
+  "relatedTickers": [
+    "HIT",
+    "US",
+    "AS",
+    "CUTS",
+    "ASTON",
+    "BY",
+    "JOBS"
+  ]
+}

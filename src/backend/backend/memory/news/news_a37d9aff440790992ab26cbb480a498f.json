@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "American tequila sales are collapsing. Diageo is cutting its dividend in half.",
+  "link": "https://www.marketwatch.com/story/american-tequila-sales-are-collapsing-diageo-is-cutting-its-dividend-in-half-3fc34adb?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T08:47:00",
+  "providerPublishTime": 1772005620.0,
+  "text": "Diageo on Wednesday said it was cutting its dividend in half as it reduced its sales outlook, citing American consumer reluctance to spend due to affordability concerns.",
+  "thumbnail": "https://images.mktw.net/im-97775570",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "SAID",
+    "DUE",
+    "ITS",
+    "SALES",
+    "IT",
+    "IN",
+    "SPEND",
+    "AS",
+    "ARE",
+    "HALF"
+  ],
+  "relatedTickers": [
+    "SAID",
+    "DUE",
+    "ITS",
+    "SALES",
+    "IT",
+    "IN",
+    "SPEND",
+    "AS",
+    "ARE",
+    "HALF"
+  ]
+}

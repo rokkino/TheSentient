@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The world's largest energy lender has a new head: Here's how it could shape U.S. policy",
+  "link": "https://www.cnbc.com/2026/02/22/the-worlds-largest-energy-lender-has-a-new-head-heres-how-it-could-shape-us-policy.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-22T12:32:18",
+  "providerPublishTime": 1771759938.0,
+  "text": "Gregory Beard heads the Office of Energy Dominance Financing, which has nearly $300 billion in lending authority. These are his energy priorities.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WORLD",
+    "NEW",
+    "A",
+    "THESE",
+    "HOW",
+    "HIS",
+    "U",
+    "HAS",
+    "OF",
+    "HEAD"
+  ],
+  "relatedTickers": [
+    "WORLD",
+    "NEW",
+    "A",
+    "THESE",
+    "HOW",
+    "HIS",
+    "U",
+    "HAS",
+    "OF",
+    "HEAD"
+  ]
+}

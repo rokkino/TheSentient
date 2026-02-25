@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Battalion Oil completes $60.1 million West Quito asset sale and amends credit agreement",
+  "link": "https://www.investing.com/news/sec-filings/battalion-oil-completes-601-million-west-quito-asset-sale-and-amends-credit-agreement-93CH-4523685",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T11:12:58",
+  "providerPublishTime": 1772014378.0,
+  "text": "Battalion Oil completes $60.1 million West Quito asset sale and amends credit agreement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "ASSET",
+    "WEST",
+    "QUITO",
+    "AND",
+    "SALE"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "ASSET",
+    "WEST",
+    "QUITO",
+    "AND",
+    "SALE"
+  ]
+}

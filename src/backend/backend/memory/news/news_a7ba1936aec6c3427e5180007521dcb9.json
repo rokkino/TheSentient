@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stocks Mount Cautious Recovery After AI Turmoil: Markets Wrap",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-23/stock-market-today-dow-s-p-live-updates",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-23T22:27:29",
+  "providerPublishTime": 1771882049.0,
+  "text": "Stocks staged a tentative comeback after worries about the disruptive impact of artificial intelligence drove a broad selloff.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIyBAA_mhats/v53/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "BROAD",
+    "A",
+    "MOUNT",
+    "ABOUT",
+    "THE",
+    "DROVE",
+    "AI",
+    "WRAP",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "OF",
+    "BROAD",
+    "A",
+    "MOUNT",
+    "ABOUT",
+    "THE",
+    "DROVE",
+    "AI",
+    "WRAP",
+    "AFTER"
+  ]
+}

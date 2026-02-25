@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Pictet to administer Pareto’s Luxembourg UCITS fund",
+  "link": "https://finance.yahoo.com/news/pictet-administer-pareto-luxembourg-ucits-115047020.html",
+  "publisher": "Private Banker International",
+  "timestamp": "2026-02-23T11:50:47",
+  "providerPublishTime": 1771843847.0,
+  "text": "Pictet to administer Pareto’s Luxembourg UCITS fund",
+  "thumbnail": "https://media.zenfs.com/en/private_banker_international_938/f36e8bbf47671971fda09c2dd669ae7b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "TO",
+    "UCITS",
+    "FUND"
+  ],
+  "relatedTickers": [
+    "S",
+    "TO",
+    "UCITS",
+    "FUND"
+  ]
+}

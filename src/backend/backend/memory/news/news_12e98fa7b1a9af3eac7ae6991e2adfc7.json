@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Municipality Finance taps USD benchmark with $25m tranche",
+  "link": "https://www.investing.com/news/company-news/municipality-finance-taps-usd-benchmark-with-25m-tranche-93CH-4520613",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:15:08",
+  "providerPublishTime": 1771917308.0,
+  "text": "Municipality Finance taps USD benchmark with $25m tranche",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "USD",
+    "TAPS",
+    "WITH"
+  ],
+  "relatedTickers": [
+    "USD",
+    "TAPS",
+    "WITH"
+  ]
+}

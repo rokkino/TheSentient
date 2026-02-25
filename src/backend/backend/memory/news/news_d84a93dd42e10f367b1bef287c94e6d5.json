@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 6K ICICI BANK LTD For: 23 February",
+  "link": "https://www.investing.com/news/filings/form-6k-icici-bank-ltd-for-23-february-93CH-4518298",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:01:00",
+  "providerPublishTime": 1771844460.0,
+  "text": "Form 6K ICICI BANK LTD For: 23 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "FORM",
+    "BANK",
+    "LTD",
+    "ICICI"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "FORM",
+    "BANK",
+    "LTD",
+    "ICICI"
+  ]
+}

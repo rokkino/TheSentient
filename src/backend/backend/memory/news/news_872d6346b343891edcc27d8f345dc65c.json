@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Wells Fargo reiterates Overweight on CoreWeave stock, $125 target",
+  "link": "https://www.investing.com/news/analyst-ratings/wells-fargo-reiterates-overweight-on-coreweave-stock-125-target-93CH-4518307",
+  "publisher": "All News",
+  "timestamp": "2026-02-23T12:01:33",
+  "providerPublishTime": 1771844493.0,
+  "text": "Wells Fargo reiterates Overweight on CoreWeave stock, $125 target",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "ON",
+    "WELLS",
+    "FARGO"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "ON",
+    "WELLS",
+    "FARGO"
+  ]
+}

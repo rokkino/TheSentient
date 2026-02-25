@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump makes little mention of China in the longest State of the Union speech",
+  "link": "https://www.cnbc.com/2026/02/25/trump-china-state-of-the-union-speech.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T08:42:49",
+  "providerPublishTime": 1772005369.0,
+  "text": "U.S. President Donald Trump is scheduled to visit Beijing from March 31 to April 2, after a year of heightened trade tensions between the two countries.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FROM",
+    "S",
+    "YEAR",
+    "MAKES",
+    "OF",
+    "MARCH",
+    "VISIT",
+    "UNION",
+    "APRIL",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "FROM",
+    "S",
+    "YEAR",
+    "MAKES",
+    "OF",
+    "MARCH",
+    "VISIT",
+    "UNION",
+    "APRIL",
+    "AFTER"
+  ]
+}

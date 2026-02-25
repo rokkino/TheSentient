@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "South Africa Traders Are Most Bearish on Rand in Three Years",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/south-africa-traders-are-most-bearish-on-rand-in-three-years",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T05:00:00",
+  "providerPublishTime": 1771905600.0,
+  "text": "Bearish options bets on the rand are at the highest in almost three years as traders start to question whether the South African currency’s headlong rally has further to run.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIp80M1fpAXE/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MOST",
+    "IN",
+    "RUN",
+    "BETS",
+    "S",
+    "ARE",
+    "TO",
+    "ON",
+    "AT",
+    "HAS"
+  ],
+  "relatedTickers": [
+    "MOST",
+    "IN",
+    "RUN",
+    "BETS",
+    "S",
+    "ARE",
+    "TO",
+    "ON",
+    "AT",
+    "HAS"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Harworth Group appoints Barclays as joint corporate broker",
+  "link": "https://www.investing.com/news/company-news/harworth-group-appoints-barclays-as-joint-corporate-broker-93CH-4523379",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T08:02:42",
+  "providerPublishTime": 1772002962.0,
+  "text": "Harworth Group appoints Barclays as joint corporate broker",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GROUP",
+    "AS",
+    "JOINT"
+  ],
+  "relatedTickers": [
+    "GROUP",
+    "AS",
+    "JOINT"
+  ]
+}

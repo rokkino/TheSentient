@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Factbox-From OpenAI to Nvidia, firms channel billions into AI infrastructure as demand booms",
+  "link": "https://www.investing.com/news/stock-market-news/factboxfrom-openai-to-nvidia-firms-channel-billions-into-ai-infrastructure-as-demand-booms-4521170",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:30:33",
+  "providerPublishTime": 1771932633.0,
+  "text": "Factbox-From OpenAI to Nvidia, firms channel billions into AI infrastructure as demand booms",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "FROM",
+    "BOOMS",
+    "INTO",
+    "FIRMS",
+    "AS",
+    "AI"
+  ],
+  "relatedTickers": [
+    "TO",
+    "FROM",
+    "BOOMS",
+    "INTO",
+    "FIRMS",
+    "AS",
+    "AI"
+  ]
+}

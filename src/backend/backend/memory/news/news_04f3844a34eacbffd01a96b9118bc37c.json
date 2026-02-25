@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Spirit Airlines plans to slash flights, fleet in bid to emerge from bankruptcy as early as spring",
+  "link": "https://www.cnbc.com/2026/02/24/spirit-airlines-bankruptcy-flights.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T22:06:30",
+  "providerPublishTime": 1771967190.0,
+  "text": "Spirit Airlines has reached an agreement with lenders to emerge from bankruptcy by late spring or early summer.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BY",
+    "FLEET",
+    "SLASH",
+    "TO",
+    "HAS",
+    "BID",
+    "FROM",
+    "IN",
+    "WITH",
+    "OR"
+  ],
+  "relatedTickers": [
+    "BY",
+    "FLEET",
+    "SLASH",
+    "TO",
+    "HAS",
+    "BID",
+    "FROM",
+    "IN",
+    "WITH",
+    "OR"
+  ]
+}

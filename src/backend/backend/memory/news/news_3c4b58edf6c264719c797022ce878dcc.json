@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump-backed crypto stablecoin dips following 'attack,' quickly recovers",
+  "link": "https://finance.yahoo.com/news/trump-backed-crypto-stablecoin-dips-231026853.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-23T23:10:26",
+  "providerPublishTime": 1771884626.0,
+  "text": "Trump-backed crypto stablecoin dips following 'attack,' quickly recovers",
+  "thumbnail": "https://media.zenfs.com/en/reuters-finance.com/7862f5b35379133082a9eb3e7173f47a",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DIPS",
+    "TRUMP"
+  ],
+  "relatedTickers": [
+    "DIPS",
+    "TRUMP"
+  ]
+}

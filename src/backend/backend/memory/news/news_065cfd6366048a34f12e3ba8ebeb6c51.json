@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Best high-yield savings interest rates today, February 23, 2026 (Earn up to 4% APY)",
+  "link": "https://finance.yahoo.com/personal-finance/article/best-high-yield-savings-interest-rates-today-monday-february-23-2026-110000563.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T11:00:00",
+  "providerPublishTime": 1771840800.0,
+  "text": "Best high-yield savings interest rates today, February 23, 2026 (Earn up to 4% APY)",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2024-07/0a4cca40-4b7b-11ef-abf9-2f9f6d2c2f16",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TO",
+    "TODAY",
+    "BEST",
+    "UP",
+    "EARN",
+    "RATES",
+    "YIELD",
+    "HIGH",
+    "APY"
+  ],
+  "relatedTickers": [
+    "TO",
+    "TODAY",
+    "BEST",
+    "UP",
+    "EARN",
+    "RATES",
+    "YIELD",
+    "HIGH",
+    "APY"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Guggenheim cuts Spotify stock price target on margin outlook",
+  "link": "https://www.investing.com/news/analyst-ratings/guggenheim-cuts-spotify-stock-price-target-on-margin-outlook-93CH-4521267",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:47:27",
+  "providerPublishTime": 1771933647.0,
+  "text": "Guggenheim cuts Spotify stock price target on margin outlook",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CUTS",
+    "STOCK",
+    "ON",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "CUTS",
+    "STOCK",
+    "ON",
+    "PRICE"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Needham Raises PT on Allegro MicroSystems, Inc. (ALGM) Stock",
+  "link": "https://finance.yahoo.com/news/needham-raises-pt-allegro-microsystems-205651897.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-23T20:56:51",
+  "providerPublishTime": 1771876611.0,
+  "text": "Needham Raises PT on Allegro MicroSystems, Inc. (ALGM) Stock",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/85e9c553a2b5709240e97d8ade6be2fd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PT",
+    "ALGM",
+    "INC",
+    "STOCK",
+    "ON"
+  ],
+  "relatedTickers": [
+    "PT",
+    "ALGM",
+    "INC",
+    "STOCK",
+    "ON"
+  ]
+}

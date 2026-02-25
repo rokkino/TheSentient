@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Insmed Incorporated (INSM) Gained from Its Lead Product ARIKAYCE",
+  "link": "https://finance.yahoo.com/news/insmed-incorporated-insm-gained-lead-121915397.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T12:19:15",
+  "providerPublishTime": 1771931955.0,
+  "text": "Insmed Incorporated (INSM) Gained from Its Lead Product ARIKAYCE",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/172d2564d72ea7592aa716bdc277d793",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ITS",
+    "INSM",
+    "LEAD",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "ITS",
+    "INSM",
+    "LEAD",
+    "FROM"
+  ]
+}

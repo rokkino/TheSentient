@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Intel partners with AI chip startup SambaNova after acquisition talks reportedly failed",
+  "link": "https://www.cnbc.com/2026/02/24/intel-partners-with-sambanova-after-buyout-talks-reportedly-failed.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-24T11:00:02",
+  "providerPublishTime": 1771927202.0,
+  "text": "Intel CEO Lip-Bu Tan first invested in SambaNova in 2017. Now the chipmaker he runs is putting more capital behind the startup.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RUNS",
+    "CHIP",
+    "WITH",
+    "TALKS",
+    "LIP",
+    "THE",
+    "BU",
+    "NOW",
+    "IN",
+    "TAN"
+  ],
+  "relatedTickers": [
+    "RUNS",
+    "CHIP",
+    "WITH",
+    "TALKS",
+    "LIP",
+    "THE",
+    "BU",
+    "NOW",
+    "IN",
+    "TAN"
+  ]
+}

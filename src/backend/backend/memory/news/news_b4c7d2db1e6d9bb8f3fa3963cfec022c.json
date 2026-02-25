@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘Money's moving out of tech’: Wall Street weighs stock market winners amid the AI scare trade",
+  "link": "https://finance.yahoo.com/news/moneys-moving-out-of-tech-wall-street-weighs-stock-market-winners-amid-the-ai-scare-trade-160024597.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-22T16:00:24",
+  "providerPublishTime": 1771772424.0,
+  "text": "‘Money's moving out of tech’: Wall Street weighs stock market winners amid the AI scare trade",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/320cbdc0-0e7e-11f1-97f5-5b2a48bc02b9",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "SCARE",
+    "AI",
+    "WALL",
+    "THE",
+    "OUT",
+    "STOCK",
+    "TRADE",
+    "AMID",
+    "OF"
+  ],
+  "relatedTickers": [
+    "S",
+    "SCARE",
+    "AI",
+    "WALL",
+    "THE",
+    "OUT",
+    "STOCK",
+    "TRADE",
+    "AMID",
+    "OF"
+  ]
+}

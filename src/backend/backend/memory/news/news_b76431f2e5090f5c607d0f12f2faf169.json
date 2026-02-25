@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Workday tumbles on dour revenue outlook amid AI threat",
+  "link": "https://www.investing.com/news/stock-market-news/workday-tumbles-on-dour-revenue-outlook-amid-ai-threat-4523423",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T09:30:50",
+  "providerPublishTime": 1772008250.0,
+  "text": "Workday tumbles on dour revenue outlook amid AI threat",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DOUR",
+    "AMID",
+    "AI",
+    "ON"
+  ],
+  "relatedTickers": [
+    "DOUR",
+    "AMID",
+    "AI",
+    "ON"
+  ]
+}

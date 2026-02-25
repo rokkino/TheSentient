@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "‘I need to get my financial ducks in a row’: I’m 80 with $1 million. How do I prevent my son from being hit with inheritance tax?",
+  "link": "https://www.marketwatch.com/story/i-need-to-get-my-financial-ducks-in-a-row-im-80-with-1-million-how-do-i-prevent-my-son-from-being-hit-with-inheritance-tax-27913be6?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-23T12:00:00",
+  "providerPublishTime": 1771844400.0,
+  "text": "“I have $650,000 in investments, $250,000 in life insurance and about $150,000 equity in my home.”",
+  "thumbnail": "https://images.mktw.net/im-78892200",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MY",
+    "A",
+    "HOW",
+    "M",
+    "HAVE",
+    "GET",
+    "ABOUT",
+    "DO",
+    "TAX",
+    "NEED"
+  ],
+  "relatedTickers": [
+    "MY",
+    "A",
+    "HOW",
+    "M",
+    "HAVE",
+    "GET",
+    "ABOUT",
+    "DO",
+    "TAX",
+    "NEED"
+  ]
+}

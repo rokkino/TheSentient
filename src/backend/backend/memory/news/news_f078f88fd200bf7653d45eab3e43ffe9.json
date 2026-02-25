@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "William Hague: Britons in their 60s are the ‘luckiest generation’ in history",
+  "link": "https://www.ft.com/content/7202f1c9-7640-4ff3-b9f5-a23099fc893a",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-23T05:00:13",
+  "providerPublishTime": 1771819213.0,
+  "text": "Oxford university chancellor calls for ‘national conversation’ around young people facing high student debt and living costs",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F7060ef87-02d8-488d-a4e3-cf77f23f347c.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "THEIR",
+    "CALLS",
+    "YOUNG",
+    "THE",
+    "DEBT",
+    "ARE",
+    "COSTS",
+    "HIGH",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "IN",
+    "THEIR",
+    "CALLS",
+    "YOUNG",
+    "THE",
+    "DEBT",
+    "ARE",
+    "COSTS",
+    "HIGH",
+    "FOR"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stock market today: Dow, S&P 500, Nasdaq futures edge up after AI-fueled sell-off as new Trump tariff kicks in",
+  "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-edge-up-after-ai-fueled-sell-off-as-new-trump-tariff-kicks-in-234004649.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-23T23:40:04",
+  "providerPublishTime": 1771886404.0,
+  "text": "Stock market today: Dow, S&P 500, Nasdaq futures edge up after AI-fueled sell-off as new Trump tariff kicks in",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/ec4bfaa0-110f-11f1-9fe8-a0537741e064",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TRUMP",
+    "NEW",
+    "P",
+    "EDGE",
+    "DOW",
+    "TODAY",
+    "OFF",
+    "IN",
+    "SELL",
+    "S"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "NEW",
+    "P",
+    "EDGE",
+    "DOW",
+    "TODAY",
+    "OFF",
+    "IN",
+    "SELL",
+    "S"
+  ]
+}

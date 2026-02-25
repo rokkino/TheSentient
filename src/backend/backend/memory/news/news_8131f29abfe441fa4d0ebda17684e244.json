@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 6K GSK plc For: 24 February",
+  "link": "https://www.investing.com/news/filings/form-6k-gsk-plc-for-24-february-93CH-4520969",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T11:40:43",
+  "providerPublishTime": 1771929643.0,
+  "text": "Form 6K GSK plc For: 24 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FORM",
+    "PLC",
+    "FOR",
+    "GSK"
+  ],
+  "relatedTickers": [
+    "FORM",
+    "PLC",
+    "FOR",
+    "GSK"
+  ]
+}

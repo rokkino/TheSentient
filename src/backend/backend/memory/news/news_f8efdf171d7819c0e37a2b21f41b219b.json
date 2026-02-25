@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Old-Economy Stocks Are Looking Pretty Good Right About Now",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-24/old-economy-stocks-are-looking-pretty-good-right-about-now",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T11:06:54",
+  "providerPublishTime": 1771927614.0,
+  "text": "<p>A basket of capital-intensive stocks is rallying as investors flee AI disruption.</p>",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/imi9iUPDjtKQ/v0/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "IS",
+    "GOOD",
+    "A",
+    "ABOUT",
+    "P",
+    "NOW",
+    "FLEE",
+    "AS",
+    "AI"
+  ],
+  "relatedTickers": [
+    "OF",
+    "IS",
+    "GOOD",
+    "A",
+    "ABOUT",
+    "P",
+    "NOW",
+    "FLEE",
+    "AS",
+    "AI"
+  ]
+}

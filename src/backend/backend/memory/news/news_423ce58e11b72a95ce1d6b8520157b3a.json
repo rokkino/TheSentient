@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 144 Sol-Gel Technologies Ltd. For: 24 February",
+  "link": "https://www.investing.com/news/filings/form-144-solgel-technologies-ltd-for-24-february-93CH-4521268",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T12:48:22",
+  "providerPublishTime": 1771933702.0,
+  "text": "Form 144 Sol-Gel Technologies Ltd. For: 24 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GEL",
+    "FORM",
+    "SOL",
+    "FOR",
+    "LTD"
+  ],
+  "relatedTickers": [
+    "GEL",
+    "FORM",
+    "SOL",
+    "FOR",
+    "LTD"
+  ]
+}

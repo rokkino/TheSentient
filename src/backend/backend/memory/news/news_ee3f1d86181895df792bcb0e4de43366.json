@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jet linked to Epstein landed at RAF base in 2013, documents show",
+  "link": "https://www.ft.com/content/1d0b0747-dac2-4a2a-9238-fa0d79e5ca74",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-22T21:03:59",
+  "providerPublishTime": 1771790639.0,
+  "text": "MPs urge Ministry of Defence to publish any information it has about the use of UK air bases by the convicted sex offender",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5b1411b0-f774-4458-9f63-4328d61dfc1f.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "UK",
+    "AT",
+    "SEX",
+    "MPS",
+    "ANY",
+    "HAS",
+    "BASE",
+    "URGE",
+    "ABOUT",
+    "BY"
+  ],
+  "relatedTickers": [
+    "UK",
+    "AT",
+    "SEX",
+    "MPS",
+    "ANY",
+    "HAS",
+    "BASE",
+    "URGE",
+    "ABOUT",
+    "BY"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Kuntarahoitus issues $25M add-on to benchmark bond",
+  "link": "https://www.investing.com/news/company-news/kuntarahoitus-issues-25m-addon-to-benchmark-bond-93CH-4520609",
+  "publisher": "All News",
+  "timestamp": "2026-02-24T08:07:30",
+  "providerPublishTime": 1771916850.0,
+  "text": "Kuntarahoitus issues $25M add-on to benchmark bond",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BOND",
+    "TO",
+    "ADD",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BOND",
+    "TO",
+    "ADD",
+    "ON"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Michael Saylor Hits 100 Bitcoin Buys—And He's Not Stopping Despite A $7 Billion Loss",
+  "link": "https://finance.yahoo.com/news/michael-saylor-hits-100-bitcoin-133058007.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-25T13:30:58",
+  "providerPublishTime": 1772022658.0,
+  "text": "Michael Saylor Hits 100 Bitcoin Buys—And He's Not Stopping Despite A $7 Billion Loss",
+  "thumbnail": "https://media.zenfs.com/en/benzinga_79/95f9151079c8ccb1cf6347e58a315f09",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "NOT",
+    "BUYS",
+    "HE",
+    "A",
+    "HITS",
+    "LOSS",
+    "AND",
+    "S"
+  ],
+  "relatedTickers": [
+    "NOT",
+    "BUYS",
+    "HE",
+    "A",
+    "HITS",
+    "LOSS",
+    "AND",
+    "S"
+  ]
+}

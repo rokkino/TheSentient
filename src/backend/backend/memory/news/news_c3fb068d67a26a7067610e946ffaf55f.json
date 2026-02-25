@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Southwest Gas Holdings Inc For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-8k-southwest-gas-holdings-inc-for-25-february-93CH-4524164",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:21:05",
+  "providerPublishTime": 1772022065.0,
+  "text": "Form 8K Southwest Gas Holdings Inc For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GAS",
+    "FOR",
+    "FORM",
+    "INC"
+  ],
+  "relatedTickers": [
+    "GAS",
+    "FOR",
+    "FORM",
+    "INC"
+  ]
+}

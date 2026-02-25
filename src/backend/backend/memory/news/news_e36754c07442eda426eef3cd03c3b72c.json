@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Longleaf Partners Small-Cap Fund’s Investment in Oscar Health (OSCR) Paid Off",
+  "link": "https://finance.yahoo.com/news/longleaf-partners-small-cap-fund-125836109.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T12:58:36",
+  "providerPublishTime": 1772020716.0,
+  "text": "Longleaf Partners Small-Cap Fund’s Investment in Oscar Health (OSCR) Paid Off",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/00a432002deb447667abbc0fa1132c73",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OFF",
+    "PAID",
+    "OSCR",
+    "FUND",
+    "SMALL",
+    "IN",
+    "OSCAR",
+    "S",
+    "CAP"
+  ],
+  "relatedTickers": [
+    "OFF",
+    "PAID",
+    "OSCR",
+    "FUND",
+    "SMALL",
+    "IN",
+    "OSCAR",
+    "S",
+    "CAP"
+  ]
+}

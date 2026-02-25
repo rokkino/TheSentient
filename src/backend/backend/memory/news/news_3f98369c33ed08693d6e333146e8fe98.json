@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Turkey’s Vestel in Talks to Restructure $500 Million of Debt",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/turkey-s-vestel-in-talks-to-restructure-500-million-of-debt",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:15:56",
+  "providerPublishTime": 1772021756.0,
+  "text": "Vestel Elektronik, a Turkish home-appliance and electronics manufacturer that has reported losses every quarter for the past two years, is in talks with banks to restructure more than $500 million of debt.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HAS",
+    "IS",
+    "THE",
+    "FOR",
+    "PAST",
+    "YEARS",
+    "AND",
+    "THAT",
+    "THAN",
+    "MORE"
+  ],
+  "relatedTickers": [
+    "HAS",
+    "IS",
+    "THE",
+    "FOR",
+    "PAST",
+    "YEARS",
+    "AND",
+    "THAT",
+    "THAN",
+    "MORE"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Gold price today, Wednesday, February 24: Gold opens above $5,100 with tariffs, geopolitical risks in focus",
+  "link": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-wednesday-february-24-gold-opens-above-5100-with-tariffs-geopolitical-risks-in-focus-124058992.html",
+  "publisher": "Yahoo Personal Finance",
+  "timestamp": "2026-02-23T12:40:58",
+  "providerPublishTime": 1771846858.0,
+  "text": "Gold price today, Wednesday, February 24: Gold opens above $5,100 with tariffs, geopolitical risks in focus",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2025-10/b4fba110-b113-11f0-bdf7-8b0ac08fed6a",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "FOCUS",
+    "IN",
+    "TODAY",
+    "OPENS",
+    "PRICE",
+    "WITH",
+    "ABOVE",
+    "RISKS",
+    "GOLD"
+  ],
+  "relatedTickers": [
+    "FOCUS",
+    "IN",
+    "TODAY",
+    "OPENS",
+    "PRICE",
+    "WITH",
+    "ABOVE",
+    "RISKS",
+    "GOLD"
+  ]
+}

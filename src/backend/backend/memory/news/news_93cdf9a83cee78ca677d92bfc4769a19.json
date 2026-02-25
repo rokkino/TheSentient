@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Aristotle Growth Equity Fund: Snowflake (SNOW) Stands Out as a Leading Data Cloud Platform",
+  "link": "https://finance.yahoo.com/news/aristotle-growth-equity-fund-snowflake-140652743.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T14:06:52",
+  "providerPublishTime": 1772024812.0,
+  "text": "Aristotle Growth Equity Fund: Snowflake (SNOW) Stands Out as a Leading Data Cloud Platform",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/a3bdb4b754fd53d76e6bb927d6f8c31d",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OUT",
+    "AS",
+    "A",
+    "DATA",
+    "FUND",
+    "CLOUD",
+    "SNOW"
+  ],
+  "relatedTickers": [
+    "OUT",
+    "AS",
+    "A",
+    "DATA",
+    "FUND",
+    "CLOUD",
+    "SNOW"
+  ]
+}

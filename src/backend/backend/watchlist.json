@@ -16,10 +16,6 @@
     "name": "Bitcoin USD"
   },
   {
-    "symbol": "XAU",
-    "name": "Gold Futures"
-  },
-  {
     "symbol": "GC=F",
     "name": "Gold Futures"
   }

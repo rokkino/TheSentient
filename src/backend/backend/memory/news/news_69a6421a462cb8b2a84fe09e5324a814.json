@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Evogene refocuses on AI drug discovery platform ChemPass",
+  "link": "https://www.investing.com/news/company-news/evogene-refocuses-on-ai-drug-discovery-platform-chempass-93CH-4524108",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:05:43",
+  "providerPublishTime": 1772021143.0,
+  "text": "Evogene refocuses on AI drug discovery platform ChemPass",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ON",
+    "DRUG",
+    "AI"
+  ],
+  "relatedTickers": [
+    "ON",
+    "DRUG",
+    "AI"
+  ]
+}

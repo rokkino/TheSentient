@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "MGP Ingredients beats estimates but guides below expectations",
+  "link": "https://www.investing.com/news/earnings/mgp-ingredients-beats-estimates-but-guides-below-expectations-93CH-4524036",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:49:55",
+  "providerPublishTime": 1772020195.0,
+  "text": "MGP Ingredients beats estimates but guides below expectations",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BELOW",
+    "BUT",
+    "MGP",
+    "BEATS"
+  ],
+  "relatedTickers": [
+    "BELOW",
+    "BUT",
+    "MGP",
+    "BEATS"
+  ]
+}

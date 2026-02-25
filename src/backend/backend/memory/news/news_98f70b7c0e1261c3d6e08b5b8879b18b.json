@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cantor raises DigitalOcean stock price target on AI growth momentum",
+  "link": "https://www.investing.com/news/analyst-ratings/cantor-raises-digitalocean-stock-price-target-on-ai-growth-momentum-93CH-4524305",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:45:00",
+  "providerPublishTime": 1772023500.0,
+  "text": "Cantor raises DigitalOcean stock price target on AI growth momentum",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "PRICE",
+    "ON",
+    "AI"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "PRICE",
+    "ON",
+    "AI"
+  ]
+}

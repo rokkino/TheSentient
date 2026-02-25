@@ -216,13 +216,18 @@ const getCalculatedMetric = (bot, metricType) => {
   }
   
   if (metricType === 'profit') {
+    // If getting ALL time, the profit is just the latest value.
+    if (timeRange.value === 'ALL') {
+      return filtered[filtered.length - 1].value
+    }
+    // For smaller windows, calculate the delta relative to the start of the window
     if (filtered.length < 2) return filtered.length === 1 ? filtered[0].value : bot.profit
     const startObj = filtered[0]
     const endObj = filtered[filtered.length - 1]
     return endObj.value - startObj.value // Delta in profit percentage
   } else {
-    return filtered[filtered.length - 1].winRate !== undefined ? filtered[filtered.length - 1].winRate : (bot.win_rate || 0)
-  } // Win rate is not a delta, just the latest over that period
+    return filtered[filtered.length - 1].winRate !== undefined ? filtered[filtered.length - 1].winRate : (bot.winRate || 0)
+  } 
 }
 
 const leaderboardBots = computed(() => {

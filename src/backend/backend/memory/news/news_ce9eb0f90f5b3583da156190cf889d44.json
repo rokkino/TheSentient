@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nasdaq tipped to lead gains ahead of Nvidia and Salesforce earnings",
+  "link": "https://finance.yahoo.com/news/nasdaq-tipped-lead-gains-ahead-131300457.html",
+  "publisher": "Proactive",
+  "timestamp": "2026-02-25T13:13:00",
+  "providerPublishTime": 1772021580.0,
+  "text": "Nasdaq tipped to lead gains ahead of Nvidia and Salesforce earnings",
+  "thumbnail": "https://media.zenfs.com/en/proactive_us_504/015c0fa641ddae22f7c939d5cb6ffda0",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "LEAD",
+    "TO",
+    "OF",
+    "GAINS",
+    "AND",
+    "AHEAD"
+  ],
+  "relatedTickers": [
+    "LEAD",
+    "TO",
+    "OF",
+    "GAINS",
+    "AND",
+    "AHEAD"
+  ]
+}

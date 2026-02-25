@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Keysight Technologies (KEYS) is Returning to Growth",
+  "link": "https://finance.yahoo.com/news/keysight-technologies-keys-returning-growth-121710161.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T12:17:10",
+  "providerPublishTime": 1772018230.0,
+  "text": "Keysight Technologies (KEYS) is Returning to Growth",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/928fee4ed8ebd1f95596ab330e63279c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IS",
+    "TO",
+    "KEYS"
+  ],
+  "relatedTickers": [
+    "IS",
+    "TO",
+    "KEYS"
+  ]
+}

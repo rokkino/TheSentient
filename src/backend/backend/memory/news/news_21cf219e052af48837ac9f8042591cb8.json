@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Desjardins Scouts for Hires and Deals to Expand Wealth, Capital Markets",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/desjardins-scouts-for-hires-and-deals-to-expand-wealth-capital-markets",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:30:57",
+  "providerPublishTime": 1772022657.0,
+  "text": "Quebec’s Desjardins Group wants to expand further in the rest of Canada, its top executive said, an ambition that means it needs to make deals and add staff in wealth management and capital markets.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iE5AHf8ADgHM/v2/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "ADD",
+    "FOR",
+    "AND",
+    "THAT",
+    "MAKE",
+    "TOP",
+    "IN",
+    "NEEDS",
+    "REST"
+  ],
+  "relatedTickers": [
+    "THE",
+    "ADD",
+    "FOR",
+    "AND",
+    "THAT",
+    "MAKE",
+    "TOP",
+    "IN",
+    "NEEDS",
+    "REST"
+  ]
+}

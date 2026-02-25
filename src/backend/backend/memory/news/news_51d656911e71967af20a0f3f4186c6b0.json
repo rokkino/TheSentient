@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oxford Biomedica rejects EQT takeover approach",
+  "link": "https://www.investing.com/news/company-news/oxford-biomedica-rejects-eqt-takeover-approach-93CH-4523989",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:34:35",
+  "providerPublishTime": 1772019275.0,
+  "text": "Oxford Biomedica rejects EQT takeover approach",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "EQT"
+  ],
+  "relatedTickers": [
+    "EQT"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Texas Instruments (TXN) Fell Due to Quicker Recovery Expectation",
+  "link": "https://finance.yahoo.com/news/texas-instruments-txn-fell-due-122115042.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T12:21:15",
+  "providerPublishTime": 1772018475.0,
+  "text": "Texas Instruments (TXN) Fell Due to Quicker Recovery Expectation",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/318214b27e0dfe70cf048105ca9e5501",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "DUE",
+    "TEXAS",
+    "FELL",
+    "TXN"
+  ],
+  "relatedTickers": [
+    "TO",
+    "DUE",
+    "TEXAS",
+    "FELL",
+    "TXN"
+  ]
+}

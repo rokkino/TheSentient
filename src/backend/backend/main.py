@@ -2609,6 +2609,60 @@ async def get_earnings(
             except Exception as cache_error:
                 print(f"[API] Cache fallback failed: {cache_error}")
         
+        # Filter out earnings before the target start date to ensure we always start from present day (or requested offset)
+        if start_date:
+            base_start = datetime.fromisoformat(start_date.replace('Z', '+00:00')).date()
+        else:
+            base_start = datetime.now().date()
+        
+        # Filter out earnings before the target start date to ensure we always start from present day (or requested offset)
+        if start_date:
+            base_start = datetime.fromisoformat(start_date.replace('Z', '+00:00')).date()
+        else:
+            base_start = datetime.now().date()
+        
+        target_start_date = base_start + timedelta(days=30 * offset_months)
+        target_end_date = target_start_date + timedelta(days=30 * months)
+        
+        filtered_earnings = []
+        seen = set()
+        
+        for earning in earnings_data:
+            earning_date_str = earning.get('date')
+            symbol = earning.get('symbol', '')
+            
+            if earning_date_str:
+                try:
+                    if 'T' in earning_date_str:
+                        earning_date_str = earning_date_str.split('T')[0]
+                    e_date = datetime.strptime(earning_date_str, '%Y-%m-%d').date()
+                    if target_start_date <= e_date <= target_end_date:
+                        # deduplicate by symbol and date
+                        unique_key = f"{symbol}_{e_date.isoformat()}"
+                        if unique_key not in seen:
+                            seen.add(unique_key)
+                            filtered_earnings.append(earning)
+                except Exception:
+                    unique_key = f"{symbol}_{earning_date_str}"
+                    if unique_key not in seen:
+                        seen.add(unique_key)
+                        filtered_earnings.append(earning) # keep if can't parse
+            else:
+                filtered_earnings.append(earning)
+        
+        # Sort by date
+        def extract_date(e):
+            d_str = e.get('date', '')
+            if 'T' in d_str: d_str = d_str.split('T')[0]
+            try:
+                return datetime.strptime(d_str, '%Y-%m-%d').date()
+            except:
+                return target_start_date
+                
+        filtered_earnings.sort(key=extract_date)
+        earnings_data = filtered_earnings
+
+
         # Includiamo tutti i giorni (anche sabato e domenica)
         
         # Save earnings data to JSON file for AI access (only when content changed to avoid repeated writes)

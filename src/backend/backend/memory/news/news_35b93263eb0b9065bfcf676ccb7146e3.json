@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Kratos Defense wins $61 million Navy contract modification",
+  "link": "https://www.investing.com/news/company-news/kratos-defense-wins-61-million-navy-contract-modification-93CH-4524106",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:05:23",
+  "providerPublishTime": 1772021123.0,
+  "text": "Kratos Defense wins $61 million Navy contract modification",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WINS",
+    "NAVY"
+  ],
+  "relatedTickers": [
+    "WINS",
+    "NAVY"
+  ]
+}

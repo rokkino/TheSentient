@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings call transcript: Immunocore Holdings Q4 2025 reveals strong growth, stock dips",
+  "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-immunocore-holdings-q4-2025-reveals-strong-growth-stock-dips-93CH-4524398",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:58:39",
+  "providerPublishTime": 1772024319.0,
+  "text": "Earnings call transcript: Immunocore Holdings Q4 2025 reveals strong growth, stock dips",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "CALL",
+    "DIPS"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "CALL",
+    "DIPS"
+  ]
+}

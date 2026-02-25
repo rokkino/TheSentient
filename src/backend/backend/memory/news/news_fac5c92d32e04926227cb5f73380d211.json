@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stratasys reports 22% reliability gain for F900 3D printer",
+  "link": "https://www.investing.com/news/company-news/stratasys-reports-22-reliability-gain-for-f900-3d-printer-93CH-4524163",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:21:02",
+  "providerPublishTime": 1772022062.0,
+  "text": "Stratasys reports 22% reliability gain for F900 3D printer",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GAIN",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "GAIN",
+    "FOR"
+  ]
+}

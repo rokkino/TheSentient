@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UBS raises DigitalOcean stock price target on 2027 growth outlook",
+  "link": "https://www.investing.com/news/analyst-ratings/ubs-raises-digitalocean-stock-price-target-on-2027-growth-outlook-93CH-4524367",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:56:51",
+  "providerPublishTime": 1772024211.0,
+  "text": "UBS raises DigitalOcean stock price target on 2027 growth outlook",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "UBS",
+    "STOCK",
+    "PRICE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "UBS",
+    "STOCK",
+    "PRICE",
+    "ON"
+  ]
+}

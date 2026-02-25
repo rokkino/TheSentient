@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "nVent Electric stock reaches all-time high at 121.0 USD",
+  "link": "https://www.investing.com/news/company-news/nvent-electric-stock-reaches-alltime-high-at-1210-usd-93CH-4524667",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:34:13",
+  "providerPublishTime": 1772026453.0,
+  "text": "nVent Electric stock reaches all-time high at 121.0 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TIME",
+    "USD",
+    "HIGH",
+    "ALL",
+    "STOCK",
+    "AT",
+    "NVENT"
+  ],
+  "relatedTickers": [
+    "TIME",
+    "USD",
+    "HIGH",
+    "ALL",
+    "STOCK",
+    "AT",
+    "NVENT"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cantor Fitzgerald reiterates Supernus stock Overweight on supply gains",
+  "link": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-reiterates-supernus-stock-overweight-on-supply-gains-93CH-4524039",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:50:53",
+  "providerPublishTime": 1772020253.0,
+  "text": "Cantor Fitzgerald reiterates Supernus stock Overweight on supply gains",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "GAINS",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "ON",
+    "GAINS",
+    "STOCK"
+  ]
+}

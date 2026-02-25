@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Canada’s IPO Market Looks For Revival With AGT, Apotex Deals",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/canada-s-ipo-market-looks-for-revival-with-agt-apotex-deals",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:00:00",
+  "providerPublishTime": 1772020800.0,
+  "text": "After years of false starts, Canada’s moribund IPO market is showing glimmers of hope.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i0GiFh6Ccr3E/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "AFTER",
+    "AGT",
+    "WITH",
+    "LOOKS",
+    "FOR",
+    "OF",
+    "FALSE",
+    "YEARS",
+    "IPO"
+  ],
+  "relatedTickers": [
+    "IS",
+    "AFTER",
+    "AGT",
+    "WITH",
+    "LOOKS",
+    "FOR",
+    "OF",
+    "FALSE",
+    "YEARS",
+    "IPO"
+  ]
+}

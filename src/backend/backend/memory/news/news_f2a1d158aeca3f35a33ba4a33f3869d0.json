@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Russia Says Ukraine Hit Acron’s Nitrogen Unit, Killing Seven",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/russia-says-ukraine-hit-acron-s-nitrogen-plant-killing-four",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T09:45:18",
+  "providerPublishTime": 1772009118.0,
+  "text": "Russia said Ukraine carried out an overnight drone strike that damaged a nitrogen fertilizer plant, killing seven employees in the Smolensk region.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/igl822I9UT3w/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SEVEN",
+    "SAID",
+    "HIT",
+    "UNIT",
+    "A",
+    "DRONE",
+    "S",
+    "AN",
+    "OUT",
+    "ACRON"
+  ],
+  "relatedTickers": [
+    "SEVEN",
+    "SAID",
+    "HIT",
+    "UNIT",
+    "A",
+    "DRONE",
+    "S",
+    "AN",
+    "OUT",
+    "ACRON"
+  ]
+}

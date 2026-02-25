@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Private Credit Fears Deepen With UBS Warning of 15% Defaults",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/ubs-now-sees-private-credit-defaults-reaching-15-in-worst-case",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T23:41:55",
+  "providerPublishTime": 1771972915.0,
+  "text": "A few weeks ago, analysts at UBS Group AG laid out a worst-case scenario for defaults in the private credit sector. Their outlook just became more grim.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iNrdTCt9PHJ8/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FEW",
+    "GRIM",
+    "A",
+    "UBS",
+    "AG",
+    "WORST",
+    "WEEKS",
+    "AGO",
+    "CASE",
+    "OUT"
+  ],
+  "relatedTickers": [
+    "FEW",
+    "GRIM",
+    "A",
+    "UBS",
+    "AG",
+    "WORST",
+    "WEEKS",
+    "AGO",
+    "CASE",
+    "OUT"
+  ]
+}

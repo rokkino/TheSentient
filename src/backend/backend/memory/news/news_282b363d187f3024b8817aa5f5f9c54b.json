@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Trade Representative Greer on 15% Tariff, USMCA, EU Trade Deal",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/us-trade-rep-greer-on-15-tariff-usmca-eu-trade-deal-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T14:04:44",
+  "providerPublishTime": 1772024684.0,
+  "text": "US Trade Representative Jamieson Greer says President Donald Trump will sign a supplemental proclamation to increase the tariff level to 15% “where appropriate,” as the US seeks “continuity” on tariffs. Greer also discusses expectations for the UK and European Union to honor their existing trade deals and the Trump administration wanting to fix gaps in the trade deal with Canada and Mexico. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ibhfCd972MDs/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WILL",
+    "THE",
+    "FOR",
+    "SEEKS",
+    "SIGN",
+    "AND",
+    "EU",
+    "TRUMP",
+    "UNION",
+    "ON"
+  ],
+  "relatedTickers": [
+    "WILL",
+    "THE",
+    "FOR",
+    "SEEKS",
+    "SIGN",
+    "AND",
+    "EU",
+    "TRUMP",
+    "UNION",
+    "ON"
+  ]
+}

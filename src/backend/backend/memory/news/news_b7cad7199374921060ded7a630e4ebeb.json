@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Longleaf Partners Small-Cap Fund Trimmed Empire State Realty (ESRT) as the P/V Gap Had Closed",
+  "link": "https://finance.yahoo.com/news/longleaf-partners-small-cap-fund-130756121.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T13:07:56",
+  "providerPublishTime": 1772021276.0,
+  "text": "Longleaf Partners Small-Cap Fund Trimmed Empire State Realty (ESRT) as the P/V Gap Had Closed",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/edd33590179f995f56e437f5dc0e6abd",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "V",
+    "AS",
+    "THE",
+    "ESRT",
+    "P",
+    "FUND",
+    "SMALL",
+    "STATE",
+    "HAD",
+    "GAP"
+  ],
+  "relatedTickers": [
+    "V",
+    "AS",
+    "THE",
+    "ESRT",
+    "P",
+    "FUND",
+    "SMALL",
+    "STATE",
+    "HAD",
+    "GAP"
+  ]
+}

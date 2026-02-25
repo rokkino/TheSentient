@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Restaurant reservation wars heat up as DoorDash enters the arena with Resy, OpenTable",
+  "link": "https://www.cnbc.com/2026/02/25/doordash-resy-opentable-restaurant-reservation-wars.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T12:00:01",
+  "providerPublishTime": 1772017201.0,
+  "text": "The still-simmering reservation wars of the last decade could fully reignite this year, as a shifting tech landscape pits the biggest players against each other.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "YEAR",
+    "A",
+    "PITS",
+    "UP",
+    "AS",
+    "RESY",
+    "STILL",
+    "FULLY",
+    "LAST",
+    "OF"
+  ],
+  "relatedTickers": [
+    "YEAR",
+    "A",
+    "PITS",
+    "UP",
+    "AS",
+    "RESY",
+    "STILL",
+    "FULLY",
+    "LAST",
+    "OF"
+  ]
+}

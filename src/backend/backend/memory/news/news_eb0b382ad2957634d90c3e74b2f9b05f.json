@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jefferies reiterates Steven Madden stock Underperform rating at $30",
+  "link": "https://www.investing.com/news/analyst-ratings/jefferies-reiterates-steven-madden-stock-underperform-rating-at-30-93CH-4524161",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:20:52",
+  "providerPublishTime": 1772022052.0,
+  "text": "Jefferies reiterates Steven Madden stock Underperform rating at $30",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "AT"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "AT"
+  ]
+}

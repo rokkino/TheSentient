@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sintx Technologies director Moyes buys $2910 in shares",
+  "link": "https://www.investing.com/news/insider-trading-news/sintx-technologies-director-moyes-buys-2910-in-shares-93CH-4524507",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:12:59",
+  "providerPublishTime": 1772025179.0,
+  "text": "Sintx Technologies director Moyes buys $2910 in shares",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "MOYES",
+    "SINTX",
+    "BUYS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "MOYES",
+    "SINTX",
+    "BUYS"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Solid Results Lifted AerCap Holdings (AER) in Q4",
+  "link": "https://finance.yahoo.com/news/solid-results-lifted-aercap-holdings-140005950.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T14:00:05",
+  "providerPublishTime": 1772024405.0,
+  "text": "Solid Results Lifted AerCap Holdings (AER) in Q4",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/dce52630cac74768eb308691c443cff3",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SOLID",
+    "AER",
+    "IN"
+  ],
+  "relatedTickers": [
+    "SOLID",
+    "AER",
+    "IN"
+  ]
+}

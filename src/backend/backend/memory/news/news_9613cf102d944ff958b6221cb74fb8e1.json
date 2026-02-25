@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "FAIR plan gave 97-year-old just $38K for CA fire damage — son paid $300K to fix. Why ‘bare’ insurance is a risky option",
+  "link": "https://finance.yahoo.com/news/fair-plan-gave-97-old-140000010.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-25T14:00:00",
+  "providerPublishTime": 1772024400.0,
+  "text": "FAIR plan gave 97-year-old just $38K for CA fire damage — son paid $300K to fix. Why ‘bare’ insurance is a risky option",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/6492e2c130ec62730026038db797ec39",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "CA",
+    "IS",
+    "FIRE",
+    "PLAN",
+    "PAID",
+    "GAVE",
+    "TO",
+    "A",
+    "FOR",
+    "BARE"
+  ],
+  "relatedTickers": [
+    "CA",
+    "IS",
+    "FIRE",
+    "PLAN",
+    "PAID",
+    "GAVE",
+    "TO",
+    "A",
+    "FOR",
+    "BARE"
+  ]
+}

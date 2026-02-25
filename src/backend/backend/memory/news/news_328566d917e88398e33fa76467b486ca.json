@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Southwest Gas names Justin Brown as CEO effective May 8",
+  "link": "https://www.investing.com/news/company-news/southwest-gas-names-justin-brown-as-ceo-effective-may-8-93CH-4524147",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:14:03",
+  "providerPublishTime": 1772021643.0,
+  "text": "Southwest Gas names Justin Brown as CEO effective May 8",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GAS",
+    "AS",
+    "BROWN",
+    "CEO",
+    "MAY",
+    "NAMES"
+  ],
+  "relatedTickers": [
+    "GAS",
+    "AS",
+    "BROWN",
+    "CEO",
+    "MAY",
+    "NAMES"
+  ]
+}

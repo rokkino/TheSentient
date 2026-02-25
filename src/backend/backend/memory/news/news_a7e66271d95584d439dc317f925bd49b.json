@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "H.C. Wainwright raises ORIC Pharmaceuticals price target on trial progress",
+  "link": "https://www.investing.com/news/analyst-ratings/hc-wainwright-raises-oric-pharmaceuticals-price-target-on-trial-progress-93CH-4523977",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:29:01",
+  "providerPublishTime": 1772018941.0,
+  "text": "H.C. Wainwright raises ORIC Pharmaceuticals price target on trial progress",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ORIC",
+    "H",
+    "ON",
+    "TRIAL",
+    "C",
+    "PRICE"
+  ],
+  "relatedTickers": [
+    "ORIC",
+    "H",
+    "ON",
+    "TRIAL",
+    "C",
+    "PRICE"
+  ]
+}

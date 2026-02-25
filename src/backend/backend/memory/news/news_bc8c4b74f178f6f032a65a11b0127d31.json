@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Citi Wealth’s Kate Moore Is ‘Still All-in on Equities’",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/citi-wealth-s-kate-moore-is-still-all-in-on-equities-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:05:00",
+  "providerPublishTime": 1772021100.0,
+  "text": "Kate Moore, CIO at Citi Wealth, says she is not bearish on equities, but is still cautious on taking risk in duration in her portfolio. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i5HHt33qJwGE/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "KATE",
+    "IS",
+    "ON",
+    "NOT",
+    "AT",
+    "SHE",
+    "BUT",
+    "ALL",
+    "HER",
+    "MOORE"
+  ],
+  "relatedTickers": [
+    "KATE",
+    "IS",
+    "ON",
+    "NOT",
+    "AT",
+    "SHE",
+    "BUT",
+    "ALL",
+    "HER",
+    "MOORE"
+  ]
+}

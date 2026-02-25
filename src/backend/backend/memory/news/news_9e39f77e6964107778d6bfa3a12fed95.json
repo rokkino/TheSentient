@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HNI earnings missed by $0.08, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/hni-earnings-missed-by-008-revenue-topped-estimates-4524026",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:46:18",
+  "providerPublishTime": 1772019978.0,
+  "text": "HNI earnings missed by $0.08, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "HNI",
+    "BY"
+  ],
+  "relatedTickers": [
+    "HNI",
+    "BY"
+  ]
+}

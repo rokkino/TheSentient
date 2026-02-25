@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Needham reiterates First Solar stock rating after softer 2026 outlook",
+  "link": "https://www.investing.com/news/analyst-ratings/needham-reiterates-first-solar-stock-rating-after-softer-2026-outlook-93CH-4524225",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:32:59",
+  "providerPublishTime": 1772022779.0,
+  "text": "Needham reiterates First Solar stock rating after softer 2026 outlook",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIRST",
+    "SOLAR",
+    "STOCK",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "FIRST",
+    "SOLAR",
+    "STOCK",
+    "AFTER"
+  ]
+}

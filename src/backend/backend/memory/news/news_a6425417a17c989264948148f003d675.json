@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.54%",
+  "link": "https://www.investing.com/news/stock-market-news/saudi-arabia-stocks-lower-at-close-of-trade-tadawul-all-share-down-054-4524019",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:45:03",
+  "providerPublishTime": 1772019903.0,
+  "text": "Saudi Arabia stocks lower at close of trade; Tadawul All Share down 0.54%",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "ALL",
+    "TRADE",
+    "SAUDI",
+    "DOWN",
+    "OF",
+    "LOWER",
+    "AT",
+    "SHARE",
+    "CLOSE"
+  ],
+  "relatedTickers": [
+    "ALL",
+    "TRADE",
+    "SAUDI",
+    "DOWN",
+    "OF",
+    "LOWER",
+    "AT",
+    "SHARE",
+    "CLOSE"
+  ]
+}

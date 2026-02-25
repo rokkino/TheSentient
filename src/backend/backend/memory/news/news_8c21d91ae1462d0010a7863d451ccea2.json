@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Driven Brands stock plunges after earnings delay, restatement",
+  "link": "https://www.investing.com/news/stock-market-news/driven-brands-stock-plunges-after-earnings-delay-restatement-93CH-4524024",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:45:47",
+  "providerPublishTime": 1772019947.0,
+  "text": "Driven Brands stock plunges after earnings delay, restatement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STOCK",
+    "DELAY",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "DELAY",
+    "AFTER"
+  ]
+}

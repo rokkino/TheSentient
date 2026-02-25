@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "BKV beats Q4 estimates as power unit outperforms",
+  "link": "https://www.investing.com/news/earnings/bkv-beats-q4-estimates-as-power-unit-outperforms-93CH-4523978",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:29:04",
+  "providerPublishTime": 1772018944.0,
+  "text": "BKV beats Q4 estimates as power unit outperforms",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "POWER",
+    "BEATS",
+    "UNIT",
+    "BKV"
+  ],
+  "relatedTickers": [
+    "AS",
+    "POWER",
+    "BEATS",
+    "UNIT",
+    "BKV"
+  ]
+}

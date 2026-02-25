@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hovnanian Enterprises earnings beat by $3.60, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/hovnanian-enterprises-earnings-beat-by-360-revenue-topped-estimates-4524668",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:34:15",
+  "providerPublishTime": 1772026455.0,
+  "text": "Hovnanian Enterprises earnings beat by $3.60, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEAT",
+    "BY"
+  ],
+  "relatedTickers": [
+    "BEAT",
+    "BY"
+  ]
+}

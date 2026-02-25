@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oil Steadies as Traders Await Upcoming US-Iran Nuclear Talks",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/latest-oil-market-news-and-analysis-for-feb-25",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T23:32:32",
+  "providerPublishTime": 1771972352.0,
+  "text": "Oil edged above $71 as traders weighed the odds of a nuclear deal between the US and Iran ahead of talks on Thursday, with a huge deployment of American forces in the Middle East keeping the market on edge.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic2p5Wwlm_uc/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "EDGED",
+    "AND",
+    "AHEAD",
+    "ON",
+    "AWAIT",
+    "DEAL",
+    "ABOVE",
+    "A",
+    "IRAN"
+  ],
+  "relatedTickers": [
+    "THE",
+    "EDGED",
+    "AND",
+    "AHEAD",
+    "ON",
+    "AWAIT",
+    "DEAL",
+    "ABOVE",
+    "A",
+    "IRAN"
+  ]
+}

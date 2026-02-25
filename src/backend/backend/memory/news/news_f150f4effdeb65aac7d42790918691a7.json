@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Consumers aren't experiencing Trump's 'roaring' economy",
+  "link": "https://finance.yahoo.com/news/consumers-arent-experiencing-trumps-roaring-142337385.html",
+  "publisher": "Quartz",
+  "timestamp": "2026-02-25T14:23:37",
+  "providerPublishTime": 1772025817.0,
+  "text": "Consumers aren't experiencing Trump's 'roaring' economy",
+  "thumbnail": "https://media.zenfs.com/en/quartz_855/32a16614becf3656aae61cc909f25d35",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "T",
+    "TRUMP",
+    "AREN",
+    "S"
+  ],
+  "relatedTickers": [
+    "T",
+    "TRUMP",
+    "AREN",
+    "S"
+  ]
+}

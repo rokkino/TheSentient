@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "VolitionRx advances cancer tests, expects French reimbursement",
+  "link": "https://www.investing.com/news/company-news/volitionrx-advances-cancer-tests-expects-french-reimbursement-93CH-4524166",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:21:13",
+  "providerPublishTime": 1772022073.0,
+  "text": "VolitionRx advances cancer tests, expects French reimbursement",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TESTS"
+  ],
+  "relatedTickers": [
+    "TESTS"
+  ]
+}

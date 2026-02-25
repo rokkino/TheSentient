@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "VSE Conference: CEO Says PAG Deal Is Transformational, Targets 20%+ EBITDA and Stronger Cash Flow",
+  "link": "https://finance.yahoo.com/news/vse-conference-ceo-says-pag-124835123.html",
+  "publisher": "MarketBeat",
+  "timestamp": "2026-02-25T12:48:35",
+  "providerPublishTime": 1772020115.0,
+  "text": "VSE Conference: CEO Says PAG Deal Is Transformational, Targets 20%+ EBITDA and Stronger Cash Flow",
+  "thumbnail": "https://media.zenfs.com/en/marketbeat_955/f164b2ecbda5f6f4b1a5ab6a8fd0b402",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "FLOW",
+    "AND",
+    "SAYS",
+    "DEAL",
+    "CASH",
+    "PAG",
+    "CEO",
+    "VSE"
+  ],
+  "relatedTickers": [
+    "IS",
+    "FLOW",
+    "AND",
+    "SAYS",
+    "DEAL",
+    "CASH",
+    "PAG",
+    "CEO",
+    "VSE"
+  ]
+}

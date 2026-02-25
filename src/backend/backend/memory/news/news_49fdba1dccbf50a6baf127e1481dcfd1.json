@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Semtech partners with Trident IoT for smart home connectivity",
+  "link": "https://www.investing.com/news/company-news/semtech-partners-with-trident-iot-for-smart-home-connectivity-93CH-4524146",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:14:02",
+  "providerPublishTime": 1772021642.0,
+  "text": "Semtech partners with Trident IoT for smart home connectivity",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IOT",
+    "HOME",
+    "SMART",
+    "WITH",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "IOT",
+    "HOME",
+    "SMART",
+    "WITH",
+    "FOR"
+  ]
+}

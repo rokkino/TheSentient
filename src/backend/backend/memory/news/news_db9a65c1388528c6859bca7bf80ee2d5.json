@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Novo Nordisk's Loss Is Eli Lilly's Gain",
+  "link": "https://finance.yahoo.com/news/novo-nordisks-loss-eli-lillys-130103846.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-25T13:01:03",
+  "providerPublishTime": 1772020863.0,
+  "text": "Novo Nordisk's Loss Is Eli Lilly's Gain",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/abbaaecb0fde99ee3964b9d76b965665",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "S",
+    "LILLY",
+    "NOVO",
+    "LOSS",
+    "GAIN",
+    "ELI"
+  ],
+  "relatedTickers": [
+    "IS",
+    "S",
+    "LILLY",
+    "NOVO",
+    "LOSS",
+    "GAIN",
+    "ELI"
+  ]
+}

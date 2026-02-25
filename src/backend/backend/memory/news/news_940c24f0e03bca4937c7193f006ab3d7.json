@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Boston Beer Company (SAM) Fell as Alcohol Consumption Faced Challenges",
+  "link": "https://finance.yahoo.com/news/boston-beer-company-sam-fell-130105412.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T13:01:05",
+  "providerPublishTime": 1772020865.0,
+  "text": "The Boston Beer Company (SAM) Fell as Alcohol Consumption Faced Challenges",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/d2f70ff6d35ec84b3b10438e0b1e671f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FELL",
+    "AS",
+    "THE",
+    "SAM",
+    "BEER",
+    "FACED"
+  ],
+  "relatedTickers": [
+    "FELL",
+    "AS",
+    "THE",
+    "SAM",
+    "BEER",
+    "FACED"
+  ]
+}

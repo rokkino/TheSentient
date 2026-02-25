@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "MGE Energy beats revenue estimates despite earnings miss",
+  "link": "https://www.investing.com/news/earnings/mge-energy-beats-revenue-estimates-despite-earnings-miss-93CH-4523990",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:35:45",
+  "providerPublishTime": 1772019345.0,
+  "text": "MGE Energy beats revenue estimates despite earnings miss",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BEATS",
+    "MISS",
+    "MGE"
+  ],
+  "relatedTickers": [
+    "BEATS",
+    "MISS",
+    "MGE"
+  ]
+}

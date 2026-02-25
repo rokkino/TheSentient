@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "AI-powered capex growth rate to peak later this year, Goldman estimates",
+  "link": "https://www.investing.com/news/stock-market-news/aipowered-capex-growth-rate-to-peak-later-this-year-goldman-estimates-4524534",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:18:04",
+  "providerPublishTime": 1772025484.0,
+  "text": "AI-powered capex growth rate to peak later this year, Goldman estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RATE",
+    "YEAR",
+    "AI",
+    "THIS",
+    "TO",
+    "PEAK",
+    "CAPEX",
+    "LATER"
+  ],
+  "relatedTickers": [
+    "RATE",
+    "YEAR",
+    "AI",
+    "THIS",
+    "TO",
+    "PEAK",
+    "CAPEX",
+    "LATER"
+  ]
+}

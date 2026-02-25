@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Evercore ISI initiates NRG Energy stock with outperform rating",
+  "link": "https://www.investing.com/news/analyst-ratings/evercore-isi-initiates-nrg-energy-stock-with-outperform-rating-93CH-4524495",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:10:03",
+  "providerPublishTime": 1772025003.0,
+  "text": "Evercore ISI initiates NRG Energy stock with outperform rating",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "WITH",
+    "ISI",
+    "NRG"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "WITH",
+    "ISI",
+    "NRG"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Resurrection of Keystone XL Oil Pipeline Threatens to Reignite Controversy",
+  "link": "https://www.bloomberg.com/news/newsletters/2026-02-25/resurrection-of-the-keystone-xl-oil-pipeline-threatens-to-reignite-controversy",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T12:15:00",
+  "providerPublishTime": 1772018100.0,
+  "text": "Political winds have shifted again in favor of the failed project.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iX9IN7Sgic50/v11/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "WINDS",
+    "FAVOR",
+    "THE",
+    "XL",
+    "AGAIN",
+    "TO",
+    "OIL",
+    "HAVE",
+    "IN"
+  ],
+  "relatedTickers": [
+    "OF",
+    "WINDS",
+    "FAVOR",
+    "THE",
+    "XL",
+    "AGAIN",
+    "TO",
+    "OIL",
+    "HAVE",
+    "IN"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "National Bank Beats Estimates as CWB Boosts Major Business Lines",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/national-bank-beats-estimates-as-cwb-boosts-major-business-lines",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:50:46",
+  "providerPublishTime": 1772016646.0,
+  "text": "National Bank of Canada beat analyst estimates in its fiscal first quarter after it reported stronger results across the board, boosted by the bank’s purchase of Canadian Western Bank.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irefpdsTIb50/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "CWB",
+    "AS",
+    "BEAT",
+    "ITS",
+    "BY",
+    "AFTER",
+    "THE",
+    "BOARD",
+    "S"
+  ],
+  "relatedTickers": [
+    "OF",
+    "CWB",
+    "AS",
+    "BEAT",
+    "ITS",
+    "BY",
+    "AFTER",
+    "THE",
+    "BOARD",
+    "S"
+  ]
+}

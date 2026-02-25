@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "U.S. stock futures tick up ahead of major AI trade test in Nvidia earnings",
+  "link": "https://www.investing.com/news/stock-market-news/us-stock-futures-flat-with-trump-address-nvidia-earnings-in-focus-4523110",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:46:12",
+  "providerPublishTime": 1772023572.0,
+  "text": "U.S. stock futures tick up ahead of major AI trade test in Nvidia earnings",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "U",
+    "IN",
+    "OF",
+    "TRADE",
+    "TICK",
+    "MAJOR",
+    "AI",
+    "TEST",
+    "AHEAD"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "U",
+    "IN",
+    "OF",
+    "TRADE",
+    "TICK",
+    "MAJOR",
+    "AI",
+    "TEST",
+    "AHEAD"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mandelson’s lawyers say his arrest followed ’baseless suggestion’ he planned to leave UK",
+  "link": "https://www.investing.com/news/world-news/mandelsons-lawyers-say-his-arrest-followed-baseless-suggestion-he-planned-to-leave-uk-4522450",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:30:47",
+  "providerPublishTime": 1772019047.0,
+  "text": "Mandelson’s lawyers say his arrest followed ’baseless suggestion’ he planned to leave UK",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "UK",
+    "HE",
+    "SAY",
+    "S",
+    "TO",
+    "HIS",
+    "LEAVE"
+  ],
+  "relatedTickers": [
+    "UK",
+    "HE",
+    "SAY",
+    "S",
+    "TO",
+    "HIS",
+    "LEAVE"
+  ]
+}

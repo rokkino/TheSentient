@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UBS cuts First Solar stock price target on revenue guidance miss",
+  "link": "https://www.investing.com/news/analyst-ratings/ubs-cuts-first-solar-stock-price-target-on-revenue-guidance-miss-93CH-4524365",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:56:48",
+  "providerPublishTime": 1772024208.0,
+  "text": "UBS cuts First Solar stock price target on revenue guidance miss",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STOCK",
+    "SOLAR",
+    "PRICE",
+    "ON",
+    "UBS",
+    "FIRST",
+    "CUTS",
+    "MISS"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "SOLAR",
+    "PRICE",
+    "ON",
+    "UBS",
+    "FIRST",
+    "CUTS",
+    "MISS"
+  ]
+}

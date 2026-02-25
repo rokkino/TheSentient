@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Moderna's Ups and Downs: Here's What You Need to Know Before Investing.",
+  "link": "https://finance.yahoo.com/news/modernas-ups-downs-heres-know-133500652.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-25T13:35:00",
+  "providerPublishTime": 1772022900.0,
+  "text": "Moderna's Ups and Downs: Here's What You Need to Know Before Investing.",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/0e4e6459e44865a1aea1ed26dbddd06c",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "KNOW",
+    "UPS",
+    "NEED",
+    "YOU",
+    "TO",
+    "DOWNS",
+    "HERE",
+    "AND",
+    "WHAT",
+    "S"
+  ],
+  "relatedTickers": [
+    "KNOW",
+    "UPS",
+    "NEED",
+    "YOU",
+    "TO",
+    "DOWNS",
+    "HERE",
+    "AND",
+    "WHAT",
+    "S"
+  ]
+}

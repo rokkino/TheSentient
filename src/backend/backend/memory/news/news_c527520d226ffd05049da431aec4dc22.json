@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Premarket Movers: Cava, Circle Internet, Lowe’s, Oddity Tech",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/us-stock-futures-today-cava-circle-internet-lowe-s-oddity-tech",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T12:45:36",
+  "providerPublishTime": 1772019936.0,
+  "text": "S&amp;P 500 Index futures rise 0.3% as of 7:45 a.m. in New York as traders look ahead to Nvidia’s earnings, due after the market close.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iVSbv68wFhU0/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "S",
+    "YORK",
+    "P",
+    "LOWE",
+    "M",
+    "CAVA",
+    "OF",
+    "INDEX",
+    "US",
+    "AS"
+  ],
+  "relatedTickers": [
+    "S",
+    "YORK",
+    "P",
+    "LOWE",
+    "M",
+    "CAVA",
+    "OF",
+    "INDEX",
+    "US",
+    "AS"
+  ]
+}

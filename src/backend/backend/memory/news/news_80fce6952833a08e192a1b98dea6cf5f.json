@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ares Moves to Oust John Textor From Running Football Empire",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-24/ares-moves-to-oust-john-textor-from-running-football-empire",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-24T16:50:09",
+  "providerPublishTime": 1771948209.0,
+  "text": "Ares Management Corp. has moved to weaken John Textor’s operational control of his football club group, after continued losses and tension over one of the credit investor’s biggest sports bets.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FROM",
+    "ARES",
+    "ONE",
+    "CORP",
+    "OVER",
+    "AFTER",
+    "S",
+    "OF",
+    "GROUP",
+    "AND"
+  ],
+  "relatedTickers": [
+    "FROM",
+    "ARES",
+    "ONE",
+    "CORP",
+    "OVER",
+    "AFTER",
+    "S",
+    "OF",
+    "GROUP",
+    "AND"
+  ]
+}

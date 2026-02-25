@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Investors Fleeing AI Upheaval May Turn to Euro Bonds, Says ING",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/investors-fleeing-ai-upheaval-may-turn-to-euro-bonds-says-ing",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:19:52",
+  "providerPublishTime": 1772021992.0,
+  "text": "European government bonds could prove attractive to investors seeking shelter from swings in US stocks caused by artificial intelligence developments, according to ING Groep NV.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/il3a7MAyry1s/v2/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "EURO",
+    "TO",
+    "US",
+    "ING",
+    "BONDS",
+    "MAY",
+    "COULD",
+    "SAYS",
+    "AI",
+    "PROVE"
+  ],
+  "relatedTickers": [
+    "EURO",
+    "TO",
+    "US",
+    "ING",
+    "BONDS",
+    "MAY",
+    "COULD",
+    "SAYS",
+    "AI",
+    "PROVE"
+  ]
+}

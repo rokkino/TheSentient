@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jim Cramer's top 10 things to watch in the stock market Wednesday",
+  "link": "https://www.cnbc.com/2026/02/25/jim-cramers-top-10-things-to-watch-in-the-stock-market-wednesday.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T14:00:38",
+  "providerPublishTime": 1772024438.0,
+  "text": "Workday's light guidance is sending the stock down big, and HP Inc. showed just how painful the memory-chip crisis is.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "JUST",
+    "STOCK",
+    "IS",
+    "TO",
+    "THE",
+    "LIGHT",
+    "BIG",
+    "DOWN",
+    "INC",
+    "WATCH"
+  ],
+  "relatedTickers": [
+    "JUST",
+    "STOCK",
+    "IS",
+    "TO",
+    "THE",
+    "LIGHT",
+    "BIG",
+    "DOWN",
+    "INC",
+    "WATCH"
+  ]
+}

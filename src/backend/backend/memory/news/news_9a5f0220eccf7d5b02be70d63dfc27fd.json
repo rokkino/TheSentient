@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US to Raise Tariff to 15% Where Appropriate. Greer Says",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/us-to-raise-tariff-to-15-where-appropriate-greer-says-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:51:53",
+  "providerPublishTime": 1772023913.0,
+  "text": "US Trade Representative Jamieson Greer says President Donald Trump will sign a supplemental proclamation to increase the tariff level to 15% “where appropriate,” as the US seeks “continuity” on tariffs. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iyrIg0GSaV8Q/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "WILL",
+    "AS",
+    "WHERE",
+    "US",
+    "TO",
+    "RAISE",
+    "TRADE",
+    "A",
+    "THE"
+  ],
+  "relatedTickers": [
+    "ON",
+    "WILL",
+    "AS",
+    "WHERE",
+    "US",
+    "TO",
+    "RAISE",
+    "TRADE",
+    "A",
+    "THE"
+  ]
+}

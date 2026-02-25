@@ -408,6 +408,14 @@ const activeTab = ref('earnings') // 'earnings' or 'financials'
 const financialsData = ref(null)
 const loadingFinancials = ref(false)
 
+// Helper function to get YYYY-MM-DD in local time
+const toLocalDateStr = (date) => {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
 // Helper function to get next business day (skip weekends)
 const getNextBusinessDay = (date) => {
   const newDate = new Date(date) // Don't mutate original
@@ -423,18 +431,18 @@ const getNextBusinessDay = (date) => {
 const today = computed(() => {
   const now = new Date()
   const businessDay = getNextBusinessDay(now)
-  return businessDay.toISOString().split('T')[0]
+  return toLocalDateStr(businessDay)
 })
 
 const tomorrow = computed(() => {
-  const todayDate = new Date(today.value)
+  const todayDate = new Date()
   let tomorrowCandidate = new Date(todayDate)
   tomorrowCandidate.setDate(todayDate.getDate() + 1)
   
   // Get next business day after today
   const tomorrowBusinessDay = getNextBusinessDay(tomorrowCandidate)
   
-  return tomorrowBusinessDay.toISOString().split('T')[0]
+  return toLocalDateStr(tomorrowBusinessDay)
 })
 
 const todayEarnings = computed(() => {

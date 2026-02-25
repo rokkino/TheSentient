@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The Market Awaits Nvidia, But This Data Center Builder Already Soars On Earnings",
+  "link": "https://www.investors.com/news/data-center-builder-everus-earnings-stock-market-awaits-nvidia/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-25T14:07:07",
+  "providerPublishTime": 1772024827.0,
+  "text": "The Market Awaits Nvidia, But This Data Center Builder Already Soars On Earnings",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/34ff324324f9b33011f8fbac50f38cd1",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "THE",
+    "BUT",
+    "DATA",
+    "SOARS",
+    "THIS"
+  ],
+  "relatedTickers": [
+    "ON",
+    "THE",
+    "BUT",
+    "DATA",
+    "SOARS",
+    "THIS"
+  ]
+}

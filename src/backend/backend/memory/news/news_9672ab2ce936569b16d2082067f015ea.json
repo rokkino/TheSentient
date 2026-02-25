@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here’s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+  "link": "https://finance.yahoo.com/news/why-madison-large-cap-fund-123443957.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T12:34:43",
+  "providerPublishTime": 1772019283.0,
+  "text": "Here’s Why Madison Large Cap Fund Chose to Exit Nike (NKE)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/9fea7ca260b4a4e47d8daf77e7f77830",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "S",
+    "NIKE",
+    "FUND",
+    "WHY",
+    "NKE",
+    "EXIT",
+    "CAP",
+    "HERE",
+    "TO",
+    "CHOSE"
+  ],
+  "relatedTickers": [
+    "S",
+    "NIKE",
+    "FUND",
+    "WHY",
+    "NKE",
+    "EXIT",
+    "CAP",
+    "HERE",
+    "TO",
+    "CHOSE"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cardano Climbs 10% In Bullish Trade",
+  "link": "https://www.investing.com/news/cryptocurrency-news/cardano-climbs-10-in-bullish-trade-4524666",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:34:04",
+  "providerPublishTime": 1772026444.0,
+  "text": "Cardano Climbs 10% In Bullish Trade",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TRADE",
+    "IN"
+  ],
+  "relatedTickers": [
+    "TRADE",
+    "IN"
+  ]
+}

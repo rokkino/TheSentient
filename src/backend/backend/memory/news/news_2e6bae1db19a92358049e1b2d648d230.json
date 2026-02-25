@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ribbon partners with AWS for cloud-native voice solution",
+  "link": "https://www.investing.com/news/company-news/ribbon-partners-with-aws-for-cloudnative-voice-solution-93CH-4524105",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:05:21",
+  "providerPublishTime": 1772021121.0,
+  "text": "Ribbon partners with AWS for cloud-native voice solution",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "VOICE",
+    "WITH",
+    "FOR",
+    "AWS",
+    "CLOUD"
+  ],
+  "relatedTickers": [
+    "VOICE",
+    "WITH",
+    "FOR",
+    "AWS",
+    "CLOUD"
+  ]
+}

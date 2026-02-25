@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Archer Meat Snacks secures $100M credit facility from JPMorgan",
+  "link": "https://www.investing.com/news/company-news/archer-meat-snacks-secures-100m-credit-facility-from-jpmorgan-93CH-4524154",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:14:25",
+  "providerPublishTime": 1772021665.0,
+  "text": "Archer Meat Snacks secures $100M credit facility from JPMorgan",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MEAT",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "MEAT",
+    "FROM"
+  ]
+}

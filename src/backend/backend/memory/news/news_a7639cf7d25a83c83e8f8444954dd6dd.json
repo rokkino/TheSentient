@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Zelestra initiates construction of 242MWdc solar plant in Peru",
+  "link": "https://finance.yahoo.com/news/zelestra-initiates-construction-242mwdc-solar-135252180.html",
+  "publisher": "Power Technology",
+  "timestamp": "2026-02-25T13:52:52",
+  "providerPublishTime": 1772023972.0,
+  "text": "Zelestra initiates construction of 242MWdc solar plant in Peru",
+  "thumbnail": "https://media.zenfs.com/en/power_technology_866/448ac7e5573b30dbac643fe035806522",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SOLAR",
+    "OF",
+    "PLANT",
+    "PERU",
+    "IN"
+  ],
+  "relatedTickers": [
+    "SOLAR",
+    "OF",
+    "PLANT",
+    "PERU",
+    "IN"
+  ]
+}

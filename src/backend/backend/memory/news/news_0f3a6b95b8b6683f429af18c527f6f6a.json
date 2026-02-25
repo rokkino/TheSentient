@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sealed Air shareholders approve CD&R acquisition deal",
+  "link": "https://www.investing.com/news/company-news/sealed-air-shareholders-approve-cdr-acquisition-deal-93CH-4524530",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:17:14",
+  "providerPublishTime": 1772025434.0,
+  "text": "Sealed Air shareholders approve CD&R acquisition deal",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CD",
+    "R",
+    "AIR",
+    "DEAL"
+  ],
+  "relatedTickers": [
+    "CD",
+    "R",
+    "AIR",
+    "DEAL"
+  ]
+}

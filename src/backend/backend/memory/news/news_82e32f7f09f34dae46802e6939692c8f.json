@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lake Street raises Enviri stock price target on Clean Earth sale value",
+  "link": "https://www.investing.com/news/analyst-ratings/lake-street-raises-enviri-stock-price-target-on-clean-earth-sale-value-93CH-4524657",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:33:00",
+  "providerPublishTime": 1772026380.0,
+  "text": "Lake Street raises Enviri stock price target on Clean Earth sale value",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CLEAN",
+    "ON",
+    "SALE",
+    "LAKE",
+    "EARTH",
+    "VALUE",
+    "PRICE",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "CLEAN",
+    "ON",
+    "SALE",
+    "LAKE",
+    "EARTH",
+    "VALUE",
+    "PRICE",
+    "STOCK"
+  ]
+}

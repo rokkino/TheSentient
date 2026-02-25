@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Klarna reports 9 million daily active users on banking app",
+  "link": "https://www.investing.com/news/company-news/klarna-reports-9-million-daily-active-users-on-banking-app-93CH-4524109",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:05:49",
+  "providerPublishTime": 1772021149.0,
+  "text": "Klarna reports 9 million daily active users on banking app",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DAILY",
+    "ON",
+    "USERS",
+    "APP"
+  ],
+  "relatedTickers": [
+    "DAILY",
+    "ON",
+    "USERS",
+    "APP"
+  ]
+}

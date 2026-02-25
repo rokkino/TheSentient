@@ -7,6 +7,7 @@ import numpy as np
 from typing import Dict, Any, Optional
 from typing import List
 import asyncio
+import time
 from datetime import datetime
 import json
 import os
@@ -30,9 +31,25 @@ class MarketDataService:
             "MAX": {"period": "max", "interval": "1wk"},
         }
         
+        # In-memory TTL cache to avoid repeated Yahoo Finance API calls
+        self._mem_cache = {}  # key -> {"data": ..., "ts": time.time()}
+        self._QUOTE_TTL = 60       # 60 seconds for quotes
+        self._CHART_TTL = 120      # 120 seconds for chart data
+        
         # Ensure cache directory exists
         self.cache_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "memory", "graph")
         os.makedirs(self.cache_dir, exist_ok=True)
+    
+    def _mem_get(self, key: str, ttl: int):
+        """Get from in-memory cache if not expired"""
+        entry = self._mem_cache.get(key)
+        if entry and (time.time() - entry["ts"]) < ttl:
+            return entry["data"]
+        return None
+    
+    def _mem_set(self, key: str, data):
+        """Store in in-memory cache"""
+        self._mem_cache[key] = {"data": data, "ts": time.time()}
     
     async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True, start_date: str = None, end_date: str = None, extend_history: bool = False) -> Dict[str, Any]:
         """Get chart data for a ticker
@@ -46,6 +63,14 @@ class MarketDataService:
             end_date: Custom end date (YYYY-MM-DD)
             extend_history: If True, fetch maximum available history
         """
+        # Check in-memory cache first (skip for custom date ranges)
+        if not start_date and not extend_history:
+            cache_key = f"chart_{ticker}_{timeframe}_{chart_type}"
+            cached = self._mem_get(cache_key, self._CHART_TTL)
+            if cached:
+                print(f"[PERF] Chart cache HIT for {ticker} ({timeframe})")
+                return cached
+        
         loop = asyncio.get_event_loop()
         
         params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
@@ -307,12 +332,19 @@ class MarketDataService:
                 }
             }
             
-            # Save to cache
+            # Save to disk cache
             self._save_cached_data(ticker, timeframe, result)
             
             return result
         
-        return await loop.run_in_executor(None, fetch_data)
+        result = await loop.run_in_executor(None, fetch_data)
+        
+        # Store in memory cache for fast repeat access
+        if not start_date and not extend_history:
+            cache_key = f"chart_{ticker}_{timeframe}_{chart_type}"
+            self._mem_set(cache_key, result)
+        
+        return result
 
     def _get_cached_data(self, ticker: str, timeframe: str) -> Optional[Dict[str, Any]]:
         """Get data from JSON cache (all timeframes cached for faster repeat loads)"""
@@ -536,37 +568,51 @@ class MarketDataService:
     
     async def get_quote(self, ticker: str, timeframe: str = "1d") -> Dict[str, Any]:
         """Get current quote for a ticker with change calculated based on timeframe"""
+        # Check in-memory cache first
+        cache_key = f"quote_{ticker}_{timeframe}"
+        cached = self._mem_get(cache_key, self._QUOTE_TTL)
+        if cached:
+            print(f"[PERF] Quote cache HIT for {ticker}")
+            return cached
+        
         loop = asyncio.get_event_loop()
         
         def fetch_quote():
             tk = yf.Ticker(ticker)
             info = tk.info
             
-            # Get current price
-            quote = tk.history(period="1d", interval="1m")
-            current_price = None
-            if not quote.empty:
-                current_price = float(quote['Close'].iloc[-1])
+            # Get current price from info (avoids a separate tk.history() call)
+            current_price = info.get('currentPrice') or info.get('regularMarketPrice')
+            if current_price is not None:
+                current_price = float(current_price)
             
             # Calculate change based on timeframe
             change = 0
             change_percent = 0
             
             if current_price is not None:
-                # Get historical data for the timeframe
-                params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
-                historical = tk.history(**params)
-                
-                if not historical.empty and len(historical) > 1:
-                    # Get the first (oldest) close price in the timeframe
-                    start_price = float(historical['Close'].iloc[0])
-                    change = current_price - start_price
-                    if start_price > 0:
-                        change_percent = (change / start_price) * 100
+                if timeframe == '1d':
+                    # For 1d, use info directly (no extra API call needed)
+                    prev_close = info.get('regularMarketPreviousClose')
+                    if prev_close and float(prev_close) > 0:
+                        change = current_price - float(prev_close)
+                        change_percent = (change / float(prev_close)) * 100
+                    else:
+                        change = info.get("regularMarketChange", 0)
+                        change_percent = info.get("regularMarketChangePercent", 0)
                 else:
-                    # Fallback to regular market change if historical data not available
-                    change = info.get("regularMarketChange", 0)
-                    change_percent = info.get("regularMarketChangePercent", 0)
+                    # For other timeframes, fetch historical data
+                    params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
+                    historical = tk.history(**params)
+                    
+                    if not historical.empty and len(historical) > 1:
+                        start_price = float(historical['Close'].iloc[0])
+                        change = current_price - start_price
+                        if start_price > 0:
+                            change_percent = (change / start_price) * 100
+                    else:
+                        change = info.get("regularMarketChange", 0)
+                        change_percent = info.get("regularMarketChangePercent", 0)
             
             # Helper function to clean float values
             def clean_float(val):
@@ -589,7 +635,6 @@ class MarketDataService:
             pre_market_change_percent = clean_float(info.get("preMarketChangePercent"))
             
             # Regular market data
-            regular_market_price = clean_float(info.get("regularMarketPrice"))
             regular_market_open = clean_float(info.get("regularMarketOpen"))
             regular_market_high = clean_float(info.get("regularMarketDayHigh"))
             regular_market_low = clean_float(info.get("regularMarketDayLow"))
@@ -620,7 +665,9 @@ class MarketDataService:
                 "marketState": info.get("marketState", "CLOSED")
             }
         
-        return await loop.run_in_executor(None, fetch_quote)
+        result = await loop.run_in_executor(None, fetch_quote)
+        self._mem_set(cache_key, result)
+        return result
 
     async def get_financials(self, ticker: str) -> Dict[str, Any]:
         """Get financial data (Revenue, Earnings, EPS History)"""

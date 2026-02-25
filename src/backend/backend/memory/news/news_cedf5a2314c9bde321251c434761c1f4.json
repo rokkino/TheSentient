@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Piper Sandler reiterates Alphatec stock rating on Q4 beat",
+  "link": "https://www.investing.com/news/analyst-ratings/piper-sandler-reiterates-alphatec-stock-rating-on-q4-beat-93CH-4524658",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:33:03",
+  "providerPublishTime": 1772026383.0,
+  "text": "Piper Sandler reiterates Alphatec stock rating on Q4 beat",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "BEAT",
+    "PIPER",
+    "ON"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "BEAT",
+    "PIPER",
+    "ON"
+  ]
+}

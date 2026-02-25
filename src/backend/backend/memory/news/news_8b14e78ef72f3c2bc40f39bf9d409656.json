@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "I’m a Financial Expert: Here’s the One Thing People Get Wrong About Tax Refunds",
+  "link": "https://finance.yahoo.com/news/m-financial-expert-one-thing-143404597.html",
+  "publisher": "GOBankingRates",
+  "timestamp": "2026-02-25T14:34:04",
+  "providerPublishTime": 1772026444.0,
+  "text": "I’m a Financial Expert: Here’s the One Thing People Get Wrong About Tax Refunds",
+  "thumbnail": "https://media.zenfs.com/en/gobankingrates_644/2928caed309b21016a577d88adc03ea4",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ONE",
+    "THING",
+    "S",
+    "ABOUT",
+    "GET",
+    "HERE",
+    "THE",
+    "TAX",
+    "A",
+    "WRONG"
+  ],
+  "relatedTickers": [
+    "ONE",
+    "THING",
+    "S",
+    "ABOUT",
+    "GET",
+    "HERE",
+    "THE",
+    "TAX",
+    "A",
+    "WRONG"
+  ]
+}

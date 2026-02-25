@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HSBC reports a beat and a raise as it leapfrogs Wells Fargo by market cap",
+  "link": "https://www.marketwatch.com/story/hsbc-reports-a-beat-and-a-raise-as-it-leapfrogs-wells-fargo-by-market-cap-0e9f15ee?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T13:31:00",
+  "providerPublishTime": 1772022660.0,
+  "text": "HSBC’s guidance for 2026 is pushing analysts to raise their stock-price estimates by around 6%",
+  "thumbnail": "https://images.mktw.net/im-19866903",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "IS",
+    "PRICE",
+    "BEAT",
+    "AS",
+    "A",
+    "TO",
+    "RAISE",
+    "FOR",
+    "WELLS"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "IS",
+    "PRICE",
+    "BEAT",
+    "AS",
+    "A",
+    "TO",
+    "RAISE",
+    "FOR",
+    "WELLS"
+  ]
+}

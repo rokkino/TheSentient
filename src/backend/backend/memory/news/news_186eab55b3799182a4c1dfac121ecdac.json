@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stock Market Today: Dow Rises Ahead Of Nvidia Earnings; First Solar Plunges On Weak Revenue Outlook (Live Coverage)",
+  "link": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-nvidia-earnings-nvda-stock-first-solar/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-25T13:13:39",
+  "providerPublishTime": 1772021619.0,
+  "text": "Stock Market Today: Dow Rises Ahead Of Nvidia Earnings; First Solar Plunges On Weak Revenue Outlook (Live Coverage)",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/af3d8bf275f34dd771b1551f1766e265",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "SOLAR",
+    "ON",
+    "WEAK",
+    "OF",
+    "FIRST",
+    "RISES",
+    "DOW",
+    "TODAY",
+    "AHEAD"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "SOLAR",
+    "ON",
+    "WEAK",
+    "OF",
+    "FIRST",
+    "RISES",
+    "DOW",
+    "TODAY",
+    "AHEAD"
+  ]
+}

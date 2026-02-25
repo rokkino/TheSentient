@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Medtronic’s diabetes business MiniMed looks for $784m in US IPO",
+  "link": "https://finance.yahoo.com/news/medtronic-diabetes-business-minimed-looks-123128058.html",
+  "publisher": "Medical Device Network",
+  "timestamp": "2026-02-25T12:31:28",
+  "providerPublishTime": 1772019088.0,
+  "text": "Medtronic’s diabetes business MiniMed looks for $784m in US IPO",
+  "thumbnail": "https://media.zenfs.com/en/medical_device_network_744/b49dd407ae71daa6da23e423f3f8b20c",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "S",
+    "LOOKS",
+    "IPO",
+    "IN",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "US",
+    "S",
+    "LOOKS",
+    "IPO",
+    "IN",
+    "FOR"
+  ]
+}

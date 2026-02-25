@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Microsoft Japan raided by antitrust watchdog over cloud concerns - Nikkei",
+  "link": "https://www.investing.com/news/stock-market-news/microsoft-japan-raided-by-antitrust-watchdog-over-cloud-concerns--nikkei-93CH-4524302",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:44:43",
+  "providerPublishTime": 1772023483.0,
+  "text": "Microsoft Japan raided by antitrust watchdog over cloud concerns - Nikkei",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "CLOUD",
+    "OVER",
+    "BY",
+    "JAPAN"
+  ],
+  "relatedTickers": [
+    "CLOUD",
+    "OVER",
+    "BY",
+    "JAPAN"
+  ]
+}

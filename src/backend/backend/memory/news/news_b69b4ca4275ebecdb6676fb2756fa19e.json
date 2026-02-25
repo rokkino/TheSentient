@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stock market today: Dow, S&P 500, Nasdaq futures rise with Nvidia earnings on deck",
+  "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-rise-with-nvidia-earnings-on-deck-131748768.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-25T13:17:48",
+  "providerPublishTime": 1772021868.0,
+  "text": "Stock market today: Dow, S&P 500, Nasdaq futures rise with Nvidia earnings on deck",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/3a120390-103b-11f1-afe4-f75040601414",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "ON",
+    "RISE",
+    "P",
+    "WITH",
+    "DECK",
+    "DOW",
+    "TODAY",
+    "S"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "ON",
+    "RISE",
+    "P",
+    "WITH",
+    "DECK",
+    "DOW",
+    "TODAY",
+    "S"
+  ]
+}

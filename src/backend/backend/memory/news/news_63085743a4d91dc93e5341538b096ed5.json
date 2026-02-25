@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Api Group Corp earnings beat by $0.02, revenue topped estimates",
+  "link": "https://www.investing.com/news/earnings/api-groupcorp-earnings-beat-by-002-revenue-topped-estimates-4524027",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:46:46",
+  "providerPublishTime": 1772020006.0,
+  "text": "Api Group Corp earnings beat by $0.02, revenue topped estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEAT",
+    "CORP",
+    "GROUP",
+    "API",
+    "BY"
+  ],
+  "relatedTickers": [
+    "BEAT",
+    "CORP",
+    "GROUP",
+    "API",
+    "BY"
+  ]
+}

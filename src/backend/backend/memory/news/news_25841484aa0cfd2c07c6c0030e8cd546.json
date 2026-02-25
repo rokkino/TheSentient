@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Why more CEOs are taking a page from Elon Musk and chatting directly with customers",
+  "link": "https://www.marketwatch.com/story/why-more-ceos-are-chatting-directly-with-customers-e9c34f1d?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T12:59:00",
+  "providerPublishTime": 1772020740.0,
+  "text": "Executives say it’s all about learning how to better run their businesses, but some corporate watchers question if this is just a PR move.",
+  "thumbnail": "https://images.mktw.net/im-06209276",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MUSK",
+    "THIS",
+    "MORE",
+    "SAY",
+    "WHY",
+    "JUST",
+    "A",
+    "PR",
+    "TO",
+    "AND"
+  ],
+  "relatedTickers": [
+    "MUSK",
+    "THIS",
+    "MORE",
+    "SAY",
+    "WHY",
+    "JUST",
+    "A",
+    "PR",
+    "TO",
+    "AND"
+  ]
+}

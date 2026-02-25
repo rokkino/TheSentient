@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia’s new AI system Vera Rubin is 10 times more efficient than its predecessor — here’s a first look",
+  "link": "https://www.cnbc.com/2026/02/25/first-look-at-nvidias-ai-system-vera-rubin-and-how-it-beats-blackwell.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T13:00:01",
+  "providerPublishTime": 1772020801.0,
+  "text": "CNBC got an exclusive first look at Vera Rubin, Nvidia's next AI system that's due to ship in the second half of the year",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TO",
+    "MORE",
+    "VERA",
+    "THAT",
+    "NEW",
+    "DUE",
+    "S",
+    "IN",
+    "GOT",
+    "YEAR"
+  ],
+  "relatedTickers": [
+    "TO",
+    "MORE",
+    "VERA",
+    "THAT",
+    "NEW",
+    "DUE",
+    "S",
+    "IN",
+    "GOT",
+    "YEAR"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Circle’s Shares Surge After Profit, Revenue Top Estimates",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/circle-s-shares-surge-after-profit-revenue-top-estimates",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T11:50:53",
+  "providerPublishTime": 1772016653.0,
+  "text": "Circle Internet Group Inc.’s profit and revenue increased more than estimated while the amount of its USDC stablecoin in circulation jumped 72% to $75.3 billion in the fourth quarter.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ia2nTk3DZthA/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "ITS",
+    "SURGE",
+    "GROUP",
+    "AFTER",
+    "THAN",
+    "THE",
+    "S",
+    "AND",
+    "INC"
+  ],
+  "relatedTickers": [
+    "OF",
+    "ITS",
+    "SURGE",
+    "GROUP",
+    "AFTER",
+    "THAN",
+    "THE",
+    "S",
+    "AND",
+    "INC"
+  ]
+}

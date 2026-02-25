@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Shell and METLEN sign MoU for LNG supply cooperation",
+  "link": "https://finance.yahoo.com/news/shell-metlen-sign-mou-lng-141505536.html",
+  "publisher": "Offshore Technology",
+  "timestamp": "2026-02-25T14:15:05",
+  "providerPublishTime": 1772025305.0,
+  "text": "Shell and METLEN sign MoU for LNG supply cooperation",
+  "thumbnail": "https://media.zenfs.com/en/offshore_technology_431/d5e354e3a601ad1d8dc436bd1218e79c",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "MOU",
+    "SHELL",
+    "FOR",
+    "SIGN",
+    "AND",
+    "LNG"
+  ],
+  "relatedTickers": [
+    "MOU",
+    "SHELL",
+    "FOR",
+    "SIGN",
+    "AND",
+    "LNG"
+  ]
+}

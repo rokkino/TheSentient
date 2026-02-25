@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lowe’s Stock Drops After Earnings Beat. Why Guidance Is a Big Worry.",
+  "link": "https://www.barrons.com/articles/lowes-earnings-stock-price-e278fd43?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-25T13:10:00",
+  "providerPublishTime": 1772021400.0,
+  "text": "Lowe’s Stock Drops After Earnings Beat. Why Guidance Is a Big Worry.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/9d008b49631b7a8b901a2a919dfc553f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "IS",
+    "AFTER",
+    "BEAT",
+    "A",
+    "LOWE",
+    "DROPS",
+    "BIG",
+    "WORRY",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "IS",
+    "AFTER",
+    "BEAT",
+    "A",
+    "LOWE",
+    "DROPS",
+    "BIG",
+    "WORRY",
+    "WHY"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cantor Fitzgerald lowers MercadoLibre price target on margin concerns",
+  "link": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-lowers-mercadolibre-price-target-on-margin-concerns-93CH-4524042",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:51:01",
+  "providerPublishTime": 1772020261.0,
+  "text": "Cantor Fitzgerald lowers MercadoLibre price target on margin concerns",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "PRICE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "ON"
+  ]
+}

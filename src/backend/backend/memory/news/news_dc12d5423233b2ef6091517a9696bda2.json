@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stock market today: Dow, S&P 500, Nasdaq rise with Nvidia earnings looming as gut check for AI trade",
+  "link": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-rise-with-nvidia-earnings-looming-as-gut-check-for-ai-trade-143448982.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-25T14:34:48",
+  "providerPublishTime": 1772026488.0,
+  "text": "Stock market today: Dow, S&P 500, Nasdaq rise with Nvidia earnings looming as gut check for AI trade",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/3a120390-103b-11f1-afe4-f75040601414",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "P",
+    "TRADE",
+    "TODAY",
+    "WITH",
+    "AS",
+    "GUT",
+    "RISE",
+    "S",
+    "STOCK",
+    "AI"
+  ],
+  "relatedTickers": [
+    "P",
+    "TRADE",
+    "TODAY",
+    "WITH",
+    "AS",
+    "GUT",
+    "RISE",
+    "S",
+    "STOCK",
+    "AI"
+  ]
+}

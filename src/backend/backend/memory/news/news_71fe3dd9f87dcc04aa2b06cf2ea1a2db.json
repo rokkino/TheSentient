@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Curanex completes GMP pilot batch for ulcerative colitis drug",
+  "link": "https://www.investing.com/news/company-news/curanex-completes-gmp-pilot-batch-for-ulcerative-colitis-drug-93CH-4524152",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:14:18",
+  "providerPublishTime": 1772021658.0,
+  "text": "Curanex completes GMP pilot batch for ulcerative colitis drug",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PILOT",
+    "GMP",
+    "BATCH",
+    "FOR",
+    "DRUG"
+  ],
+  "relatedTickers": [
+    "PILOT",
+    "GMP",
+    "BATCH",
+    "FOR",
+    "DRUG"
+  ]
+}

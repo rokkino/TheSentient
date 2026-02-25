@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US-UK tech deal cautiously restarts with focus on nuclear projects",
+  "link": "https://www.ft.com/content/0992b6d0-5d10-4a7a-a505-6cda84946e6d",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T11:56:05",
+  "providerPublishTime": 1772016965.0,
+  "text": "Deal to collaborate on atomic energy, AI and quantum computing was paused as part of wider trade wrangling",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5f3224ab-7ef7-40fb-a31f-a20abbc52ca2.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "TECH",
+    "US",
+    "UK",
+    "AS",
+    "WITH",
+    "TRADE",
+    "AI",
+    "WIDER",
+    "AND"
+  ],
+  "relatedTickers": [
+    "OF",
+    "TECH",
+    "US",
+    "UK",
+    "AS",
+    "WITH",
+    "TRADE",
+    "AI",
+    "WIDER",
+    "AND"
+  ]
+}

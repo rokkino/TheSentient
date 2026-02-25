@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Piper Sandler raises Revolve Group stock price target on share gains",
+  "link": "https://www.investing.com/news/analyst-ratings/piper-sandler-raises-revolve-group-stock-price-target-on-share-gains-93CH-4524661",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:33:13",
+  "providerPublishTime": 1772026393.0,
+  "text": "Piper Sandler raises Revolve Group stock price target on share gains",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GROUP",
+    "GAINS",
+    "ON",
+    "SHARE",
+    "PRICE",
+    "PIPER",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "GROUP",
+    "GAINS",
+    "ON",
+    "SHARE",
+    "PRICE",
+    "PIPER",
+    "STOCK"
+  ]
+}

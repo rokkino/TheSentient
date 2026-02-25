@@ -1,0 +1,19 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Intuitive Machines stock tumbles despite $175M investment",
+  "link": "https://www.investing.com/news/stock-market-news/intuitive-machines-stock-tumbles-despite-175m-investment-93CH-4524531",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:17:16",
+  "providerPublishTime": 1772025436.0,
+  "text": "Intuitive Machines stock tumbles despite $175M investment",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "STOCK"
+  ]
+}

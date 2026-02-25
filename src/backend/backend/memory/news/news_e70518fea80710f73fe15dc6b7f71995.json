@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Is Oracle Stock a Millionaire Maker?",
+  "link": "https://finance.yahoo.com/news/oracle-stock-millionaire-maker-122500020.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-25T12:25:00",
+  "providerPublishTime": 1772018700.0,
+  "text": "Is Oracle Stock a Millionaire Maker?",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/950cebb9d76003392a74f02694f11c59",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "IS",
+    "A",
+    "MAKER"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "IS",
+    "A",
+    "MAKER"
+  ]
+}

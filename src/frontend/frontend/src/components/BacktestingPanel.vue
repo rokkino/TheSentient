@@ -1,31 +1,48 @@
 <template>
   <div class="backtesting-panel">
-    <div class="backtesting-header">
-      <h2>Backtesting</h2>
-      <p class="subtitle">Simulazione storica su dati earnings. Scegli il bot e la data (S&P 500 / Nasdaq).</p>
-      <div class="backtesting-filters" v-if="streamlitReady">
-        <label class="filter-label">
-          <span>Bot</span>
-          <select v-model="selectedBotId" class="filter-select" @change="updateEmbedUrl" :disabled="readOnly">
-            <option :value="null">Placeholder (logica built-in)</option>
+    <!-- Grey sidebar with settings -->
+    <aside class="bt-sidebar" :class="{ collapsed: sidebarCollapsed }">
+      <button class="sidebar-toggle" @click="sidebarCollapsed = !sidebarCollapsed" :title="sidebarCollapsed ? 'Apri configurazione' : 'Chiudi configurazione'">
+        {{ sidebarCollapsed ? '»' : '«' }}
+      </button>
+
+      <template v-if="!sidebarCollapsed">
+        <div class="sidebar-header">
+          <span class="sidebar-icon">⚙️</span>
+          <h3>Configurazione</h3>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Bot</label>
+          <select v-model="selectedBotId" class="sidebar-select" @change="updateEmbedUrl" :disabled="readOnly">
+            <option :value="null">-- Seleziona un bot --</option>
             <option v-for="b in bots" :key="b.id" :value="b.id">{{ b.name }}</option>
           </select>
-        </label>
-        <label class="filter-label">
-          <span>Data backtest</span>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Data backtest</label>
           <input
             v-model="selectedDate"
             type="date"
-            class="filter-input"
+            class="sidebar-input"
             @change="updateEmbedUrl"
             :disabled="readOnly"
           />
-        </label>
-        <button type="button" class="apply-btn" @click="reloadIframe" :disabled="readOnly">Applica e ricarica dashboard</button>
-      </div>
-    </div>
+        </div>
 
-    <div class="backtesting-content">
+        <button type="button" class="sidebar-apply-btn" @click="reloadIframe" :disabled="readOnly">
+          ▶ Applica e ricarica
+        </button>
+
+        <div class="sidebar-strategy-hint">
+          Strategy: Buy day before earnings (Pre-market) or day of earnings (Post-market). Sell next open.
+        </div>
+      </template>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="backtesting-main">
       <!-- Fallback quando Streamlit non è raggiungibile -->
       <div v-if="!streamlitReady" class="embed-container fallback">
         <div class="fallback-content">
@@ -85,6 +102,7 @@ let retryTimer = null
 const bots = ref([])
 const selectedBotId = ref(null)
 const selectedDate = ref('')
+const sidebarCollapsed = ref(false)
 
 const applyingSharedState = ref(false)
 let stateEmitTimer = null
@@ -149,7 +167,7 @@ function showAnyway() {
 async function loadBots() {
   try {
     const res = await api.getBots()
-    bots.value = res?.bots ?? []
+    bots.value = res.data?.bots ?? []
   } catch {
     bots.value = []
   }
@@ -240,100 +258,153 @@ onUnmounted(() => {
 .backtesting-panel {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: #0a0a0a;
 }
 
-.backtesting-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid #222;
-  background: #0f0f0f;
+/* ── Sidebar ── */
+.bt-sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: #f5f5f9;
+  border-right: 1px solid #ddd;
+  padding: 20px 16px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  transition: width 0.25s ease, min-width 0.25s ease, padding 0.25s ease;
+  overflow: hidden;
 }
 
-.backtesting-header h2 {
-  margin: 0;
+.bt-sidebar.collapsed {
+  width: 40px;
+  min-width: 40px;
+  padding: 20px 6px;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
   font-size: 18px;
-  font-weight: 600;
-  color: #fff;
-}
-
-.subtitle {
-  margin: 0;
-  font-size: 13px;
-  color: #888;
-  flex: 1;
-}
-
-.backtesting-filters {
+  color: #666;
+  cursor: pointer;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  width: 100%;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #222;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.15s;
 }
 
-.filter-label {
+.sidebar-toggle:hover {
+  background: #e0e0e6;
+}
+
+.bt-sidebar.collapsed .sidebar-toggle {
+  position: static;
+  margin: 0 auto;
+}
+
+.sidebar-header {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-icon {
+  font-size: 20px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.sidebar-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-label {
   font-size: 13px;
-  color: #aaa;
+  font-weight: 500;
+  color: #555;
 }
 
-.filter-label span {
-  white-space: nowrap;
+.sidebar-select,
+.sidebar-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #333;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-.filter-select,
-.filter-input {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 4px;
+.sidebar-select:focus,
+.sidebar-input:focus {
+  border-color: #e74c4c;
+}
+
+.sidebar-apply-btn {
+  width: 100%;
+  padding: 10px 14px;
+  background: #e74c4c;
   color: #fff;
-  padding: 8px 12px;
-  font-size: 13px;
-  min-width: 180px;
-}
-
-.filter-input {
-  min-width: 140px;
-}
-
-.apply-btn {
-  padding: 8px 16px;
-  background: #2a4;
-  color: #111;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s;
+  margin-top: 4px;
 }
 
-.apply-btn:hover {
-  opacity: 0.9;
+.sidebar-apply-btn:hover:not(:disabled) {
+  background: #d43c3c;
 }
 
-.backtesting-content {
+.sidebar-apply-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sidebar-strategy-hint {
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #888;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+}
+
+/* ── Main content ── */
+.backtesting-main {
   flex: 1;
+  min-width: 0;
   min-height: 0;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .embed-container {
-  height: 100%;
+  flex: 1;
   min-height: 500px;
   background: #111;
-  border: 1px solid #222;
-  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -344,7 +415,7 @@ onUnmounted(() => {
   border: none;
 }
 
-/* Fallback quando Streamlit non è attivo */
+/* Fallback */
 .embed-container.fallback {
   display: flex;
   align-items: center;

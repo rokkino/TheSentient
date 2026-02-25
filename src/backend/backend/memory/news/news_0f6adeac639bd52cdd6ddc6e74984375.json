@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Viasat stock hits 52-week high of 49.79 USD",
+  "link": "https://www.investing.com/news/company-news/viasat-stock-hits-52week-high-of-4979-usd-93CH-4524662",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:33:38",
+  "providerPublishTime": 1772026418.0,
+  "text": "Viasat stock hits 52-week high of 49.79 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HITS",
+    "USD",
+    "HIGH",
+    "WEEK",
+    "OF",
+    "STOCK"
+  ],
+  "relatedTickers": [
+    "HITS",
+    "USD",
+    "HIGH",
+    "WEEK",
+    "OF",
+    "STOCK"
+  ]
+}

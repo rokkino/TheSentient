@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "GoPro, ASUS launch co-branded ProArt laptop at $2,999",
+  "link": "https://www.investing.com/news/company-news/gopro-asus-launch-cobranded-proart-laptop-at-2999-93CH-4524529",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:17:08",
+  "providerPublishTime": 1772025428.0,
+  "text": "GoPro, ASUS launch co-branded ProArt laptop at $2,999",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOPRO",
+    "AT",
+    "CO",
+    "ASUS"
+  ],
+  "relatedTickers": [
+    "GOPRO",
+    "AT",
+    "CO",
+    "ASUS"
+  ]
+}

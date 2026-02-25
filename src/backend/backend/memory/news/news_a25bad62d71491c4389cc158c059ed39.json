@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Commons Speaker told police Mandelson was a flight risk",
+  "link": "https://www.ft.com/content/65eeae52-39b2-42ae-810c-407f0d94928e",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T12:10:29",
+  "providerPublishTime": 1772017829.0,
+  "text": "Lindsay Hoyle admits his tip to police prompted arrest of Peter Mandelson",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fb27c9a7b-ee0d-4360-b84a-a95a141ada4e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "OF",
+    "PETER",
+    "HOYLE",
+    "TOLD",
+    "RISK",
+    "A",
+    "TO",
+    "HIS",
+    "WAS",
+    "TIP"
+  ],
+  "relatedTickers": [
+    "OF",
+    "PETER",
+    "HOYLE",
+    "TOLD",
+    "RISK",
+    "A",
+    "TO",
+    "HIS",
+    "WAS",
+    "TIP"
+  ]
+}

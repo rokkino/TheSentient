@@ -2827,31 +2827,43 @@ const selectTicker = async (tabId, symbol) => {
     return
   }
   
-  console.log('Tab found:', tab)
   tab.selectedTicker = symbol
   tab.chartInfo.symbol = symbol
   
-  // Get quote info with current timeframe
-  try {
-    console.log('Fetching quote for:', symbol, 'timeframe:', tab.timeframe)
-    const response = await api.getQuote(symbol, tab.timeframe || '1d')
-    const quote = response.data
-    tab.chartInfo.name = quote.name
-    tab.chartInfo.price = quote.price
-    tab.chartInfo.change = quote.change
-    tab.chartInfo.changePercent = quote.changePercent
-    tab.chartInfo.volume = quote.volume
-    console.log('Quote loaded:', quote)
-  } catch (error) {
-    console.error('Failed to get quote:', error)
-  }
-  
-  // Wait a bit to ensure DOM is ready
+  // Ensure DOM is ready for the chart container
   await nextTick()
-  await new Promise(resolve => setTimeout(resolve, 100))
   
-  console.log('Loading chart for tab:', tabId)
-  await loadChart(tabId)
+  // Fire quote and chart loading in PARALLEL (biggest speed win)
+  const quotePromise = api.getQuote(symbol, tab.timeframe || '1d')
+    .then(response => {
+      const quote = response.data
+      tab.chartInfo.name = quote.name
+      tab.chartInfo.price = quote.price
+      tab.chartInfo.change = quote.change
+      tab.chartInfo.changePercent = quote.changePercent
+      tab.chartInfo.volume = quote.volume
+      // Copy extended hours & OHLC data
+      if (quote.open != null) tab.chartInfo.open = quote.open
+      if (quote.high != null) tab.chartInfo.high = quote.high
+      if (quote.low != null) tab.chartInfo.low = quote.low
+      if (quote.postMarketPrice != null) tab.chartInfo.postMarketPrice = quote.postMarketPrice
+      if (quote.postMarketChange != null) tab.chartInfo.postMarketChange = quote.postMarketChange
+      if (quote.postMarketChangePercent != null) tab.chartInfo.postMarketChangePercent = quote.postMarketChangePercent
+      if (quote.preMarketPrice != null) tab.chartInfo.preMarketPrice = quote.preMarketPrice
+      if (quote.preMarketChange != null) tab.chartInfo.preMarketChange = quote.preMarketChange
+      if (quote.preMarketChangePercent != null) tab.chartInfo.preMarketChangePercent = quote.preMarketChangePercent
+      if (quote.marketState) tab.chartInfo.marketState = quote.marketState
+      console.log('Quote loaded:', quote)
+    })
+    .catch(error => {
+      console.error('Failed to get quote:', error)
+    })
+
+  const chartPromise = loadChart(tabId)
+
+  // Wait for both to complete
+  await Promise.allSettled([quotePromise, chartPromise])
+  
   if (activeTab.value === tabId) startChartRefresh(tabId)
   broadcastSharedPatch(tabId, {
     selectedTicker: symbol,
@@ -2861,6 +2873,7 @@ const selectTicker = async (tabId, symbol) => {
     drawings: tab.drawings || []
   })
 }
+
 
 const loadChart = async (tabId, forceRefresh = false) => {
   console.log('loadChart called:', tabId, forceRefresh ? '(refresh)' : '')
@@ -2936,7 +2949,7 @@ const loadChart = async (tabId, forceRefresh = false) => {
     console.error('Chart container not found for tab:', tabId, 'Available refs:', Object.keys(chartRefs.value))
     // Try to wait a bit more for the DOM to be ready
     await nextTick()
-    await new Promise(resolve => setTimeout(resolve, 200))
+    await new Promise(resolve => setTimeout(resolve, 50))
     chartContainer = chartRefs.value[tabId]
     if (!chartContainer) {
       console.error('Chart container still not found after retry')
@@ -2947,7 +2960,7 @@ const loadChart = async (tabId, forceRefresh = false) => {
   // Ensure container has valid dimensions
   if (chartContainer.clientWidth === 0 || chartContainer.clientHeight === 0) {
     console.warn('Chart container has zero dimensions, waiting for layout...')
-    await new Promise(resolve => setTimeout(resolve, 300))
+    await new Promise(resolve => setTimeout(resolve, 50))
     // Retry getting dimensions
     if (chartContainer.clientWidth === 0 || chartContainer.clientHeight === 0) {
       console.error('Chart container still has zero dimensions:', {
@@ -2959,6 +2972,7 @@ const loadChart = async (tabId, forceRefresh = false) => {
       chartContainer.style.height = '100%'
     }
   }
+
 
   try {
     // Check cache first (skip cache when force-refreshing)
@@ -5205,42 +5219,7 @@ const handleAiDrawingAdded = (drawing) => {
   color: #fff;
 }
 
-/* Context Menu */
-.context-menu {
-  position: fixed;
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  min-width: 150px;
-  padding: 4px 0;
-}
-
-.context-menu-item {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 8px 16px;
-  background: none;
-  border: none;
-  color: #e0e0e0;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background-color 0.2s;
-}
-
-.context-menu-item:hover {
-  background-color: #333;
-}
-
-.context-menu-item.delete {
-  color: #ef5350;
-}
-
-.context-menu-item.delete:hover {
-  background-color: rgba(239, 83, 80, 0.1);
-}
+/* (Duplicate .context-menu and .context-menu-item removed — see definition near line 4955) */
 
 .color-picker-section {
   display: flex;

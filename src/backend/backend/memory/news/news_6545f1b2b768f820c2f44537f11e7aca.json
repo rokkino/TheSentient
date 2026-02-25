@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OPEC+ to consider 137,000 bpd oil output increase for April, sources say",
+  "link": "https://finance.yahoo.com/news/opec-consider-137-000-bpd-130554814.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-25T13:05:54",
+  "providerPublishTime": 1772021154.0,
+  "text": "OPEC+ to consider 137,000 bpd oil output increase for April, sources say",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/c4d75c76c254c0c237686e3edfa0845d",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OIL",
+    "TO",
+    "APRIL",
+    "FOR",
+    "OPEC",
+    "BPD",
+    "SAY"
+  ],
+  "relatedTickers": [
+    "OIL",
+    "TO",
+    "APRIL",
+    "FOR",
+    "OPEC",
+    "BPD",
+    "SAY"
+  ]
+}

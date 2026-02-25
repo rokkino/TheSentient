@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 424B5 PENN Entertainment Inc For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-424b5-penn-entertainment-inc-for-25-february-93CH-4524228",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:33:15",
+  "providerPublishTime": 1772022795.0,
+  "text": "Form 424B5 PENN Entertainment Inc For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PENN",
+    "FOR",
+    "FORM",
+    "INC"
+  ],
+  "relatedTickers": [
+    "PENN",
+    "FOR",
+    "FORM",
+    "INC"
+  ]
+}

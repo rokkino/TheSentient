@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Morgan Stanley raises Leonardo DRS stock price target on supply efforts",
+  "link": "https://www.investing.com/news/analyst-ratings/morgan-stanley-raises-leonardo-drs-stock-price-target-on-supply-efforts-93CH-4524303",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:44:52",
+  "providerPublishTime": 1772023492.0,
+  "text": "Morgan Stanley raises Leonardo DRS stock price target on supply efforts",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "DRS",
+    "PRICE",
+    "ON"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "DRS",
+    "PRICE",
+    "ON"
+  ]
+}

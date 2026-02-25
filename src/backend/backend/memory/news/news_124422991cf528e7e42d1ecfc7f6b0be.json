@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Ardent Health partners with hellocare.ai for AI virtual care",
+  "link": "https://www.investing.com/news/company-news/ardent-health-partners-with-hellocareai-for-ai-virtual-care-93CH-4524107",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:05:40",
+  "providerPublishTime": 1772021140.0,
+  "text": "Ardent Health partners with hellocare.ai for AI virtual care",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AI",
+    "WITH",
+    "FOR",
+    "CARE"
+  ],
+  "relatedTickers": [
+    "AI",
+    "WITH",
+    "FOR",
+    "CARE"
+  ]
+}

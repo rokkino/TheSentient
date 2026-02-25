@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Exclusive-Gaza firm to build UAE-funded housing compound in Israeli-held south, sources say",
+  "link": "https://www.investing.com/news/world-news/exclusivegaza-firm-to-build-uaefunded-housing-compound-in-israeliheld-south-sources-say-4524112",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:06:34",
+  "providerPublishTime": 1772021194.0,
+  "text": "Exclusive-Gaza firm to build UAE-funded housing compound in Israeli-held south, sources say",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SOUTH",
+    "TO",
+    "GAZA",
+    "HELD",
+    "SAY",
+    "BUILD",
+    "IN",
+    "FIRM",
+    "UAE"
+  ],
+  "relatedTickers": [
+    "SOUTH",
+    "TO",
+    "GAZA",
+    "HELD",
+    "SAY",
+    "BUILD",
+    "IN",
+    "FIRM",
+    "UAE"
+  ]
+}

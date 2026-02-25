@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Earnings live: Circle stock soars, First Solar and Lowe's fall on guidance misses",
+  "link": "https://finance.yahoo.com/news/live/earnings-live-circle-stock-soars-first-solar-and-lowes-fall-on-guidance-misses-133211905.html",
+  "publisher": "Yahoo Finance",
+  "timestamp": "2026-02-25T13:32:11",
+  "providerPublishTime": 1772022731.0,
+  "text": "Earnings live: Circle stock soars, First Solar and Lowe's fall on guidance misses",
+  "thumbnail": "https://s.yimg.com/os/creatr-uploaded-images/2026-02/5cc7c0e0-124e-11f1-865d-8e7829377ba7",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "STOCK",
+    "SOLAR",
+    "ON",
+    "FIRST",
+    "LOWE",
+    "SOARS",
+    "AND",
+    "LIVE",
+    "FALL",
+    "S"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "SOLAR",
+    "ON",
+    "FIRST",
+    "LOWE",
+    "SOARS",
+    "AND",
+    "LIVE",
+    "FALL",
+    "S"
+  ]
+}

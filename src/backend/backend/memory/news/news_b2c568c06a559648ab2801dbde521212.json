@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Besra secures conditional lease renewal for Jugan deposit in Malaysia",
+  "link": "https://finance.yahoo.com/news/besra-secures-conditional-lease-renewal-124446625.html",
+  "publisher": "Mining Technology",
+  "timestamp": "2026-02-25T12:44:46",
+  "providerPublishTime": 1772019886.0,
+  "text": "Besra secures conditional lease renewal for Jugan deposit in Malaysia",
+  "thumbnail": "https://media.zenfs.com/en/mining_technology_700/d3092af67aca9706497f420f8959de44",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BESRA",
+    "JUGAN",
+    "LEASE",
+    "FOR",
+    "IN"
+  ],
+  "relatedTickers": [
+    "BESRA",
+    "JUGAN",
+    "LEASE",
+    "FOR",
+    "IN"
+  ]
+}

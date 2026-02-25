@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "APi Group beats fourth quarter estimates on revenue growth",
+  "link": "https://www.investing.com/news/earnings/api-group-beats-fourth-quarter-estimates-on-revenue-growth-93CH-4524018",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:43:36",
+  "providerPublishTime": 1772019816.0,
+  "text": "APi Group beats fourth quarter estimates on revenue growth",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "ON",
+    "BEATS",
+    "GROUP",
+    "API"
+  ],
+  "relatedTickers": [
+    "ON",
+    "BEATS",
+    "GROUP",
+    "API"
+  ]
+}

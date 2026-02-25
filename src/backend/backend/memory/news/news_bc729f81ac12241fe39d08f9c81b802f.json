@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "OPEC+ Delegates Expect Group to Resume Modest Supply Hikes",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/opec-delegates-expect-group-to-resume-modest-supply-hikes",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T12:24:05",
+  "providerPublishTime": 1772018645.0,
+  "text": "Some OPEC+ delegates said they expect the group will agree to resume modest production increases when it meets this weekend to review policy for April.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AGREE",
+    "GROUP",
+    "THE",
+    "HIKES",
+    "OPEC",
+    "WILL",
+    "THIS",
+    "WHEN",
+    "SAID",
+    "THEY"
+  ],
+  "relatedTickers": [
+    "AGREE",
+    "GROUP",
+    "THE",
+    "HIKES",
+    "OPEC",
+    "WILL",
+    "THIS",
+    "WHEN",
+    "SAID",
+    "THEY"
+  ]
+}

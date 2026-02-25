@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Here’s Why Pool Corporation (POOL) Traded Lower in Q4",
+  "link": "https://finance.yahoo.com/news/why-pool-corporation-pool-traded-133400594.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-25T13:34:00",
+  "providerPublishTime": 1772022840.0,
+  "text": "Here’s Why Pool Corporation (POOL) Traded Lower in Q4",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/3b0c89c53a1c4f3df3539aef549ad91b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "POOL",
+    "HERE",
+    "LOWER",
+    "IN",
+    "WHY",
+    "S"
+  ],
+  "relatedTickers": [
+    "POOL",
+    "HERE",
+    "LOWER",
+    "IN",
+    "WHY",
+    "S"
+  ]
+}

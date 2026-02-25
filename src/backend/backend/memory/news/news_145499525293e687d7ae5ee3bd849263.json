@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How war stopped working",
+  "link": "https://www.ft.com/content/8c91a61a-ba02-4394-b441-a9f60a29f4e8",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T12:29:13",
+  "providerPublishTime": 1772018953.0,
+  "text": "Ukraine, Iraq, Afghanistan — the story of the century so far is the ineffectiveness of force",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fe038ca02-41d2-4373-962d-387cdee75fa3.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "OF",
+    "IRAQ",
+    "THE",
+    "FORCE",
+    "SO",
+    "IS",
+    "FAR",
+    "HOW",
+    "STORY",
+    "WAR"
+  ],
+  "relatedTickers": [
+    "OF",
+    "IRAQ",
+    "THE",
+    "FORCE",
+    "SO",
+    "IS",
+    "FAR",
+    "HOW",
+    "STORY",
+    "WAR"
+  ]
+}

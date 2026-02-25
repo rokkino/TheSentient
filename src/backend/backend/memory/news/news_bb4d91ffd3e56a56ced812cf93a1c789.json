@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Credo partners with TensorWave to deploy AI cluster cables",
+  "link": "https://www.investing.com/news/company-news/credo-partners-with-tensorwave-to-deploy-ai-cluster-cables-93CH-4524528",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:16:57",
+  "providerPublishTime": 1772025417.0,
+  "text": "Credo partners with TensorWave to deploy AI cluster cables",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WITH",
+    "TO",
+    "CREDO",
+    "AI"
+  ],
+  "relatedTickers": [
+    "WITH",
+    "TO",
+    "CREDO",
+    "AI"
+  ]
+}

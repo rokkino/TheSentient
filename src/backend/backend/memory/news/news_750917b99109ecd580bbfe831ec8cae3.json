@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Wells Fargo & Company For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-8k-wells-fargo--company-for-25-february-93CH-4524194",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:31:00",
+  "providerPublishTime": 1772022660.0,
+  "text": "Form 8K Wells Fargo & Company For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FARGO",
+    "FOR",
+    "WELLS",
+    "FORM"
+  ],
+  "relatedTickers": [
+    "FARGO",
+    "FOR",
+    "WELLS",
+    "FORM"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Circle gives crypto investors a reason to cheer by reporting a big jump in profits",
+  "link": "https://www.marketwatch.com/story/circle-gives-crypto-investors-a-reason-to-cheer-by-reporting-a-big-jump-in-profits-f964ac5a?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T12:32:00",
+  "providerPublishTime": 1772019120.0,
+  "text": "Circle Internet’s stock soars, as the stablecoin issuer reported a big jump in fourth-quarter profitability.",
+  "thumbnail": "https://images.mktw.net/im-63453555",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BIG",
+    "BY",
+    "AS",
+    "SOARS",
+    "THE",
+    "GIVES",
+    "S",
+    "JUMP",
+    "CHEER",
+    "A"
+  ],
+  "relatedTickers": [
+    "BIG",
+    "BY",
+    "AS",
+    "SOARS",
+    "THE",
+    "GIVES",
+    "S",
+    "JUMP",
+    "CHEER",
+    "A"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Pinnacle West Capital Corp For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-8k-pinnacle-west-capital-corp-for-25-february-93CH-4524192",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:30:49",
+  "providerPublishTime": 1772022649.0,
+  "text": "Form 8K Pinnacle West Capital Corp For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "WEST",
+    "FOR",
+    "FORM",
+    "CORP"
+  ],
+  "relatedTickers": [
+    "WEST",
+    "FOR",
+    "FORM",
+    "CORP"
+  ]
+}

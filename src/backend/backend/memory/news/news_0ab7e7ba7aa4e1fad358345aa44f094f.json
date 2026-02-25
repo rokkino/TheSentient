@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Lessor ATSG quits Airbus A321 cargo conversion joint venture",
+  "link": "https://finance.yahoo.com/news/lessor-atsg-quits-airbus-a321-140918336.html",
+  "publisher": "FreightWaves",
+  "timestamp": "2026-02-25T14:09:18",
+  "providerPublishTime": 1772024958.0,
+  "text": "Lessor ATSG quits Airbus A321 cargo conversion joint venture",
+  "thumbnail": "https://media.zenfs.com/en/freightwaves_373/ad55737e4155e9dfef13d16a425bf9c8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "CARGO",
+    "ATSG",
+    "JOINT",
+    "QUITS"
+  ],
+  "relatedTickers": [
+    "CARGO",
+    "ATSG",
+    "JOINT",
+    "QUITS"
+  ]
+}

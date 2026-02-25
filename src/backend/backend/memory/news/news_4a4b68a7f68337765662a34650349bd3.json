@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "TJ Maxx parent’s earnings show discount clothes and home goods are still in high demand",
+  "link": "https://www.marketwatch.com/story/tj-maxx-parents-earnings-show-discount-clothes-and-home-goods-are-still-in-high-demand-90fb804d?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T14:27:00",
+  "providerPublishTime": 1772026020.0,
+  "text": "TJ Maxx parent company TJX reported a triple beat with its fourth-quarter results on Wednesday, but shares of the off-price apparel and home-fashions retailer slipped as the outlook disappointed.",
+  "thumbnail": "https://images.mktw.net/im-79015018",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BEAT",
+    "SHOW",
+    "OFF",
+    "ON",
+    "MAXX",
+    "A",
+    "ARE",
+    "WITH",
+    "AS",
+    "THE"
+  ],
+  "relatedTickers": [
+    "BEAT",
+    "SHOW",
+    "OFF",
+    "ON",
+    "MAXX",
+    "A",
+    "ARE",
+    "WITH",
+    "AS",
+    "THE"
+  ]
+}

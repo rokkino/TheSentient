@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hercules capital director Crowell buys $100k in HTGC stock",
+  "link": "https://www.investing.com/news/insider-trading-news/hercules-capital-director-crowell-buys-100k-in-htgc-stock-93CH-4524505",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:12:03",
+  "providerPublishTime": 1772025123.0,
+  "text": "Hercules capital director Crowell buys $100k in HTGC stock",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "STOCK",
+    "HTGC",
+    "BUYS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "STOCK",
+    "HTGC",
+    "BUYS"
+  ]
+}

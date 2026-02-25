@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "South African Annual Budget Highlights: Debt Peak, Tax Relief",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/south-african-annual-budget-highlights-debt-peak-tax-relief",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T12:07:27",
+  "providerPublishTime": 1772017647.0,
+  "text": "South Africa’s National Treasury said public debt as a percentage of gross domestic product will peak this year, as it announced better-than-expected revenue collection and relief for taxpayers to support economic growth.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i2iGQL1ZsC.0/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "OF",
+    "AS",
+    "DEBT",
+    "GROSS",
+    "PEAK",
+    "THAN",
+    "THIS",
+    "SOUTH",
+    "WILL",
+    "S"
+  ],
+  "relatedTickers": [
+    "OF",
+    "AS",
+    "DEBT",
+    "GROSS",
+    "PEAK",
+    "THAN",
+    "THIS",
+    "SOUTH",
+    "WILL",
+    "S"
+  ]
+}

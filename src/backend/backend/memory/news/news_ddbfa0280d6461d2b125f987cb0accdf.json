@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "I’m 50 years old with $400K in savings, but I’ve heard the magic number for retirement is $1.26 million. Will I be okay?",
+  "link": "https://finance.yahoo.com/news/m-50-years-old-400k-140300317.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-25T14:03:00",
+  "providerPublishTime": 1772024580.0,
+  "text": "I’m 50 years old with $400K in savings, but I’ve heard the magic number for retirement is $1.26 million. Will I be okay?",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_ecomm_711/cd97388348e4753b509349c1db7dbc0c",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "HEARD",
+    "VE",
+    "IS",
+    "WILL",
+    "M",
+    "BUT",
+    "WITH",
+    "THE",
+    "MAGIC",
+    "FOR"
+  ],
+  "relatedTickers": [
+    "HEARD",
+    "VE",
+    "IS",
+    "WILL",
+    "M",
+    "BUT",
+    "WITH",
+    "THE",
+    "MAGIC",
+    "FOR"
+  ]
+}

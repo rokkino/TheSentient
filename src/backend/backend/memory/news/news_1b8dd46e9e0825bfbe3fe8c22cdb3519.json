@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "The order you pay bills, save for retirement is more crucial than ever. Here are 5 steps to tackle financial priorities",
+  "link": "https://finance.yahoo.com/news/order-pay-bills-save-retirement-123000119.html",
+  "publisher": "Moneywise",
+  "timestamp": "2026-02-25T12:30:00",
+  "providerPublishTime": 1772019000.0,
+  "text": "The order you pay bills, save for retirement is more crucial than ever. Here are 5 steps to tackle financial priorities",
+  "thumbnail": "https://media.zenfs.com/en/moneywise_327/966637f28c41f966e332f683b1123c4e",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "MORE",
+    "THE",
+    "EVER",
+    "BILLS",
+    "PAY",
+    "YOU",
+    "ORDER",
+    "FOR",
+    "HERE",
+    "SAVE"
+  ],
+  "relatedTickers": [
+    "MORE",
+    "THE",
+    "EVER",
+    "BILLS",
+    "PAY",
+    "YOU",
+    "ORDER",
+    "FOR",
+    "HERE",
+    "SAVE"
+  ]
+}

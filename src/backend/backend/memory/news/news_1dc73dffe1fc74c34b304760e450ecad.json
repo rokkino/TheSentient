@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Charles River Laboratories stock rises on divestiture plans",
+  "link": "https://www.investing.com/news/stock-market-news/charles-river-laboratories-stock-rises-on-divestiture-plans-93CH-4524227",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:33:15",
+  "providerPublishTime": 1772022795.0,
+  "text": "Charles River Laboratories stock rises on divestiture plans",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "ON",
+    "PLANS",
+    "RISES",
+    "RIVER"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "ON",
+    "PLANS",
+    "RISES",
+    "RIVER"
+  ]
+}

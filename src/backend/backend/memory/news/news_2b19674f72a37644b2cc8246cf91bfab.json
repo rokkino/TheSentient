@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Form 8K Angel Oak Mortgage Inc For: 25 February",
+  "link": "https://www.investing.com/news/filings/form-8k-angel-oak-mortgage-inc-for-25-february-93CH-4523981",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:30:54",
+  "providerPublishTime": 1772019054.0,
+  "text": "Form 8K Angel Oak Mortgage Inc For: 25 February",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INC",
+    "ANGEL",
+    "FOR",
+    "FORM",
+    "OAK"
+  ],
+  "relatedTickers": [
+    "INC",
+    "ANGEL",
+    "FOR",
+    "FORM",
+    "OAK"
+  ]
+}

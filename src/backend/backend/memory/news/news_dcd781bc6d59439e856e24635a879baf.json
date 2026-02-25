@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Iran sees ’good outlook’ for talks with US as negotiating team heads to Geneva",
+  "link": "https://www.investing.com/news/commodities-news/iran-sees-good-outlook-for-talks-with-us-as-negotiating-team-heads-to-geneva-4524314",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:54:27",
+  "providerPublishTime": 1772024067.0,
+  "text": "Iran sees ’good outlook’ for talks with US as negotiating team heads to Geneva",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GOOD",
+    "AS",
+    "TO",
+    "US",
+    "HEADS",
+    "WITH",
+    "FOR",
+    "IRAN",
+    "TALKS",
+    "SEES"
+  ],
+  "relatedTickers": [
+    "GOOD",
+    "AS",
+    "TO",
+    "US",
+    "HEADS",
+    "WITH",
+    "FOR",
+    "IRAN",
+    "TALKS",
+    "SEES"
+  ]
+}

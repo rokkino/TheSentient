@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "TJX Cos forecasts muted annual sales and profit as consumers pull back spending",
+  "link": "https://finance.yahoo.com/news/tjx-cos-forecasts-muted-annual-141116941.html",
+  "publisher": "Reuters",
+  "timestamp": "2026-02-25T14:11:16",
+  "providerPublishTime": 1772025076.0,
+  "text": "TJX Cos forecasts muted annual sales and profit as consumers pull back spending",
+  "thumbnail": "https://media.zenfs.com/en/reuters.com/7b66067bf14d8139917d69c3fadca3bc",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AND",
+    "SALES",
+    "AS",
+    "TJX",
+    "BACK",
+    "COS",
+    "MUTED",
+    "PULL"
+  ],
+  "relatedTickers": [
+    "AND",
+    "SALES",
+    "AS",
+    "TJX",
+    "BACK",
+    "COS",
+    "MUTED",
+    "PULL"
+  ]
+}

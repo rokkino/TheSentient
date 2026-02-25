@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Third runway will cost £15 per passenger, Heathrow boss claims",
+  "link": "https://www.ft.com/content/15c3ee82-bfaf-43ee-8699-9315ba08ea13",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-25T12:28:31",
+  "providerPublishTime": 1772018911.0,
+  "text": "Comments by Thomas Woldbye come as Britain’s hub airport awaits crucial ruling by regulator",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F1af07555-8c61-4cdc-9b0d-b79cf2776ca8.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BY",
+    "COME",
+    "AS",
+    "BOSS",
+    "COST",
+    "WILL",
+    "S",
+    "THIRD",
+    "PER",
+    "HUB"
+  ],
+  "relatedTickers": [
+    "BY",
+    "COME",
+    "AS",
+    "BOSS",
+    "COST",
+    "WILL",
+    "S",
+    "THIRD",
+    "PER",
+    "HUB"
+  ]
+}

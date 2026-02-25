@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Extreme Weather Is Becoming More Normal, Gore Says",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-25/extreme-weather-is-becoming-more-normal-gore-says-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T13:00:20",
+  "providerPublishTime": 1772020820.0,
+  "text": "Former Vice President Al Gore warns that the world may be approaching dangerous climate “tipping points,” including the potential shutdown of major ocean currents. Gore points to intensifying extreme weather, expanding unlivable heat zones, and the possibility of up to two billion climate migrants by 2050. He appears on this week's episode of The David Rubenstein Show: Peer to Peer Conversations. This interview was recorded on January 20 at the World Economic Forum in Davos. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTwuy7Kd18Kc/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "DAVOS",
+    "TO",
+    "BE",
+    "TWO",
+    "MORE",
+    "ON",
+    "DAVID",
+    "PEER",
+    "THAT",
+    "OCEAN"
+  ],
+  "relatedTickers": [
+    "DAVOS",
+    "TO",
+    "BE",
+    "TWO",
+    "MORE",
+    "ON",
+    "DAVID",
+    "PEER",
+    "THAT",
+    "OCEAN"
+  ]
+}

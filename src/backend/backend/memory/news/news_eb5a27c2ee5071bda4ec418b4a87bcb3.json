@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "David Tepper sends scathing letter to Whirlpool for destroying shareholder value, pushes for changes",
+  "link": "https://www.cnbc.com/2026/02/25/david-tepper-sends-scathing-letter-to-whirlpool.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T14:10:52",
+  "providerPublishTime": 1772025052.0,
+  "text": "Tepper said he watched \"with astonishment\" as the company issued equity in what he called a large and unnecessary dilution of shareholders.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "TO",
+    "HE",
+    "SAID",
+    "WITH",
+    "FOR",
+    "THE",
+    "A",
+    "OF",
+    "LARGE"
+  ],
+  "relatedTickers": [
+    "AS",
+    "TO",
+    "HE",
+    "SAID",
+    "WITH",
+    "FOR",
+    "THE",
+    "A",
+    "OF",
+    "LARGE"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Swiss government to pay $56,000 to each victim of Crans-Montana bar fire",
+  "link": "https://www.investing.com/news/world-news/swiss-government-to-pay-56000-to-each-victim-of-cransmontana-bar-fire-4523964",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:31:05",
+  "providerPublishTime": 1772022665.0,
+  "text": "Swiss government to pay $56,000 to each victim of Crans-Montana bar fire",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FIRE",
+    "PAY",
+    "TO",
+    "BAR",
+    "OF",
+    "CRANS",
+    "SWISS",
+    "EACH"
+  ],
+  "relatedTickers": [
+    "FIRE",
+    "PAY",
+    "TO",
+    "BAR",
+    "OF",
+    "CRANS",
+    "SWISS",
+    "EACH"
+  ]
+}

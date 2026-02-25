@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Cantor Fitzgerald cuts Lucid stock price target on lower production guidance",
+  "link": "https://www.investing.com/news/analyst-ratings/cantor-fitzgerald-cuts-lucid-stock-price-target-on-lower-production-guidance-93CH-4524022",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:45:25",
+  "providerPublishTime": 1772019925.0,
+  "text": "Cantor Fitzgerald cuts Lucid stock price target on lower production guidance",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ON",
+    "CUTS",
+    "STOCK",
+    "PRICE",
+    "LUCID",
+    "LOWER"
+  ],
+  "relatedTickers": [
+    "ON",
+    "CUTS",
+    "STOCK",
+    "PRICE",
+    "LUCID",
+    "LOWER"
+  ]
+}

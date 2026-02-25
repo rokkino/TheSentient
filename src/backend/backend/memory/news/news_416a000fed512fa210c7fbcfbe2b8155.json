@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "US Mortgage Rates Reach Lowest Since 2022, Boosting Refinancing",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-25/us-mortgage-rates-reach-lowest-since-2022-boosting-refinancing",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-25T12:00:00",
+  "providerPublishTime": 1772017200.0,
+  "text": "US mortgage rates slipped last week to the lowest level since 2022, generating more refinancing activity.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/isH0W9smiQr0/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "REACH",
+    "US",
+    "WEEK",
+    "THE",
+    "RATES",
+    "LEVEL",
+    "TO",
+    "MORE",
+    "LAST",
+    "SINCE"
+  ],
+  "relatedTickers": [
+    "REACH",
+    "US",
+    "WEEK",
+    "THE",
+    "RATES",
+    "LEVEL",
+    "TO",
+    "MORE",
+    "LAST",
+    "SINCE"
+  ]
+}

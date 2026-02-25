@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Uber integrates Joby electric air taxi bookings into app",
+  "link": "https://www.investing.com/news/company-news/uber-integrates-joby-electric-air-taxi-bookings-into-app-93CH-4524150",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T13:13:59",
+  "providerPublishTime": 1772021639.0,
+  "text": "Uber integrates Joby electric air taxi bookings into app",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "JOBY",
+    "UBER",
+    "INTO",
+    "TAXI",
+    "APP",
+    "AIR"
+  ],
+  "relatedTickers": [
+    "JOBY",
+    "UBER",
+    "INTO",
+    "TAXI",
+    "APP",
+    "AIR"
+  ]
+}

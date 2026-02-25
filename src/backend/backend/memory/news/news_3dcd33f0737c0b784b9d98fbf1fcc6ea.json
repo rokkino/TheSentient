@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "What Happens When the S&P 500 Gets Stuck in a Range?",
+  "link": "https://finance.yahoo.com/news/happens-p-500-gets-stuck-130001375.html",
+  "publisher": "Schaeffer's Investment Research",
+  "timestamp": "2026-02-25T13:00:01",
+  "providerPublishTime": 1772020801.0,
+  "text": "What Happens When the S&P 500 Gets Stuck in a Range?",
+  "thumbnail": "https://media.zenfs.com/en/schaeffers_investment_research_24/e4720d92fa2f43f3f9187434736137a5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "RANGE",
+    "THE",
+    "P",
+    "GETS",
+    "A",
+    "STUCK",
+    "WHEN",
+    "WHAT",
+    "IN",
+    "S"
+  ],
+  "relatedTickers": [
+    "RANGE",
+    "THE",
+    "P",
+    "GETS",
+    "A",
+    "STUCK",
+    "WHEN",
+    "WHAT",
+    "IN",
+    "S"
+  ]
+}

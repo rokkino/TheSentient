@@ -859,11 +859,11 @@ async def update_bot_performance_job():
                         # Extract win rate from closed trades
                         try:
                             # We can just fetch all orders if get_orders doesn't support easy closed filtering
-                            closed_orders = await service.get_orders() if asyncio.iscoroutinefunction(service.get_orders) else service.get_orders()
+                            closed_orders = await service.get_orders(status='all', limit=500) if asyncio.iscoroutinefunction(service.get_orders) else service.get_orders(status='all', limit=500)
                             
                             if closed_orders and isinstance(closed_orders, list):
-                                # alpaca-py returns objects
-                                filled_orders = [o for o in closed_orders if hasattr(o, 'status') and 'filled' in str(o.status).lower()]
+                                # alpaca-py returns dictionaries from the service wrapper
+                                filled_orders = [o for o in closed_orders if isinstance(o, dict) and 'filled' in str(o.get('status', '')).lower()]
                                 if filled_orders:
                                     bot.total_trades = len(filled_orders) // 2 # approx roundtrip
                                     if bot.total_trades > 0:

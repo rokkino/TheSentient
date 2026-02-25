@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Tackling Europe’s bus driver shortage",
+  "link": "https://finance.yahoo.com/news/tackling-europe-bus-driver-shortage-121723783.html",
+  "publisher": "Just Auto",
+  "timestamp": "2026-02-25T12:17:23",
+  "providerPublishTime": 1772018243.0,
+  "text": "Tackling Europe’s bus driver shortage",
+  "thumbnail": "https://media.zenfs.com/en/just_auto_187/e10b03dbe211b1825df7d4a6ceb1a569",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BUS",
+    "S"
+  ],
+  "relatedTickers": [
+    "BUS",
+    "S"
+  ]
+}

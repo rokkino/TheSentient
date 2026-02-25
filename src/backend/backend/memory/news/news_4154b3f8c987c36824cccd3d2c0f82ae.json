@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Photronics Inc stock hits 52-week high at 39.81 USD",
+  "link": "https://www.investing.com/news/company-news/photronics-inc-stock-hits-52week-high-at-3981-usd-93CH-4524659",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T14:33:12",
+  "providerPublishTime": 1772026392.0,
+  "text": "Photronics Inc stock hits 52-week high at 39.81 USD",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "HITS",
+    "USD",
+    "HIGH",
+    "INC",
+    "WEEK",
+    "STOCK",
+    "AT"
+  ],
+  "relatedTickers": [
+    "HITS",
+    "USD",
+    "HIGH",
+    "INC",
+    "WEEK",
+    "STOCK",
+    "AT"
+  ]
+}

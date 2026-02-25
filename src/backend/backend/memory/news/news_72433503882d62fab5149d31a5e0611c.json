@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Caterpillar Stock Is Rolling. It Just Got Another Price Target Hike.",
+  "link": "https://www.barrons.com/articles/caterpillar-stock-price-target-b3df639d?siteid=yhoof2&yptr=yahoo",
+  "publisher": "Barrons.com",
+  "timestamp": "2026-02-25T13:12:00",
+  "providerPublishTime": 1772021520.0,
+  "text": "Caterpillar Stock Is Rolling. It Just Got Another Price Target Hike.",
+  "thumbnail": "https://media.zenfs.com/en/Barrons.com/d02e6089dfa27323565df2cc346fca8f",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "IS",
+    "PRICE",
+    "GOT",
+    "IT",
+    "HIKE",
+    "JUST"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "IS",
+    "PRICE",
+    "GOT",
+    "IT",
+    "HIKE",
+    "JUST"
+  ]
+}

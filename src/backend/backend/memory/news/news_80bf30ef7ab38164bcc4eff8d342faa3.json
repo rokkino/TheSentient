@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Blackstone Secured Lending Fund earnings beat by $0.01, revenue fell short of estimates",
+  "link": "https://www.investing.com/news/earnings/blackstone-secured-lending-fund-earnings-beat-by-001-revenue-fell-short-of-estimates-4524028",
+  "publisher": "All News",
+  "timestamp": "2026-02-25T12:46:58",
+  "providerPublishTime": 1772020018.0,
+  "text": "Blackstone Secured Lending Fund earnings beat by $0.01, revenue fell short of estimates",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "FUND",
+    "BEAT",
+    "FELL",
+    "BY",
+    "OF",
+    "SHORT"
+  ],
+  "relatedTickers": [
+    "FUND",
+    "BEAT",
+    "FELL",
+    "BY",
+    "OF",
+    "SHORT"
+  ]
+}

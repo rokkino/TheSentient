@@ -84,11 +84,11 @@ async def process_bot_earnings(bot_id: int):
                 # We look for ANY executed SELL for this symbol that happened after the entry
                 entry_time = entry.executed_at or entry.created_at
                 
-                # Find matching close
+                # Find matching close (EXECUTED or FAILED sell counts as "attempted closure")
                 closed = db.query(Decision).filter(
                     Decision.bot_id == bot.id,
                     Decision.symbol == entry.symbol,
-                    Decision.status == 'EXECUTED',
+                    Decision.status.in_(['EXECUTED', 'FAILED']),
                     Decision.decision == 'SELL',
                     Decision.created_at > entry.created_at # Created after the buy
                 ).first()
@@ -107,18 +107,21 @@ async def process_bot_earnings(bot_id: int):
                     if age > timedelta(hours=48):
                         print(f"[JOB] Found STUCK position: {entry.symbol} (Age: {age}). Liquidating...")
                         
-                        # Check if we already have a PENDING sell to avoid duplicates
-                        pending_sell = db.query(Decision).filter(
+                        # Check if we already have a PENDING or FAILED sell to avoid duplicates
+                        existing_sell = db.query(Decision).filter(
                              Decision.bot_id == bot.id,
                              Decision.symbol == entry.symbol,
                              Decision.decision == 'SELL',
-                             Decision.status == 'PENDING'
+                             Decision.status.in_(['PENDING', 'FAILED'])
                         ).first()
                         
-                        if pending_sell:
-                            print(f"[JOB] Pending sell already exists for {entry.symbol}, updating to IMMEDIATE.")
-                            pending_sell.execution_time = datetime.now(timezone.utc)
-                            pending_sell.reasoning = (pending_sell.reasoning or "") + " | FORCE LIQUIDATION (Stuck)"
+                        if existing_sell:
+                            if existing_sell.status == 'PENDING':
+                                print(f"[JOB] Pending sell already exists for {entry.symbol}, updating to IMMEDIATE.")
+                                existing_sell.execution_time = datetime.now(timezone.utc)
+                                existing_sell.reasoning = (existing_sell.reasoning or "") + " | FORCE LIQUIDATION (Stuck)"
+                            else:
+                                print(f"[JOB] FAILED sell already exists for {entry.symbol}, skipping duplicate liquidation.")
                         else:
                             # Create new liquidation order
                             liquidate = Decision(
@@ -592,6 +595,7 @@ async def execute_orders_job():
                     
                     order_result = None
                     order_status = "UNKNOWN"
+                    order_id = None
                     
                     if isinstance(service, IGMarketsService):
                         # IG Execution
@@ -673,18 +677,28 @@ async def execute_orders_job():
                                     order_result = await service.close_position(symbol)
                                     order_id = "AL_LIQUIDATION"
                                     
-                                    # Give Alpaca a second to process the closure
-                                    await asyncio.sleep(2)
+                                    # Give Alpaca time to process the closure
+                                    await asyncio.sleep(3)
                                     
                                     # Verify closed position
                                     positions = await service.get_positions()
                                     is_closed = not any(p.get('symbol') == symbol for p in positions)
+                                    if not is_closed:
+                                        # Retry once more after longer wait
+                                        await asyncio.sleep(5)
+                                        positions = await service.get_positions()
+                                        is_closed = not any(p.get('symbol') == symbol for p in positions)
+                                        if is_closed:
+                                            print(f"[JOB] Position {symbol} closed on second check")
                                     order_status = 'FILLED' if is_closed else 'FAILED'
                                     if not is_closed:
                                        print(f"[JOB] Position {symbol} still open after liquidation attempt on Alpaca")
                             except Exception as e:
                                 print(f"[JOB] Could not verify liquidation status on Alpaca: {e}")
+                                import traceback
+                                traceback.print_exc()
                                 order_status = 'PENDING_VERIFICATION'
+                                order_id = f"AL_LIQUIDATION_ERR: {str(e)[:100]}"
 
                         else:
                             # Standard order
@@ -776,8 +790,24 @@ async def execute_orders_job():
                     import traceback
                     traceback.print_exc()
                     
-                    decision.status = "FAILED"
-                    decision.reasoning = (decision.reasoning or "") + f" | Error: {str(e)}"
+                    is_liquidation = decision.reasoning and "FORCE LIQUIDATION" in decision.reasoning
+                    error_detail = str(e)[:200]
+                    
+                    # For FORCE LIQUIDATION: retry up to 3 times by resetting to PENDING
+                    if is_liquidation:
+                        retry_count = (decision.reasoning or "").count("[RETRY")
+                        if retry_count < 3:
+                            decision.status = "PENDING"
+                            decision.execution_time = datetime.now() + timedelta(minutes=5)
+                            decision.reasoning = (decision.reasoning or "") + f" | [RETRY {retry_count + 1}/3] Error: {error_detail}"
+                            print(f"[JOB] FORCE LIQUIDATION for {decision.symbol} failed, scheduling retry {retry_count + 1}/3 in 5 min")
+                        else:
+                            decision.status = "FAILED"
+                            decision.reasoning = (decision.reasoning or "") + f" | [MAX RETRIES] Error: {error_detail}"
+                            print(f"[JOB] FORCE LIQUIDATION for {decision.symbol} failed after 3 retries")
+                    else:
+                        decision.status = "FAILED"
+                        decision.reasoning = (decision.reasoning or "") + f" | Error: {error_detail}"
                     scheduler_service.log_execution(job_name, "ERROR", f"Failed {decision.symbol}: {e}")
         
         db.commit()

@@ -33,17 +33,24 @@ cache/
 **/sentient.db
 **/app.db
 
-# 8. File JSON dinamici generati a runtime
+# 8. File JSON dinamici generati a runtime (il server li rigenera da solo)
 **/earnings_data.json
 **/profitto.json
 **/watchlist.json
+**/dump.txt
 
-# 9. Memory / Graph cache (generata a runtime dal backend)
-**/memory/graph/
+# 9. Memory (tutta la cartella: chat, bot decisions, earnings cache, graph, news)
+**/memory/
 
-# 10. Node modules
+# 10. Log files
+*.log
+data/logs/
+
+# 11. Virtual environments
+venv/
+
+# 12. Node modules
 node_modules/
 
-# 11. Frontend build output
+# 13. Frontend build output
 dist/
-src/backend/backend/thesentient.db

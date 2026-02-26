@@ -1,18 +1,13 @@
 """
-Web Search Service - Handles internet search using DuckDuckGo
+Web Search Service - Handles internet search using DuckDuckGo (ddgs package)
 """
-import warnings
 from typing import List, Dict, Any
 
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore", RuntimeWarning)
-    from duckduckgo_search import DDGS
+from ddgs import DDGS
 
 class WebSearchService:
     def __init__(self):
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", RuntimeWarning)
-            self.ddgs = DDGS()
+        self.ddgs = DDGS()
 
     def search(self, query: str, max_results: int = 3) -> str:
         """

@@ -226,5 +226,71 @@
     "job_name": "execute_orders",
     "status": "ERROR",
     "message": "Failed ADEA: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T09:32:27.687619",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL BWXT (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-26T09:32:28.360077",
+    "job_name": "execute_orders",
+    "status": "SUCCESS",
+    "message": "Executed SELL ADEA (Bot Earnings Report Genius)"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:11.413647",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed NVDA: Failed to place order: {\"code\":42210000,\"message\":\"fractional orders cannot be sold short\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:11.921410",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed SNPS: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"485f9aff-09d3-4f4e-b60d-64b34009811b\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:12.730827",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed CRM: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"63b35ddd-dae4-4342-a7c6-1904d0688466\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:13.248439",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed SNOW: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"215bdbee-9c30-4a82-9a1a-504049bc7724\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:13.857893",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed HEI: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"e6758823-095b-43ad-9530-9e56220399a4\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:14.214942",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed HEI.A: '>' not supported between instances of 'NoneType' and 'int'"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:14.697404",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed RVMD: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"d935e1de-454d-4e3d-a04c-bf86cbd7aae9\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:15.381968",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed PSTG: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"9c1a55ae-5064-467d-ba5b-5ae40a683e65\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
+  },
+  {
+    "timestamp": "2026-02-26T09:35:15.857921",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed FTAI: Failed to place order: {\"code\":40310000,\"existing_order_id\":\"3bc8c2bc-be7c-4413-b062-e1a74e759952\",\"message\":\"potential wash trade detected. use complex orders\",\"reject_reason\":\"opposite side market/stop order exists\"}"
   }
 ]

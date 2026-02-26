@@ -2,6 +2,7 @@
 fastapi
 uvicorn[standard]
 python-multipart
+websockets
 
 # Database
 SQLAlchemy
@@ -23,17 +24,13 @@ httpx
 
 # Google AI / Gemini
 google-genai
-google-generativeai
-
-# LangChain
-langchain
-langchain-community
-langgraph
 
 # Market Data & Financial APIs
 yfinance
+yahoo-fin
 pandas
 numpy
+feedparser
 
 # Scheduling & Utilities
 APScheduler
@@ -43,10 +40,10 @@ pydantic-settings
 python-dateutil
 pytz
 
-# Web Scraping
+# Web Scraping & Search
 beautifulsoup4
 lxml
-duckduckgo_search
+ddgs
 
 # Async & Serialization
 anyio

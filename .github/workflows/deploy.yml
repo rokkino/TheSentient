@@ -67,7 +67,7 @@ jobs:
               --interpreter ./venv/bin/python \
               --cwd "$APP_DIR/src/backend/backend" \
               --exp-backoff-restart-delay 5000 \
-              --port 8000 
+              -- --port 8000
             # ── 6. Aggiornamento Frontend (Vue/Vite) ──────────────
             echo "🎨 Building frontend..."
             cd "$APP_DIR/src/frontend/frontend"

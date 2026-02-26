@@ -82,8 +82,29 @@ if _is_embedded:
     min_confidence = int(_min_confidence_param) if _min_confidence_param else 30
     limit_tickers = int(_limit_param) if _limit_param else 50
 
-    # Show a summary of current config
-    st.caption(f"Config: {universe} | {start_year}-{end_year} | ${capital_per_trade}/trade | Confidence ≥ {min_confidence}% | Limit: {limit_tickers}")
+    # Inject JS listener for dynamic config updates from Vue via postMessage
+    st.markdown("""
+    <script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'updateBacktestConfig') {
+            const cfg = event.data.config;
+            const params = new URLSearchParams(window.location.search);
+            if (cfg.universe !== undefined) params.set('universe', cfg.universe);
+            if (cfg.start_year !== undefined) params.set('start_year', String(cfg.start_year));
+            if (cfg.end_year !== undefined) params.set('end_year', String(cfg.end_year));
+            if (cfg.capital !== undefined) params.set('capital', String(cfg.capital));
+            if (cfg.min_confidence !== undefined) params.set('min_confidence', String(cfg.min_confidence));
+            if (cfg.limit !== undefined) params.set('limit', String(cfg.limit));
+            if (cfg.bot_id !== undefined) params.set('bot_id', String(cfg.bot_id));
+            if (cfg.date !== undefined) params.set('date', cfg.date);
+            const newUrl = window.location.pathname + '?' + params.toString();
+            window.history.replaceState({}, '', newUrl);
+            // Trigger Streamlit rerun by dispatching a custom event
+            window.dispatchEvent(new Event('streamlit:rerun'));
+        }
+    });
+    </script>
+    """, unsafe_allow_html=True)
 else:
     # Standalone mode: show Streamlit sidebar
     with st.sidebar:

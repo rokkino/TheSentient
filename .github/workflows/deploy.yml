@@ -66,15 +66,26 @@ jobs:
               --name backend \
               --interpreter ./venv/bin/python \
               --cwd "$APP_DIR/src/backend/backend" \
-              --exp-backoff-restart-delay 5000
-
+              --exp-backoff-restart-delay 5000 \
+              --port 8000 
             # ── 6. Aggiornamento Frontend (Vue/Vite) ──────────────
             echo "🎨 Building frontend..."
             cd "$APP_DIR/src/frontend/frontend"
             echo "VITE_API_URL=https://thesentient.duckdns.org/api" > .env
             
-            # Installazione pulita ma veloce
-            npm install --legacy-peer-deps
+            # Installazione solo se package-lock.json è cambiato
+            LOCK_HASH=$(md5sum package-lock.json | awk '{print $1}')
+            PREV_HASH=""
+            if [ -f .lock-hash ]; then
+              PREV_HASH=$(cat .lock-hash)
+            fi
+            if [ "$LOCK_HASH" != "$PREV_HASH" ]; then
+              echo "📦 package-lock.json changed, running npm install..."
+              npm install --legacy-peer-deps
+              echo "$LOCK_HASH" > .lock-hash
+            else
+              echo "⏩ package-lock.json unchanged, skipping npm install"
+            fi
             # Build con limite memoria per evitare crash della VM
             NODE_OPTIONS="--max-old-space-size=1024" npm run build
 

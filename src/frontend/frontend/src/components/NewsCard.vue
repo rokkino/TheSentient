@@ -132,24 +132,26 @@ const getSentimentLabel = (sentiment) => {
 
 <style scoped>
 .news-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-md, 16px);
   overflow: hidden;
   margin-bottom: 24px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   display: flex;
   flex-direction: column;
   break-inside: avoid;
+  box-shadow: var(--shadow-card, 0 8px 32px rgba(0, 0, 0, 0.35));
 }
 
 .news-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .card-glow {
@@ -158,73 +160,83 @@ const getSentimentLabel = (sentiment) => {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(66, 153, 225, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.5), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .news-card:hover .card-glow {
   opacity: 1;
 }
 
+/* ── Image with fixed aspect-ratio ── */
 .news-image-container {
-  height: 180px;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
 .news-image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .news-card:hover .news-image-container img {
   transform: scale(1.05);
 }
 
+/* ── Dark gradient overlay for title legibility ── */
 .image-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    transparent 60%
+  );
 }
 
 .news-badges {
   position: absolute;
   bottom: 12px;
-  left: 12px;
-  right: 12px;
+  left: 14px;
+  right: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 }
 
 .publisher-badge {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  padding: 4px 8px;
-  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 10px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #e2e8f0;
+  letter-spacing: 0.04em;
+  color: var(--text-primary, #e2e8f0);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .time-badge {
   font-size: 10px;
-  color: #cbd5e0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   font-weight: 500;
 }
 
 .news-content {
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -234,15 +246,16 @@ const getSentimentLabel = (sentiment) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .news-title {
   margin: 0 0 10px 0;
   font-size: 16px;
   font-weight: 600;
-  line-height: 1.4;
-  color: #fff;
+  line-height: 1.45;
+  color: var(--text-white, #ffffff);
+  letter-spacing: -0.02em;
 }
 
 .news-card.hero .news-title {
@@ -250,43 +263,47 @@ const getSentimentLabel = (sentiment) => {
 }
 
 .news-tags {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
+/* ── Sentiment pills — rounded-full, translucent pastel ── */
 .sentiment-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
   border: 1px solid;
 }
 
 .sentiment-badge.positive {
-  background: rgba(40, 167, 69, 0.15);
-  color: #4cd168;
-  border-color: rgba(40, 167, 69, 0.3);
+  background: var(--accent-gain-bg, rgba(52, 211, 153, 0.15));
+  color: var(--accent-gain, #34d399);
+  border-color: rgba(52, 211, 153, 0.25);
 }
 
 .sentiment-badge.negative {
-  background: rgba(220, 53, 69, 0.15);
-  color: #ff6b6b;
-  border-color: rgba(220, 53, 69, 0.3);
+  background: var(--accent-loss-bg, rgba(244, 63, 94, 0.15));
+  color: var(--accent-loss, #f43f5e);
+  border-color: rgba(244, 63, 94, 0.25);
 }
 
 .sentiment-badge.neutral {
-  background: rgba(108, 117, 125, 0.15);
-  color: #adb5bd;
-  border-color: rgba(108, 117, 125, 0.3);
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text-secondary, #94a3b8);
+  border-color: rgba(148, 163, 184, 0.2);
 }
 
 .sentiment-icon {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .sentiment-text {
@@ -295,45 +312,43 @@ const getSentimentLabel = (sentiment) => {
 
 .ticker-tag {
   display: inline-block;
-  background: rgba(66, 153, 225, 0.15);
-  color: #63b3ed;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  color: #60a5fa;
   font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(66, 153, 225, 0.2);
-  margin-right: 6px;
-  margin-bottom: 4px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full, 9999px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .news-summary {
   font-size: 13px;
-  color: #b0b0b0;
-  line-height: 1.6;
-  margin: 0 0 12px 0;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.7;
+  margin: 0 0 14px 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* Trading Signal Styles */
+/* ── Trading Signal ── */
 .trading-signal {
   margin-top: 12px;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm, 8px);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .trading-signal.bullish {
-  background: linear-gradient(90deg, rgba(40, 167, 69, 0.1), transparent);
-  border-left: 3px solid #28a745;
+  background: linear-gradient(90deg, var(--accent-gain-bg, rgba(52, 211, 153, 0.15)), transparent);
+  border-left: 3px solid var(--accent-gain, #34d399);
 }
 
 .trading-signal.bearish {
-  background: linear-gradient(90deg, rgba(220, 53, 69, 0.1), transparent);
-  border-left: 3px solid #dc3545;
+  background: linear-gradient(90deg, var(--accent-loss-bg, rgba(244, 63, 94, 0.15)), transparent);
+  border-left: 3px solid var(--accent-loss, #f43f5e);
 }
 
 .signal-header {
@@ -344,18 +359,18 @@ const getSentimentLabel = (sentiment) => {
 }
 
 .signal-direction {
-  font-weight: 800;
+  font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.06em;
 }
 
-.bullish .signal-direction { color: #4cd168; }
-.bearish .signal-direction { color: #ff6b6b; }
+.bullish .signal-direction { color: var(--accent-gain, #34d399); }
+.bearish .signal-direction { color: var(--accent-loss, #f43f5e); }
 
 .signal-confidence {
   font-size: 10px;
-  color: #888;
+  color: var(--text-muted, #64748b);
 }
 
 .signal-details {
@@ -372,51 +387,51 @@ const getSentimentLabel = (sentiment) => {
 }
 
 .signal-metric .label {
-  color: #666;
+  color: var(--text-muted, #64748b);
   font-weight: 600;
 }
 
 .signal-metric .value {
-  color: #ddd;
-  font-family: 'Roboto Mono', monospace;
+  color: var(--text-primary, #e2e8f0);
+  font-family: 'Inter', sans-serif;
 }
 
 .card-actions {
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 14px;
   display: flex;
   justify-content: flex-end;
 }
 
 .ask-ai-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #a0aec0;
-  padding: 6px 12px;
-  border-radius: 20px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
+  padding: 7px 14px;
+  border-radius: var(--radius-full, 9999px);
   font-size: 11px;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .ask-ai-btn:hover {
-  background: rgba(66, 153, 225, 0.15);
-  color: #63b3ed;
-  border-color: rgba(66, 153, 225, 0.3);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
-/* Hero Variant Overrides */
+/* ── Hero Variant ── */
 .news-card.hero {
   margin-bottom: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(35, 35, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .news-card.hero .news-image-container {
-  height: 380px;
+  aspect-ratio: 21 / 9;
 }
 
 .news-card.hero .news-title {
@@ -430,25 +445,23 @@ const getSentimentLabel = (sentiment) => {
   -webkit-line-clamp: 4;
 }
 
+/* ── Mobile ── */
 @media (max-width: 768px) {
   .news-card {
-    border-radius: 16px;
+    border-radius: var(--radius-md, 16px);
     margin-bottom: 18px;
-    background: rgba(18, 18, 20, 0.9);
-    border-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
   }
 
   .news-content {
-    padding: 14px 16px 16px;
+    padding: 16px;
   }
 
   .news-image-container {
-    height: 160px;
+    aspect-ratio: 16 / 9;
   }
 
   .news-card.hero .news-image-container {
-    height: 240px;
+    aspect-ratio: 16 / 9;
   }
 
   .news-title {
@@ -468,7 +481,6 @@ const getSentimentLabel = (sentiment) => {
   .ticker-tag {
     font-size: 11px;
     padding: 4px 10px;
-    border-radius: 999px;
   }
 
   .ask-ai-btn {
@@ -479,20 +491,12 @@ const getSentimentLabel = (sentiment) => {
 
 @media (max-width: 480px) {
   .news-card {
-    border-radius: 18px;
+    border-radius: var(--radius-md, 16px);
     margin-bottom: 16px;
   }
 
   .news-content {
-    padding: 12px 14px 14px;
-  }
-
-  .news-image-container {
-    height: 150px;
-  }
-
-  .news-card.hero .news-image-container {
-    height: 210px;
+    padding: 14px;
   }
 
   .news-title {

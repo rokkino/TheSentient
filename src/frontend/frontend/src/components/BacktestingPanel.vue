@@ -83,9 +83,7 @@
           </div>
         </div>
 
-        <button type="button" class="sidebar-apply-btn" @click="reloadIframe" :disabled="readOnly">
-          ▶ Applica e ricarica
-        </button>
+
 
         <div class="sidebar-strategy-hint">
           Strategy: Buy day before earnings (Pre-market) or day of earnings (Post-market). Sell next open.
@@ -117,6 +115,7 @@
       <!-- Iframe quando Streamlit è attivo -->
       <div v-else class="embed-container">
         <iframe
+          ref="btIframe"
           :key="streamlitEmbedUrl"
           :src="streamlitEmbedUrl"
           class="backtesting-iframe"
@@ -128,7 +127,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick, computed } from 'vue'
 import { getApiBase } from '../utils/env.js'
 import api from '../services/api'
 
@@ -155,6 +154,7 @@ const bots = ref([])
 const selectedBotId = ref(null)
 const selectedDate = ref('')
 const sidebarCollapsed = ref(false)
+const btIframe = ref(null)
 
 // Backtest config (mirrored from Streamlit sidebar)
 const universe = ref('S&P 500')
@@ -214,11 +214,39 @@ function updateEmbedUrl() {
   queueStateChange()
 }
 
-function reloadIframe() {
-  updateEmbedUrl()
-  streamlitEmbedUrl.value = ''
-  setTimeout(() => { streamlitEmbedUrl.value = getEmbedUrl() }, 0)
+function sendConfigToIframe() {
+  const iframe = btIframe.value
+  if (!iframe || !iframe.contentWindow) return
+  iframe.contentWindow.postMessage({
+    type: 'updateBacktestConfig',
+    config: {
+      universe: universe.value,
+      start_year: startYear.value,
+      end_year: endYear.value,
+      capital: capitalPerTrade.value,
+      min_confidence: minConfidence.value,
+      limit: limitTickers.value,
+      bot_id: selectedBotId.value,
+      date: selectedDate.value
+    }
+  }, '*')
 }
+
+let configDebounceTimer = null
+const configSnapshot = computed(() => JSON.stringify([
+  universe.value, startYear.value, endYear.value,
+  capitalPerTrade.value, minConfidence.value, limitTickers.value,
+  selectedBotId.value, selectedDate.value
+]))
+
+watch(configSnapshot, () => {
+  if (applyingSharedState.value) return
+  if (configDebounceTimer) clearTimeout(configDebounceTimer)
+  configDebounceTimer = setTimeout(() => {
+    sendConfigToIframe()
+    queueStateChange()
+  }, 600)
+})
 
 function showAnyway() {
   streamlitReady.value = true
@@ -325,51 +353,57 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   flex-direction: row;
-  background: #0a0a0a;
+  background: var(--surface-0, #0b0e14);
 }
 
-/* ── Sidebar ── */
+/* ── Sidebar (Glass) ── */
 .bt-sidebar {
-  width: 260px;
-  min-width: 260px;
-  background: #f5f5f9;
-  border-right: 1px solid #ddd;
-  padding: 20px 16px;
+  width: 280px;
+  min-width: 280px;
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border-right: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   position: relative;
-  transition: width 0.25s ease, min-width 0.25s ease, padding 0.25s ease;
-  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
 }
 
 .bt-sidebar.collapsed {
-  width: 40px;
-  min-width: 40px;
-  padding: 20px 6px;
+  width: 44px;
+  min-width: 44px;
+  padding: 24px 8px;
 }
 
 .sidebar-toggle {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #666;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  font-size: 16px;
+  color: var(--text-secondary, #94a3b8);
   cursor: pointer;
   z-index: 2;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  transition: background 0.15s;
+  border-radius: var(--radius-sm, 8px);
+  transition: all var(--transition-normal, 0.3s ease);
 }
 
 .sidebar-toggle:hover {
-  background: #e0e0e6;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #e2e8f0);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
 }
 
 .bt-sidebar.collapsed .sidebar-toggle {
@@ -380,9 +414,9 @@ onUnmounted(() => {
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #ddd;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .sidebar-icon {
@@ -391,71 +425,153 @@ onUnmounted(() => {
 
 .sidebar-header h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary, #e2e8f0);
+  letter-spacing: -0.02em;
 }
 
 .sidebar-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sidebar-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  color: #555;
+  color: var(--text-secondary, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .sidebar-select,
 .sidebar-input {
   width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 8px);
   font-size: 13px;
-  color: #333;
-  background: #fff;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary, #e2e8f0);
+  background: rgba(255, 255, 255, 0.05);
   outline: none;
-  transition: border-color 0.2s;
+  transition: all var(--transition-normal, 0.3s ease);
 }
 
 .sidebar-select:focus,
 .sidebar-input:focus {
-  border-color: #e74c4c;
+  border-color: var(--accent-gain, #34d399);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+}
+
+.sidebar-select option {
+  background: #1e293b;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .sidebar-apply-btn {
   width: 100%;
-  padding: 10px 14px;
-  background: #e74c4c;
-  color: #fff;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, var(--accent-gain, #34d399) 0%, #10b981 100%);
+  color: #0f172a;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm, 8px);
   font-size: 13px;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 4px;
+  transition: all var(--transition-normal, 0.3s ease);
+  margin-top: 8px;
+  letter-spacing: -0.01em;
 }
 
 .sidebar-apply-btn:hover:not(:disabled) {
-  background: #d43c3c;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.25);
+}
+
+.sidebar-apply-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .sidebar-apply-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--glass-border, rgba(255, 255, 255, 0.1));
+  margin: 4px 0;
+}
+
+.sidebar-number-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-num-input {
+  flex: 1;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.sidebar-num-input::-webkit-inner-spin-button,
+.sidebar-num-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sidebar-num-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 8px);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary, #94a3b8);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast, 0.15s ease);
+  flex-shrink: 0;
+}
+
+.sidebar-num-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #e2e8f0);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+}
+
+.sidebar-num-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sidebar-slider {
+  width: 100%;
+  accent-color: var(--accent-gain, #34d399);
+  cursor: pointer;
+}
+
+.sidebar-slider-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-gain, #34d399);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .sidebar-strategy-hint {
   margin-top: auto;
-  font-size: 12px;
-  line-height: 1.5;
-  color: #888;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-muted, #64748b);
   padding-top: 16px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 /* ── Main content ── */
@@ -470,7 +586,7 @@ onUnmounted(() => {
 .embed-container {
   flex: 1;
   min-height: 500px;
-  background: #111;
+  background: var(--surface-0, #0b0e14);
   overflow: hidden;
 }
 
@@ -481,7 +597,7 @@ onUnmounted(() => {
   border: none;
 }
 
-/* Fallback */
+/* Fallback — Glass Card */
 .embed-container.fallback {
   display: flex;
   align-items: center;
@@ -490,43 +606,52 @@ onUnmounted(() => {
 
 .fallback-content {
   text-align: center;
-  padding: 40px;
-  max-width: 420px;
+  padding: 48px;
+  max-width: 460px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .fallback-icon {
   font-size: 48px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   opacity: 0.7;
 }
 
 .fallback-content h3 {
   margin: 0 0 12px;
   font-size: 18px;
-  color: #ccc;
+  font-weight: 600;
+  color: var(--text-primary, #e2e8f0);
+  letter-spacing: -0.02em;
 }
 
 .fallback-content p {
   margin: 0 0 12px;
   font-size: 14px;
-  color: #888;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.6;
 }
 
 .fallback-content code {
   display: block;
-  background: #1a1a1a;
-  padding: 12px 16px;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm, 8px);
   font-size: 13px;
-  color: #9c9;
-  margin: 12px 0;
+  color: var(--accent-gain, #34d399);
+  margin: 16px 0;
   text-align: left;
-  border: 1px solid #333;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .fallback-hint {
   font-size: 12px !important;
-  color: #666 !important;
+  color: var(--text-muted, #64748b) !important;
 }
 
 .fallback-buttons {
@@ -534,50 +659,53 @@ onUnmounted(() => {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .retry-btn {
   padding: 10px 24px;
-  background: #2a4;
-  color: #111;
+  background: linear-gradient(135deg, var(--accent-gain, #34d399) 0%, #10b981 100%);
+  color: #0f172a;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 13px;
   font-weight: 600;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all var(--transition-normal, 0.3s ease);
 }
 
 .retry-btn:hover:not(:disabled) {
-  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.25);
 }
 
 .retry-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .show-anyway-btn {
   padding: 10px 20px;
   background: transparent;
-  color: #9c9;
-  border: 1px solid #3a5;
-  border-radius: 4px;
+  color: var(--accent-gain, #34d399);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: var(--radius-sm, 8px);
   font-size: 13px;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all var(--transition-normal, 0.3s ease);
 }
 
 .show-anyway-btn:hover {
-  background: #1a3a1a;
-  color: #bfb;
+  background: rgba(52, 211, 153, 0.1);
+  border-color: rgba(52, 211, 153, 0.5);
 }
 
 .auto-retry-hint {
   margin-top: 16px;
   font-size: 12px;
-  color: #666;
+  color: var(--text-muted, #64748b);
 }
 
 .auto-retry-hint:empty {

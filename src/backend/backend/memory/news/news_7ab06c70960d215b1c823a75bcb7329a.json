@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trade Desk’s stock slides after earnings, as growth slowdown unnerves Wall Street even further",
+  "link": "https://www.marketwatch.com/story/trade-desks-stock-slides-as-growth-slowdown-unnerves-wall-street-even-further-9d99e55e?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-26T02:01:00",
+  "providerPublishTime": 1772067660.0,
+  "text": "The ad-tech provider said automotive and packaged-good clients are under pressure.",
+  "thumbnail": "https://images.mktw.net/im-83269804",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "AND",
+    "TRADE",
+    "STOCK",
+    "WALL",
+    "AFTER",
+    "AD",
+    "ARE",
+    "SAID",
+    "THE"
+  ],
+  "relatedTickers": [
+    "AS",
+    "AND",
+    "TRADE",
+    "STOCK",
+    "WALL",
+    "AFTER",
+    "AD",
+    "ARE",
+    "SAID",
+    "THE"
+  ]
+}

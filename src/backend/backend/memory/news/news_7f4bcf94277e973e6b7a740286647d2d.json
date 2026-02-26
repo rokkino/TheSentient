@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Puma Forecasts Another Year of Losses, Scraps Dividend",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/puma-forecasts-another-year-of-losses-scraps-dividend",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:27:30",
+  "providerPublishTime": 1772087250.0,
+  "text": "Puma SE forecast another loss this year and scrapped its dividend as the German brand looks to clear unsold sneakers and apparel and position itself for a return to profitable growth in 2027.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iE38yY881IhE/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "AND",
+    "AS",
+    "FOR",
+    "BRAND",
+    "THIS",
+    "A",
+    "TO",
+    "PUMA",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IN",
+    "AND",
+    "AS",
+    "FOR",
+    "BRAND",
+    "THIS",
+    "A",
+    "TO",
+    "PUMA",
+    "OF"
+  ]
+}

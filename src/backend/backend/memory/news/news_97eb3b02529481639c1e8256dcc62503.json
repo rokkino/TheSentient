@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Baird Maintains Outperform Rating on Charles River Laboratories International, Inc. (CRL)",
+  "link": "https://finance.yahoo.com/news/baird-maintains-outperform-rating-charles-193849110.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:38:49",
+  "providerPublishTime": 1771958329.0,
+  "text": "Baird Maintains Outperform Rating on Charles River Laboratories International, Inc. (CRL)",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/277bc06d38d4469c59b5fc30423ce30b",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BAIRD",
+    "CRL",
+    "INC",
+    "RIVER",
+    "ON"
+  ],
+  "relatedTickers": [
+    "BAIRD",
+    "CRL",
+    "INC",
+    "RIVER",
+    "ON"
+  ]
+}

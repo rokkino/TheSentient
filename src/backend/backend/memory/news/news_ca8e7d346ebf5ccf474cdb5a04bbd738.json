@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Japan is the ultimate Halo trade",
+  "link": "https://www.ft.com/content/30b29435-dacf-40d9-b5fc-4ca9ec598fe9",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T03:26:16",
+  "providerPublishTime": 1772072776.0,
+  "text": "So much that once struck investors as ungodly suddenly looks redeemed",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F2b1bdb8a-aa17-4f33-9793-93bda22d88e7.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "TRADE",
+    "ONCE",
+    "JAPAN",
+    "IS",
+    "MUCH",
+    "SO",
+    "LOOKS",
+    "THE",
+    "THAT"
+  ],
+  "relatedTickers": [
+    "AS",
+    "TRADE",
+    "ONCE",
+    "JAPAN",
+    "IS",
+    "MUCH",
+    "SO",
+    "LOOKS",
+    "THE",
+    "THAT"
+  ]
+}

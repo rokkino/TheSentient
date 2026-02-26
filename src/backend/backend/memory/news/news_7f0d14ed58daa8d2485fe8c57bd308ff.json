@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "I Still Like Nu Holdings Stock, But Right Now, I Like This Alternative Even Better",
+  "link": "https://finance.yahoo.com/news/still-nu-holdings-stock-now-193300344.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-24T19:33:00",
+  "providerPublishTime": 1771957980.0,
+  "text": "I Still Like Nu Holdings Stock, But Right Now, I Like This Alternative Even Better",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/77ba70763100bd5e691c8f0608f094fe",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NU",
+    "STOCK",
+    "THIS",
+    "NOW",
+    "BUT",
+    "I",
+    "LIKE",
+    "STILL",
+    "RIGHT",
+    "EVEN"
+  ],
+  "relatedTickers": [
+    "NU",
+    "STOCK",
+    "THIS",
+    "NOW",
+    "BUT",
+    "I",
+    "LIKE",
+    "STILL",
+    "RIGHT",
+    "EVEN"
+  ]
+}

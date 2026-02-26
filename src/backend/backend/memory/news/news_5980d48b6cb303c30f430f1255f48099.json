@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "LSEG Unveils £3 Billion Buyback, Falling Short of Elliott Target",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/lseg-unveils-3-billion-buyback-new-earnings-guidance",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:27:38",
+  "providerPublishTime": 1772087258.0,
+  "text": "The London Stock Exchange Group Plc, in which Elliott Investment Management has taken a stake, will buy back £3 billion ($4.1 billion) of its own shares over the next 12 months, according to a statement Thursday.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iL4OshX17eUQ/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "GROUP",
+    "SHORT",
+    "BUY",
+    "WHICH",
+    "TO",
+    "THE",
+    "OVER",
+    "NEXT",
+    "OWN",
+    "OF"
+  ],
+  "relatedTickers": [
+    "GROUP",
+    "SHORT",
+    "BUY",
+    "WHICH",
+    "TO",
+    "THE",
+    "OVER",
+    "NEXT",
+    "OWN",
+    "OF"
+  ]
+}

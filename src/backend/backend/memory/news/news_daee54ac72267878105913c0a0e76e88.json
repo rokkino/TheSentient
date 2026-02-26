@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "IQVIA Holdings Inc. (IQV) Offers Impressive Upside Despite AI-Linked Threats",
+  "link": "https://finance.yahoo.com/news/iqvia-holdings-inc-iqv-offers-193353530.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:33:53",
+  "providerPublishTime": 1771958033.0,
+  "text": "IQVIA Holdings Inc. (IQV) Offers Impressive Upside Despite AI-Linked Threats",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/21d4d673e1042a24902bd749e241a4e9",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IQVIA",
+    "INC",
+    "IQV",
+    "AI"
+  ],
+  "relatedTickers": [
+    "IQVIA",
+    "INC",
+    "IQV",
+    "AI"
+  ]
+}

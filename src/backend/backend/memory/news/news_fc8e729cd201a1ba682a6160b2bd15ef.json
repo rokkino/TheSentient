@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Oracle’s selloff offers a chance to buy an ‘upper-echelon’ growth stock for cheap, analyst says",
+  "link": "https://www.marketwatch.com/story/oracles-stock-selloff-offers-a-chance-to-buy-an-upper-echelon-growth-play-for-cheap-analyst-73e8e1ab?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-25T22:42:00",
+  "providerPublishTime": 1772055720.0,
+  "text": "An Oppenheimer analyst has turned bullish on Oracle’s stock after a selloff that has wiped away more than half the company’s value since its September peak.",
+  "thumbnail": "https://images.mktw.net/im-86510844",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "PEAK",
+    "BUY",
+    "TO",
+    "THAN",
+    "WIPED",
+    "THE",
+    "SINCE",
+    "FOR",
+    "A",
+    "SAYS"
+  ],
+  "relatedTickers": [
+    "PEAK",
+    "BUY",
+    "TO",
+    "THAN",
+    "WIPED",
+    "THE",
+    "SINCE",
+    "FOR",
+    "A",
+    "SAYS"
+  ]
+}

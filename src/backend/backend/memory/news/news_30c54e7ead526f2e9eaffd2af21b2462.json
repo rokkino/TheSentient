@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Urban Outfitters’ once-struggling namesake stores are now driving its sales gains",
+  "link": "https://www.marketwatch.com/story/urban-outfitters-once-struggling-namesake-stores-are-now-driving-its-sales-gains-a841972d?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-26T01:39:00",
+  "providerPublishTime": 1772066340.0,
+  "text": "Shares of Urban Outfitters were flat after hours on Wednesday, after the clothing retailer reported fourth-quarter results that beat estimates, helped by a turnaround at its namesake stores.",
+  "thumbnail": "https://images.mktw.net/im-34705808",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "THE",
+    "SALES",
+    "ONCE",
+    "BEAT",
+    "BY",
+    "OF",
+    "AT",
+    "ARE",
+    "NOW",
+    "AFTER"
+  ],
+  "relatedTickers": [
+    "THE",
+    "SALES",
+    "ONCE",
+    "BEAT",
+    "BY",
+    "OF",
+    "AT",
+    "ARE",
+    "NOW",
+    "AFTER"
+  ]
+}

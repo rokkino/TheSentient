@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Jeep maker Stellantis posts first annual loss in company history after EV writedowns",
+  "link": "https://www.cnbc.com/2026/02/26/stellantis-earnings-full-year-2025-autos-evs.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-26T07:41:26",
+  "providerPublishTime": 1772088086.0,
+  "text": "The results come shortly after the auto giant scaled back its EV ambitions following a major strategic shift.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "JEEP",
+    "COME",
+    "AFTER",
+    "GIANT",
+    "MAJOR",
+    "FIRST",
+    "SHIFT",
+    "EV",
+    "AUTO"
+  ],
+  "relatedTickers": [
+    "IN",
+    "JEEP",
+    "COME",
+    "AFTER",
+    "GIANT",
+    "MAJOR",
+    "FIRST",
+    "SHIFT",
+    "EV",
+    "AUTO"
+  ]
+}

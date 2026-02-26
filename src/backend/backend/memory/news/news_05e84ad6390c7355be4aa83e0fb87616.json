@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Thermo Fisher Scientific Inc. (TMO) Carries a Mid-Single Digit Organic Growth Forecast",
+  "link": "https://finance.yahoo.com/news/thermo-fisher-scientific-inc-tmo-193021579.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:30:21",
+  "providerPublishTime": 1771957821.0,
+  "text": "Thermo Fisher Scientific Inc. (TMO) Carries a Mid-Single Digit Organic Growth Forecast",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/34719cd2ce14a5af9661c1e28b9f7f09",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "TMO",
+    "INC",
+    "MID",
+    "A",
+    "DIGIT"
+  ],
+  "relatedTickers": [
+    "TMO",
+    "INC",
+    "MID",
+    "A",
+    "DIGIT"
+  ]
+}

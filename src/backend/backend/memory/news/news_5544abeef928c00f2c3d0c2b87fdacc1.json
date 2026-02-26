@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Agilent Technologies, Inc. (A) Sparks Confidence With Latest Approvals",
+  "link": "https://finance.yahoo.com/news/agilent-technologies-inc-sparks-confidence-193549703.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:35:49",
+  "providerPublishTime": 1771958149.0,
+  "text": "Agilent Technologies, Inc. (A) Sparks Confidence With Latest Approvals",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/eb4f7b60865197123b3bdbe56f562fea",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "INC",
+    "WITH",
+    "A"
+  ],
+  "relatedTickers": [
+    "INC",
+    "WITH",
+    "A"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Hong Kong court overturns China critic Jimmy Lai’s fraud conviction in rare legal victory",
+  "link": "https://www.investing.com/news/economy-news/hong-kongs-court-of-appeal-overturns-tycoon-jimmy-lais-fraud-conviction-and-sentencing-4526438",
+  "publisher": "All News",
+  "timestamp": "2026-02-26T07:30:31",
+  "providerPublishTime": 1772087431.0,
+  "text": "Hong Kong court overturns China critic Jimmy Lai’s fraud conviction in rare legal victory",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "FRAUD",
+    "LAI",
+    "CHINA",
+    "JIMMY",
+    "COURT",
+    "RARE",
+    "S",
+    "LEGAL",
+    "HONG"
+  ],
+  "relatedTickers": [
+    "IN",
+    "FRAUD",
+    "LAI",
+    "CHINA",
+    "JIMMY",
+    "COURT",
+    "RARE",
+    "S",
+    "LEGAL",
+    "HONG"
+  ]
+}

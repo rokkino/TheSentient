@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Spain’s looming migrant amnesty strains services, sends applicants scrambling",
+  "link": "https://www.investing.com/news/world-news/spains-looming-migrant-amnesty-strains-services-sends-applicants-scrambling-4526551",
+  "publisher": "All News",
+  "timestamp": "2026-02-26T07:30:53",
+  "providerPublishTime": 1772087453.0,
+  "text": "Spain’s looming migrant amnesty strains services, sends applicants scrambling",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SENDS",
+    "SPAIN",
+    "S"
+  ],
+  "relatedTickers": [
+    "SENDS",
+    "SPAIN",
+    "S"
+  ]
+}

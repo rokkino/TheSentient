@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dell Stock Drops 29% Despite AI Boom. Is it a Buy, Sell, or Hold Ahead of Feb. 26?",
+  "link": "https://finance.yahoo.com/news/dell-stock-drops-29-despite-193649010.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-24T19:36:49",
+  "providerPublishTime": 1771958209.0,
+  "text": "Dell Stock Drops 29% Despite AI Boom. Is it a Buy, Sell, or Hold Ahead of Feb. 26?",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/51ef4d346eaaed7b3656c3cf333cd3e7",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "DELL",
+    "SELL",
+    "BUY",
+    "STOCK",
+    "IS",
+    "AHEAD",
+    "HOLD",
+    "BOOM",
+    "AI",
+    "OF"
+  ],
+  "relatedTickers": [
+    "DELL",
+    "SELL",
+    "BUY",
+    "STOCK",
+    "IS",
+    "AHEAD",
+    "HOLD",
+    "BOOM",
+    "AI",
+    "OF"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Salesforce chief dismisses ‘SaaS-pocalypse’ fears of AI overtaking business software",
+  "link": "https://www.ft.com/content/b74b8227-d7cb-4976-ba95-a3a27b79cbdd",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T00:08:48",
+  "providerPublishTime": 1772060928.0,
+  "text": "Shares in company that sells software as a service fall after it projects revenue below Wall Street’s expectations",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ff9ebeb17-ad7f-49ab-be87-1c8aa1b654c1.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "SELLS",
+    "CHIEF",
+    "AS",
+    "FALL",
+    "S",
+    "BELOW",
+    "AFTER",
+    "WALL",
+    "AI"
+  ],
+  "relatedTickers": [
+    "IN",
+    "SELLS",
+    "CHIEF",
+    "AS",
+    "FALL",
+    "S",
+    "BELOW",
+    "AFTER",
+    "WALL",
+    "AI"
+  ]
+}

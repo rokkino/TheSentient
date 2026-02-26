@@ -46,3 +46,4 @@ node_modules/
 
 # 11. Frontend build output
 dist/
+src/backend/backend/thesentient.db

@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Salesforce’s stock falls as mixed earnings forecast fails to dispel AI gloom",
+  "link": "https://www.marketwatch.com/story/salesforces-stock-falls-as-mixed-earnings-forecast-fails-to-dispel-ai-gloom-d230d256?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-26T01:35:00",
+  "providerPublishTime": 1772066100.0,
+  "text": "Salesforce announced a $50 billion share buyback and a new AI metric, but investors remain focused on the threat of AI disruption.",
+  "thumbnail": "https://images.mktw.net/im-03017799",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "AS",
+    "AND",
+    "STOCK",
+    "A",
+    "TO",
+    "AI",
+    "NEW",
+    "BUT",
+    "SHARE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "AS",
+    "AND",
+    "STOCK",
+    "A",
+    "TO",
+    "AI",
+    "NEW",
+    "BUT",
+    "SHARE",
+    "OF"
+  ]
+}

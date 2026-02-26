@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "China holiday spending sends a strong signal on consumer stimulus plans",
+  "link": "https://www.cnbc.com/2026/02/26/china-lunar-new-year-holiday-spending-signal-consumer-stimulus-outlook.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-26T04:26:21",
+  "providerPublishTime": 1772076381.0,
+  "text": "China's nine-day Lunar New Year holiday showed consumers were eager to travel, while remaining price-conscious.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "PRICE",
+    "S",
+    "YEAR",
+    "TO",
+    "DAY",
+    "CHINA",
+    "NEW",
+    "LUNAR",
+    "SENDS",
+    "NINE"
+  ],
+  "relatedTickers": [
+    "PRICE",
+    "S",
+    "YEAR",
+    "TO",
+    "DAY",
+    "CHINA",
+    "NEW",
+    "LUNAR",
+    "SENDS",
+    "NINE"
+  ]
+}

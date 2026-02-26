@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Asia tech stocks rally as Nvidia earnings soothe AI slowdown fears",
+  "link": "https://www.cnbc.com/2026/02/26/asia-tech-stocks-nvidia-earnings-jensen-huang-chips-gpu.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-26T02:03:58",
+  "providerPublishTime": 1772067838.0,
+  "text": "Asian tech stocks rallied as stronger-than-expected results from Nvidia eased concerns that momentum in artificial intelligence spending was cooling.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "AS",
+    "EASED",
+    "ASIA",
+    "WAS",
+    "RALLY",
+    "AI",
+    "FEARS",
+    "ASIAN",
+    "THAN"
+  ],
+  "relatedTickers": [
+    "IN",
+    "AS",
+    "EASED",
+    "ASIA",
+    "WAS",
+    "RALLY",
+    "AI",
+    "FEARS",
+    "ASIAN",
+    "THAN"
+  ]
+}

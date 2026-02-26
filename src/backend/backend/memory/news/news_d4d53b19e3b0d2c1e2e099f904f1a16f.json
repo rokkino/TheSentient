@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nvidia stock downbeat despite blockbuster quarter",
+  "link": "https://www.ft.com/content/f4cda766-5650-4a97-a84f-24d3cfbeddd6",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T02:09:29",
+  "providerPublishTime": 1772068169.0,
+  "text": "Anxiety about the AI spending boom weighs on chipmaker’s shares despite strong growth forecast",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F5fc896c4-9d73-4fad-8a15-024747474186.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "STOCK",
+    "BOOM",
+    "AI",
+    "THE",
+    "ABOUT",
+    "ON",
+    "S"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "BOOM",
+    "AI",
+    "THE",
+    "ABOUT",
+    "ON",
+    "S"
+  ]
+}

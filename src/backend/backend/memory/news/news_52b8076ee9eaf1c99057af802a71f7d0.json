@@ -1,0 +1,29 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "These Two Mining Stocks Perk Up As Lithium Prices Climb Higher",
+  "link": "https://www.investors.com/news/lithium/?src=A00220&yptr=yahoo",
+  "publisher": "Investor's Business Daily",
+  "timestamp": "2026-02-24T19:34:13",
+  "providerPublishTime": 1771958053.0,
+  "text": "These Two Mining Stocks Perk Up As Lithium Prices Climb Higher",
+  "thumbnail": "https://media.zenfs.com/en/ibd.com/5637411943e08a747b343bf6176cd660",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "UP",
+    "THESE",
+    "TWO",
+    "PERK",
+    "CLIMB"
+  ],
+  "relatedTickers": [
+    "AS",
+    "UP",
+    "THESE",
+    "TWO",
+    "PERK",
+    "CLIMB"
+  ]
+}

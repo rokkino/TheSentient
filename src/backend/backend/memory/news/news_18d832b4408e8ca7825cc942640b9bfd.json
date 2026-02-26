@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Rolls-Royce Plans Major Stock Buyback, Raises Mid-Term Goals",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/rolls-royce-plans-major-stock-buyback-remains-upbeat-on-profit",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:07:58",
+  "providerPublishTime": 1772086078.0,
+  "text": "Rolls-Royce Holdings Plc said it will buy back between £7 billion to £9 billion in company stock over the next two years and raised its mid-term earnings targets as the UK-based manufacturer capitalizes on soaring demand for large aircraft engines and the power systems that drive data centers.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/io.FKSN60Uvg/v0/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "BUY",
+    "TO",
+    "SAID",
+    "THE",
+    "PLANS",
+    "ROYCE",
+    "OVER",
+    "NEXT",
+    "FOR",
+    "LARGE"
+  ],
+  "relatedTickers": [
+    "BUY",
+    "TO",
+    "SAID",
+    "THE",
+    "PLANS",
+    "ROYCE",
+    "OVER",
+    "NEXT",
+    "FOR",
+    "LARGE"
+  ]
+}

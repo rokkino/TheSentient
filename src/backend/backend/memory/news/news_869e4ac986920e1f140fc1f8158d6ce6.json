@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Mettler-Toledo International Inc. (MTD) Navigating Through Uncertain Macro Backdrop",
+  "link": "https://finance.yahoo.com/news/mettler-toledo-international-inc-mtd-194320922.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:43:20",
+  "providerPublishTime": 1771958600.0,
+  "text": "Mettler-Toledo International Inc. (MTD) Navigating Through Uncertain Macro Backdrop",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/574412b19d02a46fe9f73f0f2cd4dce3",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "INC",
+    "MTD",
+    "MACRO"
+  ],
+  "relatedTickers": [
+    "INC",
+    "MTD",
+    "MACRO"
+  ]
+}

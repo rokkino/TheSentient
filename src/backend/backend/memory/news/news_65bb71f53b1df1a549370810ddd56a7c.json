@@ -1,0 +1,35 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Stellantis posts 20 billion euro net loss in second half of 2025 after EV writedowns",
+  "link": "https://www.investing.com/news/stock-market-news/stellantis-posts-20-billion-euro-net-loss-in-second-half-of-2025-after-ev-writedowns-4526572",
+  "publisher": "All News",
+  "timestamp": "2026-02-26T07:24:32",
+  "providerPublishTime": 1772087072.0,
+  "text": "Stellantis posts 20 billion euro net loss in second half of 2025 after EV writedowns",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "EURO",
+    "AFTER",
+    "OF",
+    "EV",
+    "NET",
+    "HALF",
+    "POSTS",
+    "LOSS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "EURO",
+    "AFTER",
+    "OF",
+    "EV",
+    "NET",
+    "HALF",
+    "POSTS",
+    "LOSS"
+  ]
+}

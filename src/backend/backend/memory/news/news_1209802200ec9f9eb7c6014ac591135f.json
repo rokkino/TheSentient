@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Baloyi: South African Treasury Investing into Economy",
+  "link": "https://www.bloomberg.com/news/videos/2026-02-26/baloyi-south-african-treasury-investing-into-economy-video",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:26:35",
+  "providerPublishTime": 1772087195.0,
+  "text": "South Africa's latest budget is being seen as a turning point for the country's public finances. Markets responded positively with the rand stronger, bond yields falling and equities hitting record highs. Kgothatso Baloyi, Trading Structurer at RMB spoke to Joumanna Bercetche on Horizons Middle East and Africa. (Source: Bloomberg)",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iQFaJyndpI0w/v3/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "RAND",
+    "IS",
+    "TO",
+    "THE",
+    "RMB",
+    "FOR",
+    "SPOKE",
+    "BEING",
+    "SOUTH",
+    "AT"
+  ],
+  "relatedTickers": [
+    "RAND",
+    "IS",
+    "TO",
+    "THE",
+    "RMB",
+    "FOR",
+    "SPOKE",
+    "BEING",
+    "SOUTH",
+    "AT"
+  ]
+}

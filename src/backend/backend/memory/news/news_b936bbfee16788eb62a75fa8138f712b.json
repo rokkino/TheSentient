@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Nutanix’s stock soars as AMD investment creates a ‘halo effect’",
+  "link": "https://www.marketwatch.com/story/this-stock-is-soaring-on-news-of-a-forthcoming-investment-by-amd-216f3ee1?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-26T03:39:00",
+  "providerPublishTime": 1772073540.0,
+  "text": "The company, which makes hyperconverged infrastructure including storage offerings, is partnering with AMD and betting that AI customers want flexible ecosystems.",
+  "thumbnail": "https://images.mktw.net/im-99173381",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "WANT",
+    "AS",
+    "AND",
+    "MAKES",
+    "STOCK",
+    "AMD",
+    "IS",
+    "A",
+    "WHICH",
+    "SOARS"
+  ],
+  "relatedTickers": [
+    "WANT",
+    "AS",
+    "AND",
+    "MAKES",
+    "STOCK",
+    "AMD",
+    "IS",
+    "A",
+    "WHICH",
+    "SOARS"
+  ]
+}

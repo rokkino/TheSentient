@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "How working from home changed how we shop",
+  "link": "https://www.ft.com/content/0147d1c6-43c8-4694-9b93-971b44fb67f5",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T05:00:29",
+  "providerPublishTime": 1772078429.0,
+  "text": "Guess which group of remote workers pays more?",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fe263a5af-03ea-46d9-8a49-47a82b21fd4e.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "GROUP",
+    "PAYS",
+    "SHOP",
+    "HOME",
+    "HOW",
+    "WHICH",
+    "MORE",
+    "OF",
+    "GUESS",
+    "FROM"
+  ],
+  "relatedTickers": [
+    "GROUP",
+    "PAYS",
+    "SHOP",
+    "HOME",
+    "HOW",
+    "WHICH",
+    "MORE",
+    "OF",
+    "GUESS",
+    "FROM"
+  ]
+}

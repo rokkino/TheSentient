@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Dubai Aerospace to Buy Macquarie AirFinance for $7 Billion",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/dubai-aerospace-to-buy-macquarie-airfinance-for-7-billion",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:00:02",
+  "providerPublishTime": 1772085602.0,
+  "text": "Dubai Aerospace Enterprise agreed to buy Macquarie AirFinance Ltd. for an enterprise value of about $7 billion, expanding its fleet of aircraft to more than 1,000 units and extending consolidation in the jet-financing industry.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIC7NwW.dUPU/v1/1200x-1.jpg",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "IN",
+    "FOR",
+    "AND",
+    "BUY",
+    "UNITS",
+    "TO",
+    "DUBAI",
+    "MORE",
+    "JET",
+    "LTD"
+  ],
+  "relatedTickers": [
+    "IN",
+    "FOR",
+    "AND",
+    "BUY",
+    "UNITS",
+    "TO",
+    "DUBAI",
+    "MORE",
+    "JET",
+    "LTD"
+  ]
+}

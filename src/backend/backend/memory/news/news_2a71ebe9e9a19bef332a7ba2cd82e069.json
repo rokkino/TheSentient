@@ -1,0 +1,21 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "IXICO validates automated brain imaging analysis platform",
+  "link": "https://www.investing.com/news/company-news/ixico-validates-automated-brain-imaging-analysis-platform-93CH-4526569",
+  "publisher": "All News",
+  "timestamp": "2026-02-26T07:20:32",
+  "providerPublishTime": 1772086832.0,
+  "text": "IXICO validates automated brain imaging analysis platform",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "BRAIN",
+    "IXICO"
+  ],
+  "relatedTickers": [
+    "BRAIN",
+    "IXICO"
+  ]
+}

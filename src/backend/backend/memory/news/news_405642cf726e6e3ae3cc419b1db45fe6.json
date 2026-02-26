@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Rubio warns on Iran’s ballistic missiles ahead of talks",
+  "link": "https://www.ft.com/content/c70a2349-124f-405a-89cf-255754cbe52d",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T02:28:29",
+  "providerPublishTime": 1772069309.0,
+  "text": "US top diplomat says Tehran’s reluctance to discuss the weapons a ‘big problem’",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F277a62dd-3104-450a-918b-86e684575bf3.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "US",
+    "TOP",
+    "AHEAD",
+    "A",
+    "TO",
+    "SAYS",
+    "BIG",
+    "WARNS",
+    "OF",
+    "THE"
+  ],
+  "relatedTickers": [
+    "US",
+    "TOP",
+    "AHEAD",
+    "A",
+    "TO",
+    "SAYS",
+    "BIG",
+    "WARNS",
+    "OF",
+    "THE"
+  ]
+}

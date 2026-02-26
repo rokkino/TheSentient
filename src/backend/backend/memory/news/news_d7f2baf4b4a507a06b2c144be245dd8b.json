@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "HSBC board earns almost £1mn more despite botched chair search",
+  "link": "https://www.ft.com/content/9c02b970-b704-42bd-abb9-f096bfd7fe96",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T05:00:18",
+  "providerPublishTime": 1772078418.0,
+  "text": "Fees for non-executive directors increased even as shareholders criticise succession process",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fb330988a-21f7-4504-92b7-7f47d4a7f382.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "FOR",
+    "AS",
+    "NON",
+    "FEES",
+    "BOARD",
+    "EARNS",
+    "CHAIR",
+    "MORE",
+    "HSBC",
+    "EVEN"
+  ],
+  "relatedTickers": [
+    "FOR",
+    "AS",
+    "NON",
+    "FEES",
+    "BOARD",
+    "EARNS",
+    "CHAIR",
+    "MORE",
+    "HSBC",
+    "EVEN"
+  ]
+}

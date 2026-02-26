@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Why Tennant Stock Is Plummeting Today",
+  "link": "https://finance.yahoo.com/news/why-tennant-stock-plummeting-today-193649098.html",
+  "publisher": "Motley Fool",
+  "timestamp": "2026-02-24T19:36:49",
+  "providerPublishTime": 1771958209.0,
+  "text": "Why Tennant Stock Is Plummeting Today",
+  "thumbnail": "https://media.zenfs.com/en/motleyfool.com/272586da59d0611bb220ffcc68e05173",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "STOCK",
+    "TODAY",
+    "IS",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "STOCK",
+    "TODAY",
+    "IS",
+    "WHY"
+  ]
+}

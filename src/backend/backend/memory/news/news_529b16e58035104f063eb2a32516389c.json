@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Sugar Prices Climb with the Brazilian Real",
+  "link": "https://finance.yahoo.com/news/sugar-prices-climb-brazilian-real-192620375.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-24T19:26:20",
+  "providerPublishTime": 1771957580.0,
+  "text": "Sugar Prices Climb with the Brazilian Real",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/022a93cafde4f37766f1e3fd653e8612",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "REAL",
+    "SUGAR",
+    "THE",
+    "WITH",
+    "CLIMB"
+  ],
+  "relatedTickers": [
+    "REAL",
+    "SUGAR",
+    "THE",
+    "WITH",
+    "CLIMB"
+  ]
+}

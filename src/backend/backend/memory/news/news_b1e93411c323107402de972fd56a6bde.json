@@ -1,0 +1,31 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Why Is The US Stock Market Up Today?",
+  "link": "https://finance.yahoo.com/news/why-us-stock-market-today-175517641.html",
+  "publisher": "BeInCrypto",
+  "timestamp": "2026-02-24T19:26:34",
+  "providerPublishTime": 1771957594.0,
+  "text": "Why Is The US Stock Market Up Today?",
+  "thumbnail": "https://media.zenfs.com/en/beincrypto_us_662/5902f2fcfecff92cd6c4153e5c806797",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "US",
+    "WHY",
+    "IS",
+    "STOCK",
+    "UP",
+    "THE",
+    "TODAY"
+  ],
+  "relatedTickers": [
+    "US",
+    "WHY",
+    "IS",
+    "STOCK",
+    "UP",
+    "THE",
+    "TODAY"
+  ]
+}

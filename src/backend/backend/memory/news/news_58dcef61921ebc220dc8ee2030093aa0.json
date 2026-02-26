@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Trump insists trade deals safe after Supreme Court ruling upends tariff authority, but partners aren’t so sure",
+  "link": "https://www.cnbc.com/2026/02/26/trump-state-of-the-union-supreme-court-tariffs-trade-deals-ieepa-section-301-232-122.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-26T03:45:38",
+  "providerPublishTime": 1772073938.0,
+  "text": "The Supreme Court decision to strike down Trump's tariffs has thrown fresh confusion over the raft of trade deals negotiated with global partners, stalling trade talks.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "TRUMP",
+    "TRADE",
+    "FRESH",
+    "TO",
+    "THE",
+    "OVER",
+    "DOWN",
+    "BUT",
+    "SURE",
+    "OF"
+  ],
+  "relatedTickers": [
+    "TRUMP",
+    "TRADE",
+    "FRESH",
+    "TO",
+    "THE",
+    "OVER",
+    "DOWN",
+    "BUT",
+    "SURE",
+    "OF"
+  ]
+}

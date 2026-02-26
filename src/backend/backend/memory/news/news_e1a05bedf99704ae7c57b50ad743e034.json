@@ -1,0 +1,25 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "ECO Animal Health plans EU rollout for poultry vaccine",
+  "link": "https://www.investing.com/news/company-news/eco-animal-health-plans-eu-rollout-for-poultry-vaccine-93CH-4526573",
+  "publisher": "All News",
+  "timestamp": "2026-02-26T07:24:39",
+  "providerPublishTime": 1772087079.0,
+  "text": "ECO Animal Health plans EU rollout for poultry vaccine",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "ECO",
+    "FOR",
+    "PLANS",
+    "EU"
+  ],
+  "relatedTickers": [
+    "ECO",
+    "FOR",
+    "PLANS",
+    "EU"
+  ]
+}

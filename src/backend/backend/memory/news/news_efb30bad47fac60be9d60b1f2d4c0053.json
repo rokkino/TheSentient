@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Salesforce shares sink on mixed guidance as company commits $50 billion for buybacks",
+  "link": "https://www.cnbc.com/2026/02/25/salesforce-crm-q4-earnings-report-2026.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-26T00:54:17",
+  "providerPublishTime": 1772063657.0,
+  "text": "Salesforce posted accelerating growth and pushed up its long-range revenue target thanks to a recent acquisition.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "positive",
+  "extracted_assets": [
+    "AS",
+    "FOR",
+    "AND",
+    "UP",
+    "TO",
+    "LONG",
+    "SINK",
+    "ON",
+    "A",
+    "MIXED"
+  ],
+  "relatedTickers": [
+    "AS",
+    "FOR",
+    "AND",
+    "UP",
+    "TO",
+    "LONG",
+    "SINK",
+    "ON",
+    "A",
+    "MIXED"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Should You Buy the Dip in Oversold IBM Stock Today?",
+  "link": "https://finance.yahoo.com/news/buy-dip-oversold-ibm-stock-194644485.html",
+  "publisher": "Barchart",
+  "timestamp": "2026-02-24T19:46:44",
+  "providerPublishTime": 1771958804.0,
+  "text": "Should You Buy the Dip in Oversold IBM Stock Today?",
+  "thumbnail": "https://media.zenfs.com/en/barchart_com_477/0319f2f093d211588a202151ab0701db",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "YOU",
+    "BUY",
+    "IBM",
+    "STOCK",
+    "DIP",
+    "THE",
+    "TODAY"
+  ],
+  "relatedTickers": [
+    "IN",
+    "YOU",
+    "BUY",
+    "IBM",
+    "STOCK",
+    "DIP",
+    "THE",
+    "TODAY"
+  ]
+}

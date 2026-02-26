@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Iran to offer ‘commercial bonanza’ to US companies",
+  "link": "https://www.ft.com/content/27f02d44-a223-4934-8f2b-7cfd8772b181",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T00:01:05",
+  "providerPublishTime": 1772060465.0,
+  "text": "Tehran is seeking to tempt Donald Trump with investments in its oil and gas reserves as it seeks to stave off an attack",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Ff0ae3f77-da29-48f5-bfbf-f69f3ad7653f.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "US",
+    "TRUMP",
+    "IS",
+    "TO",
+    "SEEKS",
+    "OFF",
+    "OIL",
+    "WITH",
+    "AND",
+    "STAVE"
+  ],
+  "relatedTickers": [
+    "US",
+    "TRUMP",
+    "IS",
+    "TO",
+    "SEEKS",
+    "OFF",
+    "OIL",
+    "WITH",
+    "AND",
+    "STAVE"
+  ]
+}

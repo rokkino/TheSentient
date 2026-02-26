@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Epstein files: Larry Summers to resign as Harvard professor as fallout continues",
+  "link": "https://www.cnbc.com/2026/02/25/epstein-larry-summers-harvard-professor.html",
+  "publisher": "US Top News and Analysis",
+  "timestamp": "2026-02-25T22:20:27",
+  "providerPublishTime": 1772054427.0,
+  "text": "Larry Summers last fall said, \"I am deeply ashamed of my actions and recognize the pain they have caused,\" after his emails with Jeffrey Epstein came to light.",
+  "thumbnail": "",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "LAST",
+    "TO",
+    "FILES",
+    "LARRY",
+    "SAID",
+    "THE",
+    "THEY",
+    "HIS",
+    "FALL",
+    "PAIN"
+  ],
+  "relatedTickers": [
+    "LAST",
+    "TO",
+    "FILES",
+    "LARRY",
+    "SAID",
+    "THE",
+    "THEY",
+    "HIS",
+    "FALL",
+    "PAIN"
+  ]
+}

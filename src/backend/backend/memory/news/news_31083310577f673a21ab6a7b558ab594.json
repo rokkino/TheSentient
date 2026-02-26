@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "21shares Spot SUI ETF (Nasdaq: TSUI) to Begin Trading on Tuesday Feb 24th, Expanding U.S. Access to Sui",
+  "link": "https://finance.yahoo.com/news/21shares-spot-sui-etf-nasdaq-193026935.html",
+  "publisher": "etf.com",
+  "timestamp": "2026-02-24T19:30:26",
+  "providerPublishTime": 1771957826.0,
+  "text": "21shares Spot SUI ETF (Nasdaq: TSUI) to Begin Trading on Tuesday Feb 24th, Expanding U.S. Access to Sui",
+  "thumbnail": "https://media.zenfs.com/en/indexuniverse.com/0ba97b8d87b99e616ea9fc729036b43c",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SUI",
+    "SPOT",
+    "S",
+    "ETF",
+    "TO",
+    "TSUI",
+    "U",
+    "BEGIN",
+    "ON",
+    "FEB"
+  ],
+  "relatedTickers": [
+    "SUI",
+    "SPOT",
+    "S",
+    "ETF",
+    "TO",
+    "TSUI",
+    "U",
+    "BEGIN",
+    "ON",
+    "FEB"
+  ]
+}

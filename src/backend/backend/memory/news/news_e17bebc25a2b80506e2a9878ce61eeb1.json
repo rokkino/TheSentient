@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Inside the war over who writes America’s AI rules",
+  "link": "https://www.ft.com/content/c1823595-d0f6-49a4-8a10-3d91c92da8f6",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T05:00:18",
+  "providerPublishTime": 1772078418.0,
+  "text": "Silicon Valley rivals in spending blitz for control of Congress and state capitols",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Febed90a7-b139-4674-96b8-c7e82fc8c95d.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "FOR",
+    "AND",
+    "WAR",
+    "WHO",
+    "RULES",
+    "AI",
+    "STATE",
+    "OF",
+    "THE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "FOR",
+    "AND",
+    "WAR",
+    "WHO",
+    "RULES",
+    "AI",
+    "STATE",
+    "OF",
+    "THE"
+  ]
+}

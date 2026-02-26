@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "India Broadens Rules for $385 Billion Stock Funds to Add Gold",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/india-broadens-rules-for-385-billion-stock-funds-to-add-gold",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:11:27",
+  "providerPublishTime": 1772086287.0,
+  "text": "India’s market regulator has allowed the country’s $384 billion actively managed equity funds to park more of their money in gold and silver, giving them greater flexibility at a time when global demand for hard assets is rising.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iuiQRh2SO32M/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IS",
+    "TO",
+    "TIME",
+    "THEIR",
+    "THE",
+    "FOR",
+    "INDIA",
+    "THEM",
+    "A",
+    "OF"
+  ],
+  "relatedTickers": [
+    "IS",
+    "TO",
+    "TIME",
+    "THEIR",
+    "THE",
+    "FOR",
+    "INDIA",
+    "THEM",
+    "A",
+    "OF"
+  ]
+}

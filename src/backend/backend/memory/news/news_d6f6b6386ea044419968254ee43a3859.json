@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "UK government debt sales set to fall for first time in four years",
+  "link": "https://www.ft.com/content/d082b3ab-99d2-4726-8da8-ec9b843a7373",
+  "publisher": "UK homepage",
+  "timestamp": "2026-02-26T05:00:29",
+  "providerPublishTime": 1772078429.0,
+  "text": "Big banks forecast £247bn of gilt issuance in coming fiscal year amid chancellor’s drive to rein in borrowing",
+  "thumbnail": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fcda2f51f-4c7c-40b7-a3fa-f7d8cc9c5b58.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "TO",
+    "TIME",
+    "DEBT",
+    "SALES",
+    "FOR",
+    "FALL",
+    "BIG",
+    "FIRST",
+    "OF",
+    "BANKS"
+  ],
+  "relatedTickers": [
+    "TO",
+    "TIME",
+    "DEBT",
+    "SALES",
+    "FOR",
+    "FALL",
+    "BIG",
+    "FIRST",
+    "OF",
+    "BANKS"
+  ]
+}

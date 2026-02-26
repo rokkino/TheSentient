@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Reasons Why Bruker Corporation (BRKR) Appears So Attractive",
+  "link": "https://finance.yahoo.com/news/reasons-why-bruker-corporation-brkr-193709776.html",
+  "publisher": "Insider Monkey",
+  "timestamp": "2026-02-24T19:37:09",
+  "providerPublishTime": 1771958229.0,
+  "text": "Reasons Why Bruker Corporation (BRKR) Appears So Attractive",
+  "thumbnail": "https://media.zenfs.com/en/insidermonkey.com/5ebeb797976f4b134f89e7fc0f1f7cd5",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "SO",
+    "BRKR",
+    "WHY"
+  ],
+  "relatedTickers": [
+    "SO",
+    "BRKR",
+    "WHY"
+  ]
+}

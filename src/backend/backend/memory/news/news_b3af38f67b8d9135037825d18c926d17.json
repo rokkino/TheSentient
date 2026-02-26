@@ -1,0 +1,27 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "This Bull Signal Has Never Failed Lemonade Stock",
+  "link": "https://finance.yahoo.com/news/bull-signal-never-failed-lemonade-194825037.html",
+  "publisher": "Schaeffer's Investment Research",
+  "timestamp": "2026-02-24T19:48:25",
+  "providerPublishTime": 1771958905.0,
+  "text": "This Bull Signal Has Never Failed Lemonade Stock",
+  "thumbnail": "https://media.zenfs.com/en/schaeffers_investment_research_24/704d19853c12e758e21228bb3c3cb1c8",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "NEVER",
+    "STOCK",
+    "THIS",
+    "HAS",
+    "BULL"
+  ],
+  "relatedTickers": [
+    "NEVER",
+    "STOCK",
+    "THIS",
+    "HAS",
+    "BULL"
+  ]
+}

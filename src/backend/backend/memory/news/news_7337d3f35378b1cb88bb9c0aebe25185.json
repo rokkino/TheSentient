@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Data Center Exposure Is Saving Grace for Construction Firms",
+  "link": "https://www.bloomberg.com/news/articles/2026-02-26/data-center-exposure-is-saving-grace-for-construction-firms",
+  "publisher": "Bloomberg Markets",
+  "timestamp": "2026-02-26T07:30:00",
+  "providerPublishTime": 1772087400.0,
+  "text": "Construction and building materials companies in Europe dealing with a struggling housing market and weak industrial activity are pivoting to the one area that is booming right now: data centers.",
+  "thumbnail": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTHwnjfOheCs/v3/1200x-1.png",
+  "trading_signal": null,
+  "sentiment": "neutral",
+  "extracted_assets": [
+    "IN",
+    "FOR",
+    "AND",
+    "IS",
+    "AREA",
+    "NOW",
+    "A",
+    "TO",
+    "FIRMS",
+    "GRACE"
+  ],
+  "relatedTickers": [
+    "IN",
+    "FOR",
+    "AND",
+    "IS",
+    "AREA",
+    "NOW",
+    "A",
+    "TO",
+    "FIRMS",
+    "GRACE"
+  ]
+}

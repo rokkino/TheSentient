@@ -18,5 +18,9 @@
   {
     "symbol": "GC=F",
     "name": "Gold Futures"
+  },
+  {
+    "symbol": "CRM",
+    "name": "Salesforce Inc."
   }
 ]

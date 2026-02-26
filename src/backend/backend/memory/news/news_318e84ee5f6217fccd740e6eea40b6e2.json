@@ -1,0 +1,23 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "JPMorgan Acknowledges Shutting Down Trump Accounts After January 6",
+  "link": "https://finance.yahoo.com/news/jpmorgan-acknowledges-shutting-down-trump-193103644.html",
+  "publisher": "Benzinga",
+  "timestamp": "2026-02-24T19:31:03",
+  "providerPublishTime": 1771957863.0,
+  "text": "JPMorgan Acknowledges Shutting Down Trump Accounts After January 6",
+  "thumbnail": "https://media.zenfs.com/en/Benzinga/a55ec5acfe5b57f9ca0f8ebf0b1a9bd4",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "AFTER",
+    "TRUMP",
+    "DOWN"
+  ],
+  "relatedTickers": [
+    "AFTER",
+    "TRUMP",
+    "DOWN"
+  ]
+}

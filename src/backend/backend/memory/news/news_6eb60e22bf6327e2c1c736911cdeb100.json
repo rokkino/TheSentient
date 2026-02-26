@@ -1,0 +1,37 @@
+{
+  "source": "RSS Feed",
+  "ticker": null,
+  "title": "Paramount says Warner Bros. acquisition would be an ‘accelerant’ for its turnaround strategy",
+  "link": "https://www.marketwatch.com/story/paramount-says-warner-bros-acquisition-would-be-an-accelerant-of-its-turnaround-strategy-d5520fad?mod=mw_rss_topstories",
+  "publisher": "MarketWatch.com - Top Stories",
+  "timestamp": "2026-02-26T01:36:00",
+  "providerPublishTime": 1772066160.0,
+  "text": "Paramount saw losses rise in its latest quarter, while revenue and streaming subscribers grew in the first full reporting period since its merger with Skydance.",
+  "thumbnail": "https://images.mktw.net/im-06859017",
+  "trading_signal": null,
+  "sentiment": "negative",
+  "extracted_assets": [
+    "IN",
+    "GREW",
+    "FOR",
+    "RISE",
+    "AND",
+    "BE",
+    "WOULD",
+    "WHILE",
+    "BROS",
+    "SAYS"
+  ],
+  "relatedTickers": [
+    "IN",
+    "GREW",
+    "FOR",
+    "RISE",
+    "AND",
+    "BE",
+    "WOULD",
+    "WHILE",
+    "BROS",
+    "SAYS"
+  ]
+}

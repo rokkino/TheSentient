@@ -27,3 +27,22 @@ settings.json
 backend/cache/
 cache/
 *.cache.json
+
+# 7. Runtime Database (dati persistenti, mai da sovrascrivere con un deploy)
+**/thesentient.db
+**/sentient.db
+**/app.db
+
+# 8. File JSON dinamici generati a runtime
+**/earnings_data.json
+**/profitto.json
+**/watchlist.json
+
+# 9. Memory / Graph cache (generata a runtime dal backend)
+**/memory/graph/
+
+# 10. Node modules
+node_modules/
+
+# 11. Frontend build output
+dist/

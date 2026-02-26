@@ -19,41 +19,60 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            # 1. Preparazione cartella
-            mkdir -p ~/the-sentient
-            cd ~/the-sentient
-            if [ ! -d ".git" ]; then
-              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} .
-            else
-              git pull origin main
+            set -e  # Interrompe l'esecuzione al primo errore
+
+            APP_DIR=~/the-sentient
+            REPO_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+
+            # ── 1. Clone iniziale o fetch ──────────────────────────
+            if [ ! -d "$APP_DIR/.git" ]; then
+              echo "📦 Cloning repository..."
+              git clone "$REPO_URL" "$APP_DIR"
             fi
 
-            # 2. Configurazione Backend (.env)
-            echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" > backend/.env
-            # Aggiungi qui altre variabili se necessarie (es. API_KEYS)
+            cd "$APP_DIR"
 
-            # 3. Aggiornamento Backend
-            cd backend
-            python3 -m venv venv
+            # ── 2. Force-sync: il server diventa uno specchio di GitHub ─
+            echo "🔄 Fetching latest code..."
+            git fetch --all
+            git reset --hard origin/main
+            git clean -fd  # Rimuove file non tracciati (non quelli in .gitignore)
+
+            # ── 3. Configurazione Backend (.env) ──────────────────
+            echo "⚙️  Configuring backend..."
+            cat > src/backend/backend/.env << 'ENVEOF'
+            DATABASE_URL="${{ secrets.DATABASE_URL }}"
+            ENVEOF
+
+            # ── 4. Aggiornamento Backend (Python) ─────────────────
+            echo "🐍 Updating backend dependencies..."
+            cd "$APP_DIR/src/backend/backend"
+            python3 -m venv venv || true
             source venv/bin/activate
-            pip install -r requirements.txt
-            pm2 delete backend || true
-            pm2 start main.py --name backend --interpreter ./venv/bin/python
+            pip install --upgrade pip -q
+            pip install -r requirements.txt -q
 
-            # 4. Aggiornamento Frontend
-            cd ../frontend
-            # Configura l'URL delle API per la build (Risolve il Network Error)
+            # ── 5. Riavvio Backend con PM2 ────────────────────────
+            echo "🔁 Restarting backend with PM2..."
+            pm2 delete backend 2>/dev/null || true
+            pm2 start main.py \
+              --name backend \
+              --interpreter ./venv/bin/python \
+              --cwd "$APP_DIR/src/backend/backend"
+
+            # ── 6. Aggiornamento Frontend (Vue/Vite) ──────────────
+            echo "🎨 Building frontend..."
+            cd "$APP_DIR/src/frontend/frontend"
             echo "VITE_API_URL=https://thesentient.duckdns.org/api" > .env
-            
-            npm install
-            # Limitazione RAM per evitare crash su VM e2-micro
+            npm install --legacy-peer-deps
             NODE_OPTIONS="--max-old-space-size=1024" npm run build
 
-            # 5. Permessi e Nginx
-            # Permetti a Nginx di leggere i file generati
-            sudo chmod -R 755 ~/the-sentient/frontend/dist
-            # Riavvio Nginx per attivare HTTPS (porta 443)
+            # ── 7. Permessi e Nginx ───────────────────────────────
+            echo "🌐 Updating Nginx..."
+            sudo chmod -R 755 "$APP_DIR/src/frontend/frontend/dist"
             sudo systemctl restart nginx
-            
-            # 6. Salvataggio PM2 per il riavvio della VM
+
+            # ── 8. Salvataggio PM2 ────────────────────────────────
             pm2 save
+
+            echo "✅ Deploy completato con successo!"

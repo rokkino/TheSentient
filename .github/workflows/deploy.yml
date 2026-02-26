@@ -63,9 +63,9 @@ jobs:
             pm2 start main.py \
               --name backend \
               --interpreter ./venv/bin/python \
-              --cwd "$APP_DIR/src/backend/backend"
+              --cwd "$APP_DIR/src/backend/backend" \
               --exp-backoff-restart-delay 5000
-              
+
             # ── 6. Aggiornamento Frontend (Vue/Vite) ──────────────
             echo "🎨 Building frontend..."
             cd "$APP_DIR/src/frontend/frontend"

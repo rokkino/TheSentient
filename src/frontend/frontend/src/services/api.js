@@ -390,8 +390,10 @@ export default {
     return api.get('/bot/decisions', { params })
   },
 
-  getBotProfit() {
-    return api.get('/bot/profit')
+  getBotProfit(botId = null) {
+    const params = {}
+    if (botId) params.bot_id = botId
+    return api.get('/bot/profit', { params })
   },
 
   createBotDecision(data) {

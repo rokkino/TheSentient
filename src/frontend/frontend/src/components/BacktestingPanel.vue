@@ -14,7 +14,7 @@
 
         <div class="sidebar-field">
           <label class="sidebar-label">Bot</label>
-          <select v-model="selectedBotId" class="sidebar-select" @change="updateEmbedUrl" :disabled="readOnly">
+          <select v-model="selectedBotId" class="sidebar-select" :disabled="readOnly">
             <option :value="null">-- Seleziona un bot --</option>
             <option v-for="b in bots" :key="b.id" :value="b.id">{{ b.name }}</option>
           </select>
@@ -26,9 +26,61 @@
             v-model="selectedDate"
             type="date"
             class="sidebar-input"
-            @change="updateEmbedUrl"
+
             :disabled="readOnly"
           />
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Universo ticker</label>
+          <select v-model="universe" class="sidebar-select" :disabled="readOnly">
+            <option value="S&P 500">S&P 500</option>
+            <option value="Nasdaq 100">Nasdaq 100</option>
+          </select>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Anno inizio</label>
+          <div class="sidebar-number-row">
+            <button class="sidebar-num-btn" @click="startYear = Math.max(2015, startYear - 1)" :disabled="readOnly">–</button>
+            <input v-model.number="startYear" type="number" min="2015" max="2026" class="sidebar-input sidebar-num-input" :disabled="readOnly" />
+            <button class="sidebar-num-btn" @click="startYear = Math.min(2026, startYear + 1)" :disabled="readOnly">+</button>
+          </div>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Anno fine</label>
+          <div class="sidebar-number-row">
+            <button class="sidebar-num-btn" @click="endYear = Math.max(2015, endYear - 1)" :disabled="readOnly">–</button>
+            <input v-model.number="endYear" type="number" min="2015" max="2026" class="sidebar-input sidebar-num-input" :disabled="readOnly" />
+            <button class="sidebar-num-btn" @click="endYear = Math.min(2026, endYear + 1)" :disabled="readOnly">+</button>
+          </div>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Capitale per trade ($)</label>
+          <div class="sidebar-number-row">
+            <button class="sidebar-num-btn" @click="capitalPerTrade = Math.max(100, capitalPerTrade - 100)" :disabled="readOnly">–</button>
+            <input v-model.number="capitalPerTrade" type="number" min="100" max="10000" class="sidebar-input sidebar-num-input" :disabled="readOnly" />
+            <button class="sidebar-num-btn" @click="capitalPerTrade = Math.min(10000, capitalPerTrade + 100)" :disabled="readOnly">+</button>
+          </div>
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Confidence minima bot (%)</label>
+          <div class="sidebar-slider-value">{{ minConfidence }}</div>
+          <input v-model.number="minConfidence" type="range" min="0" max="80" class="sidebar-slider" :disabled="readOnly" />
+        </div>
+
+        <div class="sidebar-field">
+          <label class="sidebar-label">Limite Tickers (0 = tutti)</label>
+          <div class="sidebar-number-row">
+            <button class="sidebar-num-btn" @click="limitTickers = Math.max(0, limitTickers - 10)" :disabled="readOnly">–</button>
+            <input v-model.number="limitTickers" type="number" min="0" max="500" class="sidebar-input sidebar-num-input" :disabled="readOnly" />
+            <button class="sidebar-num-btn" @click="limitTickers = Math.min(500, limitTickers + 10)" :disabled="readOnly">+</button>
+          </div>
         </div>
 
         <button type="button" class="sidebar-apply-btn" @click="reloadIframe" :disabled="readOnly">
@@ -104,6 +156,14 @@ const selectedBotId = ref(null)
 const selectedDate = ref('')
 const sidebarCollapsed = ref(false)
 
+// Backtest config (mirrored from Streamlit sidebar)
+const universe = ref('S&P 500')
+const startYear = ref(2024)
+const endYear = ref(2024)
+const capitalPerTrade = ref(1000)
+const minConfidence = ref(30)
+const limitTickers = ref(50)
+
 const applyingSharedState = ref(false)
 let stateEmitTimer = null
 
@@ -139,8 +199,14 @@ function getEmbedUrl() {
   if (selectedDate.value) {
     params.set('date', selectedDate.value)
   }
-  const qs = params.toString()
-  return qs ? `${base}/?${qs}` : `${base}/?embed=true`
+  // Pass all backtest config to Streamlit
+  params.set('universe', universe.value)
+  params.set('start_year', String(startYear.value))
+  params.set('end_year', String(endYear.value))
+  params.set('capital', String(capitalPerTrade.value))
+  params.set('min_confidence', String(minConfidence.value))
+  params.set('limit', String(limitTickers.value))
+  return `${base}/?${params.toString()}`
 }
 
 function updateEmbedUrl() {

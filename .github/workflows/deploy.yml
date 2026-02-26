@@ -18,6 +18,8 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          timeout: 60s             # Tempo per stabilire la connessione
+          command_timeout: 20m     # Aumentiamo a 20 minuti il tempo totale dello script
           script: |
             set -e  # Interrompe l'esecuzione al primo errore
 

@@ -10,18 +10,45 @@ import json
 from datetime import datetime
 
 # Configuration
-API_URL = "http://127.0.0.1:8000/api"
+API_URL = "http://127.0.0.1:8001/api"
 
-st.set_page_config(page_title="Backtesting – TheSentient", page_icon="📊", layout="wide")
-
-# Parametri da frontend (selettore bot e data)
+# Read query params (passed from Vue frontend when embedded)
 try:
     _qp = getattr(st, "query_params", None) or st.experimental_get_query_params()
     _bot_id = _qp.get("bot_id", [None])[0] if isinstance(_qp.get("bot_id"), list) else _qp.get("bot_id")
     _date_param = _qp.get("date", [None])[0] if isinstance(_qp.get("date"), list) else _qp.get("date")
+    _embed = _qp.get("embed", [None])[0] if isinstance(_qp.get("embed"), list) else _qp.get("embed")
+    _universe_param = _qp.get("universe", [None])[0] if isinstance(_qp.get("universe"), list) else _qp.get("universe")
+    _start_year_param = _qp.get("start_year", [None])[0] if isinstance(_qp.get("start_year"), list) else _qp.get("start_year")
+    _end_year_param = _qp.get("end_year", [None])[0] if isinstance(_qp.get("end_year"), list) else _qp.get("end_year")
+    _capital_param = _qp.get("capital", [None])[0] if isinstance(_qp.get("capital"), list) else _qp.get("capital")
+    _min_confidence_param = _qp.get("min_confidence", [None])[0] if isinstance(_qp.get("min_confidence"), list) else _qp.get("min_confidence")
+    _limit_param = _qp.get("limit", [None])[0] if isinstance(_qp.get("limit"), list) else _qp.get("limit")
 except Exception:
     _bot_id = None
     _date_param = None
+    _embed = None
+    _universe_param = None
+    _start_year_param = None
+    _end_year_param = None
+    _capital_param = None
+    _min_confidence_param = None
+    _limit_param = None
+
+_is_embedded = (_embed == "true")
+
+# Page config — collapse sidebar when embedded (Vue controls config)
+if _is_embedded:
+    st.set_page_config(page_title="Backtesting – TheSentient", page_icon="📊", layout="wide", initial_sidebar_state="collapsed")
+    # Hide sidebar completely via CSS when embedded
+    st.markdown("""
+    <style>
+        [data-testid="stSidebar"] { display: none; }
+        [data-testid="collapsedControl"] { display: none; }
+    </style>
+    """, unsafe_allow_html=True)
+else:
+    st.set_page_config(page_title="Backtesting – TheSentient", page_icon="📊", layout="wide")
 
 st.title("Backtesting – Simulazione earnings")
 st.markdown("*Simulazione storica su dati earnings (backend-powered).*")
@@ -45,26 +72,44 @@ def get_backtest_status(job_id):
     except:
         return None
 
-# Sidebar: Configurazione
-with st.sidebar:
-    st.header("⚙️ Configurazione")
+# Determine config values: use query params (from Vue) if embedded, otherwise show sidebar
+if _is_embedded:
+    # Use values from Vue sidebar (query params)
+    universe = _universe_param or "S&P 500"
+    start_year = int(_start_year_param) if _start_year_param else 2024
+    end_year = int(_end_year_param) if _end_year_param else 2024
+    capital_per_trade = int(_capital_param) if _capital_param else 1000
+    min_confidence = int(_min_confidence_param) if _min_confidence_param else 30
+    limit_tickers = int(_limit_param) if _limit_param else 50
 
-    universe = st.selectbox("Universo ticker", ["S&P 500", "Nasdaq 100"], index=0)
-    
-    start_year = st.number_input("Anno inizio", 2015, 2026, 2024)
-    end_year = st.number_input("Anno fine", 2015, 2026, 2024)
-    
-    if start_year > end_year:
-        st.error("Anno inizio deve essere ≤ anno fine")
-        st.stop()
+    # Show a summary of current config
+    st.caption(f"Config: {universe} | {start_year}-{end_year} | ${capital_per_trade}/trade | Confidence ≥ {min_confidence}% | Limit: {limit_tickers}")
+else:
+    # Standalone mode: show Streamlit sidebar
+    with st.sidebar:
+        st.header("⚙️ Configurazione")
 
-    capital_per_trade = st.number_input("Capitale per trade ($)", 100, 10000, 1000)
-    min_confidence = st.slider("Confidence minima bot (%)", 0, 80, 30)
-    
-    limit_tickers = st.number_input("Limite Tickers (0 = tutti)", 0, 500, 50)
-    
-    st.divider()
-    st.caption("Strategy: Buy day before earnings (Pre-market) or day of earnings (Post-market). Sell next open.")
+        universe = st.selectbox("Universo ticker", ["S&P 500", "Nasdaq 100"], index=0)
+
+        start_year = st.number_input("Anno inizio", 2015, 2026, 2024)
+        end_year = st.number_input("Anno fine", 2015, 2026, 2024)
+
+        if start_year > end_year:
+            st.error("Anno inizio deve essere ≤ anno fine")
+            st.stop()
+
+        capital_per_trade = st.number_input("Capitale per trade ($)", 100, 10000, 1000)
+        min_confidence = st.slider("Confidence minima bot (%)", 0, 80, 30)
+
+        limit_tickers = st.number_input("Limite Tickers (0 = tutti)", 0, 500, 50)
+
+        st.divider()
+        st.caption("Strategy: Buy day before earnings (Pre-market) or day of earnings (Post-market). Sell next open.")
+
+# Validate years
+if start_year > end_year:
+    st.error("Anno inizio deve essere ≤ anno fine")
+    st.stop()
 
 # Initialize session state for job tracking
 if "job_id" not in st.session_state:

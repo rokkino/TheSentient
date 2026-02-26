@@ -515,29 +515,70 @@ async def get_scheduler_status(current_user: User = Depends(get_current_user)):
     }
 
 @app.get("/api/bot/decisions")
-async def get_bot_decisions(limit: int = 50, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    """Get recent bot decisions"""
+async def get_bot_decisions(limit: int = 50, bot_id: Optional[int] = None, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Get recent bot decisions, optionally filtered by bot_id"""
     from models.bot import Decision
-    decisions = db.query(Decision).order_by(Decision.created_at.desc()).limit(limit).all()
+    query = db.query(Decision)
+    if bot_id is not None:
+        query = query.filter(Decision.bot_id == bot_id)
+    decisions = query.order_by(Decision.created_at.desc()).limit(limit).all()
     return {"decisions": [d.to_dict() for d in decisions]}
 
 @app.get("/api/bot/profit")
-async def get_bot_profit(current_user: User = Depends(get_current_user)):
-    """Get P&L and portfolio summary from profitto.json"""
+async def get_bot_profit(bot_id: Optional[int] = None, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """Get P&L and portfolio summary. If bot_id is provided, fetch live data from the bot's trading service."""
+    from services.bot_service import bot_service
+    
+    empty_response = {
+        "profit_loss_value": 0.0,
+        "profit_loss_percent": 0.0,
+        "total_balance": 0.0,
+        "available_cash": 0.0,
+        "currency": "USD",
+        "timestamp": None,
+        "bot_name": None,
+    }
+    
+    # If bot_id is provided, try to fetch live data from the bot's trading service
+    if bot_id is not None:
+        from models.bot import Bot as BotModel
+        bot = db.query(BotModel).filter(BotModel.id == bot_id).first()
+        if bot:
+            service = bot_service._get_configured_service(db, bot)
+            if service:
+                try:
+                    account = await service.get_account()
+                    profit_loss_value = float(account.get('profit_loss', 0))
+                    balance = float(account.get('balance', 0))
+                    deposit = float(account.get('deposit', 0))
+                    available = float(account.get('available', 0))
+                    initial_capital = deposit if deposit > 0 else (balance - profit_loss_value)
+                    profit_loss_percent = (profit_loss_value / initial_capital * 100) if initial_capital > 0 else 0.0
+                    return {
+                        "profit_loss_value": profit_loss_value,
+                        "profit_loss_percent": round(profit_loss_percent, 2),
+                        "total_balance": balance,
+                        "available_cash": available,
+                        "currency": account.get('currency', 'USD'),
+                        "timestamp": datetime.now().isoformat(),
+                        "bot_name": bot.name,
+                    }
+                except Exception as e:
+                    print(f"[get_bot_profit] Live fetch failed for bot {bot_id}: {e}")
+                    # Fall through to profitto.json fallback
+    
+    # Fallback: read from profitto.json
     profit_path = BASE_DIR / "profitto.json"
     if not profit_path.exists():
-        return {
-            "profit_loss_value": 0.0,
-            "profit_loss_percent": 0.0,
-            "total_balance": 0.0,
-            "available_cash": 0.0,
-            "currency": "USD",
-            "timestamp": None,
-            "bot_name": None,
-        }
+        return empty_response
     try:
         with open(profit_path, "r", encoding="utf-8") as f:
             data = json.load(f)
+        if not data:
+            return empty_response
+        # If bot_id specified, only return if it matches the stored bot_id
+        if bot_id is not None and data.get("bot_id") and data.get("bot_id") != bot_id:
+            return empty_response
         return {
             "profit_loss_value": float(data.get("profit_loss_value", 0)),
             "profit_loss_percent": float(data.get("profit_loss_percent", 0)),

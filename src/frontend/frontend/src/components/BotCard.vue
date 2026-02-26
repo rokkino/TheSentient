@@ -441,7 +441,7 @@ const openCheckOrdersModal = async () => {
   try {
     const [decRes, profitRes, timeRes] = await Promise.all([
       api.getBotDecisions(100, props.bot.id),
-      api.getBotProfit().catch(() => ({ data: null })),
+      api.getBotProfit(props.bot.id).catch(() => ({ data: null })),
       api.getServerTime().catch(() => ({ data: { server_time_formatted: 'Unknown' } }))
     ])
     orders.value = decRes.data?.decisions ?? []
@@ -691,7 +691,7 @@ const executeOrder = async (d) => {
     await loadOrders()
     // Refresh profit display
     try {
-       const profitRes = await api.getBotProfit()
+       const profitRes = await api.getBotProfit(props.bot.id)
        profit.value = profitRes.data
     } catch(e) {}
   } catch (e) {

@@ -190,5 +190,41 @@
     "job_name": "execute_orders",
     "status": "ERROR",
     "message": "Failed ADEA: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:02:56.613962",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed BWXT: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:02:57.132901",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed ADEA: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:20:11.468077",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed BWXT: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:20:11.953156",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed ADEA: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:32:56.533472",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed BWXT: cannot access local variable 'order_id' where it is not associated with a value"
+  },
+  {
+    "timestamp": "2026-02-26T08:32:56.977849",
+    "job_name": "execute_orders",
+    "status": "ERROR",
+    "message": "Failed ADEA: cannot access local variable 'order_id' where it is not associated with a value"
   }
 ]

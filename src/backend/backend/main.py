@@ -3054,8 +3054,8 @@ async def test_account_connection(
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Start the backend server")
-    parser.add_argument("--port", type=int, default=8001, help="Port to run the server on")
+    parser.add_argument("--port", type=int, default=8000, help="Port to run the server on")
     args = parser.parse_args()
     
-    print(f"Starting uvicorn on port {args.port}...")
-    uvicorn.run("main:app", host="0.0.0.0", port=args.port, reload=True)
+    print(f"Starting uvicorn on port {args.port} without reloader...")
+    uvicorn.run("main:app", host="0.0.0.0", port=args.port, reload=False)

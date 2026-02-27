@@ -19,6 +19,8 @@ alpaca-py==0.43.2
 trading-ig
 ib_insync
 requests
+requests_html
+munch
 aiohttp
 httpx
 

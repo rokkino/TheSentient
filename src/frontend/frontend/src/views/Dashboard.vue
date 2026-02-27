@@ -3561,8 +3561,8 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: linear-gradient(180deg, #0d0d0f 0%, #08080a 100%);
-  color: #e0e0e0;
+  background: var(--surface-0, #0b0e14);
+  color: var(--text-primary, #e2e8f0);
   pointer-events: auto;
 }
 
@@ -3592,8 +3592,9 @@ const handleAiDrawingAdded = (drawing) => {
   justify-content: space-between;
   gap: 12px;
   padding: 0 20px 0 16px;
-  background: linear-gradient(180deg, #151518 0%, #0f0f12 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   height: 56px;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
 }
@@ -3689,33 +3690,30 @@ const handleAiDrawingAdded = (drawing) => {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 10px;
-  color: #9ca3af;
+  border-radius: var(--radius-sm, 10px);
+  color: var(--text-secondary, #94a3b8);
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  transition: color 0.2s, background-color 0.2s;
+  transition: all 0.2s;
   letter-spacing: 0.6px;
 }
 
 .tab-btn:hover {
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   background-color: rgba(255, 255, 255, 0.06);
-  border: none !important;
 }
 
 .tab-btn:focus,
 .tab-btn:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border: none !important;
 }
 
 .tab-btn.active {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: none !important;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .tab-live-pill {
@@ -3787,8 +3785,9 @@ const handleAiDrawingAdded = (drawing) => {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3796,11 +3795,11 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .modal-content {
-  background: #0f172a;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 14px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  color: #e2e8f0;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
+  color: var(--text-primary, #e2e8f0);
   max-height: 80vh;
   overflow: hidden;
 }
@@ -4020,9 +4019,9 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 10px 20px;
-  background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 24px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
   flex-wrap: nowrap;
   overflow-x: auto;
 }
@@ -4066,16 +4065,16 @@ const handleAiDrawingAdded = (drawing) => {
 .info-price-main .main-price {
   font-size: 24px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   font-family: 'Roboto Mono', monospace;
 }
 
 .info-price-main .main-price.positive {
-  color: #26a69a;
+  color: var(--accent-gain, #34d399);
 }
 
 .info-price-main .main-price.negative {
-  color: #ef5350;
+  color: var(--accent-loss, #f43f5e);
 }
 
 .info-price-main .price-change {
@@ -4092,11 +4091,11 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .info-price-main .change-value.positive {
-  color: #26a69a;
+  color: var(--accent-gain, #34d399);
 }
 
 .info-price-main .change-value.negative {
-  color: #ef5350;
+  color: var(--accent-loss, #f43f5e);
 }
 
 .info-price-main .change-percent {
@@ -4106,11 +4105,11 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .info-price-main .change-percent.positive {
-  color: rgba(38, 166, 154, 0.7);
+  color: rgba(52, 211, 153, 0.8);
 }
 
 .info-price-main .change-percent.negative {
-  color: rgba(239, 83, 80, 0.7);
+  color: rgba(244, 63, 94, 0.8);
 }
 
 .market-badge {
@@ -4253,9 +4252,9 @@ const handleAiDrawingAdded = (drawing) => {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 10px 30px;
-  background-color: #0a0a0a;
-  border-bottom: 1px solid #222;
+  padding: 12px 32px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
   flex-shrink: 0;
   pointer-events: auto;
 }
@@ -4342,9 +4341,11 @@ const handleAiDrawingAdded = (drawing) => {
 /* Panels */
 .left-panel {
   width: 280px;
-  background-color: #050505;
-  border-right: 1px solid #222;
-  padding: 20px;
+  background-color: rgba(11, 14, 20, 0.5);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border-right: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  padding: 24px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -4366,10 +4367,10 @@ const handleAiDrawingAdded = (drawing) => {
 .search-input {
   flex: 1;
   padding: 12px 16px;
-  background-color: #0a0a0a;
-  border: 2px solid #222;
-  border-radius: 6px;
-  color: #fff;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 13px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: text;
@@ -4378,7 +4379,7 @@ const handleAiDrawingAdded = (drawing) => {
 }
 
 .search-input::placeholder {
-  color: #555;
+  color: var(--text-secondary, #94a3b8);
   transition: color 0.3s;
 }
 

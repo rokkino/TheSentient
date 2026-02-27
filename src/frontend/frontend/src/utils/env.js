@@ -28,7 +28,7 @@ export function getApiBaseAbsolute() {
 /**
  * URL WebSocket: ws o wss in base al protocollo, senza hardcodare host.
  * - Produzione (VITE_API_URL assoluto): wss://thesentient.duckdns.org/api/ws (Nginx)
- * - Sviluppo: ws(s)://currentHost/ws (proxy Vite → backend :8001/ws)
+ * - Sviluppo: ws(s)://currentHost/ws (proxy Vite → backend :8000/ws)
  */
 export function getWsBase() {
   const apiUrl = import.meta.env.VITE_API_URL

@@ -6,14 +6,14 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 5173,
-    // Proxy locale: simula Nginx in dev, evita CORS. /api e /ws → backend :8000
+    // Proxy locale: simula Nginx in dev, evita CORS. /api e /ws → backend :8001
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:8001',
         changeOrigin: true,
       },
       '/ws': {
-        target: 'ws://localhost:8000',
+        target: 'ws://localhost:8001',
         ws: true,
         configure: (proxy) => {
           proxy.on('error', () => {

@@ -7,7 +7,12 @@
       <!-- Header -->
       <div class="home-header">
         <div class="logo-section">
-          <div class="logo-icon">⚡</div>
+          <div class="dynamic-logo">
+            <div class="orb orbit-3"></div>
+            <div class="orb orbit-2"></div>
+            <div class="orb orbit-1"></div>
+            <div class="orb core"></div>
+          </div>
           <h1 class="home-title">The Sentient</h1>
         </div>
         <p class="home-subtitle">Advanced Portfolio Intelligence & Trading Platform</p>
@@ -171,10 +176,10 @@ const goToDashboard = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(66, 153, 225, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-    linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  background: var(--surface-0, #0b0e14);
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(52, 211, 153, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
   z-index: 0;
 }
 
@@ -193,15 +198,72 @@ const goToDashboard = () => {
 
 .logo-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
   margin-bottom: 16px;
 }
 
-.logo-icon {
-  font-size: 48px;
-  filter: drop-shadow(0 0 20px rgba(66, 153, 225, 0.3));
+.dynamic-logo {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.core {
+  width: 24px;
+  height: 24px;
+  background: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+.orbit-1 {
+  width: 44px;
+  height: 44px;
+  border: 2px solid rgba(52, 211, 153, 0.6); /* Emerald accent */
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: spin 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.orbit-2 {
+  width: 66px;
+  height: 66px;
+  border: 2px solid rgba(226, 232, 240, 0.2); /* Slate */
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: spin-reverse 4s linear infinite;
+}
+
+.orbit-3 {
+  width: 90px;
+  height: 90px;
+  border: 1px dashed rgba(59, 130, 246, 0.4); /* Blue accent */
+  animation: spin 10s linear infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  100% { transform: rotate(-360deg); }
 }
 
 .home-title {
@@ -234,14 +296,15 @@ const goToDashboard = () => {
 
 .auth-card,
 .welcome-card {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   padding: 48px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .auth-header {
@@ -279,7 +342,7 @@ const goToDashboard = () => {
 
 .welcome-username {
   font-size: 18px;
-  color: #4299e1;
+  color: var(--accent-gain, #34d399);
   font-weight: 500;
   margin: 0;
 }
@@ -306,14 +369,16 @@ const goToDashboard = () => {
 }
 
 .auth-btn.primary {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
 }
 
 .auth-btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(66, 153, 225, 0.4);
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
 }
 
 .auth-btn.primary:active {
@@ -363,10 +428,11 @@ const goToDashboard = () => {
 }
 
 .feature-card {
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   padding: 32px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
@@ -374,9 +440,9 @@ const goToDashboard = () => {
 
 .feature-card:hover {
   transform: translateY(-4px);
-  background: rgba(26, 26, 26, 0.8);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .feature-icon-wrapper {

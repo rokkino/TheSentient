@@ -131,8 +131,9 @@ const handleImageError = (e) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,14 +142,14 @@ const handleImageError = (e) => {
 }
 
 .modal-content {
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
   display: flex;
   flex-direction: column;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -156,15 +157,15 @@ const handleImageError = (e) => {
 
 .modal-header {
   padding: 20px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(26, 26, 26, 0.95);
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(10px);
 }
 
 .header-left {
@@ -174,10 +175,10 @@ const handleImageError = (e) => {
 }
 
 .publisher-badge {
-  background: #2d3748;
-  color: #a0aec0;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary, #94a3b8);
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm, 6px);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -226,8 +227,8 @@ const handleImageError = (e) => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
-  background: linear-gradient(to top, #1a1a1a, transparent);
+  height: 150px;
+  background: linear-gradient(to top, var(--surface-0, #0b0e14), transparent);
 }
 
 .news-title {
@@ -265,10 +266,10 @@ const handleImageError = (e) => {
 
 .news-actions {
   padding: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   display: flex;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
 }
 
 .action-btn {
@@ -286,23 +287,26 @@ const handleImageError = (e) => {
 }
 
 .action-btn.primary {
-  background: #4299e1;
-  color: #fff;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
 }
 
 .action-btn.primary:hover {
-  background: #3182ce;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
 }
 
 .action-btn.secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #a0aec0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--text-secondary, #94a3b8);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .action-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 @keyframes fadeIn {

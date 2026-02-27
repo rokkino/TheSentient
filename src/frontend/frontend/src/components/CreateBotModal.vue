@@ -147,7 +147,9 @@ const createBot = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,13 +157,14 @@ const createBot = async () => {
 }
 
 .modal-content {
-  background: #2d3748;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -169,7 +172,8 @@ const createBot = async () => {
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h2 {
@@ -181,7 +185,7 @@ const createBot = async () => {
 .close-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-size: 32px;
   cursor: pointer;
   padding: 0;
@@ -194,7 +198,7 @@ const createBot = async () => {
 }
 
 .close-btn:hover {
-  color: #e2e8f0;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -218,9 +222,9 @@ const createBot = async () => {
 }
 
 .bot-type-card {
-  background: #1a202c;
-  border: 2px solid #4a5568;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
   padding: 20px;
   text-align: center;
   cursor: pointer;
@@ -228,13 +232,15 @@ const createBot = async () => {
 }
 
 .bot-type-card:hover {
-  border-color: #718096;
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .bot-type-card.selected {
-  border-color: #4299e1;
-  background: #1e3a5f;
+  border-color: var(--accent-primary, #3b82f6);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  box-shadow: 0 0 0 1px var(--accent-primary, #3b82f6);
 }
 
 .bot-type-icon {
@@ -243,16 +249,16 @@ const createBot = async () => {
 }
 
 .bot-type-name {
-  color: #e2e8f0;
+  color: var(--text-primary, #e2e8f0);
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 16px;
 }
 
 .bot-type-description {
-  color: #a0aec0;
-  font-size: 12px;
-  line-height: 1.4;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .form-section {
@@ -275,19 +281,21 @@ const createBot = async () => {
 .form-textarea {
   width: 100%;
   padding: 12px;
-  background: #1a202c;
-  border: 1px solid #4a5568;
-  border-radius: 8px;
-  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
   font-family: inherit;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #4299e1;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .form-textarea {
@@ -310,13 +318,14 @@ const createBot = async () => {
   justify-content: flex-end;
   gap: 12px;
   padding: 24px;
-  border-top: 1px solid #4a5568;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm, 12px);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -329,21 +338,26 @@ const createBot = async () => {
 }
 
 .btn-secondary {
-  background: #4a5568;
-  color: #e2e8f0;
+  background: transparent;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #718096;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .btn-primary {
-  background: #4299e1;
-  color: white;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #3182ce;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
 }
 </style>
 

@@ -268,41 +268,47 @@ const scrollToBottom = () => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #0a0a0a;
-  color: #e0e0e0;
+  background: transparent;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .builder-split {
   display: flex;
   flex: 1;
   overflow: hidden;
+  gap: 16px;
+  padding: 16px;
 }
 
 /* Chat Panel */
 .chat-panel {
   width: 350px;
-  border-right: 1px solid #333;
   display: flex;
   flex-direction: column;
-  background: #111;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  overflow: hidden;
 }
 
 .panel-header {
   padding: 15px 20px;
-  border-bottom: 1px solid #333;
-  background: #161616;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .panel-header h3 {
   margin: 0;
   font-size: 16px;
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .panel-header p {
   margin: 5px 0 0;
   font-size: 12px;
-  color: #888;
+  color: var(--text-secondary, #94a3b8);
 }
 
 .chat-messages {
@@ -316,70 +322,76 @@ const scrollToBottom = () => {
 
 .message {
   max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm, 12px);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .message.user {
   align-self: flex-end;
-  background: #2b6cb0;
-  color: #fff;
-  border-bottom-right-radius: 2px;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  border-bottom-right-radius: 4px;
 }
 
 .message.assistant {
   align-self: flex-start;
-  background: #2d3748;
-  color: #e2e8f0;
-  border-bottom-left-radius: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-primary, #e2e8f0);
+  border-bottom-left-radius: 4px;
 }
 
 .chat-input {
   padding: 15px;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   display: flex;
   gap: 10px;
-  background: #161616;
+  background: transparent;
 }
 
 .chat-input textarea {
   flex: 1;
-  background: #0a0a0a;
-  border: 1px solid #333;
-  border-radius: 6px;
-  color: #fff;
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
+  padding: 10px 14px;
   font-family: inherit;
   resize: none;
   height: 60px;
   font-size: 13px;
+  transition: all 0.2s;
 }
 
 .chat-input textarea:focus {
   outline: none;
-  border-color: #4299e1;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .chat-input button {
-  background: #4299e1;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  border-radius: var(--radius-sm, 12px);
   padding: 0 15px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .chat-input button:hover:not(:disabled) {
-  background: #3182ce;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
 }
 
 .chat-input button:disabled {
-  background: #333;
-  color: #666;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -388,7 +400,12 @@ const scrollToBottom = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #0f0f0f;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  overflow: hidden;
 }
 
 .editor-panel .panel-header {
@@ -400,7 +417,7 @@ const scrollToBottom = () => {
 .strategy-name-input {
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   font-size: 18px;
   font-weight: 600;
   width: 300px;
@@ -408,7 +425,7 @@ const scrollToBottom = () => {
 
 .strategy-name-input:focus {
   outline: none;
-  border-bottom: 1px solid #4299e1;
+  border-bottom: 1px solid var(--accent-primary, #3b82f6);
 }
 
 .header-actions {
@@ -417,36 +434,44 @@ const scrollToBottom = () => {
 }
 
 .action-btn {
-  background: #28a745;
-  color: #fff;
-  border: none;
-  padding: 6px 16px;
-  border-radius: 4px;
+  background: var(--accent-positive-bg, rgba(52, 211, 153, 0.15));
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: var(--accent-positive, #34d399);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 12px);
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
+  transition: all 0.2s;
 }
 
 .action-btn.secondary {
-  background: #4a5568;
+  background: transparent;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
-.action-btn:hover {
-  opacity: 0.9;
+.action-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.action-btn.secondary:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .json-editor-container {
   flex: 2;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   position: relative;
 }
 
 .json-editor {
   width: 100%;
   height: 100%;
-  background: #0a0a0a;
+  background: transparent;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-family: 'Roboto Mono', monospace;
   font-size: 13px;
   padding: 20px;
@@ -461,13 +486,13 @@ const scrollToBottom = () => {
 .visual-preview {
   flex: 1;
   padding: 20px;
-  background: #111;
+  background: rgba(0, 0, 0, 0.2);
   overflow-y: auto;
 }
 
 .visual-preview h4 {
   margin: 0 0 15px 0;
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -484,7 +509,7 @@ const scrollToBottom = () => {
 
 .rule-section h5 {
   margin: 0 0 10px 0;
-  color: #888;
+  color: var(--text-secondary, #94a3b8);
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -497,24 +522,24 @@ const scrollToBottom = () => {
 
 .rule-tag {
   display: inline-block;
-  padding: 6px 10px;
-  border-radius: 4px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 8px);
   font-size: 12px;
   font-family: 'Roboto Mono', monospace;
-  background: #2d3748;
-  border: 1px solid #4a5568;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .rule-tag.entry {
-  border-left: 3px solid #48bb78;
+  border-left: 3px solid var(--accent-positive, #34d399);
 }
 
 .rule-tag.exit {
-  border-left: 3px solid #f56565;
+  border-left: 3px solid var(--accent-negative, #f43f5e);
 }
 
 .empty-rules {
-  color: #555;
+  color: var(--text-secondary, #94a3b8);
   font-style: italic;
   font-size: 13px;
 }

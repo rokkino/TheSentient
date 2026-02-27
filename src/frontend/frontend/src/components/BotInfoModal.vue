@@ -812,7 +812,9 @@ const close = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -820,13 +822,14 @@ const close = () => {
 }
 
 .modal-content {
-  background: #2d3748;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -834,10 +837,11 @@ const close = () => {
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   position: sticky;
   top: 0;
-  background: #2d3748;
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  backdrop-filter: blur(12px);
   z-index: 10;
 }
 
@@ -850,7 +854,7 @@ const close = () => {
 .close-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-size: 32px;
   cursor: pointer;
   padding: 0;
@@ -863,7 +867,7 @@ const close = () => {
 }
 
 .close-btn:hover {
-  color: #e2e8f0;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -890,30 +894,30 @@ const close = () => {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   padding-bottom: 10px;
 }
 
 .tab-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-sm, 10px);
   transition: all 0.2s;
 }
 
 .tab-btn:hover {
-  color: #e2e8f0;
-  background: #4a5568;
+  color: var(--text-primary, #e2e8f0);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .tab-btn.active {
-  color: #4299e1;
-  background: rgba(66, 153, 225, 0.1);
+  color: var(--accent-primary, #3b82f6);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .charts-grid {
@@ -929,8 +933,9 @@ const close = () => {
 }
 
 .chart-card {
-  background: #1a202c;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
   padding: 16px;
 }
 
@@ -980,24 +985,24 @@ const close = () => {
 }
 
 .earning-header:hover {
-  background: #374151;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .earning-date {
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-size: 12px;
   white-space: nowrap;
 }
 
 .earning-item:hover {
-  border-color: #718096;
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateX(4px);
 }
 
 .earning-symbol {
   font-size: 18px;
   font-weight: 700;
-  color: #4299e1;
+  color: var(--accent-primary, #3b82f6);
 }
 
 .earning-company {
@@ -1071,8 +1076,8 @@ const close = () => {
 
 .eps-history-section {
   padding: 16px;
-  background: #1a202c;
-  border-top: 1px solid #4a5568;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .loading-eps {

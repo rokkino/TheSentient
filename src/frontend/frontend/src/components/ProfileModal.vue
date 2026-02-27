@@ -841,12 +841,13 @@ const save = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(2px);
 }
 
 .google-login-section {
@@ -889,16 +890,16 @@ const save = async () => {
 
 
 .modal-content {
-  background-color: #0a0a0a;
-  border: 1px solid #222;
-  border-radius: 2px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -906,8 +907,8 @@ const save = async () => {
   justify-content: space-between;
   align-items: center;
   padding: 25px;
-  border-bottom: 1px solid #222;
-  background-color: #0f0f0f;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h2 {
@@ -922,7 +923,7 @@ const save = async () => {
 .close-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--text-secondary, #94a3b8);
   font-size: 28px;
   cursor: pointer;
   width: 32px;
@@ -934,7 +935,7 @@ const save = async () => {
 }
 
 .close-btn:hover {
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -971,20 +972,21 @@ const save = async () => {
 .form-textarea {
   width: 100%;
   padding: 12px 15px;
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 2px;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
   font-family: 'Roboto Mono', monospace;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #666;
-  background-color: #151515;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .form-textarea {
@@ -997,15 +999,15 @@ const save = async () => {
   justify-content: flex-end;
   gap: 15px;
   padding: 25px;
-  border-top: 1px solid #222;
-  background-color: #0f0f0f;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .btn-secondary,
 .btn-primary {
   padding: 12px 30px;
   border: none;
-  border-radius: 2px;
+  border-radius: var(--radius-sm, 12px);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -1016,28 +1018,29 @@ const save = async () => {
 
 .btn-secondary {
   background-color: transparent;
-  border: 1px solid #333;
-  color: #888;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
 .btn-secondary:hover {
-  border-color: #666;
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .btn-primary {
-  background-color: #fff;
-  color: #000;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #e0e0e0;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
   transform: translateY(-1px);
 }
 
 .btn-primary:disabled {
-  background-color: #333;
-  color: #666;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -1052,9 +1055,9 @@ const save = async () => {
   height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid #333;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   flex-shrink: 0;
-  background-color: #111;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .profile-picture-img {
@@ -1225,7 +1228,7 @@ input:checked + .slider:before {
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   padding-bottom: 15px;
 }
 
@@ -1344,10 +1347,10 @@ input:checked + .slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #151515;
+  background: rgba(255, 255, 255, 0.03);
   padding: 15px;
-  border-radius: 4px;
-  border: 1px solid #333;
+  border-radius: var(--radius-sm, 12px);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .account-info {
@@ -1418,10 +1421,10 @@ input:checked + .slider:before {
 }
 
 .account-form {
-  background: #151515;
+  background: rgba(255, 255, 255, 0.03);
   padding: 20px;
-  border-radius: 4px;
-  border: 1px solid #333;
+  border-radius: var(--radius-md, 16px);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .form-header {

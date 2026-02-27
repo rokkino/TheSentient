@@ -242,8 +242,9 @@ const close = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,16 +252,16 @@ const close = () => {
 }
 
 .modal-content {
-  background-color: #0a0a0a;
-  border: 1px solid #222;
-  border-radius: 2px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -268,8 +269,8 @@ const close = () => {
   justify-content: space-between;
   align-items: center;
   padding: 25px;
-  border-bottom: 1px solid #222;
-  background-color: #0f0f0f;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h2 {
@@ -284,7 +285,7 @@ const close = () => {
 .close-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--text-secondary, #94a3b8);
   font-size: 28px;
   cursor: pointer;
   width: 32px;
@@ -296,7 +297,7 @@ const close = () => {
 }
 
 .close-btn:hover {
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -310,13 +311,12 @@ const close = () => {
 }
 
 .wizard-step h3 {
-  color: #fff;
+  color: var(--text-secondary, #94a3b8);
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
-  color: #666;
 }
 
 .preset-category {
@@ -332,10 +332,10 @@ const close = () => {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #4299e1;
+  color: var(--accent-primary, #3b82f6);
   margin-bottom: 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .presets-grid {
@@ -346,9 +346,9 @@ const close = () => {
 
 .preset-card {
   padding: 16px;
-  background-color: #111;
-  border: 2px solid #222;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
@@ -357,15 +357,15 @@ const close = () => {
 }
 
 .preset-card:hover {
-  background-color: #1a1a1a;
-  border-color: #444;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
 .preset-card.selected {
-  background-color: #1a1a1a;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15), 0 4px 12px rgba(0,0,0,0.3);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 1px var(--accent-primary, #3b82f6), 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .preset-card.coming {
@@ -403,7 +403,7 @@ const close = () => {
 }
 
 .preset-name {
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 4px;
@@ -411,27 +411,28 @@ const close = () => {
 }
 
 .preset-description {
-  color: #666;
-  font-size: 10px;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 11px;
   line-height: 1.4;
 }
 
 .form-input {
   width: 100%;
   padding: 12px 15px;
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 2px;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
   font-family: 'Roboto Mono', monospace;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #666;
-  background-color: #151515;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .modal-footer {
@@ -439,15 +440,15 @@ const close = () => {
   justify-content: flex-end;
   gap: 15px;
   padding: 25px;
-  border-top: 1px solid #222;
-  background-color: #0f0f0f;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .btn-secondary,
 .btn-primary {
   padding: 12px 30px;
   border: none;
-  border-radius: 2px;
+  border-radius: var(--radius-sm, 12px);
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -458,28 +459,29 @@ const close = () => {
 
 .btn-secondary {
   background-color: transparent;
-  border: 1px solid #333;
-  color: #888;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
 .btn-secondary:hover {
-  border-color: #666;
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .btn-primary {
-  background-color: #fff;
-  color: #000;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #e0e0e0;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
   transform: translateY(-1px);
 }
 
 .btn-primary:disabled {
-  background-color: #333;
-  color: #666;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 </style>

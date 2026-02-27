@@ -403,19 +403,19 @@ const initChart = async () => {
       height: containerHeight,
       layout: {
         background: { type: 'solid', color: 'transparent' },
-        textColor: '#a0aec0',
+        textColor: '#94a3b8',
       },
       grid: {
-        vertLines: { color: 'rgba(45, 55, 72, 0.5)' },
-        horzLines: { color: 'rgba(45, 55, 72, 0.5)' },
+        vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
+        horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
       },
       timeScale: {
         timeVisible: true,
         secondsVisible: false,
-        borderColor: '#2d3748',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
       },
       rightPriceScale: {
-        borderColor: '#2d3748',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
         scaleMargins: {
           top: 0.2, // More space at top
           bottom: 0.1,
@@ -702,20 +702,23 @@ onUnmounted(() => {
 
 /* Leaderboard Styles */
 .leaderboard-section {
-  background: #1a202c;
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 32px;
-  border: 1px solid #2d3748;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border-radius: var(--radius-lg, 24px);
+  padding: 32px;
+  margin-bottom: 36px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  box-shadow: var(--shadow-glass, 0 8px 32px rgba(0, 0, 0, 0.35));
 }
 
 .performance-chart-container {
-  margin-bottom: 24px;
-  background: #0f1419;
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid #2d3748;
+  margin-bottom: 28px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md, 16px);
+  padding: 20px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .chart-and-overlay {
@@ -766,10 +769,10 @@ onUnmounted(() => {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px;
-  background: #1a202c;
-  border-radius: 10px;
-  border: 1px solid #2d3748;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm, 12px);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -788,9 +791,9 @@ onUnmounted(() => {
 }
 
 .legend-item:hover {
-  background: #2d3748;
+  background: rgba(255, 255, 255, 0.06);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   border-color: var(--bot-color);
 }
 
@@ -934,8 +937,9 @@ onUnmounted(() => {
 
 .metric-toggles {
   display: flex;
-  background: #2d3748;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 10px);
   padding: 4px;
   gap: 4px;
 }
@@ -953,9 +957,10 @@ onUnmounted(() => {
 }
 
 .metric-toggles button.active {
-  background: #4a5568;
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  color: #60a5fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .leaderboard-graph {
@@ -1021,9 +1026,9 @@ onUnmounted(() => {
   flex: 1;
   min-width: 80px;
   height: 28px;
-  background: linear-gradient(180deg, #1e2530 0%, #252d3a 100%);
-  border: 1px solid #3d4a5c;
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
+  border-radius: var(--radius-sm, 10px);
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);

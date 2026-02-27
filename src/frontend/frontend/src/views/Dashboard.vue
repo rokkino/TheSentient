@@ -3036,12 +3036,12 @@ const loadChart = async (tabId, forceRefresh = false) => {
       width: containerWidth,
       height: containerHeight,
       layout: {
-        background: { color: '#1e1e1e' },
-        textColor: '#dcdcdc',
+        background: { type: 'solid', color: 'transparent' },
+        textColor: '#94a3b8',
       },
       grid: {
-        vertLines: { color: '#333' },
-        horzLines: { color: '#333' },
+        vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
+        horzLines: { color: 'rgba(255, 255, 255, 0.05)' },
       },
       timeScale: {
         timeVisible: true,
@@ -4899,11 +4899,13 @@ const handleAiDrawingAdded = (drawing) => {
 
 .chart-container {
   flex: 1;
-  background-color: #000;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.3));
   position: relative;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
 }
 
 .chart-wrapper {

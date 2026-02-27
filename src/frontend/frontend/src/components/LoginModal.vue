@@ -133,8 +133,9 @@ const handleLogin = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,17 +153,16 @@ const handleLogin = async () => {
 }
 
 .modal-content {
-  background: rgba(26, 26, 26, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 100%;
   max-width: 440px;
   max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
   animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -206,9 +206,9 @@ const handleLogin = async () => {
 
 .close-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #9ca3af;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-secondary, #94a3b8);
   width: 32px;
   height: 32px;
   display: flex;
@@ -221,7 +221,7 @@ const handleLogin = async () => {
 
 .close-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  color: var(--text-primary, #e2e8f0);
   border-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -290,10 +290,10 @@ const handleLogin = async () => {
 .input-wrapper input {
   width: 100%;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 15px;
   font-weight: 400;
   transition: all 0.2s;
@@ -306,9 +306,9 @@ const handleLogin = async () => {
 
 .input-wrapper input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .input-wrapper input:disabled {
@@ -319,10 +319,10 @@ const handleLogin = async () => {
 .submit-btn {
   width: 100%;
   padding: 14px 24px;
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-  border: none;
-  border-radius: 12px;
-  color: white;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-sm, 12px);
+  color: #60a5fa;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -337,7 +337,8 @@ const handleLogin = async () => {
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(66, 153, 225, 0.3);
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
 }
 
 .submit-btn:active:not(:disabled) {

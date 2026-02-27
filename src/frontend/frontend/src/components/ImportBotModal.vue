@@ -185,7 +185,9 @@ const importBot = async () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,13 +195,14 @@ const importBot = async () => {
 }
 
 .modal-content {
-  background: #2d3748;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -207,7 +210,8 @@ const importBot = async () => {
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h2 {
@@ -219,7 +223,7 @@ const importBot = async () => {
 .close-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-size: 32px;
   cursor: pointer;
   padding: 0;
@@ -232,7 +236,7 @@ const importBot = async () => {
 }
 
 .close-btn:hover {
-  color: #e2e8f0;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -263,18 +267,18 @@ const importBot = async () => {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: #1a202c;
-  border: 2px dashed #4a5568;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px dashed var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
   cursor: pointer;
   transition: all 0.2s;
-  color: #e2e8f0;
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
 }
 
 .file-input-label:hover {
-  border-color: #4299e1;
-  background: #1e3a5f;
+  border-color: var(--accent-primary, #3b82f6);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .file-input-icon {
@@ -284,9 +288,9 @@ const importBot = async () => {
 .preview-section {
   margin-top: 24px;
   padding: 20px;
-  background: #1a202c;
-  border-radius: 8px;
-  border: 1px solid #4a5568;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm, 12px);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .preview-section h3 {
@@ -331,13 +335,14 @@ const importBot = async () => {
   justify-content: flex-end;
   gap: 12px;
   padding: 24px;
-  border-top: 1px solid #4a5568;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm, 12px);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -350,21 +355,26 @@ const importBot = async () => {
 }
 
 .btn-secondary {
-  background: #4a5568;
-  color: #e2e8f0;
+  background: transparent;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #718096;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .btn-primary {
-  background: #4299e1;
-  color: white;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #3182ce;
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+  transform: translateY(-1px);
 }
 </style>
 

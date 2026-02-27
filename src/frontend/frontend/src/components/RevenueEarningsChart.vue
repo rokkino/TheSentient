@@ -99,10 +99,10 @@ const chartOptions = {
     y: {
       beginAtZero: true,
       grid: {
-        color: '#333'
+        color: 'rgba(255, 255, 255, 0.1)'
       },
       ticks: {
-        color: '#aaa',
+        color: '#94a3b8',
         callback: function(value) {
           return new Intl.NumberFormat('en-US', { notation: "compact", compactDisplay: "short" }).format(value);
         }
@@ -113,7 +113,7 @@ const chartOptions = {
         display: false
       },
       ticks: {
-        color: '#aaa'
+        color: '#94a3b8'
       }
     }
   }
@@ -124,9 +124,13 @@ const chartOptions = {
 .revenue-earnings-chart {
   height: 300px;
   width: 100%;
-  background: #1e1e1e;
-  border-radius: 8px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border-radius: var(--radius-lg, 24px);
   padding: 16px;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .chart-container {

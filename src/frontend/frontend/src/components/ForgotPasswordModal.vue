@@ -85,7 +85,9 @@ const handleSubmit = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   transition: opacity 0.3s ease;
 }
@@ -101,12 +103,12 @@ const handleSubmit = async () => {
 .modal-container {
   width: 400px;
   margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #242424;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border-radius: var(--radius-lg, 24px);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
   transition: all 0.3s ease;
-  border: 1px solid #333;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
 }
 
 .modal-header {
@@ -118,8 +120,10 @@ const handleSubmit = async () => {
 
 .modal-header h3 {
   margin: 0;
-  color: #fff;
-  font-size: 1.5rem;
+  color: var(--text-white, #ffffff);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .close-btn {
@@ -137,9 +141,9 @@ const handleSubmit = async () => {
 }
 
 .instruction-text {
-  color: #ccc;
-  margin-bottom: 20px;
-  font-size: 0.95rem;
+  color: var(--text-secondary, #94a3b8);
+  margin-bottom: 24px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -150,43 +154,53 @@ const handleSubmit = async () => {
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #ddd;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d1d5db;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
 
 .form-group input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #444;
-  background-color: #1a1a1a;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 14px 16px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary, #e2e8f0);
+  border-radius: var(--radius-sm, 12px);
+  font-size: 15px;
+  transition: all 0.2s;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #646cff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-primary, #3b82f6);
+  box-shadow: 0 0 0 3px var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
 }
 
 .submit-btn {
   width: 100%;
-  padding: 12px;
-  background-color: #646cff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 14px 24px;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-sm, 12px);
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44px;
+  height: 48px;
+  margin-top: 8px;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background-color: #535bf2;
+  transform: translateY(-1px);
+  background: rgba(59, 130, 246, 0.25);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
 }
 
 .submit-btn:disabled {

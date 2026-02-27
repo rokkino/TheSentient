@@ -453,16 +453,17 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #050505;
-  color: #fff;
+  background: var(--surface-0, #0b0e14);
+  color: var(--text-primary, #e2e8f0);
   position: relative;
 }
 
 .news-header-glass {
-  padding: 20px 30px;
-  background: rgba(20, 20, 20, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 32px;
+  background: var(--glass-bg-strong, rgba(15, 23, 42, 0.8));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   z-index: 10;
 }
 
@@ -478,12 +479,10 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 
 .header-content h2 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #fff, #888);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-white, #ffffff);
 }
 
 .news-controls {
@@ -507,29 +506,32 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 
 .search-input {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
-  padding: 10px 15px 10px 35px;
-  color: #fff;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-full, 9999px);
+  padding: 10px 15px 10px 36px;
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
-  width: 250px;
+  font-family: 'Inter', sans-serif;
+  width: 260px;
   transition: all 0.3s ease;
 }
 
 .search-input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  width: 300px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+  width: 320px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .ticker-filter {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-full, 9999px);
   padding: 10px 20px;
-  color: #fff;
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
   appearance: none;
   min-width: 160px;
@@ -537,16 +539,16 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 }
 
 .ticker-filter:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .update-btn {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: rgba(66, 153, 225, 0.1);
-  border: 1px solid rgba(66, 153, 225, 0.2);
-  color: #4299e1;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -555,12 +557,12 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 }
 
 .update-btn:hover:not(:disabled) {
-  background: rgba(66, 153, 225, 0.2);
+  background: rgba(59, 130, 246, 0.25);
   transform: rotate(180deg);
 }
 
 .update-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
@@ -761,8 +763,9 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -775,21 +778,22 @@ const submitLlamaQuestion = async (predefinedQuestion = null) => {
 }
 
 .modal-content {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 600px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 .modal-header {
-  padding: 20px;
-  border-bottom: 1px solid #333;
+  padding: 24px;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   display: flex;
   justify-content: space-between;
   align-items: center;

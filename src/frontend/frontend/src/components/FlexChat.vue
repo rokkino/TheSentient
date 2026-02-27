@@ -1378,12 +1378,13 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 23, 42, 0.92);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  backdrop-filter: blur(8px);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
 }
 
 .image-modal-content {
@@ -1409,10 +1410,10 @@ onUnmounted(() => {
   position: absolute;
   top: -48px;
   right: 0;
-  background: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  color: #f8fafc;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 22px;
   cursor: pointer;
   width: 40px;
@@ -1420,7 +1421,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .close-modal:hover {
@@ -1434,21 +1435,22 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 23, 42, 0.85);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(6px);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
 }
 
 .modal-content {
-  background-color: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
   animation: slideUp 0.3s ease-out;
 }
 
@@ -1462,7 +1464,8 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h3 {
@@ -1475,18 +1478,18 @@ onUnmounted(() => {
 .close-btn {
   background: none;
   border: none;
-  color: #64748b;
+  color: var(--text-secondary, #94a3b8);
   font-size: 22px;
   cursor: pointer;
   padding: 4px;
   line-height: 1;
-  border-radius: 6px;
-  transition: color 0.2s, background 0.2s;
+  border-radius: var(--radius-sm, 6px);
+  transition: all 0.2s;
 }
 
 .close-btn:hover {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary, #e2e8f0);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .modal-body {
@@ -1507,11 +1510,12 @@ onUnmounted(() => {
 .form-select {
   width: 100%;
   padding: 10px 12px;
-  background-color: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
+  transition: all 0.2s;
 }
 
 .form-select:focus {
@@ -1528,11 +1532,12 @@ onUnmounted(() => {
 .private-chat-input {
   flex: 1;
   padding: 10px 12px;
-  background-color: #0f172a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
+  color: var(--text-primary, #e2e8f0);
   font-size: 14px;
+  transition: all 0.2s;
 }
 
 .private-chat-input:focus {
@@ -1546,14 +1551,15 @@ onUnmounted(() => {
 
 .btn-private-chat {
   padding: 10px 14px;
-  background: #2563eb;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-sm, 12px);
+  color: #60a5fa;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.2s;
 }
 
 .btn-private-chat:hover {
@@ -1759,7 +1765,8 @@ onUnmounted(() => {
   justify-content: flex-end;
   gap: 10px;
   padding: 16px 20px 20px;
-  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 /* Mobile */

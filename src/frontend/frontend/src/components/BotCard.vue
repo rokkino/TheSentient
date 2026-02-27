@@ -754,34 +754,57 @@ const clearChatHistory = () => {
 
 <style scoped>
 .bot-card {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  border: 2px solid #4a5568;
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card, 0 8px 32px rgba(0, 0, 0, 0.35));
   display: flex;
   flex-direction: column;
   min-height: fit-content;
   box-sizing: border-box;
-  min-width: 0; /* allow shrink inside CSS grid parents */
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.bot-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
 }
 
 .bot-card:hover {
   transform: translateY(-4px);
-  border-color: #718096;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
+}
+
+.bot-card:hover::before {
+  opacity: 1;
 }
 
 .bot-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #4a5568;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .bot-header .menu-container.header-menu {
@@ -789,16 +812,17 @@ const clearChatHistory = () => {
 }
 
 .bot-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: white; /* Changed from gradient to white for image background if transparent, though image is jpg */
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md, 16px);
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
-  border: 2px solid #4a5568;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .bot-icon-img {
@@ -860,27 +884,28 @@ const clearChatHistory = () => {
 }
 
 .bot-status.active {
-  background: rgba(104, 211, 145, 0.2);
-  color: #68d391;
-  border: 1px solid rgba(104, 211, 145, 0.3);
+  background: var(--accent-gain-bg, rgba(52, 211, 153, 0.15));
+  color: var(--accent-gain, #34d399);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
 }
 
 .bot-status.inactive {
-  background: rgba(252, 129, 129, 0.2);
-  color: #fc8181;
-  border: 1px solid rgba(252, 129, 129, 0.3);
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text-secondary, #94a3b8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .bot-status.error {
-  background: rgba(252, 129, 129, 0.2);
-  color: #fc8181;
-  border: 1px solid rgba(252, 129, 129, 0.3);
+  background: var(--accent-loss-bg, rgba(244, 63, 94, 0.15));
+  color: var(--accent-loss, #f43f5e);
+  border: 1px solid rgba(244, 63, 94, 0.25);
 }
 
 .bot-status.training {
-  background: rgba(246, 173, 85, 0.2);
-  color: #f6ad55;
-  border: 1px solid rgba(246, 173, 85, 0.3);
+  background: rgba(251, 146, 60, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(251, 146, 60, 0.25);
 }
 
 .status-dot {
@@ -904,15 +929,23 @@ const clearChatHistory = () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .stat-item {
   text-align: center;
-  padding: 12px;
-  background: #1a202c;
-  border-radius: 8px;
-  border: 1px solid #2d3748;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm, 12px);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .stat-label {
@@ -979,12 +1012,14 @@ const clearChatHistory = () => {
 }
 
 .bot-description {
-  margin-bottom: 20px;
-  padding: 16px;
-  background: #1a202c;
-  border-radius: 8px;
-  border-left: 3px solid #4299e1;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm, 12px);
+  border-left: 3px solid var(--accent-primary, #3b82f6);
   min-height: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .bot-description:empty {
@@ -1064,130 +1099,113 @@ const clearChatHistory = () => {
   flex: 1;
   min-width: 80px;
   padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 12px);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary, #94a3b8);
+  position: relative;
+  z-index: 2;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #e2e8f0);
 }
 
 .action-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.import-btn {
-  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
-  color: white;
+  transform: translateY(1px);
 }
 
 .import-btn:hover {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.export-btn {
-  background: linear-gradient(135deg, #805ad5 0%, #6b46c1 100%);
-  color: white;
+  background: var(--accent-gain-bg, rgba(52, 211, 153, 0.15));
+  color: var(--accent-gain, #34d399);
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .export-btn:hover {
-  background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+  border-color: rgba(167, 139, 250, 0.3);
 }
 
 .configure-btn {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-  color: white;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .configure-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: var(--accent-primary-bg, rgba(59, 130, 246, 0.15));
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .configure-btn:disabled {
-  background: #4a5568;
-  color: #a0aec0;
-  opacity: 0.7;
+  opacity: 0.4;
   cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
 }
 
 .activate-btn {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  color: white;
+  color: var(--text-primary, #e2e8f0);
 }
 
 .activate-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #68d391 0%, #48bb78 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: var(--accent-gain-bg, rgba(52, 211, 153, 0.15));
+  color: var(--accent-gain, #34d399);
+  border-color: rgba(52, 211, 153, 0.3);
 }
 
 .activate-btn:disabled {
-  background: #4a5568;
-  color: #a0aec0;
-  opacity: 0.7;
+  opacity: 0.4;
   cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
 }
 
 .activate-btn.active {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  color: #68d391;
-  border: 1px solid #68d391;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.activate-btn.active {
-  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  color: #68d391;
-  border: 1px solid #68d391;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: var(--accent-gain-bg, rgba(52, 211, 153, 0.15));
+  color: var(--accent-gain, #34d399);
+  border-color: var(--accent-gain, #34d399);
+  box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
 }
 
 .time-btn {
-  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
-  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  color: var(--text-secondary, #94a3b8);
 }
 
 .time-btn:hover {
-  background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary, #e2e8f0);
+  transform: translateY(-1px);
 }
 
 .check-orders-big {
   width: 100%;
   margin-top: 16px;
   padding: 16px 24px;
-  font-size: 18px;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid rgba(251, 146, 60, 0.3);
+  border-radius: var(--radius-sm, 12px);
   cursor: pointer;
-  background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3);
-  transition: all 0.2s ease;
+  background: rgba(251, 146, 60, 0.1);
+  color: #fb923c;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .check-orders-big:hover {
-  background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(237, 137, 54, 0.4);
+  background: rgba(251, 146, 60, 0.2);
+  border-color: rgba(251, 146, 60, 0.5);
+  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.2);
+  transform: translateY(-1px);
 }
 
 .check-orders-big:active {
@@ -1232,7 +1250,9 @@ const clearChatHistory = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--glass-blur, blur(16px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(16px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1240,11 +1260,12 @@ const clearChatHistory = () => {
 }
 
 .modal-content {
-  background: #2d3748;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-glass, 0 25px 50px -12px rgba(0, 0, 0, 0.5));
 }
 
 .modal-header {
@@ -1252,7 +1273,8 @@ const clearChatHistory = () => {
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .modal-header h3 {
@@ -1263,9 +1285,14 @@ const clearChatHistory = () => {
 .close-btn {
   background: none;
   border: none;
-  color: #a0aec0;
+  color: var(--text-secondary, #94a3b8);
   font-size: 24px;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--text-primary, #e2e8f0);
 }
 
 .modal-body {
@@ -1475,9 +1502,8 @@ const clearChatHistory = () => {
 
 .modal-footer {
   padding: 16px;
-  border-top: 1px solid #4a5568;
-  background: #2d3748;
-  border-radius: 0 0 12px 12px;
+  border-top: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  background: transparent;
 }
 
 .chat-input-container {
@@ -1555,8 +1581,9 @@ const clearChatHistory = () => {
 }
 
 .check-orders-panel {
-  background: #2d3748;
-  border-radius: 12px;
+  background: var(--glass-bg, rgba(30, 41, 59, 0.5));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-lg, 24px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1568,8 +1595,8 @@ const clearChatHistory = () => {
   flex-wrap: wrap;
   gap: 20px;
   padding: 12px 24px;
-  background: #1a202c;
-  border-bottom: 1px solid #4a5568;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
   flex-shrink: 0;
 }
 

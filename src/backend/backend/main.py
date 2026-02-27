@@ -144,7 +144,10 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 CORS_ORIGINS = [
     "https://thesentient.duckdns.org",
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "https://34.53.28.120",
+    "http://34.53.28.120",
+    "http://34.53.28.120:5173",
+    "https://34.53.28.120:5173",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -216,6 +219,7 @@ class ChartRequest(BaseModel):
     start_date: Optional[str] = None  # ISO format: YYYY-MM-DD
     end_date: Optional[str] = None    # ISO format: YYYY-MM-DD
     extend_history: bool = False      # If true, fetch maximum history
+    extended_hours: bool = False      # If true, fetch pre/post market data
 
 class SearchRequest(BaseModel):
     query: str
@@ -783,10 +787,11 @@ async def get_chart(request: ChartRequest):
         data = await market_data_service.get_chart_data(
             request.ticker,
             request.timeframe,
-            request.chart_type,
+            chart_type=request.chart_type,
             start_date=request.start_date,
             end_date=request.end_date,
-            extend_history=request.extend_history
+            extend_history=request.extend_history,
+            extended_hours=request.extended_hours
         )
         return data
     except Exception as e:
@@ -1151,7 +1156,10 @@ async def login(request: Request, db: Session = Depends(get_db)):
         identifier = None
         password = None
         
+        print(f"[LOGIN] Request from {request.client.host if request.client else 'Unknown'}")
         print(f"[LOGIN] Content-Type: {content_type}")
+        print(f"[LOGIN] Origin Header: {request.headers.get('origin')}")
+        print(f"[LOGIN] User-Agent: {request.headers.get('user-agent')}")
         
         # Try to parse as form-data first (OAuth2PasswordRequestForm standard)
         if "multipart/form-data" in content_type or "application/x-www-form-urlencoded" in content_type:
@@ -1188,7 +1196,8 @@ async def login(request: Request, db: Session = Depends(get_db)):
             print(f"[LOGIN] Missing credentials: username={username is not None}, password={password is not None}")
             raise HTTPException(status_code=400, detail="Username and password required")
         
-        print(f"[LOGIN] Attempting login for user: {username}")
+        identifier_log = username if username else (email if email else identifier)
+        print(f"[LOGIN] Attempting login for identifier: {identifier_log}")
         
         # Authenticate user
         user = authenticate_user(db, username, password)
@@ -1212,7 +1221,6 @@ async def login(request: Request, db: Session = Depends(get_db)):
                 "bio": user.bio,
                 "phone": user.phone,
                 "location": user.location,
-                "website": user.website,
                 "website": user.website,
                 "profile_picture_url": user.profile_picture_url,
                 "use_local_llama": user.use_local_llama,

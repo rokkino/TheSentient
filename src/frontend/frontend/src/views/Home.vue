@@ -91,6 +91,20 @@
             <h4 class="feature-title">Trading Automation</h4>
             <p class="feature-description">AI-driven trading bots with competitive performance tracking</p>
           </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <div class="feature-icon">🛡️</div>
+            </div>
+            <h4 class="feature-title">Risk Management</h4>
+            <p class="feature-description">Real-time risk scoring, stop-loss automation and drawdown protection alerts</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <div class="feature-icon">💼</div>
+            </div>
+            <h4 class="feature-title">Portfolio Optimization</h4>
+            <p class="feature-description">AI-powered asset allocation and rebalancing recommendations based on market conditions</p>
+          </div>
         </div>
       </div>
     </div>

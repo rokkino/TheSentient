@@ -84,11 +84,11 @@ async def process_bot_earnings(bot_id: int):
                 # We look for ANY executed SELL for this symbol that happened after the entry
                 entry_time = entry.executed_at or entry.created_at
                 
-                # Find matching close (EXECUTED or FAILED sell counts as "attempted closure")
+                # Find matching close (only EXECUTED sell counts as actual closure)
                 closed = db.query(Decision).filter(
                     Decision.bot_id == bot.id,
                     Decision.symbol == entry.symbol,
-                    Decision.status.in_(['EXECUTED', 'FAILED']),
+                    Decision.status == 'EXECUTED',
                     Decision.decision == 'SELL',
                     Decision.created_at > entry.created_at # Created after the buy
                 ).first()
@@ -121,7 +121,10 @@ async def process_bot_earnings(bot_id: int):
                                 existing_sell.execution_time = datetime.now(timezone.utc)
                                 existing_sell.reasoning = (existing_sell.reasoning or "") + " | FORCE LIQUIDATION (Stuck)"
                             else:
-                                print(f"[JOB] FAILED sell already exists for {entry.symbol}, skipping duplicate liquidation.")
+                                print(f"[JOB] FAILED sell already exists for {entry.symbol}, retrying liquidation.")
+                                existing_sell.status = 'PENDING'
+                                existing_sell.execution_time = datetime.now(timezone.utc)
+                                existing_sell.reasoning = (existing_sell.reasoning or "") + " | FORCE LIQUIDATION (Retry)"
                         else:
                             # Create new liquidation order
                             liquidate = Decision(
@@ -780,34 +783,36 @@ async def execute_orders_job():
                         decision.reasoning = (decision.reasoning or "") + f" | Order ID: {order_id} | Qty: {qty} | Price: {current_price} | ExecStatus: {order_status}"
                         scheduler_service.log_execution(job_name, "SUCCESS", f"Executed {action} {symbol} (Bot {bot.name})")
                     else:
-                        decision.status = "FAILED"
-                        decision.executed_at = datetime.now()
-                        decision.reasoning = (decision.reasoning or "") + f" | Order ID: {order_id} | Qty: {qty} | Price: {current_price} | ExecStatus: {order_status} (Order did not fill)"
-                        scheduler_service.log_execution(job_name, "ERROR", f"Order {action} {symbol} did not fill (Bot {bot.name})")
+                        retry_count = (decision.reasoning or "").count("[RETRY")
+                        if retry_count < 3:
+                            decision.status = "PENDING"
+                            decision.execution_time = datetime.now() + timedelta(minutes=5)
+                            decision.reasoning = (decision.reasoning or "") + f" | [RETRY {retry_count + 1}/3] Order ID: {order_id} | ExecStatus: {order_status} (Retry)"
+                            print(f"[JOB] Order for {decision.symbol} did not fill (status {order_status}), scheduling retry {retry_count + 1}/3 in 5 min")
+                        else:
+                            decision.status = "FAILED"
+                            decision.executed_at = datetime.now()
+                            decision.reasoning = (decision.reasoning or "") + f" | [MAX RETRIES] Order ID: {order_id} | Qty: {qty} | Price: {current_price} | ExecStatus: {order_status} (Order did not fill)"
+                            scheduler_service.log_execution(job_name, "ERROR", f"Order {action} {symbol} did not fill (Bot {bot.name})")
                     
                 except Exception as e:
                     print(f"[JOB] Error executing order for {decision.symbol}: {e}")
                     import traceback
                     traceback.print_exc()
                     
-                    is_liquidation = decision.reasoning and "FORCE LIQUIDATION" in decision.reasoning
                     error_detail = str(e)[:200]
                     
-                    # For FORCE LIQUIDATION: retry up to 3 times by resetting to PENDING
-                    if is_liquidation:
-                        retry_count = (decision.reasoning or "").count("[RETRY")
-                        if retry_count < 3:
-                            decision.status = "PENDING"
-                            decision.execution_time = datetime.now() + timedelta(minutes=5)
-                            decision.reasoning = (decision.reasoning or "") + f" | [RETRY {retry_count + 1}/3] Error: {error_detail}"
-                            print(f"[JOB] FORCE LIQUIDATION for {decision.symbol} failed, scheduling retry {retry_count + 1}/3 in 5 min")
-                        else:
-                            decision.status = "FAILED"
-                            decision.reasoning = (decision.reasoning or "") + f" | [MAX RETRIES] Error: {error_detail}"
-                            print(f"[JOB] FORCE LIQUIDATION for {decision.symbol} failed after 3 retries")
+                    # Apply retry mechanism for all types of orders, up to 3 times
+                    retry_count = (decision.reasoning or "").count("[RETRY")
+                    if retry_count < 3:
+                        decision.status = "PENDING"
+                        decision.execution_time = datetime.now() + timedelta(minutes=5)
+                        decision.reasoning = (decision.reasoning or "") + f" | [RETRY {retry_count + 1}/3] Error: {error_detail}"
+                        print(f"[JOB] Order {decision.symbol} failed, scheduling retry {retry_count + 1}/3 in 5 min")
                     else:
                         decision.status = "FAILED"
-                        decision.reasoning = (decision.reasoning or "") + f" | Error: {error_detail}"
+                        decision.reasoning = (decision.reasoning or "") + f" | [MAX RETRIES] Error: {error_detail}"
+                        print(f"[JOB] Order {decision.symbol} failed after 3 retries")
                     scheduler_service.log_execution(job_name, "ERROR", f"Failed {decision.symbol}: {e}")
         
         db.commit()

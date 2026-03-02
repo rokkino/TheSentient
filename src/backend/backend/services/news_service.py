@@ -119,16 +119,19 @@ Rules:
     
     def _simple_sentiment_analysis(self, news_item: Dict[str, Any]) -> Dict[str, Any]:
         """Simple keyword-based sentiment analysis as fallback"""
-        title = news_item.get('title', '').lower()
-        text = (news_item.get('text', '') or news_item.get('summary', '') or '').lower()
-        combined = f"{title} {text}"
+        orig_title = news_item.get('title', '')
+        orig_text = news_item.get('text', '') or news_item.get('summary', '') or ''
+        title_lower = orig_title.lower()
+        text_lower = orig_text.lower()
+        combined_lower = f"{title_lower} {text_lower}"
+        combined_orig = f"{orig_title} {orig_text}"
         
         # Simple sentiment keywords
         positive_keywords = ['surge', 'rally', 'gain', 'up', 'rise', 'bullish', 'profit', 'beat', 'exceed', 'growth', 'record', 'high', 'soar', 'jump']
         negative_keywords = ['drop', 'fall', 'decline', 'down', 'crash', 'bearish', 'loss', 'miss', 'warn', 'concern', 'risk', 'plunge', 'tumble', 'slump']
         
-        pos_count = sum(1 for word in positive_keywords if word in combined)
-        neg_count = sum(1 for word in negative_keywords if word in combined)
+        pos_count = sum(1 for word in positive_keywords if word in combined_lower)
+        neg_count = sum(1 for word in negative_keywords if word in combined_lower)
         
         if pos_count > neg_count:
             sentiment = 'positive'
@@ -143,19 +146,34 @@ Rules:
         if news_item.get('ticker'):
             assets.append(news_item['ticker'])
         
-        # Look for common asset mentions in text
+        # Look for common asset mentions
         asset_patterns = [
-            r'\b([A-Z]{1,5})\b',  # Stock tickers (1-5 uppercase letters)
-            r'\b(BTC|ETH|XRP|DOGE|SOL|ADA|MATIC|DOT|AVAX|LINK)\b',  # Common crypto
-            r'\b(Gold|Silver|Oil|Crude|WTI|Brent)\b',  # Commodities
+            (r'\b([A-Z]{1,5})\b', 0),  # Stock tickers (1-5 uppercase letters)
+            (r'\b(BTC|ETH|XRP|DOGE|SOL|ADA|MATIC|DOT|AVAX|LINK)\b', re.IGNORECASE),  # Common crypto
+            (r'\b(Gold|Silver|Oil|Crude|WTI|Brent)\b', re.IGNORECASE),  # Commodities
         ]
         
-        for pattern in asset_patterns:
-            matches = re.findall(pattern, title + ' ' + text, re.IGNORECASE)
-            assets.extend([m.upper() if isinstance(m, str) else m[0].upper() for m in matches if len(str(m)) <= 5])
+        ignore_words = {
+            'A', 'I', 'IN', 'ON', 'TO', 'UP', 'US', 'IT', 'IS', 'AS', 'AT', 'BE', 'DO', 'GO', 'OR', 'SO',
+            'THE', 'AND', 'FOR', 'WITH', 'FROM', 'THAT', 'THIS', 'STOCK', 'NEWS', 'CEO', 'CFO', 'INC',
+            'LTD', 'LLC', 'CORP', 'NYSE', 'NASDAQ', 'NEW', 'BUY', 'SELL', 'HOLD', 'OUT', 'OFF', 'ANY',
+            'SAYS', 'WILL', 'ARE', 'HAS', 'HAD', 'NOT', 'BUT', 'HIS', 'HER', 'ITS', 'THEY', 'THEIR'
+        }
+        
+        for pattern, flags in asset_patterns:
+            matches = re.findall(pattern, combined_orig, flags=flags)
+            for m in matches:
+                val = str(m) if isinstance(m, str) else str(m[0])
+                val_upper = val.upper()
+                if len(val_upper) <= 5 and val_upper not in ignore_words:
+                    assets.append(val_upper)
         
         # Remove duplicates and limit
-        assets = list(set(assets))[:10]
+        unique_assets = []
+        for a in assets:
+            if a not in unique_assets:
+                unique_assets.append(a)
+        assets = unique_assets[:5]
         
         return {
             'sentiment': sentiment,
@@ -496,8 +514,10 @@ Rules:
                     news_item['extracted_assets'] = analysis.get('extracted_assets', [])
                     # Also add to relatedTickers for backward compatibility
                     if 'relatedTickers' not in news_item:
-                        news_item['relatedTickers'] = news_item['extracted_assets']
-                    elif news_item['ticker'] and news_item['ticker'] not in news_item['relatedTickers']:
+                        # Copy the list to prevent direct mutation of extracted_assets
+                        news_item['relatedTickers'] = list(news_item['extracted_assets'])
+                    
+                    if news_item.get('ticker') and news_item['ticker'] not in news_item['relatedTickers']:
                         news_item['relatedTickers'].insert(0, news_item['ticker'])
                 except Exception as e:
                     print(f"[NEWS] Error analyzing news item: {e}")

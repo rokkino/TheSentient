@@ -430,6 +430,7 @@ class BacktestRunRequest(BaseModel):
     capital: float = 1000.0
     min_confidence: int = 30
     limit: Optional[int] = None
+    bot_id: Optional[str] = None
 
 # API Routes
 @app.get("/")
@@ -897,7 +898,8 @@ async def run_backtest(req: BacktestRunRequest):
         end_year=req.end_year,
         capital=req.capital,
         min_confidence=req.min_confidence,
-        tickers_limit=req.limit
+        tickers_limit=req.limit,
+        bot_id=req.bot_id
     )
     return {"job_id": job_id, "status": "STARTING"}
 

@@ -23,8 +23,16 @@
 
       <div class="separator"></div>
 
-      <!-- Line Tools -->
-      <div class="tool-group">
+      <!-- Core Tools (Always Visible) -->
+      <div class="core-tools">
+        <div 
+          class="tool-btn" 
+          :class="{ active: currentTool === 'freehand' }"
+          @click="$emit('set-tool', 'freehand')" 
+          title="Freehand Brush"
+        >
+          <span class="icon">🖌️</span>
+        </div>
         <div 
           class="tool-btn" 
           :class="{ active: currentTool === 'line' }"
@@ -33,7 +41,20 @@
         >
           <span class="icon">╱</span>
         </div>
-        
+        <div 
+          class="tool-btn" 
+          :class="{ active: currentTool === 'text' }"
+          @click="$emit('set-tool', 'text')" 
+          title="Text Annotation"
+        >
+          <span class="icon">T</span>
+        </div>
+      </div>
+
+      <div class="separator" v-show="isExpanded"></div>
+
+      <!-- Line Tools (Expanded Only) -->
+      <div class="tool-group">
         <div 
           class="tool-btn" 
           :class="{ active: currentTool === 'arrow' }"
@@ -80,7 +101,7 @@
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="separator" v-show="isExpanded"></div>
 
       <!-- Fibonacci & Analysis Tools -->
       <div class="tool-group">
@@ -112,7 +133,7 @@
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="separator" v-show="isExpanded"></div>
 
       <!-- Shape Tools -->
       <div class="tool-group">
@@ -153,28 +174,10 @@
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="separator" v-show="isExpanded"></div>
 
-      <!-- Drawing Tools -->
+      <!-- Secondary Drawing Tools -->
       <div class="tool-group">
-        <div 
-          class="tool-btn" 
-          :class="{ active: currentTool === 'freehand' }"
-          @click="$emit('set-tool', 'freehand')" 
-          title="Freehand Brush"
-        >
-          <span class="icon">🖌️</span>
-        </div>
-
-        <div 
-          class="tool-btn" 
-          :class="{ active: currentTool === 'text' }"
-          @click="$emit('set-tool', 'text')" 
-          title="Text Annotation"
-        >
-          <span class="icon">T</span>
-        </div>
-
         <div 
           class="tool-btn" 
           :class="{ active: currentTool === 'callout' }"
@@ -194,7 +197,7 @@
         </div>
       </div>
 
-      <div class="separator"></div>
+      <div class="separator" v-show="isExpanded"></div>
       
       <!-- AI Tools -->
       <div 
@@ -341,25 +344,35 @@ const stopDrag = () => {
 .floating-tool-palette {
   position: absolute;
   z-index: 1000;
-  background: linear-gradient(180deg, #1e1e1e 0%, #161616 100%);
-  border: 1px solid #333;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  background: rgba(18, 20, 28, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   display: flex;
   flex-direction: column;
-  padding: 6px;
+  padding: 8px 6px;
   width: 82px;
   user-select: none;
-  transition: width 0.2s ease, opacity 0.2s ease;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, transform 0.2s ease;
 }
 
 .floating-tool-palette:not(.expanded) {
-  width: 48px;
+  width: 52px;
 }
 
 .floating-tool-palette:not(.expanded) .tool-group,
 .floating-tool-palette:not(.expanded) .quick-colors {
   display: none;
+}
+
+.core-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  align-items: center;
 }
 
 .drag-handle {
@@ -368,14 +381,16 @@ const stopDrag = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #555;
-  border-bottom: 1px solid #2a2a2a;
-  margin-bottom: 6px;
-  transition: color 0.2s;
+  color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 8px;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 6px;
 }
 
 .drag-handle:hover {
-  color: #888;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .drag-handle:active {
@@ -403,32 +418,39 @@ const stopDrag = () => {
 }
 
 .tool-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s ease;
-  color: #888;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: rgba(255, 255, 255, 0.5);
   position: relative;
+  background: transparent;
+  border: 1px solid transparent;
 }
 
 .tool-btn:hover {
-  background: linear-gradient(180deg, #333 0%, #2a2a2a 100%);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  transform: scale(1.05);
+  transform: translateY(-1px);
+}
+
+.tool-btn:active {
+  transform: translateY(1px);
 }
 
 .tool-btn.active {
-  background: linear-gradient(180deg, #2196F3 0%, #1976D2 100%);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.4);
+  background: rgba(33, 150, 243, 0.15);
+  border-color: rgba(33, 150, 243, 0.3);
+  color: #4dabf5;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
 }
 
 .tool-btn.special {
-  color: #ffd700;
+  color: rgba(255, 215, 0, 0.7);
 }
 
 .tool-btn.special:hover {
@@ -442,25 +464,28 @@ const stopDrag = () => {
 }
 
 .tool-btn.ai-btn {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
-  border: 1px solid rgba(147, 51, 234, 0.3);
-}
-
-.tool-btn.ai-btn:hover {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.4) 0%, rgba(59, 130, 246, 0.4) 100%);
-  border-color: rgba(147, 51, 234, 0.5);
-}
-
-.tool-btn.delete:hover {
-  background: linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+  border: 1px solid rgba(147, 51, 234, 0.25);
   color: #fff;
 }
 
+.tool-btn.ai-btn:hover {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+  border-color: rgba(147, 51, 234, 0.5);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2);
+}
+
+.tool-btn.delete:hover {
+  background: rgba(244, 67, 54, 0.15);
+  border-color: rgba(244, 67, 54, 0.3);
+  color: #ff5252;
+}
+
 .tool-btn.toggle-btn {
-  margin-top: 4px;
-  height: 24px;
-  font-size: 10px;
-  color: #555;
+  margin-top: 6px;
+  height: 28px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .tool-btn.toggle-btn:hover {
@@ -472,19 +497,20 @@ const stopDrag = () => {
 .separator {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent 0%, #333 50%, transparent 100%);
-  margin: 8px 0;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 6px 0;
 }
 
 .color-picker-wrapper {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #444;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  margin: 4px 0;
-  transition: border-color 0.2s, transform 0.2s;
+  margin: 6px 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .color-picker-wrapper:hover {

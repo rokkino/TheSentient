@@ -877,7 +877,7 @@ const tabsLoaded = ref(false) // Flag per sapere quando i tab sono stati caricat
 const tabs = ref([
   {
     id: 1,
-    name: 'Stocks',
+    name: 'CHARTS',
     type: 'stocks',
     selectedTicker: null,
     timeframe: '1y',
@@ -1077,14 +1077,14 @@ const stopChartRefresh = () => {
 
 const startChartRefresh = (tabId) => {
   stopChartRefresh()
-  // Update price/quote in the info bar every 30s so the number moves
+  // Update price/quote in the info bar every 5s so the number moves
   chartInfoInterval = setInterval(() => {
     if (activeTab.value === tabId) updateChartInfo(tabId)
-  }, 30000)
-  // Refetch chart data every 60s so candlesticks update (last bar / new bars)
+  }, 5000)
+  // Refetch chart data every 10s so candlesticks update (last bar / new bars)
   chartDataInterval = setInterval(() => {
     if (activeTab.value === tabId) loadChart(tabId, true)
-  }, 60000)
+  }, 10000)
 }
 
 const setActiveTab = (tabId) => {
@@ -1632,7 +1632,7 @@ const removeTab = (tabId) => {
     } else {
       // If no tabs left, create a default one
       handleCreateTab({
-        name: 'Stocks',
+        name: 'CHARTS',
         type: 'stocks',
         selectedTicker: null,
         timeframe: '1y',
@@ -3064,7 +3064,13 @@ const loadChart = async (tabId, forceRefresh = false) => {
     
     // Also update on resize
     if (!tab.resizeObserver) {
-      tab.resizeObserver = new ResizeObserver(() => {
+      tab.resizeObserver = new ResizeObserver((entries) => {
+        if (entries.length === 0 || !entries[0].contentRect) return
+        const newWidth = entries[0].contentRect.width
+        const newHeight = entries[0].contentRect.height
+        if (newWidth > 0 && newHeight > 0 && tab.chart) {
+          tab.chart.applyOptions({ width: newWidth, height: newHeight })
+        }
         updateDrawingCoordinates(tabId)
       })
       tab.resizeObserver.observe(chartContainer)

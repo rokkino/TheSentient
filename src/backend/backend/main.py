@@ -2611,7 +2611,7 @@ async def get_online_users():
 
 
 @app.get("/api/users/by-username")
-async def get_user_by_username(
+async def api_get_user_by_username(
     username: str,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -2619,6 +2619,7 @@ async def get_user_by_username(
     """Look up user by username (for private chat). Returns id and username if found."""
     if not username or not username.strip():
         raise HTTPException(status_code=400, detail="Username required")
+    # Call the imported get_user_by_username from auth_service
     user = get_user_by_username(db, username.strip())
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

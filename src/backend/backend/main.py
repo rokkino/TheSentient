@@ -2483,8 +2483,8 @@ async def call_weekly_plan(
 
 # WebSocket for real-time updates.
 # Regola produzione: Validate Token -> Accept -> Loop. Mai receive_text prima di accept.
-# Nginx: location /ws { proxy_pass http://127.0.0.1:8001/ws; } (frontend si connette a /ws).
-@app.websocket("/ws")
+# Nginx: location /api/ { proxy_pass http://127.0.0.1:8000; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "upgrade"; }
+@app.websocket("/api/ws")
 async def websocket_endpoint(websocket: WebSocket, token: Optional[str] = None):
     """WebSocket endpoint for real-time news and chat updates.
     Flow: accept first -> validate token -> if invalid close(1008) -> else register and receive loop.

@@ -4,6 +4,7 @@ FastAPI Backend for The Sentient Portfolio Tracker
 from __future__ import annotations
 
 import warnings
+# Trigger reload for sgmllib3k fix
 from contextlib import asynccontextmanager
 
 # Suppress noisy third-party deprecation warnings so terminal stays readable

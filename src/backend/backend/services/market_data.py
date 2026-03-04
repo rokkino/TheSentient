@@ -51,7 +51,7 @@ class MarketDataService:
         """Store in in-memory cache"""
         self._mem_cache[key] = {"data": data, "ts": time.time()}
     
-    async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True, start_date: str = None, end_date: str = None, extend_history: bool = False) -> Dict[str, Any]:
+    async def get_chart_data(self, ticker: str, timeframe: str, chart_type: str = "candle", include_earnings: bool = True, start_date: str = None, end_date: str = None, extend_history: bool = False, extended_hours: bool = False) -> Dict[str, Any]:
         """Get chart data for a ticker
         
         Args:
@@ -62,6 +62,7 @@ class MarketDataService:
             start_date: Custom start date (YYYY-MM-DD) - overrides timeframe
             end_date: Custom end date (YYYY-MM-DD)
             extend_history: If True, fetch maximum available history
+            extended_hours: If True, include pre/post market data
         """
         # Check in-memory cache first (skip for custom date ranges)
         if not start_date and not extend_history:
@@ -73,14 +74,15 @@ class MarketDataService:
         
         loop = asyncio.get_event_loop()
         
-        params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"])
+        params = self.timeframe_map.get(timeframe, self.timeframe_map["1y"]).copy()
+        params["prepost"] = extended_hours
         
         def fetch_data():
             tk = yf.Ticker(ticker)
             
             # Handle custom date range requests (for dynamic loading on zoom)
             if start_date or extend_history:
-                custom_params = {"interval": params.get("interval", "1d")}
+                custom_params = {"interval": params.get("interval", "1d"), "prepost": extended_hours}
                 
                 if extend_history:
                     # Fetch maximum available history (max period)

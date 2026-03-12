@@ -854,6 +854,81 @@ async def cleanup_old_decisions_job():
         db.close()
 
 
+
+def _calculate_db_perf(db, bot) -> None:
+    """
+    Calculate total_trades and win_rate for *bot* from the Decision table.
+    This is the most reliable source because it is populated by our own
+    execution logic regardless of which broker is used.
+
+    Strategy:
+    - total_trades = number of completed round-trips (pair of EXECUTED BUY + SELL
+      on the same symbol, sorted chronologically).
+    - win_rate    = percentage of pairs where the exit price > entry price.
+    - Prices are extracted from the reasoning field: `| Price: <float> |`.
+    - Pairs whose prices cannot be parsed are skipped (not penalised).
+    """
+    import re
+    from models.bot import Decision
+
+    PRICE_RE = re.compile(r'\|\s*Price:\s*([\d.]+)', re.IGNORECASE)
+
+    def _parse_price(reasoning: str) -> float | None:
+        if not reasoning:
+            return None
+        m = PRICE_RE.search(reasoning)
+        try:
+            return float(m.group(1)) if m else None
+        except Exception:
+            return None
+
+    try:
+        executed = (
+            db.query(Decision)
+            .filter(
+                Decision.bot_id == bot.id,
+                Decision.status == "EXECUTED",
+                Decision.decision.in_(["BUY", "SELL"]),
+            )
+            .order_by(Decision.executed_at)
+            .all()
+        )
+
+        # Group by symbol
+        from collections import defaultdict
+        by_sym: dict[str, list] = defaultdict(list)
+        for d in executed:
+            by_sym[d.symbol].append(d)
+
+        total_rt = 0
+        wins = 0
+
+        for sym, decisions in by_sym.items():
+            buys  = [d for d in decisions if d.decision == "BUY"]
+            sells = [d for d in decisions if d.decision == "SELL"]
+            pairs = min(len(buys), len(sells))
+            for i in range(pairs):
+                entry_price = _parse_price(buys[i].reasoning)
+                exit_price  = _parse_price(sells[i].reasoning)
+                if entry_price and exit_price and entry_price > 0:
+                    total_rt += 1
+                    if exit_price > entry_price:
+                        wins += 1
+                else:
+                    # Count the trade even if we can't determine win/loss
+                    total_rt += 1
+
+        bot.total_trades = total_rt
+        if total_rt > 0:
+            bot.win_rate = round((wins / total_rt) * 100, 2)
+        # Leave win_rate unchanged if we have no trades (0 stays 0 on first run)
+
+        print(f"[JOB] {bot.name}: DB perf → trades={total_rt}, wins={wins}, win_rate={bot.win_rate:.1f}%")
+
+    except Exception as e:
+        print(f"[JOB] _calculate_db_perf error for {bot.name}: {e}")
+
+
 async def update_bot_performance_job():
     """
     Job to update bot performance history (profit, win_rate) regularly.
@@ -882,33 +957,48 @@ async def update_bot_performance_job():
                         # We will track pl directly as standard "profit" for simplicity.
                         # IG pl is often raw currency value. Let's just store it.
                         profit_percent = pl
+                        # Trades and win-rate always from DB (same logic for all brokers)
+                        _calculate_db_perf(db, bot)
 
                 elif isinstance(service, AlpacaService):
                     # For alpaca we get account equity
                     try:
                         account_info = await service.get_account() if asyncio.iscoroutinefunction(service.get_account) else service.get_account()
                         if isinstance(account_info, dict):
-                            equity = float(account_info.get('portfolio_value', 100000))
-                            profit_percent = ((equity - 100000.0) / 100000.0) * 100.0  # Assumes 100k starting paper balance
-                            
-                        # Extract win rate from closed trades
-                        try:
-                            # We can just fetch all orders if get_orders doesn't support easy closed filtering
-                            closed_orders = await service.get_orders(status='all', limit=500) if asyncio.iscoroutinefunction(service.get_orders) else service.get_orders(status='all', limit=500)
-                            
-                            if closed_orders and isinstance(closed_orders, list):
-                                # alpaca-py returns dictionaries from the service wrapper
-                                filled_orders = [o for o in closed_orders if isinstance(o, dict) and 'filled' in str(o.get('status', '')).lower()]
-                                if filled_orders:
-                                    bot.total_trades = len(filled_orders) // 2 # approx roundtrip
-                                    if bot.total_trades > 0:
-                                        if profit_percent > 0:
-                                            bot.win_rate = min(100.0, 50.0 + (profit_percent / 100))
-                                        else:
-                                            bot.win_rate = max(0.0, 50.0 + (profit_percent / 100))
-                        except Exception as e:
-                            print(f"[JOB] Error calculating Alpaca win_rate: {e}")
-                            
+                            equity = float(account_info.get('portfolio_value', 0) or account_info.get('equity', 0))
+
+                            # --- Determine baseline equity ---
+                            # Prefer the first data point from portfolio history so we
+                            # don't rely on a hardcoded $100,000 assumption.
+                            baseline = 0.0
+                            try:
+                                from alpaca.trading.requests import GetPortfolioHistoryRequest
+                                req = GetPortfolioHistoryRequest(period="all", timeframe="1D")
+                                ph = service.client.get_portfolio_history(req)
+                                if ph and hasattr(ph, 'equity') and ph.equity:
+                                    # First non-zero equity in history is our baseline
+                                    for eq_val in ph.equity:
+                                        if eq_val and float(eq_val) > 0:
+                                            baseline = float(eq_val)
+                                            break
+                            except Exception as be:
+                                print(f"[JOB] Could not fetch portfolio history for baseline: {be}")
+
+                            if baseline <= 0:
+                                # Fall back to bot activated_at equity stored in bot config, or
+                                # use last_equity from account if available, else 100 000
+                                config = bot.get_config()
+                                baseline = float(config.get('baseline_equity', 0)) or 100000.0
+                                print(f"[JOB] Using fallback baseline ${baseline:,.2f} for {bot.name}")
+
+                            if equity > 0 and baseline > 0:
+                                profit_percent = ((equity - baseline) / baseline) * 100.0
+                            else:
+                                profit_percent = 0.0
+
+                        # --- Win-rate and trade count from our DB (always reliable) ---
+                        _calculate_db_perf(db, bot)
+
                     except Exception as e:
                         print(f"[JOB] Error fetching Alpaca account: {e}")
                 

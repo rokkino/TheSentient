@@ -904,10 +904,10 @@ async def run_backtest(req: BacktestRunRequest):
     )
     return {"job_id": job_id, "status": "STARTING"}
 
-@app.get("/api/backtest/active")
-async def get_active_backtests():
-    """Get list of active backtest jobs"""
-    return {"active_jobs": backtest_service.get_active_jobs()}
+@app.get("/api/backtest/recent")
+async def get_recent_backtests():
+    """Get list of recent backtest jobs"""
+    return {"recent_jobs": backtest_service.get_recent_jobs()}
 
 @app.get("/api/backtest/status/{job_id}")
 async def get_backtest_status(job_id: str):
@@ -3062,6 +3062,39 @@ async def test_account_connection(
         
     except Exception as e:
         return {"success": False, "message": str(e)}
+
+
+# ── Backtest Endpoints ────────────────────────────────────────────────────────
+@app.post("/api/backtest/run")
+async def run_backtest(request: BacktestRunRequest):
+    """Start an async backtest job. Returns job_id for polling."""
+    job_id = await backtest_service.start_backtest(
+        universe=request.universe,
+        start_year=request.start_year,
+        end_year=request.end_year,
+        capital=request.capital,
+        min_confidence=request.min_confidence,
+        tickers_limit=request.limit,
+        bot_id=request.bot_id,
+    )
+    return {"job_id": job_id}
+
+
+@app.get("/api/backtest/status/{job_id}")
+async def get_backtest_status(job_id: str):
+    """Poll the status/progress/results of a running or completed backtest job."""
+    job = backtest_service.get_job_status(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return job
+
+
+@app.get("/api/backtest/recent")
+async def get_recent_backtests():
+    """Return the most recent backtest jobs (for reconnecting after page reload)."""
+    jobs = backtest_service.get_recent_jobs()
+    return {"recent_jobs": jobs[:10]}  # Return last 10
+
 
 if __name__ == "__main__":
     import argparse

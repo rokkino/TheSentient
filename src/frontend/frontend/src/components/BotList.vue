@@ -190,6 +190,8 @@ let seriesMap = new Map()
 const lastPointByBotId = new Map()
 let avatarOverlayUpdater = null
 let isInitializing = false
+let pollTimer = null
+const POLL_INTERVAL_MS = 5 * 60 * 1000 // 5 minutes
 
 const getFilteredHistory = (bot) => {
   let hist = bot.performance_history || []
@@ -611,13 +613,13 @@ const handleBotImported = () => {
   }, 300)
 }
 
-const loadBots = async () => {
-  loading.value = true
-  error.value = null
+const loadBots = async ({ silent = false } = {}) => {
+  if (!silent) loading.value = true
+  if (!silent) error.value = null
 
   try {
     const response = await api.getBots()
-    console.log('Bots API response:', response.data)
+    if (!silent) console.log('Bots API response:', response.data)
     
     if (response.data && response.data.bots) {
       bots.value = response.data.bots.map(bot => ({
@@ -630,18 +632,27 @@ const loadBots = async () => {
         description: bot.description || '',
         activatedAt: bot.activated_at || null
       }))
-      console.log('Bots loaded:', bots.value.length)
+      if (!silent) console.log('Bots loaded:', bots.value.length)
     } else {
-      console.warn('Unexpected response format:', response.data)
-      bots.value = []
+      if (!silent) console.warn('Unexpected response format:', response.data)
+      if (!silent) bots.value = []
     }
   } catch (err) {
-    console.error('Error loading bots:', err)
-    error.value = err.response?.data?.detail || err.message || 'Failed to load bots'
-    bots.value = []
+    if (!silent) {
+      console.error('Error loading bots:', err)
+      error.value = err.response?.data?.detail || err.message || 'Failed to load bots'
+      bots.value = []
+    }
   } finally {
-    loading.value = false
+    if (!silent) loading.value = false
   }
+}
+
+const startPolling = () => {
+  if (pollTimer) return
+  pollTimer = setInterval(() => {
+    loadBots({ silent: true })
+  }, POLL_INTERVAL_MS)
 }
 
 // Handle window resize - debounced
@@ -674,10 +685,15 @@ onMounted(async () => {
   }, 200)
   
   window.addEventListener('resize', handleResize)
+  startPolling()
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
+  if (pollTimer) {
+    clearInterval(pollTimer)
+    pollTimer = null
+  }
   if (chartUpdateTimeout) {
     clearTimeout(chartUpdateTimeout)
   }

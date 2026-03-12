@@ -18,13 +18,14 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          timeout: 60s             # Tempo per stabilire la connessione
-          command_timeout: 20m     # Aumentiamo a 20 minuti il tempo totale dello script
+          timeout: 60s
+          command_timeout: 20m
+          envs: GITHUB_TOKEN,REPO_PATH,DATABASE_URL
           script: |
-            set -e  # Interrompe l'esecuzione al primo errore
+            set -e
 
             APP_DIR=~/the-sentient
-            REPO_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+            REPO_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO_PATH}"
 
             # ── 1. Clone iniziale o navigazione ───────────────────
             if [ ! -d "$APP_DIR/.git" ]; then
@@ -34,24 +35,19 @@ jobs:
 
             cd "$APP_DIR"
 
-            # ── 2. Sync sicuro (Senza cancellare file locali) ─────
+            # ── 2. Sync sicuro (protegge DB locale) ───────────────
             echo "🔄 Fetching latest code..."
             git fetch --all
             git reset --hard origin/main
-            # NOTA: Abbiamo rimosso 'git clean -fd' per proteggere il tuo DB sul server
 
             # ── 3. Configurazione Backend (.env) ──────────────────
             echo "⚙️  Configuring backend..."
-            mkdir -p src/backend/backend  # Assicura che la cartella esista
-            cat > src/backend/backend/.env << ENVEOF
-            DATABASE_URL="${{ secrets.DATABASE_URL }}"
-            ENVEOF
+            mkdir -p src/backend/backend
+            printf 'DATABASE_URL="%s"\n' "${DATABASE_URL}" > src/backend/backend/.env
 
             # ── 4. Aggiornamento Backend (Python) ─────────────────
             echo "🐍 Updating backend dependencies..."
             cd "$APP_DIR/src/backend/backend"
-            
-            # Crea il venv solo se non esiste per risparmiare tempo
             if [ ! -d "venv" ]; then
               python3 -m venv venv
             fi
@@ -66,14 +62,15 @@ jobs:
               --name backend \
               --interpreter ./venv/bin/python \
               --cwd "$APP_DIR/src/backend/backend" \
+              --log-date-format "YYYY-MM-DD HH:mm:ss" \
               --exp-backoff-restart-delay 5000 \
               -- --port 8000
+
             # ── 6. Aggiornamento Frontend (Vue/Vite) ──────────────
             echo "🎨 Building frontend..."
             cd "$APP_DIR/src/frontend/frontend"
             echo "VITE_API_URL=https://thesentient.duckdns.org/api" > .env
-            
-            # Installazione solo se package-lock.json è cambiato
+
             LOCK_HASH=$(md5sum package-lock.json | awk '{print $1}')
             PREV_HASH=""
             if [ -f .lock-hash ]; then
@@ -86,7 +83,6 @@ jobs:
             else
               echo "⏩ package-lock.json unchanged, skipping npm install"
             fi
-            # Build con limite memoria per evitare crash della VM
             NODE_OPTIONS="--max-old-space-size=1024" npm run build
 
             # ── 7. Permessi e Nginx ───────────────────────────────
@@ -97,3 +93,7 @@ jobs:
             # ── 8. Salvataggio PM2 ────────────────────────────────
             pm2 save
             echo "✅ Deploy completato con successo!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_PATH: ${{ github.repository }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

@@ -35,6 +35,7 @@ cache/
 
 # 8. File JSON dinamici generati a runtime (il server li rigenera da solo)
 **/earnings_data.json
+**/earnings_*.json
 **/profitto.json
 **/watchlist.json
 **/dump.txt

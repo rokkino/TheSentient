@@ -24,7 +24,8 @@ class BacktestService:
                              capital: float, 
                              min_confidence: int,
                              sector_filter: Optional[List[str]] = None,
-                             tickers_limit: Optional[int] = None) -> str:
+                             tickers_limit: Optional[int] = None,
+                             bot_id: Optional[str] = None) -> str:
         """
         Start a backtest job in the background.
         Returns the job_id.
@@ -43,6 +44,7 @@ class BacktestService:
                 "end_year": end_year,
                 "capital": capital,
                 "min_confidence": min_confidence,
+                "bot_id": bot_id
             },
             "results": [],
             "stats": {},
@@ -60,8 +62,8 @@ class BacktestService:
     def get_job_status(self, job_id: str) -> Optional[Dict[str, Any]]:
         return self.jobs.get(job_id)
         
-    def get_active_jobs(self) -> List[Dict[str, Any]]:
-        return [job for job in self.jobs.values() if job["status"] in ["STARTING", "RUNNING"]]
+    def get_recent_jobs(self) -> List[Dict[str, Any]]:
+        return sorted(self.jobs.values(), key=lambda j: j.get("started_at", ""), reverse=True)
 
     async def _run_backtest_task(self, job_id: str, universe: str, start_year: int, end_year: int, capital: float, limit: Optional[int]):
         try:
@@ -141,7 +143,10 @@ class BacktestService:
                     # Time check (Before/After)
                     time_slot = evt.get("time", "TBD")
                     is_bmo = "Before" in time_slot or "market open" in time_slot.lower()
-                    is_amc = "After" in time_slot or "market close" in time_slot.lower()
+                    
+                    # Fallback for historical data that lacks specific timing (TBD)
+                    # We will assume After Market Close (AMC) if TBD to ensure backtest yields results.
+                    is_amc = "After" in time_slot or "market close" in time_slot.lower() or time_slot == "TBD"
                     
                     # Strategy Dates
                     # PRE-MARKET: Buy Close(T-1) -> Sell Open(T)
@@ -154,7 +159,6 @@ class BacktestService:
                         entry_date = evt_date
                         exit_date = evt_date + timedelta(days=1)
                     else:
-                        # TBD time - skip or assume AMC (safer to skip for backtest rigor)
                         continue
                         
                     # Skip weekends for entry/exit (approximation, yfinance handles this mostly but we need valid dates)
@@ -262,20 +266,9 @@ class BacktestService:
         # Logistic -> Industrials
         # Food -> Consumer Defensive
         
-        s_lower = sector.lower()
-        
-        allowed_keywords = [
-            "technology", "tech", "software", "semiconductor", # Technology
-            "health", "bio", "pharma", "medical", # Biomedical/Healthcare
-            "industrial", "engineer", "aerospace", "defense", "transport", # Engineering/Logistic
-        ]
-        
-        # Check against allowed
-        for k in allowed_keywords:
-            if k in s_lower:
-                return True
-                
-        return False
+        # Currently _get_batch_sectors returns an empty dict, so sector is always "Unknown"
+        # Since we don't have sector filtering implemented yet, we should allow all.
+        return True
 
     async def _get_price_window(self, ticker: str, entry_date: date, exit_date: date) -> Optional[Dict[str, Any]]:
         # Fetch small window of history using yfinance

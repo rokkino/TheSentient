@@ -56,7 +56,8 @@ class GeminiService:
             self.available = False
             self.client = None
             if not self.api_key:
-                print("[GEMINI] Warning: GOOGLE_GEMINI_API_KEY not set")
+                # Keys are stored per-user in the DB and passed at call time — this is expected at global init.
+                print("[GEMINI] No global API key set (using per-user keys from DB)")
         
         self.user_memories: Dict[int, List[Dict[str, str]]] = {}
         
